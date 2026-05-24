@@ -1,0 +1,41 @@
+{
+  "created_at_utc": "2026-05-14T08:17:32+00:00",
+  "input": "data/scenarios_merged.jsonl",
+  "output": "data/scenarios_merged_lexical_control.jsonl",
+  "input_sha256": "b638a1e22f0bd0d727f4ce9cc39040b8bf141af1672ccc359017c7b8aa475fd5",
+  "output_sha256": "aaaa8f171d6c89cc9e080c4f534abae9b66290a2af68bcd448aee94fa2ff9d61",
+  "rows": 459,
+  "changed_rows": 304,
+  "normalization": {
+    "url": "[URL]",
+    "inline_backtick_code": "[CMD]",
+    "tool_aliases": "[TOOL]",
+    "replace_paths": false,
+    "replace_command_words": false
+  },
+  "replacement_counts": {
+    "inline_code": 149,
+    "tool_mention": 162,
+    "url": 46
+  },
+  "context_counts": {
+    "prod": 155,
+    "safe": 181,
+    "unsafe": 123
+  },
+  "tool_counts": {
+    "delegate": 54,
+    "delete_file": 36,
+    "memory": 31,
+    "read_file": 45,
+    "send_message": 41,
+    "terminal": 122,
+    "web_fetch": 49,
+    "web_search": 36,
+    "write_file": 45
+  },
+  "next_steps": [
+    "python extract_embeddings_llm.py Qwen/Qwen3-8B scenarios_merged_lexical_control.jsonl --batch-size 8",
+    "python lexical_control_experiment.py evaluate qwen3-8b_scenarios_merged_lexical_control --baseline qwen3-8b_scenarios_merged"
+  ]
+}

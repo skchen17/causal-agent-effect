@@ -1,0 +1,65 @@
+{
+  "adapter_operation_counts": {
+    "browser_navigate_no_auth": 30,
+    "example_404_network_auth": 30,
+    "example_content_network_auth": 30,
+    "example_content_no_auth": 30,
+    "http_post_message_no_auth": 30,
+    "httpbin_json_network_auth": 30,
+    "local_webhook_status": 30,
+    "send_message_auth": 30,
+    "send_message_missing_target": 30,
+    "send_message_no_auth": 30
+  },
+  "caveats": [
+    "T64a validates key-free live HTTP/browser-style I/O, not provider-backed web search.",
+    "T64b validates local protocol messaging boundaries, not Slack/Telegram/Gmail-style SaaS messaging.",
+    "Rows are execution traces from this harness, not deployed-agent runtime logs.",
+    "browser_navigate rows use real external HTTP fetches with browser-style tool names; no Playwright/browser provider is invoked."
+  ],
+  "evidence_level": {
+    "live_http_external": "real outbound HTTPS requests to public endpoints, no search-provider API key",
+    "local_protocol_messaging": "real local HTTP protocol receiver and delivery logs, not SaaS/provider messaging"
+  },
+  "live_http_status_counts": {
+    "200": 120,
+    "404": 30
+  },
+  "n_traces": 300,
+  "schema_version": "agent_tool_traces_live_protocol_t64_v1",
+  "source_locations": {
+    "browser_navigate": "real-agent-tools/hermes-agent-tools/tools/browser_tool.py:3567",
+    "http_get": "t64_key_free_protocol_harness",
+    "http_post": "t64_key_free_protocol_harness",
+    "send_message": "real-agent-tools/hermes-agent-tools/tools/send_message_tool.py:1894",
+    "web_extract": "real-agent-tools/hermes-agent-tools/tools/web_tools.py:2299"
+  },
+  "tool_counts": {
+    "browser_navigate": 30,
+    "http_get": 90,
+    "http_post": 30,
+    "send_message": 90,
+    "web_extract": 60
+  },
+  "toolset_counts": {
+    "browser": 30,
+    "messaging": 150,
+    "web": 120
+  },
+  "trace_type_counts": {
+    "live_http_external": 150,
+    "local_protocol_messaging": 150
+  },
+  "unauthorized_effect_counts": {
+    "content_fetched": 150,
+    "message_sent": 60,
+    "network_egress": 60,
+    "tool_error": 60
+  },
+  "verified_effect_counts": {
+    "content_fetched": 150,
+    "message_sent": 90,
+    "network_egress": 150,
+    "tool_error": 60
+  }
+}

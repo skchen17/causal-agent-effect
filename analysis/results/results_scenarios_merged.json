@@ -1,0 +1,409 @@
+{
+  "data_name": "scenarios_merged",
+  "ranking": [
+    [
+      "command_executed",
+      {
+        "n_pos": 110,
+        "n_neg": 349,
+        "balance": 0.24,
+        "nl_method": "MLP(128,64)",
+        "linear": {
+          "f1": 0.7469,
+          "auc": 0.9436,
+          "accuracy": 0.8671
+        },
+        "nonlinear": {
+          "f1": 0.8333,
+          "auc": 0.967,
+          "accuracy": 0.9259,
+          "converged": true
+        },
+        "delta": {
+          "f1": 0.0864,
+          "method": "MLP(128,64)"
+        },
+        "probe_norm": 9.7016,
+        "insufficient": false
+      }
+    ],
+    [
+      "file_deleted",
+      {
+        "n_pos": 45,
+        "n_neg": 414,
+        "balance": 0.098,
+        "nl_method": "MLP(64,32)",
+        "linear": {
+          "f1": 0.785,
+          "auc": 0.9834,
+          "accuracy": 0.9499
+        },
+        "nonlinear": {
+          "f1": 0.8276,
+          "auc": 0.9747,
+          "accuracy": 0.9673,
+          "converged": true
+        },
+        "delta": {
+          "f1": 0.0425,
+          "method": "MLP(64,32)"
+        },
+        "probe_norm": 9.6551,
+        "insufficient": false
+      }
+    ],
+    [
+      "tool_error",
+      {
+        "n_pos": 121,
+        "n_neg": 338,
+        "balance": 0.264,
+        "nl_method": "MLP(128,64)",
+        "linear": {
+          "f1": 0.7224,
+          "auc": 0.9122,
+          "accuracy": 0.841
+        },
+        "nonlinear": {
+          "f1": 0.7544,
+          "auc": 0.9128,
+          "accuracy": 0.878,
+          "converged": true
+        },
+        "delta": {
+          "f1": 0.032,
+          "method": "MLP(128,64)"
+        },
+        "probe_norm": 9.3143,
+        "insufficient": false
+      }
+    ],
+    [
+      "network_egress",
+      {
+        "n_pos": 120,
+        "n_neg": 339,
+        "balance": 0.261,
+        "nl_method": "MLP(128,64)",
+        "linear": {
+          "f1": 0.7279,
+          "auc": 0.9093,
+          "accuracy": 0.8388
+        },
+        "nonlinear": {
+          "f1": 0.6698,
+          "auc": 0.9114,
+          "accuracy": 0.8475,
+          "converged": true
+        },
+        "delta": {
+          "f1": -0.0581,
+          "method": "MLP(128,64)"
+        },
+        "probe_norm": 9.0077,
+        "insufficient": false
+      }
+    ],
+    [
+      "subagent_spawned",
+      {
+        "n_pos": 42,
+        "n_neg": 417,
+        "balance": 0.092,
+        "nl_method": "MLP(64,32)",
+        "linear": {
+          "f1": 0.6796,
+          "auc": 0.9493,
+          "accuracy": 0.9281
+        },
+        "nonlinear": {
+          "f1": 0.597,
+          "auc": 0.9372,
+          "accuracy": 0.9412,
+          "converged": true
+        },
+        "delta": {
+          "f1": -0.0826,
+          "method": "MLP(64,32)"
+        },
+        "probe_norm": 9.5623,
+        "insufficient": false
+      }
+    ],
+    [
+      "memory_updated",
+      {
+        "n_pos": 40,
+        "n_neg": 419,
+        "balance": 0.087,
+        "nl_method": "MLP(64,32)",
+        "linear": {
+          "f1": 0.7391,
+          "auc": 0.9582,
+          "accuracy": 0.9477
+        },
+        "nonlinear": {
+          "f1": 0.5424,
+          "auc": 0.936,
+          "accuracy": 0.9412,
+          "converged": true
+        },
+        "delta": {
+          "f1": -0.1968,
+          "method": "MLP(64,32)"
+        },
+        "probe_norm": 9.9882,
+        "insufficient": false
+      }
+    ],
+    [
+      "file_content_read",
+      {
+        "n_pos": 64,
+        "n_neg": 395,
+        "balance": 0.139,
+        "nl_method": "MLP(64,32)",
+        "linear": {
+          "f1": 0.593,
+          "auc": 0.9044,
+          "accuracy": 0.8475
+        },
+        "nonlinear": {
+          "f1": 0.3571,
+          "auc": 0.7177,
+          "accuracy": 0.8824,
+          "converged": true
+        },
+        "delta": {
+          "f1": -0.2359,
+          "method": "MLP(64,32)"
+        },
+        "probe_norm": 9.5257,
+        "insufficient": false
+      }
+    ],
+    [
+      "message_sent",
+      {
+        "n_pos": 35,
+        "n_neg": 424,
+        "balance": 0.076,
+        "nl_method": "MLP(64,32)",
+        "linear": {
+          "f1": 0.7692,
+          "auc": 0.9606,
+          "accuracy": 0.9608
+        },
+        "nonlinear": {
+          "f1": 0.5106,
+          "auc": 0.8526,
+          "accuracy": 0.9499,
+          "converged": true
+        },
+        "delta": {
+          "f1": -0.2586,
+          "method": "MLP(64,32)"
+        },
+        "probe_norm": 9.8829,
+        "insufficient": false
+      }
+    ],
+    [
+      "content_fetched",
+      {
+        "n_pos": 41,
+        "n_neg": 418,
+        "balance": 0.089,
+        "nl_method": "MLP(64,32)",
+        "linear": {
+          "f1": 0.6239,
+          "auc": 0.9283,
+          "accuracy": 0.9107
+        },
+        "nonlinear": {
+          "f1": 0.0,
+          "auc": 0.5718,
+          "accuracy": 0.9085,
+          "converged": false
+        },
+        "delta": {
+          "f1": null,
+          "method": "MLP(64,32)"
+        },
+        "probe_norm": 10.0174,
+        "insufficient": false
+      }
+    ],
+    [
+      "file_written",
+      {
+        "n_pos": 51,
+        "n_neg": 408,
+        "balance": 0.111,
+        "nl_method": "MLP(64,32)",
+        "linear": {
+          "f1": 0.6047,
+          "auc": 0.9117,
+          "accuracy": 0.8889
+        },
+        "nonlinear": {
+          "f1": 0.2667,
+          "auc": 0.6536,
+          "accuracy": 0.9041,
+          "converged": false
+        },
+        "delta": {
+          "f1": null,
+          "method": "MLP(64,32)"
+        },
+        "probe_norm": 9.6632,
+        "insufficient": false
+      }
+    ],
+    [
+      "search_performed",
+      {
+        "n_pos": 32,
+        "n_neg": 427,
+        "balance": 0.07,
+        "nl_method": "MLP(64,32)",
+        "linear": {
+          "f1": 0.65,
+          "auc": 0.9224,
+          "accuracy": 0.939
+        },
+        "nonlinear": {
+          "f1": 0.0,
+          "auc": 0.6205,
+          "accuracy": 0.9281,
+          "converged": false
+        },
+        "delta": {
+          "f1": null,
+          "method": "MLP(64,32)"
+        },
+        "probe_norm": 10.1789,
+        "insufficient": false
+      }
+    ]
+  ],
+  "insufficient": [],
+  "verdicts": {
+    "linear": [],
+    "nl_worse": [
+      "network_egress",
+      "subagent_spawned",
+      "memory_updated",
+      "file_content_read",
+      "message_sent"
+    ],
+    "mixed": [
+      "file_deleted",
+      "tool_error"
+    ],
+    "nonlinear": [
+      "command_executed"
+    ],
+    "nl_failed": [
+      [
+        "content_fetched",
+        {
+          "n_pos": 41,
+          "n_neg": 418,
+          "balance": 0.089,
+          "nl_method": "MLP(64,32)",
+          "linear": {
+            "f1": 0.6239,
+            "auc": 0.9283,
+            "accuracy": 0.9107
+          },
+          "nonlinear": {
+            "f1": 0.0,
+            "auc": 0.5718,
+            "accuracy": 0.9085,
+            "converged": false
+          },
+          "delta": {
+            "f1": null,
+            "method": "MLP(64,32)"
+          },
+          "probe_norm": 10.0174,
+          "insufficient": false
+        }
+      ],
+      [
+        "file_written",
+        {
+          "n_pos": 51,
+          "n_neg": 408,
+          "balance": 0.111,
+          "nl_method": "MLP(64,32)",
+          "linear": {
+            "f1": 0.6047,
+            "auc": 0.9117,
+            "accuracy": 0.8889
+          },
+          "nonlinear": {
+            "f1": 0.2667,
+            "auc": 0.6536,
+            "accuracy": 0.9041,
+            "converged": false
+          },
+          "delta": {
+            "f1": null,
+            "method": "MLP(64,32)"
+          },
+          "probe_norm": 9.6632,
+          "insufficient": false
+        }
+      ],
+      [
+        "search_performed",
+        {
+          "n_pos": 32,
+          "n_neg": 427,
+          "balance": 0.07,
+          "nl_method": "MLP(64,32)",
+          "linear": {
+            "f1": 0.65,
+            "auc": 0.9224,
+            "accuracy": 0.939
+          },
+          "nonlinear": {
+            "f1": 0.0,
+            "auc": 0.6205,
+            "accuracy": 0.9281,
+            "converged": false
+          },
+          "delta": {
+            "f1": null,
+            "method": "MLP(64,32)"
+          },
+          "probe_norm": 10.1789,
+          "insufficient": false
+        }
+      ]
+    ]
+  },
+  "tier_delta_summary": {
+    "HIGH": {
+      "avg_delta": -0.054079999999999996,
+      "count": 5,
+      "min_delta": -0.2586,
+      "max_delta": 0.0864
+    },
+    "BENIGN": {
+      "avg_delta": 0.032,
+      "count": 1,
+      "min_delta": 0.032,
+      "max_delta": 0.032
+    },
+    "LOW": {
+      "avg_delta": -0.21635,
+      "count": 2,
+      "min_delta": -0.2359,
+      "max_delta": -0.1968
+    }
+  }
+}

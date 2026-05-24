@@ -1,0 +1,20 @@
+{
+  "model": "Qwen/Qwen3-8B",
+  "short_name": "qwen3-8b",
+  "dim": 4096,
+  "n_samples": 1104,
+  "effect_names": [
+    "candidate_unauthorized_effect"
+  ],
+  "tools": [
+    "delete_file",
+    "read_file",
+    "send_message",
+    "terminal",
+    "web_extract",
+    "web_search",
+    "write_file"
+  ],
+  "data_name": "auth_trace_effect_schema_conditioned_v1",
+  "use_4bit": false
+}

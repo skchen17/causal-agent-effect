@@ -1,0 +1,36 @@
+# Cache & environments
+.hf_cache/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Build artifacts
+*.aux
+*.log
+*.out
+paper/main.pdf
+paper-path-a/main.pdf
+paper-path-a/appendix.pdf
+paper-path-a/*.aux
+paper-path-a/*.log
+paper-path-a/*.out
+
+# IDE
+.vscode/
+.idea/
+
+# Large model files (use git-lfs or download separately)
+embeddings/*.npy
+embeddings/*.npy
+*.safetensors
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+resume_session.txt
+
+# Conda env
+anaconda3/

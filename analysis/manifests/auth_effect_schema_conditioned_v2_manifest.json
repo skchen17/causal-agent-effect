@@ -1,0 +1,1035 @@
+{
+  "schema_version": "auth_effect_schema_conditioned_v2",
+  "generated_by": "build_auth_effect_schema_conditioned_data.py",
+  "input": "data/authorization_counterfactuals_v2.jsonl",
+  "n_base_rows": 1464,
+  "n_total": 35136,
+  "candidate_effects": [
+    "command_executed",
+    "file_content_read",
+    "file_written",
+    "file_deleted",
+    "network_egress",
+    "content_fetched",
+    "message_sent",
+    "tool_error"
+  ],
+  "schema_conditions": [
+    "full_tool_chain",
+    "auth_only_control",
+    "tool_only_control"
+  ],
+  "condition_counts": {
+    "auth_only_control": 11712,
+    "full_tool_chain": 11712,
+    "tool_only_control": 11712
+  },
+  "candidate_effect_counts": {
+    "command_executed": 4392,
+    "content_fetched": 4392,
+    "file_content_read": 4392,
+    "file_deleted": 4392,
+    "file_written": 4392,
+    "message_sent": 4392,
+    "network_egress": 4392,
+    "tool_error": 4392
+  },
+  "unauthorized_positive_counts_by_condition": {
+    "auth_only_control": 574,
+    "full_tool_chain": 574,
+    "tool_only_control": 574
+  },
+  "absent_not_authorized_counts_by_condition": {
+    "auth_only_control": 9142,
+    "full_tool_chain": 9142,
+    "tool_only_control": 9142
+  },
+  "unauthorized_positive_counts_by_candidate": {
+    "command_executed": 378,
+    "content_fetched": 192,
+    "file_content_read": 150,
+    "file_deleted": 192,
+    "file_written": 192,
+    "message_sent": 192,
+    "network_egress": 234,
+    "tool_error": 192
+  },
+  "absent_not_authorized_counts_by_candidate": {
+    "command_executed": 2529,
+    "content_fetched": 3834,
+    "file_content_read": 3576,
+    "file_deleted": 3534,
+    "file_written": 3486,
+    "message_sent": 3960,
+    "network_egress": 2547,
+    "tool_error": 3960
+  },
+  "tool_counts": {
+    "delete_file": 1080,
+    "http_get": 1920,
+    "http_post": 960,
+    "python_repl": 2880,
+    "read_file": 1080,
+    "send_message": 1080,
+    "terminal": 16704,
+    "web_extract": 3480,
+    "web_search": 1080,
+    "write_file": 4872
+  },
+  "counterfactual_family_counts": {
+    "same_effect_reframing": 9600,
+    "same_task_effect_substitution": 3696,
+    "same_task_tool_swap": 5040,
+    "same_tool_auth_flip": 10080,
+    "surface_graph_expansion_auth_flip": 6720
+  },
+  "candidate_tool_condition_cells": {
+    "auth_only_control::command_executed::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::command_executed::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "auth_only_control::command_executed::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "auth_only_control::command_executed::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "auth_only_control::command_executed::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::command_executed::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::command_executed::terminal": {
+      "unauthorized_positive": 126,
+      "absent_not_authorized": 75
+    },
+    "auth_only_control::command_executed::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "auth_only_control::command_executed::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::command_executed::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "auth_only_control::content_fetched::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::content_fetched::http_get": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 40
+    },
+    "auth_only_control::content_fetched::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "auth_only_control::content_fetched::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "auth_only_control::content_fetched::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::content_fetched::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::content_fetched::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 595
+    },
+    "auth_only_control::content_fetched::web_extract": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 100
+    },
+    "auth_only_control::content_fetched::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::content_fetched::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "auth_only_control::file_content_read::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::file_content_read::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "auth_only_control::file_content_read::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "auth_only_control::file_content_read::python_repl": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 80
+    },
+    "auth_only_control::file_content_read::read_file": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "auth_only_control::file_content_read::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::file_content_read::terminal": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 509
+    },
+    "auth_only_control::file_content_read::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "auth_only_control::file_content_read::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::file_content_read::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "auth_only_control::file_deleted::delete_file": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "auth_only_control::file_deleted::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "auth_only_control::file_deleted::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "auth_only_control::file_deleted::python_repl": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 80
+    },
+    "auth_only_control::file_deleted::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::file_deleted::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::file_deleted::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 495
+    },
+    "auth_only_control::file_deleted::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "auth_only_control::file_deleted::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::file_deleted::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "auth_only_control::file_written::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::file_written::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "auth_only_control::file_written::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "auth_only_control::file_written::python_repl": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 80
+    },
+    "auth_only_control::file_written::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::file_written::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::file_written::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 637
+    },
+    "auth_only_control::file_written::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "auth_only_control::file_written::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::file_written::write_file": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "auth_only_control::message_sent::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::message_sent::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "auth_only_control::message_sent::http_post": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 0
+    },
+    "auth_only_control::message_sent::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "auth_only_control::message_sent::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::message_sent::send_message": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "auth_only_control::message_sent::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 637
+    },
+    "auth_only_control::message_sent::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "auth_only_control::message_sent::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::message_sent::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "auth_only_control::network_egress::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::network_egress::http_get": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 0
+    },
+    "auth_only_control::network_egress::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "auth_only_control::network_egress::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::network_egress::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::network_egress::terminal": {
+      "unauthorized_positive": 43,
+      "absent_not_authorized": 391
+    },
+    "auth_only_control::network_egress::web_extract": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "auth_only_control::network_egress::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "auth_only_control::tool_error::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::tool_error::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "auth_only_control::tool_error::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "auth_only_control::tool_error::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "auth_only_control::tool_error::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::tool_error::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "auth_only_control::tool_error::terminal": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 696
+    },
+    "auth_only_control::tool_error::web_extract": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 90
+    },
+    "auth_only_control::tool_error::web_search": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "auth_only_control::tool_error::write_file": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 159
+    },
+    "full_tool_chain::command_executed::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::command_executed::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "full_tool_chain::command_executed::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "full_tool_chain::command_executed::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "full_tool_chain::command_executed::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::command_executed::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::command_executed::terminal": {
+      "unauthorized_positive": 126,
+      "absent_not_authorized": 75
+    },
+    "full_tool_chain::command_executed::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "full_tool_chain::command_executed::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::command_executed::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "full_tool_chain::content_fetched::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::content_fetched::http_get": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 40
+    },
+    "full_tool_chain::content_fetched::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "full_tool_chain::content_fetched::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "full_tool_chain::content_fetched::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::content_fetched::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::content_fetched::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 595
+    },
+    "full_tool_chain::content_fetched::web_extract": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 100
+    },
+    "full_tool_chain::content_fetched::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::content_fetched::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "full_tool_chain::file_content_read::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::file_content_read::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "full_tool_chain::file_content_read::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "full_tool_chain::file_content_read::python_repl": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 80
+    },
+    "full_tool_chain::file_content_read::read_file": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "full_tool_chain::file_content_read::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::file_content_read::terminal": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 509
+    },
+    "full_tool_chain::file_content_read::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "full_tool_chain::file_content_read::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::file_content_read::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "full_tool_chain::file_deleted::delete_file": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "full_tool_chain::file_deleted::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "full_tool_chain::file_deleted::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "full_tool_chain::file_deleted::python_repl": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 80
+    },
+    "full_tool_chain::file_deleted::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::file_deleted::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::file_deleted::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 495
+    },
+    "full_tool_chain::file_deleted::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "full_tool_chain::file_deleted::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::file_deleted::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "full_tool_chain::file_written::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::file_written::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "full_tool_chain::file_written::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "full_tool_chain::file_written::python_repl": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 80
+    },
+    "full_tool_chain::file_written::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::file_written::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::file_written::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 637
+    },
+    "full_tool_chain::file_written::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "full_tool_chain::file_written::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::file_written::write_file": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "full_tool_chain::message_sent::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::message_sent::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "full_tool_chain::message_sent::http_post": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 0
+    },
+    "full_tool_chain::message_sent::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "full_tool_chain::message_sent::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::message_sent::send_message": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "full_tool_chain::message_sent::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 637
+    },
+    "full_tool_chain::message_sent::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "full_tool_chain::message_sent::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::message_sent::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "full_tool_chain::network_egress::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::network_egress::http_get": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 0
+    },
+    "full_tool_chain::network_egress::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "full_tool_chain::network_egress::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::network_egress::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::network_egress::terminal": {
+      "unauthorized_positive": 43,
+      "absent_not_authorized": 391
+    },
+    "full_tool_chain::network_egress::web_extract": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "full_tool_chain::network_egress::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "full_tool_chain::tool_error::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::tool_error::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "full_tool_chain::tool_error::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "full_tool_chain::tool_error::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "full_tool_chain::tool_error::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::tool_error::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "full_tool_chain::tool_error::terminal": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 696
+    },
+    "full_tool_chain::tool_error::web_extract": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 90
+    },
+    "full_tool_chain::tool_error::web_search": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "full_tool_chain::tool_error::write_file": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 159
+    },
+    "tool_only_control::command_executed::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::command_executed::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "tool_only_control::command_executed::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "tool_only_control::command_executed::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "tool_only_control::command_executed::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::command_executed::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::command_executed::terminal": {
+      "unauthorized_positive": 126,
+      "absent_not_authorized": 75
+    },
+    "tool_only_control::command_executed::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "tool_only_control::command_executed::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::command_executed::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "tool_only_control::content_fetched::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::content_fetched::http_get": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 40
+    },
+    "tool_only_control::content_fetched::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "tool_only_control::content_fetched::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "tool_only_control::content_fetched::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::content_fetched::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::content_fetched::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 595
+    },
+    "tool_only_control::content_fetched::web_extract": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 100
+    },
+    "tool_only_control::content_fetched::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::content_fetched::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "tool_only_control::file_content_read::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::file_content_read::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "tool_only_control::file_content_read::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "tool_only_control::file_content_read::python_repl": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 80
+    },
+    "tool_only_control::file_content_read::read_file": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "tool_only_control::file_content_read::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::file_content_read::terminal": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 509
+    },
+    "tool_only_control::file_content_read::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "tool_only_control::file_content_read::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::file_content_read::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "tool_only_control::file_deleted::delete_file": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "tool_only_control::file_deleted::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "tool_only_control::file_deleted::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "tool_only_control::file_deleted::python_repl": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 80
+    },
+    "tool_only_control::file_deleted::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::file_deleted::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::file_deleted::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 495
+    },
+    "tool_only_control::file_deleted::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "tool_only_control::file_deleted::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::file_deleted::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "tool_only_control::file_written::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::file_written::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "tool_only_control::file_written::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "tool_only_control::file_written::python_repl": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 80
+    },
+    "tool_only_control::file_written::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::file_written::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::file_written::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 637
+    },
+    "tool_only_control::file_written::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "tool_only_control::file_written::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::file_written::write_file": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "tool_only_control::message_sent::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::message_sent::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "tool_only_control::message_sent::http_post": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 0
+    },
+    "tool_only_control::message_sent::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "tool_only_control::message_sent::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::message_sent::send_message": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "tool_only_control::message_sent::terminal": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 637
+    },
+    "tool_only_control::message_sent::web_extract": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 145
+    },
+    "tool_only_control::message_sent::web_search": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::message_sent::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "tool_only_control::network_egress::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::network_egress::http_get": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 0
+    },
+    "tool_only_control::network_egress::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "tool_only_control::network_egress::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::network_egress::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::network_egress::terminal": {
+      "unauthorized_positive": 43,
+      "absent_not_authorized": 391
+    },
+    "tool_only_control::network_egress::web_extract": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "tool_only_control::network_egress::write_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 203
+    },
+    "tool_only_control::tool_error::delete_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::tool_error::http_get": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 80
+    },
+    "tool_only_control::tool_error::http_post": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 40
+    },
+    "tool_only_control::tool_error::python_repl": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 120
+    },
+    "tool_only_control::tool_error::read_file": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::tool_error::send_message": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 45
+    },
+    "tool_only_control::tool_error::terminal": {
+      "unauthorized_positive": 0,
+      "absent_not_authorized": 696
+    },
+    "tool_only_control::tool_error::web_extract": {
+      "unauthorized_positive": 20,
+      "absent_not_authorized": 90
+    },
+    "tool_only_control::tool_error::web_search": {
+      "unauthorized_positive": 15,
+      "absent_not_authorized": 0
+    },
+    "tool_only_control::tool_error::write_file": {
+      "unauthorized_positive": 29,
+      "absent_not_authorized": 159
+    }
+  },
+  "leakage_checks": {
+    "duplicate_text_count": 12584,
+    "exact_snakecase_effect_mentions_in_text": {},
+    "label_field_mentions_in_text": {}
+  },
+  "notes": [
+    "This dataset is a candidate-effect query expansion of authorization_counterfactuals_v2.",
+    "The model input intentionally excludes verified_effects and unauthorized_effects labels.",
+    "full_tool_chain is the intended T55 monitor condition; auth_only_control and tool_only_control are diagnostic controls.",
+    "The labels are safety-supervised unauthorized-effect labels, so comparisons to realized-effect probes must be labelled as setting-shifted."
+  ]
+}

@@ -1,0 +1,452 @@
+{
+  "multimech": {
+    "command_executed": {
+      "tools": {
+        "delegate": 0.0185,
+        "delete_file": 0.0,
+        "memory": 0.0,
+        "read_file": 0.0,
+        "send_message": 0.0,
+        "terminal": 0.8934,
+        "web_fetch": 0.0,
+        "web_search": 0.0,
+        "write_file": 0.0
+      },
+      "n_tools_pos": 2,
+      "is_multi_mech": true
+    },
+    "content_fetched": {
+      "tools": {
+        "delegate": 0.0185,
+        "delete_file": 0.0,
+        "memory": 0.0,
+        "read_file": 0.0,
+        "send_message": 0.0,
+        "terminal": 0.0656,
+        "web_fetch": 0.6531,
+        "web_search": 0.0,
+        "write_file": 0.0
+      },
+      "n_tools_pos": 3,
+      "is_multi_mech": true
+    },
+    "file_content_read": {
+      "tools": {
+        "delegate": 0.0,
+        "delete_file": 0.0,
+        "memory": 0.0,
+        "read_file": 0.7111,
+        "send_message": 0.0,
+        "terminal": 0.2623,
+        "web_fetch": 0.0,
+        "web_search": 0.0,
+        "write_file": 0.0
+      },
+      "n_tools_pos": 2,
+      "is_multi_mech": true
+    },
+    "file_deleted": {
+      "tools": {
+        "delegate": 0.037,
+        "delete_file": 0.6389,
+        "memory": 0.0,
+        "read_file": 0.0,
+        "send_message": 0.0,
+        "terminal": 0.1639,
+        "web_fetch": 0.0,
+        "web_search": 0.0,
+        "write_file": 0.0
+      },
+      "n_tools_pos": 3,
+      "is_multi_mech": true
+    },
+    "file_written": {
+      "tools": {
+        "delegate": 0.0185,
+        "delete_file": 0.0,
+        "memory": 0.0,
+        "read_file": 0.0,
+        "send_message": 0.0,
+        "terminal": 0.1393,
+        "web_fetch": 0.0,
+        "web_search": 0.0,
+        "write_file": 0.7333
+      },
+      "n_tools_pos": 3,
+      "is_multi_mech": true
+    },
+    "memory_updated": {
+      "tools": {
+        "delegate": 0.037,
+        "delete_file": 0.0,
+        "memory": 0.8387,
+        "read_file": 0.0444,
+        "send_message": 0.0488,
+        "terminal": 0.0246,
+        "web_fetch": 0.0408,
+        "web_search": 0.0556,
+        "write_file": 0.0222
+      },
+      "n_tools_pos": 8,
+      "is_multi_mech": true
+    },
+    "message_sent": {
+      "tools": {
+        "delegate": 0.037,
+        "delete_file": 0.0278,
+        "memory": 0.0,
+        "read_file": 0.0,
+        "send_message": 0.7317,
+        "terminal": 0.0164,
+        "web_fetch": 0.0,
+        "web_search": 0.0,
+        "write_file": 0.0
+      },
+      "n_tools_pos": 4,
+      "is_multi_mech": true
+    },
+    "network_egress": {
+      "tools": {
+        "delegate": 0.037,
+        "delete_file": 0.0,
+        "memory": 0.0,
+        "read_file": 0.0,
+        "send_message": 0.7073,
+        "terminal": 0.2377,
+        "web_fetch": 0.6939,
+        "web_search": 0.7222,
+        "write_file": 0.0
+      },
+      "n_tools_pos": 5,
+      "is_multi_mech": true
+    },
+    "search_performed": {
+      "tools": {
+        "delegate": 0.0185,
+        "delete_file": 0.0,
+        "memory": 0.0,
+        "read_file": 0.0,
+        "send_message": 0.0,
+        "terminal": 0.0328,
+        "web_fetch": 0.0,
+        "web_search": 0.75,
+        "write_file": 0.0
+      },
+      "n_tools_pos": 3,
+      "is_multi_mech": true
+    },
+    "subagent_spawned": {
+      "tools": {
+        "delegate": 0.7222,
+        "delete_file": 0.0,
+        "memory": 0.0,
+        "read_file": 0.0,
+        "send_message": 0.0,
+        "terminal": 0.0246,
+        "web_fetch": 0.0,
+        "web_search": 0.0,
+        "write_file": 0.0
+      },
+      "n_tools_pos": 2,
+      "is_multi_mech": true
+    },
+    "tool_error": {
+      "tools": {
+        "delegate": 0.2963,
+        "delete_file": 0.3611,
+        "memory": 0.129,
+        "read_file": 0.2889,
+        "send_message": 0.2683,
+        "terminal": 0.2131,
+        "web_fetch": 0.3265,
+        "web_search": 0.2778,
+        "write_file": 0.2667
+      },
+      "n_tools_pos": 9,
+      "is_multi_mech": true
+    }
+  },
+  "deployed_fnrs": {
+    "command_executed": {
+      "terminal": 0.0
+    },
+    "content_fetched": {
+      "terminal": 0.0,
+      "web_fetch": 0.0
+    },
+    "file_content_read": {
+      "read_file": 0.0,
+      "terminal": 0.0
+    },
+    "file_deleted": {
+      "delete_file": 0.0,
+      "terminal": 0.0
+    },
+    "file_written": {
+      "terminal": 0.0,
+      "write_file": 0.0
+    },
+    "memory_updated": {
+      "memory": 0.0
+    },
+    "message_sent": {
+      "send_message": 0.0
+    },
+    "network_egress": {
+      "send_message": 0.0,
+      "terminal": 0.0,
+      "web_fetch": 0.0,
+      "web_search": 0.0
+    },
+    "search_performed": {
+      "web_search": 0.0
+    },
+    "subagent_spawned": {
+      "delegate": 0.0
+    },
+    "tool_error": {
+      "delegate": 0.0,
+      "delete_file": 0.0,
+      "read_file": 0.0,
+      "send_message": 0.0,
+      "terminal": 0.0,
+      "web_fetch": 0.0,
+      "web_search": 0.0,
+      "write_file": 0.0
+    }
+  },
+  "loto_fnrs": {
+    "content_fetched": {
+      "terminal": 0.5,
+      "web_fetch": 0.7812
+    },
+    "file_content_read": {
+      "read_file": 0.875,
+      "terminal": 0.625
+    },
+    "file_deleted": {
+      "delete_file": 0.3478,
+      "terminal": 0.6
+    },
+    "file_written": {
+      "terminal": 0.1765,
+      "write_file": 0.9697
+    },
+    "network_egress": {
+      "send_message": 0.4138,
+      "terminal": 0.4138,
+      "web_fetch": 0.4118,
+      "web_search": 0.7308
+    },
+    "tool_error": {
+      "delegate": 0.0,
+      "delete_file": 0.0,
+      "read_file": 0.0,
+      "send_message": 0.0909,
+      "terminal": 0.2692,
+      "web_fetch": 0.25,
+      "web_search": 0.1,
+      "write_file": 0.0
+    }
+  },
+  "fpr": {
+    "command_executed": {
+      "terminal": 0.0
+    },
+    "content_fetched": {
+      "terminal": 0.0,
+      "web_fetch": 0.0
+    },
+    "file_content_read": {
+      "read_file": 0.0,
+      "terminal": 0.0
+    },
+    "file_deleted": {
+      "delete_file": 0.0,
+      "terminal": 0.0
+    },
+    "file_written": {
+      "terminal": 0.0,
+      "write_file": 0.0
+    },
+    "memory_updated": {
+      "memory": 0.0,
+      "terminal": 0.0
+    },
+    "message_sent": {
+      "send_message": 0.0
+    },
+    "network_egress": {
+      "send_message": 0.0,
+      "terminal": 0.0,
+      "web_fetch": 0.0,
+      "web_search": 0.0
+    },
+    "search_performed": {
+      "terminal": 0.0,
+      "web_search": 0.0
+    },
+    "subagent_spawned": {
+      "delegate": 0.0,
+      "terminal": 0.0
+    },
+    "tool_error": {
+      "delegate": 0.0,
+      "delete_file": 0.0,
+      "memory": 0.0,
+      "read_file": 0.0,
+      "send_message": 0.0,
+      "terminal": 0.0104,
+      "web_fetch": 0.0,
+      "web_search": 0.0,
+      "write_file": 0.0
+    }
+  },
+  "alpha": {
+    "command_executed": {
+      "terminal": 0.6789
+    },
+    "content_fetched": {
+      "terminal": 1.0,
+      "web_fetch": 0.7188
+    },
+    "file_content_read": {
+      "read_file": 0.1875,
+      "terminal": 0.1875
+    },
+    "file_deleted": {
+      "delete_file": 0.4348,
+      "terminal": 0.15
+    },
+    "file_written": {
+      "terminal": 0.1765,
+      "write_file": 0.4545
+    },
+    "memory_updated": {
+      "memory": 0.6154
+    },
+    "message_sent": {
+      "send_message": 0.8667
+    },
+    "network_egress": {
+      "send_message": 0.6207,
+      "terminal": 0.4828,
+      "web_fetch": 0.5882,
+      "web_search": 0.3077
+    },
+    "search_performed": {
+      "web_search": 0.4444
+    },
+    "subagent_spawned": {
+      "delegate": 0.4615
+    },
+    "tool_error": {
+      "delegate": 0.0,
+      "delete_file": 0.0769,
+      "read_file": 0.0,
+      "send_message": 0.4545,
+      "terminal": 0.0385,
+      "web_fetch": 0.125,
+      "web_search": 0.3,
+      "write_file": 0.0833
+    }
+  },
+  "alpha_loto": {
+    "command_executed": {
+      "terminal": 0.6789
+    },
+    "content_fetched": {
+      "terminal": 1.0,
+      "web_fetch": 0.7188
+    },
+    "file_content_read": {
+      "read_file": 0.1875,
+      "terminal": 0.1875
+    },
+    "file_deleted": {
+      "delete_file": 0.4348,
+      "terminal": 0.15
+    },
+    "file_written": {
+      "terminal": 0.1765,
+      "write_file": 0.4545
+    },
+    "memory_updated": {
+      "memory": 0.6154
+    },
+    "message_sent": {
+      "send_message": 0.8667
+    },
+    "network_egress": {
+      "send_message": 0.6207,
+      "terminal": 0.4828,
+      "web_fetch": 0.5882,
+      "web_search": 0.3077
+    },
+    "search_performed": {
+      "web_search": 0.4444
+    },
+    "subagent_spawned": {
+      "delegate": 0.4615
+    },
+    "tool_error": {
+      "delegate": 0.0,
+      "delete_file": 0.0769,
+      "read_file": 0.0,
+      "send_message": 0.4545,
+      "terminal": 0.0385,
+      "web_fetch": 0.125,
+      "web_search": 0.3,
+      "write_file": 0.0833
+    }
+  },
+  "alpha_deployed_aux": {
+    "command_executed": {
+      "terminal": 0.9358
+    },
+    "content_fetched": {
+      "terminal": 1.0,
+      "web_fetch": 0.875
+    },
+    "file_content_read": {
+      "read_file": 0.0625,
+      "terminal": 1.0
+    },
+    "file_deleted": {
+      "delete_file": 0.0435,
+      "terminal": 1.0
+    },
+    "file_written": {
+      "terminal": 1.0,
+      "write_file": 0.0303
+    },
+    "memory_updated": {
+      "memory": 0.0
+    },
+    "message_sent": {
+      "send_message": 0.9
+    },
+    "network_egress": {
+      "send_message": 1.0,
+      "terminal": 1.0,
+      "web_fetch": 0.9706,
+      "web_search": 1.0
+    },
+    "search_performed": {
+      "web_search": 0.9259
+    },
+    "subagent_spawned": {
+      "delegate": 0.2051
+    },
+    "tool_error": {
+      "delegate": 0.0625,
+      "delete_file": 0.0,
+      "read_file": 0.0,
+      "send_message": 0.1818,
+      "terminal": 0.5,
+      "web_fetch": 0.3125,
+      "web_search": 0.2,
+      "write_file": 0.0
+    }
+  }
+}

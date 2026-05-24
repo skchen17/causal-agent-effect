@@ -1,0 +1,35 @@
+{
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "api_key_value_stored": false,
+  "base_url": "https://api.deepseek.com",
+  "caveats": [
+    "direct external provider API call, not a browser/search/messaging tool",
+    "synthetic task contexts; no private user data is sent",
+    "API key is read from environment and not stored in artifacts",
+    "verified effects are inferred from API request/response status, not from provider-side logs",
+    "DeepSeek provider-call traces cover provider API effects, not browser/search/messaging side effects.",
+    "If all rows are API errors, inspect credentials/model availability before using the result as a method evaluation."
+  ],
+  "error_count": 30,
+  "include_error_call": true,
+  "model": "deepseek-v4-flash",
+  "n_traces": 120,
+  "schema_version": "deepseek_api_traces_t60_v1",
+  "success_count": 90,
+  "tool_counts": {
+    "deepseek_chat_completion": 120
+  },
+  "trace_type_counts": {
+    "deepseek_api_observed_execution": 120
+  },
+  "unauthorized_effect_counts": {
+    "content_fetched": 60,
+    "network_egress": 30,
+    "tool_error": 30
+  },
+  "verified_effect_counts": {
+    "content_fetched": 90,
+    "network_egress": 120,
+    "tool_error": 30
+  }
+}

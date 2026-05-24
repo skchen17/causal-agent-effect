@@ -1,0 +1,88 @@
+[
+  {
+    "effect": "content_fetched",
+    "n_tools": 2,
+    "tools": [
+      "terminal",
+      "web_fetch"
+    ],
+    "iia_within": 1.0,
+    "iia_cross": 0.7022,
+    "gap": -0.2978,
+    "n_pairs": 2,
+    "n_raw_outcomes": 50
+  },
+  {
+    "effect": "file_content_read",
+    "n_tools": 2,
+    "tools": [
+      "read_file",
+      "terminal"
+    ],
+    "iia_within": 1.0,
+    "iia_cross": 0.8365,
+    "gap": -0.1635,
+    "n_pairs": 2,
+    "n_raw_outcomes": 90
+  },
+  {
+    "effect": "file_deleted",
+    "n_tools": 2,
+    "tools": [
+      "delete_file",
+      "terminal"
+    ],
+    "iia_within": 1.0,
+    "iia_cross": 0.8,
+    "gap": -0.2,
+    "n_pairs": 2,
+    "n_raw_outcomes": 66
+  },
+  {
+    "effect": "file_written",
+    "n_tools": 2,
+    "tools": [
+      "terminal",
+      "write_file"
+    ],
+    "iia_within": 1.0,
+    "iia_cross": 0.6691,
+    "gap": -0.3309,
+    "n_pairs": 2,
+    "n_raw_outcomes": 58
+  },
+  {
+    "effect": "network_egress",
+    "n_tools": 4,
+    "tools": [
+      "send_message",
+      "terminal",
+      "web_fetch",
+      "web_search"
+    ],
+    "iia_within": 1.0,
+    "iia_cross": 0.6343,
+    "gap": -0.3657,
+    "n_pairs": 12,
+    "n_raw_outcomes": 396
+  },
+  {
+    "effect": "tool_error",
+    "n_tools": 8,
+    "tools": [
+      "delegate",
+      "delete_file",
+      "read_file",
+      "send_message",
+      "terminal",
+      "web_fetch",
+      "web_search",
+      "write_file"
+    ],
+    "iia_within": 1.0,
+    "iia_cross": 0.9481,
+    "gap": -0.0519,
+    "n_pairs": 56,
+    "n_raw_outcomes": 1638
+  }
+]

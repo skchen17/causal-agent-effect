@@ -1,0 +1,242 @@
+{
+  "loto_table": {
+    "content_fetched": {
+      "terminal": {
+        "n_pos": 31,
+        "n_neg": 187,
+        "within_FNR": 0.0303,
+        "heldout_FNR": 0.3871,
+        "FNR_gap": 0.3568
+      },
+      "web_fetch": {
+        "n_pos": 33,
+        "n_neg": 17,
+        "within_FNR": 0.0909,
+        "heldout_FNR": 0.7273,
+        "FNR_gap": 0.6364
+      }
+    },
+    "file_content_read": {
+      "read_file": {
+        "n_pos": 33,
+        "n_neg": 13,
+        "within_FNR": 0.0303,
+        "heldout_FNR": 0.8485,
+        "FNR_gap": 0.8182
+      },
+      "terminal": {
+        "n_pos": 67,
+        "n_neg": 151,
+        "within_FNR": 0.0876,
+        "heldout_FNR": 0.597,
+        "FNR_gap": 0.5094
+      }
+    },
+    "file_deleted": {
+      "delete_file": {
+        "n_pos": 23,
+        "n_neg": 13,
+        "within_FNR": 0.0417,
+        "heldout_FNR": 0.2174,
+        "FNR_gap": 0.1757
+      },
+      "terminal": {
+        "n_pos": 31,
+        "n_neg": 187,
+        "within_FNR": 0.1545,
+        "heldout_FNR": 0.3871,
+        "FNR_gap": 0.2326
+      }
+    },
+    "file_written": {
+      "terminal": {
+        "n_pos": 42,
+        "n_neg": 176,
+        "within_FNR": 0.1429,
+        "heldout_FNR": 0.0714,
+        "FNR_gap": -0.0714
+      },
+      "write_file": {
+        "n_pos": 34,
+        "n_neg": 12,
+        "within_FNR": 0.0303,
+        "heldout_FNR": 0.9412,
+        "FNR_gap": 0.9109
+      }
+    },
+    "network_egress": {
+      "send_message": {
+        "n_pos": 30,
+        "n_neg": 12,
+        "within_FNR": 0.1,
+        "heldout_FNR": 0.4,
+        "FNR_gap": 0.3
+      },
+      "terminal": {
+        "n_pos": 52,
+        "n_neg": 166,
+        "within_FNR": 0.1144,
+        "heldout_FNR": 0.5,
+        "FNR_gap": 0.3856
+      },
+      "web_fetch": {
+        "n_pos": 35,
+        "n_neg": 15,
+        "within_FNR": 0.2247,
+        "heldout_FNR": 0.3143,
+        "FNR_gap": 0.0895
+      },
+      "web_search": {
+        "n_pos": 51,
+        "n_neg": 34,
+        "within_FNR": 0.0392,
+        "heldout_FNR": 0.4118,
+        "FNR_gap": 0.3725
+      }
+    },
+    "tool_error": {
+      "delegate": {
+        "n_pos": 16,
+        "n_neg": 39,
+        "within_FNR": 0.2444,
+        "heldout_FNR": 0.0,
+        "FNR_gap": -0.2444
+      },
+      "delete_file": {
+        "n_pos": 13,
+        "n_neg": 23,
+        "within_FNR": 0.0,
+        "heldout_FNR": 0.0,
+        "FNR_gap": 0.0
+      },
+      "read_file": {
+        "n_pos": 13,
+        "n_neg": 33,
+        "within_FNR": 0.0833,
+        "heldout_FNR": 0.0,
+        "FNR_gap": -0.0833
+      },
+      "send_message": {
+        "n_pos": 11,
+        "n_neg": 31,
+        "within_FNR": 0.0833,
+        "heldout_FNR": 0.0,
+        "FNR_gap": -0.0833
+      },
+      "terminal": {
+        "n_pos": 27,
+        "n_neg": 191,
+        "within_FNR": 0.2222,
+        "heldout_FNR": 0.2593,
+        "FNR_gap": 0.037
+      },
+      "web_fetch": {
+        "n_pos": 16,
+        "n_neg": 34,
+        "within_FNR": 0.2556,
+        "heldout_FNR": 0.25,
+        "FNR_gap": -0.0056
+      },
+      "web_search": {
+        "n_pos": 34,
+        "n_neg": 51,
+        "within_FNR": 0.0859,
+        "heldout_FNR": 0.0294,
+        "FNR_gap": -0.0564
+      },
+      "write_file": {
+        "n_pos": 12,
+        "n_neg": 34,
+        "within_FNR": 0.1667,
+        "heldout_FNR": 0.0,
+        "FNR_gap": -0.1667
+      }
+    }
+  },
+  "baselines": {
+    "content_fetched": {
+      "effect": "content_fetched",
+      "n_tools": 2,
+      "pooled_worstFNR": 0.7273,
+      "pooled_worstTool": "web_fetch",
+      "balanced_worstFNR": 0.6667,
+      "balanced_worstTool": "web_fetch",
+      "tool_cond_worstFNR": 0.7273,
+      "tool_cond_worstTool": "web_fetch",
+      "group_reweight_worstFNR": 0.7273,
+      "group_reweight_worstTool": "web_fetch",
+      "group_dro_worstFNR": 0.7273,
+      "group_dro_worstTool": "web_fetch"
+    },
+    "file_content_read": {
+      "effect": "file_content_read",
+      "n_tools": 2,
+      "pooled_worstFNR": 0.8485,
+      "pooled_worstTool": "read_file",
+      "balanced_worstFNR": 0.5522,
+      "balanced_worstTool": "terminal",
+      "tool_cond_worstFNR": 0.8485,
+      "tool_cond_worstTool": "read_file",
+      "group_reweight_worstFNR": 0.8788,
+      "group_reweight_worstTool": "read_file",
+      "group_dro_worstFNR": 0.8788,
+      "group_dro_worstTool": "read_file"
+    },
+    "file_deleted": {
+      "effect": "file_deleted",
+      "n_tools": 2,
+      "pooled_worstFNR": 0.3871,
+      "pooled_worstTool": "terminal",
+      "balanced_worstFNR": 0.129,
+      "balanced_worstTool": "terminal",
+      "tool_cond_worstFNR": 0.3871,
+      "tool_cond_worstTool": "terminal",
+      "group_reweight_worstFNR": 0.6957,
+      "group_reweight_worstTool": "delete_file",
+      "group_dro_worstFNR": 0.6957,
+      "group_dro_worstTool": "delete_file"
+    },
+    "file_written": {
+      "effect": "file_written",
+      "n_tools": 2,
+      "pooled_worstFNR": 0.9412,
+      "pooled_worstTool": "write_file",
+      "balanced_worstFNR": 0.8235,
+      "balanced_worstTool": "write_file",
+      "tool_cond_worstFNR": 0.9412,
+      "tool_cond_worstTool": "write_file",
+      "group_reweight_worstFNR": 0.9706,
+      "group_reweight_worstTool": "write_file",
+      "group_dro_worstFNR": 0.9706,
+      "group_dro_worstTool": "write_file"
+    },
+    "network_egress": {
+      "effect": "network_egress",
+      "n_tools": 4,
+      "pooled_worstFNR": 0.5,
+      "pooled_worstTool": "terminal",
+      "balanced_worstFNR": 0.2885,
+      "balanced_worstTool": "terminal",
+      "tool_cond_worstFNR": 0.5192,
+      "tool_cond_worstTool": "terminal",
+      "group_reweight_worstFNR": 0.6471,
+      "group_reweight_worstTool": "web_search",
+      "group_dro_worstFNR": 0.6471,
+      "group_dro_worstTool": "web_search"
+    },
+    "tool_error": {
+      "effect": "tool_error",
+      "n_tools": 8,
+      "pooled_worstFNR": 0.2593,
+      "pooled_worstTool": "terminal",
+      "balanced_worstFNR": 0.2222,
+      "balanced_worstTool": "terminal",
+      "tool_cond_worstFNR": 0.2593,
+      "tool_cond_worstTool": "terminal",
+      "group_reweight_worstFNR": 0.2727,
+      "group_reweight_worstTool": "send_message",
+      "group_dro_worstFNR": 0.2727,
+      "group_dro_worstTool": "send_message"
+    }
+  }
+}

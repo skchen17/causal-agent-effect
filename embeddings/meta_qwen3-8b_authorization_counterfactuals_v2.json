@@ -1,0 +1,33 @@
+{
+  "model": "Qwen/Qwen3-8B",
+  "short_name": "qwen3-8b",
+  "dim": 4096,
+  "n_samples": 1464,
+  "effect_names": [
+    "command_executed",
+    "content_fetched",
+    "file_content_read",
+    "file_deleted",
+    "file_written",
+    "memory_updated",
+    "message_sent",
+    "network_egress",
+    "search_performed",
+    "subagent_spawned",
+    "tool_error"
+  ],
+  "tools": [
+    "delete_file",
+    "http_get",
+    "http_post",
+    "python_repl",
+    "read_file",
+    "send_message",
+    "terminal",
+    "web_extract",
+    "web_search",
+    "write_file"
+  ],
+  "data_name": "authorization_counterfactuals_v2",
+  "use_4bit": false
+}

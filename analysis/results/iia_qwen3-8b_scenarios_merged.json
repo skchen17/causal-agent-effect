@@ -1,0 +1,366 @@
+[
+  {
+    "iia_within": 1.0,
+    "iia_cross": 0.4706,
+    "gap_iia": -0.5294,
+    "n_tool_pairs": 1,
+    "tool_pairs": [
+      [
+        "terminal",
+        "web_fetch"
+      ],
+      [
+        "web_fetch",
+        "terminal"
+      ]
+    ],
+    "effect": "content_fetched",
+    "verdict": "✗ PURE PROXY"
+  },
+  {
+    "iia_within": 0.9688,
+    "iia_cross": 0.8281,
+    "gap_iia": -0.1406,
+    "n_tool_pairs": 2,
+    "tool_pairs": [
+      [
+        "read_file",
+        "terminal"
+      ],
+      [
+        "terminal",
+        "read_file"
+      ]
+    ],
+    "effect": "file_content_read",
+    "verdict": "~ PARTIAL"
+  },
+  {
+    "iia_within": 0.5214,
+    "iia_cross": 0.7077,
+    "gap_iia": 0.1863,
+    "n_tool_pairs": 2,
+    "tool_pairs": [
+      [
+        "delete_file",
+        "terminal"
+      ],
+      [
+        "terminal",
+        "delete_file"
+      ]
+    ],
+    "effect": "file_deleted",
+    "verdict": "✓ CAUSAL CONCEPT"
+  },
+  {
+    "iia_within": 1.0,
+    "iia_cross": 0.7279,
+    "gap_iia": -0.2721,
+    "n_tool_pairs": 2,
+    "tool_pairs": [
+      [
+        "terminal",
+        "write_file"
+      ],
+      [
+        "write_file",
+        "terminal"
+      ]
+    ],
+    "effect": "file_written",
+    "verdict": "◈ TOOL PROXY"
+  },
+  {
+    "iia_within": 0.7938,
+    "iia_cross": 0.6048,
+    "gap_iia": -0.189,
+    "n_tool_pairs": 12,
+    "tool_pairs": [
+      [
+        "send_message",
+        "terminal"
+      ],
+      [
+        "send_message",
+        "web_fetch"
+      ],
+      [
+        "send_message",
+        "web_search"
+      ],
+      [
+        "terminal",
+        "send_message"
+      ],
+      [
+        "terminal",
+        "web_fetch"
+      ],
+      [
+        "terminal",
+        "web_search"
+      ],
+      [
+        "web_fetch",
+        "send_message"
+      ],
+      [
+        "web_fetch",
+        "terminal"
+      ],
+      [
+        "web_fetch",
+        "web_search"
+      ],
+      [
+        "web_search",
+        "send_message"
+      ],
+      [
+        "web_search",
+        "terminal"
+      ],
+      [
+        "web_search",
+        "web_fetch"
+      ]
+    ],
+    "effect": "network_egress",
+    "verdict": "~ PARTIAL"
+  },
+  {
+    "iia_within": 0.8724,
+    "iia_cross": 0.8818,
+    "gap_iia": 0.0094,
+    "n_tool_pairs": 56,
+    "tool_pairs": [
+      [
+        "delegate",
+        "delete_file"
+      ],
+      [
+        "delegate",
+        "read_file"
+      ],
+      [
+        "delegate",
+        "send_message"
+      ],
+      [
+        "delegate",
+        "terminal"
+      ],
+      [
+        "delegate",
+        "web_fetch"
+      ],
+      [
+        "delegate",
+        "web_search"
+      ],
+      [
+        "delegate",
+        "write_file"
+      ],
+      [
+        "delete_file",
+        "delegate"
+      ],
+      [
+        "delete_file",
+        "read_file"
+      ],
+      [
+        "delete_file",
+        "send_message"
+      ],
+      [
+        "delete_file",
+        "terminal"
+      ],
+      [
+        "delete_file",
+        "web_fetch"
+      ],
+      [
+        "delete_file",
+        "web_search"
+      ],
+      [
+        "delete_file",
+        "write_file"
+      ],
+      [
+        "read_file",
+        "delegate"
+      ],
+      [
+        "read_file",
+        "delete_file"
+      ],
+      [
+        "read_file",
+        "send_message"
+      ],
+      [
+        "read_file",
+        "terminal"
+      ],
+      [
+        "read_file",
+        "web_fetch"
+      ],
+      [
+        "read_file",
+        "web_search"
+      ],
+      [
+        "read_file",
+        "write_file"
+      ],
+      [
+        "send_message",
+        "delegate"
+      ],
+      [
+        "send_message",
+        "delete_file"
+      ],
+      [
+        "send_message",
+        "read_file"
+      ],
+      [
+        "send_message",
+        "terminal"
+      ],
+      [
+        "send_message",
+        "web_fetch"
+      ],
+      [
+        "send_message",
+        "web_search"
+      ],
+      [
+        "send_message",
+        "write_file"
+      ],
+      [
+        "terminal",
+        "delegate"
+      ],
+      [
+        "terminal",
+        "delete_file"
+      ],
+      [
+        "terminal",
+        "read_file"
+      ],
+      [
+        "terminal",
+        "send_message"
+      ],
+      [
+        "terminal",
+        "web_fetch"
+      ],
+      [
+        "terminal",
+        "web_search"
+      ],
+      [
+        "terminal",
+        "write_file"
+      ],
+      [
+        "web_fetch",
+        "delegate"
+      ],
+      [
+        "web_fetch",
+        "delete_file"
+      ],
+      [
+        "web_fetch",
+        "read_file"
+      ],
+      [
+        "web_fetch",
+        "send_message"
+      ],
+      [
+        "web_fetch",
+        "terminal"
+      ],
+      [
+        "web_fetch",
+        "web_search"
+      ],
+      [
+        "web_fetch",
+        "write_file"
+      ],
+      [
+        "web_search",
+        "delegate"
+      ],
+      [
+        "web_search",
+        "delete_file"
+      ],
+      [
+        "web_search",
+        "read_file"
+      ],
+      [
+        "web_search",
+        "send_message"
+      ],
+      [
+        "web_search",
+        "terminal"
+      ],
+      [
+        "web_search",
+        "web_fetch"
+      ],
+      [
+        "web_search",
+        "write_file"
+      ],
+      [
+        "write_file",
+        "delegate"
+      ],
+      [
+        "write_file",
+        "delete_file"
+      ],
+      [
+        "write_file",
+        "read_file"
+      ],
+      [
+        "write_file",
+        "send_message"
+      ],
+      [
+        "write_file",
+        "terminal"
+      ],
+      [
+        "write_file",
+        "web_fetch"
+      ],
+      [
+        "write_file",
+        "web_search"
+      ]
+    ],
+    "effect": "tool_error",
+    "verdict": "✓ CAUSAL CONCEPT"
+  }
+]

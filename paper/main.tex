@@ -1,0 +1,558 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{Authorization-Conditioned Causal Task Consistency in LLM Tool Use\\---Surface-Form Fragmentation and Verifier-Assisted Monitoring---}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Tool-augmented agents should be judged by what their tool calls actually do relative to the authorized task, not only by the tool name or call syntax. We study this requirement as \emph{authorization-conditioned causal task consistency}: for task context $c$, a call is safe only when its realized effect set $\Omega(a,S)$ is contained in the authorized effect envelope $A(c)$. We first diagnose a representation failure that violates this requirement. In a controlled benchmark of 459 agent tool-call scenarios spanning 11 causal effects and 9 tools, Qwen3-8B linear probes that detect an effect on seen tools can fail under leave-one-tool-out coverage stress tests, with held-out false negative rates reaching $0.97$. Lexical normalization does not remove the failure, and probe-mediated interchange intervention (pIIA) provides activation-level diagnostic evidence that learned effect directions transfer poorly across some tool surfaces.
+
+We then extend the diagnosis to Auth-SafeInv, an authorization-conditioned evaluation in which the monitored target is whether an effect occurred outside the task's authorized envelope. This changes the mitigation picture. Contrastive projection is a strong observed-pair repair upper bound on the original diagnostic, but under strict Auth-SafeInv splits the pure representation-side methods we test do not beat the strongest non-degenerate baselines. The strongest evidence instead supports a verifier-assisted framework: use execution or trace-level evidence to identify which candidate effects are actually present, then apply an authorization monitor to those effects. Across controlled trace datasets, real-agent-tools local-adapter traces, a single-provider API trace set, broader web/search/browser/messaging local adapters, file-backed headless Chrome browser-runtime traces, and key-free live/protocol traces, validation-selected execution-verifier monitors obtain held-out test FNR/FPR of $0.0/0.0$, $0.1765/0.0$, $0.0/0.0$, $0.0351/0.0$, $0.0/0.0$, and $0.0/0.0$, respectively. Static verifiers miss provider, broader-tool, browser-runtime, and live/protocol effects substantially (e.g., FNR $1.0$ on provider and file-backed browser-runtime effects, $0.614$ on broader local-adapter traces, and $0.6294$ on live/protocol traces), supporting the need for execution-level effect evidence. These results support causal task consistency as a useful organizing principle and Auth-SafeInv as a stricter evaluation target, while remaining a controlled diagnostic study rather than a deployed-agent safety certificate.
+\end{abstract}
+
+\section{Introduction}
+
+LLM-based agents increasingly act by invoking tools: reading and writing files, calling web APIs, sending messages, delegating subtasks, and executing shell commands. The safety question is therefore not only whether a tool call is syntactically valid, but whether the causal effects of that call are justified by the current task. A request to summarize a local file may authorize reading file contents; it does not by itself authorize network egress, file deletion, or sending the contents elsewhere. We refer to this requirement as \emph{causal task consistency}: tool calls should be represented, predicted, and governed according to the task-authorized effects they produce.
+
+This framing exposes a representation-level and measurement-level assumption behind many agent defenses. Boundary and behavioral mechanisms such as causal attribution, task-specific access control, provenance tracking, and architectural isolation~\cite{attrguard2026,clawguard2026,argus2026,xoa2026} ultimately rely on some account of \emph{what a proposed action would do}. If the same downstream effect is represented differently depending on whether it is produced by a direct API call or by an equivalent shell command, a learned safety monitor can appear reliable on covered tools while failing on an unseen or underrepresented surface form. Conversely, if the monitor cannot tell which candidate effects actually occurred, it may either miss unauthorized effects or reject harmless calls.
+
+We further refine causal task consistency by introducing an \textbf{authorization-conditioned} framework. Given a task context $c$, the authorized effect envelope $A(c)$ specifies which causal effects are permitted. A tool call $(a,S)$ produces realized effects $\Omega(a,S)$. Safety holds when $\Omega(a,S) \subseteq A(c)$; otherwise, $U(c,a,S) = \Omega(a,S) \setminus A(c) \neq \emptyset$ constitutes unauthorized effects---the causal consequences that the task does not authorize. Our diagnostic framework then evaluates whether unauthorized effects can be reliably detected across surface-form variation.
+
+We study this failure mode in a controlled setting. The same causal effect---for example, \texttt{file\_deleted}, \texttt{content\_fetched}, or \texttt{network\_egress}---can be realized by multiple tools. A \texttt{delete\_file} call and a \texttt{terminal rm} command differ in surface form but can share the same downstream effect. A causally consistent representation should support effect detection across this variation. Instead, we find that effect-positive samples can fragment by tool surface form: probes trained on one tool detect the effect there, yet miss the same effect on another tool under coverage-missing stress tests.
+
+We formalize this problem by extending the causal abstraction framework (Geiger et al., 2021/2025) to handle multi-mechanism causal variables---variables whose high-level causal value can be realized through multiple low-level surface forms---and by conditioning safety on authorization. We introduce:
+\begin{itemize}
+    \item \textbf{SafeInv} and \textbf{Auth-SafeInv}, safety-centric invariance definitions requiring bounded false negative rates across surface forms, with Auth-SafeInv conditioning the target on task-unauthorized effects;
+    \item \textbf{pIIA} (probe-mediated Interchange Intervention Accuracy), an activation-level diagnostic for whether a learned effect direction transfers across surface forms through the model's upper layers;
+    \item \textbf{Risk-accounting results}: (1) a union-bound lower bound on unsafe action allowance given authorization-conditioned FNR, and (2) a sample complexity result showing that verifying rare surface-form/effect combinations requires $\Omega(1/q)$ samples;
+    \item \textbf{Verifier-assisted monitoring}, in which an execution or trace-level verifier supplies candidate-effect presence evidence before an authorization monitor decides whether present effects exceed the task envelope.
+\end{itemize}
+
+Through experiments spanning the original 459-scenario diagnostic benchmark, an expanded Auth-SafeInv counterfactual suite, controlled execution traces, real-agent-tools local adapters, a single-provider API trace set, broader web/search/browser/messaging local adapters, file-backed headless Chrome browser-runtime traces, and key-free live HTTP/local webhook protocol traces, we provide the following evidence:
+\begin{enumerate}
+    \item Linear probes can detect effects within seen surface forms, but can fail across held-out forms under coverage-missing stress tests ($\text{FNR}$ up to $0.97$);
+    \item pIIA experiments and lexical controls support the interpretation that the failure is not merely a keyword shortcut, although pIIA remains a probe-mediated diagnostic rather than SCM-style causal proof;
+    \item observed-pair contrastive projection can repair the original diagnostic as an upper-bound setting, but strict Auth-SafeInv pure-representation methods remain weaker than strong baselines under identical held-out cells;
+    \item verifier-assisted monitors using execution or trace evidence substantially reduce unauthorized-effect misses across controlled/API/browser/protocol trace families, while static effect-present rules miss provider, broader-tool, browser-runtime, and live/protocol effects.
+\end{enumerate}
+
+We also derive conditional generalization and alignment bounds for contrastive projection under explicit margin and separability assumptions. Our goal is not to certify complete agent safety. Rather, we identify causal task consistency as a missing requirement for tool-use safety monitors, show how it can fail under surface-form variation, and evaluate two repair directions: representation-side alignment and verifier-assisted authorization monitoring. The latter is the stronger current path, but our evidence remains controlled: the broader web/search/browser/messaging traces use local adapters, the browser-runtime traces are file-backed rather than HTTP browser automation, and the live/protocol traces cover outbound HTTPS plus local webhook protocol boundaries rather than provider-backed search, SaaS messaging, or deployed-agent runtime logs.
+
+\section{Related Work}
+
+\subsection{Agent Safety and Prompt Injection}
+
+Recent agent safety research has systematically mapped the attack surface. The LASM survey~\cite{lasm2026} proposes a seven-layer taxonomy; the SoK by~\cite{sok2026} maps trust boundaries of agentic systems. Empirical work has demonstrated real-world exploitability: JAW~\cite{jaw2026} hijacked thousands of GitHub Actions workflows, LITMUS~\cite{litmus2026} documented execution hallucination where agents verbally refuse dangerous operations while executing them, and QueryIPI~\cite{queryipi2026} showed that tool descriptions can serve as injection vectors with 87\% success rates.
+
+Large-scale agent benchmarks and risk-discovery environments evaluate complementary objects. AgentDojo~\cite{agentdojo2024} evaluates prompt-injection attacks and defenses in dynamic agent environments; ToolEmu~\cite{toolemu2024} uses LM-emulated tool execution for scalable risk discovery; AgentHarm~\cite{agentharm2025} measures agent harmfulness on malicious tasks; and ASB~\cite{asb2025} broadens agent security evaluation across scenarios, tools, attacks, defenses, and metrics. Our work is not another benchmark for attack success, harmful task completion, or utility/security tradeoffs. It asks whether a monitor can detect \emph{unauthorized realized effects} consistently across tool surfaces.
+
+\begin{table}[t]
+\centering
+\caption{Novelty boundary relative to agent security benchmarks and runtime defenses. The key distinction is the judgment object: we evaluate authorization-conditioned realized effects, not attack success, tool-call provenance, or pre-action rule satisfaction.}
+\label{tab:relatedboundary}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llll}
+\toprule
+Work type & Representative work & Primary judgment object & Difference from this paper \\
+\midrule
+Prompt-injection benchmark & AgentDojo, ASB~\cite{agentdojo2024,asb2025} & attack success / utility & unauthorized-effect FNR under tool-surface variation \\
+Risk discovery & ToolEmu~\cite{toolemu2024} & risky tool outcomes in emulated sandbox & monitor invariance for realized effect labels \\
+Harmful-task benchmark & AgentHarm~\cite{agentharm2025} & harmful task completion & task-authorized effect consistency \\
+Causal attribution defense & AttriGuard, CausalArmor~\cite{attrguard2026,causalarmor2026} & why a privileged call occurs & what effect occurred and whether it is authorized \\
+Boundary enforcement & ClawGuard~\cite{clawguard2026} & pre-action constraint satisfaction & execution/trace evidence after or during realization \\
+Provenance auditing & ARGUS~\cite{argus2026} & trusted influence over decisions & realized-effect verification plus authorization check \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Defense mechanisms operate primarily at the behavioral or boundary layer. AttriGuard~\cite{attrguard2026} performs causal attribution by re-executing agents under attenuated context views. CausalArmor~\cite{causalarmor2026} uses causal ablation at privileged action points. ClawGuard~\cite{clawguard2026} derives task-specific access constraints before tool invocation. ARGUS~\cite{argus2026} constructs influence provenance graphs. XOA~\cite{xoa2026} proposes architectural sandboxing. These methods rely, explicitly or implicitly, on some account of what a tool call would or did do. We evaluate a monitor-level target that is orthogonal to these defenses: whether the realized effect set exceeds the task-authorized envelope, and whether learned effect readouts remain reliable when the same effect is produced through a different tool surface.
+
+\subsection{Causal Abstraction and Interpretability}
+
+Causal abstraction~\cite{geiger2021, geiger2025} provides the theoretical foundation for verifying whether a neural network implements a high-level causal model. The core operation is interchange intervention (II): swapping aligned activations between a base and source input to test whether the model's counterfactual behavior matches the causal model's prediction.
+
+Sutter et al.~\cite{sutter2025} proved that without constraining the alignment mapping $\tau$ to be low-complexity, causal abstraction becomes vacuous---any neural network can be aligned to any causal model. We adopt linear probes as the alignment class and extend the framework with a second necessary condition: \emph{surface-form invariance}. Our pIIA metric adapts standard II by intervening at an intermediate layer along a probe-learned direction and evaluating whether the intervention propagates through upper layers to affect the final prediction.
+
+\subsection{Contrastive Representation Learning}
+
+Contrastive learning has been extensively studied for learning invariant representations. ICI-DG~\cite{icidg2026} uses class-conditioned contrastive invariance for domain generalization. CDAS~\cite{cdas2026} repurposes distributed alignment search for model steering. Our contrastive projection method is inspired by these works but operates in a distinct setting: aligning representations of the same causal effect produced through different tools in LLM embedding space. Our results also show a limitation of this route: observed cross-tool positive pairs can give strong repair upper bounds, but strict authorization-conditioned held-out settings remain harder.
+
+\subsection{Domain Generalization and OOD Safety}
+
+Surface-form fragmentation overlaps with domain generalization: tool names, APIs, and call styles act like domains, while the safety-relevant target is the downstream effect. This connects to invariant risk minimization~\cite{irm2019}, group distributionally robust optimization~\cite{groupdro2020}, and supervised contrastive domain generalization. The difference is the safety metric and target. We care primarily about unauthorized-effect false negatives under held-out tool coverage, not average accuracy under random domain shift. This motivates reporting FNR/FPR tradeoffs, ToolProxyGap, validation-selected thresholds, and strict held-out cells rather than only pooled F1 or AUC.
+
+\section{Formal Framework}
+
+\subsection{Safety System Model}
+
+We model an authorization-conditioned agent safety system as a triple $\mathcal{S}_c = (\Phi, \Psi_c, \Omega)$, where:
+\begin{itemize}
+    \item $\Phi = \{\tau_1, \ldots, \tau_k\}$ is an effect predictor. Each $\tau_i: \mathbb{R}^d \to [0,1]$ maps an action's LLM embedding to the predicted probability of causal effect $E_i$. In our linear-probe implementation, $\tau_i(\mathbf{h}) = \sigma(\mathbf{w}_i^\top \mathbf{h} + b_i)$, where $\mathbf{h} = N(\text{desc}(a, S))$ is the embedding of the action description including its surface form $S$.
+    \item $\Psi_c: [0,1]^k \to \{\text{ALLOW}, \text{DENY}\}$ is an authorization-conditioned safety policy. A task context $c$ defines an authorized effect envelope $A(c) \subseteq \mathcal{E}$. Given thresholds $\{\theta_i\}$, $\Psi_c(\mathbf{p}) = \text{DENY} \iff \exists E_i \notin A(c): p_i > \theta_i$.
+    \item $\Omega: \mathcal{A} \times \mathcal{S} \to 2^{\mathcal{E}}$ returns the realized causal-effect set of executing action $a$ through surface form $S$. The unauthorized effect set is $U(c,a,S)=\Omega(a,S)\setminus A(c)$.
+\end{itemize}
+
+The end-to-end safety decision is $\mathcal{S}_c(a, S) = \Psi_c(\Phi(N(\text{desc}(c,a, S))))$. The intended safety condition is $\Omega(a,S)\subseteq A(c)$; a violation occurs when $U(c,a,S)\neq\emptyset$.
+
+\subsection{Multi-Mechanism Effects and Surface-Form Fragmentation}
+
+An agent operation can be described through different \emph{surface forms} while producing identical causal consequences. Surface forms vary along multiple dimensions: tool selection ($\mathcal{T}$), contextual framing ($\mathcal{C}$), semantic reframing ($\mathcal{R}$), and language ($\mathcal{L}$). Let $\mathcal{S} = \mathcal{T} \cup \mathcal{C} \cup \mathcal{R} \cup \mathcal{L} \cup \cdots$ denote the union of all surface-form classes.
+
+\begin{definition}[Multi-Mechanism Effect]
+A causal effect $E_i$ is \emph{multi-mechanism} if there exist at least two distinct surface forms that can produce it:
+$$\text{MultiMech}(E_i) \iff \exists S_a \neq S_b \in \mathcal{S}: P(E_i = 1 \mid S = S_a) > 0 \land P(E_i = 1 \mid S = S_b) > 0.$$
+\end{definition}
+This is a purely logical condition---it does not reference the LLM's representation.
+
+\begin{definition}[Surface-Form Fragmentation]
+For a multi-mechanism effect $E_i$ and surface-form pair $(S_a, S_b)$, the \emph{fragmentation} between $S_a$ and $S_b$ is:
+$$\text{Frag}_i(S_a, S_b) = d\left(P(\mathbf{h} \mid E_i=1, S=S_a), \; P(\mathbf{h} \mid E_i=1, S=S_b)\right)$$
+where $d$ is a distributional distance metric (e.g., MMD, Wasserstein).
+\end{definition}
+
+\textbf{Empirical proxy}. In practice, mean cosine distances severely underestimate fragmentation (our experiments yield 0.003--0.068 despite extreme cross-form F1 drops). We therefore use the leave-one-form-out (LOTO) FNR gap as a task-relevant proxy. For held-out form $B$, let $\hat{\tau}_{i,-B}^{\text{diag}}$ be a diagnostic probe trained on all forms except $B$, and let $\hat{\tau}_{i,B}^{\text{within}}$ be a within-form probe estimated by stratified cross-validation on $B$:
+$$\text{ToolProxyGap}_i(B) = [\text{FNR}_B(\hat{\tau}_{i,-B}^{\text{diag}}) - \text{FNR}_B(\hat{\tau}_{i,B}^{\text{within}})]_+.$$
+This measures how much detection degrades when coverage for a form is missing, relative to how detectable the same effect is within that form.
+
+\subsection{Safety-Centric Invariance}
+
+Standard invariance definitions based on F1 or accuracy can be satisfied by degenerate solutions (e.g., a constant predictor that always outputs 1 achieves perfect recall). We define safety-centric invariance using both false negative rate (the safety-critical metric) and false positive rate (to prevent degenerate solutions):
+
+\begin{definition}[SafeInv]
+A probe $\tau_i$ is $(\epsilon_{\text{safe}}, \epsilon_{\text{fpr}})$-\emph{safety-invariant} for multi-mechanism effect $E_i$ if:
+$$\max_{S \in \mathcal{S}_{E_i}} R_{S, \theta}^{-}(\tau_i) \leq \epsilon_{\text{safe}} \quad \text{and} \quad \max_{S \in \mathcal{S}_{E_i}} R_{S, \theta}^{+}(\tau_i) \leq \epsilon_{\text{fpr}}$$
+where $R_{S, \theta}^{-}(\tau_i) = P(\tau_i(\mathbf{h}) \leq \theta_i \mid E_i=1, S)$ is the FNR and $R_{S,\theta}^{+}$ the FPR. In safety-critical settings, $\epsilon_{\text{safe}} \ll \epsilon_{\text{fpr}}$.
+\end{definition}
+
+\begin{definition}[Auth-SafeInv]
+A probe $\tau_i$ is $(\epsilon_{\text{unauth}}, \epsilon_{\text{fauth}})$-\emph{authorization-safe-invariant} for effect $E_i$ if, over task contexts $c$ and surface forms $S$ where $E_i$ can be realized but is not authorized,
+$$\max_{c,S} P(\tau_i(\mathbf{h}) \leq \theta_i \mid E_i \in U(c,a,S)) \leq \epsilon_{\text{unauth}},$$
+and the corresponding false positive rate on authorized or absent effects is at most $\epsilon_{\text{fauth}}$. Auth-SafeInv is the task-conditioned version of SafeInv: the monitored target is not merely whether an effect occurred, but whether it occurred outside the authorized effect envelope.
+\end{definition}
+
+\subsection{EffectVerif-AuthMonitor}
+
+The verifier-assisted framework separates two questions that are often conflated: \emph{which effects occurred?} and \emph{which occurred effects were authorized?} We instantiate this separation with \textsc{EffectVerif-AuthMonitor}. Its inputs are the task context $c$, authorized effect envelope $A(c)$, a tool call $a$ with surface form $S$ and arguments $x$, and an execution or protocol trace $t$. An effect verifier extracts a realized-effect estimate $\hat{\Omega}(a,S,x,t) \subseteq \mathcal{E}$. The authorization checker then computes $\hat{U}(c,a,S,x,t)=\hat{\Omega}(a,S,x,t)\setminus A(c)$ and denies the action when $\hat{U}$ is nonempty.
+
+\begin{center}
+\fbox{
+\begin{minipage}{0.92\textwidth}
+\textbf{\textsc{EffectVerif-AuthMonitor}}\\
+\textbf{Input:} task context $c$; envelope $A(c)$; tool call $(a,S,x)$; execution trace $t$\\
+\textbf{1.} $\hat{\Omega} \leftarrow \textsc{VerifyEffects}(a,S,x,t)$\\
+\textbf{2.} $\hat{U} \leftarrow \hat{\Omega}\setminus A(c)$\\
+\textbf{3.} \textbf{if} $\hat{U}\neq\emptyset$ \textbf{return} DENY with violated effects $\hat{U}$\\
+\textbf{4.} \textbf{else return} ALLOW
+\end{minipage}}
+\end{center}
+
+This is a framework interface rather than a claim that the verifier is perfect. The trace schema can include tool name, arguments, tool schema, execution status, file diffs, HTTP request/response metadata, stdout/stderr, provider status, and message receipts. The empirical question is whether adding such effect evidence reduces unauthorized-effect misses relative to monitors that only see the task text, tool name, arguments, or static policy rules. Failure modes include safe-looking tool names whose trace shows network egress, legitimate tool-call reasons with extra side effects, shell/API-equivalent implementations, provider-side effects hidden from local static rules, and partial failures that still produce partial side effects.
+
+\subsection{Probe-Mediated Interchange Intervention (pIIA)}
+
+To obtain activation-level diagnostic evidence for fragmentation, we adapt interchange intervention~\cite{geiger2021} to our setting. The intervention operates at an intermediate layer $\ell$ of the LLM. For a linear probe direction $\mathbf{w}_A$ learned from form $A$'s data, we compute the mean projection difference between a source sample (form $B$, $E_i=1$) and a base sample (form $B$, $E_i=0$) along $\hat{\mathbf{w}}_A$, and inject this difference into the base sample's tokens at layer $\ell$:
+
+$$\mathbf{h}_{\ell, r}^{\text{int}} = \mathbf{h}_{\ell, r}^b + \hat{\mathbf{w}}_A \hat{\mathbf{w}}_A^\top (\bar{\mathbf{h}}_\ell^s - \bar{\mathbf{h}}_\ell^b)$$
+
+The intervened activation then propagates through the model's upper layers $N_{>\ell}$ to produce the final hidden state $\mathbf{h}_L^{\text{int}} = N_{>\ell}(\mathbf{h}_\ell^{\text{int}})$. We evaluate whether the probe $\tau_i^B$ (trained on form $B$'s final-layer data) correctly registers the injected effect:
+
+\begin{definition}[pIIA]
+$$\text{pIIA}_i(A \to B) = P\left(\tau_i^B(N_{>\ell}(I_{\mathbf{w}_A}(\mathbf{h}_\ell^b, \mathbf{h}_\ell^s))) > \tau_i^B(\mathbf{h}_L^b) \mid E_i(b)=0, E_i(s)=1, S(b)=S(s)=B\right)$$
+\end{definition}
+
+pIIA is \emph{probe-mediated}: it uses learned probes as effect readouts rather than requiring a fully specified high-level causal model. The key design choice is that the intervention direction $\mathbf{w}_A$ and evaluation probe $\tau_i^B$ come from \emph{different} surface forms. This makes pIIA a useful diagnostic for cross-form effect-direction transfer, but it should not be interpreted as standard SCM-based IIA.
+
+\section{Risk Accounting}
+
+\begin{lemma}[Authorization-Conditioned FNR Risk Accounting]
+\label{thm:safety}
+Let task context $c$ authorize $A(c)$, and let $B$ be a surface form such that action $a$ realizes an unauthorized effect $E \in U(c,a,B)$. Define:
+$$\beta_{\text{auth}} = P(\tau_E(\mathbf{h}) \leq \theta_E \mid E \in U(c,a,B)),$$
+$$\alpha_{\text{auth}} = P(\exists E_j \notin A(c), E_j \neq E: \tau_j(\mathbf{h}) > \theta_j \mid E \in U(c,a,B)).$$
+Then the probability that the safety system allows an action with unauthorized effect $E$ satisfies:
+$$P(\mathcal{S}_c(a, B) = \text{ALLOW} \mid E \in U(c,a,B)) \geq [\beta_{\text{auth}} - \alpha_{\text{auth}}]_+.$$
+\end{lemma}
+
+\begin{proof}
+Under $\Psi_c$, denial occurs if either the detector for the realized unauthorized effect $E$ fires or another not-authorized effect detector fires. By the union bound,
+$$P(\text{ALLOW}) = P(\tau_E \leq \theta_E \land \forall E_j \notin A(c), E_j\neq E: \tau_j \leq \theta_j) \geq 1 - [(1-\beta_{\text{auth}}) + \alpha_{\text{auth}}] = \beta_{\text{auth}} - \alpha_{\text{auth}}.$$
+The $[\cdot]_+$ clamp handles the case $\alpha_{\text{auth}} > \beta_{\text{auth}}$.
+\end{proof}
+
+Lemma~\ref{thm:safety} is a risk-accounting result, not a safety certificate. It says that if an unauthorized-effect detector has high FNR on a specific surface form, and if other not-authorized detectors do not redundantly fire, then unsafe allowance is lower-bounded. The original LOTO diagnostic instantiates an effect-level analogue of this formula by replacing $\beta_{\text{auth}}$ with $\beta^{\text{LOTO}}$; that table should be interpreted as a coverage-missing stress-test scenario, not as measured risk of a fully covered deployed probe. The later Auth-SafeInv experiments instantiate the authorization-conditioned target directly.
+
+\begin{theorem}[Verification Sample Complexity]
+\label{thm:sample}
+Let $q = P(S=B, E \in U(c,a,B))$ be the natural occurrence probability of a specific authorization-conditioned surface-form--effect violation. To observe at least one such sample with probability $\geq 1-\delta$ under i.i.d.\ sampling requires $m \geq \frac{1}{q} \log \frac{1}{\delta}$; to estimate the corresponding FNR to accuracy $\pm\epsilon$ requires $m = \tilde{O}\left(\frac{1}{q \epsilon^2} \log \frac{1}{\delta}\right)$. In experiments without explicit authorization labels, this reduces to the usual surface-form--effect event $P(S=B,E=1)$.
+\end{theorem}
+
+\begin{proof}
+Standard Chernoff bound for coverage; Hoeffding bound for estimation accuracy.
+\end{proof}
+
+Theorem~\ref{thm:sample} explains why rare tool-effect or authorization-violation combinations are difficult to validate by natural sampling alone. Together, Lemma~\ref{thm:safety} and Theorem~\ref{thm:sample} characterize a conditional risk: coverage gaps can lead to high FNR on underrepresented combinations, and high FNR becomes a safety vulnerability when redundant detection is insufficient.
+
+\subsection{Contrastive Projection Theory}
+
+We now state conditional bounds for the contrastive projection mitigation. These bounds are not unconditional safety guarantees; they depend on bounded norms, linear separability, margin, and alignment-error assumptions. Full proofs are deferred to the appendix.
+
+\begin{theorem}[Contrastive Generalization Bound]
+\label{thm:contrastive}
+Let $\mathcal{P} = \{P \in \mathbb{R}^{d \times k}: \|P\|_F \leq R\}$ be the class of linear projections, $\mathcal{L}(P)$ the population contrastive loss, and $\hat{\mathcal{L}}_N(P)$ the empirical loss over $N$ cross-form positive pairs. Then with probability $\geq 1-\delta$:
+$$\mathcal{L}(\hat{P}_N) - \mathcal{L}(P^*) \leq C \cdot B^2 R \sqrt{\frac{dk}{N}} + B^2 \sqrt{\frac{\log(1/\delta)}{2N}}$$
+for absolute constant $C$, where $B$ bounds the input embedding norm.
+\end{theorem}
+
+\begin{theorem}[Alignment Implies FNR Reduction]
+\label{thm:alignment}
+Let $A, B \in \mathcal{S}_E$ be two surface forms for effect $E$. Let $P$ be an $\ell_2$-normalized projection, $\tau_A$ the optimal linear probe on $P$-projected $A$-data. If the projected classes are linearly separable with margin $\rho_A > 0$, and the cross-form alignment error satisfies $\varepsilon_{\text{align}}(A, B) \leq \rho_A/2$, then:
+$$\text{FNR}_B(\tau_A) \leq \text{FNR}_A(\tau_A) + \frac{2\varepsilon_{\text{align}}(A, B)}{\rho_A}.$$
+\end{theorem}
+
+Theorem~\ref{thm:contrastive} gives a standard finite-sample control term for the projection class. Theorem~\ref{thm:alignment} shows that, under the stated margin and alignment assumptions, smaller cross-form alignment error bounds cross-form FNR. These results motivate the mitigation and clarify its assumptions; they should not be read as a complete safety certificate.
+
+\section{Experiments}
+
+\subsection{Setup}
+
+\textbf{Data.} We use several increasingly strict data regimes. The original diagnostic benchmark contains 459 agent tool-call scenarios spanning 11 causal effects and 9 tools. It is generated through (1) rule-based templates with counterfactual context variations (184 scenarios) and (2) LLM-synthesized scenarios via DeepSeek V4 Flash targeting under-represented effect-tool combinations (275 scenarios). Each scenario is labeled with binary effect outcomes. The key design principle is breaking the deterministic tool-to-effect shortcut: the same tool produces different effects based on context, and the same effect can be produced through different tools. We also build an expanded 932-row diagnostic set and an Auth-SafeInv suite: 1,464 authorization counterfactual rows, 35,136 schema-conditioned candidate-effect rows, 1,104 controlled trace rows, 384 real-agent-tools local-adapter rows, 960 DeepSeek provider-API rows, 2,400 broader web/search/browser/messaging local-adapter rows, 960 file-backed headless Chrome browser-runtime rows, and 2,400 key-free live/protocol rows. The trace rows include controlled local sandbox observations, static replays, local handler-equivalent adapters, provider API calls, file-backed headless Chrome DOM/JavaScript execution, real outbound HTTPS calls, and local webhook protocol I/O. The live/protocol rows are stronger than local adapters for network/protocol effects, and the browser rows use an actual Chrome process, but neither is provider-backed search, SaaS messaging, HTTP browser automation, or deployed-agent runtime logs.
+
+\textbf{Models.} We extract embeddings from MiniLM (all-MiniLM-L6-v2, 384d), Qwen2.5-7B-Instruct (3584d), and Qwen3-8B (4096d). pIIA experiments use Qwen3-8B with hook-based intervention at layer 24/36. T64 live/protocol and T65 browser-runtime trace embeddings have been rerun with full-precision Qwen3-8B on \texttt{cuda:1}. Probes are $\ell_2$-regularized logistic regression; LOTO probes train on all non-held-out forms, while within-form FNR uses 3-fold stratified cross-validation inside the held-out form.
+
+\textbf{Metrics.} We report FNR (false negative rate, the safety-critical metric), pIIA-Drop ($\text{pIIA}_{\text{within}} - \text{pIIA}_{\text{cross}}$, an activation-level transfer diagnostic), ToolProxyGap (positive cross-form FNR increase), and the LOTO stress-test lower bound $[\beta^{\text{LOTO}}-\alpha^{\text{LOTO}}]_+$.
+
+\textbf{Experimental questions.} The experiments are organized around four questions. RQ1 asks whether effect readouts fragment by tool surface form under coverage-missing stress tests. RQ2 asks whether simple baselines, lexical normalization, or observed-pair contrastive projection explain or repair the original diagnostic. RQ3 asks whether the authorization-conditioned version changes the mitigation conclusion under stricter held-out splits. RQ4 asks whether verifier-assisted monitoring, which separates realized-effect verification from authorization judgment, reduces unauthorized-effect misses on trace-based datasets.
+
+\subsection{Problem Diagnosis}
+
+\textbf{Delta analysis.} Fully covered probes trained on all forms have zero point-estimate per-tool FNR on the well-sampled Qwen3-8B effect-form cells, but within-form cross-validation is not uniformly trivial (within-form FNR reaches 0.48 for \texttt{file\_written} on \texttt{terminal}). Nonlinear probes (MLP with 64--128 hidden units) provide no systematic improvement ($|\Delta| \leq 0.02$ for 5/11 effects on Qwen3-8B). This satisfies Sutter et al.'s linearity constraint but does \emph{not} guarantee cross-form invariance.
+
+\textbf{Cross-form generalization.} We evaluate leave-one-form-out (LOTO) FNR: train probes on all but one surface form, test on the held-out form. Results on Qwen3-8B (Table~\ref{tab:loto}) show that within-form FNR is often much lower but not uniformly trivial (0.03--0.48), while heldout-form FNR can be extreme (0.10--0.97). The main stress-test signal is the degradation from heldout-form internal detectability to all-but-heldout transfer.
+
+\begin{table}[t]
+\centering
+\caption{LOTO FNR under coverage-missing stress tests. $N^+$ = positive samples in heldout form. Within-FNR is heldout-form internal CV; Held-FNR trains on all non-heldout forms. $\Delta$FNR can be negative; ToolProxyGap = $[\Delta\text{FNR}]_+$. 95\% Wilson CI for FNR: $\pm$0.10--0.25 depending on $N^+$.}
+\label{tab:loto}
+\begin{tabular}{lcccccc}
+\toprule
+Effect & Training Forms & Heldout & $N^+$ & Within-FNR & Held-FNR & ToolProxyGap \\
+\midrule
+content\_fetched & all-but-terminal & terminal & 8 & 0.111 & 0.500 & 0.389 \\
+content\_fetched & all-but-web\_fetch & web\_fetch & 32 & 0.064 & 0.781 & 0.718 \\
+file\_content\_read & all-but-read\_file & read\_file & 32 & 0.033 & 0.875 & 0.842 \\
+file\_deleted & all-but-terminal & terminal & 20 & 0.246 & 0.600 & 0.354 \\
+file\_written & all-but-write\_file & write\_file & 33 & 0.091 & 0.970 & 0.879 \\
+network\_egress & all-but-web\_search & web\_search & 26 & 0.074 & 0.731 & 0.657 \\
+tool\_error & all-but-web\_search & web\_search & 10 & 0.278 & 0.100 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Activation-level diagnosis (pIIA).} pIIA experiments (Table~\ref{tab:piia}) provide diagnostic evidence for effect-direction transfer failures: a direction learned from form $A$ often has weaker effect when intervened and evaluated on form $B$. \texttt{tool\_error}---whose cross-form semantics (``failure/denied/blocked'') are linguistically unified---achieves near-perfect cross-form transfer (pIIA-Drop = 0.052, 95\% source-bootstrap CI [0.032, 0.077]). \texttt{content\_fetched}---whose realization through \texttt{web\_fetch} (``fetched JSON from API'') and \texttt{terminal} (``curl -s URL'') involves disjoint linguistic patterns---shows larger cross-form drop (pIIA-Drop = 0.298, CI [0.143, 0.544]). Since pIIA is probe-mediated rather than standard SCM-based IIA, we use it as a diagnostic rather than as a proof of causal abstraction failure.
+
+\begin{table}[t]
+\centering
+\caption{pIIA results (Qwen3-8B, layer 24/36). Intervention direction from L24-trained probes; evaluation via final-layer probes. CIs are 95\% source-cluster bootstrap intervals for pIIA-Drop.}
+\label{tab:piia}
+\begin{tabular}{lcccc}
+\toprule
+Effect & pIIA-within & pIIA-cross & pIIA-Drop & 95\% CI \\
+\midrule
+tool\_error & 1.000 & 0.948 & 0.052 & [0.032, 0.077] \\
+file\_content\_read & 1.000 & 0.837 & 0.164 & [0.050, 0.286] \\
+file\_deleted & 1.000 & 0.800 & 0.200 & [0.094, 0.325] \\
+content\_fetched & 1.000 & 0.702 & 0.298 & [0.143, 0.544] \\
+file\_written & 1.000 & 0.669 & 0.331 & [0.147, 0.550] \\
+network\_egress & 1.000 & 0.634 & 0.366 & [0.307, 0.424] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{LOTO stress-test safety accounting.} We also compute a counterfactual coverage-missing lower bound $[\beta^{\text{LOTO}}-\alpha^{\text{LOTO}}]_+$ for selected effect-form pairs (Table~\ref{tab:safety}). Here $\beta^{\text{LOTO}}$ is the held-out FNR of the diagnostic LOTO probe, not the fully covered deployed probe. $\alpha^{\text{LOTO}}$ is predicted redundancy under the same held-out-form stress-test suite: the fraction of $E=1$ samples where at least one other effect probe, also trained without the held-out form, crosses threshold. This table shows that high held-out FNR alone is not sufficient for a positive unsafe-allow lower bound. \texttt{content\_fetched} on \texttt{terminal} has $\beta^{\text{LOTO}}=0.50$ but $\alpha^{\text{LOTO}}=1.00$, yielding a zero lower bound. The largest stress-test lower bound in the current audit is \texttt{file\_content\_read} on \texttt{read\_file}: $\beta^{\text{LOTO}}=0.88, \alpha^{\text{LOTO}}=0.19 \Rightarrow [\beta^{\text{LOTO}}-\alpha^{\text{LOTO}}]_+ = 0.69$.
+
+\begin{table}[t]
+\centering
+\caption{Counterfactual safety lower bound under LOTO coverage-missing stress test. This table substitutes $\beta^{\text{LOTO}}$ for deployed $\beta$ and should not be read as the measured risk of the fully covered deployed probe.}
+\label{tab:safety}
+\begin{tabular}{lcccc}
+\toprule
+Effect & Heldout Form & $\beta^{\text{LOTO}}$ & $\alpha^{\text{LOTO}}$ & $[\beta^{\text{LOTO}}-\alpha^{\text{LOTO}}]_+$ \\
+\midrule
+content\_fetched & terminal & 0.50 & 1.00 & 0.00 \\
+file\_content\_read & read\_file & 0.88 & 0.19 & \textbf{0.69} \\
+file\_written & write\_file & 0.97 & 0.45 & 0.52 \\
+file\_deleted & terminal & 0.60 & 0.15 & 0.45 \\
+network\_egress & web\_search & 0.73 & 0.31 & 0.42 \\
+tool\_error & terminal & 0.27 & 0.04 & 0.23 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Baselines and Pure-Representation Mitigation Limits}
+
+We test five natural baselines for reducing worst-form FNR: (1) \textbf{Pooled} training with class-balanced weights; (2) \textbf{Balanced Pooled} subsampling each form equally; (3) \textbf{Tool-Conditioned} probes concatenating form one-hot IDs; (4) \textbf{Group Reweight} with inverse-frequency per-form sample weights; and (5) \textbf{Procrustes Alignment} rotating probe directions geometrically.
+
+\begin{table}[t]
+\centering
+\caption{Worst-form FNR across baseline methods (Qwen3-8B, LOTO).}
+\label{tab:baselines}
+\begin{tabular}{lccccc}
+\toprule
+Effect & Pooled & Balanced & Tool-Cond & G.Reweight & Procrustes \\
+\midrule
+content\_fetched & 0.78 & 0.78 & 0.78 & 0.75 & 0.44 \\
+file\_content\_read & 0.88 & 0.53 & 0.88 & 0.91 & 1.00 \\
+file\_deleted & 0.60 & \textbf{0.20} & 0.60 & 0.87 & 0.25 \\
+file\_written & 0.97 & 0.94 & 0.97 & 0.97 & 1.00 \\
+network\_egress & 0.73 & \textbf{0.41} & 0.73 & 0.81 & 0.35 \\
+tool\_error & 0.27 & 0.27 & 0.27 & 0.27 & 0.27 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+As Table~\ref{tab:baselines} shows, no method consistently eliminates worst-form FNR. Balanced pooling helps on some effects (file\_deleted: 0.60 $\to$ 0.20) but not others (content\_fetched: 0.78 $\to$ 0.78), so sampling imbalance explains part but not all of the failure. Procrustes alignment---which rotates probe directions to geometrically align across forms---improves only 15/38 form pairs (mean $\Delta$FNR = +0.04), suggesting that fragmentation is not merely an angular mismatch between probe directions. We avoid calling these results a comprehensive baseline impossibility result: later Auth-SafeInv experiments include stronger domain-generalization baselines, and several reduce mean FNR while still leaving high-FNR cells or unfavorable FNR/FPR tradeoffs.
+
+\textbf{Lexical control.} To test whether fragmentation is a simple lexical shortcut (e.g., probes relying on tool names or shell command keywords), we replace all tool names with [TOOL], inline code with [CMD], and URLs with [URL] in scenario texts, then re-extract embeddings and re-evaluate LOTO FNR. Overall held-out FNR changes only from 0.378 to 0.382 across matched effect-form cells (mean $\Delta=+0.004$). Individual cells move in both directions: \texttt{file\_written} improves from 0.97 to 0.70, \texttt{content\_fetched} on \texttt{terminal} improves from 0.50 to 0.25, while \texttt{network\_egress} on \texttt{terminal} remains 0.41. The mixed pattern indicates that fragmentation is \emph{not} reducible to simple lexical surface features---it persists in the representation even after lexical normalization.
+
+\textbf{Where is the fragmentation?} Cosine distance between form-conditional positive-class means is only 0.003--0.068---negligible. Yet cross-form FNR gaps reach 0.67. Training a linear tool discriminator on $E=1$ samples (``which form did this positive sample come from?'') achieves 72--95\% accuracy. This suggests that the separation is visible to linear classifiers but not captured by positive-class mean distance alone.
+
+\subsection{Auth-SafeInv and Verifier-Assisted Monitoring}
+
+The original diagnostic asks whether the same causal effect can be detected across tool surfaces. Auth-SafeInv asks a stricter safety question: whether a present effect is unauthorized under the task context. We build authorization counterfactuals with explicit task envelopes $A(c)$ and realized-effect labels, then evaluate unauthorized-effect FNR and authorized/absent-effect FPR under held-out tool and held-out family splits.
+
+\textbf{Pure representation-side methods are not yet sufficient.} Expanding the Auth-SafeInv data to 1,464 rows fixes a coverage problem in the strict train-only contrastive protocol: all 21 LOTO cells become evaluable. However, the strict train-only projection still underperforms the strongest same-cell baselines at FPR $\leq 0.1$: LOTO FNR is 0.2804 versus 0.1835 for supervised contrastive, and family-holdout FNR is 0.3500 versus 0.1655 for IRM-linear in the mitigation comparison. Pair-free schema conditioning is weaker still (best full-tool-chain LOTO FNR 0.4516, family FNR 0.6000). A pure decomposed frozen verifier also fails the method gate (best full-tool-chain LOTO FNR 0.3547, family FNR 0.5638). These negative results are important: the current evidence does not support a claim that contrastive projection, schema prompting, or frozen-embedding decomposition alone solves authorization-conditioned surface-form fragmentation.
+
+\textbf{Verifier-present upper bound motivates a framework.} When the model is given an oracle/external label indicating whether each candidate effect is actually present, a global authorization monitor reaches LOTO FNR 0.0042 and family FNR 0.0745 at FPR 0. This does not represent a deployable method by itself, because the effect-present signal is an oracle. It does, however, identify a viable architecture: separate \emph{effect presence verification} from \emph{authorization monitoring}. We therefore evaluate deterministic static verifiers and execution-trace verifiers as non-oracle present signals.
+
+\begin{table}[t]
+\centering
+\caption{Verifier-assisted Auth-SafeInv evaluations. Thresholds in the lower block are selected on validation trace groups and evaluated on held-out trace groups. These are controlled/API/protocol trace diagnostics, not deployment calibration over live traffic.}
+\label{tab:authverifier}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llcccc}
+\toprule
+Setting & Trace family & Rows & Execution verifier FNR/FPR & Static verifier FNR/FPR & Boundary \\
+\midrule
+T57 & Static tool-call rules & 35,136 & 0.0262 / 0.073 & -- & LOTO, full-tool-chain; not execution logs \\
+T58/T62 & Controlled auth traces & 1,104 & 0.0000 / 0.0000 & 0.0000 / 0.0520 & held-out trace groups \\
+T59/T62 & real-agent-tools local adapters & 384 & 0.1765 / 0.0000 & 0.1765 / 0.0000 & file/terminal local adapters \\
+T61/T62 & DeepSeek provider API & 960 & 0.0000 / 0.0000 & 1.0000 / 0.0000 & single provider surface \\
+T63 & web/search/browser/messaging local adapters & 2,400 & 0.0351 / 0.0000 & 0.6140 / 0.0132 & controlled local adapters \\
+T65 & file-backed headless Chrome runtime & 960 & 0.0000 / 0.0000 & 1.0000 / 0.0000 & real Chrome DOM/JS; no HTTP browser networking \\
+T64 & live HTTP + local webhook protocol & 2,400 & 0.0000 / 0.0000 & 0.6294 / 0.0462 & key-free live/protocol; full precision \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Table~\ref{tab:authverifier} summarizes the framework evidence. T57 replaces the oracle present label with deterministic trace-calibrated static rules and already beats the same-cell T54 baseline in full-tool-chain LOTO (FNR 0.0262/FPR 0.073 versus supervised contrastive FNR 0.1835/FPR 0.0712). T58 replaces static inference with controlled execution-trace verifier outputs; with validation-selected thresholds, the execution verifier reaches held-out test FNR/FPR 0/0 on the controlled trace set. T59 is a harder real-tool-code-grounded stress test using local handler-equivalent adapters for file/terminal tools from a Hermes-style registry; it leaves residual execution-verifier FNR 0.1765 at FPR 0. T61 shows why static rules are insufficient for provider/API effects: execution verification reaches 0/0 on held-out provider trace groups, while static verifiers have FNR 1.0. T63 broadens local-adapter coverage to web/search/browser/messaging tool names and effect patterns; execution verification reaches FNR 0.0351/FPR 0.0, while static verifiers remain much weaker (FNR 0.614/FPR 0.0132). T65 adds actual headless Chrome execution over file-backed DOM/JavaScript pages; execution verification reaches FNR/FPR 0/0, while static rules miss the browser-runtime effects (FNR 1.0). T64 adds key-free live/protocol evidence: real outbound HTTPS calls and local webhook protocol I/O. Under the same validation-selected protocol, execution verification reaches FNR/FPR 0/0 on held-out trace groups (N$^+=197$, N$^-=1170$), while static verifiers remain weak (FNR/FPR 0.6294/0.0462). We do not treat T64 or T65 as provider-backed search, SaaS messaging, HTTP browser automation, or deployed-runtime validation.
+
+\begin{table}[t]
+\centering
+\caption{Action-level aggregation of the same validation-selected monitor outputs. U-Allow is Unauthorized Action Allow Rate; FDeny is Authorized Action False Denial Rate. These metrics expose policy-level tradeoffs that candidate-effect row FNR/FPR can hide.}
+\label{tab:actionlevel}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccc}
+\toprule
+Trace family & Exec U-Allow & Exec FDeny & Static U-Allow & Static FDeny \\
+\midrule
+Controlled auth traces & 0.0000 & 0.1591 & 0.0000 & 0.4091 \\
+real-agent-tools local adapters & 0.2000 & 0.3571 & 0.2000 & 0.3571 \\
+DeepSeek provider API & 0.0000 & 1.0000 & 1.0000 & 0.0000 \\
+web/search/browser/messaging local adapters & 0.0500 & 0.2100 & 0.4875 & 0.2100 \\
+file-backed headless Chrome runtime & 0.0000 & 1.0000 & 1.0000 & 0.0000 \\
+live HTTP + local webhook protocol & 0.0000 & 0.0000 & 0.3210 & 0.0000 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Action-level aggregation (Table~\ref{tab:actionlevel}) gives a stricter interpretation. Execution verification usually lowers unauthorized action allowance relative to static rules, especially on provider, browser-runtime, and live/protocol traces. However, the resulting action policy can still over-deny: on the DeepSeek provider API and file-backed browser-runtime splits, the execution-verifier monitor allows zero unauthorized actions but falsely denies all authorized held-out actions. This happens because an action is denied if any present candidate effect is scored as unauthorized, so action-level false denial can be much larger than absent-effect row FPR. An action-level calibration pass that constrains validation false-denial to $\leq 0.10$ often selects a degenerate all-allow threshold on T59/T61/T63/T65, yielding unauthorized action allowance of 1.0. We therefore treat verifier-assisted monitoring as a promising framework, not a deploy-ready policy.
+
+\begin{table}[t]
+\centering
+\caption{Trace-view and proxy-defense ablations, averaged across T58/T59/T61/T63/T65/T64 held-out trace-group tests. Full-label EffectVerif is the existing upper-bound execution verifier. Label-hidden EffectVerif hides explicit trace label fields. The last three rows are proxy baselines, not faithful reimplementations of any external defense system.}
+\label{tab:traceablation}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccc}
+\toprule
+Monitor / view & Mean row FNR & Mean row FPR & Mean U-Allow & Mean FDeny \\
+\midrule
+EffectVerif full labels & 0.0353 & 0.0000 & 0.0417 & 0.4544 \\
+EffectVerif label-hidden raw evidence & 0.1162 & 0.0480 & 0.0459 & 0.7428 \\
+Pre-action rule-only + auth monitor & 0.5700 & 0.0186 & 0.5014 & 0.1627 \\
+Provenance-only boundary & 0.2873 & 0.0733 & 0.0486 & 0.3762 \\
+Raw-status boundary & 0.1113 & 0.0101 & 0.0171 & 0.0265 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Table~\ref{tab:traceablation} addresses two reviewer concerns. First, the execution-verifier result is not solely an artifact of copying explicit trace label fields on every dataset, but the full-label upper bound does rely on structured trace evidence. When \texttt{verified\_effects}, \texttt{effect\_diff}, \texttt{unauthorized\_effects}, and related label fields are hidden, mean held-out FNR rises from 0.0353 to 0.1162, with the largest degradation on the file-backed browser-runtime traces. A stricter minimal-evidence view degrades further (mean FNR 0.1465; mean present-FNR versus full-label verifier 0.2138), so the current method should be described as requiring structured execution evidence, not arbitrary sparse logs. Second, pre-action rule-only and provenance-only monitors miss many realized-effect violations. However, a handcrafted raw-status boundary is competitive in these controlled traces. This narrows the method claim: our contribution is an effect-level verification and Auth-SafeInv evaluation framework, not a proof that a learned authorization monitor dominates every handcrafted status-policy defense.
+
+These results shift the paper's main positive method claim. The strongest current claim is not that pure LLM embeddings can be repaired into a universal surface-invariant safety representation. Rather, the evidence supports an Auth-SafeInv framework in which execution-level effect evidence is passed to an authorization monitor. This framework still requires stronger external validation and policy calibration: T58 and T63 are controlled local-adapter datasets, T59 is local handler-equivalent rather than direct Hermes runtime execution, T61 covers a single provider API surface with high action-level false denial under the current threshold, T65 is file-backed browser runtime rather than HTTP browser automation, and T64 covers key-free live/protocol traces rather than full deployed-agent traffic.
+
+\subsection{Observed-Pair Contrastive Projection as an Upper Bound}
+
+The original diagnostic admits a natural representation-side repair: explicitly align same-effect, different-tool samples. We treat this as an \emph{observed-pair upper bound}, because the full-training version uses cross-form positive pairs that include the target tool surfaces. The method learns a linear projection $P \in \mathbb{R}^{d \times k}$ ($k \ll d$) minimizing a Siamese contrastive loss. For each effect $E_i$, we construct positive pairs by sampling same-effect, different-form samples $(a \sim P_{S_a}^+, b \sim P_{S_b}^+)$, and negative samples from the effect-negative pool. The loss combines pulling positive pairs together with pushing negatives apart:
+
+$$\mathcal{L}(P) = \frac{1}{N} \sum_{(a,b)} \|\mathbf{z}_a - \mathbf{z}_b\|^2 + \lambda \mathbb{E}_{c \sim \text{neg}}[\max(0, m - \|\mathbf{z}_a - \mathbf{z}_c\|^2) + \max(0, m - \|\mathbf{z}_b - \mathbf{z}_c\|^2)] + \gamma\|P\|_F^2$$
+
+where $\mathbf{z} = P^\top \mathbf{h} / \|P^\top \mathbf{h}\|$. Training uses Adam (lr=0.001, 500 epochs, batch=64) on GPU. The full-training table uses the implementation default $k=128$; the dimension ablation shows that $k=64$--1024 are all effective, with small variation on \texttt{content\_fetched}.
+
+\begin{table}[t]
+\centering
+\caption{Contrastive projection results (Qwen3-8B, $k=128$), full training. All form pairs are used to train the projection. Strict leave-one-pair-out results are reported separately because only effects with at least three tools support transitive held-out-pair alignment in the current data.}
+\label{tab:contrastive}
+\begin{tabular}{lccc}
+\toprule
+Effect & Pre-FNR (max) & Post-FNR (full) & $\Delta$FNR \\
+\midrule
+content\_fetched & 0.78 & 0.25 & +0.53 \\
+file\_content\_read & 0.88 & 0.00 & +0.88 \\
+file\_deleted & 0.60 & 0.00 & +0.60 \\
+file\_written & 0.97 & 0.00 & +0.97 \\
+network\_egress & 0.73 & 0.00 & +0.73 \\
+tool\_error & 0.27 & 0.00 & +0.27 \\
+\midrule
+Mean $\Delta$FNR & --- & --- & \textbf{+0.37} \\
+Improved / Total & --- & --- & 16/20 (80\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:contrastive} reports full-training results. Contrastive projection achieves post-FNR of 0.00 on 5/6 effects and reduces the worst case (content\_fetched) from 0.78 to 0.25. This confirms that the failure is at least partially representation-geometric: when the method is allowed to see cross-form positive pairs, the held-out-tool stress failures can be repaired. The stricter question is whether the repair transfers without the target pair. \textbf{Two-form effects} (content\_fetched, file\_written) have only two tools; leaving out their sole cross-form pair removes all training signal, making strict evaluation not identifiable from the current data. \textbf{Three-plus-form effects} (network\_egress, tool\_error) have intermediate forms through which transitive alignment could operate. In a strict pair-level leave-one-pair-out rerun, we exclude all positive training pairs between each held-out unordered tool pair and then evaluate the held-out tools. This strict protocol improves 40/68 tool-case evaluations (mean $\Delta$FNR = +0.157). This is weaker than the full-training result and should be interpreted as partial evidence for transitive alignment under available intermediate forms, not as a zero-shot guarantee for two-form or target-form-missing settings.
+
+A five-seed full-training rerun confirms the main contrastive result under the current result schema. The largest mean post-projection FNR is $0.1625$ for \texttt{content\_fetched} on \texttt{web\_fetch}; \texttt{file\_content\_read} has maximum mean post-FNR $0.1062$, \texttt{file\_written} $0.0424$, and \texttt{file\_deleted}, \texttt{network\_egress}, and \texttt{tool\_error} have zero mean post-FNR across their evaluated forms. These are full-training results using cross-form positive pairs; they should not be conflated with the stricter held-out-pair setting.
+
+The later Auth-SafeInv results make this limitation operational: when projection training is restricted to train-only pairs under authorization-conditioned splits, contrastive projection becomes broadly evaluable but does not beat the best same-cell baselines. We therefore use contrastive projection as evidence that representation alignment can repair observed surface pairs, not as the paper's main safety method.
+
+\textbf{Why content\_fetched retains residual FNR.} The terminal form has only 8 positive samples, yielding 8 cross-form pairs with web\_fetch. The finite-sample term in Theorem~\ref{thm:contrastive} scales as $\sqrt{dk/N}$, so this setting is far outside the regime where the bound would be informative. The residual error is therefore consistent with sparse cross-form positives, but increasing terminal positives remains a prediction to test rather than an established conclusion.
+
+\textbf{Cross-model consistency.} MiniLM (384d, no tool-use training) and Qwen3-8B (4096d, function-calling SFT) show consistent fragmentation patterns, with Qwen3-8B improving tool\_error (pIIA-Drop 0.096 $\to$ 0.052) but not content\_fetched (0.294 $\to$ 0.298). Tool-use training partially aligns semantically unified concepts (``error'') but does not resolve deeply fragmented ones (``content fetching'' via web API vs. shell command).
+
+\subsection{Input-Side Causal-Chain Diagnostic}
+
+We also test whether making the task-effect causal chain explicit changes the representation geometry. This is not a deployed prompting defense; it is a controlled diagnostic of whether causal-chain information can reorganize effect representations. We construct 2,290 chain-conditioned Qwen3-8B samples by applying five conditions to the source scenarios: raw text, tool-only text, effect-chain text, task-causal-chain text, and wrong-chain text. The wrong-chain condition is typed into 153 effect omissions, 152 effect flips, and 153 authorization flips.
+
+\begin{table}[t]
+\centering
+\caption{Causal-chain conditioning diagnostic (Qwen3-8B). Values are maximum held-form FNR under LOTO within each condition. AuthFlip is the typed wrong-chain subset where authorization is incorrectly stated. Small positive counts, especially \texttt{content\_fetched} AuthFlip ($N^+=7$), require cautious interpretation.}
+\label{tab:causalchain}
+\begin{tabular}{lcccc}
+\toprule
+Effect & Raw & Effect Chain & Task Chain & AuthFlip \\
+\midrule
+content\_fetched & 0.781 & 0.656 & 1.000 & 1.000 \\
+file\_written & 1.000 & 1.000 & 1.000 & 1.000 \\
+network\_egress & 0.731 & 0.345 & 0.000 & 0.333 \\
+tool\_error & 0.269 & 0.231 & 0.000 & 0.500 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:causalchain} shows a mixed pattern. Explicit task-causal-chain text eliminates held-form FNR for \texttt{network\_egress} and \texttt{tool\_error}, suggesting that some effect representations become more transferable when the task, authorized effects, observed effects, and consistency relation are made explicit. The same intervention does not help \texttt{content\_fetched} or \texttt{file\_written}; in those cases the held-FNR remains high despite high AUC in some conditions. Authorization-flip wrong-chain subsets further show that causal-chain conditioning is not automatically robust to misleading chain statements. We therefore treat causal-chain conditioning as an input-side research direction and mechanism diagnostic, not as a solved mitigation.
+
+\section{Discussion}
+
+\textbf{The missing layer in agent safety.} Current agent defenses often operate at the behavioral or boundary layer and rely on some estimate of a tool call's effects. Our controlled results show that this estimate can be unstable under tool surface-form variation. We should not overstate this as a universal property of all LLMs or all agent settings; rather, it is a concrete failure mode that should be tested before relying on effect detectors for safety enforcement. The Auth-SafeInv results further indicate that robust monitoring should track two quantities separately: whether a candidate effect is present, and whether that effect is authorized by the task.
+
+\textbf{Theory and mitigation.} Our framework links three pieces: authorization-conditioned FNR risk accounting (Lemma~\ref{thm:safety}), coverage sample complexity (Theorem~\ref{thm:sample}), and conditional contrastive-alignment analysis. The last link depends on linear separability, margin, and bounded alignment error; it motivates contrastive projection but does not certify safety. The experimental evidence now points to a more conservative conclusion: observed-pair projection is a useful upper-bound repair, but strict pure-representation mitigation remains weaker than strong baselines. The more promising current path is verifier-assisted monitoring, where execution-level evidence about realized effects reduces the burden on the representation alone.
+
+\textbf{Limitations.} (1) The original representation diagnosis uses synthetic scenarios (rule-based + LLM-generated), so data artifacts such as lexical shortcuts or template leakage remain a risk despite lexical controls and real-tool proxy calibration. (2) The Auth-SafeInv trace evidence is stronger but still controlled: T58 uses controlled local sandbox/static traces, T59 and T63 use local adapters grounded in real tool names or local handler semantics, T61 uses one provider API surface, T65 uses file-backed headless Chrome DOM/JavaScript execution, and T64 uses real outbound HTTPS plus local webhook protocol I/O. We do not yet evaluate provider-backed search, SaaS messaging, HTTP browser automation, or full deployed-agent runtime logs. (3) The framework's empirical validation is restricted mainly to tool switching ($\mathcal{S} = \mathcal{T}$) as the prototype surface-form variation; extensions to context injection, semantic reframing, and language variation are conceptual generalizations requiring separate experimental validation. (4) Some FNR estimates still have small positive counts, especially in effect-level trace splits; all such values require confidence intervals or cautious appendix placement. (5) Contrastive projection requires cross-form positive pairs for training; strict leave-one-pair-out is evaluable only for effects with at least three surface forms, and two-form effects remain non-identifiable under that protocol. (6) Causal-chain conditioning is a diagnostic intervention and can itself be misled by wrong-chain statements; it is not a verified runtime defense. (7) Tables~\ref{tab:actionlevel} and~\ref{tab:traceablation} report action-level and trace-view diagnostics, but they remain held-out trace-group aggregates inherited from T62 thresholds; T73 shows that simple action-level false-denial calibration can collapse into all-allow thresholds on several trace families. Abstention policies, independent learned effect verifiers, and faithful reimplementations of external defense systems remain necessary before deployment-facing claims. (8) All experiments use models $\leq 8$B parameters; larger-model behavior is unknown. (9) Theorem~\ref{thm:alignment}'s linear separability, margin, and alignment error assumptions may not hold in all settings, and the derived FNR bound is not guaranteed to be tight.
+
+\textbf{Future work.} (1) Collecting direct external-service or deployed-runtime traces for HTTP browser automation, search, and messaging tools to test whether the T63/T64/T65 results transfer to provider-backed services. (2) Developing non-degenerate action-level calibration, abstention, and false-denial tradeoff policies rather than relying only on candidate-effect FNR/FPR. (3) Replacing deterministic raw-evidence rules with independent learned or formally specified effect verifiers. (4) Extending the diagnosis to context injection and semantic reframing attacks using the same pIIA framework. (5) Applying IIT-based causal alignment training~\cite{geiger2022} or graph-aware representation learning as alternatives to contrastive projection. (6) Integrating execution-level effect verifiers into end-to-end agent safety frameworks, where Auth-SafeInv can serve as a monitor-level evaluation target. (7) Developing statistical SafeInv certification procedures with specified confidence levels.
+
+\section{Reproducibility}
+
+All experiments are implemented in Python with PyTorch and scikit-learn. The original diagnostic pipeline (data generation $\to$ embedding extraction $\to$ probe training $\to$ pIIA intervention $\to$ baseline comparison $\to$ contrastive projection) is automated via \texttt{run\_experiments.sh}. The Auth-SafeInv pipeline is tracked by \texttt{reproduce\_auth\_safeinv.sh} and a result-source appendix that maps each reported artifact to its script, command, output files, and caveats. API-key-dependent provider traces are recorded as artifacts but are not rerun by default. Code, data, and analysis outputs will be released as an open-source repository upon publication.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{jaw2026}
+\textit{JAW: Comment and Control---Hijacking Agentic Workflows via Context-Grounded Evolution}. arXiv:2605.11229, May 2026.
+
+\bibitem{litmus2026}
+\textit{LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments}. arXiv:2605.10779, May 2026.
+
+\bibitem{mit2026}
+MIT Technology Review. \textit{Rules Fail at the Prompt, Succeed at the Boundary}. Jan 2026.
+
+\bibitem{attrguard2026}
+\textit{AttriGuard: Defeating Indirect Prompt Injection via Causal Attribution of Tool Invocations}. arXiv:2603.10749, Mar 2026.
+
+\bibitem{clawguard2026}
+\textit{ClawGuard: A Runtime Security Framework for Tool-Augmented LLM Agents}. arXiv:2604.11790, Apr 2026.
+
+\bibitem{argus2026}
+\textit{ARGUS: Defending LLM Agents Against Context-Aware Prompt Injection}. arXiv:2605.03378, May 2026.
+
+\bibitem{xoa2026}
+\textit{XOA: Execute-Only Agents}. Agentic OS Workshop, 2026.
+
+\bibitem{lasm2026}
+\textit{A Systematic Survey of Security Threats and Defenses in LLM-Based AI Agents}. arXiv:2604.23338, Apr 2026.
+
+\bibitem{sok2026}
+\textit{SoK: The Attack Surface of Agentic AI}. arXiv:2603.22928, Mar 2026.
+
+\bibitem{queryipi2026}
+\textit{QueryIPI: Query-agnostic Indirect Prompt Injection on Coding Agents}. arXiv:2510.23675, Jan 2026.
+
+\bibitem{agentdojo2024}
+\textit{AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents}. NeurIPS Datasets and Benchmarks, 2024.
+
+\bibitem{toolemu2024}
+\textit{Identifying the Risks of LM Agents with an LM-Emulated Sandbox}. ICLR, 2024.
+
+\bibitem{agentharm2025}
+\textit{AgentHarm: A Benchmark for Measuring Harmfulness of LLM Agents}. ICLR, 2025.
+
+\bibitem{asb2025}
+\textit{Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents}. ICLR, 2025.
+
+\bibitem{causalarmor2026}
+\textit{CausalArmor: Efficient Indirect Prompt Injection Guardrails via Causal Attribution}. arXiv:2602.07918, Feb 2026.
+
+\bibitem{irm2019}
+M. Arjovsky, L. Bottou, I. Gulrajani, and D. Lopez-Paz. \textit{Invariant Risk Minimization}. arXiv:1907.02893, 2019.
+
+\bibitem{groupdro2020}
+S. Sagawa, P. W. Koh, T. B. Hashimoto, and P. Liang. \textit{Distributionally Robust Neural Networks for Group Shifts: On the Importance of Regularization for Worst-Case Generalization}. ICLR, 2020.
+
+\bibitem{geiger2021}
+A. Geiger et al. \textit{Causal Abstractions of Neural Networks}. NeurIPS, 2021.
+
+\bibitem{geiger2022}
+A. Geiger et al. \textit{Inducing Causal Structure for Interpretable Neural Networks}. ICML, 2022.
+
+\bibitem{geiger2025}
+A. Geiger et al. \textit{Causal Abstraction: A Theoretical Foundation for Mechanistic Interpretability}. JMLR, 2025.
+
+\bibitem{sutter2025}
+T. Sutter et al. \textit{The Non-Linear Representation Dilemma}. NeurIPS, 2025.
+
+\bibitem{icidg2026}
+J. Zhou et al. \textit{From Small to Large: In-Context Learning for Domain Generalization}. IJCV, 2026.
+
+\bibitem{cdas2026}
+Y. Bao et al. \textit{Faithful Bi-Directional Model Steering via Distribution Matching and DII}. ICLR, 2026.
+
+\end{thebibliography}
+
+\end{document}

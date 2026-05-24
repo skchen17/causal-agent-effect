@@ -1,0 +1,272 @@
+{
+  "schema_version": "contrastive_multiseed_v2",
+  "generated_by": "run_contrastive_multiseed.py",
+  "config": {
+    "model": "qwen3-8b",
+    "data": "scenarios_mainconf_v2",
+    "data_name": "qwen3-8b_scenarios_mainconf_v2",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "dim": 128,
+    "train_protocol": "full_training"
+  },
+  "results": {
+    "content_fetched": {
+      "terminal": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "web_fetch": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      }
+    },
+    "file_content_read": {
+      "read_file": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "terminal": {
+        "post_fnr_mean": 0.0067,
+        "post_fnr_std": 0.0133,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.033333333333333326,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      }
+    },
+    "file_deleted": {
+      "delete_file": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "terminal": {
+        "post_fnr_mean": 0.034,
+        "post_fnr_std": 0.0141,
+        "values": [
+          0.018867924528301883,
+          0.05660377358490565,
+          0.037735849056603765,
+          0.018867924528301883,
+          0.037735849056603765
+        ],
+        "aggregation": "worst_form"
+      }
+    },
+    "file_written": {
+      "terminal": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "write_file": {
+        "post_fnr_mean": 0.0036,
+        "post_fnr_std": 0.0071,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.017857142857142905
+        ],
+        "aggregation": "worst_form"
+      }
+    },
+    "network_egress": {
+      "send_message": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "terminal": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "web_fetch": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "web_search": {
+        "post_fnr_mean": 0.0041,
+        "post_fnr_std": 0.005,
+        "values": [
+          0.010204081632653073,
+          0.010204081632653073,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      }
+    },
+    "tool_error": {
+      "delegate": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "delete_file": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "read_file": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "send_message": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "terminal": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "web_fetch": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      },
+      "web_search": {
+        "post_fnr_mean": 0.0026,
+        "post_fnr_std": 0.0051,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.012820512820512775
+        ],
+        "aggregation": "worst_form"
+      },
+      "write_file": {
+        "post_fnr_mean": 0.0,
+        "post_fnr_std": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregation": "worst_form"
+      }
+    }
+  }
+}

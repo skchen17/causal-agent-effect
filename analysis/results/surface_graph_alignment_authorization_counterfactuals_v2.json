@@ -1,0 +1,1397 @@
+{
+  "data_name": "authorization_counterfactuals_v2",
+  "n_rows": 1464,
+  "graph_assumption": "complete graph over surfaces with positive samples; edges represent available cross-surface positive pairs for representation alignment",
+  "by_effect": {
+    "command_executed": {
+      "verified_tool_counts": {
+        "terminal": 621
+      },
+      "unauthorized_tool_counts": {
+        "terminal": 126
+      },
+      "counterfactual_family_counts_for_verified_effect": {
+        "same_effect_reframing": 300,
+        "same_task_effect_substitution": 126,
+        "same_task_tool_swap": 15,
+        "same_tool_auth_flip": 180
+      },
+      "n_verified_tools": 1,
+      "n_unauthorized_tools": 1,
+      "verified_graph": {
+        "nodes": [
+          "terminal"
+        ],
+        "edges": [],
+        "n_pairs": 0,
+        "strict_pair_identifiable": false,
+        "reason": "fewer than two surface forms",
+        "heldout_pair_rows": []
+      },
+      "unauthorized_graph": {
+        "nodes": [
+          "terminal"
+        ],
+        "edges": [],
+        "n_pairs": 0,
+        "strict_pair_identifiable": false,
+        "reason": "fewer than two surface forms",
+        "heldout_pair_rows": []
+      },
+      "auth_loto_rows": [
+        {
+          "heldout_tool": "terminal",
+          "n_unauth": 126,
+          "heldout_fnr": 1.0,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 1.0,
+          "unsafe_allow_bound": 1.0
+        }
+      ]
+    },
+    "content_fetched": {
+      "verified_tool_counts": {
+        "http_get": 40,
+        "terminal": 101,
+        "web_extract": 45
+      },
+      "unauthorized_tool_counts": {
+        "http_get": 20,
+        "terminal": 29,
+        "web_extract": 15
+      },
+      "counterfactual_family_counts_for_verified_effect": {
+        "same_task_effect_substitution": 56,
+        "same_task_tool_swap": 30,
+        "same_tool_auth_flip": 60,
+        "surface_graph_expansion_auth_flip": 40
+      },
+      "n_verified_tools": 3,
+      "n_unauthorized_tools": 3,
+      "verified_graph": {
+        "nodes": [
+          "http_get",
+          "terminal",
+          "web_extract"
+        ],
+        "edges": [
+          [
+            "http_get",
+            "terminal"
+          ],
+          [
+            "http_get",
+            "web_extract"
+          ],
+          [
+            "terminal",
+            "web_extract"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "http_get",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "web_extract"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_get",
+              "web_extract"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "terminal",
+              "web_extract"
+            ],
+            "intermediate_surfaces": [
+              "http_get"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "unauthorized_graph": {
+        "nodes": [
+          "http_get",
+          "terminal",
+          "web_extract"
+        ],
+        "edges": [
+          [
+            "http_get",
+            "terminal"
+          ],
+          [
+            "http_get",
+            "web_extract"
+          ],
+          [
+            "terminal",
+            "web_extract"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "http_get",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "web_extract"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_get",
+              "web_extract"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "terminal",
+              "web_extract"
+            ],
+            "intermediate_surfaces": [
+              "http_get"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "auth_loto_rows": [
+        {
+          "heldout_tool": "http_get",
+          "n_unauth": 20,
+          "heldout_fnr": 0.0,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 0.0,
+          "unsafe_allow_bound": 0.0
+        },
+        {
+          "heldout_tool": "terminal",
+          "n_unauth": 29,
+          "heldout_fnr": 1.0,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 1.0,
+          "unsafe_allow_bound": 1.0
+        },
+        {
+          "heldout_tool": "web_extract",
+          "n_unauth": 15,
+          "heldout_fnr": 0.0,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 0.0,
+          "unsafe_allow_bound": 0.0
+        }
+      ]
+    },
+    "file_content_read": {
+      "verified_tool_counts": {
+        "python_repl": 40,
+        "read_file": 45,
+        "terminal": 173
+      },
+      "unauthorized_tool_counts": {
+        "python_repl": 20,
+        "read_file": 15,
+        "terminal": 15
+      },
+      "counterfactual_family_counts_for_verified_effect": {
+        "same_effect_reframing": 100,
+        "same_task_effect_substitution": 28,
+        "same_task_tool_swap": 30,
+        "same_tool_auth_flip": 60,
+        "surface_graph_expansion_auth_flip": 40
+      },
+      "n_verified_tools": 3,
+      "n_unauthorized_tools": 3,
+      "verified_graph": {
+        "nodes": [
+          "python_repl",
+          "read_file",
+          "terminal"
+        ],
+        "edges": [
+          [
+            "python_repl",
+            "read_file"
+          ],
+          [
+            "python_repl",
+            "terminal"
+          ],
+          [
+            "read_file",
+            "terminal"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "python_repl",
+              "read_file"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "python_repl",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "read_file"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "read_file",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "python_repl"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "unauthorized_graph": {
+        "nodes": [
+          "python_repl",
+          "read_file",
+          "terminal"
+        ],
+        "edges": [
+          [
+            "python_repl",
+            "read_file"
+          ],
+          [
+            "python_repl",
+            "terminal"
+          ],
+          [
+            "read_file",
+            "terminal"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "python_repl",
+              "read_file"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "python_repl",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "read_file"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "read_file",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "python_repl"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "auth_loto_rows": [
+        {
+          "heldout_tool": "python_repl",
+          "n_unauth": 20,
+          "heldout_fnr": 0.0,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 0.0,
+          "unsafe_allow_bound": 0.0
+        },
+        {
+          "heldout_tool": "read_file",
+          "n_unauth": 15,
+          "heldout_fnr": 0.0,
+          "within_fnr": null,
+          "auth_tool_proxy_gap": null,
+          "unsafe_allow_bound": 0.0
+        },
+        {
+          "heldout_tool": "terminal",
+          "n_unauth": 15,
+          "heldout_fnr": 0.4,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 0.4,
+          "unsafe_allow_bound": 0.4
+        }
+      ]
+    },
+    "file_deleted": {
+      "verified_tool_counts": {
+        "delete_file": 45,
+        "python_repl": 40,
+        "terminal": 201
+      },
+      "unauthorized_tool_counts": {
+        "delete_file": 15,
+        "python_repl": 20,
+        "terminal": 29
+      },
+      "counterfactual_family_counts_for_verified_effect": {
+        "same_effect_reframing": 100,
+        "same_task_effect_substitution": 56,
+        "same_task_tool_swap": 30,
+        "same_tool_auth_flip": 60,
+        "surface_graph_expansion_auth_flip": 40
+      },
+      "n_verified_tools": 3,
+      "n_unauthorized_tools": 3,
+      "verified_graph": {
+        "nodes": [
+          "delete_file",
+          "python_repl",
+          "terminal"
+        ],
+        "edges": [
+          [
+            "delete_file",
+            "python_repl"
+          ],
+          [
+            "delete_file",
+            "terminal"
+          ],
+          [
+            "python_repl",
+            "terminal"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "delete_file",
+              "python_repl"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "delete_file",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "python_repl"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "python_repl",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "delete_file"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "unauthorized_graph": {
+        "nodes": [
+          "delete_file",
+          "python_repl",
+          "terminal"
+        ],
+        "edges": [
+          [
+            "delete_file",
+            "python_repl"
+          ],
+          [
+            "delete_file",
+            "terminal"
+          ],
+          [
+            "python_repl",
+            "terminal"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "delete_file",
+              "python_repl"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "delete_file",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "python_repl"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "python_repl",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "delete_file"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "auth_loto_rows": [
+        {
+          "heldout_tool": "delete_file",
+          "n_unauth": 15,
+          "heldout_fnr": 0.0,
+          "within_fnr": null,
+          "auth_tool_proxy_gap": null,
+          "unsafe_allow_bound": 0.0
+        },
+        {
+          "heldout_tool": "python_repl",
+          "n_unauth": 20,
+          "heldout_fnr": 0.0,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 0.0,
+          "unsafe_allow_bound": 0.0
+        },
+        {
+          "heldout_tool": "terminal",
+          "n_unauth": 29,
+          "heldout_fnr": 0.4828,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 0.4828,
+          "unsafe_allow_bound": 0.4828
+        }
+      ]
+    },
+    "file_written": {
+      "verified_tool_counts": {
+        "python_repl": 40,
+        "terminal": 59,
+        "write_file": 203
+      },
+      "unauthorized_tool_counts": {
+        "python_repl": 20,
+        "terminal": 29,
+        "write_file": 15
+      },
+      "counterfactual_family_counts_for_verified_effect": {
+        "same_effect_reframing": 100,
+        "same_task_effect_substitution": 42,
+        "same_task_tool_swap": 30,
+        "same_tool_auth_flip": 90,
+        "surface_graph_expansion_auth_flip": 40
+      },
+      "n_verified_tools": 3,
+      "n_unauthorized_tools": 3,
+      "verified_graph": {
+        "nodes": [
+          "python_repl",
+          "terminal",
+          "write_file"
+        ],
+        "edges": [
+          [
+            "python_repl",
+            "terminal"
+          ],
+          [
+            "python_repl",
+            "write_file"
+          ],
+          [
+            "terminal",
+            "write_file"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "python_repl",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "write_file"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "python_repl",
+              "write_file"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "terminal",
+              "write_file"
+            ],
+            "intermediate_surfaces": [
+              "python_repl"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "unauthorized_graph": {
+        "nodes": [
+          "python_repl",
+          "terminal",
+          "write_file"
+        ],
+        "edges": [
+          [
+            "python_repl",
+            "terminal"
+          ],
+          [
+            "python_repl",
+            "write_file"
+          ],
+          [
+            "terminal",
+            "write_file"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "python_repl",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "write_file"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "python_repl",
+              "write_file"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "terminal",
+              "write_file"
+            ],
+            "intermediate_surfaces": [
+              "python_repl"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "auth_loto_rows": [
+        {
+          "heldout_tool": "python_repl",
+          "n_unauth": 20,
+          "heldout_fnr": 0.0,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 0.0,
+          "unsafe_allow_bound": 0.0
+        },
+        {
+          "heldout_tool": "terminal",
+          "n_unauth": 29,
+          "heldout_fnr": 0.4828,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 0.4828,
+          "unsafe_allow_bound": 0.4828
+        },
+        {
+          "heldout_tool": "write_file",
+          "n_unauth": 15,
+          "heldout_fnr": 1.0,
+          "within_fnr": null,
+          "auth_tool_proxy_gap": null,
+          "unsafe_allow_bound": 1.0
+        }
+      ]
+    },
+    "memory_updated": {
+      "verified_tool_counts": {},
+      "unauthorized_tool_counts": {},
+      "counterfactual_family_counts_for_verified_effect": {},
+      "n_verified_tools": 0,
+      "n_unauthorized_tools": 0,
+      "verified_graph": {
+        "nodes": [],
+        "edges": [],
+        "n_pairs": 0,
+        "strict_pair_identifiable": false,
+        "reason": "fewer than two surface forms",
+        "heldout_pair_rows": []
+      },
+      "unauthorized_graph": {
+        "nodes": [],
+        "edges": [],
+        "n_pairs": 0,
+        "strict_pair_identifiable": false,
+        "reason": "fewer than two surface forms",
+        "heldout_pair_rows": []
+      },
+      "auth_loto_rows": []
+    },
+    "message_sent": {
+      "verified_tool_counts": {
+        "http_post": 40,
+        "send_message": 45,
+        "terminal": 59
+      },
+      "unauthorized_tool_counts": {
+        "http_post": 20,
+        "send_message": 15,
+        "terminal": 29
+      },
+      "counterfactual_family_counts_for_verified_effect": {
+        "same_task_effect_substitution": 14,
+        "same_task_tool_swap": 30,
+        "same_tool_auth_flip": 60,
+        "surface_graph_expansion_auth_flip": 40
+      },
+      "n_verified_tools": 3,
+      "n_unauthorized_tools": 3,
+      "verified_graph": {
+        "nodes": [
+          "http_post",
+          "send_message",
+          "terminal"
+        ],
+        "edges": [
+          [
+            "http_post",
+            "send_message"
+          ],
+          [
+            "http_post",
+            "terminal"
+          ],
+          [
+            "send_message",
+            "terminal"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "http_post",
+              "send_message"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_post",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "send_message"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "send_message",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "http_post"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "unauthorized_graph": {
+        "nodes": [
+          "http_post",
+          "send_message",
+          "terminal"
+        ],
+        "edges": [
+          [
+            "http_post",
+            "send_message"
+          ],
+          [
+            "http_post",
+            "terminal"
+          ],
+          [
+            "send_message",
+            "terminal"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "http_post",
+              "send_message"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_post",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "send_message"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "send_message",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "http_post"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "auth_loto_rows": [
+        {
+          "heldout_tool": "http_post",
+          "n_unauth": 20,
+          "heldout_fnr": 0.0,
+          "within_fnr": null,
+          "auth_tool_proxy_gap": null,
+          "unsafe_allow_bound": 0.0
+        },
+        {
+          "heldout_tool": "send_message",
+          "n_unauth": 15,
+          "heldout_fnr": 1.0,
+          "within_fnr": null,
+          "auth_tool_proxy_gap": null,
+          "unsafe_allow_bound": 1.0
+        },
+        {
+          "heldout_tool": "terminal",
+          "n_unauth": 29,
+          "heldout_fnr": 0.4828,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 0.4828,
+          "unsafe_allow_bound": 0.4828
+        }
+      ]
+    },
+    "network_egress": {
+      "verified_tool_counts": {
+        "http_get": 80,
+        "http_post": 40,
+        "terminal": 305,
+        "web_extract": 145,
+        "web_search": 45
+      },
+      "unauthorized_tool_counts": {
+        "http_get": 20,
+        "terminal": 43,
+        "web_extract": 15
+      },
+      "counterfactual_family_counts_for_verified_effect": {
+        "same_effect_reframing": 100,
+        "same_task_effect_substitution": 70,
+        "same_task_tool_swap": 105,
+        "same_tool_auth_flip": 180,
+        "surface_graph_expansion_auth_flip": 160
+      },
+      "n_verified_tools": 5,
+      "n_unauthorized_tools": 3,
+      "verified_graph": {
+        "nodes": [
+          "http_get",
+          "http_post",
+          "terminal",
+          "web_extract",
+          "web_search"
+        ],
+        "edges": [
+          [
+            "http_get",
+            "http_post"
+          ],
+          [
+            "http_get",
+            "terminal"
+          ],
+          [
+            "http_get",
+            "web_extract"
+          ],
+          [
+            "http_get",
+            "web_search"
+          ],
+          [
+            "http_post",
+            "terminal"
+          ],
+          [
+            "http_post",
+            "web_extract"
+          ],
+          [
+            "http_post",
+            "web_search"
+          ],
+          [
+            "terminal",
+            "web_extract"
+          ],
+          [
+            "terminal",
+            "web_search"
+          ],
+          [
+            "web_extract",
+            "web_search"
+          ]
+        ],
+        "n_pairs": 10,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 10,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "http_get",
+              "http_post"
+            ],
+            "intermediate_surfaces": [
+              "terminal",
+              "web_extract",
+              "web_search"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_get",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "http_post",
+              "web_extract",
+              "web_search"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_get",
+              "web_extract"
+            ],
+            "intermediate_surfaces": [
+              "http_post",
+              "terminal",
+              "web_search"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_get",
+              "web_search"
+            ],
+            "intermediate_surfaces": [
+              "http_post",
+              "terminal",
+              "web_extract"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_post",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "http_get",
+              "web_extract",
+              "web_search"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_post",
+              "web_extract"
+            ],
+            "intermediate_surfaces": [
+              "http_get",
+              "terminal",
+              "web_search"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_post",
+              "web_search"
+            ],
+            "intermediate_surfaces": [
+              "http_get",
+              "terminal",
+              "web_extract"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "terminal",
+              "web_extract"
+            ],
+            "intermediate_surfaces": [
+              "http_get",
+              "http_post",
+              "web_search"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "terminal",
+              "web_search"
+            ],
+            "intermediate_surfaces": [
+              "http_get",
+              "http_post",
+              "web_extract"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "web_extract",
+              "web_search"
+            ],
+            "intermediate_surfaces": [
+              "http_get",
+              "http_post",
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "unauthorized_graph": {
+        "nodes": [
+          "http_get",
+          "terminal",
+          "web_extract"
+        ],
+        "edges": [
+          [
+            "http_get",
+            "terminal"
+          ],
+          [
+            "http_get",
+            "web_extract"
+          ],
+          [
+            "terminal",
+            "web_extract"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "http_get",
+              "terminal"
+            ],
+            "intermediate_surfaces": [
+              "web_extract"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "http_get",
+              "web_extract"
+            ],
+            "intermediate_surfaces": [
+              "terminal"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "terminal",
+              "web_extract"
+            ],
+            "intermediate_surfaces": [
+              "http_get"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "auth_loto_rows": [
+        {
+          "heldout_tool": "http_get",
+          "n_unauth": 20,
+          "heldout_fnr": 0.0,
+          "within_fnr": null,
+          "auth_tool_proxy_gap": null,
+          "unsafe_allow_bound": 0.0
+        },
+        {
+          "heldout_tool": "terminal",
+          "n_unauth": 43,
+          "heldout_fnr": 0.6512,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 0.6512,
+          "unsafe_allow_bound": 0.6512
+        },
+        {
+          "heldout_tool": "web_extract",
+          "n_unauth": 15,
+          "heldout_fnr": 0.0,
+          "within_fnr": null,
+          "auth_tool_proxy_gap": null,
+          "unsafe_allow_bound": 0.0
+        }
+      ]
+    },
+    "search_performed": {
+      "verified_tool_counts": {
+        "web_search": 45
+      },
+      "unauthorized_tool_counts": {},
+      "counterfactual_family_counts_for_verified_effect": {
+        "same_task_tool_swap": 15,
+        "same_tool_auth_flip": 30
+      },
+      "n_verified_tools": 1,
+      "n_unauthorized_tools": 0,
+      "verified_graph": {
+        "nodes": [
+          "web_search"
+        ],
+        "edges": [],
+        "n_pairs": 0,
+        "strict_pair_identifiable": false,
+        "reason": "fewer than two surface forms",
+        "heldout_pair_rows": []
+      },
+      "unauthorized_graph": {
+        "nodes": [],
+        "edges": [],
+        "n_pairs": 0,
+        "strict_pair_identifiable": false,
+        "reason": "fewer than two surface forms",
+        "heldout_pair_rows": []
+      },
+      "auth_loto_rows": []
+    },
+    "subagent_spawned": {
+      "verified_tool_counts": {},
+      "unauthorized_tool_counts": {},
+      "counterfactual_family_counts_for_verified_effect": {},
+      "n_verified_tools": 0,
+      "n_unauthorized_tools": 0,
+      "verified_graph": {
+        "nodes": [],
+        "edges": [],
+        "n_pairs": 0,
+        "strict_pair_identifiable": false,
+        "reason": "fewer than two surface forms",
+        "heldout_pair_rows": []
+      },
+      "unauthorized_graph": {
+        "nodes": [],
+        "edges": [],
+        "n_pairs": 0,
+        "strict_pair_identifiable": false,
+        "reason": "fewer than two surface forms",
+        "heldout_pair_rows": []
+      },
+      "auth_loto_rows": []
+    },
+    "tool_error": {
+      "verified_tool_counts": {
+        "web_extract": 55,
+        "web_search": 45,
+        "write_file": 44
+      },
+      "unauthorized_tool_counts": {
+        "web_extract": 20,
+        "web_search": 15,
+        "write_file": 29
+      },
+      "counterfactual_family_counts_for_verified_effect": {
+        "same_task_effect_substitution": 14,
+        "same_task_tool_swap": 30,
+        "same_tool_auth_flip": 60,
+        "surface_graph_expansion_auth_flip": 40
+      },
+      "n_verified_tools": 3,
+      "n_unauthorized_tools": 3,
+      "verified_graph": {
+        "nodes": [
+          "web_extract",
+          "web_search",
+          "write_file"
+        ],
+        "edges": [
+          [
+            "web_extract",
+            "web_search"
+          ],
+          [
+            "web_extract",
+            "write_file"
+          ],
+          [
+            "web_search",
+            "write_file"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "web_extract",
+              "web_search"
+            ],
+            "intermediate_surfaces": [
+              "write_file"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "web_extract",
+              "write_file"
+            ],
+            "intermediate_surfaces": [
+              "web_search"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "web_search",
+              "write_file"
+            ],
+            "intermediate_surfaces": [
+              "web_extract"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "unauthorized_graph": {
+        "nodes": [
+          "web_extract",
+          "web_search",
+          "write_file"
+        ],
+        "edges": [
+          [
+            "web_extract",
+            "web_search"
+          ],
+          [
+            "web_extract",
+            "write_file"
+          ],
+          [
+            "web_search",
+            "write_file"
+          ]
+        ],
+        "n_pairs": 3,
+        "strict_pair_identifiable": true,
+        "identifiable_pair_count": 3,
+        "nonidentifiable_pair_count": 0,
+        "reason": "three_or_more_surface_forms",
+        "heldout_pair_rows": [
+          {
+            "heldout_pair": [
+              "web_extract",
+              "web_search"
+            ],
+            "intermediate_surfaces": [
+              "write_file"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "web_extract",
+              "write_file"
+            ],
+            "intermediate_surfaces": [
+              "web_search"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          },
+          {
+            "heldout_pair": [
+              "web_search",
+              "write_file"
+            ],
+            "intermediate_surfaces": [
+              "web_extract"
+            ],
+            "identifiable_under_strict_pair_holdout": true
+          }
+        ]
+      },
+      "auth_loto_rows": [
+        {
+          "heldout_tool": "web_extract",
+          "n_unauth": 20,
+          "heldout_fnr": 1.0,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 1.0,
+          "unsafe_allow_bound": 0.0
+        },
+        {
+          "heldout_tool": "web_search",
+          "n_unauth": 15,
+          "heldout_fnr": 1.0,
+          "within_fnr": null,
+          "auth_tool_proxy_gap": null,
+          "unsafe_allow_bound": 1.0
+        },
+        {
+          "heldout_tool": "write_file",
+          "n_unauth": 29,
+          "heldout_fnr": 1.0,
+          "within_fnr": 0.0,
+          "auth_tool_proxy_gap": 1.0,
+          "unsafe_allow_bound": 1.0
+        }
+      ]
+    }
+  },
+  "caveats": [
+    "This graph is a diagnostic of pair-holdout identifiability, not evidence that a mitigation succeeds.",
+    "Two-surface effects are not strict-pair identifiable because holding out the only cross-surface pair removes all alignment paths.",
+    "Unauthorized graphs can be less identifiable than verified-effect graphs when authorization violations occur on only two tools."
+  ]
+}

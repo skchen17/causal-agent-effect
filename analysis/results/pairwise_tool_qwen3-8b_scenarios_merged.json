@@ -1,0 +1,1407 @@
+{
+  "content_fetched": {
+    "n_tools": 2,
+    "tools": [
+      "terminal",
+      "web_fetch"
+    ],
+    "avg_f1": 0.2593,
+    "spread": 0.1642,
+    "pairs_good": 0,
+    "pairs_bad": 2,
+    "total_pairs": 2,
+    "rows": [
+      {
+        "train": "terminal",
+        "test": "web_fetch",
+        "n_train": 122,
+        "n_test": 49,
+        "pos_test": 32,
+        "f1": 0.3415
+      },
+      {
+        "train": "web_fetch",
+        "test": "terminal",
+        "n_train": 49,
+        "n_test": 122,
+        "pos_test": 8,
+        "f1": 0.1772
+      }
+    ]
+  },
+  "file_content_read": {
+    "n_tools": 2,
+    "tools": [
+      "read_file",
+      "terminal"
+    ],
+    "avg_f1": 0.5877,
+    "spread": 0.1013,
+    "pairs_good": 0,
+    "pairs_bad": 0,
+    "total_pairs": 2,
+    "rows": [
+      {
+        "train": "read_file",
+        "test": "terminal",
+        "n_train": 45,
+        "n_test": 122,
+        "pos_test": 32,
+        "f1": 0.537
+      },
+      {
+        "train": "terminal",
+        "test": "read_file",
+        "n_train": 122,
+        "n_test": 45,
+        "pos_test": 32,
+        "f1": 0.6383
+      }
+    ]
+  },
+  "file_deleted": {
+    "n_tools": 3,
+    "tools": [
+      "delegate",
+      "delete_file",
+      "terminal"
+    ],
+    "avg_f1": 0.4096,
+    "spread": 0.7808,
+    "pairs_good": 1,
+    "pairs_bad": 4,
+    "total_pairs": 6,
+    "rows": [
+      {
+        "train": "delegate",
+        "test": "delete_file",
+        "n_train": 54,
+        "n_test": 36,
+        "pos_test": 23,
+        "f1": 0.1538
+      },
+      {
+        "train": "delegate",
+        "test": "terminal",
+        "n_train": 54,
+        "n_test": 122,
+        "pos_test": 20,
+        "f1": 0.32
+      },
+      {
+        "train": "delete_file",
+        "test": "delegate",
+        "n_train": 36,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.1081
+      },
+      {
+        "train": "delete_file",
+        "test": "terminal",
+        "n_train": 36,
+        "n_test": 122,
+        "pos_test": 20,
+        "f1": 0.32
+      },
+      {
+        "train": "terminal",
+        "test": "delegate",
+        "n_train": 122,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.6667
+      },
+      {
+        "train": "terminal",
+        "test": "delete_file",
+        "n_train": 122,
+        "n_test": 36,
+        "pos_test": 23,
+        "f1": 0.8889
+      }
+    ]
+  },
+  "file_written": {
+    "n_tools": 2,
+    "tools": [
+      "terminal",
+      "write_file"
+    ],
+    "avg_f1": 0.1869,
+    "spread": 0.1453,
+    "pairs_good": 0,
+    "pairs_bad": 2,
+    "total_pairs": 2,
+    "rows": [
+      {
+        "train": "terminal",
+        "test": "write_file",
+        "n_train": 122,
+        "n_test": 45,
+        "pos_test": 33,
+        "f1": 0.1143
+      },
+      {
+        "train": "write_file",
+        "test": "terminal",
+        "n_train": 45,
+        "n_test": 122,
+        "pos_test": 17,
+        "f1": 0.2595
+      }
+    ]
+  },
+  "memory_updated": {
+    "n_tools": 7,
+    "tools": [
+      "delegate",
+      "memory",
+      "read_file",
+      "send_message",
+      "terminal",
+      "web_fetch",
+      "web_search"
+    ],
+    "avg_f1": 0.276,
+    "spread": 0.8,
+    "pairs_good": 2,
+    "pairs_bad": 27,
+    "total_pairs": 42,
+    "rows": [
+      {
+        "train": "delegate",
+        "test": "memory",
+        "n_train": 54,
+        "n_test": 31,
+        "pos_test": 26,
+        "f1": 0.1429
+      },
+      {
+        "train": "delegate",
+        "test": "read_file",
+        "n_train": 54,
+        "n_test": 45,
+        "pos_test": 2,
+        "f1": 0.6667
+      },
+      {
+        "train": "delegate",
+        "test": "send_message",
+        "n_train": 54,
+        "n_test": 41,
+        "pos_test": 2,
+        "f1": 0.0
+      },
+      {
+        "train": "delegate",
+        "test": "terminal",
+        "n_train": 54,
+        "n_test": 122,
+        "pos_test": 3,
+        "f1": 0.0
+      },
+      {
+        "train": "delegate",
+        "test": "web_fetch",
+        "n_train": 54,
+        "n_test": 49,
+        "pos_test": 2,
+        "f1": 0.0
+      },
+      {
+        "train": "delegate",
+        "test": "web_search",
+        "n_train": 54,
+        "n_test": 36,
+        "pos_test": 2,
+        "f1": 0.0
+      },
+      {
+        "train": "memory",
+        "test": "delegate",
+        "n_train": 31,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.0851
+      },
+      {
+        "train": "memory",
+        "test": "read_file",
+        "n_train": 31,
+        "n_test": 45,
+        "pos_test": 2,
+        "f1": 0.0556
+      },
+      {
+        "train": "memory",
+        "test": "send_message",
+        "n_train": 31,
+        "n_test": 41,
+        "pos_test": 2,
+        "f1": 0.1143
+      },
+      {
+        "train": "memory",
+        "test": "terminal",
+        "n_train": 31,
+        "n_test": 122,
+        "pos_test": 3,
+        "f1": 0.0
+      },
+      {
+        "train": "memory",
+        "test": "web_fetch",
+        "n_train": 31,
+        "n_test": 49,
+        "pos_test": 2,
+        "f1": 0.1026
+      },
+      {
+        "train": "memory",
+        "test": "web_search",
+        "n_train": 31,
+        "n_test": 36,
+        "pos_test": 2,
+        "f1": 0.1143
+      },
+      {
+        "train": "read_file",
+        "test": "delegate",
+        "n_train": 45,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.6667
+      },
+      {
+        "train": "read_file",
+        "test": "memory",
+        "n_train": 45,
+        "n_test": 31,
+        "pos_test": 26,
+        "f1": 0.0
+      },
+      {
+        "train": "read_file",
+        "test": "send_message",
+        "n_train": 45,
+        "n_test": 41,
+        "pos_test": 2,
+        "f1": 0.0
+      },
+      {
+        "train": "read_file",
+        "test": "terminal",
+        "n_train": 45,
+        "n_test": 122,
+        "pos_test": 3,
+        "f1": 0.8
+      },
+      {
+        "train": "read_file",
+        "test": "web_fetch",
+        "n_train": 45,
+        "n_test": 49,
+        "pos_test": 2,
+        "f1": 0.0
+      },
+      {
+        "train": "read_file",
+        "test": "web_search",
+        "n_train": 45,
+        "n_test": 36,
+        "pos_test": 2,
+        "f1": 0.0
+      },
+      {
+        "train": "send_message",
+        "test": "delegate",
+        "n_train": 41,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.5
+      },
+      {
+        "train": "send_message",
+        "test": "memory",
+        "n_train": 41,
+        "n_test": 31,
+        "pos_test": 26,
+        "f1": 0.2
+      },
+      {
+        "train": "send_message",
+        "test": "read_file",
+        "n_train": 41,
+        "n_test": 45,
+        "pos_test": 2,
+        "f1": 0.4
+      },
+      {
+        "train": "send_message",
+        "test": "terminal",
+        "n_train": 41,
+        "n_test": 122,
+        "pos_test": 3,
+        "f1": 0.3333
+      },
+      {
+        "train": "send_message",
+        "test": "web_fetch",
+        "n_train": 41,
+        "n_test": 49,
+        "pos_test": 2,
+        "f1": 0.2857
+      },
+      {
+        "train": "send_message",
+        "test": "web_search",
+        "n_train": 41,
+        "n_test": 36,
+        "pos_test": 2,
+        "f1": 0.6667
+      },
+      {
+        "train": "terminal",
+        "test": "delegate",
+        "n_train": 122,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.0
+      },
+      {
+        "train": "terminal",
+        "test": "memory",
+        "n_train": 122,
+        "n_test": 31,
+        "pos_test": 26,
+        "f1": 0.1379
+      },
+      {
+        "train": "terminal",
+        "test": "read_file",
+        "n_train": 122,
+        "n_test": 45,
+        "pos_test": 2,
+        "f1": 0.8
+      },
+      {
+        "train": "terminal",
+        "test": "send_message",
+        "n_train": 122,
+        "n_test": 41,
+        "pos_test": 2,
+        "f1": 0.6667
+      },
+      {
+        "train": "terminal",
+        "test": "web_fetch",
+        "n_train": 122,
+        "n_test": 49,
+        "pos_test": 2,
+        "f1": 0.5
+      },
+      {
+        "train": "terminal",
+        "test": "web_search",
+        "n_train": 122,
+        "n_test": 36,
+        "pos_test": 2,
+        "f1": 0.0
+      },
+      {
+        "train": "web_fetch",
+        "test": "delegate",
+        "n_train": 49,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.5
+      },
+      {
+        "train": "web_fetch",
+        "test": "memory",
+        "n_train": 49,
+        "n_test": 31,
+        "pos_test": 26,
+        "f1": 0.3226
+      },
+      {
+        "train": "web_fetch",
+        "test": "read_file",
+        "n_train": 49,
+        "n_test": 45,
+        "pos_test": 2,
+        "f1": 0.6667
+      },
+      {
+        "train": "web_fetch",
+        "test": "send_message",
+        "n_train": 49,
+        "n_test": 41,
+        "pos_test": 2,
+        "f1": 0.6667
+      },
+      {
+        "train": "web_fetch",
+        "test": "terminal",
+        "n_train": 49,
+        "n_test": 122,
+        "pos_test": 3,
+        "f1": 0.0
+      },
+      {
+        "train": "web_fetch",
+        "test": "web_search",
+        "n_train": 49,
+        "n_test": 36,
+        "pos_test": 2,
+        "f1": 0.5
+      },
+      {
+        "train": "web_search",
+        "test": "delegate",
+        "n_train": 36,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.6667
+      },
+      {
+        "train": "web_search",
+        "test": "memory",
+        "n_train": 36,
+        "n_test": 31,
+        "pos_test": 26,
+        "f1": 0.1429
+      },
+      {
+        "train": "web_search",
+        "test": "read_file",
+        "n_train": 36,
+        "n_test": 45,
+        "pos_test": 2,
+        "f1": 0.6667
+      },
+      {
+        "train": "web_search",
+        "test": "send_message",
+        "n_train": 36,
+        "n_test": 41,
+        "pos_test": 2,
+        "f1": 0.0
+      },
+      {
+        "train": "web_search",
+        "test": "terminal",
+        "n_train": 36,
+        "n_test": 122,
+        "pos_test": 3,
+        "f1": 0.2222
+      },
+      {
+        "train": "web_search",
+        "test": "web_fetch",
+        "n_train": 36,
+        "n_test": 49,
+        "pos_test": 2,
+        "f1": 0.0
+      }
+    ]
+  },
+  "message_sent": {
+    "n_tools": 3,
+    "tools": [
+      "delegate",
+      "send_message",
+      "terminal"
+    ],
+    "avg_f1": 0.3253,
+    "spread": 0.9474,
+    "pairs_good": 1,
+    "pairs_bad": 4,
+    "total_pairs": 6,
+    "rows": [
+      {
+        "train": "delegate",
+        "test": "send_message",
+        "n_train": 54,
+        "n_test": 41,
+        "pos_test": 30,
+        "f1": 0.1111
+      },
+      {
+        "train": "delegate",
+        "test": "terminal",
+        "n_train": 54,
+        "n_test": 122,
+        "pos_test": 2,
+        "f1": 1.0
+      },
+      {
+        "train": "send_message",
+        "test": "delegate",
+        "n_train": 41,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.0526
+      },
+      {
+        "train": "send_message",
+        "test": "terminal",
+        "n_train": 41,
+        "n_test": 122,
+        "pos_test": 2,
+        "f1": 0.0571
+      },
+      {
+        "train": "terminal",
+        "test": "delegate",
+        "n_train": 122,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.6667
+      },
+      {
+        "train": "terminal",
+        "test": "send_message",
+        "n_train": 122,
+        "n_test": 41,
+        "pos_test": 30,
+        "f1": 0.0645
+      }
+    ]
+  },
+  "network_egress": {
+    "n_tools": 5,
+    "tools": [
+      "delegate",
+      "send_message",
+      "terminal",
+      "web_fetch",
+      "web_search"
+    ],
+    "avg_f1": 0.3819,
+    "spread": 0.8235,
+    "pairs_good": 1,
+    "pairs_bad": 12,
+    "total_pairs": 20,
+    "rows": [
+      {
+        "train": "delegate",
+        "test": "send_message",
+        "n_train": 54,
+        "n_test": 41,
+        "pos_test": 29,
+        "f1": 0.1714
+      },
+      {
+        "train": "delegate",
+        "test": "terminal",
+        "n_train": 54,
+        "n_test": 122,
+        "pos_test": 29,
+        "f1": 0.129
+      },
+      {
+        "train": "delegate",
+        "test": "web_fetch",
+        "n_train": 54,
+        "n_test": 49,
+        "pos_test": 34,
+        "f1": 0.0
+      },
+      {
+        "train": "delegate",
+        "test": "web_search",
+        "n_train": 54,
+        "n_test": 36,
+        "pos_test": 26,
+        "f1": 0.0
+      },
+      {
+        "train": "send_message",
+        "test": "delegate",
+        "n_train": 41,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.0714
+      },
+      {
+        "train": "send_message",
+        "test": "terminal",
+        "n_train": 41,
+        "n_test": 122,
+        "pos_test": 29,
+        "f1": 0.2273
+      },
+      {
+        "train": "send_message",
+        "test": "web_fetch",
+        "n_train": 41,
+        "n_test": 49,
+        "pos_test": 34,
+        "f1": 0.3256
+      },
+      {
+        "train": "send_message",
+        "test": "web_search",
+        "n_train": 41,
+        "n_test": 36,
+        "pos_test": 26,
+        "f1": 0.7925
+      },
+      {
+        "train": "terminal",
+        "test": "delegate",
+        "n_train": 122,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.5714
+      },
+      {
+        "train": "terminal",
+        "test": "send_message",
+        "n_train": 122,
+        "n_test": 41,
+        "pos_test": 29,
+        "f1": 0.6154
+      },
+      {
+        "train": "terminal",
+        "test": "web_fetch",
+        "n_train": 122,
+        "n_test": 49,
+        "pos_test": 34,
+        "f1": 0.7647
+      },
+      {
+        "train": "terminal",
+        "test": "web_search",
+        "n_train": 122,
+        "n_test": 36,
+        "pos_test": 26,
+        "f1": 0.2069
+      },
+      {
+        "train": "web_fetch",
+        "test": "delegate",
+        "n_train": 49,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.1
+      },
+      {
+        "train": "web_fetch",
+        "test": "send_message",
+        "n_train": 49,
+        "n_test": 41,
+        "pos_test": 29,
+        "f1": 0.6538
+      },
+      {
+        "train": "web_fetch",
+        "test": "terminal",
+        "n_train": 49,
+        "n_test": 122,
+        "pos_test": 29,
+        "f1": 0.3673
+      },
+      {
+        "train": "web_fetch",
+        "test": "web_search",
+        "n_train": 49,
+        "n_test": 36,
+        "pos_test": 26,
+        "f1": 0.8235
+      },
+      {
+        "train": "web_search",
+        "test": "delegate",
+        "n_train": 36,
+        "n_test": 54,
+        "pos_test": 2,
+        "f1": 0.1143
+      },
+      {
+        "train": "web_search",
+        "test": "send_message",
+        "n_train": 36,
+        "n_test": 41,
+        "pos_test": 29,
+        "f1": 0.6792
+      },
+      {
+        "train": "web_search",
+        "test": "terminal",
+        "n_train": 36,
+        "n_test": 122,
+        "pos_test": 29,
+        "f1": 0.2969
+      },
+      {
+        "train": "web_search",
+        "test": "web_fetch",
+        "n_train": 36,
+        "n_test": 49,
+        "pos_test": 34,
+        "f1": 0.7273
+      }
+    ]
+  },
+  "search_performed": {
+    "n_tools": 2,
+    "tools": [
+      "terminal",
+      "web_search"
+    ],
+    "avg_f1": 0.0396,
+    "spread": 0.0792,
+    "pairs_good": 0,
+    "pairs_bad": 2,
+    "total_pairs": 2,
+    "rows": [
+      {
+        "train": "terminal",
+        "test": "web_search",
+        "n_train": 122,
+        "n_test": 36,
+        "pos_test": 27,
+        "f1": 0.0
+      },
+      {
+        "train": "web_search",
+        "test": "terminal",
+        "n_train": 36,
+        "n_test": 122,
+        "pos_test": 4,
+        "f1": 0.0792
+      }
+    ]
+  },
+  "subagent_spawned": {
+    "n_tools": 2,
+    "tools": [
+      "delegate",
+      "terminal"
+    ],
+    "avg_f1": 0.2769,
+    "spread": 0.3692,
+    "pairs_good": 0,
+    "pairs_bad": 1,
+    "total_pairs": 2,
+    "rows": [
+      {
+        "train": "delegate",
+        "test": "terminal",
+        "n_train": 54,
+        "n_test": 122,
+        "pos_test": 3,
+        "f1": 0.0923
+      },
+      {
+        "train": "terminal",
+        "test": "delegate",
+        "n_train": 122,
+        "n_test": 54,
+        "pos_test": 39,
+        "f1": 0.4615
+      }
+    ]
+  },
+  "tool_error": {
+    "n_tools": 9,
+    "tools": [
+      "delegate",
+      "delete_file",
+      "memory",
+      "read_file",
+      "send_message",
+      "terminal",
+      "web_fetch",
+      "web_search",
+      "write_file"
+    ],
+    "avg_f1": 0.5855,
+    "spread": 0.9697,
+    "pairs_good": 17,
+    "pairs_bad": 15,
+    "total_pairs": 72,
+    "rows": [
+      {
+        "train": "delegate",
+        "test": "delete_file",
+        "n_train": 54,
+        "n_test": 36,
+        "pos_test": 13,
+        "f1": 0.8966
+      },
+      {
+        "train": "delegate",
+        "test": "memory",
+        "n_train": 54,
+        "n_test": 31,
+        "pos_test": 4,
+        "f1": 0.5333
+      },
+      {
+        "train": "delegate",
+        "test": "read_file",
+        "n_train": 54,
+        "n_test": 45,
+        "pos_test": 13,
+        "f1": 0.8387
+      },
+      {
+        "train": "delegate",
+        "test": "send_message",
+        "n_train": 54,
+        "n_test": 41,
+        "pos_test": 11,
+        "f1": 0.8571
+      },
+      {
+        "train": "delegate",
+        "test": "terminal",
+        "n_train": 54,
+        "n_test": 122,
+        "pos_test": 26,
+        "f1": 0.5977
+      },
+      {
+        "train": "delegate",
+        "test": "web_fetch",
+        "n_train": 54,
+        "n_test": 49,
+        "pos_test": 16,
+        "f1": 0.8333
+      },
+      {
+        "train": "delegate",
+        "test": "web_search",
+        "n_train": 54,
+        "n_test": 36,
+        "pos_test": 10,
+        "f1": 0.7826
+      },
+      {
+        "train": "delegate",
+        "test": "write_file",
+        "n_train": 54,
+        "n_test": 45,
+        "pos_test": 12,
+        "f1": 0.75
+      },
+      {
+        "train": "delete_file",
+        "test": "delegate",
+        "n_train": 36,
+        "n_test": 54,
+        "pos_test": 16,
+        "f1": 0.6286
+      },
+      {
+        "train": "delete_file",
+        "test": "memory",
+        "n_train": 36,
+        "n_test": 31,
+        "pos_test": 4,
+        "f1": 0.25
+      },
+      {
+        "train": "delete_file",
+        "test": "read_file",
+        "n_train": 36,
+        "n_test": 45,
+        "pos_test": 13,
+        "f1": 0.7407
+      },
+      {
+        "train": "delete_file",
+        "test": "send_message",
+        "n_train": 36,
+        "n_test": 41,
+        "pos_test": 11,
+        "f1": 0.6
+      },
+      {
+        "train": "delete_file",
+        "test": "terminal",
+        "n_train": 36,
+        "n_test": 122,
+        "pos_test": 26,
+        "f1": 0.6471
+      },
+      {
+        "train": "delete_file",
+        "test": "web_fetch",
+        "n_train": 36,
+        "n_test": 49,
+        "pos_test": 16,
+        "f1": 0.6897
+      },
+      {
+        "train": "delete_file",
+        "test": "web_search",
+        "n_train": 36,
+        "n_test": 36,
+        "pos_test": 10,
+        "f1": 0.75
+      },
+      {
+        "train": "delete_file",
+        "test": "write_file",
+        "n_train": 36,
+        "n_test": 45,
+        "pos_test": 12,
+        "f1": 0.88
+      },
+      {
+        "train": "memory",
+        "test": "delegate",
+        "n_train": 31,
+        "n_test": 54,
+        "pos_test": 16,
+        "f1": 0.3158
+      },
+      {
+        "train": "memory",
+        "test": "delete_file",
+        "n_train": 31,
+        "n_test": 36,
+        "pos_test": 13,
+        "f1": 0.6
+      },
+      {
+        "train": "memory",
+        "test": "read_file",
+        "n_train": 31,
+        "n_test": 45,
+        "pos_test": 13,
+        "f1": 0.4211
+      },
+      {
+        "train": "memory",
+        "test": "send_message",
+        "n_train": 31,
+        "n_test": 41,
+        "pos_test": 11,
+        "f1": 0.5882
+      },
+      {
+        "train": "memory",
+        "test": "terminal",
+        "n_train": 31,
+        "n_test": 122,
+        "pos_test": 26,
+        "f1": 0.1765
+      },
+      {
+        "train": "memory",
+        "test": "web_fetch",
+        "n_train": 31,
+        "n_test": 49,
+        "pos_test": 16,
+        "f1": 0.48
+      },
+      {
+        "train": "memory",
+        "test": "web_search",
+        "n_train": 31,
+        "n_test": 36,
+        "pos_test": 10,
+        "f1": 0.3333
+      },
+      {
+        "train": "memory",
+        "test": "write_file",
+        "n_train": 31,
+        "n_test": 45,
+        "pos_test": 12,
+        "f1": 0.375
+      },
+      {
+        "train": "read_file",
+        "test": "delegate",
+        "n_train": 45,
+        "n_test": 54,
+        "pos_test": 16,
+        "f1": 0.4762
+      },
+      {
+        "train": "read_file",
+        "test": "delete_file",
+        "n_train": 45,
+        "n_test": 36,
+        "pos_test": 13,
+        "f1": 0.5294
+      },
+      {
+        "train": "read_file",
+        "test": "memory",
+        "n_train": 45,
+        "n_test": 31,
+        "pos_test": 4,
+        "f1": 0.2857
+      },
+      {
+        "train": "read_file",
+        "test": "send_message",
+        "n_train": 45,
+        "n_test": 41,
+        "pos_test": 11,
+        "f1": 0.1667
+      },
+      {
+        "train": "read_file",
+        "test": "terminal",
+        "n_train": 45,
+        "n_test": 122,
+        "pos_test": 26,
+        "f1": 0.4444
+      },
+      {
+        "train": "read_file",
+        "test": "web_fetch",
+        "n_train": 45,
+        "n_test": 49,
+        "pos_test": 16,
+        "f1": 0.45
+      },
+      {
+        "train": "read_file",
+        "test": "web_search",
+        "n_train": 45,
+        "n_test": 36,
+        "pos_test": 10,
+        "f1": 0.3333
+      },
+      {
+        "train": "read_file",
+        "test": "write_file",
+        "n_train": 45,
+        "n_test": 45,
+        "pos_test": 12,
+        "f1": 0.8
+      },
+      {
+        "train": "send_message",
+        "test": "delegate",
+        "n_train": 41,
+        "n_test": 54,
+        "pos_test": 16,
+        "f1": 0.8235
+      },
+      {
+        "train": "send_message",
+        "test": "delete_file",
+        "n_train": 41,
+        "n_test": 36,
+        "pos_test": 13,
+        "f1": 0.7222
+      },
+      {
+        "train": "send_message",
+        "test": "memory",
+        "n_train": 41,
+        "n_test": 31,
+        "pos_test": 4,
+        "f1": 0.6667
+      },
+      {
+        "train": "send_message",
+        "test": "read_file",
+        "n_train": 41,
+        "n_test": 45,
+        "pos_test": 13,
+        "f1": 0.7647
+      },
+      {
+        "train": "send_message",
+        "test": "terminal",
+        "n_train": 41,
+        "n_test": 122,
+        "pos_test": 26,
+        "f1": 0.4522
+      },
+      {
+        "train": "send_message",
+        "test": "web_fetch",
+        "n_train": 41,
+        "n_test": 49,
+        "pos_test": 16,
+        "f1": 0.6531
+      },
+      {
+        "train": "send_message",
+        "test": "web_search",
+        "n_train": 41,
+        "n_test": 36,
+        "pos_test": 10,
+        "f1": 0.9
+      },
+      {
+        "train": "send_message",
+        "test": "write_file",
+        "n_train": 41,
+        "n_test": 45,
+        "pos_test": 12,
+        "f1": 0.6857
+      },
+      {
+        "train": "terminal",
+        "test": "delegate",
+        "n_train": 122,
+        "n_test": 54,
+        "pos_test": 16,
+        "f1": 0.9697
+      },
+      {
+        "train": "terminal",
+        "test": "delete_file",
+        "n_train": 122,
+        "n_test": 36,
+        "pos_test": 13,
+        "f1": 0.9286
+      },
+      {
+        "train": "terminal",
+        "test": "memory",
+        "n_train": 122,
+        "n_test": 31,
+        "pos_test": 4,
+        "f1": 0.7273
+      },
+      {
+        "train": "terminal",
+        "test": "read_file",
+        "n_train": 122,
+        "n_test": 45,
+        "pos_test": 13,
+        "f1": 0.8276
+      },
+      {
+        "train": "terminal",
+        "test": "send_message",
+        "n_train": 122,
+        "n_test": 41,
+        "pos_test": 11,
+        "f1": 0.8421
+      },
+      {
+        "train": "terminal",
+        "test": "web_fetch",
+        "n_train": 122,
+        "n_test": 49,
+        "pos_test": 16,
+        "f1": 0.6923
+      },
+      {
+        "train": "terminal",
+        "test": "web_search",
+        "n_train": 122,
+        "n_test": 36,
+        "pos_test": 10,
+        "f1": 0.4615
+      },
+      {
+        "train": "terminal",
+        "test": "write_file",
+        "n_train": 122,
+        "n_test": 45,
+        "pos_test": 12,
+        "f1": 0.9231
+      },
+      {
+        "train": "web_fetch",
+        "test": "delegate",
+        "n_train": 49,
+        "n_test": 54,
+        "pos_test": 16,
+        "f1": 0.6061
+      },
+      {
+        "train": "web_fetch",
+        "test": "delete_file",
+        "n_train": 49,
+        "n_test": 36,
+        "pos_test": 13,
+        "f1": 0.88
+      },
+      {
+        "train": "web_fetch",
+        "test": "memory",
+        "n_train": 49,
+        "n_test": 31,
+        "pos_test": 4,
+        "f1": 0.2
+      },
+      {
+        "train": "web_fetch",
+        "test": "read_file",
+        "n_train": 49,
+        "n_test": 45,
+        "pos_test": 13,
+        "f1": 0.8696
+      },
+      {
+        "train": "web_fetch",
+        "test": "send_message",
+        "n_train": 49,
+        "n_test": 41,
+        "pos_test": 11,
+        "f1": 0.6471
+      },
+      {
+        "train": "web_fetch",
+        "test": "terminal",
+        "n_train": 49,
+        "n_test": 122,
+        "pos_test": 26,
+        "f1": 0.6207
+      },
+      {
+        "train": "web_fetch",
+        "test": "web_search",
+        "n_train": 49,
+        "n_test": 36,
+        "pos_test": 10,
+        "f1": 0.9474
+      },
+      {
+        "train": "web_fetch",
+        "test": "write_file",
+        "n_train": 49,
+        "n_test": 45,
+        "pos_test": 12,
+        "f1": 0.8696
+      },
+      {
+        "train": "web_search",
+        "test": "delegate",
+        "n_train": 36,
+        "n_test": 54,
+        "pos_test": 16,
+        "f1": 0.6061
+      },
+      {
+        "train": "web_search",
+        "test": "delete_file",
+        "n_train": 36,
+        "n_test": 36,
+        "pos_test": 13,
+        "f1": 0.7826
+      },
+      {
+        "train": "web_search",
+        "test": "memory",
+        "n_train": 36,
+        "n_test": 31,
+        "pos_test": 4,
+        "f1": 0.0
+      },
+      {
+        "train": "web_search",
+        "test": "read_file",
+        "n_train": 36,
+        "n_test": 45,
+        "pos_test": 13,
+        "f1": 0.0
+      },
+      {
+        "train": "web_search",
+        "test": "send_message",
+        "n_train": 36,
+        "n_test": 41,
+        "pos_test": 11,
+        "f1": 0.5455
+      },
+      {
+        "train": "web_search",
+        "test": "terminal",
+        "n_train": 36,
+        "n_test": 122,
+        "pos_test": 26,
+        "f1": 0.4
+      },
+      {
+        "train": "web_search",
+        "test": "web_fetch",
+        "n_train": 36,
+        "n_test": 49,
+        "pos_test": 16,
+        "f1": 0.7879
+      },
+      {
+        "train": "web_search",
+        "test": "write_file",
+        "n_train": 36,
+        "n_test": 45,
+        "pos_test": 12,
+        "f1": 0.7273
+      },
+      {
+        "train": "write_file",
+        "test": "delegate",
+        "n_train": 45,
+        "n_test": 54,
+        "pos_test": 16,
+        "f1": 0.4762
+      },
+      {
+        "train": "write_file",
+        "test": "delete_file",
+        "n_train": 45,
+        "n_test": 36,
+        "pos_test": 13,
+        "f1": 0.7619
+      },
+      {
+        "train": "write_file",
+        "test": "memory",
+        "n_train": 45,
+        "n_test": 31,
+        "pos_test": 4,
+        "f1": 0.0
+      },
+      {
+        "train": "write_file",
+        "test": "read_file",
+        "n_train": 45,
+        "n_test": 45,
+        "pos_test": 13,
+        "f1": 0.5263
+      },
+      {
+        "train": "write_file",
+        "test": "send_message",
+        "n_train": 45,
+        "n_test": 41,
+        "pos_test": 11,
+        "f1": 0.0
+      },
+      {
+        "train": "write_file",
+        "test": "terminal",
+        "n_train": 45,
+        "n_test": 122,
+        "pos_test": 26,
+        "f1": 0.3529
+      },
+      {
+        "train": "write_file",
+        "test": "web_fetch",
+        "n_train": 45,
+        "n_test": 49,
+        "pos_test": 16,
+        "f1": 0.4545
+      },
+      {
+        "train": "write_file",
+        "test": "web_search",
+        "n_train": 45,
+        "n_test": 36,
+        "pos_test": 10,
+        "f1": 0.0
+      }
+    ]
+  }
+}

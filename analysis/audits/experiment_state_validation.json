@@ -1,0 +1,81 @@
+{
+  "embeddings_consistency": {
+    "X_shape": [
+      459,
+      4096
+    ],
+    "Y_shape": [
+      459,
+      11
+    ],
+    "n_texts": 459,
+    "consistent": true
+  },
+  "real_tool_semantics": {
+    "num_schema_errors": 0,
+    "num_missing_flow_fields": 0,
+    "num_semantic_conflicts": 0,
+    "all_clear": true
+  },
+  "wrong_chain_coverage": {
+    "types_found": [
+      "none"
+    ],
+    "authorization_flip_present": false
+  },
+  "causal_chain_v2_input": {
+    "n_rows": 2290,
+    "wrong_chain_type_counts": {
+      "effect_omission": 153,
+      "authorization_flip": 153,
+      "effect_flip": 152
+    },
+    "all_required_types_present": true,
+    "all_clear": true,
+    "note": "Input coverage check; corresponding v2 mechanism results are validated separately when present."
+  },
+  "causal_chain_v2_results": {
+    "schema_version": "causal_chain_mechanism_v2",
+    "n_samples": 2290,
+    "wrong_chain_type_counts": {
+      "effect_omission": 153,
+      "authorization_flip": 153,
+      "effect_flip": 152
+    },
+    "all_required_types_present": true,
+    "all_effects_have_required_wrong_groups": true,
+    "all_clear": true
+  },
+  "citation_audit": {
+    "n_entries": 9,
+    "null_urls": 0,
+    "anonymous_authors": 0,
+    "placeholder_authors": 0,
+    "all_clear": true
+  },
+  "strict_lopo": {
+    "num_evaluable_effects": 2,
+    "num_strict_tool_cases": 68,
+    "num_improved": 40,
+    "mean_delta_fnr": 0.1567,
+    "summary_matches": true,
+    "all_clear": true
+  },
+  "contrastive_multiseed": {
+    "schema_version": "contrastive_multiseed_v2",
+    "generated_by": "run_contrastive_multiseed.py",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "train_protocol": "full_training",
+    "n_effects": 6,
+    "all_clear": true
+  },
+  "paper_forbidden_claims": [],
+  "paper_stale_claims": [],
+  "overall": "ok"
+}

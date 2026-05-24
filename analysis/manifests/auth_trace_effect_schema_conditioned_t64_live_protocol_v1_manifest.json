@@ -1,0 +1,313 @@
+{
+  "candidate_effects": [
+    "command_executed",
+    "file_content_read",
+    "file_written",
+    "file_deleted",
+    "network_egress",
+    "content_fetched",
+    "message_sent",
+    "tool_error"
+  ],
+  "caveats": [
+    "Trace provenance is inherited from the input trace file; inspect trace_type_counts and the source trace manifest before making external-validity claims.",
+    "candidate_effect_present is derived from trace verifier outputs and used as the execution-level present signal.",
+    "scenario_text excludes gold verified_effects, unauthorized_effects, and effect_diff labels."
+  ],
+  "conditions": [
+    "full_tool_chain"
+  ],
+  "input_path": "data/agent_tool_traces_live_protocol_t64_v1.jsonl",
+  "leakage_checks": {
+    "duplicate_text_count": 0,
+    "exact_snakecase_effect_mentions_in_text": {},
+    "label_field_mentions_in_text": {}
+  },
+  "n_rows": 2400,
+  "n_traces": 300,
+  "nonzero_cells": {
+    "command_executed::browser_navigate::live_http_external": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "command_executed::http_get::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "command_executed::http_get::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "command_executed::http_post::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "command_executed::send_message::local_protocol_messaging": {
+      "absent_not_authorized": 90,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "command_executed::web_extract::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "content_fetched::browser_navigate::live_http_external": {
+      "absent_not_authorized": 0,
+      "present_positive": 30,
+      "unauthorized_positive": 30
+    },
+    "content_fetched::http_get::live_http_external": {
+      "absent_not_authorized": 0,
+      "present_positive": 60,
+      "unauthorized_positive": 60
+    },
+    "content_fetched::http_get::local_protocol_messaging": {
+      "absent_not_authorized": 0,
+      "present_positive": 30,
+      "unauthorized_positive": 30
+    },
+    "content_fetched::http_post::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "content_fetched::send_message::local_protocol_messaging": {
+      "absent_not_authorized": 90,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "content_fetched::web_extract::live_http_external": {
+      "absent_not_authorized": 30,
+      "present_positive": 30,
+      "unauthorized_positive": 30
+    },
+    "file_content_read::browser_navigate::live_http_external": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_content_read::http_get::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_content_read::http_get::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_content_read::http_post::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_content_read::send_message::local_protocol_messaging": {
+      "absent_not_authorized": 90,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_content_read::web_extract::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_deleted::browser_navigate::live_http_external": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_deleted::http_get::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_deleted::http_get::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_deleted::http_post::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_deleted::send_message::local_protocol_messaging": {
+      "absent_not_authorized": 90,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_deleted::web_extract::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_written::browser_navigate::live_http_external": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_written::http_get::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_written::http_get::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_written::http_post::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_written::send_message::local_protocol_messaging": {
+      "absent_not_authorized": 90,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_written::web_extract::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "message_sent::browser_navigate::live_http_external": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "message_sent::http_get::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "message_sent::http_get::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "message_sent::http_post::local_protocol_messaging": {
+      "absent_not_authorized": 0,
+      "present_positive": 30,
+      "unauthorized_positive": 30
+    },
+    "message_sent::send_message::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 60,
+      "unauthorized_positive": 30
+    },
+    "message_sent::web_extract::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "network_egress::browser_navigate::live_http_external": {
+      "absent_not_authorized": 0,
+      "present_positive": 30,
+      "unauthorized_positive": 30
+    },
+    "network_egress::http_get::live_http_external": {
+      "absent_not_authorized": 0,
+      "present_positive": 60,
+      "unauthorized_positive": 30
+    },
+    "network_egress::http_get::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "network_egress::http_post::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "network_egress::send_message::local_protocol_messaging": {
+      "absent_not_authorized": 90,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "network_egress::web_extract::live_http_external": {
+      "absent_not_authorized": 0,
+      "present_positive": 60,
+      "unauthorized_positive": 0
+    },
+    "tool_error::browser_navigate::live_http_external": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "tool_error::http_get::live_http_external": {
+      "absent_not_authorized": 60,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "tool_error::http_get::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "tool_error::http_post::local_protocol_messaging": {
+      "absent_not_authorized": 30,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "tool_error::send_message::local_protocol_messaging": {
+      "absent_not_authorized": 60,
+      "present_positive": 30,
+      "unauthorized_positive": 30
+    },
+    "tool_error::web_extract::live_http_external": {
+      "absent_not_authorized": 30,
+      "present_positive": 30,
+      "unauthorized_positive": 30
+    }
+  },
+  "present_by_candidate_effect": {
+    "content_fetched": 150,
+    "message_sent": 90,
+    "network_egress": 150,
+    "tool_error": 60
+  },
+  "rows_by_candidate_effect": {
+    "command_executed": 300,
+    "content_fetched": 300,
+    "file_content_read": 300,
+    "file_deleted": 300,
+    "file_written": 300,
+    "message_sent": 300,
+    "network_egress": 300,
+    "tool_error": 300
+  },
+  "rows_by_condition": {
+    "full_tool_chain": 2400
+  },
+  "rows_by_trace_type": {
+    "live_http_external": 1200,
+    "local_protocol_messaging": 1200
+  },
+  "schema_version": "auth_trace_effect_schema_conditioned_v1",
+  "trace_type_counts": {
+    "live_http_external": 150,
+    "local_protocol_messaging": 150
+  },
+  "unauthorized_by_candidate_effect": {
+    "content_fetched": 150,
+    "message_sent": 60,
+    "network_egress": 60,
+    "tool_error": 60
+  },
+  "unauthorized_by_trace_type": {
+    "live_http_external": 210,
+    "local_protocol_messaging": 120
+  },
+  "verifier_type_counts": {
+    "live_http_response_verifier": 150,
+    "local_protocol_webhook_log_verifier": 120,
+    "local_protocol_webhook_status_verifier": 30
+  }
+}

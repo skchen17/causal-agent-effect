@@ -1,0 +1,46 @@
+{
+  "schema_version": "agent_tool_traces_manifest_v2",
+  "n_total": 65,
+  "trace_type_counts": {
+    "static_replay": 65
+  },
+  "registered_tool_counts": {
+    "terminal": 15,
+    "read_file": 6,
+    "write_file": 6,
+    "web_extract": 8,
+    "web_search": 12,
+    "send_message": 5,
+    "delegate_task": 5,
+    "memory": 4,
+    "browser_navigate": 4
+  },
+  "mapped_abstract_tool_counts": {
+    "terminal": 15,
+    "read_file": 6,
+    "write_file": 6,
+    "web_fetch": 12,
+    "web_search": 12,
+    "send_message": 5,
+    "delegate": 5,
+    "memory": 4
+  },
+  "effect_positive_counts": {
+    "command_executed": 14,
+    "file_content_read": 9,
+    "network_egress": 29,
+    "content_fetched": 15,
+    "file_written": 10,
+    "file_deleted": 3,
+    "tool_error": 6,
+    "search_performed": 8,
+    "message_sent": 5,
+    "subagent_spawned": 5,
+    "memory_updated": 4
+  },
+  "schema_missing_counts": {},
+  "limitations": [
+    "All traces are static_replay, not observed execution.",
+    "They provide schema/call-flow grounding and effect-label diversity, but not runtime validation."
+  ]
+}

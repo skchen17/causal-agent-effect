@@ -1,0 +1,187 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\title{Appendix: Supplementary Material for\\``How Safe Are Agent Safety Monitors?''}
+
+\begin{document}
+
+\maketitle
+
+\section{Contrastive Projection Theory}
+
+The following conditional bounds motivate contrastive projection as a representation-side repair. These bounds are not unconditional safety guarantees; they depend on bounded norms, linear separability, margin, and alignment-error assumptions. They are included here for completeness and have been moved from the main text in the Path A revision, because the experimental evidence (gate failures T54/T55/T56) shows that the assumptions of Theorem~\ref{thm:alignment} do not hold in strict held-out authorization-conditioned settings.
+
+\begin{theorem}[Contrastive Generalization Bound]
+\label{thm:contrastive}
+Let $\mathcal{P} = \{P \in \mathbb{R}^{d \times k}: \|P\|_F \leq R\}$ be the class of linear projections, $\mathcal{L}(P)$ the population contrastive loss, and $\hat{\mathcal{L}}_N(P)$ the empirical loss over $N$ cross-form positive pairs. Then with probability $\geq 1-\delta$:
+$$\mathcal{L}(\hat{P}_N) - \mathcal{L}(P^*) \leq C \cdot B^2 R \sqrt{\frac{dk}{N}} + B^2 \sqrt{\frac{\log(1/\delta)}{2N}}$$
+for absolute constant $C$, where $B$ bounds the input embedding norm.
+\end{theorem}
+
+\begin{theorem}[Alignment Implies FNR Reduction]
+\label{thm:alignment}
+Let $A, B \in \mathcal{S}_E$ be two surface forms for effect $E$. Let $P$ be an $\ell_2$-normalized projection, $\tau_A$ the optimal linear probe on $P$-projected $A$-data. If the projected classes are linearly separable with margin $\rho_A > 0$, and the cross-form alignment error satisfies $\varepsilon_{\text{align}}(A, B) \leq \rho_A/2$, then:
+$$\text{FNR}_B(\tau_A) \leq \text{FNR}_A(\tau_A) + \frac{2\varepsilon_{\text{align}}(A, B)}{\rho_A}.$$
+\end{theorem}
+
+Theorem~\ref{thm:contrastive} gives a standard finite-sample control term for the projection class. Theorem~\ref{thm:alignment} shows that, under the stated margin and alignment assumptions, smaller cross-form alignment error bounds cross-form FNR. The experimental gate failures indicate that these assumptions---particularly linear separability with sufficient margin and bounded alignment error---do not hold uniformly in the strict held-out authorization-conditioned settings we evaluate.
+
+\section{Contrastive Projection: Full Results}
+
+\subsection{Method}
+
+The contrastive projection method learns a linear projection $P \in \mathbb{R}^{d \times k}$ ($k \ll d$) minimizing a Siamese contrastive loss. For each effect $E_i$, we construct positive pairs by sampling same-effect, different-form samples $(a \sim P_{S_a}^+, b \sim P_{S_b}^+)$, and negative samples from the effect-negative pool. The loss combines pulling positive pairs together with pushing negatives apart:
+
+$$\mathcal{L}(P) = \frac{1}{N} \sum_{(a,b)} \|\mathbf{z}_a - \mathbf{z}_b\|^2 + \lambda \mathbb{E}_{c \sim \text{neg}}[\max(0, m - \|\mathbf{z}_a - \mathbf{z}_c\|^2) + \max(0, m - \|\mathbf{z}_b - \mathbf{z}_c\|^2)] + \gamma\|P\|_F^2$$
+
+where $\mathbf{z} = P^\top \mathbf{h} / \|P^\top \mathbf{h}\|$. Training uses Adam (lr=0.001, 500 epochs, batch=64) on GPU.
+
+\subsection{Full-Training Results}
+
+Table~\ref{tab:contrastive_full} reports full-training results where all form pairs are used for training the projection. This is an observed-pair repair upper bound.
+
+\begin{table}[h]
+\centering
+\caption{Contrastive projection (Qwen3-8B, $k=128$), full training. All form pairs used for training. This is an upper bound, not a held-out result.}
+\label{tab:contrastive_full}
+\begin{tabular}{lccc}
+\toprule
+Effect & Pre-FNR (max) & Post-FNR (full) & $\Delta$FNR \\
+\midrule
+content\_fetched & 0.78 & 0.25 & +0.53 \\
+file\_content\_read & 0.88 & 0.00 & +0.88 \\
+file\_deleted & 0.60 & 0.00 & +0.60 \\
+file\_written & 0.97 & 0.00 & +0.97 \\
+network\_egress & 0.73 & 0.00 & +0.73 \\
+tool\_error & 0.27 & 0.00 & +0.27 \\
+\midrule
+Mean $\Delta$FNR & --- & --- & \textbf{+0.37} \\
+Improved / Total & --- & --- & 16/20 (80\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Strict Leave-One-Pair-Out}
+
+Two-form effects (\texttt{content\_fetched}, \texttt{file\_written}) have only two tools; leaving out their sole cross-form pair removes all training signal, making strict evaluation not identifiable. Three-plus-form effects (\texttt{network\_egress}, \texttt{tool\_error}) have intermediate forms through which transitive alignment could operate. In the strict pair-level leave-one-pair-out protocol, we exclude all positive training pairs between each held-out unordered tool pair and then evaluate the held-out tools. This improves 40/68 tool-case evaluations (mean $\Delta$FNR $=+0.157$), which is weaker than the full-training result.
+
+\subsection{Multiseed Results}
+
+A five-seed full-training rerun confirms the main contrastive result. The largest mean post-projection FNR is $0.1625$ for \texttt{content\_fetched} on \texttt{web\_fetch}. \texttt{file\_content\_read} has maximum mean post-FNR $0.1062$, \texttt{file\_written} $0.0424$, and \texttt{file\_deleted}, \texttt{network\_egress}, and \texttt{tool\_error} have zero mean post-FNR across their evaluated forms.
+
+\section{Causal-Chain Conditioning Diagnostic}
+
+We test whether making the task-effect causal chain explicit changes the representation geometry. This is a controlled diagnostic, not a deployed prompting defense. We construct 2,290 chain-conditioned Qwen3-8B samples by applying five conditions: raw text, tool-only text, effect-chain text, task-causal-chain text, and wrong-chain text. The wrong-chain condition is typed into 153 effect omissions, 152 effect flips, and 153 authorization flips.
+
+\begin{table}[h]
+\centering
+\caption{Causal-chain conditioning diagnostic (Qwen3-8B). Values are maximum held-form FNR under LOTO within each condition. Small positive counts require cautious interpretation.}
+\label{tab:causalchain}
+\begin{tabular}{lcccc}
+\toprule
+Effect & Raw & Effect Chain & Task Chain & AuthFlip \\
+\midrule
+content\_fetched & 0.781 & 0.656 & 1.000 & 1.000 \\
+file\_written & 1.000 & 1.000 & 1.000 & 1.000 \\
+network\_egress & 0.731 & 0.345 & 0.000 & 0.333 \\
+tool\_error & 0.269 & 0.231 & 0.000 & 0.500 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Results are mixed. Explicit task-causal-chain text eliminates held-form FNR for \texttt{network\_egress} and \texttt{tool\_error} in some conditions, but does not help \texttt{content\_fetched} or \texttt{file\_written}. Authorization-flip wrong-chain subsets show that causal-chain conditioning is not automatically robust to misleading chain statements. We treat causal-chain conditioning as an input-side research direction and mechanism diagnostic, not as a solved mitigation.
+
+\section{LOTO Stress-Test Safety Bound}
+
+\begin{table}[h]
+\centering
+\caption{Counterfactual safety lower bound under LOTO coverage-missing stress test. $\beta^{\text{LOTO}}$ is held-out FNR of the diagnostic LOTO probe; $\alpha^{\text{LOTO}}$ is predicted redundancy. This table uses LOTO probes, not deployed probes.}
+\label{tab:safetybound}
+\begin{tabular}{lcccc}
+\toprule
+Effect & Heldout Form & $\beta^{\text{LOTO}}$ & $\alpha^{\text{LOTO}}$ & $[\beta^{\text{LOTO}}-\alpha^{\text{LOTO}}]_+$ \\
+\midrule
+content\_fetched & terminal & 0.50 & 1.00 & 0.00 \\
+file\_content\_read & read\_file & 0.88 & 0.19 & \textbf{0.69} \\
+file\_written & write\_file & 0.97 & 0.45 & 0.52 \\
+file\_deleted & terminal & 0.60 & 0.15 & 0.45 \\
+network\_egress & web\_search & 0.73 & 0.31 & 0.42 \\
+tool\_error & terminal & 0.27 & 0.04 & 0.23 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:safetybound} shows that high held-out FNR alone is not sufficient for a positive unsafe-allow lower bound: \texttt{content\_fetched} on \texttt{terminal} has $\beta^{\text{LOTO}}=0.50$ but $\alpha^{\text{LOTO}}=1.00$, yielding a zero lower bound. The largest stress-test lower bound is \texttt{file\_content\_read} on \texttt{read\_file} ($0.69$). Both high-FNR and low-redundancy must coincide for a safety vulnerability.
+
+\section{Lexical Control}
+
+\begin{table}[h]
+\centering
+\caption{Lexical control: LOTO FNR before and after lexical normalization (Qwen3-8B). Tool names replaced with [TOOL], inline code with [CMD], URLs with [URL].}
+\label{tab:lexical}
+\begin{tabular}{lccc}
+\toprule
+Effect & Heldout Form & Original FNR & Lexical-Norm FNR \\
+\midrule
+content\_fetched & terminal & 0.50 & 0.25 \\
+content\_fetched & web\_fetch & 0.78 & 0.78 \\
+file\_content\_read & read\_file & 0.88 & 0.88 \\
+file\_written & write\_file & 0.97 & 0.70 \\
+network\_egress & terminal & 0.41 & 0.41 \\
+tool\_error & web\_search & 0.10 & 0.10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Overall mean held-out FNR across matched cells changes from 0.378 to 0.382 (mean $\Delta=+0.004$). Individual cells move in both directions. The fragmentation is not reducible to simple lexical surface features.
+
+\section{Baseline Comparison}
+
+\begin{table}[h]
+\centering
+\caption{Worst-form FNR across baseline methods (Qwen3-8B, LOTO).}
+\label{tab:baselines}
+\begin{tabular}{lccccc}
+\toprule
+Effect & Pooled & Balanced & Tool-Cond & G.Reweight & Procrustes \\
+\midrule
+content\_fetched & 0.78 & 0.78 & 0.78 & 0.75 & 0.44 \\
+file\_content\_read & 0.88 & 0.53 & 0.88 & 0.91 & 1.00 \\
+file\_deleted & 0.60 & \textbf{0.20} & 0.60 & 0.87 & 0.25 \\
+file\_written & 0.97 & 0.94 & 0.97 & 0.97 & 1.00 \\
+network\_egress & 0.73 & \textbf{0.41} & 0.73 & 0.81 & 0.35 \\
+tool\_error & 0.27 & 0.27 & 0.27 & 0.27 & 0.27 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No method consistently eliminates worst-form FNR. Balanced pooling helps on some effects but not others. Procrustes alignment improves only 15/38 form pairs (mean $\Delta$FNR $=+0.04$).
+
+\section{Cross-Model Consistency}
+
+MiniLM (384d, no tool-use training) and Qwen3-8B (4096d, function-calling SFT) show consistent fragmentation patterns. Qwen3-8B improves \texttt{tool\_error} (pIIA-Drop $0.096 \to 0.052$) but not \texttt{content\_fetched} ($0.294 \to 0.298$). Tool-use training partially aligns semantically unified concepts but does not resolve deeply fragmented ones.
+
+\section{Statistical Notes}
+
+All main-text FNR/FPR values should be interpreted with their Wilson or bootstrap confidence intervals. The original 459-scenario dataset has 44 positive effect-tool cells, of which approximately 27 have $N^+ < 30$. The mainconf v2 expansion brings 7 tracked P0 cells to $N^+ \geq 50$. Trace-based evaluations report $N^+$ and $N^-$ alongside FNR/FPR. Small-$N$ cells (especially \texttt{content\_fetched/terminal} with $N^+=8$) require cautious interpretation and are flagged in the main text.
+
+\section{Delta Analysis}
+
+Fully covered probes trained on all forms have zero point-estimate per-tool FNR on the well-sampled Qwen3-8B effect-form cells, but within-form cross-validation is not uniformly trivial (within-form FNR reaches 0.48 for \texttt{file\_written} on \texttt{terminal}). Nonlinear probes (MLP with 64--128 hidden units) provide no systematic improvement ($|\Delta| \leq 0.02$ for 5/11 effects on Qwen3-8B).
+
+\section{Fragmentation Location}
+
+Cosine distance between form-conditional positive-class means is only 0.003--0.068---negligible. Yet cross-form FNR gaps reach 0.67. Training a linear tool discriminator on $E=1$ samples (``which form did this positive sample come from?'') achieves 72--95\% accuracy. This suggests that the separation is visible to linear classifiers but not captured by positive-class mean distance alone.
+
+\end{document}

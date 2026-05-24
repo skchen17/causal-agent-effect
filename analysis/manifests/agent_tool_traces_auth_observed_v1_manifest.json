@@ -1,0 +1,53 @@
+{
+  "n_total": 70,
+  "trace_type_counts": {
+    "observed_execution": 70
+  },
+  "tool_counts": {
+    "delete_file": 10,
+    "read_file": 20,
+    "send_message": 10,
+    "terminal": 10,
+    "web_extract": 10,
+    "write_file": 10
+  },
+  "verified_effect_counts": {
+    "command_executed": 10,
+    "content_fetched": 10,
+    "file_content_read": 20,
+    "file_deleted": 10,
+    "file_written": 10,
+    "message_sent": 10,
+    "network_egress": 10,
+    "tool_error": 10
+  },
+  "unauthorized_effect_counts": {
+    "command_executed": 5,
+    "content_fetched": 5,
+    "file_content_read": 10,
+    "file_deleted": 5,
+    "file_written": 5,
+    "message_sent": 5,
+    "tool_error": 5
+  },
+  "sandbox_simulated_count": 0,
+  "observed_execution_count": 70,
+  "static_replay_count": 0,
+  "sandbox_or_observed_count": 70,
+  "main_conference_sufficient": true,
+  "main_conference_sufficient_by_planned_gate": true,
+  "observed_execution_sufficient": true,
+  "trace_group_count": 70,
+  "max_trace_group_size": 1,
+  "leakage_checks": {
+    "missing_required_fields": {},
+    "duplicate_id_count": 0
+  },
+  "notes": [
+    "The planned gate counts sandbox_simulated + observed_execution; this artifact passes that gate.",
+    "observed_execution rows come from a controlled local sandbox or recorded execution logs, not live deployed-agent traffic unless separately stated.",
+    "static_replay rows are schema/call-flow grounding only and are not counted toward the sandbox/observed gate."
+  ],
+  "title": "Agent Tool Traces Auth Observed v1 Manifest",
+  "artifact_note": "Observed traces are controlled local sandbox executions, not deployed-agent traffic."
+}

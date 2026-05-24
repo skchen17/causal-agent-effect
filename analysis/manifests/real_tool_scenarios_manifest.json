@@ -1,0 +1,155 @@
+{
+  "n_total": 459,
+  "tools_covered": [
+    "delegate_task",
+    "memory",
+    "read_file",
+    "send_message",
+    "terminal",
+    "web_extract",
+    "web_search",
+    "write_file"
+  ],
+  "n_tools_covered": 8,
+  "effect_tool_counts": {
+    "command_executed|delegate_task": 1,
+    "command_executed|terminal": 132,
+    "content_fetched|delegate_task": 1,
+    "content_fetched|terminal": 8,
+    "content_fetched|web_extract": 32,
+    "file_content_read|read_file": 32,
+    "file_content_read|terminal": 32,
+    "file_deleted|delegate_task": 2,
+    "file_deleted|terminal": 43,
+    "file_written|delegate_task": 1,
+    "file_written|terminal": 17,
+    "file_written|write_file": 33,
+    "memory_updated|delegate_task": 2,
+    "memory_updated|memory": 26,
+    "memory_updated|read_file": 2,
+    "memory_updated|send_message": 2,
+    "memory_updated|terminal": 3,
+    "memory_updated|web_extract": 2,
+    "memory_updated|web_search": 2,
+    "memory_updated|write_file": 1,
+    "message_sent|delegate_task": 2,
+    "message_sent|send_message": 30,
+    "message_sent|terminal": 3,
+    "network_egress|delegate_task": 2,
+    "network_egress|send_message": 29,
+    "network_egress|terminal": 29,
+    "network_egress|web_extract": 38,
+    "network_egress|web_search": 28,
+    "search_performed|delegate_task": 1,
+    "search_performed|terminal": 4,
+    "search_performed|web_search": 27,
+    "subagent_spawned|delegate_task": 39,
+    "subagent_spawned|terminal": 3,
+    "tool_error|delegate_task": 16,
+    "tool_error|memory": 4,
+    "tool_error|read_file": 13,
+    "tool_error|send_message": 11,
+    "tool_error|terminal": 39,
+    "tool_error|web_extract": 16,
+    "tool_error|web_search": 10,
+    "tool_error|write_file": 12
+  },
+  "per_effect_surface_forms": {
+    "command_executed": {
+      "n_forms": 2,
+      "forms": [
+        "delegate_task",
+        "terminal"
+      ]
+    },
+    "file_written": {
+      "n_forms": 3,
+      "forms": [
+        "delegate_task",
+        "terminal",
+        "write_file"
+      ]
+    },
+    "file_deleted": {
+      "n_forms": 2,
+      "forms": [
+        "delegate_task",
+        "terminal"
+      ]
+    },
+    "file_content_read": {
+      "n_forms": 2,
+      "forms": [
+        "read_file",
+        "terminal"
+      ]
+    },
+    "message_sent": {
+      "n_forms": 3,
+      "forms": [
+        "delegate_task",
+        "send_message",
+        "terminal"
+      ]
+    },
+    "network_egress": {
+      "n_forms": 5,
+      "forms": [
+        "delegate_task",
+        "send_message",
+        "terminal",
+        "web_extract",
+        "web_search"
+      ]
+    },
+    "subagent_spawned": {
+      "n_forms": 2,
+      "forms": [
+        "delegate_task",
+        "terminal"
+      ]
+    },
+    "content_fetched": {
+      "n_forms": 3,
+      "forms": [
+        "delegate_task",
+        "terminal",
+        "web_extract"
+      ]
+    },
+    "search_performed": {
+      "n_forms": 3,
+      "forms": [
+        "delegate_task",
+        "terminal",
+        "web_search"
+      ]
+    },
+    "memory_updated": {
+      "n_forms": 8,
+      "forms": [
+        "delegate_task",
+        "memory",
+        "read_file",
+        "send_message",
+        "terminal",
+        "web_extract",
+        "web_search",
+        "write_file"
+      ]
+    },
+    "tool_error": {
+      "n_forms": 8,
+      "forms": [
+        "delegate_task",
+        "memory",
+        "read_file",
+        "send_message",
+        "terminal",
+        "web_extract",
+        "web_search",
+        "write_file"
+      ]
+    }
+  }
+}

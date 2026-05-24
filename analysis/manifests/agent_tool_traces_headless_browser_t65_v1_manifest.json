@@ -1,0 +1,29 @@
+{
+  "chrome_binary": "/usr/bin/google-chrome",
+  "generated_by": "build_headless_browser_runtime_traces_t65.py",
+  "limitations": [
+    "Uses actual headless Chrome process execution over file-backed pages.",
+    "Does not use browser HTTP networking, provider-backed search, SaaS messaging, Playwright, Selenium, or deployed-agent runtime handlers.",
+    "Completes only the file-backed browser-runtime part of T65; provider-backed search/SaaS/deployed-runtime remains open."
+  ],
+  "n_traces": 120,
+  "schema_version": "agent_tool_traces_headless_browser_t65_v1",
+  "tools": [
+    "browser_navigate",
+    "browser_snapshot"
+  ],
+  "trace_types": [
+    "headless_chrome_file_browser_runtime"
+  ],
+  "unauthorized_effect_counts": {
+    "content_fetched": 60,
+    "memory_updated": 30,
+    "tool_error": 30
+  },
+  "verified_effect_counts": {
+    "content_fetched": 120,
+    "file_content_read": 120,
+    "memory_updated": 30,
+    "tool_error": 30
+  }
+}

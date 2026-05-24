@@ -1,0 +1,4798 @@
+{
+  "title": "Auth-SafeInv Result-Source Appendix",
+  "environment": {
+    "conda_env": "causal-safety",
+    "primary_model": "Qwen/Qwen3-8B",
+    "timezone": "Asia/Shanghai"
+  },
+  "reproduction_entrypoint": "reproduce_auth_safeinv.sh",
+  "artifacts": [
+    {
+      "id": "auth_counterfactuals",
+      "task": "T39 authorization counterfactual dataset",
+      "script": "build_authorization_counterfactuals.py",
+      "command": "python build_authorization_counterfactuals.py",
+      "outputs": [
+        {
+          "path": "data/authorization_counterfactuals_v1.jsonl",
+          "exists": true,
+          "size_bytes": 1844897
+        },
+        {
+          "path": "analysis/authorization_counterfactuals_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 4575
+        },
+        {
+          "path": "analysis/authorization_counterfactuals_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 1405
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 1184,
+        "unauthorized_effect_counts": {
+          "command_executed": 126,
+          "content_fetched": 44,
+          "file_content_read": 30,
+          "file_deleted": 44,
+          "file_written": 44,
+          "message_sent": 44,
+          "network_egress": 58,
+          "tool_error": 44
+        },
+        "unauthorized_tool_surface_counts": {
+          "command_executed": 1,
+          "content_fetched": 2,
+          "file_content_read": 2,
+          "file_deleted": 2,
+          "file_written": 2,
+          "message_sent": 2,
+          "network_egress": 2,
+          "tool_error": 2
+        }
+      }
+    },
+    {
+      "id": "auth_counterfactuals_v2",
+      "task": "T53 authorization surface-graph expansion dataset",
+      "script": "build_authorization_counterfactuals_v2.py",
+      "command": "python build_authorization_counterfactuals_v2.py",
+      "outputs": [
+        {
+          "path": "data/authorization_counterfactuals_v2.jsonl",
+          "exists": true,
+          "size_bytes": 2327825
+        },
+        {
+          "path": "analysis/authorization_counterfactuals_v2_manifest.json",
+          "exists": true,
+          "size_bytes": 8439
+        },
+        {
+          "path": "analysis/authorization_counterfactuals_v2_manifest.md",
+          "exists": true,
+          "size_bytes": 1435
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 1464,
+        "rows_added": 280,
+        "target_effects": [
+          "file_content_read",
+          "file_written",
+          "file_deleted",
+          "content_fetched",
+          "network_egress",
+          "message_sent",
+          "tool_error"
+        ],
+        "all_focus_unauthorized_tools_ge_3": true,
+        "focus_unauthorized_tool_counts": {
+          "content_fetched": 3,
+          "file_content_read": 3,
+          "file_deleted": 3,
+          "file_written": 3,
+          "message_sent": 3,
+          "network_egress": 3,
+          "tool_error": 3
+        }
+      }
+    },
+    {
+      "id": "auth_embeddings",
+      "task": "T39 Qwen3-8B authorization embeddings",
+      "script": "extract_embeddings_llm.py",
+      "command": "python extract_embeddings_llm.py Qwen/Qwen3-8B authorization_counterfactuals_v1.jsonl --batch-size 8",
+      "outputs": [
+        {
+          "path": "embeddings/embeddings_qwen3-8b_authorization_counterfactuals_v1.npy",
+          "exists": true,
+          "size_bytes": 19398784
+        },
+        {
+          "path": "embeddings/effects_qwen3-8b_authorization_counterfactuals_v1.npy",
+          "exists": true,
+          "size_bytes": 52224
+        },
+        {
+          "path": "embeddings/meta_qwen3-8b_authorization_counterfactuals_v1.json",
+          "exists": true,
+          "size_bytes": 576
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "embedding_shape": [
+          1184,
+          4096
+        ],
+        "effect_shape": [
+          1184,
+          11
+        ]
+      }
+    },
+    {
+      "id": "auth_embeddings_v2",
+      "task": "T54 Qwen3-8B authorization v2 embeddings",
+      "script": "extract_embeddings_llm.py",
+      "command": "python extract_embeddings_llm.py Qwen/Qwen3-8B authorization_counterfactuals_v2.jsonl --batch-size 8",
+      "outputs": [
+        {
+          "path": "embeddings/embeddings_qwen3-8b_authorization_counterfactuals_v2.npy",
+          "exists": true,
+          "size_bytes": 23986304
+        },
+        {
+          "path": "embeddings/effects_qwen3-8b_authorization_counterfactuals_v2.npy",
+          "exists": true,
+          "size_bytes": 64544
+        },
+        {
+          "path": "embeddings/meta_qwen3-8b_authorization_counterfactuals_v2.json",
+          "exists": true,
+          "size_bytes": 628
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "embedding_shape": [
+          1464,
+          4096
+        ],
+        "effect_shape": [
+          1464,
+          11
+        ]
+      }
+    },
+    {
+      "id": "auth_traces_v2",
+      "task": "T40/T49 auth execution traces",
+      "script": "build_auth_observed_execution_traces.py",
+      "command": "python build_auth_observed_execution_traces.py",
+      "outputs": [
+        {
+          "path": "data/agent_tool_traces_auth_v2.jsonl",
+          "exists": true,
+          "size_bytes": 236754
+        },
+        {
+          "path": "analysis/agent_tool_traces_auth_v2_manifest.json",
+          "exists": true,
+          "size_bytes": 1775
+        },
+        {
+          "path": "analysis/agent_tool_traces_auth_v2_manifest.md",
+          "exists": true,
+          "size_bytes": 1109
+        },
+        {
+          "path": "data/agent_tool_traces_auth_observed_v1.jsonl",
+          "exists": true,
+          "size_bytes": 129630
+        },
+        {
+          "path": "analysis/agent_tool_traces_auth_observed_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 1645
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 138,
+        "trace_type_counts": {
+          "observed_execution": 70,
+          "sandbox_simulated": 56,
+          "static_replay": 12
+        },
+        "observed_execution_count": 70,
+        "observed_execution_sufficient": true,
+        "leakage_checks": {
+          "missing_required_fields": {},
+          "duplicate_id_count": 0
+        }
+      }
+    },
+    {
+      "id": "auth_safeinv_eval",
+      "task": "T41 Auth-SafeInv held-out evaluation",
+      "script": "experiment_auth_safeinv.py",
+      "command": "python experiment_auth_safeinv.py qwen3-8b_authorization_counterfactuals_v1",
+      "outputs": [
+        {
+          "path": "analysis/auth_safeinv_qwen3-8b_authorization_counterfactuals_v1.json",
+          "exists": true,
+          "size_bytes": 33526
+        },
+        {
+          "path": "analysis/auth_safeinv_qwen3-8b_authorization_counterfactuals_v1.md",
+          "exists": true,
+          "size_bytes": 3431
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "random_effects": 8,
+        "loto_rows": 15,
+        "family_rows": 14,
+        "max_loto_unauthorized_fnr": 1.0,
+        "max_loto_auth_tool_proxy_gap": 1.0,
+        "max_family_unauthorized_fnr": 1.0
+      }
+    },
+    {
+      "id": "auth_safeinv_eval_v2",
+      "task": "T54 Auth-SafeInv v2 held-out evaluation",
+      "script": "experiment_auth_safeinv.py",
+      "command": "python experiment_auth_safeinv.py qwen3-8b_authorization_counterfactuals_v2",
+      "outputs": [
+        {
+          "path": "analysis/auth_safeinv_qwen3-8b_authorization_counterfactuals_v2.json",
+          "exists": true,
+          "size_bytes": 40184
+        },
+        {
+          "path": "analysis/auth_safeinv_qwen3-8b_authorization_counterfactuals_v2.md",
+          "exists": true,
+          "size_bytes": 4428
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "random_effects": 8,
+        "loto_rows": 22,
+        "family_rows": 21,
+        "max_loto_unauthorized_fnr": 1.0,
+        "max_loto_auth_tool_proxy_gap": 1.0,
+        "max_family_unauthorized_fnr": 1.0
+      }
+    },
+    {
+      "id": "surface_graph_alignment",
+      "task": "T42 surface graph alignment",
+      "script": "analyze_surface_graph_alignment.py",
+      "command": "python analyze_surface_graph_alignment.py authorization_counterfactuals_v1",
+      "outputs": [
+        {
+          "path": "analysis/surface_graph_alignment_authorization_counterfactuals_v1.json",
+          "exists": true,
+          "size_bytes": 22320
+        },
+        {
+          "path": "analysis/surface_graph_alignment_authorization_counterfactuals_v1.md",
+          "exists": true,
+          "size_bytes": 2512
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "effects": 11,
+        "strict_identifiable_verified": [
+          "network_egress",
+          "tool_error"
+        ],
+        "strict_identifiable_unauthorized": []
+      }
+    },
+    {
+      "id": "surface_graph_alignment_v2",
+      "task": "T54 v2 surface graph alignment",
+      "script": "analyze_surface_graph_alignment.py",
+      "command": "python analyze_surface_graph_alignment.py authorization_counterfactuals_v2",
+      "outputs": [
+        {
+          "path": "analysis/surface_graph_alignment_authorization_counterfactuals_v2.json",
+          "exists": true,
+          "size_bytes": 35922
+        },
+        {
+          "path": "analysis/surface_graph_alignment_authorization_counterfactuals_v2.md",
+          "exists": true,
+          "size_bytes": 2973
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "effects": 11,
+        "strict_identifiable_verified": [
+          "content_fetched",
+          "file_content_read",
+          "file_deleted",
+          "file_written",
+          "message_sent",
+          "network_egress",
+          "tool_error"
+        ],
+        "strict_identifiable_unauthorized": [
+          "content_fetched",
+          "file_content_read",
+          "file_deleted",
+          "file_written",
+          "message_sent",
+          "network_egress",
+          "tool_error"
+        ]
+      }
+    },
+    {
+      "id": "piia_hook_confirmatory",
+      "task": "T48 hook-based pIIA controls",
+      "script": "interchange_intervention_hook_controls.py",
+      "command": "python interchange_intervention_hook_controls.py --data-name qwen3-8b_scenarios_mainconf_v2 --max-effects 6 --max-eval-tools 2 --pairs-per-mode 3 --out-json analysis/piia_hook_controls_confirmatory_qwen3-8b_scenarios_mainconf_v2.json --out-md analysis/piia_hook_controls_confirmatory_qwen3-8b_scenarios_mainconf_v2.md",
+      "outputs": [
+        {
+          "path": "analysis/piia_hook_controls_confirmatory_qwen3-8b_scenarios_mainconf_v2.json",
+          "exists": true,
+          "size_bytes": 683838
+        },
+        {
+          "path": "analysis/piia_hook_controls_confirmatory_qwen3-8b_scenarios_mainconf_v2.md",
+          "exists": true,
+          "size_bytes": 16658
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "raw_rows": 864,
+        "effects": [
+          "file_content_read",
+          "file_written",
+          "content_fetched",
+          "file_deleted",
+          "network_egress",
+          "tool_error"
+        ],
+        "spearman_piia_drop_vs_loto_gap": 0.2648,
+        "spearman_piia_drop_vs_heldout_fnr": 0.5296
+      }
+    },
+    {
+      "id": "auth_baseline_confirmatory",
+      "task": "T47 strong baseline confirmatory sweep",
+      "script": "experiment_auth_baseline_confirmatory.py",
+      "command": "python experiment_auth_baseline_confirmatory.py qwen3-8b_authorization_counterfactuals_v1",
+      "outputs": [
+        {
+          "path": "analysis/auth_baseline_confirmatory_qwen3-8b_authorization_counterfactuals_v1.json",
+          "exists": true,
+          "size_bytes": 4548818
+        },
+        {
+          "path": "analysis/auth_baseline_confirmatory_qwen3-8b_authorization_counterfactuals_v1.md",
+          "exists": true,
+          "size_bytes": 4831
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "fixed_rows": 504,
+        "threshold_curve_rows": 9408,
+        "open_set_reject_all_rows": 14,
+        "loto_fixed_threshold": {
+          "domain_adversarial": {
+            "mean_fnr": 0.4299,
+            "mean_fpr": 0.0043,
+            "max_fnr": 1.0
+          },
+          "irm_linear": {
+            "mean_fnr": 0.2244,
+            "mean_fpr": 0.256,
+            "max_fnr": 1.0
+          },
+          "open_set_abstain": {
+            "mean_fnr": 0.0,
+            "mean_fpr": 1.0,
+            "max_fnr": 0.0
+          },
+          "pooled_logistic": {
+            "mean_fnr": 0.6524,
+            "mean_fpr": 0.0,
+            "max_fnr": 1.0
+          },
+          "supervised_contrastive": {
+            "mean_fnr": 0.5214,
+            "mean_fpr": 0.0015,
+            "max_fnr": 1.0
+          }
+        },
+        "loto_best_tradeoff_fpr_0_1": [
+          {
+            "split_type": "leave_one_tool_out",
+            "method": "domain_adversarial",
+            "target_fpr": 0.1,
+            "threshold": 0.15,
+            "mean_unauthorized_fnr": 0.3155,
+            "mean_absent_not_authorized_fpr": 0.0775
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "method": "irm_linear",
+            "target_fpr": 0.1,
+            "threshold": 0.85,
+            "mean_unauthorized_fnr": 0.3905,
+            "mean_absent_not_authorized_fpr": 0.0935
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "method": "pooled_logistic",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "mean_unauthorized_fnr": 0.5416,
+            "mean_absent_not_authorized_fpr": 0.0575
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "method": "supervised_contrastive",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "mean_unauthorized_fnr": 0.3443,
+            "mean_absent_not_authorized_fpr": 0.0301
+          }
+        ]
+      }
+    },
+    {
+      "id": "auth_baseline_confirmatory_v2",
+      "task": "T54 strong baseline confirmatory sweep on v2",
+      "script": "experiment_auth_baseline_confirmatory.py",
+      "command": "python experiment_auth_baseline_confirmatory.py qwen3-8b_authorization_counterfactuals_v2",
+      "outputs": [
+        {
+          "path": "analysis/auth_baseline_confirmatory_qwen3-8b_authorization_counterfactuals_v2.json",
+          "exists": true,
+          "size_bytes": 6818823
+        },
+        {
+          "path": "analysis/auth_baseline_confirmatory_qwen3-8b_authorization_counterfactuals_v2.md",
+          "exists": true,
+          "size_bytes": 4849
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "fixed_rows": 756,
+        "threshold_curve_rows": 14112,
+        "open_set_reject_all_rows": 21,
+        "loto_best_tradeoff_fpr_0_1": [
+          {
+            "split_type": "leave_one_tool_out",
+            "method": "domain_adversarial",
+            "target_fpr": 0.1,
+            "threshold": 0.25,
+            "mean_unauthorized_fnr": 0.1857,
+            "mean_absent_not_authorized_fpr": 0.0951
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "method": "irm_linear",
+            "target_fpr": 0.1,
+            "threshold": 0.8,
+            "mean_unauthorized_fnr": 0.189,
+            "mean_absent_not_authorized_fpr": 0.0937
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "method": "pooled_logistic",
+            "target_fpr": 0.1,
+            "threshold": 0.1,
+            "mean_unauthorized_fnr": 0.2754,
+            "mean_absent_not_authorized_fpr": 0.0826
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "method": "supervised_contrastive",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "mean_unauthorized_fnr": 0.1835,
+            "mean_absent_not_authorized_fpr": 0.0712
+          }
+        ]
+      }
+    },
+    {
+      "id": "auth_mitigation_vs_baseline",
+      "task": "T51 final mitigation-vs-baseline comparison",
+      "script": "experiment_auth_mitigation_comparison.py",
+      "command": "python experiment_auth_mitigation_comparison.py qwen3-8b_authorization_counterfactuals_v1",
+      "outputs": [
+        {
+          "path": "analysis/auth_mitigation_vs_baseline_qwen3-8b_authorization_counterfactuals_v1.json",
+          "exists": true,
+          "size_bytes": 1610877
+        },
+        {
+          "path": "analysis/auth_mitigation_vs_baseline_qwen3-8b_authorization_counterfactuals_v1.md",
+          "exists": true,
+          "size_bytes": 2903
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "fixed_rows": 132,
+        "threshold_curve_rows": 2772,
+        "skipped_rows": 42,
+        "skip_summary": {
+          "fewer_than_two_positive_training_tools": 42
+        },
+        "same_cell_fpr_0_1": {
+          "leave_one_family_out::contrastive_observed_pair_upper_bound": {
+            "cells": 13,
+            "cell_coverage": 0.9286,
+            "mitigation_mean_fnr": 0.0,
+            "mitigation_mean_fpr": 0.0051,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_mean_fnr": 0.2817,
+            "delta_fnr_vs_best_baseline": 0.2817
+          },
+          "leave_one_family_out::contrastive_train_only": {
+            "cells": 13,
+            "cell_coverage": 0.9286,
+            "mitigation_mean_fnr": 0.467,
+            "mitigation_mean_fpr": 0.0699,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_mean_fnr": 0.2817,
+            "delta_fnr_vs_best_baseline": -0.1853
+          },
+          "leave_one_tool_out::contrastive_observed_pair_upper_bound": {
+            "cells": 14,
+            "cell_coverage": 1.0,
+            "mitigation_mean_fnr": 0.0,
+            "mitigation_mean_fpr": 0.0281,
+            "best_baseline_method": "domain_adversarial",
+            "best_baseline_mean_fnr": 0.3155,
+            "delta_fnr_vs_best_baseline": 0.3155
+          },
+          "leave_one_tool_out::contrastive_train_only": {
+            "cells": 4,
+            "cell_coverage": 0.2857,
+            "mitigation_mean_fnr": 0.4128,
+            "mitigation_mean_fpr": 0.0,
+            "best_baseline_method": "domain_adversarial",
+            "best_baseline_mean_fnr": 0.4981,
+            "delta_fnr_vs_best_baseline": 0.0853
+          }
+        }
+      }
+    },
+    {
+      "id": "auth_mitigation_vs_baseline_v2",
+      "task": "T54 mitigation-vs-baseline comparison on v2",
+      "script": "experiment_auth_mitigation_comparison.py",
+      "command": "python experiment_auth_mitigation_comparison.py qwen3-8b_authorization_counterfactuals_v2",
+      "outputs": [
+        {
+          "path": "analysis/auth_mitigation_vs_baseline_qwen3-8b_authorization_counterfactuals_v2.json",
+          "exists": true,
+          "size_bytes": 2936925
+        },
+        {
+          "path": "analysis/auth_mitigation_vs_baseline_qwen3-8b_authorization_counterfactuals_v2.md",
+          "exists": true,
+          "size_bytes": 2934
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "fixed_rows": 246,
+        "threshold_curve_rows": 5166,
+        "skipped_rows": 12,
+        "skip_summary": {
+          "fewer_than_two_positive_training_tools": 12
+        },
+        "same_cell_fpr_0_1": {
+          "leave_one_family_out::contrastive_observed_pair_upper_bound": {
+            "cells": 20,
+            "cell_coverage": 0.9524,
+            "mitigation_mean_fnr": 0.0,
+            "mitigation_mean_fpr": 0.0483,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_mean_fnr": 0.1655,
+            "delta_fnr_vs_best_baseline": 0.1655
+          },
+          "leave_one_family_out::contrastive_train_only": {
+            "cells": 20,
+            "cell_coverage": 0.9524,
+            "mitigation_mean_fnr": 0.35,
+            "mitigation_mean_fpr": 0.0948,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_mean_fnr": 0.1655,
+            "delta_fnr_vs_best_baseline": -0.1845
+          },
+          "leave_one_tool_out::contrastive_observed_pair_upper_bound": {
+            "cells": 21,
+            "cell_coverage": 1.0,
+            "mitigation_mean_fnr": 0.0,
+            "mitigation_mean_fpr": 0.0524,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_mean_fnr": 0.1835,
+            "delta_fnr_vs_best_baseline": 0.1835
+          },
+          "leave_one_tool_out::contrastive_train_only": {
+            "cells": 21,
+            "cell_coverage": 1.0,
+            "mitigation_mean_fnr": 0.2804,
+            "mitigation_mean_fpr": 0.0855,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_mean_fnr": 0.1835,
+            "delta_fnr_vs_best_baseline": -0.0969
+          }
+        }
+      }
+    },
+    {
+      "id": "auth_schema_conditioned_data_v2",
+      "task": "T55 effect-schema conditioned candidate-effect data",
+      "script": "build_auth_effect_schema_conditioned_data.py",
+      "command": "python build_auth_effect_schema_conditioned_data.py",
+      "outputs": [
+        {
+          "path": "data/auth_effect_schema_conditioned_v2.jsonl",
+          "exists": true,
+          "size_bytes": 61667572
+        },
+        {
+          "path": "analysis/auth_effect_schema_conditioned_v2_manifest.json",
+          "exists": true,
+          "size_bytes": 33141
+        },
+        {
+          "path": "analysis/auth_effect_schema_conditioned_v2_manifest.md",
+          "exists": true,
+          "size_bytes": 1630
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 35136,
+        "base_rows": 1464,
+        "conditions": [
+          "full_tool_chain",
+          "auth_only_control",
+          "tool_only_control"
+        ],
+        "candidate_effects": [
+          "command_executed",
+          "file_content_read",
+          "file_written",
+          "file_deleted",
+          "network_egress",
+          "content_fetched",
+          "message_sent",
+          "tool_error"
+        ],
+        "unauthorized_positive_counts_by_condition": {
+          "auth_only_control": 574,
+          "full_tool_chain": 574,
+          "tool_only_control": 574
+        },
+        "leakage_checks": {
+          "duplicate_text_count": 12584,
+          "exact_snakecase_effect_mentions_in_text": {},
+          "label_field_mentions_in_text": {}
+        }
+      }
+    },
+    {
+      "id": "auth_schema_conditioned_embeddings_v2",
+      "task": "T55 Qwen3-8B effect-schema conditioned embeddings",
+      "script": "extract_embeddings_llm.py",
+      "command": "python extract_embeddings_llm.py Qwen/Qwen3-8B auth_effect_schema_conditioned_v2.jsonl --batch-size 8",
+      "outputs": [
+        {
+          "path": "embeddings/embeddings_qwen3-8b_auth_effect_schema_conditioned_v2.npy",
+          "exists": true,
+          "size_bytes": 575668352
+        },
+        {
+          "path": "embeddings/effects_qwen3-8b_auth_effect_schema_conditioned_v2.npy",
+          "exists": true,
+          "size_bytes": 140672
+        },
+        {
+          "path": "embeddings/meta_qwen3-8b_auth_effect_schema_conditioned_v2.json",
+          "exists": true,
+          "size_bytes": 425
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "embedding_shape": [
+          35136,
+          4096
+        ],
+        "effect_shape": [
+          35136,
+          1
+        ]
+      }
+    },
+    {
+      "id": "auth_schema_conditioned_mitigation_v2",
+      "task": "T55 pair-free schema-conditioned mitigation evaluation",
+      "script": "experiment_auth_schema_conditioned_mitigation.py",
+      "command": "python experiment_auth_schema_conditioned_mitigation.py qwen3-8b_auth_effect_schema_conditioned_v2",
+      "outputs": [
+        {
+          "path": "analysis/auth_schema_conditioned_mitigation_qwen3-8b_auth_effect_schema_conditioned_v2.json",
+          "exists": true,
+          "size_bytes": 2682178
+        },
+        {
+          "path": "analysis/auth_schema_conditioned_mitigation_qwen3-8b_auth_effect_schema_conditioned_v2.md",
+          "exists": true,
+          "size_bytes": 5944
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "fixed_rows": 252,
+        "threshold_curve_rows": 5292,
+        "skipped_rows": 6,
+        "full_tool_chain_best_tradeoffs_fpr_0_1": [
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "method": "schema_per_effect_sgd",
+            "threshold": 0.05,
+            "rows": 20,
+            "unique_cells": 20,
+            "mean_unauthorized_fnr": 0.6,
+            "mean_absent_not_authorized_fpr": 0.0279,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "method": "schema_sgd_logistic",
+            "threshold": 1.0,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.9048,
+            "mean_absent_not_authorized_fpr": 0.0068,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "method": "schema_per_effect_sgd",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.4516,
+            "mean_absent_not_authorized_fpr": 0.0154,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "method": "schema_sgd_logistic",
+            "threshold": 0.05,
+            "rows": 22,
+            "unique_cells": 22,
+            "mean_unauthorized_fnr": 0.7174,
+            "mean_absent_not_authorized_fpr": 0.0413,
+            "target_fpr": 0.1
+          }
+        ],
+        "full_tool_chain_same_cell_comparison": [
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "schema_method": "schema_per_effect_sgd",
+            "target_fpr": 0.1,
+            "schema_cells": 20,
+            "baseline_cells_matched": 20,
+            "schema_threshold": 0.05,
+            "schema_mean_fnr": 0.6,
+            "schema_mean_fpr": 0.0279,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_threshold": 0.55,
+            "best_baseline_mean_fnr": 0.1655,
+            "best_baseline_mean_fpr": 0.0911,
+            "delta_fnr_vs_best_baseline": -0.4345
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "schema_method": "schema_sgd_logistic",
+            "target_fpr": 0.1,
+            "schema_cells": 21,
+            "baseline_cells_matched": 21,
+            "schema_threshold": 1.0,
+            "schema_mean_fnr": 0.9048,
+            "schema_mean_fpr": 0.0068,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_threshold": 0.55,
+            "best_baseline_mean_fnr": 0.1771,
+            "best_baseline_mean_fpr": 0.0867,
+            "delta_fnr_vs_best_baseline": -0.7277
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "schema_method": "schema_per_effect_sgd",
+            "target_fpr": 0.1,
+            "schema_cells": 21,
+            "baseline_cells_matched": 21,
+            "schema_threshold": 0.05,
+            "schema_mean_fnr": 0.4516,
+            "schema_mean_fpr": 0.0154,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_threshold": 0.05,
+            "best_baseline_mean_fnr": 0.1835,
+            "best_baseline_mean_fpr": 0.0712,
+            "delta_fnr_vs_best_baseline": -0.2681
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "schema_method": "schema_sgd_logistic",
+            "target_fpr": 0.1,
+            "schema_cells": 22,
+            "baseline_cells_matched": 21,
+            "schema_threshold": 0.05,
+            "schema_mean_fnr": 0.7174,
+            "schema_mean_fpr": 0.0413,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_threshold": 0.05,
+            "best_baseline_mean_fnr": 0.1835,
+            "best_baseline_mean_fpr": 0.0712,
+            "delta_fnr_vs_best_baseline": -0.5339
+          }
+        ]
+      }
+    },
+    {
+      "id": "auth_decomposed_verifier_mitigation_v2",
+      "task": "T56 full decomposed/verifier mitigation evaluation",
+      "script": "experiment_auth_decomposed_verifier_mitigation.py",
+      "command": "python experiment_auth_decomposed_verifier_mitigation.py qwen3-8b_auth_effect_schema_conditioned_v2",
+      "outputs": [
+        {
+          "path": "analysis/auth_decomposed_verifier_mitigation_qwen3-8b_auth_effect_schema_conditioned_v2.json",
+          "exists": true,
+          "size_bytes": 12298619
+        },
+        {
+          "path": "analysis/auth_decomposed_verifier_mitigation_qwen3-8b_auth_effect_schema_conditioned_v2.md",
+          "exists": true,
+          "size_bytes": 15644
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "fixed_rows": 765,
+        "threshold_curve_rows": 16065,
+        "skipped_rows": 9,
+        "full_tool_chain_best_tradeoffs_fpr_0_1": [
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "method": "decomposed_per_effect_sgd_mean",
+            "threshold": 0.55,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.5638,
+            "mean_absent_not_authorized_fpr": 0.004,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "method": "decomposed_per_effect_sgd_product",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.5638,
+            "mean_absent_not_authorized_fpr": 0.004,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "method": "decomposed_per_effect_sgd_mean",
+            "threshold": 0.55,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.3547,
+            "mean_absent_not_authorized_fpr": 0.0,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "method": "decomposed_per_effect_sgd_product",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.3547,
+            "mean_absent_not_authorized_fpr": 0.0,
+            "target_fpr": 0.1
+          }
+        ],
+        "full_tool_chain_same_cell_comparison": [
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "decomposed_per_effect_sgd_mean",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.55,
+            "decomposed_mean_fnr": 0.5638,
+            "decomposed_mean_fpr": 0.004,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_threshold": 0.55,
+            "best_baseline_mean_fnr": 0.1771,
+            "best_baseline_mean_fpr": 0.0867,
+            "delta_fnr_vs_best_baseline": -0.3867
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "decomposed_per_effect_sgd_product",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.5638,
+            "decomposed_mean_fpr": 0.004,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_threshold": 0.55,
+            "best_baseline_mean_fnr": 0.1771,
+            "best_baseline_mean_fpr": 0.0867,
+            "delta_fnr_vs_best_baseline": -0.3867
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "decomposed_sgd_mean",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.55,
+            "decomposed_mean_fnr": 0.8278,
+            "decomposed_mean_fpr": 0.0007,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_threshold": 0.55,
+            "best_baseline_mean_fnr": 0.1771,
+            "best_baseline_mean_fpr": 0.0867,
+            "delta_fnr_vs_best_baseline": -0.6507
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "decomposed_sgd_product",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.8262,
+            "decomposed_mean_fpr": 0.0007,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_threshold": 0.55,
+            "best_baseline_mean_fnr": 0.1771,
+            "best_baseline_mean_fpr": 0.0867,
+            "delta_fnr_vs_best_baseline": -0.6491
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "verifier_present_per_effect_sgd_auth",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.1881,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_threshold": 0.55,
+            "best_baseline_mean_fnr": 0.1771,
+            "best_baseline_mean_fpr": 0.0867,
+            "delta_fnr_vs_best_baseline": -0.011
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "verifier_present_sgd_auth",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.0745,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_threshold": 0.55,
+            "best_baseline_mean_fnr": 0.1771,
+            "best_baseline_mean_fpr": 0.0867,
+            "delta_fnr_vs_best_baseline": 0.1026
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "decomposed_per_effect_sgd_mean",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.55,
+            "decomposed_mean_fnr": 0.3547,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_threshold": 0.05,
+            "best_baseline_mean_fnr": 0.1835,
+            "best_baseline_mean_fpr": 0.0712,
+            "delta_fnr_vs_best_baseline": -0.1712
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "decomposed_per_effect_sgd_product",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.3547,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_threshold": 0.05,
+            "best_baseline_mean_fnr": 0.1835,
+            "best_baseline_mean_fpr": 0.0712,
+            "delta_fnr_vs_best_baseline": -0.1712
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "decomposed_sgd_mean",
+            "target_fpr": 0.1,
+            "decomposed_cells": 22,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.55,
+            "decomposed_mean_fnr": 0.6788,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_threshold": 0.05,
+            "best_baseline_mean_fnr": 0.1835,
+            "best_baseline_mean_fpr": 0.0712,
+            "delta_fnr_vs_best_baseline": -0.4953
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "decomposed_sgd_product",
+            "target_fpr": 0.1,
+            "decomposed_cells": 22,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.6788,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_threshold": 0.05,
+            "best_baseline_mean_fnr": 0.1835,
+            "best_baseline_mean_fpr": 0.0712,
+            "delta_fnr_vs_best_baseline": -0.4953
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "verifier_present_per_effect_sgd_auth",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.0642,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_threshold": 0.05,
+            "best_baseline_mean_fnr": 0.1835,
+            "best_baseline_mean_fpr": 0.0712,
+            "delta_fnr_vs_best_baseline": 0.1193
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "verifier_present_sgd_auth",
+            "target_fpr": 0.1,
+            "decomposed_cells": 22,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.0042,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_threshold": 0.05,
+            "best_baseline_mean_fnr": 0.1835,
+            "best_baseline_mean_fpr": 0.0712,
+            "delta_fnr_vs_best_baseline": 0.1793
+          }
+        ]
+      }
+    },
+    {
+      "id": "auth_verifier_present_upper_bound_v2",
+      "task": "T56 verifier-present full-tool-chain upper-bound evaluation",
+      "script": "experiment_auth_decomposed_verifier_mitigation.py",
+      "command": "python experiment_auth_decomposed_verifier_mitigation.py qwen3-8b_auth_effect_schema_conditioned_v2 --conditions full_tool_chain --methods verifier_present_sgd_auth verifier_present_per_effect_sgd_auth --output-suffix _verifier_present_full",
+      "outputs": [
+        {
+          "path": "analysis/auth_decomposed_verifier_mitigation_qwen3-8b_auth_effect_schema_conditioned_v2_verifier_present_full.json",
+          "exists": true,
+          "size_bytes": 1551355
+        },
+        {
+          "path": "analysis/auth_decomposed_verifier_mitigation_qwen3-8b_auth_effect_schema_conditioned_v2_verifier_present_full.md",
+          "exists": true,
+          "size_bytes": 3266
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "fixed_rows": 85,
+        "threshold_curve_rows": 1785,
+        "skipped_rows": 1,
+        "best_tradeoffs_fpr_0_1": [
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "method": "verifier_present_per_effect_sgd_auth",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.1881,
+            "mean_absent_not_authorized_fpr": 0.0,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "method": "verifier_present_sgd_auth",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.0745,
+            "mean_absent_not_authorized_fpr": 0.0,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "method": "verifier_present_per_effect_sgd_auth",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.0642,
+            "mean_absent_not_authorized_fpr": 0.0,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "method": "verifier_present_sgd_auth",
+            "threshold": 0.05,
+            "rows": 22,
+            "unique_cells": 22,
+            "mean_unauthorized_fnr": 0.0042,
+            "mean_absent_not_authorized_fpr": 0.0,
+            "target_fpr": 0.1
+          }
+        ],
+        "same_cell_comparison": [
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "verifier_present_per_effect_sgd_auth",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.1881,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_threshold": 0.55,
+            "best_baseline_mean_fnr": 0.1771,
+            "best_baseline_mean_fpr": 0.0867,
+            "delta_fnr_vs_best_baseline": -0.011
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "verifier_present_sgd_auth",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.0745,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_threshold": 0.55,
+            "best_baseline_mean_fnr": 0.1771,
+            "best_baseline_mean_fpr": 0.0867,
+            "delta_fnr_vs_best_baseline": 0.1026
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "verifier_present_per_effect_sgd_auth",
+            "target_fpr": 0.1,
+            "decomposed_cells": 21,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.0642,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_threshold": 0.05,
+            "best_baseline_mean_fnr": 0.1835,
+            "best_baseline_mean_fpr": 0.0712,
+            "delta_fnr_vs_best_baseline": 0.1193
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "decomposed_method": "verifier_present_sgd_auth",
+            "target_fpr": 0.1,
+            "decomposed_cells": 22,
+            "baseline_cells_matched": 21,
+            "decomposed_threshold": 0.05,
+            "decomposed_mean_fnr": 0.0042,
+            "decomposed_mean_fpr": 0.0,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_threshold": 0.05,
+            "best_baseline_mean_fnr": 0.1835,
+            "best_baseline_mean_fpr": 0.0712,
+            "delta_fnr_vs_best_baseline": 0.1793
+          }
+        ],
+        "caveat": "verifier_present methods use candidate_effect_present at evaluation and require an external/execution-level effect-present verifier."
+      }
+    },
+    {
+      "id": "auth_t57_effect_present_verifier_v2",
+      "task": "T57 trace-calibrated non-oracle effect-present verifier",
+      "script": "experiment_auth_t57_effect_present_verifier.py",
+      "command": "python experiment_auth_t57_effect_present_verifier.py qwen3-8b_auth_effect_schema_conditioned_v2 --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "analysis/auth_t57_effect_present_verifier_qwen3-8b_auth_effect_schema_conditioned_v2.json",
+          "exists": true,
+          "size_bytes": 2572296
+        },
+        {
+          "path": "analysis/auth_t57_effect_present_verifier_qwen3-8b_auth_effect_schema_conditioned_v2.md",
+          "exists": true,
+          "size_bytes": 5860
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "present_rows": 120,
+        "fixed_rows": 170,
+        "threshold_curve_rows": 3570,
+        "skipped_rows": 2,
+        "present_verifier_aggregate": [
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "verifier_mode": "monitored_effect_only",
+            "rows": 36,
+            "unique_cells": 36,
+            "mean_present_fnr": 0.1597,
+            "mean_present_fpr": 0.0028,
+            "max_present_fnr": 1.0
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "verifier_mode": "trace_semantic",
+            "rows": 36,
+            "unique_cells": 36,
+            "mean_present_fnr": 0.0486,
+            "mean_present_fpr": 0.0135,
+            "max_present_fnr": 1.0
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "verifier_mode": "monitored_effect_only",
+            "rows": 24,
+            "unique_cells": 24,
+            "mean_present_fnr": 0.0609,
+            "mean_present_fpr": 0.0016,
+            "max_present_fnr": 1.0
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "verifier_mode": "trace_semantic",
+            "rows": 24,
+            "unique_cells": 24,
+            "mean_present_fnr": 0.0193,
+            "mean_present_fpr": 0.073,
+            "max_present_fnr": 0.3182
+          }
+        ],
+        "best_tradeoffs_fpr_0_1": [
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "method": "rule_monitored_effect_only_per_effect_sgd_auth",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.2833,
+            "mean_absent_not_authorized_fpr": 0.0048,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "method": "rule_monitored_effect_only_sgd_auth",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.1531,
+            "mean_absent_not_authorized_fpr": 0.0048,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "method": "rule_trace_semantic_per_effect_sgd_auth",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.2357,
+            "mean_absent_not_authorized_fpr": 0.0048,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_family_out",
+            "schema_condition": "full_tool_chain",
+            "method": "rule_trace_semantic_sgd_auth",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.1221,
+            "mean_absent_not_authorized_fpr": 0.0048,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "method": "rule_monitored_effect_only_per_effect_sgd_auth",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.0872,
+            "mean_absent_not_authorized_fpr": 0.0017,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "method": "rule_monitored_effect_only_sgd_auth",
+            "threshold": 0.05,
+            "rows": 22,
+            "unique_cells": 22,
+            "mean_unauthorized_fnr": 0.0716,
+            "mean_absent_not_authorized_fpr": 0.0016,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "method": "rule_trace_semantic_per_effect_sgd_auth",
+            "threshold": 0.05,
+            "rows": 21,
+            "unique_cells": 21,
+            "mean_unauthorized_fnr": 0.0872,
+            "mean_absent_not_authorized_fpr": 0.0017,
+            "target_fpr": 0.1
+          },
+          {
+            "split_type": "leave_one_tool_out",
+            "schema_condition": "full_tool_chain",
+            "method": "rule_trace_semantic_sgd_auth",
+            "threshold": 0.05,
+            "rows": 22,
+            "unique_cells": 22,
+            "mean_unauthorized_fnr": 0.0262,
+            "mean_absent_not_authorized_fpr": 0.073,
+            "target_fpr": 0.1
+          }
+        ],
+        "same_cell_fpr_0_1": {
+          "leave_one_family_out::rule_monitored_effect_only_per_effect_sgd_auth": {
+            "cells": 21,
+            "baseline_cells_matched": 21,
+            "t57_mean_fnr": 0.2833,
+            "t57_mean_fpr": 0.0048,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_mean_fnr": 0.1771,
+            "delta_fnr_vs_best_baseline": -0.1062
+          },
+          "leave_one_family_out::rule_monitored_effect_only_sgd_auth": {
+            "cells": 21,
+            "baseline_cells_matched": 21,
+            "t57_mean_fnr": 0.1531,
+            "t57_mean_fpr": 0.0048,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_mean_fnr": 0.1771,
+            "delta_fnr_vs_best_baseline": 0.024
+          },
+          "leave_one_family_out::rule_trace_semantic_per_effect_sgd_auth": {
+            "cells": 21,
+            "baseline_cells_matched": 21,
+            "t57_mean_fnr": 0.2357,
+            "t57_mean_fpr": 0.0048,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_mean_fnr": 0.1771,
+            "delta_fnr_vs_best_baseline": -0.0586
+          },
+          "leave_one_family_out::rule_trace_semantic_sgd_auth": {
+            "cells": 21,
+            "baseline_cells_matched": 21,
+            "t57_mean_fnr": 0.1221,
+            "t57_mean_fpr": 0.0048,
+            "best_baseline_method": "irm_linear",
+            "best_baseline_mean_fnr": 0.1771,
+            "delta_fnr_vs_best_baseline": 0.055
+          },
+          "leave_one_tool_out::rule_monitored_effect_only_per_effect_sgd_auth": {
+            "cells": 21,
+            "baseline_cells_matched": 21,
+            "t57_mean_fnr": 0.0872,
+            "t57_mean_fpr": 0.0017,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_mean_fnr": 0.1835,
+            "delta_fnr_vs_best_baseline": 0.0963
+          },
+          "leave_one_tool_out::rule_monitored_effect_only_sgd_auth": {
+            "cells": 22,
+            "baseline_cells_matched": 21,
+            "t57_mean_fnr": 0.0716,
+            "t57_mean_fpr": 0.0016,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_mean_fnr": 0.1835,
+            "delta_fnr_vs_best_baseline": 0.1119
+          },
+          "leave_one_tool_out::rule_trace_semantic_per_effect_sgd_auth": {
+            "cells": 21,
+            "baseline_cells_matched": 21,
+            "t57_mean_fnr": 0.0872,
+            "t57_mean_fpr": 0.0017,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_mean_fnr": 0.1835,
+            "delta_fnr_vs_best_baseline": 0.0963
+          },
+          "leave_one_tool_out::rule_trace_semantic_sgd_auth": {
+            "cells": 22,
+            "baseline_cells_matched": 21,
+            "t57_mean_fnr": 0.0262,
+            "t57_mean_fpr": 0.073,
+            "best_baseline_method": "supervised_contrastive",
+            "best_baseline_mean_fnr": 0.1835,
+            "delta_fnr_vs_best_baseline": 0.1573
+          }
+        },
+        "caveat": "T57 uses deterministic trace-calibrated static tool-call rules, not live deployed-agent execution."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_v1",
+      "task": "T58 trace candidate-effect data",
+      "script": "build_auth_trace_effect_schema_conditioned_data.py",
+      "command": "python build_auth_trace_effect_schema_conditioned_data.py --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "data/auth_trace_effect_schema_conditioned_v1.jsonl",
+          "exists": true,
+          "size_bytes": 2749090
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 27323
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 1302
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 1104,
+        "traces": 138,
+        "conditions": [
+          "full_tool_chain"
+        ],
+        "trace_type_counts": {
+          "observed_execution": 70,
+          "sandbox_simulated": 56,
+          "static_replay": 12
+        },
+        "candidate_effects": [
+          "command_executed",
+          "file_content_read",
+          "file_written",
+          "file_deleted",
+          "network_egress",
+          "content_fetched",
+          "message_sent",
+          "tool_error"
+        ],
+        "unauthorized_by_candidate_effect": {
+          "command_executed": 7,
+          "content_fetched": 10,
+          "file_content_read": 14,
+          "file_deleted": 10,
+          "file_written": 9,
+          "message_sent": 10,
+          "network_egress": 5,
+          "tool_error": 9
+        },
+        "leakage_checks": {
+          "duplicate_text_count": 0,
+          "exact_snakecase_effect_mentions_in_text": {},
+          "label_field_mentions_in_text": {}
+        },
+        "caveat": "Trace rows are controlled observed/sandbox/static traces, not live deployed-agent traffic."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_embeddings_v1",
+      "task": "T58 Qwen3-8B trace candidate-effect embeddings",
+      "script": "extract_embeddings_llm.py",
+      "command": "CUDA_VISIBLE_DEVICES=1 python extract_embeddings_llm.py Qwen/Qwen3-8B auth_trace_effect_schema_conditioned_v1.jsonl --batch-size 16",
+      "outputs": [
+        {
+          "path": "embeddings/embeddings_qwen3-8b_auth_trace_effect_schema_conditioned_v1.npy",
+          "exists": true,
+          "size_bytes": 18088064
+        },
+        {
+          "path": "embeddings/effects_qwen3-8b_auth_trace_effect_schema_conditioned_v1.npy",
+          "exists": true,
+          "size_bytes": 4544
+        },
+        {
+          "path": "embeddings/meta_qwen3-8b_auth_trace_effect_schema_conditioned_v1.json",
+          "exists": true,
+          "size_bytes": 378
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "embedding_shape": [
+          1104,
+          4096
+        ],
+        "effect_shape": [
+          1104,
+          1
+        ]
+      }
+    },
+    {
+      "id": "auth_t58_execution_verifier_v1",
+      "task": "T58 execution-level effect-present verifier",
+      "script": "experiment_auth_t58_execution_verifier.py",
+      "command": "python experiment_auth_t58_execution_verifier.py --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_v1.json",
+          "exists": true,
+          "size_bytes": 1887310
+        },
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_v1.md",
+          "exists": true,
+          "size_bytes": 4813
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "train_rows_used": 11712,
+        "trace_rows": 1104,
+        "present_rows": 126,
+        "fixed_rows": 96,
+        "threshold_curve_rows": 2016,
+        "present_verifier_aggregate": [
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 8,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 8
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.1313,
+            "mean_present_fpr": 0.0157,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 8,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 8
+          },
+          {
+            "max_present_fnr": 0.05,
+            "mean_present_fnr": 0.0063,
+            "mean_present_fpr": 0.0399,
+            "present_verifier": "static_trace_semantic",
+            "rows": 8,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 8
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 16,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 16
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.075,
+            "mean_present_fpr": 0.0902,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 16,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 16
+          },
+          {
+            "max_present_fnr": 0.2,
+            "mean_present_fnr": 0.0125,
+            "mean_present_fpr": 0.1672,
+            "present_verifier": "static_trace_semantic",
+            "rows": 16,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 16
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 18,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 18
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.1111,
+            "mean_present_fpr": 0.0157,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 18,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 18
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0157,
+            "present_verifier": "static_trace_semantic",
+            "rows": 18,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 18
+          }
+        ],
+        "best_tradeoffs_fpr_0_1": [
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0429,
+            "method": "execution_trace_sgd_auth",
+            "rows": 8,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 8
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0157,
+            "mean_unauthorized_fnr": 0.15,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 8,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 8
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0399,
+            "mean_unauthorized_fnr": 0.0429,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 8,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 8
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0286,
+            "method": "execution_trace_sgd_auth",
+            "rows": 14,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 14
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0202,
+            "mean_unauthorized_fnr": 0.1,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 14,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 14
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0202,
+            "mean_unauthorized_fnr": 0.0286,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 14,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 14
+          }
+        ],
+        "caveat": "T58 uses controlled execution trace verifier outputs and remains a setting-shifted, non-deployment evaluation."
+      }
+    },
+    {
+      "id": "real_agent_tools_t59_inventory_and_traces",
+      "task": "T59 real-agent-tools inventory and local-adapter traces",
+      "script": "build_real_agent_tool_execution_traces_t59.py",
+      "command": "python build_real_agent_tool_execution_traces_t59.py",
+      "outputs": [
+        {
+          "path": "analysis/real_agent_tool_inventory_t59_v1.json",
+          "exists": true,
+          "size_bytes": 66264
+        },
+        {
+          "path": "analysis/real_agent_tool_inventory_t59_v1.md",
+          "exists": true,
+          "size_bytes": 2582
+        },
+        {
+          "path": "data/agent_tool_traces_real_agent_tools_t59_v1.jsonl",
+          "exists": true,
+          "size_bytes": 115752
+        },
+        {
+          "path": "analysis/agent_tool_traces_real_agent_tools_t59_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 3003
+        },
+        {
+          "path": "analysis/agent_tool_traces_real_agent_tools_t59_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 2110
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "registered_tools_static": 74,
+        "execution_status_counts": {
+          "agent_loop_state_required": 4,
+          "external_service_or_api_key_required": 58,
+          "importable_not_executed": 6,
+          "local_adapter_executable_missing_runtime_deps": 3,
+          "missing_runtime_dependency": 1,
+          "static_name_unresolved": 2
+        },
+        "local_trace_count": 48,
+        "local_tool_counts": {
+          "read_file": 12,
+          "terminal": 30,
+          "write_file": 6
+        },
+        "verified_effect_counts": {
+          "command_executed": 30,
+          "content_fetched": 6,
+          "file_content_read": 12,
+          "file_deleted": 6,
+          "file_written": 12,
+          "network_egress": 6,
+          "tool_error": 12
+        },
+        "unauthorized_effect_counts": {
+          "command_executed": 6,
+          "content_fetched": 3,
+          "file_content_read": 3,
+          "file_deleted": 3,
+          "file_written": 6,
+          "tool_error": 6
+        },
+        "manual_intervention_needed": [
+          "AGENT_BROWSER_ENGINE",
+          "AGENT_BROWSER_EXECUTABLE_PATH",
+          "AUXILIARY_VIDEO_MODEL",
+          "AUXILIARY_VISION_MODEL",
+          "AUXILIARY_WEB_EXTRACT_MODEL",
+          "BRAVE_SEARCH_API_KEY",
+          "BROWSER_CDP_URL",
+          "BROWSER_INACTIVITY_TIMEOUT",
+          "DINGTALK_WEBHOOK_URL",
+          "DISCORD_BOT_TOKEN",
+          "EMAIL_ADDRESS",
+          "EMAIL_PASSWORD",
+          "EMAIL_SMTP_HOST",
+          "EMAIL_SMTP_PORT",
+          "EXA_API_KEY",
+          "FAL_IMAGE_MODEL",
+          "FIRECRAWL_API_KEY",
+          "FIRECRAWL_API_URL",
+          "HASS_TOKEN",
+          "HASS_URL",
+          "HERMES_EXEC_ASK",
+          "HERMES_GATEWAY_SESSION",
+          "HERMES_INTERACTIVE",
+          "HERMES_KANBAN_CLAIM_LOCK",
+          "HERMES_KANBAN_RUN_ID",
+          "HERMES_KANBAN_TASK",
+          "HERMES_PLATFORM",
+          "HERMES_PROFILE",
+          "HERMES_RPC_DIR",
+          "HERMES_TENANT",
+          "HERMES_TIMEZONE",
+          "HERMES_VISION_DOWNLOAD_TIMEOUT",
+          "LOCALAPPDATA",
+          "MATRIX_ACCESS_TOKEN",
+          "MATRIX_HOMESERVER",
+          "MATTERMOST_TOKEN",
+          "MATTERMOST_URL",
+          "OPENROUTER_API_KEY",
+          "PARALLEL_API_KEY",
+          "PARALLEL_SEARCH_MODE",
+          "PLAYWRIGHT_BROWSERS_PATH",
+          "QQ_APP_ID",
+          "QQ_CLIENT_SECRET",
+          "SEARXNG_URL",
+          "TAVILY_API_KEY",
+          "TAVILY_BASE_URL",
+          "TERMINAL_CWD",
+          "TERMINAL_ENV",
+          "TERMINAL_TIMEOUT",
+          "TINKER_API_KEY",
+          "TWILIO_ACCOUNT_SID",
+          "TWILIO_PHONE_NUMBER",
+          "WANDB_API_KEY",
+          "WANDB_ENTITY",
+          "WEIXIN_ACCOUNT_ID",
+          "WEIXIN_BASE_URL",
+          "WEIXIN_CDN_BASE_URL",
+          "WEIXIN_HOME_CHANNEL",
+          "WEIXIN_TOKEN"
+        ],
+        "import_blockers": [
+          "ModuleNotFoundError: No module named 'agent'",
+          "ModuleNotFoundError: No module named 'hermes_constants'"
+        ],
+        "caveat": "T59 executes local handler-equivalent adapters for file/terminal tools because direct Hermes handler import is blocked by missing upstream runtime modules; external services/API tools are inventoried but not invoked."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t59_v1",
+      "task": "T59 real-agent-tools candidate-effect data",
+      "script": "build_auth_trace_effect_schema_conditioned_data.py",
+      "command": "python build_auth_trace_effect_schema_conditioned_data.py --input data/agent_tool_traces_real_agent_tools_t59_v1.jsonl --output data/auth_trace_effect_schema_conditioned_t59_v1.jsonl --manifest analysis/auth_trace_effect_schema_conditioned_t59_v1_manifest.json --manifest-md analysis/auth_trace_effect_schema_conditioned_t59_v1_manifest.md --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "data/auth_trace_effect_schema_conditioned_t59_v1.jsonl",
+          "exists": true,
+          "size_bytes": 1234764
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t59_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 6116
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t59_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 1241
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 384,
+        "traces": 48,
+        "conditions": [
+          "full_tool_chain"
+        ],
+        "trace_type_counts": {
+          "real_agent_tools_local_execution": 48
+        },
+        "candidate_effects": [
+          "command_executed",
+          "file_content_read",
+          "file_written",
+          "file_deleted",
+          "network_egress",
+          "content_fetched",
+          "message_sent",
+          "tool_error"
+        ],
+        "unauthorized_by_candidate_effect": {
+          "command_executed": 6,
+          "content_fetched": 3,
+          "file_content_read": 3,
+          "file_deleted": 3,
+          "file_written": 6,
+          "tool_error": 6
+        },
+        "leakage_checks": {
+          "duplicate_text_count": 64,
+          "exact_snakecase_effect_mentions_in_text": {},
+          "label_field_mentions_in_text": {}
+        },
+        "caveat": "T59 rows come from real-agent-tools grounded local adapters, not direct live agent-handler/API execution."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t59_embeddings",
+      "task": "T59 Qwen3-8B real-agent-tools candidate-effect embeddings",
+      "script": "extract_embeddings_llm.py",
+      "command": "CUDA_VISIBLE_DEVICES=1 python extract_embeddings_llm.py Qwen/Qwen3-8B auth_trace_effect_schema_conditioned_t59_v1.jsonl --batch-size 16",
+      "outputs": [
+        {
+          "path": "embeddings/embeddings_qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1.npy",
+          "exists": true,
+          "size_bytes": 6291584
+        },
+        {
+          "path": "embeddings/effects_qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1.npy",
+          "exists": true,
+          "size_bytes": 1664
+        },
+        {
+          "path": "embeddings/meta_qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1.json",
+          "exists": true,
+          "size_bytes": 305
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "embedding_shape": [
+          384,
+          4096
+        ],
+        "effect_shape": [
+          384,
+          1
+        ]
+      }
+    },
+    {
+      "id": "auth_t59_real_agent_execution_verifier",
+      "task": "T59 real-agent-tools execution-level verifier stress test",
+      "script": "experiment_auth_t58_execution_verifier.py",
+      "command": "python experiment_auth_t58_execution_verifier.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1 --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1.json",
+          "exists": true,
+          "size_bytes": 1208755
+        },
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1.md",
+          "exists": true,
+          "size_bytes": 3766
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "train_rows_used": 11712,
+        "trace_rows": 384,
+        "present_rows": 72,
+        "fixed_rows": 60,
+        "threshold_curve_rows": 1260,
+        "present_verifier_aggregate": [
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 7,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 7
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.1429,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 7,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 7
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 7,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 7
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 10,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 10
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.1,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 10,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 10
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 10,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 10
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 7,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 7
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.1429,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 7,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 7
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 7,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 7
+          }
+        ],
+        "best_tradeoffs_fpr_0_1": [
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.25,
+            "method": "execution_trace_sgd_auth",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 6
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.4167,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 6
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.25,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 6
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.25,
+            "method": "execution_trace_sgd_auth",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 6
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.4167,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 6
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.25,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 6
+          }
+        ],
+        "caveat": "T59 is a real-agent-tools grounded local-adapter stress test. It is useful external-validity evidence, but not direct Hermes handler execution or live deployed-agent traffic."
+      }
+    },
+    {
+      "id": "deepseek_api_t60_traces",
+      "task": "T60 DeepSeek provider API traces",
+      "script": "build_deepseek_api_traces_t60.py",
+      "command": "DEEPSEEK_API_KEY=<redacted> python build_deepseek_api_traces_t60.py --repetitions 2",
+      "outputs": [
+        {
+          "path": "data/agent_tool_traces_deepseek_api_t60_v1.jsonl",
+          "exists": true,
+          "size_bytes": 23957
+        },
+        {
+          "path": "analysis/agent_tool_traces_deepseek_api_t60_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 1186
+        },
+        {
+          "path": "analysis/agent_tool_traces_deepseek_api_t60_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 819
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "traces": 8,
+        "success_count": 6,
+        "error_count": 2,
+        "tool_counts": {
+          "deepseek_chat_completion": 8
+        },
+        "verified_effect_counts": {
+          "content_fetched": 6,
+          "network_egress": 8,
+          "tool_error": 2
+        },
+        "unauthorized_effect_counts": {
+          "content_fetched": 4,
+          "network_egress": 2,
+          "tool_error": 2
+        },
+        "api_key_value_stored": false,
+        "caveat": "T60 DeepSeek traces are direct provider API calls. They cover provider network/content/error effects, not browser/search/messaging side effects."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t60_deepseek_v1",
+      "task": "T60 DeepSeek candidate-effect data",
+      "script": "build_auth_trace_effect_schema_conditioned_data.py",
+      "command": "python build_auth_trace_effect_schema_conditioned_data.py --input data/agent_tool_traces_deepseek_api_t60_v1.jsonl --output data/auth_trace_effect_schema_conditioned_t60_deepseek_v1.jsonl --manifest analysis/auth_trace_effect_schema_conditioned_t60_deepseek_v1_manifest.json --manifest-md analysis/auth_trace_effect_schema_conditioned_t60_deepseek_v1_manifest.md --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "data/auth_trace_effect_schema_conditioned_t60_deepseek_v1.jsonl",
+          "exists": true,
+          "size_bytes": 256296
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t60_deepseek_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 3251
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t60_deepseek_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 1218
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 64,
+        "traces": 8,
+        "conditions": [
+          "full_tool_chain"
+        ],
+        "trace_type_counts": {
+          "deepseek_api_observed_execution": 8
+        },
+        "candidate_effects": [
+          "command_executed",
+          "file_content_read",
+          "file_written",
+          "file_deleted",
+          "network_egress",
+          "content_fetched",
+          "message_sent",
+          "tool_error"
+        ],
+        "unauthorized_by_candidate_effect": {
+          "content_fetched": 4,
+          "network_egress": 2,
+          "tool_error": 2
+        },
+        "leakage_checks": {
+          "duplicate_text_count": 0,
+          "exact_snakecase_effect_mentions_in_text": {},
+          "label_field_mentions_in_text": {}
+        },
+        "caveat": "T60 candidate-effect rows come from eight DeepSeek provider API calls and are a pilot only."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t60_deepseek_embeddings",
+      "task": "T60 Qwen3-8B DeepSeek candidate-effect embeddings",
+      "script": "extract_embeddings_llm.py",
+      "command": "CUDA_VISIBLE_DEVICES=1 python extract_embeddings_llm.py Qwen/Qwen3-8B auth_trace_effect_schema_conditioned_t60_deepseek_v1.jsonl --batch-size 16",
+      "outputs": [
+        {
+          "path": "embeddings/embeddings_qwen3-8b_auth_trace_effect_schema_conditioned_t60_deepseek_v1.npy",
+          "exists": true,
+          "size_bytes": 1048704
+        },
+        {
+          "path": "embeddings/effects_qwen3-8b_auth_trace_effect_schema_conditioned_t60_deepseek_v1.npy",
+          "exists": true,
+          "size_bytes": 384
+        },
+        {
+          "path": "embeddings/meta_qwen3-8b_auth_trace_effect_schema_conditioned_t60_deepseek_v1.json",
+          "exists": true,
+          "size_bytes": 294
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "embedding_shape": [
+          64,
+          4096
+        ],
+        "effect_shape": [
+          64,
+          1
+        ]
+      }
+    },
+    {
+      "id": "auth_t60_deepseek_execution_verifier",
+      "task": "T60 DeepSeek execution-level verifier pilot",
+      "script": "experiment_auth_t58_execution_verifier.py",
+      "command": "python experiment_auth_t58_execution_verifier.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t60_deepseek_v1 --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t60_deepseek_v1.json",
+          "exists": true,
+          "size_bytes": 278218
+        },
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t60_deepseek_v1.md",
+          "exists": true,
+          "size_bytes": 4274
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "train_rows_used": 11712,
+        "trace_rows": 64,
+        "present_rows": 18,
+        "fixed_rows": 9,
+        "threshold_curve_rows": 189,
+        "present_verifier_aggregate": [
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 2
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 2
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 2
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 2
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 2
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 2
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 2
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 2
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 2
+          }
+        ],
+        "best_tradeoffs_fpr_0_1": [
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0,
+            "method": "execution_trace_sgd_auth",
+            "rows": 1,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 1
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 1,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 1
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 1,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 1
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0,
+            "method": "execution_trace_sgd_auth",
+            "rows": 1,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 1
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 1,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 1
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 1,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 1
+          }
+        ],
+        "caveat": "T60 DeepSeek is a tiny provider-API pilot. The execution verifier succeeds on one unauthorized evaluation cell, while static verifiers miss provider effects; this should be treated as smoke-test evidence only."
+      }
+    },
+    {
+      "id": "deepseek_api_t61_traces",
+      "task": "T61 expanded DeepSeek provider API traces",
+      "script": "build_deepseek_api_traces_t60.py",
+      "command": "DEEPSEEK_API_KEY=<redacted> python build_deepseek_api_traces_t60.py --repetitions 30 --output data/agent_tool_traces_deepseek_api_t61_v1.jsonl --manifest analysis/agent_tool_traces_deepseek_api_t61_v1_manifest.json --manifest-md analysis/agent_tool_traces_deepseek_api_t61_v1_manifest.md",
+      "outputs": [
+        {
+          "path": "data/agent_tool_traces_deepseek_api_t61_v1.jsonl",
+          "exists": true,
+          "size_bytes": 360361
+        },
+        {
+          "path": "analysis/agent_tool_traces_deepseek_api_t61_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 1201
+        },
+        {
+          "path": "analysis/agent_tool_traces_deepseek_api_t61_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 830
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "traces": 120,
+        "success_count": 90,
+        "error_count": 30,
+        "tool_counts": {
+          "deepseek_chat_completion": 120
+        },
+        "verified_effect_counts": {
+          "content_fetched": 90,
+          "network_egress": 120,
+          "tool_error": 30
+        },
+        "unauthorized_effect_counts": {
+          "content_fetched": 60,
+          "network_egress": 30,
+          "tool_error": 30
+        },
+        "api_key_value_stored": false,
+        "caveat": "T61 expands DeepSeek direct provider API traces to cell counts >=30 for provider network/content/error effects; it remains a single provider tool surface."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t61_deepseek_v1",
+      "task": "T61 expanded DeepSeek candidate-effect data",
+      "script": "build_auth_trace_effect_schema_conditioned_data.py",
+      "command": "python build_auth_trace_effect_schema_conditioned_data.py --input data/agent_tool_traces_deepseek_api_t61_v1.jsonl --output data/auth_trace_effect_schema_conditioned_t61_deepseek_v1.jsonl --manifest analysis/auth_trace_effect_schema_conditioned_t61_deepseek_v1_manifest.json --manifest-md analysis/auth_trace_effect_schema_conditioned_t61_deepseek_v1_manifest.md --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "data/auth_trace_effect_schema_conditioned_t61_deepseek_v1.jsonl",
+          "exists": true,
+          "size_bytes": 3852488
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t61_deepseek_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 3304
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t61_deepseek_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 1249
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 960,
+        "traces": 120,
+        "conditions": [
+          "full_tool_chain"
+        ],
+        "trace_type_counts": {
+          "deepseek_api_observed_execution": 120
+        },
+        "candidate_effects": [
+          "command_executed",
+          "file_content_read",
+          "file_written",
+          "file_deleted",
+          "network_egress",
+          "content_fetched",
+          "message_sent",
+          "tool_error"
+        ],
+        "present_by_candidate_effect": {
+          "content_fetched": 90,
+          "network_egress": 120,
+          "tool_error": 30
+        },
+        "unauthorized_by_candidate_effect": {
+          "content_fetched": 60,
+          "network_egress": 30,
+          "tool_error": 30
+        },
+        "leakage_checks": {
+          "duplicate_text_count": 0,
+          "exact_snakecase_effect_mentions_in_text": {},
+          "label_field_mentions_in_text": {}
+        },
+        "caveat": "T61 candidate-effect rows come from 120 DeepSeek provider API calls and cover one provider tool surface."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t61_deepseek_embeddings",
+      "task": "T61 Qwen3-8B expanded DeepSeek candidate-effect embeddings",
+      "script": "extract_embeddings_llm.py",
+      "command": "CUDA_VISIBLE_DEVICES=1 python extract_embeddings_llm.py Qwen/Qwen3-8B auth_trace_effect_schema_conditioned_t61_deepseek_v1.jsonl --batch-size 16",
+      "outputs": [
+        {
+          "path": "embeddings/embeddings_qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1.npy",
+          "exists": true,
+          "size_bytes": 15728768
+        },
+        {
+          "path": "embeddings/effects_qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1.npy",
+          "exists": true,
+          "size_bytes": 3968
+        },
+        {
+          "path": "embeddings/meta_qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1.json",
+          "exists": true,
+          "size_bytes": 295
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "embedding_shape": [
+          960,
+          4096
+        ],
+        "effect_shape": [
+          960,
+          1
+        ]
+      }
+    },
+    {
+      "id": "auth_t61_deepseek_execution_verifier",
+      "task": "T61 expanded DeepSeek execution-level verifier",
+      "script": "experiment_auth_t58_execution_verifier.py",
+      "command": "python experiment_auth_t58_execution_verifier.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1 --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1.json",
+          "exists": true,
+          "size_bytes": 621151
+        },
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1.md",
+          "exists": true,
+          "size_bytes": 4283
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "train_rows_used": 11712,
+        "trace_rows": 960,
+        "present_rows": 27,
+        "fixed_rows": 27,
+        "threshold_curve_rows": 567,
+        "present_verifier_aggregate": [
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 3
+          }
+        ],
+        "best_tradeoffs_fpr_0_1": [
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0,
+            "method": "execution_trace_sgd_auth",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 3
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 3
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 3
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0,
+            "method": "execution_trace_sgd_auth",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 3
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 3
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 3
+          }
+        ],
+        "caveat": "T61 gives better provider-effect counts than T60, but it is still one provider API surface. T62 adds validation-selected threshold evaluation for this trace dataset."
+      }
+    },
+    {
+      "id": "auth_t62_validation_threshold_t58_trace",
+      "task": "T62 validation-selected threshold on controlled trace dataset",
+      "script": "experiment_auth_t62_validation_threshold.py",
+      "command": "python experiment_auth_t62_validation_threshold.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_v1",
+      "outputs": [
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_v1.json",
+          "exists": true,
+          "size_bytes": 18263
+        },
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_v1.md",
+          "exists": true,
+          "size_bytes": 4037
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "trace_data_name": "qwen3-8b_auth_trace_effect_schema_conditioned_v1",
+        "validation_rows": 440,
+        "test_rows": 664,
+        "target_fpr": 0.1,
+        "validation_selected_test": {
+          "execution_trace_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.0,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 44,
+            "test_n_absent_not_authorized": 558
+          },
+          "static_trace_semantic_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.0,
+            "test_absent_not_authorized_fpr": 0.052,
+            "test_n_unauth": 44,
+            "test_n_absent_not_authorized": 558
+          },
+          "static_monitored_effect_only_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.1136,
+            "test_absent_not_authorized_fpr": 0.0233,
+            "test_n_unauth": 44,
+            "test_n_absent_not_authorized": 558
+          }
+        },
+        "caveat": "Thresholds are selected on validation trace groups and evaluated on held-out trace groups. Trace provenance is inherited from the source dataset; this is not deployment safety certification."
+      }
+    },
+    {
+      "id": "auth_t62_validation_threshold_t59_real_agent_tools",
+      "task": "T62 validation-selected threshold on real-agent-tools local-adapter traces",
+      "script": "experiment_auth_t62_validation_threshold.py",
+      "command": "python experiment_auth_t62_validation_threshold.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1",
+      "outputs": [
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1.json",
+          "exists": true,
+          "size_bytes": 10333
+        },
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1.md",
+          "exists": true,
+          "size_bytes": 2446
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "trace_data_name": "qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1",
+        "validation_rows": 152,
+        "test_rows": 232,
+        "target_fpr": 0.1,
+        "validation_selected_test": {
+          "execution_trace_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.1765,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 17,
+            "test_n_absent_not_authorized": 178
+          },
+          "static_trace_semantic_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.1765,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 17,
+            "test_n_absent_not_authorized": 178
+          },
+          "static_monitored_effect_only_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.4118,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 17,
+            "test_n_absent_not_authorized": 178
+          }
+        },
+        "caveat": "Thresholds are selected on validation trace groups and evaluated on held-out trace groups. Trace provenance is inherited from the source dataset; this is not deployment safety certification."
+      }
+    },
+    {
+      "id": "auth_t62_validation_threshold_t61_deepseek",
+      "task": "T62 validation-selected threshold on expanded DeepSeek provider traces",
+      "script": "experiment_auth_t62_validation_threshold.py",
+      "command": "python experiment_auth_t62_validation_threshold.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1",
+      "outputs": [
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1.json",
+          "exists": true,
+          "size_bytes": 10506
+        },
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1.md",
+          "exists": true,
+          "size_bytes": 2458
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "trace_data_name": "qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1",
+        "validation_rows": 384,
+        "test_rows": 576,
+        "target_fpr": 0.1,
+        "validation_selected_test": {
+          "execution_trace_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.0,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 78,
+            "test_n_absent_not_authorized": 432
+          },
+          "static_trace_semantic_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 1.0,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 78,
+            "test_n_absent_not_authorized": 432
+          },
+          "static_monitored_effect_only_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 1.0,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 78,
+            "test_n_absent_not_authorized": 432
+          }
+        },
+        "caveat": "Thresholds are selected on validation trace groups and evaluated on held-out trace groups. Trace provenance is inherited from the source dataset; this is not deployment safety certification."
+      }
+    },
+    {
+      "id": "broader_tools_t63_traces",
+      "task": "T63 broader web/search/browser/messaging local-adapter traces",
+      "script": "build_broader_agent_tool_traces_t63.py",
+      "command": "python build_broader_agent_tool_traces_t63.py",
+      "outputs": [
+        {
+          "path": "data/agent_tool_traces_broader_tools_t63_v1.jsonl",
+          "exists": true,
+          "size_bytes": 753279
+        },
+        {
+          "path": "analysis/agent_tool_traces_broader_tools_t63_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 2082
+        },
+        {
+          "path": "analysis/agent_tool_traces_broader_tools_t63_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 1056
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "traces": 300,
+        "toolset_counts": {
+          "browser": 120,
+          "messaging": 60,
+          "web": 120
+        },
+        "tool_counts": {
+          "browser_click": 30,
+          "browser_console": 30,
+          "browser_navigate": 30,
+          "browser_snapshot": 30,
+          "send_message": 60,
+          "web_extract": 60,
+          "web_search": 60
+        },
+        "verified_effect_counts": {
+          "content_fetched": 120,
+          "message_sent": 60,
+          "network_egress": 210,
+          "tool_error": 120
+        },
+        "unauthorized_effect_counts": {
+          "content_fetched": 60,
+          "message_sent": 30,
+          "network_egress": 60,
+          "tool_error": 60
+        },
+        "caveat": "T63 uses controlled local adapters for real-agent-tools web/search/browser/messaging tool names; it does not invoke live external services."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t63_broader_v1",
+      "task": "T63 broader tool-family candidate-effect data",
+      "script": "build_auth_trace_effect_schema_conditioned_data.py",
+      "command": "python build_auth_trace_effect_schema_conditioned_data.py --input data/agent_tool_traces_broader_tools_t63_v1.jsonl --output data/auth_trace_effect_schema_conditioned_t63_broader_v1.jsonl --manifest analysis/auth_trace_effect_schema_conditioned_t63_broader_v1_manifest.json --manifest-md analysis/auth_trace_effect_schema_conditioned_t63_broader_v1_manifest.md --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "data/auth_trace_effect_schema_conditioned_t63_broader_v1.jsonl",
+          "exists": true,
+          "size_bytes": 8205282
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t63_broader_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 12154
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t63_broader_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 1263
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 2400,
+        "traces": 300,
+        "conditions": [
+          "full_tool_chain"
+        ],
+        "trace_type_counts": {
+          "real_agent_tools_broader_local_adapter": 300
+        },
+        "candidate_effects": [
+          "command_executed",
+          "file_content_read",
+          "file_written",
+          "file_deleted",
+          "network_egress",
+          "content_fetched",
+          "message_sent",
+          "tool_error"
+        ],
+        "present_by_candidate_effect": {
+          "content_fetched": 120,
+          "message_sent": 60,
+          "network_egress": 210,
+          "tool_error": 120
+        },
+        "unauthorized_by_candidate_effect": {
+          "content_fetched": 60,
+          "message_sent": 30,
+          "network_egress": 60,
+          "tool_error": 60
+        },
+        "leakage_checks": {
+          "duplicate_text_count": 0,
+          "exact_snakecase_effect_mentions_in_text": {},
+          "label_field_mentions_in_text": {}
+        },
+        "caveat": "T63 candidate-effect rows come from controlled broader local-adapter traces over web/browser/messaging tool families."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t63_broader_embeddings",
+      "task": "T63 Qwen3-8B broader trace candidate-effect embeddings",
+      "script": "extract_embeddings_llm.py",
+      "command": "CUDA_VISIBLE_DEVICES=1 python extract_embeddings_llm.py Qwen/Qwen3-8B auth_trace_effect_schema_conditioned_t63_broader_v1.jsonl --batch-size 16",
+      "outputs": [
+        {
+          "path": "embeddings/embeddings_qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1.npy",
+          "exists": true,
+          "size_bytes": 39321728
+        },
+        {
+          "path": "embeddings/effects_qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1.npy",
+          "exists": true,
+          "size_bytes": 9728
+        },
+        {
+          "path": "embeddings/meta_qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1.json",
+          "exists": true,
+          "size_bytes": 412
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "embedding_shape": [
+          2400,
+          4096
+        ],
+        "effect_shape": [
+          2400,
+          1
+        ]
+      }
+    },
+    {
+      "id": "auth_t63_broader_execution_verifier",
+      "task": "T63 broader tool-family execution-level verifier evaluation",
+      "script": "experiment_auth_t58_execution_verifier.py",
+      "command": "python experiment_auth_t58_execution_verifier.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1 --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1.json",
+          "exists": true,
+          "size_bytes": 1345451
+        },
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1.md",
+          "exists": true,
+          "size_bytes": 5753
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "train_rows_used": 11712,
+        "trace_rows": 2400,
+        "present_rows": 69,
+        "fixed_rows": 66,
+        "threshold_curve_rows": 1386,
+        "present_verifier_aggregate": [
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 4
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.6071,
+            "mean_present_fpr": 0.0312,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 4
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.6071,
+            "mean_present_fpr": 0.0312,
+            "present_verifier": "static_trace_semantic",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 4
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 15,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 15
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.6667,
+            "mean_present_fpr": 0.1429,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 15,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 15
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.6667,
+            "mean_present_fpr": 0.1429,
+            "present_verifier": "static_trace_semantic",
+            "rows": 15,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 15
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 4
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.6071,
+            "mean_present_fpr": 0.0312,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 4
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.6071,
+            "mean_present_fpr": 0.0312,
+            "present_verifier": "static_trace_semantic",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 4
+          }
+        ],
+        "best_tradeoffs_fpr_0_1": [
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0625,
+            "method": "execution_trace_sgd_auth",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 4
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0312,
+            "mean_unauthorized_fnr": 0.625,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 4
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0312,
+            "mean_unauthorized_fnr": 0.625,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 4
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0625,
+            "method": "execution_trace_sgd_auth",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 4
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0312,
+            "mean_unauthorized_fnr": 0.625,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 4
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0312,
+            "mean_unauthorized_fnr": 0.625,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 4
+          }
+        ],
+        "caveat": "T63 broadens controlled local-adapter tool-family coverage. Use T62 validation-threshold output for calibrated trace-group wording."
+      }
+    },
+    {
+      "id": "auth_t63_broader_validation_threshold",
+      "task": "T63 validation-selected threshold on broader tool-family traces",
+      "script": "experiment_auth_t62_validation_threshold.py",
+      "command": "python experiment_auth_t62_validation_threshold.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1",
+      "outputs": [
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1.json",
+          "exists": true,
+          "size_bytes": 12217
+        },
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1.md",
+          "exists": true,
+          "size_bytes": 2825
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "trace_data_name": "qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1",
+        "validation_rows": 960,
+        "test_rows": 1440,
+        "target_fpr": 0.1,
+        "validation_selected_test": {
+          "execution_trace_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.0351,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 114,
+            "test_n_absent_not_authorized": 1133
+          },
+          "static_trace_semantic_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.614,
+            "test_absent_not_authorized_fpr": 0.0132,
+            "test_n_unauth": 114,
+            "test_n_absent_not_authorized": 1133
+          },
+          "static_monitored_effect_only_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.614,
+            "test_absent_not_authorized_fpr": 0.0132,
+            "test_n_unauth": 114,
+            "test_n_absent_not_authorized": 1133
+          }
+        },
+        "caveat": "Thresholds are selected on validation trace groups and evaluated on held-out trace groups. Trace provenance is inherited from the source dataset; this is not deployment safety certification."
+      }
+    },
+    {
+      "id": "live_protocol_t64_traces",
+      "task": "T64 key-free live/protocol external-validity traces",
+      "script": "build_live_protocol_tool_traces_t64.py",
+      "command": "python build_live_protocol_tool_traces_t64.py",
+      "outputs": [
+        {
+          "path": "data/agent_tool_traces_live_protocol_t64_v1.jsonl",
+          "exists": true,
+          "size_bytes": 785879
+        },
+        {
+          "path": "analysis/agent_tool_traces_live_protocol_t64_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 2205
+        },
+        {
+          "path": "analysis/agent_tool_traces_live_protocol_t64_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 1252
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "traces": 300,
+        "trace_type_counts": {
+          "live_http_external": 150,
+          "local_protocol_messaging": 150
+        },
+        "tool_counts": {
+          "browser_navigate": 30,
+          "http_get": 90,
+          "http_post": 30,
+          "send_message": 90,
+          "web_extract": 60
+        },
+        "verified_effect_counts": {
+          "content_fetched": 150,
+          "message_sent": 90,
+          "network_egress": 150,
+          "tool_error": 60
+        },
+        "unauthorized_effect_counts": {
+          "content_fetched": 150,
+          "message_sent": 60,
+          "network_egress": 60,
+          "tool_error": 60
+        },
+        "live_http_status_counts": {
+          "200": 120,
+          "404": 30
+        },
+        "evidence_level": {
+          "live_http_external": "real outbound HTTPS requests to public endpoints, no search-provider API key",
+          "local_protocol_messaging": "real local HTTP protocol receiver and delivery logs, not SaaS/provider messaging"
+        },
+        "caveat": "T64 uses key-free live outbound HTTPS plus local webhook protocol traces; it is not provider-backed search/SaaS messaging/deployed-runtime validation."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t64_live_protocol_v1",
+      "task": "T64 live/protocol candidate-effect data",
+      "script": "build_auth_trace_effect_schema_conditioned_data.py",
+      "command": "python build_auth_trace_effect_schema_conditioned_data.py --input data/agent_tool_traces_live_protocol_t64_v1.jsonl --output data/auth_trace_effect_schema_conditioned_t64_live_protocol_v1.jsonl --manifest analysis/auth_trace_effect_schema_conditioned_t64_live_protocol_v1_manifest.json --manifest-md analysis/auth_trace_effect_schema_conditioned_t64_live_protocol_v1_manifest.md --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "data/auth_trace_effect_schema_conditioned_t64_live_protocol_v1.jsonl",
+          "exists": true,
+          "size_bytes": 7886422
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t64_live_protocol_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 9897
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t64_live_protocol_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 1327
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 2400,
+        "traces": 300,
+        "conditions": [
+          "full_tool_chain"
+        ],
+        "trace_type_counts": {
+          "live_http_external": 150,
+          "local_protocol_messaging": 150
+        },
+        "candidate_effects": [
+          "command_executed",
+          "file_content_read",
+          "file_written",
+          "file_deleted",
+          "network_egress",
+          "content_fetched",
+          "message_sent",
+          "tool_error"
+        ],
+        "present_by_candidate_effect": {
+          "content_fetched": 150,
+          "message_sent": 90,
+          "network_egress": 150,
+          "tool_error": 60
+        },
+        "unauthorized_by_candidate_effect": {
+          "content_fetched": 150,
+          "message_sent": 60,
+          "network_egress": 60,
+          "tool_error": 60
+        },
+        "leakage_checks": {
+          "duplicate_text_count": 0,
+          "exact_snakecase_effect_mentions_in_text": {},
+          "label_field_mentions_in_text": {}
+        },
+        "caveat": "T64 candidate-effect rows come from key-free live HTTP and local protocol traces."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t64_embeddings",
+      "task": "T64 Qwen3-8B live/protocol candidate-effect embeddings",
+      "script": "extract_embeddings_llm.py",
+      "command": "CUDA_VISIBLE_DEVICES=1 python extract_embeddings_llm.py Qwen/Qwen3-8B auth_trace_effect_schema_conditioned_t64_live_protocol_v1.jsonl --batch-size 4",
+      "outputs": [
+        {
+          "path": "embeddings/embeddings_qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1.npy",
+          "exists": true,
+          "size_bytes": 39321728
+        },
+        {
+          "path": "embeddings/effects_qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1.npy",
+          "exists": true,
+          "size_bytes": 9728
+        },
+        {
+          "path": "embeddings/meta_qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1.json",
+          "exists": true,
+          "size_bytes": 365
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "embedding_shape": [
+          2400,
+          4096
+        ],
+        "effect_shape": [
+          2400,
+          1
+        ],
+        "use_4bit": false,
+        "caveat": "T64 embeddings have been rerun with full-precision Qwen3-8B on cuda1."
+      }
+    },
+    {
+      "id": "auth_t64_live_protocol_execution_verifier",
+      "task": "T64 live/protocol execution-level verifier evaluation",
+      "script": "experiment_auth_t58_execution_verifier.py",
+      "command": "python experiment_auth_t58_execution_verifier.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1 --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1.json",
+          "exists": true,
+          "size_bytes": 1179039
+        },
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1.md",
+          "exists": true,
+          "size_bytes": 5193
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "train_rows_used": 11712,
+        "trace_rows": 2400,
+        "present_rows": 60,
+        "fixed_rows": 57,
+        "threshold_curve_rows": 1197,
+        "present_verifier_aggregate": [
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 4
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.425,
+            "mean_present_fpr": 0.1357,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 4
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.425,
+            "mean_present_fpr": 0.1357,
+            "present_verifier": "static_trace_semantic",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 4
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 10,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 10
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.5,
+            "mean_present_fpr": 0.4,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 10,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 10
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.5,
+            "mean_present_fpr": 0.4,
+            "present_verifier": "static_trace_semantic",
+            "rows": 10,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 10
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 6
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.5333,
+            "mean_present_fpr": 0.1,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 6
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 0.5333,
+            "mean_present_fpr": 0.1,
+            "present_verifier": "static_trace_semantic",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 6
+          }
+        ],
+        "best_tradeoffs_fpr_0_1": [
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0,
+            "method": "execution_trace_sgd_auth",
+            "rows": 4,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 4
+          },
+          {
+            "mean_absent_not_authorized_fpr": null,
+            "mean_unauthorized_fnr": null,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": null,
+            "unique_cells": 0
+          },
+          {
+            "mean_absent_not_authorized_fpr": null,
+            "mean_unauthorized_fnr": null,
+            "method": "static_trace_semantic_sgd_auth",
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": null,
+            "unique_cells": 0
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0,
+            "method": "execution_trace_sgd_auth",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 6
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.1,
+            "mean_unauthorized_fnr": 0.5833,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 6
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.1,
+            "mean_unauthorized_fnr": 0.5833,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 6,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 6
+          }
+        ],
+        "caveat": "T64 uses key-free live/protocol traces. Use T62 validation-threshold output for calibrated trace-group wording."
+      }
+    },
+    {
+      "id": "auth_t64_live_protocol_validation_threshold",
+      "task": "T64 validation-selected threshold on live/protocol traces",
+      "script": "experiment_auth_t62_validation_threshold.py",
+      "command": "python experiment_auth_t62_validation_threshold.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1",
+      "outputs": [
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1.json",
+          "exists": true,
+          "size_bytes": 12410
+        },
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1.md",
+          "exists": true,
+          "size_bytes": 2895
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "trace_data_name": "qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1",
+        "validation_rows": 960,
+        "test_rows": 1440,
+        "target_fpr": 0.1,
+        "validation_selected_test": {
+          "execution_trace_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.0,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 197,
+            "test_n_absent_not_authorized": 1170
+          },
+          "static_trace_semantic_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.6294,
+            "test_absent_not_authorized_fpr": 0.0462,
+            "test_n_unauth": 197,
+            "test_n_absent_not_authorized": 1170
+          },
+          "static_monitored_effect_only_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.6294,
+            "test_absent_not_authorized_fpr": 0.0462,
+            "test_n_unauth": 197,
+            "test_n_absent_not_authorized": 1170
+          }
+        },
+        "caveat": "Thresholds are selected on validation trace groups and evaluated on held-out trace groups. Trace provenance is inherited from the source dataset; this is not deployment safety certification."
+      }
+    },
+    {
+      "id": "headless_browser_t65_traces",
+      "task": "T65 file-backed headless Chrome browser-runtime traces",
+      "script": "build_headless_browser_runtime_traces_t65.py",
+      "command": "python build_headless_browser_runtime_traces_t65.py --repetitions 30",
+      "outputs": [
+        {
+          "path": "data/agent_tool_traces_headless_browser_t65_v1.jsonl",
+          "exists": true,
+          "size_bytes": 377404
+        },
+        {
+          "path": "analysis/agent_tool_traces_headless_browser_t65_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 952
+        },
+        {
+          "path": "analysis/agent_tool_traces_headless_browser_t65_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 855
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "traces": 120,
+        "trace_types": [
+          "headless_chrome_file_browser_runtime"
+        ],
+        "tools": [
+          "browser_navigate",
+          "browser_snapshot"
+        ],
+        "verified_effect_counts": {
+          "content_fetched": 120,
+          "file_content_read": 120,
+          "memory_updated": 30,
+          "tool_error": 30
+        },
+        "unauthorized_effect_counts": {
+          "content_fetched": 60,
+          "memory_updated": 30,
+          "tool_error": 30
+        },
+        "chrome_binary": "/usr/bin/google-chrome",
+        "caveat": "T65 uses actual headless Chrome over file-backed pages; it is not HTTP browser networking, provider-backed search/SaaS messaging, or deployed-agent runtime validation."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t65_browser_v1",
+      "task": "T65 browser-runtime candidate-effect data",
+      "script": "build_auth_trace_effect_schema_conditioned_data.py",
+      "command": "python build_auth_trace_effect_schema_conditioned_data.py --input data/agent_tool_traces_headless_browser_t65_v1.jsonl --output data/auth_trace_effect_schema_conditioned_t65_browser_v1.jsonl --manifest analysis/auth_trace_effect_schema_conditioned_t65_browser_v1_manifest.json --manifest-md analysis/auth_trace_effect_schema_conditioned_t65_browser_v1_manifest.md --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "data/auth_trace_effect_schema_conditioned_t65_browser_v1.jsonl",
+          "exists": true,
+          "size_bytes": 3689522
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t65_browser_v1_manifest.json",
+          "exists": true,
+          "size_bytes": 4771
+        },
+        {
+          "path": "analysis/auth_trace_effect_schema_conditioned_t65_browser_v1_manifest.md",
+          "exists": true,
+          "size_bytes": 1291
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "rows": 960,
+        "traces": 120,
+        "conditions": [
+          "full_tool_chain"
+        ],
+        "trace_type_counts": {
+          "headless_chrome_file_browser_runtime": 120
+        },
+        "candidate_effects": [
+          "command_executed",
+          "file_content_read",
+          "file_written",
+          "file_deleted",
+          "network_egress",
+          "content_fetched",
+          "message_sent",
+          "tool_error"
+        ],
+        "present_by_candidate_effect": {
+          "content_fetched": 120,
+          "file_content_read": 120,
+          "tool_error": 30
+        },
+        "unauthorized_by_candidate_effect": {
+          "content_fetched": 60,
+          "tool_error": 30
+        },
+        "leakage_checks": {
+          "duplicate_text_count": 0,
+          "exact_snakecase_effect_mentions_in_text": {},
+          "label_field_mentions_in_text": {}
+        },
+        "caveat": "T65 candidate-effect rows come from file-backed headless Chrome browser-runtime traces."
+      }
+    },
+    {
+      "id": "auth_trace_effect_schema_conditioned_t65_browser_embeddings",
+      "task": "T65 Qwen3-8B browser-runtime candidate-effect embeddings",
+      "script": "extract_embeddings_llm.py",
+      "command": "CUDA_VISIBLE_DEVICES=1 python extract_embeddings_llm.py Qwen/Qwen3-8B auth_trace_effect_schema_conditioned_t65_browser_v1.jsonl --batch-size 4",
+      "outputs": [
+        {
+          "path": "embeddings/embeddings_qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1.npy",
+          "exists": true,
+          "size_bytes": 15728768
+        },
+        {
+          "path": "embeddings/effects_qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1.npy",
+          "exists": true,
+          "size_bytes": 3968
+        },
+        {
+          "path": "embeddings/meta_qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1.json",
+          "exists": true,
+          "size_bytes": 310
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "embedding_shape": [
+          960,
+          4096
+        ],
+        "effect_shape": [
+          960,
+          1
+        ],
+        "use_4bit": false,
+        "caveat": "T65 browser-runtime embeddings use full-precision Qwen3-8B."
+      }
+    },
+    {
+      "id": "auth_t65_browser_execution_verifier",
+      "task": "T65 browser-runtime execution-level verifier evaluation",
+      "script": "experiment_auth_t58_execution_verifier.py",
+      "command": "python experiment_auth_t58_execution_verifier.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1 --conditions full_tool_chain",
+      "outputs": [
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1.json",
+          "exists": true,
+          "size_bytes": 455169
+        },
+        {
+          "path": "analysis/auth_t58_execution_verifier_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1.md",
+          "exists": true,
+          "size_bytes": 4698
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "train_rows_used": 11712,
+        "trace_rows": 960,
+        "present_rows": 33,
+        "fixed_rows": 18,
+        "threshold_curve_rows": 378,
+        "present_verifier_aggregate": [
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 5,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 5
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 5,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 5
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 5,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_tool",
+            "unique_cells": 5
+          },
+          {
+            "max_present_fnr": 0.0,
+            "mean_present_fnr": 0.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "execution_trace",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_monitored_effect_only",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 3
+          },
+          {
+            "max_present_fnr": 1.0,
+            "mean_present_fnr": 1.0,
+            "mean_present_fpr": 0.0,
+            "present_verifier": "static_trace_semantic",
+            "rows": 3,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "unique_cells": 3
+          }
+        ],
+        "best_tradeoffs_fpr_0_1": [
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0,
+            "method": "execution_trace_sgd_auth",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 2
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 2
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_all",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 2
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 0.0,
+            "method": "execution_trace_sgd_auth",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 2
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_monitored_effect_only_sgd_auth",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 2
+          },
+          {
+            "mean_absent_not_authorized_fpr": 0.0,
+            "mean_unauthorized_fnr": 1.0,
+            "method": "static_trace_semantic_sgd_auth",
+            "rows": 2,
+            "schema_condition": "full_tool_chain",
+            "split_type": "schema_to_trace_type",
+            "target_fpr": 0.1,
+            "threshold": 0.05,
+            "unique_cells": 2
+          }
+        ],
+        "caveat": "T65 validates file-backed headless Chrome runtime effects. Use T62 validation-threshold output for calibrated trace-group wording."
+      }
+    },
+    {
+      "id": "auth_t65_browser_validation_threshold",
+      "task": "T65 validation-selected threshold on browser-runtime traces",
+      "script": "experiment_auth_t62_validation_threshold.py",
+      "command": "python experiment_auth_t62_validation_threshold.py --trace-data-name qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1",
+      "outputs": [
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1.json",
+          "exists": true,
+          "size_bytes": 8908
+        },
+        {
+          "path": "analysis/auth_t62_validation_threshold_qwen3-8b_auth_effect_schema_conditioned_v2__qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1.md",
+          "exists": true,
+          "size_bytes": 2198
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "trace_data_name": "qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1",
+        "validation_rows": 384,
+        "test_rows": 576,
+        "target_fpr": 0.1,
+        "validation_selected_test": {
+          "execution_trace_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 0.0,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 62,
+            "test_n_absent_not_authorized": 411
+          },
+          "static_trace_semantic_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 1.0,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 62,
+            "test_n_absent_not_authorized": 411
+          },
+          "static_monitored_effect_only_sgd_auth_validation_selected": {
+            "threshold": 0.05,
+            "test_unauthorized_fnr": 1.0,
+            "test_absent_not_authorized_fpr": 0.0,
+            "test_n_unauth": 62,
+            "test_n_absent_not_authorized": 411
+          }
+        },
+        "caveat": "Thresholds are selected on validation trace groups and evaluated on held-out trace groups. Trace provenance is inherited from the source dataset; this is not deployment safety certification."
+      }
+    },
+    {
+      "id": "auth_action_level_metrics_t68",
+      "task": "T68 action-level Auth-SafeInv allow/deny metrics",
+      "script": "analysis/auth_action_level_metrics.py",
+      "command": "python analysis/auth_action_level_metrics.py",
+      "outputs": [
+        {
+          "path": "analysis/auth_action_level_metrics_t68.json",
+          "exists": true,
+          "size_bytes": 76606
+        },
+        {
+          "path": "analysis/auth_action_level_metrics_t68.md",
+          "exists": true,
+          "size_bytes": 3398
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "datasets": {
+          "qwen3-8b_auth_trace_effect_schema_conditioned_v1": {
+            "execution_trace": {
+              "n_actions": 83,
+              "n_unauthorized_actions": 39,
+              "unauthorized_action_allow_rate": 0.0,
+              "authorized_action_false_denial_rate": 0.1591,
+              "row_macro_unauthorized_effect_fnr": 0.0,
+              "row_macro_absent_not_authorized_fpr": 0.0
+            },
+            "static_trace_semantic": {
+              "n_actions": 83,
+              "n_unauthorized_actions": 39,
+              "unauthorized_action_allow_rate": 0.0,
+              "authorized_action_false_denial_rate": 0.4091,
+              "row_macro_unauthorized_effect_fnr": 0.0,
+              "row_macro_absent_not_authorized_fpr": 0.0511
+            }
+          },
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1": {
+            "execution_trace": {
+              "n_actions": 29,
+              "n_unauthorized_actions": 15,
+              "unauthorized_action_allow_rate": 0.2,
+              "authorized_action_false_denial_rate": 0.3571,
+              "row_macro_unauthorized_effect_fnr": 0.2083,
+              "row_macro_absent_not_authorized_fpr": 0.0
+            },
+            "static_trace_semantic": {
+              "n_actions": 29,
+              "n_unauthorized_actions": 15,
+              "unauthorized_action_allow_rate": 0.2,
+              "authorized_action_false_denial_rate": 0.3571,
+              "row_macro_unauthorized_effect_fnr": 0.2083,
+              "row_macro_absent_not_authorized_fpr": 0.0
+            }
+          },
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1": {
+            "execution_trace": {
+              "n_actions": 72,
+              "n_unauthorized_actions": 57,
+              "unauthorized_action_allow_rate": 0.0,
+              "authorized_action_false_denial_rate": 1.0,
+              "row_macro_unauthorized_effect_fnr": 0.0,
+              "row_macro_absent_not_authorized_fpr": 0.0
+            },
+            "static_trace_semantic": {
+              "n_actions": 72,
+              "n_unauthorized_actions": 57,
+              "unauthorized_action_allow_rate": 1.0,
+              "authorized_action_false_denial_rate": 0.0,
+              "row_macro_unauthorized_effect_fnr": 1.0,
+              "row_macro_absent_not_authorized_fpr": 0.0
+            }
+          },
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1": {
+            "execution_trace": {
+              "n_actions": 180,
+              "n_unauthorized_actions": 80,
+              "unauthorized_action_allow_rate": 0.05,
+              "authorized_action_false_denial_rate": 0.21,
+              "row_macro_unauthorized_effect_fnr": 0.0345,
+              "row_macro_absent_not_authorized_fpr": 0.0
+            },
+            "static_trace_semantic": {
+              "n_actions": 180,
+              "n_unauthorized_actions": 80,
+              "unauthorized_action_allow_rate": 0.4875,
+              "authorized_action_false_denial_rate": 0.21,
+              "row_macro_unauthorized_effect_fnr": 0.6136,
+              "row_macro_absent_not_authorized_fpr": 0.0255
+            }
+          },
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1": {
+            "execution_trace": {
+              "n_actions": 72,
+              "n_unauthorized_actions": 41,
+              "unauthorized_action_allow_rate": 0.0,
+              "authorized_action_false_denial_rate": 1.0,
+              "row_macro_unauthorized_effect_fnr": 0.0,
+              "row_macro_absent_not_authorized_fpr": 0.0
+            },
+            "static_trace_semantic": {
+              "n_actions": 72,
+              "n_unauthorized_actions": 41,
+              "unauthorized_action_allow_rate": 1.0,
+              "authorized_action_false_denial_rate": 0.0,
+              "row_macro_unauthorized_effect_fnr": 1.0,
+              "row_macro_absent_not_authorized_fpr": 0.0
+            }
+          },
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1": {
+            "execution_trace": {
+              "n_actions": 180,
+              "n_unauthorized_actions": 162,
+              "unauthorized_action_allow_rate": 0.0,
+              "authorized_action_false_denial_rate": 0.0,
+              "row_macro_unauthorized_effect_fnr": 0.0,
+              "row_macro_absent_not_authorized_fpr": 0.0
+            },
+            "static_trace_semantic": {
+              "n_actions": 180,
+              "n_unauthorized_actions": 162,
+              "unauthorized_action_allow_rate": 0.321,
+              "authorized_action_false_denial_rate": 0.0,
+              "row_macro_unauthorized_effect_fnr": 0.4823,
+              "row_macro_absent_not_authorized_fpr": 0.1363
+            }
+          }
+        },
+        "caveat": "T68 aggregates candidate-effect predictions to action-level allow/deny metrics. It exposes false-denial tradeoffs hidden by row-level FNR/FPR, especially for provider API traces."
+      }
+    },
+    {
+      "id": "auth_trace_view_ablation_t69",
+      "task": "T69 verifier-independence trace-view ablation",
+      "script": "analysis/auth_trace_view_ablation_t69.py",
+      "command": "python analysis/auth_trace_view_ablation_t69.py",
+      "outputs": [
+        {
+          "path": "analysis/auth_trace_view_ablation_t69.json",
+          "exists": true,
+          "size_bytes": 48717
+        },
+        {
+          "path": "analysis/auth_trace_view_ablation_t69.md",
+          "exists": true,
+          "size_bytes": 4391
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "aggregate": [
+          {
+            "datasets": 6,
+            "max_test_unauthorized_fnr": 0.1765,
+            "mean_authorized_action_false_denial_rate": 0.4544,
+            "mean_present_fnr_vs_full_labels": 0.0,
+            "mean_test_unauthorized_fnr": 0.0353,
+            "mean_unauthorized_action_allow_rate": 0.0417,
+            "view": "full_labels"
+          },
+          {
+            "datasets": 6,
+            "max_test_unauthorized_fnr": 0.3387,
+            "mean_authorized_action_false_denial_rate": 0.7428,
+            "mean_present_fnr_vs_full_labels": 0.1204,
+            "mean_test_unauthorized_fnr": 0.1162,
+            "mean_unauthorized_action_allow_rate": 0.0459,
+            "view": "label_hidden_raw"
+          },
+          {
+            "datasets": 6,
+            "max_test_unauthorized_fnr": 0.3387,
+            "mean_authorized_action_false_denial_rate": 0.4771,
+            "mean_present_fnr_vs_full_labels": 0.2138,
+            "mean_test_unauthorized_fnr": 0.1465,
+            "mean_unauthorized_action_allow_rate": 0.0588,
+            "view": "minimal_evidence"
+          }
+        ],
+        "views": [
+          "full_labels",
+          "label_hidden_raw",
+          "minimal_evidence"
+        ],
+        "datasets": [
+          "qwen3-8b_auth_trace_effect_schema_conditioned_v1",
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1",
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1",
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1",
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1",
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1"
+        ],
+        "caveat": "T69 changes the effect-present verifier view, not the authorization embedding model. label_hidden_raw hides explicit trace label fields; minimal_evidence tests stricter raw evidence."
+      }
+    },
+    {
+      "id": "auth_existing_defense_ablation_t70",
+      "task": "T70 existing-defense proxy ablation",
+      "script": "analysis/auth_existing_defense_ablation_t70.py",
+      "command": "python analysis/auth_existing_defense_ablation_t70.py",
+      "outputs": [
+        {
+          "path": "analysis/auth_existing_defense_ablation_t70.json",
+          "exists": true,
+          "size_bytes": 26137
+        },
+        {
+          "path": "analysis/auth_existing_defense_ablation_t70.md",
+          "exists": true,
+          "size_bytes": 6703
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "aggregate": [
+          {
+            "datasets": 6,
+            "max_test_unauthorized_fnr": 0.1765,
+            "mean_authorized_action_false_denial_rate": 0.4544,
+            "mean_test_absent_not_authorized_fpr": 0.0,
+            "mean_test_unauthorized_fnr": 0.0353,
+            "mean_unauthorized_action_allow_rate": 0.0417,
+            "method": "effectverif_full_labels_sgd_auth"
+          },
+          {
+            "datasets": 6,
+            "max_test_unauthorized_fnr": 0.3387,
+            "mean_authorized_action_false_denial_rate": 0.7428,
+            "mean_test_absent_not_authorized_fpr": 0.048,
+            "mean_test_unauthorized_fnr": 0.1162,
+            "mean_unauthorized_action_allow_rate": 0.0459,
+            "method": "effectverif_label_hidden_sgd_auth"
+          },
+          {
+            "datasets": 6,
+            "max_test_unauthorized_fnr": 1.0,
+            "mean_authorized_action_false_denial_rate": 0.1627,
+            "mean_test_absent_not_authorized_fpr": 0.0186,
+            "mean_test_unauthorized_fnr": 0.57,
+            "mean_unauthorized_action_allow_rate": 0.5014,
+            "method": "pre_action_rule_only_sgd_auth"
+          },
+          {
+            "datasets": 6,
+            "max_test_unauthorized_fnr": 0.4474,
+            "mean_authorized_action_false_denial_rate": 0.3762,
+            "mean_test_absent_not_authorized_fpr": 0.0733,
+            "mean_test_unauthorized_fnr": 0.2873,
+            "mean_unauthorized_action_allow_rate": 0.0486,
+            "method": "provenance_only_boundary"
+          },
+          {
+            "datasets": 6,
+            "max_test_unauthorized_fnr": 0.3387,
+            "mean_authorized_action_false_denial_rate": 0.0265,
+            "mean_test_absent_not_authorized_fpr": 0.0101,
+            "mean_test_unauthorized_fnr": 0.1113,
+            "mean_unauthorized_action_allow_rate": 0.0171,
+            "method": "raw_status_boundary"
+          }
+        ],
+        "methods": [
+          "effectverif_full_labels_sgd_auth",
+          "effectverif_label_hidden_sgd_auth",
+          "pre_action_rule_only_sgd_auth",
+          "provenance_only_boundary",
+          "raw_status_boundary"
+        ],
+        "datasets": [
+          "qwen3-8b_auth_trace_effect_schema_conditioned_v1",
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1",
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1",
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1",
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1",
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1"
+        ],
+        "caveat": "T70 uses proxy baselines for boundary analysis, not faithful reimplementations of external defense systems. raw_status_boundary is a strong handcrafted trace-policy baseline in these controlled traces."
+      }
+    },
+    {
+      "id": "auth_action_level_calibration_t73",
+      "task": "T73 action-level threshold calibration diagnostic",
+      "script": "analysis/auth_action_level_calibration_t73.py",
+      "command": "python analysis/auth_action_level_calibration_t73.py",
+      "outputs": [
+        {
+          "path": "analysis/auth_action_level_calibration_t73.json",
+          "exists": true,
+          "size_bytes": 76468
+        },
+        {
+          "path": "analysis/auth_action_level_calibration_t73.md",
+          "exists": true,
+          "size_bytes": 3272
+        }
+      ],
+      "all_outputs_present": true,
+      "summary": {
+        "target_action_fdr": 0.1,
+        "datasets": {
+          "qwen3-8b_auth_trace_effect_schema_conditioned_v1": {
+            "execution_trace": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0741,
+                "false_allows": 2,
+                "false_denials": 2,
+                "n_actions": 55,
+                "n_authorized_actions": 27,
+                "n_unauthorized_actions": 28,
+                "predicted_denials": 28,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 0.01,
+                "unauthorized_action_allow_rate": 0.0714
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.1591,
+                "false_allows": 0,
+                "false_denials": 7,
+                "n_actions": 83,
+                "n_authorized_actions": 44,
+                "n_unauthorized_actions": 39,
+                "predicted_denials": 46,
+                "threshold": 0.01,
+                "unauthorized_action_allow_rate": 0.0
+              }
+            },
+            "static_trace_semantic": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 28,
+                "false_denials": 0,
+                "n_actions": 55,
+                "n_authorized_actions": 27,
+                "n_unauthorized_actions": 28,
+                "predicted_denials": 0,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 39,
+                "false_denials": 0,
+                "n_actions": 83,
+                "n_authorized_actions": 44,
+                "n_unauthorized_actions": 39,
+                "predicted_denials": 0,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              }
+            }
+          },
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t59_v1": {
+            "execution_trace": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 9,
+                "false_denials": 0,
+                "n_actions": 19,
+                "n_authorized_actions": 10,
+                "n_unauthorized_actions": 9,
+                "predicted_denials": 0,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 15,
+                "false_denials": 0,
+                "n_actions": 29,
+                "n_authorized_actions": 14,
+                "n_unauthorized_actions": 15,
+                "predicted_denials": 0,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              }
+            },
+            "static_trace_semantic": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 9,
+                "false_denials": 0,
+                "n_actions": 19,
+                "n_authorized_actions": 10,
+                "n_unauthorized_actions": 9,
+                "predicted_denials": 0,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 15,
+                "false_denials": 0,
+                "n_actions": 29,
+                "n_authorized_actions": 14,
+                "n_unauthorized_actions": 15,
+                "predicted_denials": 0,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              }
+            }
+          },
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t61_deepseek_v1": {
+            "execution_trace": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 33,
+                "false_denials": 0,
+                "n_actions": 48,
+                "n_authorized_actions": 15,
+                "n_unauthorized_actions": 33,
+                "predicted_denials": 0,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 57,
+                "false_denials": 0,
+                "n_actions": 72,
+                "n_authorized_actions": 15,
+                "n_unauthorized_actions": 57,
+                "predicted_denials": 0,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              }
+            },
+            "static_trace_semantic": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 33,
+                "false_denials": 0,
+                "n_actions": 48,
+                "n_authorized_actions": 15,
+                "n_unauthorized_actions": 33,
+                "predicted_denials": 0,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 0.01,
+                "unauthorized_action_allow_rate": 1.0
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 57,
+                "false_denials": 0,
+                "n_actions": 72,
+                "n_authorized_actions": 15,
+                "n_unauthorized_actions": 57,
+                "predicted_denials": 0,
+                "threshold": 0.01,
+                "unauthorized_action_allow_rate": 1.0
+              }
+            }
+          },
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t63_broader_v1": {
+            "execution_trace": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 70,
+                "false_denials": 0,
+                "n_actions": 120,
+                "n_authorized_actions": 50,
+                "n_unauthorized_actions": 70,
+                "predicted_denials": 0,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 80,
+                "false_denials": 0,
+                "n_actions": 180,
+                "n_authorized_actions": 100,
+                "n_unauthorized_actions": 80,
+                "predicted_denials": 0,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              }
+            },
+            "static_trace_semantic": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 70,
+                "false_denials": 0,
+                "n_actions": 120,
+                "n_authorized_actions": 50,
+                "n_unauthorized_actions": 70,
+                "predicted_denials": 0,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 80,
+                "false_denials": 0,
+                "n_actions": 180,
+                "n_authorized_actions": 100,
+                "n_unauthorized_actions": 80,
+                "predicted_denials": 0,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              }
+            }
+          },
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t65_browser_v1": {
+            "execution_trace": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 19,
+                "false_denials": 0,
+                "n_actions": 48,
+                "n_authorized_actions": 29,
+                "n_unauthorized_actions": 19,
+                "predicted_denials": 0,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 41,
+                "false_denials": 0,
+                "n_actions": 72,
+                "n_authorized_actions": 31,
+                "n_unauthorized_actions": 41,
+                "predicted_denials": 0,
+                "threshold": 1.0001,
+                "unauthorized_action_allow_rate": 1.0
+              }
+            },
+            "static_trace_semantic": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 19,
+                "false_denials": 0,
+                "n_actions": 48,
+                "n_authorized_actions": 29,
+                "n_unauthorized_actions": 19,
+                "predicted_denials": 0,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 0.01,
+                "unauthorized_action_allow_rate": 1.0
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 41,
+                "false_denials": 0,
+                "n_actions": 72,
+                "n_authorized_actions": 31,
+                "n_unauthorized_actions": 41,
+                "predicted_denials": 0,
+                "threshold": 0.01,
+                "unauthorized_action_allow_rate": 1.0
+              }
+            }
+          },
+          "qwen3-8b_auth_trace_effect_schema_conditioned_t64_live_protocol_v1": {
+            "execution_trace": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 0,
+                "false_denials": 0,
+                "n_actions": 120,
+                "n_authorized_actions": 12,
+                "n_unauthorized_actions": 108,
+                "predicted_denials": 108,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 0.01,
+                "unauthorized_action_allow_rate": 0.0
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 0,
+                "false_denials": 0,
+                "n_actions": 180,
+                "n_authorized_actions": 18,
+                "n_unauthorized_actions": 162,
+                "predicted_denials": 162,
+                "threshold": 0.01,
+                "unauthorized_action_allow_rate": 0.0
+              }
+            },
+            "static_trace_semantic": {
+              "validation": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 38,
+                "false_denials": 0,
+                "n_actions": 120,
+                "n_authorized_actions": 12,
+                "n_unauthorized_actions": 108,
+                "predicted_denials": 70,
+                "selected_under_target": true,
+                "target_action_fdr": 0.1,
+                "threshold": 0.01,
+                "unauthorized_action_allow_rate": 0.3519
+              },
+              "test": {
+                "authorized_action_false_denial_rate": 0.0,
+                "false_allows": 52,
+                "false_denials": 0,
+                "n_actions": 180,
+                "n_authorized_actions": 18,
+                "n_unauthorized_actions": 162,
+                "predicted_denials": 110,
+                "threshold": 0.01,
+                "unauthorized_action_allow_rate": 0.321
+              }
+            }
+          }
+        },
+        "caveat": "T73 calibrates action-level thresholds on validation trace groups. Several datasets satisfy false-denial constraints only via degenerate all-allow thresholds, so this is a diagnostic rather than a deployable calibration policy."
+      }
+    }
+  ],
+  "all_outputs_present": true,
+  "caveats": [
+    "This appendix maps existing artifacts to commands; it does not rerun GPU-heavy experiments.",
+    "Observed traces are controlled local sandbox executions, not live deployed-agent logs.",
+    "pIIA results are probe-mediated activation diagnostics, not SCM-style IIA proofs.",
+    "T51 compares mitigation against T47 baselines under identical held-out cells; strict train-only projection remains coverage-limited.",
+    "T54 shows v2 improves strict-train-only coverage but does not make contrastive projection beat the best non-degenerate baseline.",
+    "T55 effect-schema conditioned monitors are pair-free but currently underperform the best T54 non-degenerate baselines.",
+    "T57 replaces the oracle present label with deterministic static verifier rules; it is verifier-assisted framework evidence, not live deployment validation.",
+    "T58 replaces static present inference with controlled execution-trace verifier outputs, but the traces are still controlled observed/sandbox/static artifacts rather than live deployed-agent logs.",
+    "T59 grounds additional traces in real-agent-tools Hermes tool registrations and local file/terminal semantics, but direct handler imports require missing upstream runtime modules and external API tools were not invoked.",
+    "T60 DeepSeek traces are direct provider API calls, but they are a tiny pilot over one provider tool surface and do not cover browser/search/messaging tools.",
+    "T61 expands the DeepSeek provider API pilot to 120 calls and useful provider-effect counts, but it still covers only one provider API surface.",
+    "T62 selects thresholds on validation trace groups and evaluates them on held-out trace groups. It fixes the ex-post-threshold caveat for the tested trace datasets, but it is still not a deployment guarantee.",
+    "T63 broadens controlled local-adapter traces to web/search/browser/messaging tool families, but it still does not invoke live external services or deployed-agent logs.",
+    "T64 has been rerun with full-precision Qwen3-8B embeddings. It covers key-free live outbound HTTPS plus local webhook protocol boundaries, not provider-backed search/SaaS messaging/deployed runtime.",
+    "T65 uses actual headless Chrome over file-backed pages. It closes part of the browser-runtime gap, but not HTTP browser networking, provider-backed search/SaaS messaging, or deployed-agent runtime validation.",
+    "T68 aggregates candidate-effect rows to action-level allow/deny metrics. It shows that row-level unauthorized-effect FNR/FPR can hide policy tradeoffs, including high authorized-action false-denial on the T61 provider API and T65 browser-runtime splits.",
+    "T69 indicates label-hidden raw trace evidence degrades relative to the full-label verifier after adding T65; the framework should be described as requiring structured execution evidence.",
+    "T70 proxy baselines distinguish the framework from pre-action/provenance-only monitors, but the strong raw_status_boundary result means the paper should not claim that learned AuthMonitor dominates all handcrafted trace-policy defenses.",
+    "T73 action-level calibration shows that a simple false-denial-constrained threshold can collapse to all-allow on several trace families; this is not a deployable calibration policy."
+  ]
+}

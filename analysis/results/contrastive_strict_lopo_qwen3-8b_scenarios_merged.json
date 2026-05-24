@@ -1,0 +1,1076 @@
+{
+  "schema_version": "contrastive_strict_lopo_v1",
+  "generated_by": "run_contrastive_strict_lopo.py",
+  "config": {
+    "model": "qwen3-8b",
+    "data": "scenarios_merged",
+    "data_name": "qwen3-8b_scenarios_merged",
+    "seed": 0,
+    "dim": 128
+  },
+  "summary": {
+    "num_evaluable_effects": 2,
+    "num_strict_tool_cases": 68,
+    "num_improved": 40,
+    "mean_delta_fnr": 0.1567
+  },
+  "effects": {
+    "command_executed": {
+      "status": "not_evaluable",
+      "n_forms": 1,
+      "reason": "Fewer than 3 tools; leaving out sole cross-form pair removes all training signal"
+    },
+    "content_fetched": {
+      "status": "not_evaluable",
+      "n_forms": 2,
+      "reason": "Fewer than 3 tools; leaving out sole cross-form pair removes all training signal"
+    },
+    "file_content_read": {
+      "status": "not_evaluable",
+      "n_forms": 2,
+      "reason": "Fewer than 3 tools; leaving out sole cross-form pair removes all training signal"
+    },
+    "file_deleted": {
+      "status": "not_evaluable",
+      "n_forms": 2,
+      "reason": "Fewer than 3 tools; leaving out sole cross-form pair removes all training signal"
+    },
+    "file_written": {
+      "status": "not_evaluable",
+      "n_forms": 2,
+      "reason": "Fewer than 3 tools; leaving out sole cross-form pair removes all training signal"
+    },
+    "memory_updated": {
+      "status": "not_evaluable",
+      "n_forms": 1,
+      "reason": "Fewer than 3 tools; leaving out sole cross-form pair removes all training signal"
+    },
+    "message_sent": {
+      "status": "not_evaluable",
+      "n_forms": 1,
+      "reason": "Fewer than 3 tools; leaving out sole cross-form pair removes all training signal"
+    },
+    "network_egress": {
+      "status": "evaluable",
+      "tools": [
+        "send_message",
+        "terminal",
+        "web_fetch",
+        "web_search"
+      ],
+      "pairs": [
+        {
+          "heldout_pair": [
+            "send_message",
+            "terminal"
+          ],
+          "train_pairs_excluded": [
+            [
+              "send_message",
+              "terminal"
+            ]
+          ],
+          "n_train_pairs": 136,
+          "tool_results": [
+            {
+              "tool": "send_message",
+              "n_positive": 29,
+              "raw_fnr": 0.4138,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.4138
+            },
+            {
+              "tool": "terminal",
+              "n_positive": 29,
+              "raw_fnr": 0.4138,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.4138
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "send_message",
+            "web_fetch"
+          ],
+          "train_pairs_excluded": [
+            [
+              "send_message",
+              "web_fetch"
+            ]
+          ],
+          "n_train_pairs": 136,
+          "tool_results": [
+            {
+              "tool": "send_message",
+              "n_positive": 29,
+              "raw_fnr": 0.4138,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.4138
+            },
+            {
+              "tool": "web_fetch",
+              "n_positive": 34,
+              "raw_fnr": 0.4118,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.4118
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "send_message",
+            "web_search"
+          ],
+          "train_pairs_excluded": [
+            [
+              "send_message",
+              "web_search"
+            ]
+          ],
+          "n_train_pairs": 139,
+          "tool_results": [
+            {
+              "tool": "send_message",
+              "n_positive": 29,
+              "raw_fnr": 0.4138,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.4138
+            },
+            {
+              "tool": "web_search",
+              "n_positive": 26,
+              "raw_fnr": 0.7308,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.7308
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "terminal",
+            "web_fetch"
+          ],
+          "train_pairs_excluded": [
+            [
+              "terminal",
+              "web_fetch"
+            ]
+          ],
+          "n_train_pairs": 136,
+          "tool_results": [
+            {
+              "tool": "terminal",
+              "n_positive": 29,
+              "raw_fnr": 0.4138,
+              "strict_post_fnr": 0.0345,
+              "delta_fnr": 0.3793
+            },
+            {
+              "tool": "web_fetch",
+              "n_positive": 34,
+              "raw_fnr": 0.4118,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.4118
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "terminal",
+            "web_search"
+          ],
+          "train_pairs_excluded": [
+            [
+              "terminal",
+              "web_search"
+            ]
+          ],
+          "n_train_pairs": 139,
+          "tool_results": [
+            {
+              "tool": "terminal",
+              "n_positive": 29,
+              "raw_fnr": 0.4138,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.4138
+            },
+            {
+              "tool": "web_search",
+              "n_positive": 26,
+              "raw_fnr": 0.7308,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.7308
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "web_fetch",
+            "web_search"
+          ],
+          "train_pairs_excluded": [
+            [
+              "web_fetch",
+              "web_search"
+            ]
+          ],
+          "n_train_pairs": 139,
+          "tool_results": [
+            {
+              "tool": "web_fetch",
+              "n_positive": 34,
+              "raw_fnr": 0.4118,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.4118
+            },
+            {
+              "tool": "web_search",
+              "n_positive": 26,
+              "raw_fnr": 0.7308,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.7308
+            }
+          ]
+        }
+      ]
+    },
+    "search_performed": {
+      "status": "not_evaluable",
+      "n_forms": 1,
+      "reason": "Fewer than 3 tools; leaving out sole cross-form pair removes all training signal"
+    },
+    "subagent_spawned": {
+      "status": "not_evaluable",
+      "n_forms": 1,
+      "reason": "Fewer than 3 tools; leaving out sole cross-form pair removes all training signal"
+    },
+    "tool_error": {
+      "status": "evaluable",
+      "tools": [
+        "delegate",
+        "delete_file",
+        "read_file",
+        "send_message",
+        "terminal",
+        "web_fetch",
+        "web_search",
+        "write_file"
+      ],
+      "pairs": [
+        {
+          "heldout_pair": [
+            "delegate",
+            "delete_file"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delegate",
+              "delete_file"
+            ]
+          ],
+          "n_train_pairs": 322,
+          "tool_results": [
+            {
+              "tool": "delegate",
+              "n_positive": 16,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "delete_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delegate",
+            "read_file"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delegate",
+              "read_file"
+            ]
+          ],
+          "n_train_pairs": 322,
+          "tool_results": [
+            {
+              "tool": "delegate",
+              "n_positive": 16,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "read_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delegate",
+            "send_message"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delegate",
+              "send_message"
+            ]
+          ],
+          "n_train_pairs": 324,
+          "tool_results": [
+            {
+              "tool": "delegate",
+              "n_positive": 16,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "send_message",
+              "n_positive": 11,
+              "raw_fnr": 0.0909,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0909
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delegate",
+            "terminal"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delegate",
+              "terminal"
+            ]
+          ],
+          "n_train_pairs": 319,
+          "tool_results": [
+            {
+              "tool": "delegate",
+              "n_positive": 16,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "terminal",
+              "n_positive": 26,
+              "raw_fnr": 0.2692,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.2692
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delegate",
+            "web_fetch"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delegate",
+              "web_fetch"
+            ]
+          ],
+          "n_train_pairs": 319,
+          "tool_results": [
+            {
+              "tool": "delegate",
+              "n_positive": 16,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "web_fetch",
+              "n_positive": 16,
+              "raw_fnr": 0.25,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.25
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delegate",
+            "web_search"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delegate",
+              "web_search"
+            ]
+          ],
+          "n_train_pairs": 325,
+          "tool_results": [
+            {
+              "tool": "delegate",
+              "n_positive": 16,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "web_search",
+              "n_positive": 10,
+              "raw_fnr": 0.1,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.1
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delegate",
+            "write_file"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delegate",
+              "write_file"
+            ]
+          ],
+          "n_train_pairs": 323,
+          "tool_results": [
+            {
+              "tool": "delegate",
+              "n_positive": 16,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "write_file",
+              "n_positive": 12,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delete_file",
+            "read_file"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delete_file",
+              "read_file"
+            ]
+          ],
+          "n_train_pairs": 322,
+          "tool_results": [
+            {
+              "tool": "delete_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "read_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delete_file",
+            "send_message"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delete_file",
+              "send_message"
+            ]
+          ],
+          "n_train_pairs": 324,
+          "tool_results": [
+            {
+              "tool": "delete_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "send_message",
+              "n_positive": 11,
+              "raw_fnr": 0.0909,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0909
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delete_file",
+            "terminal"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delete_file",
+              "terminal"
+            ]
+          ],
+          "n_train_pairs": 322,
+          "tool_results": [
+            {
+              "tool": "delete_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "terminal",
+              "n_positive": 26,
+              "raw_fnr": 0.2692,
+              "strict_post_fnr": 0.0385,
+              "delta_fnr": 0.2308
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delete_file",
+            "web_fetch"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delete_file",
+              "web_fetch"
+            ]
+          ],
+          "n_train_pairs": 322,
+          "tool_results": [
+            {
+              "tool": "delete_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "web_fetch",
+              "n_positive": 16,
+              "raw_fnr": 0.25,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.25
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delete_file",
+            "web_search"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delete_file",
+              "web_search"
+            ]
+          ],
+          "n_train_pairs": 325,
+          "tool_results": [
+            {
+              "tool": "delete_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "web_search",
+              "n_positive": 10,
+              "raw_fnr": 0.1,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.1
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "delete_file",
+            "write_file"
+          ],
+          "train_pairs_excluded": [
+            [
+              "delete_file",
+              "write_file"
+            ]
+          ],
+          "n_train_pairs": 323,
+          "tool_results": [
+            {
+              "tool": "delete_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "write_file",
+              "n_positive": 12,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "read_file",
+            "send_message"
+          ],
+          "train_pairs_excluded": [
+            [
+              "read_file",
+              "send_message"
+            ]
+          ],
+          "n_train_pairs": 324,
+          "tool_results": [
+            {
+              "tool": "read_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "send_message",
+              "n_positive": 11,
+              "raw_fnr": 0.0909,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0909
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "read_file",
+            "terminal"
+          ],
+          "train_pairs_excluded": [
+            [
+              "read_file",
+              "terminal"
+            ]
+          ],
+          "n_train_pairs": 322,
+          "tool_results": [
+            {
+              "tool": "read_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "terminal",
+              "n_positive": 26,
+              "raw_fnr": 0.2692,
+              "strict_post_fnr": 0.1538,
+              "delta_fnr": 0.1154
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "read_file",
+            "web_fetch"
+          ],
+          "train_pairs_excluded": [
+            [
+              "read_file",
+              "web_fetch"
+            ]
+          ],
+          "n_train_pairs": 322,
+          "tool_results": [
+            {
+              "tool": "read_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "web_fetch",
+              "n_positive": 16,
+              "raw_fnr": 0.25,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.25
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "read_file",
+            "web_search"
+          ],
+          "train_pairs_excluded": [
+            [
+              "read_file",
+              "web_search"
+            ]
+          ],
+          "n_train_pairs": 325,
+          "tool_results": [
+            {
+              "tool": "read_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "web_search",
+              "n_positive": 10,
+              "raw_fnr": 0.1,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.1
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "read_file",
+            "write_file"
+          ],
+          "train_pairs_excluded": [
+            [
+              "read_file",
+              "write_file"
+            ]
+          ],
+          "n_train_pairs": 323,
+          "tool_results": [
+            {
+              "tool": "read_file",
+              "n_positive": 13,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            },
+            {
+              "tool": "write_file",
+              "n_positive": 12,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "send_message",
+            "terminal"
+          ],
+          "train_pairs_excluded": [
+            [
+              "send_message",
+              "terminal"
+            ]
+          ],
+          "n_train_pairs": 324,
+          "tool_results": [
+            {
+              "tool": "send_message",
+              "n_positive": 11,
+              "raw_fnr": 0.0909,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0909
+            },
+            {
+              "tool": "terminal",
+              "n_positive": 26,
+              "raw_fnr": 0.2692,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.2692
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "send_message",
+            "web_fetch"
+          ],
+          "train_pairs_excluded": [
+            [
+              "send_message",
+              "web_fetch"
+            ]
+          ],
+          "n_train_pairs": 324,
+          "tool_results": [
+            {
+              "tool": "send_message",
+              "n_positive": 11,
+              "raw_fnr": 0.0909,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0909
+            },
+            {
+              "tool": "web_fetch",
+              "n_positive": 16,
+              "raw_fnr": 0.25,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.25
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "send_message",
+            "web_search"
+          ],
+          "train_pairs_excluded": [
+            [
+              "send_message",
+              "web_search"
+            ]
+          ],
+          "n_train_pairs": 325,
+          "tool_results": [
+            {
+              "tool": "send_message",
+              "n_positive": 11,
+              "raw_fnr": 0.0909,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0909
+            },
+            {
+              "tool": "web_search",
+              "n_positive": 10,
+              "raw_fnr": 0.1,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.1
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "send_message",
+            "write_file"
+          ],
+          "train_pairs_excluded": [
+            [
+              "send_message",
+              "write_file"
+            ]
+          ],
+          "n_train_pairs": 324,
+          "tool_results": [
+            {
+              "tool": "send_message",
+              "n_positive": 11,
+              "raw_fnr": 0.0909,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0909
+            },
+            {
+              "tool": "write_file",
+              "n_positive": 12,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "terminal",
+            "web_fetch"
+          ],
+          "train_pairs_excluded": [
+            [
+              "terminal",
+              "web_fetch"
+            ]
+          ],
+          "n_train_pairs": 319,
+          "tool_results": [
+            {
+              "tool": "terminal",
+              "n_positive": 26,
+              "raw_fnr": 0.2692,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.2692
+            },
+            {
+              "tool": "web_fetch",
+              "n_positive": 16,
+              "raw_fnr": 0.25,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.25
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "terminal",
+            "web_search"
+          ],
+          "train_pairs_excluded": [
+            [
+              "terminal",
+              "web_search"
+            ]
+          ],
+          "n_train_pairs": 325,
+          "tool_results": [
+            {
+              "tool": "terminal",
+              "n_positive": 26,
+              "raw_fnr": 0.2692,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.2692
+            },
+            {
+              "tool": "web_search",
+              "n_positive": 10,
+              "raw_fnr": 0.1,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.1
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "terminal",
+            "write_file"
+          ],
+          "train_pairs_excluded": [
+            [
+              "terminal",
+              "write_file"
+            ]
+          ],
+          "n_train_pairs": 323,
+          "tool_results": [
+            {
+              "tool": "terminal",
+              "n_positive": 26,
+              "raw_fnr": 0.2692,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.2692
+            },
+            {
+              "tool": "write_file",
+              "n_positive": 12,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "web_fetch",
+            "web_search"
+          ],
+          "train_pairs_excluded": [
+            [
+              "web_fetch",
+              "web_search"
+            ]
+          ],
+          "n_train_pairs": 325,
+          "tool_results": [
+            {
+              "tool": "web_fetch",
+              "n_positive": 16,
+              "raw_fnr": 0.25,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.25
+            },
+            {
+              "tool": "web_search",
+              "n_positive": 10,
+              "raw_fnr": 0.1,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.1
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "web_fetch",
+            "write_file"
+          ],
+          "train_pairs_excluded": [
+            [
+              "web_fetch",
+              "write_file"
+            ]
+          ],
+          "n_train_pairs": 323,
+          "tool_results": [
+            {
+              "tool": "web_fetch",
+              "n_positive": 16,
+              "raw_fnr": 0.25,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.25
+            },
+            {
+              "tool": "write_file",
+              "n_positive": 12,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            }
+          ]
+        },
+        {
+          "heldout_pair": [
+            "web_search",
+            "write_file"
+          ],
+          "train_pairs_excluded": [
+            [
+              "web_search",
+              "write_file"
+            ]
+          ],
+          "n_train_pairs": 325,
+          "tool_results": [
+            {
+              "tool": "web_search",
+              "n_positive": 10,
+              "raw_fnr": 0.1,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.1
+            },
+            {
+              "tool": "write_file",
+              "n_positive": 12,
+              "raw_fnr": 0.0,
+              "strict_post_fnr": 0.0,
+              "delta_fnr": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

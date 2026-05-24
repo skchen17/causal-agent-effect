@@ -1,0 +1,60 @@
+{
+  "adapter_operation_counts": {
+    "local_browser_console_error": 30,
+    "local_browser_form_submit": 30,
+    "local_browser_navigate": 30,
+    "local_browser_snapshot": 30,
+    "local_search_endpoint": 30,
+    "local_search_error_endpoint": 30,
+    "local_send_message_error": 30,
+    "local_send_message_sink": 30,
+    "local_web_extract": 30,
+    "local_web_extract_error": 30
+  },
+  "caveats": [
+    "T63 broadens tool-family coverage to web/search/browser/messaging names from real-agent-tools.",
+    "The traces are controlled local adapters over local HTTP and fake messaging sinks, not direct external service calls.",
+    "No browser provider, search provider, messaging credential, or external API key is required or invoked.",
+    "Use this as broader local-adapter external-validity evidence, not live deployed-agent validation."
+  ],
+  "n_traces": 300,
+  "schema_version": "broader_agent_tool_traces_t63_v1",
+  "source_locations": {
+    "browser_click": "hermes-agent-tools/tools/browser_tool.py:3586",
+    "browser_console": "hermes-agent-tools/tools/browser_tool.py:3643",
+    "browser_navigate": "hermes-agent-tools/tools/browser_tool.py:3567",
+    "browser_snapshot": "hermes-agent-tools/tools/browser_tool.py:3577",
+    "send_message": "hermes-agent-tools/tools/send_message_tool.py:1894",
+    "web_extract": "hermes-agent-tools/tools/web_tools.py:2299",
+    "web_search": "hermes-agent-tools/tools/web_tools.py:2289"
+  },
+  "tool_counts": {
+    "browser_click": 30,
+    "browser_console": 30,
+    "browser_navigate": 30,
+    "browser_snapshot": 30,
+    "send_message": 60,
+    "web_extract": 60,
+    "web_search": 60
+  },
+  "toolset_counts": {
+    "browser": 120,
+    "messaging": 60,
+    "web": 120
+  },
+  "trace_type_counts": {
+    "real_agent_tools_broader_local_adapter": 300
+  },
+  "unauthorized_effect_counts": {
+    "content_fetched": 60,
+    "message_sent": 30,
+    "network_egress": 60,
+    "tool_error": 60
+  },
+  "verified_effect_counts": {
+    "content_fetched": 120,
+    "message_sent": 60,
+    "network_egress": 210,
+    "tool_error": 120
+  }
+}
