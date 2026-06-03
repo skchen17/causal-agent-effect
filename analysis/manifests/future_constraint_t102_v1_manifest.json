@@ -1,0 +1,64 @@
+{
+  "allowed_effect_counts": {
+    "dom_or_storage_mutation": 25,
+    "external_api_invoked": 25,
+    "file_content_read": 90,
+    "file_deleted": 30,
+    "file_written": 25,
+    "local_computation": 120,
+    "network_egress": 55
+  },
+  "compiler_output_count": 600,
+  "confirmed_design": {
+    "auth_source": "two_stage",
+    "compiler": "rule_baseline_plus_llm_structured_compiler_with_deterministic_validator",
+    "intents_per_task": 3,
+    "policy_engine": "json_schema_plus_python_validator",
+    "t102_v1_output": "local_rule_baseline_only_llm_compiler_after_schema_stabilizes",
+    "tasks": 200
+  },
+  "dataset": "future_constraint_t102_v1",
+  "forbidden_effect_counts": {
+    "browser_submit": 85,
+    "content_fetched": 30,
+    "external_api_invoked": 25,
+    "external_data_upload": 170,
+    "file_content_read": 60,
+    "file_deleted": 120,
+    "file_written": 95,
+    "message_sent": 170,
+    "network_egress": 145
+  },
+  "intent_count": 600,
+  "intent_type_counts": {
+    "adversarial_or_alias": 200,
+    "authorized_minimal": 200,
+    "plausible_overreach": 200
+  },
+  "task_count": 200,
+  "task_family_counts": {
+    "api_provider_dry_run": 25,
+    "browser_form": 25,
+    "draft_messaging": 25,
+    "file_cleanup": 30,
+    "http_status_check": 30,
+    "local_file_analysis": 35,
+    "tool_alias": 30
+  },
+  "unauthorized_effect_counts": {
+    "browser_submit": 50,
+    "content_fetched": 95,
+    "dom_or_storage_mutation": 30,
+    "external_api_invoked": 85,
+    "external_data_upload": 225,
+    "file_content_read": 30,
+    "file_deleted": 60,
+    "file_written": 90,
+    "message_sent": 50,
+    "network_egress": 200
+  },
+  "validator_decision_counts": {
+    "ALLOW_CONSTRAINT": 200,
+    "REJECT_CONSTRAINT": 400
+  }
+}

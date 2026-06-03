@@ -1,0 +1,295 @@
+{
+  "artifact_sources": {
+    "T102": "analysis/results/future_constraint_compiler_eval_t102_v1.json",
+    "T103": "analysis/results/future_shadow_replay_t103_v1.json",
+    "T104": "analysis/results/precommit_blocking_t104_v1.json",
+    "T105": "analysis/results/shadow_real_divergence_t105_v1.json",
+    "T106": "analysis/results/efficiency_t106_v1.json"
+  },
+  "claim_register": [
+    {
+      "boundary": "Does not imply provider-backed or deployed-runtime safety.",
+      "claim": "The future-constrained pipeline is implementable end-to-end in a local staged prototype.",
+      "evidence": [
+        "T102",
+        "T103",
+        "T104",
+        "T105",
+        "T106"
+      ],
+      "status": "supported_for_local_prototype"
+    },
+    {
+      "boundary": "Not yet evidence for LLM compiler reliability or natural task authorization extraction.",
+      "claim": "Compiled future constraints can avoid over-permission on the current T102 dataset.",
+      "evidence": [
+        "T102"
+      ],
+      "status": "supported_only_for_rule_gold_envelope"
+    },
+    {
+      "boundary": "Requires mediation, staging, and observable effects; no live external side effects tested.",
+      "claim": "Trace-locked replay and prefix guards can block constructed unauthorized deviations before staged commit.",
+      "evidence": [
+        "T103",
+        "T104",
+        "T105"
+      ],
+      "status": "supported_for_constructed_local_cases"
+    },
+    {
+      "boundary": "Requires T109/T111-style real boundary and external-validity experiments.",
+      "claim": "The method is deploy-ready for real providers, SaaS messaging, or HTTP browser automation.",
+      "evidence": [],
+      "status": "not_supported"
+    },
+    {
+      "boundary": "Requires T110 ablations and faithful baselines.",
+      "claim": "The current results prove superiority over existing agent-security defenses.",
+      "evidence": [],
+      "status": "not_supported"
+    }
+  ],
+  "dataset": "future_constrained_audit_t107_v1",
+  "rate_metrics": [
+    {
+      "count": 600,
+      "direction": "higher_better",
+      "interpretation": "Future-constraint records satisfy required schema.",
+      "metric": "schema_validity",
+      "n": 600,
+      "rate": 1.0,
+      "source": "analysis/results/future_constraint_compiler_eval_t102_v1.json",
+      "wilson95_high": 1.0,
+      "wilson95_low": 0.9936380666717896
+    },
+    {
+      "count": 600,
+      "direction": "higher_better",
+      "interpretation": "Validator finds no over-permissive constraint under gold/rule envelope.",
+      "metric": "constraint_soundness",
+      "n": 600,
+      "rate": 1.0,
+      "source": "analysis/results/future_constraint_compiler_eval_t102_v1.json",
+      "wilson95_high": 1.0,
+      "wilson95_low": 0.9936380666717896
+    },
+    {
+      "count": 600,
+      "direction": "higher_better",
+      "interpretation": "Rule compiler matches gold allow/reject labels on T102 local synthetic pairs.",
+      "metric": "decision_accuracy",
+      "n": 600,
+      "rate": 1.0,
+      "source": "analysis/results/future_constraint_compiler_eval_t102_v1.json",
+      "wilson95_high": 1.0,
+      "wilson95_low": 0.9936380666717896
+    },
+    {
+      "count": 0,
+      "direction": "lower_better",
+      "interpretation": "Unauthorized intents incorrectly allowed by compiler.",
+      "metric": "over_permission_error",
+      "n": 600,
+      "rate": 0.0,
+      "source": "analysis/results/future_constraint_compiler_eval_t102_v1.json",
+      "wilson95_high": 0.006361933328210577,
+      "wilson95_low": 0.0
+    },
+    {
+      "count": 0,
+      "direction": "lower_better",
+      "interpretation": "Authorized intents incorrectly rejected by compiler.",
+      "metric": "over_restriction_error",
+      "n": 600,
+      "rate": 0.0,
+      "source": "analysis/results/future_constraint_compiler_eval_t102_v1.json",
+      "wilson95_high": 0.006361933328210577,
+      "wilson95_low": 0.0
+    },
+    {
+      "count": 400,
+      "direction": "higher_better",
+      "interpretation": "Unauthorized intents blocked by staged shadow/replay pipeline.",
+      "metric": "unauthorized_block_rate",
+      "n": 400,
+      "rate": 1.0,
+      "source": "analysis/results/future_shadow_replay_t103_v1.json",
+      "wilson95_high": 1.0,
+      "wilson95_low": 0.9904873594003194
+    },
+    {
+      "count": 0,
+      "direction": "lower_better",
+      "interpretation": "Unauthorized intents that still committed unauthorized effects.",
+      "metric": "unauthorized_committed_action_rate",
+      "n": 400,
+      "rate": 0.0,
+      "source": "analysis/results/future_shadow_replay_t103_v1.json",
+      "wilson95_high": 0.009512640599680667,
+      "wilson95_low": 0.0
+    },
+    {
+      "count": 0,
+      "direction": "lower_better",
+      "interpretation": "Authorized intents blocked by the staged prototype.",
+      "metric": "authorized_false_denial_rate",
+      "n": 200,
+      "rate": 0.0,
+      "source": "analysis/results/future_shadow_replay_t103_v1.json",
+      "wilson95_high": 0.018846005918320894,
+      "wilson95_low": 0.0
+    },
+    {
+      "count": 200,
+      "direction": "higher_better",
+      "interpretation": "Injected authorized-path deviations blocked by prefix guard.",
+      "metric": "deviation_block_rate",
+      "n": 200,
+      "rate": 1.0,
+      "source": "analysis/results/future_shadow_replay_t103_v1.json",
+      "wilson95_high": 1.0,
+      "wilson95_low": 0.9811539940816791
+    },
+    {
+      "count": 800,
+      "direction": "higher_better",
+      "interpretation": "Unauthorized T104 cases blocked before staged commit.",
+      "metric": "pre_effect_block_rate_unauthorized",
+      "n": 800,
+      "rate": 1.0,
+      "source": "analysis/results/precommit_blocking_t104_v1.json",
+      "wilson95_high": 1.0,
+      "wilson95_low": 0.9952209490028883
+    },
+    {
+      "count": 0,
+      "direction": "lower_better",
+      "interpretation": "Unauthorized T104 cases that committed unauthorized effects.",
+      "metric": "unauthorized_committed_action_rate",
+      "n": 800,
+      "rate": 0.0,
+      "source": "analysis/results/precommit_blocking_t104_v1.json",
+      "wilson95_high": 0.004779050997111869,
+      "wilson95_low": 0.0
+    },
+    {
+      "count": 0,
+      "direction": "lower_better",
+      "interpretation": "Authorized T104 cases blocked by commit boundary.",
+      "metric": "authorized_false_denial_rate",
+      "n": 200,
+      "rate": 0.0,
+      "source": "analysis/results/precommit_blocking_t104_v1.json",
+      "wilson95_high": 0.018846005918320894,
+      "wilson95_low": 0.0
+    },
+    {
+      "count": 200,
+      "direction": "higher_better",
+      "interpretation": "Authorized T104 cases that committed staged allowed effects.",
+      "metric": "authorized_commit_rate",
+      "n": 200,
+      "rate": 1.0,
+      "source": "analysis/results/precommit_blocking_t104_v1.json",
+      "wilson95_high": 1.0,
+      "wilson95_low": 0.9811539940816791
+    },
+    {
+      "count": 200,
+      "direction": "higher_better",
+      "interpretation": "Faithful substitutions allowed under the same future constraint.",
+      "metric": "faithful_allow_rate",
+      "n": 200,
+      "rate": 1.0,
+      "source": "analysis/results/shadow_real_divergence_t105_v1.json",
+      "wilson95_high": 1.0,
+      "wilson95_low": 0.9811539940816791
+    },
+    {
+      "count": 200,
+      "direction": "higher_better",
+      "interpretation": "Unsafe substitutions denied or abstained before commit.",
+      "metric": "unsafe_nonallow_rate",
+      "n": 200,
+      "rate": 1.0,
+      "source": "analysis/results/shadow_real_divergence_t105_v1.json",
+      "wilson95_high": 1.0,
+      "wilson95_low": 0.9811539940816791
+    },
+    {
+      "count": 200,
+      "direction": "context",
+      "interpretation": "Unsafe substitutions hard-denied by current guard.",
+      "metric": "unsafe_deny_rate",
+      "n": 200,
+      "rate": 1.0,
+      "source": "analysis/results/shadow_real_divergence_t105_v1.json",
+      "wilson95_high": 1.0,
+      "wilson95_low": 0.9811539940816791
+    },
+    {
+      "count": 0,
+      "direction": "context",
+      "interpretation": "Unsafe substitutions routed to abstain by current guard.",
+      "metric": "unsafe_abstain_rate",
+      "n": 200,
+      "rate": 0.0,
+      "source": "analysis/results/shadow_real_divergence_t105_v1.json",
+      "wilson95_high": 0.018846005918320894,
+      "wilson95_low": 0.0
+    }
+  ],
+  "timing_metrics": [
+    {
+      "interpretation": "Local deterministic Python prototype timing only; excludes LLM/provider/browser/human review.",
+      "max_ms": 0.20647700875997543,
+      "mean_ms": 0.08778972822862367,
+      "median_ms": 0.08356303442269564,
+      "n": 600,
+      "p95_ms": 0.10580383241176605,
+      "source": "analysis/results/efficiency_t106_v1.json",
+      "stage": "T102_compile_validate"
+    },
+    {
+      "interpretation": "Local deterministic Python prototype timing only; excludes LLM/provider/browser/human review.",
+      "max_ms": 0.12112502008676529,
+      "mean_ms": 0.01639156990374128,
+      "median_ms": 0.0013149110600352287,
+      "n": 600,
+      "p95_ms": 0.06879307329654694,
+      "source": "analysis/results/efficiency_t106_v1.json",
+      "stage": "T103_shadow_plan_replay"
+    },
+    {
+      "interpretation": "Local deterministic Python prototype timing only; excludes LLM/provider/browser/human review.",
+      "max_ms": 0.1274249516427517,
+      "mean_ms": 0.06837787921540439,
+      "median_ms": 0.06061210297048092,
+      "n": 200,
+      "p95_ms": 0.10409299284219742,
+      "source": "analysis/results/efficiency_t106_v1.json",
+      "stage": "T105_divergence_faithful"
+    },
+    {
+      "interpretation": "Local deterministic Python prototype timing only; excludes LLM/provider/browser/human review.",
+      "max_ms": 0.21210708655416965,
+      "mean_ms": 0.15035982942208648,
+      "median_ms": 0.1357450382784009,
+      "n": 200,
+      "p95_ms": 0.19559706561267376,
+      "source": "analysis/results/efficiency_t106_v1.json",
+      "stage": "T105_divergence_unsafe"
+    },
+    {
+      "interpretation": "Local deterministic Python prototype timing only; excludes LLM/provider/browser/human review.",
+      "max_ms": 0.0759959879796952,
+      "mean_ms": 0.0759959879796952,
+      "median_ms": 0.0759959879796952,
+      "n": 1000,
+      "p95_ms": 0.0759959879796952,
+      "source": "analysis/results/efficiency_t106_v1.json",
+      "stage": "T104_build_precommit_cases"
+    }
+  ]
+}

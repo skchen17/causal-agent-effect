@@ -1,0 +1,36 @@
+{
+  "schema_version": "local_agent_traces_v1",
+  "n_traces": 4,
+  "trace_type_counts": {
+    "local_agent_simulated_execution": 4
+  },
+  "kind_counts": {
+    "local_authorized_provider_use": 1,
+    "local_provider_error_handling": 1,
+    "local_unauthorized_content_fetch_with_network_allowed": 1,
+    "local_unauthorized_network_for_local_task": 1
+  },
+  "tool_counts": {
+    "bash": 2,
+    "unknown": 2
+  },
+  "verified_effect_counts": {
+    "command_executed": 2,
+    "content_fetched": 1,
+    "file_content_read": 1,
+    "network_egress": 2,
+    "tool_error": 1
+  },
+  "unauthorized_effect_counts": {
+    "command_executed": 2,
+    "content_fetched": 1,
+    "file_content_read": 1,
+    "tool_error": 1
+  },
+  "caveats": [
+    "local model simulation (Qwen3.5-9B-DeepSeek-V4-Flash-GGUF, Q4_K_M)",
+    "no actual external API calls; effects detected from command text analysis",
+    "single model; results may differ with other models",
+    "simulated tool execution based on command pattern matching"
+  ]
+}

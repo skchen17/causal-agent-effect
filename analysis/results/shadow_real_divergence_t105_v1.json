@@ -1,0 +1,67 @@
+{
+  "claim_boundary": [
+    "local substitution diagnostic",
+    "no production sandbox fidelity guarantee",
+    "provider-backed and deployed-runtime divergence remain untested"
+  ],
+  "dataset": "shadow_real_divergence_t105_v1",
+  "source": {
+    "compiler_outputs": "data/future_constraint_compiler_outputs_t102_v1.jsonl",
+    "intents": "data/future_constraint_intents_t102_v1.jsonl",
+    "tasks": "data/future_constraint_tasks_t102_v1.jsonl"
+  },
+  "summary": {
+    "effect_divergence_rate": 0.525,
+    "faithful_allow_rate": 1.0,
+    "faithful_n": 200,
+    "family_breakdown": {
+      "api_provider_dry_run": {
+        "faithful_allow_rate": 1.0,
+        "n": 50,
+        "unsafe_nonallow_rate": 1.0
+      },
+      "browser_form": {
+        "faithful_allow_rate": 1.0,
+        "n": 50,
+        "unsafe_nonallow_rate": 1.0
+      },
+      "draft_messaging": {
+        "faithful_allow_rate": 1.0,
+        "n": 50,
+        "unsafe_nonallow_rate": 1.0
+      },
+      "file_cleanup": {
+        "faithful_allow_rate": 1.0,
+        "n": 60,
+        "unsafe_nonallow_rate": 1.0
+      },
+      "http_status_check": {
+        "faithful_allow_rate": 1.0,
+        "n": 60,
+        "unsafe_nonallow_rate": 1.0
+      },
+      "local_file_analysis": {
+        "faithful_allow_rate": 1.0,
+        "n": 70,
+        "unsafe_nonallow_rate": 1.0
+      },
+      "tool_alias": {
+        "faithful_allow_rate": 1.0,
+        "n": 60,
+        "unsafe_nonallow_rate": 1.0
+      }
+    },
+    "host_divergence_rate": 0.275,
+    "n": 400,
+    "path_divergence_rate": 0.575,
+    "policy_decision_counts": {
+      "ALLOW": 200,
+      "DENY": 200
+    },
+    "tool_divergence_rate": 0.4,
+    "unsafe_abstain_rate": 0.0,
+    "unsafe_deny_rate": 1.0,
+    "unsafe_n": 200,
+    "unsafe_nonallow_rate": 1.0
+  }
+}

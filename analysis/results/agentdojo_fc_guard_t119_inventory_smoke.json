@@ -1,0 +1,266 @@
+{
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "base_url_host": "api.deepseek.com",
+  "benchmark_version": "v1.2.2",
+  "claim_boundary": "Production-proxy staged replay monitor. It removes the clean-shadow oracle, but remains an AgentDojo benchmark implementation with rule-based F_c compilation.",
+  "completed_shards": [],
+  "inventory": [
+    {
+      "injection_task_ids": [
+        "injection_task_0",
+        "injection_task_1",
+        "injection_task_10",
+        "injection_task_11",
+        "injection_task_12",
+        "injection_task_13",
+        "injection_task_2",
+        "injection_task_3",
+        "injection_task_4",
+        "injection_task_5",
+        "injection_task_6",
+        "injection_task_7",
+        "injection_task_8",
+        "injection_task_9"
+      ],
+      "injection_tasks": 14,
+      "suite": "workspace",
+      "tool_names": [
+        "add_calendar_event_participants",
+        "append_to_file",
+        "cancel_calendar_event",
+        "create_calendar_event",
+        "create_file",
+        "delete_email",
+        "delete_file",
+        "get_current_day",
+        "get_day_calendar_events",
+        "get_draft_emails",
+        "get_file_by_id",
+        "get_received_emails",
+        "get_sent_emails",
+        "get_unread_emails",
+        "list_files",
+        "reschedule_calendar_event",
+        "search_calendar_events",
+        "search_contacts_by_email",
+        "search_contacts_by_name",
+        "search_emails",
+        "search_files",
+        "search_files_by_filename",
+        "send_email",
+        "share_file"
+      ],
+      "tools": 24,
+      "user_task_ids": [
+        "user_task_0",
+        "user_task_1",
+        "user_task_10",
+        "user_task_11",
+        "user_task_12",
+        "user_task_13",
+        "user_task_14",
+        "user_task_15",
+        "user_task_16",
+        "user_task_17",
+        "user_task_18",
+        "user_task_19",
+        "user_task_2",
+        "user_task_20",
+        "user_task_21",
+        "user_task_22",
+        "user_task_23",
+        "user_task_24",
+        "user_task_25",
+        "user_task_26",
+        "user_task_27",
+        "user_task_28",
+        "user_task_29",
+        "user_task_3",
+        "user_task_30",
+        "user_task_31",
+        "user_task_32",
+        "user_task_33",
+        "user_task_34",
+        "user_task_35",
+        "user_task_36",
+        "user_task_37",
+        "user_task_38",
+        "user_task_39",
+        "user_task_4",
+        "user_task_5",
+        "user_task_6",
+        "user_task_7",
+        "user_task_8",
+        "user_task_9"
+      ],
+      "user_tasks": 40
+    }
+  ],
+  "max_asr_by_method_suite": [],
+  "method_input_contract": {
+    "allowed_inputs": [
+      "compiled_F_c",
+      "user_task_prompt",
+      "tool_schema",
+      "task_context",
+      "injected_staged_execution_trace",
+      "causal_evidence_graph"
+    ],
+    "block_contract": "DENY and ABSTAIN do not replay and do not reuse the staged final answer for committed utility.",
+    "forbidden_decision_inputs": [
+      "clean_no_injection_trajectory",
+      "injection_task_goal",
+      "gold_ground_truth",
+      "security_label",
+      "attack_success",
+      "utility",
+      "clean_trajectory"
+    ],
+    "replay_contract": "ALLOW replays the locked staged tool-call trace; the LLM is not queried again."
+  },
+  "mode": "inventory_only",
+  "model": "deepseek-v4-flash",
+  "n_completed_shards": 0,
+  "pipeline_label": "local",
+  "planned_settings": [
+    {
+      "attack": "important_instructions",
+      "injection_tasks": [
+        "injection_task_0",
+        "injection_task_1"
+      ],
+      "policy": "fc_prod_proxy_v1",
+      "suite": "workspace",
+      "user_tasks": [
+        "user_task_0",
+        "user_task_1"
+      ]
+    },
+    {
+      "attack": "important_instructions",
+      "injection_tasks": [
+        "injection_task_0",
+        "injection_task_1"
+      ],
+      "policy": "tool_whitelist_only",
+      "suite": "workspace",
+      "user_tasks": [
+        "user_task_0",
+        "user_task_1"
+      ]
+    },
+    {
+      "attack": "tool_knowledge",
+      "injection_tasks": [
+        "injection_task_0",
+        "injection_task_1"
+      ],
+      "policy": "fc_prod_proxy_v1",
+      "suite": "workspace",
+      "user_tasks": [
+        "user_task_0",
+        "user_task_1"
+      ]
+    },
+    {
+      "attack": "tool_knowledge",
+      "injection_tasks": [
+        "injection_task_0",
+        "injection_task_1"
+      ],
+      "policy": "tool_whitelist_only",
+      "suite": "workspace",
+      "user_tasks": [
+        "user_task_0",
+        "user_task_1"
+      ]
+    },
+    {
+      "attack": "injecagent",
+      "injection_tasks": [
+        "injection_task_0",
+        "injection_task_1"
+      ],
+      "policy": "fc_prod_proxy_v1",
+      "suite": "workspace",
+      "user_tasks": [
+        "user_task_0",
+        "user_task_1"
+      ]
+    },
+    {
+      "attack": "injecagent",
+      "injection_tasks": [
+        "injection_task_0",
+        "injection_task_1"
+      ],
+      "policy": "tool_whitelist_only",
+      "suite": "workspace",
+      "user_tasks": [
+        "user_task_0",
+        "user_task_1"
+      ]
+    },
+    {
+      "attack": "ignore_previous",
+      "injection_tasks": [
+        "injection_task_0",
+        "injection_task_1"
+      ],
+      "policy": "fc_prod_proxy_v1",
+      "suite": "workspace",
+      "user_tasks": [
+        "user_task_0",
+        "user_task_1"
+      ]
+    },
+    {
+      "attack": "ignore_previous",
+      "injection_tasks": [
+        "injection_task_0",
+        "injection_task_1"
+      ],
+      "policy": "tool_whitelist_only",
+      "suite": "workspace",
+      "user_tasks": [
+        "user_task_0",
+        "user_task_1"
+      ]
+    },
+    {
+      "attack": "direct",
+      "injection_tasks": [
+        "injection_task_0",
+        "injection_task_1"
+      ],
+      "policy": "fc_prod_proxy_v1",
+      "suite": "workspace",
+      "user_tasks": [
+        "user_task_0",
+        "user_task_1"
+      ]
+    },
+    {
+      "attack": "direct",
+      "injection_tasks": [
+        "injection_task_0",
+        "injection_task_1"
+      ],
+      "policy": "tool_whitelist_only",
+      "suite": "workspace",
+      "user_tasks": [
+        "user_task_0",
+        "user_task_1"
+      ]
+    }
+  ],
+  "required_external_ablations": {
+    "authgraph_style_proxy": "Use T114 tool_sequence_proxy_v1/tool_arg_alignment_proxy_v1 on the same AgentDojo logs.",
+    "clean_shadow_replay_upper_bound": "Use T113 shadow_replay_commit_v1; it is intentionally not an input to this production-proxy method."
+  },
+  "rows": [],
+  "schema_version": "agentdojo_fc_guard_t119_v2",
+  "shard_dir": "analysis/results/agentdojo_t119_fc_guard_shards",
+  "summary_by_method": [],
+  "summary_by_method_suite_attack": []
+}

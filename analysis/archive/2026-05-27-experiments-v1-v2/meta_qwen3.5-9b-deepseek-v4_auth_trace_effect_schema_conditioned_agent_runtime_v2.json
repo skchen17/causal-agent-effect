@@ -1,0 +1,24 @@
+{
+  "model": "Jackrong/Qwen3.5-9B-DeepSeek-V4-Flash-GGUF",
+  "short_name": "qwen3.5-9b-deepseek-v4",
+  "dim": 4096,
+  "n_samples": 192,
+  "effect_names": [
+    "command_executed",
+    "content_fetched",
+    "file_content_read",
+    "file_deleted",
+    "file_written",
+    "message_sent",
+    "network_egress",
+    "tool_error"
+  ],
+  "tools": [
+    "bash",
+    "delete_file",
+    "read_file",
+    "write_file"
+  ],
+  "data_name": "auth_trace_effect_schema_conditioned_agent_runtime_v2",
+  "embedding_method": "llama-cpp create_embedding mean-pool"
+}

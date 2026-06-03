@@ -47,7 +47,7 @@ src/causal_chain/*.py               → data/causal_chain_*.jsonl
 - `paper-path-a/` — Path A evaluation/diagnostic paper
 - `analysis/results/` — 实验 JSON + MD 结果 (129 files)
 - `analysis/reports/` — 研究报告与解读 (23 files)
-- `analysis/planning/` — 规划与路线图 (13 files)
+- `analysis/planning/` — 规划与路线图 (14 files)
 - `analysis/manifests/` — 数据 manifest (48 files)
 - `analysis/reviews/` — 审稿意见 (7 files)
 - `analysis/audits/` — 核验与完成报告 (11 files)
@@ -61,20 +61,24 @@ src/causal_chain/*.py               → data/causal_chain_*.jsonl
 
 **Two IIA scripts**: `interchange_intervention_true.py` (hook-based L24/36, canonical) and `interchange_intervention.py` (embedding-space, for MiniLM).
 
-## Current Paper Status (2026-05-22)
+## Current Paper Status (2026-05-31)
 
-**路线**: Path A — evaluation/diagnostic paper. 论文定位为 **Auth-SafeInv evaluation target + three-layer over-optimism diagnosis + constructive framework with honest limits**.
+**路线**: CEG-Auth / AuthTrace-Guard — method paper mainline. Path A evaluation/diagnostic paper is temporarily deferred and retained as fallback / diagnostic evidence.
+
+**当前方法论文定位**: label-hidden raw-trace realized-effect inference + surface-held-out robustness + evidence localization + uncertainty + action-level selective authorization policy.
 
 **核心文件**:
-- `paper-path-a/main.tex` — Path A 主文 (18 pages, 2 contributions, 3 layers)
-- `paper-path-a/appendix.tex` — 附录 (contrastive theory, causal-chain, full tables)
+- `analysis/planning/method_paper_writing_materials_2026-05-31.md` — 方法论文 threat model、证据清单和缺口
+- `analysis/planning/ceg_auth_method_plan.md` — CEG-Auth 方法设计
+- `paper-path-a/main.tex` — Path A fallback 主文 (18 pages, 2 contributions, 3 layers)
+- `paper-path-a/appendix.tex` — Path A fallback 附录
 - `PROJECT_SUMMARY.md` — 项目综述
 - `analysis/planning/后续推进规划.md` — 主规划文档
-- `analysis/planning/path_a_convergence_analysis_2026-05-22.md` — Path A 决策分析
+- `analysis/planning/path_a_convergence_analysis_2026-05-22.md` — Path A 历史决策分析
 
 **SafeInv vs Auth-SafeInv 区分**: Layer 1 (LOTO/pIIA) = SafeInv (effect-detection invariance). Layers 2-3 = Auth-SafeInv (authorization-conditioned). 两者不可混用。
 
-**已完成**: T0-T73, T75, Path A v1-v2 论文. **进行中**: T74/T76/T79/T81.
+**已完成**: T0-T73, T75, T82-T88, T91, Path A v1-v2 论文. **当前主线任务**: T92/T93/T94/T95; 后续 T96/T97/T98/T99.
 
 ## Key Commands
 

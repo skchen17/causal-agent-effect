@@ -1,0 +1,107 @@
+{
+  "artifact_sizes": [
+    {
+      "bytes": 295174,
+      "exists": true,
+      "path": "data/future_constraint_tasks_t102_v1.jsonl"
+    },
+    {
+      "bytes": 1386541,
+      "exists": true,
+      "path": "data/future_constraint_intents_t102_v1.jsonl"
+    },
+    {
+      "bytes": 1882820,
+      "exists": true,
+      "path": "data/future_constraint_compiler_outputs_t102_v1.jsonl"
+    },
+    {
+      "bytes": 645695,
+      "exists": true,
+      "path": "data/future_shadow_replay_traces_t103_v1.jsonl"
+    },
+    {
+      "bytes": 753220,
+      "exists": true,
+      "path": "data/precommit_blocking_traces_t104_v1.jsonl"
+    },
+    {
+      "bytes": 362200,
+      "exists": true,
+      "path": "data/shadow_real_divergence_t105_v1.jsonl"
+    },
+    {
+      "bytes": 582854,
+      "exists": true,
+      "path": "analysis/results/future_constraint_compiler_eval_t102_v1.json"
+    },
+    {
+      "bytes": 2191,
+      "exists": true,
+      "path": "analysis/results/future_shadow_replay_t103_v1.json"
+    },
+    {
+      "bytes": 3470,
+      "exists": true,
+      "path": "analysis/results/precommit_blocking_t104_v1.json"
+    },
+    {
+      "bytes": 1780,
+      "exists": true,
+      "path": "analysis/results/shadow_real_divergence_t105_v1.json"
+    }
+  ],
+  "claim_boundary": [
+    "local deterministic Python prototype only",
+    "excludes LLM generation and provider sandbox latency",
+    "excludes HTTP browser automation and human review overhead"
+  ],
+  "dataset": "efficiency_t106_v1",
+  "timings": [
+    {
+      "max_ms": 0.20647700875997543,
+      "mean_ms": 0.08778972822862367,
+      "median_ms": 0.08356303442269564,
+      "n": 600,
+      "p95_ms": 0.10580383241176605,
+      "stage": "T102_compile_validate",
+      "total_ms": 52.6738369371742
+    },
+    {
+      "max_ms": 0.12112502008676529,
+      "mean_ms": 0.01639156990374128,
+      "median_ms": 0.0013149110600352287,
+      "n": 600,
+      "p95_ms": 0.06879307329654694,
+      "stage": "T103_shadow_plan_replay",
+      "total_ms": 9.834941942244768
+    },
+    {
+      "max_ms": 0.1274249516427517,
+      "mean_ms": 0.06837787921540439,
+      "median_ms": 0.06061210297048092,
+      "n": 200,
+      "p95_ms": 0.10409299284219742,
+      "stage": "T105_divergence_faithful",
+      "total_ms": 13.675575843080878
+    },
+    {
+      "max_ms": 0.21210708655416965,
+      "mean_ms": 0.15035982942208648,
+      "median_ms": 0.1357450382784009,
+      "n": 200,
+      "p95_ms": 0.19559706561267376,
+      "stage": "T105_divergence_unsafe",
+      "total_ms": 30.071965884417295
+    },
+    {
+      "max_ms": 0.0759959879796952,
+      "mean_ms": 0.0759959879796952,
+      "median_ms": 0.0759959879796952,
+      "n": 1000,
+      "p95_ms": 0.0759959879796952,
+      "stage": "T104_build_precommit_cases",
+      "total_ms": 75.9959879796952
+    }
+  ]
+}

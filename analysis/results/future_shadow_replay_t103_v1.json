@@ -1,0 +1,70 @@
+{
+  "claim_boundary": [
+    "deterministic staged prototype over T102 artifacts",
+    "no live external API, SaaS messaging, HTTP browser automation, or destructive commit",
+    "validates interface behavior only; T104 is required for pre-commit blocking evidence"
+  ],
+  "dataset": "future_shadow_replay_t103_v1",
+  "source": {
+    "compiler_outputs": "data/future_constraint_compiler_outputs_t102_v1.jsonl",
+    "intents": "data/future_constraint_intents_t102_v1.jsonl",
+    "tasks": "data/future_constraint_tasks_t102_v1.jsonl"
+  },
+  "summary": {
+    "authorized_commit_rate": 1.0,
+    "authorized_false_denial_rate": 0.0,
+    "authorized_n": 200,
+    "constraint_decision_counts": {
+      "ALLOW_CONSTRAINT": 200,
+      "REJECT_CONSTRAINT": 400
+    },
+    "deviation_challenge_n": 200,
+    "deviation_precommit_block_rate": 1.0,
+    "family_breakdown": {
+      "api_provider_dry_run": {
+        "authorized_false_denial_rate": 0.0,
+        "n": 75,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "browser_form": {
+        "authorized_false_denial_rate": 0.0,
+        "n": 75,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "draft_messaging": {
+        "authorized_false_denial_rate": 0.0,
+        "n": 75,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "file_cleanup": {
+        "authorized_false_denial_rate": 0.0,
+        "n": 90,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "http_status_check": {
+        "authorized_false_denial_rate": 0.0,
+        "n": 90,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "local_file_analysis": {
+        "authorized_false_denial_rate": 0.0,
+        "n": 105,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "tool_alias": {
+        "authorized_false_denial_rate": 0.0,
+        "n": 90,
+        "unauthorized_committed_action_rate": 0.0
+      }
+    },
+    "n": 600,
+    "pre_effect_block_rate_unauthorized": 1.0,
+    "replay_status_counts": {
+      "blocked_by_constraint_before_shadow": 400,
+      "committed_staged_effects": 200
+    },
+    "replayed_n": 200,
+    "unauthorized_committed_action_rate": 0.0,
+    "unauthorized_n": 400
+  }
+}

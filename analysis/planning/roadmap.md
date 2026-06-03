@@ -3,9 +3,15 @@
 > 2026-05-15 | Updated after mainconf v2 repair and rerun.  
 > Current status source: `analysis/mainconf_v2_repair_report.md`, `analysis/statistical_uncertainty_audit_mainconf_v2.md`, `analysis/AuthSafeInv_completion_actuality_check.md`, and `analysis/后续推进规划.md`.
 
+> 2026-05-31 mainline update: the active route is now the **CEG-Auth / AuthTrace-Guard method paper**. Path A is deferred as fallback and diagnostic evidence. The authoritative current task ordering is `analysis/planning/后续推进规划.md` P10 / T92-T106, `analysis/planning/method_paper_writing_materials_2026-05-31.md`, and `analysis/planning/method_paper_sections_materials_2026-05-31.md`.
+
+> 2026-05-31 future-constrained update: the method route now includes **future-constrained shadow execution / trajectory-locked authorization**. The prevention-oriented pipeline is `c/A(c)/intent -> F_c -> shadow trace -> causal evidence graph -> trace-locked replay -> guarded real replay -> staged commit`. This should be presented as a conditional systems guarantee under mediation, staged/dry-run effects, sound constraints, replay locks, safe substitution, and complete pending-effect observability.
+
+> 2026-05-31 execution reset: the only actively advanced line is now the new Future-Constrained CEG-Auth method. Older SafeInv / Path A / Auth-SafeInv / representation-diagnostic / contrastive / pIIA / causal-chain work is frozen as motivation, negative evidence, appendix material, baseline constraints, or fallback. The immediate active tasks are T102, T103, and T104.
+
 > 2026-05-17 update: roadmap now follows the Auth-SafeInv strengthening route. The project keeps the causal task consistency ambition, but the next milestone is authorization-conditioned theory and data rather than another tool-only diagnostic pass.
 
-> 2026-05-17 audit update: the Auth-SafeInv completion report is not accepted as ground truth. That audit captured the earlier seed/prototype state; subsequent work has repaired T38-T42 and produced T43/T44 pilot artifacts. T45 remains blocked until the evidence gates are met.
+> 2026-05-17 audit update: the Auth-SafeInv completion report is not accepted as ground truth. That audit captured the earlier seed/prototype state; subsequent work has repaired T38-T42 and produced T43/T44 pilot artifacts. Historical T45 is now frozen after the 2026-05-31 execution reset and should not be treated as an active writing gate.
 
 > 2026-05-18 progress update: T38-T56 have now been repaired or added. T51 adds a same-cell Auth-SafeInv mitigation-vs-baseline comparison, T52 fixes the paper-facing threshold policy, T53 adds an authorization_counterfactuals_v2 surface-graph expansion, T54 reruns v2 embeddings/evaluation/baseline/mitigation, T55 tests a pair-free effect-schema conditioned monitor, and T56 tests a decomposed present/auth verifier. The strict pure-method gate still fails: v2 fixes coverage, but strict contrastive, naive schema conditioning, and pure decomposed frozen verification remain weaker than the strongest non-degenerate baseline. T56 verifier-present is a strong upper bound only if an external effect-present verifier exists.
 
@@ -155,6 +161,8 @@ Tasks:
 
 ### P6: Verifier-Assisted Mitigation Gate
 
+Status: frozen as evidence after the 2026-05-31 execution reset. Do not actively extend this line unless a new-method experiment needs a baseline or motivation artifact.
+
 Goal: decide whether the T57/T58/T59/T61 verifier-assisted route is strong enough for the main method, or add representation learning only if verifier external validity remains too narrow.
 
 Tasks:
@@ -162,9 +170,9 @@ Tasks:
 - keep v2 as the expanded surface-graph dataset for further method work;
 - treat naive effect-schema conditioning and pure decomposed frozen verification as failed;
 - treat T57/T58 as promising verifier-assisted framework evidence, T59 as a real-tool-code-grounded stress test, T61 as expanded single-provider API evidence, and T62 as trace-group validation calibration; none are deployed validation or pure representation repair;
-- next broaden the execution verifier beyond current controlled observed/sandbox/static/local-adapter/provider traces and apply validation-selected thresholds to new tool families;
+- do not broaden the old execution-verifier line as a standalone project; reuse existing outputs only as motivation, negative evidence, or baseline constraints for Future-Constrained CEG-Auth;
 - compare against T47/T54-style strong baselines under identical cells and FPR <= 0.10;
-- only unblock a strong T45 paper rewrite if the verifier-assisted framing is explicit and the remaining real-trace limitations are not overclaimed.
+- do not unblock the old T45 paper rewrite; rebuild a method-paper manuscript only after T102-T104 produce new-method evidence.
 - add T64/T65 to the verifier-assisted evidence stack as key-free live/protocol and file-backed browser-runtime evidence; keep provider-backed search/SaaS messaging/HTTP browser automation and deployed-runtime validation as the next external-validity gap.
 
 ### P7: External Review v1 Method-Shape Hardening

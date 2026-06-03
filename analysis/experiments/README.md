@@ -40,6 +40,15 @@
 | `E19_existing_defense_ablation_t70/` | T70 existing-defense proxy ablation | raw-status boundary competitive，不能声称方法支配所有防御 |
 | `E20_statistical_uncertainty_audit/` | statistical uncertainty audit | 主表需要 N+/N-/CI/threshold/seed |
 | `E21_reproducibility_source_appendix_t50/` | T50 result-source appendix / reproduction | 负责产物溯源，不提供新的科学结论 |
+| `E22_future_constrained_ablation_t110/` | T110 future-constrained ablation/baseline | 支持 prefix guard/staging 必要性；不证明 shadow 独立必要或优于 resource-aware boundary |
+| `E23_external_validity_runtime_t111/` | T111 complex local runtime proxy | 支持 trace-lock/safe-substitution 机制；不是 provider-backed/deployed validation |
+| `E24_agentdojo_real_scenario_eval_t112/` | T112 AgentDojo/AuthGraph-aligned real-scenario gate | 5x3 direct/stronger-attack baselines完成；direct built-in prompt defenses 未消除 ASR |
+| `E25_agentdojo_shadow_replay_guard_t113/` | T113 AgentDojo future-constrained guard | replay-commit 在两个 5x3 attacks 上均 A.UR=48/60、ASR=0/60；仍是 clean-shadow oracle upper-bound |
+| `E26_agentdojo_authgraph_proxy_t114/` | T114 AuthGraph-style proxy baseline | proxy ASR 低但 A.UR 崩溃；作为强 over-denial baseline |
+| `E27_agentdojo_full949_direct/` | installed AgentDojo v1.2.2 full949 direct run | no-defense ASR=40/949；AuthGraph-style proxies ASR=0/949 但 A.UR 崩溃；shadow replay-commit A.UR=800/949、ASR=0/949，仍是 clean-shadow oracle upper-bound |
+| `E28_agentdojo_strongmax_baselines/` | T118 AgentDojo Strong+Max official baseline matrix | 已实现 OpenAI-compatible + local GGUF runner、inventory/API/local smoke；DeepSeek full 因 `402 Insufficient Balance` 停在 13/100 shards；local 1-case smoke 完成但 UR=0/1，只是可运行性证据 |
+| `E29_fc_guard_production_proxy/` | T119 FC-Guard production-proxy | 已实现 staged cache、label-after-decision trace、typed CEG graph、strict no-commit block、shard/resume 和 theory-audit fields；API smoke 48 rows 通过；local 1-case smoke 与 theory-v2 smoke 完成。theory-v2 暴露 replay_error=1/1、Conditional_Theory_Audit_Pass=0/1，说明当前会显式记录理论条件失败；full 结果尚未开始 |
+| `E30_agentdojo_attack_fc_guard/` | T120 same-attack FC-Guard comparison | 已实现多 FC shard dir、action-level paired metrics、AuthGraph-style proxy reference；API smoke paired summary 与 local minismoke paired summary 均通过，需 full shards 完成后更新主结果 |
 
 ## 当前论文主线映射
 
@@ -49,4 +58,5 @@
 - Layer 3 row-to-action over-optimism：`E18`
 - External-validity proxies：`E12`、`E13`、`E14`、`E15`、`E16`
 - Statistical/reproducibility support：`E20`、`E21`
-
+- Future-constrained method evidence：`E22`、`E23`、`E25`、`E27`
+- Real-scenario gate before paper writing：`E24`、`E25`、`E26`、`E27`、`E28`、`E29`、`E30`

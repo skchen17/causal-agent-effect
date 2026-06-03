@@ -1,0 +1,290 @@
+{
+  "schema_version": "agentdojo_full949_summary_v1",
+  "benchmark_version": "v1.2.2",
+  "model": "deepseek-v4-flash",
+  "attack": "direct",
+  "setting": "installed AgentDojo v1.2.2 full cross-product, 949 attacked cases",
+  "source_files": {
+    "baseline": "analysis/results/agentdojo_real_scenario_eval_t112_deepseek_direct_full949.json",
+    "authgraph_proxy": "analysis/results/agentdojo_authgraph_proxy_t114_deepseek_direct_full949.json",
+    "replay_commit": "analysis/results/agentdojo_guarded_eval_t113_replay_commit_deepseek_direct_full949.json"
+  },
+  "claim_boundary": [
+    "DeepSeek-only full949 direct-attack result",
+    "Not original AgentDojo paper reproduction",
+    "T113 replay_commit is clean-shadow oracle upper bound",
+    "T114 is AuthGraph-style proxy, not authors implementation"
+  ],
+  "rows": [
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "no-defense",
+      "suite": "workspace",
+      "n": 560,
+      "AUR_count": 492,
+      "ASR_count": 0,
+      "AUR": 0.8785714285714286,
+      "ASR": 0.0,
+      "extra": {
+        "UR": 0.8,
+        "injection_task_utility": 0.7142857142857143
+      },
+      "AUR_wilson95": [
+        0.848909205138815,
+        0.9030752283698875
+      ],
+      "ASR_wilson95": [
+        4.336808689942018e-19,
+        0.006813012346996883
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "no-defense",
+      "suite": "slack",
+      "n": 105,
+      "AUR_count": 97,
+      "ASR_count": 13,
+      "AUR": 0.9238095238095239,
+      "ASR": 0.12380952380952381,
+      "extra": {
+        "UR": 0.9523809523809523,
+        "injection_task_utility": 1.0
+      },
+      "AUR_wilson95": [
+        0.8568137681765711,
+        0.9608893475692311
+      ],
+      "ASR_wilson95": [
+        0.07380164220926978,
+        0.20037199662310812
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "no-defense",
+      "suite": "travel",
+      "n": 140,
+      "AUR_count": 108,
+      "ASR_count": 1,
+      "AUR": 0.7714285714285715,
+      "ASR": 0.007142857142857143,
+      "extra": {
+        "UR": 0.8,
+        "injection_task_utility": 0.7142857142857143
+      },
+      "AUR_wilson95": [
+        0.6951757085389018,
+        0.8331837826891312
+      ],
+      "ASR_wilson95": [
+        0.001262004444267082,
+        0.03934839306272571
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "no-defense",
+      "suite": "banking",
+      "n": 144,
+      "AUR_count": 133,
+      "ASR_count": 26,
+      "AUR": 0.9236111111111112,
+      "ASR": 0.18055555555555555,
+      "extra": {
+        "UR": 0.9375,
+        "injection_task_utility": 0.8888888888888888
+      },
+      "AUR_wilson95": [
+        0.8683956370822358,
+        0.956812670338247
+      ],
+      "ASR_wilson95": [
+        0.12629942236719177,
+        0.25141234580752614
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "shadow_replay_commit_v1",
+      "suite": "workspace",
+      "n": 560,
+      "AUR_count": 476,
+      "ASR_count": 0,
+      "AUR": 0.85,
+      "ASR": 0.0,
+      "extra": {
+        "shadow_UR": 0.85,
+        "replay_errors": 224
+      },
+      "AUR_wilson95": [
+        0.8180461174218245,
+        0.8771847739352776
+      ],
+      "ASR_wilson95": [
+        4.336808689942018e-19,
+        0.006813012346996883
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "shadow_replay_commit_v1",
+      "suite": "slack",
+      "n": 105,
+      "AUR_count": 75,
+      "ASR_count": 0,
+      "AUR": 0.7142857142857143,
+      "ASR": 0.0,
+      "extra": {
+        "shadow_UR": 0.9523809523809523,
+        "replay_errors": 95
+      },
+      "AUR_wilson95": [
+        0.6215166413200128,
+        0.7919287542817972
+      ],
+      "ASR_wilson95": [
+        0,
+        0.03529407692910988
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "shadow_replay_commit_v1",
+      "suite": "travel",
+      "n": 140,
+      "AUR_count": 105,
+      "ASR_count": 0,
+      "AUR": 0.75,
+      "ASR": 0.0,
+      "extra": {
+        "shadow_UR": 0.75,
+        "replay_errors": 21
+      },
+      "AUR_wilson95": [
+        0.6722461054834167,
+        0.8144007943318768
+      ],
+      "ASR_wilson95": [
+        1.734723475976807e-18,
+        0.02670620036941298
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "shadow_replay_commit_v1",
+      "suite": "banking",
+      "n": 144,
+      "AUR_count": 144,
+      "ASR_count": 0,
+      "AUR": 1.0,
+      "ASR": 0.0,
+      "extra": {
+        "shadow_UR": 1.0,
+        "replay_errors": 0
+      },
+      "AUR_wilson95": [
+        0.9740163628569632,
+        0.9999999999999999
+      ],
+      "ASR_wilson95": [
+        0,
+        0.025983637143036732
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "AuthGraph-style tool_arg_alignment_proxy_v1",
+      "suite": "all",
+      "n": 949,
+      "AUR_count": 234,
+      "ASR_count": 0,
+      "AUR": 0.2465753424657534,
+      "ASR": 0.0,
+      "extra": {
+        "deny_rate": 0.7397260273972602,
+        "denied_successful_nonattack_count": "564/949"
+      },
+      "AUR_wilson95": [
+        0.22021064510140756,
+        0.2749834445897351
+      ],
+      "ASR_wilson95": [
+        0,
+        0.004031582363606
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "AuthGraph-style tool_sequence_proxy_v1",
+      "suite": "all",
+      "n": 949,
+      "AUR_count": 317,
+      "ASR_count": 0,
+      "AUR": 0.3340358271865121,
+      "ASR": 0.0,
+      "extra": {
+        "deny_rate": 0.6459430979978925,
+        "denied_successful_nonattack_count": "481/949"
+      },
+      "AUR_wilson95": [
+        0.3047500101504451,
+        0.3646598406867897
+      ],
+      "ASR_wilson95": [
+        0,
+        0.004031582363606
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "no-defense",
+      "suite": "all",
+      "n": 949,
+      "AUR_count": 830,
+      "ASR_count": 40,
+      "AUR": 0.8746048472075869,
+      "ASR": 0.04214963119072708,
+      "extra": {},
+      "AUR_wilson95": [
+        0.8520131034705933,
+        0.8941760903539335
+      ],
+      "ASR_wilson95": [
+        0.031104626139504286,
+        0.0568863591860738
+      ]
+    },
+    {
+      "family": "AgentDojo full949",
+      "attack": "direct",
+      "method": "shadow_replay_commit_v1",
+      "suite": "all",
+      "n": 949,
+      "AUR_count": 800,
+      "ASR_count": 0,
+      "AUR": 0.8429926238145417,
+      "ASR": 0.0,
+      "extra": {},
+      "AUR_wilson95": [
+        0.818468591330713,
+        0.864751050272335
+      ],
+      "ASR_wilson95": [
+        0,
+        0.004031582363606
+      ]
+    }
+  ]
+}

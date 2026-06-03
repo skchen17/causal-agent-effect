@@ -197,15 +197,182 @@ ABSTAIN 不是免费移除难例，必须报告：
 - FDeny at covered actions；
 - utility cost。
 
-## 5. 两阶段执行设定
+## 5. Future-Constrained Shadow Execution
 
-为避免 post-hoc detection 太晚，CEG-Auth 最合理的系统位置是：
+> 2026-05-31 更新：单纯 post-hoc runtime audit 不能阻断已经发生的 irreversible side effects。CEG-Auth 的更强系统位置应改为 **future-constrained shadow execution / trajectory-locked authorization**：先把任务授权和 agent 意图编译为未来轨迹约束，在影子环境中执行并验证 pending effects，再把验证通过的轨迹锁定为 replay plan，由非 LLM executor 在真实环境复放同一轨迹并在每个 side-effect boundary 做 guard。
 
-1. **Sandbox / dry-run phase**：在隔离环境执行 tool call，收集 raw trace 并构造 `G_t`。
-2. **Selective authorization phase**：CEG-Auth 判断 ALLOW / DENY / ABSTAIN。
-3. **Commit phase**：只有 ALLOW 才把 side effect commit 到真实环境；ABSTAIN 进入人工确认或更强 verifier。
+### 5.1 核心判断
 
-如果只能 runtime audit，主文必须承认它不能阻止已经发生的 irreversible side effect。
+方案不能写成：
+
+> sandbox 中安全，所以真实执行也安全。
+
+应写成：
+
+> The shadow trace is used to synthesize an executable future-trajectory constraint and a trace-locked replay plan. Real execution is allowed only when each mediated operation matches the locked plan and satisfies the authorization-derived constraints before commit.
+
+中文：
+
+> 影子执行不是安全性的直接证明，而是用来生成和验证未来轨迹约束 `F_c` 与 replay plan `pi`。真实执行阶段不再让 LLM 二次输出，而由受控 executor 按 `pi` 复放；每个可能产生副作用的操作必须先通过 `F_c`、资源绑定、参数绑定和 pending-effect 检查，才能进入 commit。
+
+### 5.2 形式化对象
+
+```text
+c: user task and trusted task context
+A(c): authorized effect envelope
+I_c: agent intent / proposed plan under c
+F_c: future trajectory constraint compiled from c, A(c), and I_c
+tau_s: shadow execution trace
+G_s: causal evidence graph extracted from tau_s
+Omega_s: predicted pending realized effects in shadow
+pi: trace-locked replay plan compiled from tau_s and F_c
+sigma: substitution map from shadow placeholders to real values/resources
+tau_r: real replay trace
+Omega_r: observed pending effects during real replay
+```
+
+越权定义保持不变：
+
+```text
+Violation(c, tau) = 1 iff Omega(tau) \ A(c) != empty
+```
+
+新增轨迹约束目标：
+
+```text
+tau_s satisfies F_c
+tau_r satisfies ReplayLock(pi, sigma)
+forall prefixes tau_r[:t], tau_r[:t] satisfies F_c
+CommittedEffects(tau_r) subseteq A(c)
+```
+
+### 5.3 `F_c` 应包含什么
+
+`F_c` 不是自然语言计划，而是可执行约束。最低字段：
+
+```text
+allowed_effects
+allowed_resources
+allowed_endpoints / recipients / identities
+allowed_tool_surfaces or equivalent execution primitives
+forbidden_effects
+data-flow constraints
+parameter binding constraints
+operation order / dependency constraints
+effect budget and severity
+commit preconditions
+abstain / ask-user triggers
+```
+
+例子：
+
+```text
+Task: read billing_report.csv and compute total revenue locally.
+
+A(c) = {
+  file_content_read("billing_report.csv"),
+  local_computation("revenue_sum")
+}
+
+F_c forbids:
+  network_egress(*)
+  external_data_upload(*)
+  file_written(*) except optional explicitly authorized output path
+  file_deleted(*)
+  message_sent(*)
+```
+
+### 5.4 执行流程
+
+```text
+1. IntentToConstraint(c, A(c), I_c) -> F_c
+2. ShadowExec(I_c, sandbox, F_c) -> tau_s
+3. EventExtract(tau_s) -> G_s
+4. EffectInfer(G_s) -> {(p_e, R_e, u_e)}
+5. AuthCompare({p_e}, A(c), F_c) -> risk_U
+6. SelectivePolicy(risk_U, uncertainty, evidence) -> ALLOW / DENY / ABSTAIN / ASK_USER
+7. If ALLOW: CompileReplay(tau_s, F_c) -> pi
+8. RealReplay(pi, sigma, runtime_guard) -> tau_r
+9. PrefixGuard(tau_r[:t], F_c, pi, sigma) blocks deviations before side-effect commit
+10. FinalCommitCheck(Omega_r, A(c)) -> COMMIT / ABORT / ABSTAIN
+```
+
+关键实现要求：
+
+- LLM 在真实阶段不再生成新的 tool call 或命令。
+- replay executor 只执行 `pi` 中被锁定的操作。
+- `sigma` 只能替换资源句柄、真实路径、真实 endpoint、真实 token 等被 `F_c` 允许的值。
+- 替换后必须重新检查参数绑定、资源身份、endpoint/recipient、data-flow 和 pending effects。
+- 对不可逆操作必须采用 staging / dry-run / two-phase commit；无法 staged 的操作要先 `ABSTAIN/ASK_USER`。
+
+### 5.5 阻断发生在哪个阶段
+
+| 阶段 | 能否阻断真实副作用 | 阻断依据 | 边界 |
+|---|---:|---|---|
+| Pre-action text check | 能阻断部分 | task + proposed command/tool | 容易被 surface alias 绕过 |
+| Shadow execution | 能阻断真实环境副作用 | sandbox trace + pending effects | sandbox 可能与真实环境分歧 |
+| Trace-locked replay guard | 能在真实 commit 前阻断 | `pi`, `F_c`, prefix trace | 必须所有 side-effectful operations 都被 mediation |
+| Final commit check | 能阻断 staged effects | `Omega_r subseteq A(c)` | 对已真实发送/删除的不可逆操作太晚 |
+| Post-hoc audit only | 不能阻断 | historical trace | 只能用于审计/追责 |
+
+因此主文应强调：CEG-Auth 的 prevention 版本依赖 shadow/staging/replay/guard；若部署成纯 runtime audit，只能检测，不能阻断。
+
+### 5.6 条件性安全命题
+
+可写成 proposition，不要写成 unconditional safety theorem。
+
+**Proposition (conditional pre-commit authorization).** 给定任务 `c`、授权包络 `A(c)` 和未来轨迹约束 `F_c`。如果满足：
+
+1. **Mediation**：所有可能产生安全相关 side effects 的操作都必须经过 runtime guard；
+2. **Staging**：所有不可逆 side effects 在 commit 前都以 pending/staged 形式存在，或被替换为 dry-run/provider sandbox；
+3. **Constraint soundness**：`AllowedEffects(F_c) subseteq A(c)`；
+4. **Replay-lock soundness**：真实执行只能执行 `pi` 中被锁定且经 `sigma` 安全替换的操作；
+5. **Prefix guard soundness**：任意真实执行前缀若违反 `F_c` 或 `pi`，则在该 side effect commit 前被阻断；
+6. **Effect observability**：最终 commit check 能观测所有 pending security-relevant effects；
+
+则任意被 commit 的真实执行满足：
+
+```text
+CommittedEffects(tau_r) subseteq A(c)
+```
+
+这不是模型层安全保证，而是系统层条件保证。若 `F_c` 过度宽松、工具绕过 mediation、真实环境产生未观测副作用、或 provider 不支持 dry-run/staging，则命题不适用。
+
+### 5.7 与 AuthGraph 的区别
+
+AuthGraph 的核心是把 clean authorization graph 与 injected execution provenance graph 进行结构对齐，重点在 parameter-source/tool-level deviation detection。
+
+CEG-Auth / trajectory-locked version 应强调不同点：
+
+- 判断对象：`realized effects outside A(c)`，不只是参数来源偏离；
+- 时间位置：在真实 commit 前用 shadow trace 生成 `F_c` 和 `pi`；
+- 执行机制：真实阶段不让 LLM 重新生成，而是 replay locked trace；
+- 决策目标：action-level `U-Allow / FDeny / Abstain / Coverage`；
+- 输出：effect probabilities、localized evidence、uncertainty、selective policy。
+
+不能说 AuthGraph “有问题” 或 “被本文证明错误”。更稳妥的写法是：AuthGraph 和 CEG-Auth 解决相邻但不同的问题；AuthGraph 的 graph alignment 可作为 baseline 或 component，而本文补的是 future-trajectory-constrained realized-effect authorization。
+
+### 5.8 必做实验
+
+| ID | 实验 | 目的 | 主要指标 |
+|---|---|---|---|
+| E-FC1 | Constraint compiler accuracy | 检查 `c -> A(c), F_c` 是否过宽/过窄 | allowed precision/recall, forbidden recall, over-permissive rate, over-restrictive rate |
+| E-FC2 | Shadow-real divergence | 检查 sandbox trace 和真实 replay 是否 effect-equivalent | trace divergence, effect divergence, deviation-blocked rate |
+| E-FC3 | Pre-commit blocking | 证明越权副作用在真实 commit 前被阻断 | Unauthorized Committed Effect Rate, Pre-effect Block Rate, Task Success, FDeny, Abstain |
+| E-FC4 | Held-out surface robustness | 检查同 effect 多 surface 下是否仍可阻断 | leave-one-surface U-Allow/FDeny/Abstain, row FNR/FPR |
+| E-FC5 | Ablation | 证明不是单一组件或规则表在起作用 | without shadow / without replay lock / without guard / without uncertainty / AuthGraph-style baseline |
+| E-FC6 | Efficiency | 量化 shadow + graph + replay 的成本 | latency overhead, trace size, guard overhead, human review rate |
+
+高危测试场景：
+
+```text
+local financial analysis with hidden upload
+HTTP status check with redirected full content download and file write
+cleanup command expanding from *.tmp to broad rm
+draft message accidentally sent
+browser form submit with unauthorized recipient
+shell/python alias for file delete/read/network egress
+```
 
 ## 6. 实验协议
 
@@ -301,4 +468,3 @@ CEG-Auth 才能作为主方法的最低标准：
 - We introduce graph-based agent trace monitoring.
 - We are the first to use provenance graphs for agent safety.
 - We solve tool-use safety with graph reasoning.
-

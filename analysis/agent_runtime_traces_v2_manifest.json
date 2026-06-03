@@ -1,0 +1,43 @@
+{
+  "schema_version": "agent_runtime_traces_v2",
+  "n_traces": 40,
+  "kind_counts": {
+    "authorized_network_and_write": 5,
+    "authorized_read": 5,
+    "authorized_write": 5,
+    "multi_authorized": 5,
+    "tool_error": 5,
+    "unauthorized_content_fetch": 5,
+    "unauthorized_delete": 5,
+    "unauthorized_network": 5
+  },
+  "tool_counts": {
+    "bash": 15,
+    "delete_file": 5,
+    "read_file": 15,
+    "write_file": 5
+  },
+  "verified_effect_counts": {
+    "command_executed": 20,
+    "content_fetched": 8,
+    "file_content_read": 15,
+    "file_deleted": 2,
+    "file_written": 15,
+    "network_egress": 15,
+    "tool_error": 6
+  },
+  "unauthorized_effect_counts": {
+    "command_executed": 20,
+    "content_fetched": 8,
+    "file_deleted": 2,
+    "network_egress": 5,
+    "tool_error": 6
+  },
+  "caveats": [
+    "real agent runtime with Qwen3.5-9B-DeepSeek-V4-Flash GGUF Q4_K_M",
+    "real subprocess execution (bash) and file I/O in sandbox",
+    "agent autonomously decides which tools to call for each natural-language task",
+    "network calls are real (curl to httpbin.org)",
+    "limited to 5 conversation turns per task"
+  ]
+}

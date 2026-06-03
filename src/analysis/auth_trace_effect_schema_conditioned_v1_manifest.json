@@ -1,0 +1,227 @@
+{
+  "candidate_effects": [
+    "command_executed",
+    "file_content_read",
+    "file_written",
+    "file_deleted",
+    "network_egress",
+    "content_fetched",
+    "message_sent",
+    "tool_error"
+  ],
+  "caveats": [
+    "Trace provenance is inherited from the input trace file; inspect trace_type_counts and the source trace manifest before making external-validity claims.",
+    "candidate_effect_present is derived from trace verifier outputs and used as the execution-level present signal.",
+    "scenario_text excludes gold verified_effects, unauthorized_effects, and effect_diff labels."
+  ],
+  "conditions": [
+    "full_tool_chain"
+  ],
+  "input_path": "/data/CSK/causal-agent-safety-research/data/agent_runtime_traces_v2.jsonl",
+  "leakage_checks": {
+    "duplicate_text_count": 24,
+    "exact_snakecase_effect_mentions_in_text": {},
+    "label_field_mentions_in_text": {}
+  },
+  "n_rows": 192,
+  "n_traces": 24,
+  "nonzero_cells": {
+    "command_executed::bash::agent_runtime_execution": {
+      "absent_not_authorized": 0,
+      "present_positive": 9,
+      "unauthorized_positive": 9
+    },
+    "command_executed::delete_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "command_executed::read_file::agent_runtime_execution": {
+      "absent_not_authorized": 6,
+      "present_positive": 3,
+      "unauthorized_positive": 3
+    },
+    "command_executed::write_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "content_fetched::bash::agent_runtime_execution": {
+      "absent_not_authorized": 4,
+      "present_positive": 5,
+      "unauthorized_positive": 5
+    },
+    "content_fetched::delete_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "content_fetched::read_file::agent_runtime_execution": {
+      "absent_not_authorized": 9,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "content_fetched::write_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_content_read::bash::agent_runtime_execution": {
+      "absent_not_authorized": 6,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_content_read::delete_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_content_read::read_file::agent_runtime_execution": {
+      "absent_not_authorized": 0,
+      "present_positive": 9,
+      "unauthorized_positive": 0
+    },
+    "file_content_read::write_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_deleted::bash::agent_runtime_execution": {
+      "absent_not_authorized": 8,
+      "present_positive": 1,
+      "unauthorized_positive": 1
+    },
+    "file_deleted::read_file::agent_runtime_execution": {
+      "absent_not_authorized": 9,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_deleted::write_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_written::bash::agent_runtime_execution": {
+      "absent_not_authorized": 6,
+      "present_positive": 3,
+      "unauthorized_positive": 0
+    },
+    "file_written::delete_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "file_written::read_file::agent_runtime_execution": {
+      "absent_not_authorized": 6,
+      "present_positive": 3,
+      "unauthorized_positive": 0
+    },
+    "file_written::write_file::agent_runtime_execution": {
+      "absent_not_authorized": 0,
+      "present_positive": 3,
+      "unauthorized_positive": 0
+    },
+    "message_sent::bash::agent_runtime_execution": {
+      "absent_not_authorized": 9,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "message_sent::delete_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "message_sent::read_file::agent_runtime_execution": {
+      "absent_not_authorized": 9,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "message_sent::write_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "network_egress::bash::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 6,
+      "unauthorized_positive": 0
+    },
+    "network_egress::delete_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "network_egress::read_file::agent_runtime_execution": {
+      "absent_not_authorized": 6,
+      "present_positive": 3,
+      "unauthorized_positive": 3
+    },
+    "network_egress::write_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "tool_error::bash::agent_runtime_execution": {
+      "absent_not_authorized": 9,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "tool_error::delete_file::agent_runtime_execution": {
+      "absent_not_authorized": 0,
+      "present_positive": 3,
+      "unauthorized_positive": 3
+    },
+    "tool_error::read_file::agent_runtime_execution": {
+      "absent_not_authorized": 9,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    },
+    "tool_error::write_file::agent_runtime_execution": {
+      "absent_not_authorized": 3,
+      "present_positive": 0,
+      "unauthorized_positive": 0
+    }
+  },
+  "present_by_candidate_effect": {
+    "command_executed": 12,
+    "content_fetched": 5,
+    "file_content_read": 9,
+    "file_deleted": 1,
+    "file_written": 9,
+    "network_egress": 9,
+    "tool_error": 3
+  },
+  "rows_by_candidate_effect": {
+    "command_executed": 24,
+    "content_fetched": 24,
+    "file_content_read": 24,
+    "file_deleted": 24,
+    "file_written": 24,
+    "message_sent": 24,
+    "network_egress": 24,
+    "tool_error": 24
+  },
+  "rows_by_condition": {
+    "full_tool_chain": 192
+  },
+  "rows_by_trace_type": {
+    "agent_runtime_execution": 192
+  },
+  "schema_version": "auth_trace_effect_schema_conditioned_v1",
+  "trace_type_counts": {
+    "agent_runtime_execution": 24
+  },
+  "unauthorized_by_candidate_effect": {
+    "command_executed": 12,
+    "content_fetched": 5,
+    "file_deleted": 1,
+    "network_egress": 3,
+    "tool_error": 3
+  },
+  "unauthorized_by_trace_type": {
+    "agent_runtime_execution": 24
+  },
+  "verifier_type_counts": {
+    "agent_runtime_execution": 24
+  }
+}

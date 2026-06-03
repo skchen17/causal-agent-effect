@@ -1,0 +1,101 @@
+{
+  "claim_boundary": [
+    "instrumented local pre-commit benchmark",
+    "no live external API, SaaS messaging, HTTP browser automation, or destructive real-world operation",
+    "tests authorized path, full-pipeline unauthorized rejection, and deviation under authorized F_c"
+  ],
+  "dataset": "precommit_blocking_t104_v1",
+  "source": {
+    "compiler_outputs": "data/future_constraint_compiler_outputs_t102_v1.jsonl",
+    "intents": "data/future_constraint_intents_t102_v1.jsonl",
+    "tasks": "data/future_constraint_tasks_t102_v1.jsonl"
+  },
+  "summary": {
+    "authorized_commit_rate": 1.0,
+    "authorized_false_denial_rate": 0.0,
+    "authorized_n": 200,
+    "case_type_breakdown": {
+      "authorized_path": {
+        "authorized_commit_rate": 1.0,
+        "authorized_false_denial_rate": 0.0,
+        "n": 200,
+        "pre_effect_block_rate_unauthorized": 0.0,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "deviation_under_authorized_constraint": {
+        "authorized_commit_rate": 0.0,
+        "authorized_false_denial_rate": 0.0,
+        "n": 400,
+        "pre_effect_block_rate_unauthorized": 1.0,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "full_pipeline_unauthorized": {
+        "authorized_commit_rate": 0.0,
+        "authorized_false_denial_rate": 0.0,
+        "n": 400,
+        "pre_effect_block_rate_unauthorized": 1.0,
+        "unauthorized_committed_action_rate": 0.0
+      }
+    },
+    "family_breakdown": {
+      "api_provider_dry_run": {
+        "authorized_commit_rate": 1.0,
+        "authorized_false_denial_rate": 0.0,
+        "n": 125,
+        "pre_effect_block_rate_unauthorized": 1.0,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "browser_form": {
+        "authorized_commit_rate": 1.0,
+        "authorized_false_denial_rate": 0.0,
+        "n": 125,
+        "pre_effect_block_rate_unauthorized": 1.0,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "draft_messaging": {
+        "authorized_commit_rate": 1.0,
+        "authorized_false_denial_rate": 0.0,
+        "n": 125,
+        "pre_effect_block_rate_unauthorized": 1.0,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "file_cleanup": {
+        "authorized_commit_rate": 1.0,
+        "authorized_false_denial_rate": 0.0,
+        "n": 150,
+        "pre_effect_block_rate_unauthorized": 1.0,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "http_status_check": {
+        "authorized_commit_rate": 1.0,
+        "authorized_false_denial_rate": 0.0,
+        "n": 150,
+        "pre_effect_block_rate_unauthorized": 1.0,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "local_file_analysis": {
+        "authorized_commit_rate": 1.0,
+        "authorized_false_denial_rate": 0.0,
+        "n": 175,
+        "pre_effect_block_rate_unauthorized": 1.0,
+        "unauthorized_committed_action_rate": 0.0
+      },
+      "tool_alias": {
+        "authorized_commit_rate": 1.0,
+        "authorized_false_denial_rate": 0.0,
+        "n": 150,
+        "pre_effect_block_rate_unauthorized": 1.0,
+        "unauthorized_committed_action_rate": 0.0
+      }
+    },
+    "n": 1000,
+    "pre_effect_block_rate_unauthorized": 1.0,
+    "status_counts": {
+      "blocked_by_constraint_before_execution": 400,
+      "blocked_by_prefix_guard_before_commit": 400,
+      "committed_all_staged_steps": 200
+    },
+    "unauthorized_committed_action_rate": 0.0,
+    "unauthorized_n": 800
+  }
+}

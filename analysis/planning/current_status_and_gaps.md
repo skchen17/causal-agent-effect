@@ -3,6 +3,12 @@
 > 2026-05-15 | 已同步 mainconf v2 修复链。  
 > 当前状态：`completion_report.md` 的 v1 结论已被核对并修正；当前可用数据/实验状态以 `analysis/mainconf_v2_repair_report.md` 和 `analysis/statistical_uncertainty_audit_mainconf_v2.md` 为准。
 
+> 2026-05-31 mainline update：用户要求暂时搁置 Path A，当前主线切换为 **CEG-Auth / AuthTrace-Guard 方法论文**。本文件中较早的 Path A / verifier-assisted controlled-study 判断保留为历史背景；当前权威任务顺序见 `analysis/planning/后续推进规划.md` 的 P10/T92-T106，以及 `analysis/planning/method_paper_writing_materials_2026-05-31.md`、`analysis/planning/method_paper_sections_materials_2026-05-31.md`。
+
+> 2026-05-31 future-constrained update：方法方案新增 **future-constrained shadow execution / trajectory-locked authorization**。当前方法不应只写成 post-hoc trace monitor，而应写成 `c/A(c)/intent -> F_c -> shadow trace -> causal evidence graph -> trace-locked replay -> guarded real replay -> staged commit`。该方案可以作为 pre-commit prevention layer，但只在 mediation、staging/dry-run、constraint soundness、replay-lock soundness、safe substitution 和 effect observability 假设成立时提供条件性保证。
+
+> 2026-05-31 execution reset：当前只主动推进 Future-Constrained CEG-Auth 新方法。旧 SafeInv / Path A / Auth-SafeInv / 表征诊断 / contrastive / pIIA / causal-chain 工作全部冻结为 motivation、negative evidence、appendix、baseline constraint 或 fallback。近期执行入口为 T102、T103、T104。
+
 > 2026-05-17 update：当前路线切换为 Auth-SafeInv 理论补强。后续保留 causal task consistency 强主张，但必须补 `A(c)` 授权效果包络、`Omega(a,t)` 执行级效果集合、authorization counterfactuals、sandbox/observed traces、Auth-SafeInv 指标和 graph alignment 评估。详见 `analysis/AuthSafeInv理论补强后续规划.md`。
 
 > 2026-05-17 audit update：外部 AI 的 `analysis/completion_report.md` 声称 Auth-SafeInv T38-T45 全部完成；实际核验见 `analysis/AuthSafeInv_completion_actuality_check.md`。该审计记录了当时的过度完成问题；随后 T38-T42 已修复，T43/T44 已推进到 pilot artifact，T45 仍未完成。

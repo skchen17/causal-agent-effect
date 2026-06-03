@@ -1,6 +1,6 @@
 # Project File Map
 
-> 最后更新：2026-05-24 | 新增 `analysis/experiments/` 实验分组索引。当前主状态优先见 `PROJECT_SUMMARY.md` 与 `analysis/planning/后续推进规划.md`；各实验目的、结论和 claim boundary 见 `analysis/experiments/README.md`。
+> 最后更新：2026-06-03 | AgentDojo Strong+Max / FC-Guard 已新增 local GGUF 后端、完整 raw I/O audit 记录和 T119 theory-audit proxy v2；DeepSeek API full 仍因余额停在 13/100 shards。当前主状态优先见 `PROJECT_SUMMARY.md` 与 `analysis/planning/后续推进规划.md`；各实验目的、结论和 claim boundary 见 `analysis/experiments/README.md`。
 
 ## Directory Structure
 
@@ -100,6 +100,23 @@ causal-agent-safety-research/
 | `analysis/select_main_conference_cells.py` | mainconf P0 cell target 选择 |
 | `analysis/build_real_or_semireal_traces.py` | real-agent-tools static replay trace 构造 |
 | `analyze_surface_graph_alignment.py` | Auth-SafeInv surface-form graph identifiability analysis | `analysis/surface_graph_alignment_*.{json,md}` |
+
+### Future-Constrained / AgentDojo 方法脚本
+
+| 文件 | 用途 | 关键输出 |
+|------|------|------|
+| `src/auth/future_constraints.py` | T102-T111 future-constraint 数据结构和本地 evaluator 公共模块 | 多个 `src/auth/*_t10*.py` 脚本复用 |
+| `src/auth/agentdojo_real_scenario_eval_t112.py` | T112 AgentDojo/AuthGraph-aligned baseline harness；支持 DeepSeek OpenAI-compatible endpoint | `analysis/results/agentdojo_real_scenario_eval_t112*` |
+| `src/auth/agentdojo_guarded_eval_t113.py` | T113 AgentDojo action-boundary future-constrained guard；比较 prefix-lock 与 replay-commit | `analysis/results/agentdojo_guarded_eval_t113*`, `data/agentdojo_guarded_eval_t113*` |
+| `src/auth/agentdojo_authgraph_proxy_t114.py` | T114 AuthGraph-style clean-plan/provenance proxy over AgentDojo logs | `analysis/results/agentdojo_authgraph_proxy_t114*` |
+| `src/auth/summarize_agentdojo_results.py` | T112-T114 AgentDojo scaled results summary with Wilson CI | `analysis/results/agentdojo_experiment_summary_2026-06-01.{json,md}` |
+| full949 AgentDojo summary | T117 installed AgentDojo v1.2.2 full cross-product direct run summary | `analysis/results/agentdojo_full949_direct_summary_2026-06-01.{json,md}`, `analysis/experiments/E27_agentdojo_full949_direct/README.md` |
+| `src/auth/agentdojo_local_llm.py` | Local llama.cpp AgentDojo LLM wrapper for GGUF models; renders tool schemas to text, parses `<tool_call>` JSON, and writes full model input/output audit JSONL | `runs/agentdojo_local_model_io*`, local T118/T119 artifacts |
+| `src/auth/agentdojo_strongmax_matrix_t118.py` | T118 resumable AgentDojo Strong+Max baseline matrix; supports OpenAI-compatible and local GGUF backends; includes DeepSeek-compatible and local text tool-filter wrappers | `analysis/results/agentdojo_strongmax_matrix_t118*`, `analysis/results/agentdojo_t118_strongmax*_shards/`, `runs/agentdojo_local_model_io*`, `analysis/experiments/E28_agentdojo_strongmax_baselines/README.md` |
+| `src/auth/agentdojo_fc_guard_t119.py` | T119 non-oracle FC-Guard production-proxy: label-after-decision staged trace, typed CEG graph, strict no-commit block semantics, staged/eval cache, guarded replay, shard/resume, local GGUF backend, and theory-audit fields for replay equivalence / mediation / conditional-bound error terms | `analysis/results/agentdojo_fc_guard_t119*`, `analysis/results/agentdojo_t119_fc_guard*_shards/`, `analysis/results/agentdojo_t119_staged*_cache/`, `data/agentdojo_fc_guard_t119*`, `runs/agentdojo_local_model_io*`, `analysis/experiments/E29_fc_guard_production_proxy/README.md` |
+| `src/auth/summarize_agentdojo_strongmax_t120.py` | T120 Strong+Max / FC-Guard summary and paired comparisons against no-defense/best official defense; supports multiple FC shard dirs and optional AuthGraph-style proxy summaries | `analysis/results/agentdojo_strongmax_fc_guard_summary_t120*`, `analysis/experiments/E30_agentdojo_attack_fc_guard/README.md` |
+| `scripts/run_agentdojo_strongmax_full.sh` | End-to-end long-run launcher for T118 baseline matrix, T119 FC-Guard/ablations, and T120 summary; requires `DEEPSEEK_API_KEY` in env and does not store keys | `runs/agentdojo_strongmax_full_20260602.log`, `analysis/results/agentdojo_*t118*`, `analysis/results/agentdojo_*t119*`, `analysis/results/agentdojo_*t120*` |
+| `scripts/run_agentdojo_strongmax_local_full.sh` | End-to-end local GGUF launcher for T118/T119/T120; defaults to `CUDA_VISIBLE_DEVICES=1`, `models/Qwen3.5-9B-DeepSeek-V4-Flash-Q4_K_M.gguf`, local-only result dirs, and full raw I/O audit logs | `analysis/results/agentdojo_*_local*`, `runs/agentdojo_t118_strongmax_local*`, `runs/agentdojo_local_model_io*`, `data/agentdojo_fc_guard_t119_local*` |
 
 ### 入口脚本
 
