@@ -1,0 +1,31 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Controlled counterfactual problem characterization. Panel (a) reports
+group-level sensitivity to effect, authorization, and resource changes; higher
+is better. Panel (b) reports row-level unsafe pre-allow (UPA), safe false denial
+(FD), and coverage. These adapted custom stresses are not original-paper
+benchmark reproductions.}
+\label{tab:binding-problem-characterization}
+\begin{tabular}{lrrrr}
+\toprule
+\multicolumn{5}{l}{\textbf{(a) Partial binding across monitors}} \\
+Method & Effect & Auth. & Resource & UPA \\
+\midrule
+Tool-name proxy & 0.0\% & 0.0\% & 0.0\% & 29.2\% \\
+Qwen self-audit & 66.7\% & 56.5\% & 29.2\% & 0.4\% \\
+TS-Guard & 62.5\% & 76.4\% & 83.3\% & 15.9\% \\
+Safiron & 100.0\% & 8.8\% & 16.7\% & 54.5\% \\
+\midrule
+\multicolumn{5}{l}{\textbf{(b) Hard-guard granularity stress}} \\
+Guard / stress & \multicolumn{1}{c}{Rows} & UPA & FD & Coverage \\
+\midrule
+Unified suite & 822 & 3.6\% & 6.5\% & 91.7\% \\
+Resource/auth. & 240 & 38.3\% & 0.0\% & 92.1\% \\
+\quad w/o resource & 240 & 61.7\% & 0.0\% & 93.8\% \\
+\quad w/o authorization & 240 & 89.2\% & 0.0\% & 92.1\% \\
+Provenance & 336 & 0.0\% & 18.8\% & 54.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}

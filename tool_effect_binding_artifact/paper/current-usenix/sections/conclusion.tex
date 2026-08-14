@@ -1,0 +1,20 @@
+\section{Conclusion}
+
+Tool-effect binding is the representation obligation that precedes runtime
+authorization.  Source execution establishes what a tool commits; a policy
+witness establishes which effects require different decisions; and a
+representation collision shows whether the monitor preserves that distinction.
+When it does not, downstream enforcement cannot recover the lost information.
+Source-executed counterfactuals expose these collisions and guide descriptor
+refinement before registration.
+
+Across finite AgentDojo and pre-registered ToolSandbox domains, typed effects
+remove collisions left by common call views; on ToolSandbox, concrete atoms
+exactly realize the specified finite policy relation.  In AgentDojo, a
+provenance-origin monitor uses the registered descriptor for deterministic
+pre-commit checks and complete call reconciliation.  Its security gains remain
+subject to provenance quality and a visible utility tradeoff.  The contribution
+is an executable and falsifiable effect representation, not an authority source:
+the planner proposes calls, while an independent policy must decide which
+represented effects may commit.
+\label{technical-body-end}

@@ -1,0 +1,17 @@
+% Interim rendering from already passed frozen artifacts.  The strict final
+% generator overwrites this file after the pending Qwen comparison passes.
+\paragraph{Repeated utility and held-out attacks.}
+
+Across four interleaved DeepSeek repetitions, benign utility is 77.6\% without
+a guard, 78.6\% under Spotlighting, and 76.5\% under \sys{}.  The mean
+monitor-minus-no-guard difference is $-1.0$ percentage point.  The
+task-clustered one-sided 95\% lower bound is $-5.4$ percentage points, below the
+pre-registered $-5.0$-point margin, so benign-utility non-inferiority is not
+established.
+
+On the frozen 320-case public-family set, attack success is 1.3\% without a
+guard and 0.0\% under both Spotlighting and \sys{}.  Native task utility on the
+same rows is 78.1\%, 74.4\%, and 73.4\%, respectively.  This held-out result
+retains the observed security reduction but also confirms that the runtime
+profile is not utility-neutral or numerically dominant over the prompting
+baseline (Figure~\ref{fig:security-utility-tradeoff}(b)).

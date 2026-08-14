@@ -1,0 +1,1 @@
+../shared/compatibility/scripts/run_toolsandbox_concrete_atom_authorizer.py

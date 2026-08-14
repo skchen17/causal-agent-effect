@@ -1,0 +1,216 @@
+\section{Counterfactual Effect Binding}
+\label{sec:method}
+
+\input{figures/system_overview}
+
+Figure~\ref{fig:system-overview} separates two trust domains.  Offline
+registration constructs and tests a tool descriptor against the registered
+implementation.  Online mediation is deterministic: it instantiates the
+frozen descriptor for a concrete call and supplies the resulting effect view
+to a policy.  The LLM may seed candidate names and bindings during
+registration, but neither its proposal nor a runtime agent decision is treated
+as authority.
+
+We use three terms consistently.  An \emph{effect atom} is the policy-relevant
+unit in our model.  A \emph{tool descriptor} is the frozen output of offline
+registration.  The \emph{provenance-origin monitor} is our AgentDojo runtime
+instance: it expands descriptor fields into value records and rejects effects
+introduced only by marked untrusted evidence.  A separate ToolSandbox
+mechanism instantiates concrete typed atoms and checks them against an effect
+bound.  ToolSandbox isolates the atom interface; AgentDojo evaluates a
+conservative runtime instance over complete trajectories.
+
+The registration evidence has two stages.  A committed-state difference is an
+\emph{effect witness}: it shows that the intervention changes what the tool
+does.  A pair becomes an \emph{authorization-separating witness} only when an
+admissible policy decides the two resulting semantic views differently.  The
+first justifies retaining information about an effect; the second justifies a
+distinction in an authorization-sufficient representation.
+
+\subsection{From Committed Effects to Policy Views}
+
+Let $u=(t,\bar{x},s,h)$ contain a tool name, totalized arguments, pre-state, and
+typed provenance evidence, and let $\mu(u)$ be the multiset of committed state changes produced by
+executing $u$.  As in Section~\ref{sec:threat-model}, $\omega(u)$ augments this
+multiset with policy-relevant trusted execution metadata.  An \emph{effect atom} records one occurrence that an admissible
+policy may need to authorize independently.  For example, adding a participant
+to an existing calendar event can produce
+\[
+ \langle\textsf{invite},\textsf{event:17},\textsf{sarah@example.com},
+          \textsf{commit},\textsf{tool-output}\rangle.
+\]
+Here the components denote effect kind, operated resource, target principal,
+operation or commit mode, and control provenance.  A tool-specific atom may
+also retain a payload, visibility, date, or other qualifier when the policy
+family can distinguish its values.  Lists expand per target or resource when
+their members can be authorized independently.
+
+A general registered descriptor $d_t$ contains (i) argument-totalization rules,
+(ii) proposed effect kinds, (iii) effect-bearing schema fields and their
+bindings or roles, (iv) inactive values, and (v) counterfactual evidence for
+those choices.  Its instantiation function defines the monitor view
+\[
+  \rho_d(u)=A_{d_t}(u)
+    =\operatorname{instantiate}(d_t,\bar{x},s,h),
+\]
+a canonical multiset of concrete atoms.  Thus $\mu(u)$ is what execution
+actually commits, whereas $\rho_d(u)$ is the effect representation available
+before commitment.  The ToolSandbox mechanism implements this typed form for
+five source-executed tools.  The AgentDojo prototype implements the narrower
+projection described above.  Its field roles are audit annotations rather than
+independently validated semantic types: a field record is not automatically a
+complete resource--principal--operation atom.
+
+Atom equality is field-wise after descriptor-defined canonicalization, and
+multiplicity is preserved: inviting the same principal to two resources is not
+collapsed into one occurrence.  A general descriptor may bind aliases to stable
+resource or principal identifiers.  The evaluated monitor has no such general
+resolver.  Its frozen canonicalization handles bounded literal equivalences,
+including case and whitespace, numeric and date forms, and normalized URL
+forms.  A typed resolver may admit a value only from a matching authorized-read
+ledger entry; it does not infer arbitrary entity aliases.  We therefore
+evaluate alias-sensitive and typed-resource representations separately rather
+than assuming canonicalization is semantically complete.
+
+\paragraph{Policy-relative minimality.}
+Minimality is relative to a frozen intervention domain $D$ and policy family
+$\mathcal P$.  A representation is minimal on $(D,\mathcal P)$ when merging
+any two of its classes creates a pair that some $P\in\mathcal P$ decides
+differently.  Accordingly, changing committed state establishes that a field
+is effect-relevant.  A trusted provenance or control-source change can also be
+authorization-relevant without changing state.  Either establishes
+authorization necessity only when an admissible policy separates the resulting
+semantic views.  A returned-string change alone establishes neither.  This
+definition does not assert a unique or globally minimal tuple schema.
+
+\subsection{Offline Registration}
+
+Registration consumes a versioned tool schema and implementation, sandbox
+states, an intervention catalog, and, when authorization sufficiency is being
+tested, a policy oracle from $\mathcal P$.  It proceeds as follows.
+
+\paragraph{1. Propose.}
+A developer or an LLM proposes effect names and field bindings from the tool
+name, description, and schema.  The origin of the candidate is immaterial to
+the security argument: it is an untrusted initial hypothesis and cannot
+determine registration.  Our harness supports local-LLM seeding, but this paper
+does not evaluate automatic contract synthesis or onboarding-time reduction.
+
+\paragraph{2. Intervene and execute.}
+For a valid base call, the harness changes a field value or its presence while
+holding the implementation and initial state fixed.  Interventions include
+typed alternatives, observed alternatives, boundary values, list expansion,
+and omission/default cases when supported.  Surface-only variants serve as
+placebos.  Both calls execute in copied sandboxes, so no external side effect
+is produced.
+
+\paragraph{3. Classify evidence.}
+A state-difference oracle compares committed state, returned output, and
+execution validity; provenance interventions additionally use the trusted
+harness annotation.  The harness records \emph{committed-effect changed},
+\emph{policy-metadata changed}, \emph{output-only changed},
+\emph{semantic-invariant}, or \emph{invalid/unresolved}.  The first is evidence
+that a field participates in the exercised effect relation; the second records
+a change such as trusted control provenance.  Either becomes an
+authorization-separating counterexample only if the selected policy oracle
+distinguishes the two semantic views.  An invariant outcome supports omission
+only over the tested states and interventions; an invalid outcome is never
+treated as evidence of irrelevance.
+
+\paragraph{4. Refine or freeze.}
+A counterexample may add a field, split a list-valued effect, or introduce a
+qualifier into the candidate representation.  Repeating this step implements
+the finite refinement procedure analyzed in Section~\ref{sec:security-analysis}.
+This is the general counterexample-guided loop; a descriptor is called
+authorization-sufficient only after its test domain contains no
+policy-separating collision.  The evaluated AgentDojo registry uses a more
+conservative, nonminimal instance of this rule: it
+retains fields with effect-change evidence and fields whose tests remain
+unresolved.  A later multi-base audit broadens the evidence but does not
+retroactively change that frozen registry.  Thus the registry demonstrates
+coverage of exercised fields, not automatic discovery of a sparse minimum.
+The descriptor, implementation identity, intervention manifest, and evidence
+are hash-frozen together; runtime code cannot invoke the proposer.
+
+\paragraph{Running example.}
+Consider a calendar tool whose participant argument is a list.  The proposal
+may initially describe the call only as \textsf{create-event}.  Registration
+executes a base call that invites Alice and a paired call that additionally
+invites Eve.  If the state oracle observes a second invitation and the policy
+allows Alice but not Eve, the pair is an authorization-separating
+counterexample.  Refinement therefore expands the participant list into one
+\textsf{invite} atom per principal.  A surface paraphrase that preserves the
+same event and participants should leave the atom multiset unchanged.  The
+descriptor is frozen only for the intervention and policy domain exercised by
+these checks; neither test proves correctness for arbitrary calendars or
+future schema versions.
+
+\subsection{Runtime Interface}
+
+For context $u=(t,\bar{x},s,h)$, the runtime first applies the descriptor's
+totalization function.  In the AgentDojo monitor, a versioned schema catalog
+distinguishes required fields from explicit static defaults; inactive values
+such as an omitted optional update remain represented but generate no active
+effect check.  A runtime-derived value is accepted only when a registered
+resolver relation and a matching typed authorized-read ledger entry justify
+it.  Missing required values, unknown defaults, or unproved resolver values
+produce \Abstain{} or a noncommitting replan decision.  The runtime then
+instantiates $\rho_d(u)$ as defined above.  In the general architecture, a
+policy interface
+\[
+  \operatorname{Authorize}(\rho_d(u),P)
+       \rightarrow \{\Allow,\Deny,\Abstain\}
+\]
+receives these atoms and independently supplied authority context $P$.  Such a
+policy may check ACLs, delegation, visibility, quotas, or other
+resource-specific constraints.  Registration supplies the effect view; it
+does not manufacture this authority.
+
+The authority source is explicit in each evaluated setting.  Finite
+representation validation enumerates bounds over observed source-effect
+occurrences.  The concrete ToolSandbox mechanism treats one frozen
+source-executed effect multiset as the bound and checks another call's typed
+atoms for multiset inclusion.  AgentDojo supplies no general ACL: its bound is
+the narrower provenance-origin relation between the authenticated task,
+registered effects, and typed untrusted evidence.  These settings test the
+representation and mediation interfaces under stated policies; they are not
+interchangeable evidence for deployment authority.
+
+\subsection{Provenance-Origin Monitor}
+
+The provenance-origin monitor instantiates a narrower policy than the general
+interface above.  It asks whether explicitly untrusted observations introduced
+a registered effect or effect-bearing value absent from the authenticated task.
+
+\paragraph{Structured provenance.}
+The adapter traverses mappings, sequences, dataclasses, and Pydantic-like
+records before extracting explicitly marked untrusted control segments.  This
+preserves provenance through structured tool outputs.  Provenance identifies
+where a value came from; it does not by itself authorize the resulting effect.
+
+\paragraph{Registered-field binding.}
+For each registered field, the monitor expands mappings and lists to concrete
+leaf values.  A value is rejected when it occurs in untrusted control text but
+is not literally grounded in the authenticated task.  Per-value expansion
+prevents one task-grounded recipient from authorizing an additional injected
+recipient.  The audit record stores the field, concrete value, descriptor role,
+provenance status, and decision reason.
+
+\paragraph{Effect-label grounding.}
+Some injected requests change the intended action without exposing a unique
+argument value.  The monitor therefore performs a second, lexical check over action and
+object terms derived from the frozen tool name and effect label.  If the
+untrusted segment requests that registered effect while the authenticated task
+does not, the call is denied.  This is a benchmark-specific grounding heuristic,
+not general semantic authorization or concrete atom recovery.
+
+Missing registration or failed totalization produces \Abstain; a detected
+untrusted expansion produces \Deny; otherwise the monitor returns \Allow.  In
+the calendar example, an Eve value copied from explicitly untrusted text is
+denied when Eve is absent from the authenticated task; the monitor does not
+claim to infer whether the user has organization-level permission to invite her.
+The executor
+commits only the exact totalized call signature associated with \Allow, and the
+audit log reconciles checked and executed calls.  The monitor makes no runtime
+LLM call.  ACLs and other authority predicates remain external to this
+evaluated policy instance.

@@ -1,0 +1,30 @@
+{
+  "artifact": "sanitized_fixed_support",
+  "claim_boundary": "This path-free snapshot contains only fixed paper metrics. Source hashes bind the extract to raw workspace results; the compact artifact does not expose machine-specific metadata from those raw reports.",
+  "descriptor_registration": {
+    "n_field_evidence_rows": 67,
+    "n_multi_status_fields": 1,
+    "n_non_security_fields": 0,
+    "n_registered_tools": 25,
+    "n_security_fields": 67,
+    "n_status_records": 68,
+    "sandbox_counterfactual_status_counts": {
+      "effect_changed": 48,
+      "effect_invariant": 1,
+      "external_request_destination_changes": 1,
+      "unresolved_fail_closed": 18
+    }
+  },
+  "generated_at": "2026-08-14T11:23:42.229642+00:00",
+  "projection_validation": {
+    "eight_field_projection": {
+      "mediation_gaps": 15,
+      "n_cases": 80
+    }
+  },
+  "source_hashes": {
+    "experiments/human-authority-and-causal-validation/results/causal-effect-projection-validation/agentdojo-projection-intervention-report.json": "cad4e0b382f7f09f895cfaf1cf21cace89beba5fc963d2e977dc20e72574b1c8",
+    "experiments/intent-bound-runtime-guard/results/effect-difference-runtime-guard/registered-effect-diff-descriptors.jsonl": "dc9e16d87eefcf6ba54e71bc0e799b96eaaa062f6e22cfdf9db0616b6954e9e4"
+  },
+  "status": "passed"
+}

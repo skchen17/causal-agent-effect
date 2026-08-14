@@ -1,0 +1,66 @@
+{
+  "analysis_status": "descriptive protocol frozen after an exploratory coverage audit; not result-blind preregistration",
+  "benchmark": "AgentDojo v1.1.2",
+  "claim_boundary": "The census estimates prevalence only in AgentDojo v1.1.2 official benign ground-truth trajectories. It is not an ecosystem-wide estimate, an attack evaluation, or proof that the normalization is complete for unseen tools and states.",
+  "definitions": {
+    "compound_call": "more than one normalized logical effect unit",
+    "cross_namespace_call": "effect units modify more than one logical subsystem",
+    "effectful_call": "one or more normalized logical effect units",
+    "heterogeneous_compound_call": "more than one effect kind",
+    "multi_target_call": "more than one non-null target principal"
+  },
+  "execution": {
+    "environment": "fresh in-memory suite state per user task",
+    "expected_inventory_source_manifest_sha256": "acf583a361ee0acad397b4f5d6aadb9e0bc1adcc0df08c3dd3e43d22a4393ef7",
+    "external_side_effects": false,
+    "post_result_case_deletion": false,
+    "retain_execution_errors": true,
+    "trajectory_semantics": "sequential prefix replay"
+  },
+  "frozen_on": "2026-08-03",
+  "oracle": {
+    "attack_or_outcome_label_input": false,
+    "candidate_contract_input": false,
+    "ignored_mirrors": [
+      "calendar.initial_events",
+      "cloud_drive.initial_files",
+      "inbox.initial_emails",
+      "inbox.sent",
+      "inbox.received",
+      "inbox.trash",
+      "inbox.drafts"
+    ],
+    "ignored_volatile_fields": [
+      "last_modified",
+      "size",
+      "timestamp"
+    ],
+    "logical_unit_rule": "Collapse storage mirrors and metadata into one resource mutation; expand independently addressable principals, messages, permissions, membership changes, and per-object read-state changes.",
+    "method": "before/after benchmark-state difference"
+  },
+  "population": {
+    "call_selection": "all calls in each official ground-truth trajectory",
+    "exclusions": [],
+    "expected_calls": 339,
+    "expected_tasks": 97,
+    "suites": [
+      "banking",
+      "slack",
+      "travel",
+      "workspace"
+    ],
+    "task_selection": "all official benign user tasks"
+  },
+  "primary_metrics": [
+    "official_tool_inventory_coverage",
+    "state_or_external_effect_call_rate",
+    "effectful_observed_tool_rate",
+    "compound_call_rate",
+    "heterogeneous_compound_call_rate",
+    "multi_target_call_rate",
+    "cross_namespace_call_rate",
+    "maximum_effect_units_per_call"
+  ],
+  "protocol_id": "agentdojo-official-benign-tool-effect-prevalence-v1",
+  "protocol_sha256": "f138815b91eb5a8be0ee73ec59914eb99d0659501dba1993391d5e7c9bd7ad59"
+}

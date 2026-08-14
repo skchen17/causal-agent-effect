@@ -1,0 +1,104 @@
+\section{Formal Definitions and Proof Details}
+\label{app:formal-proofs}
+
+\paragraph{Decision model.}
+Let $D$ be a finite set of reachable execution contexts and $\mathcal{P}$ the
+admissible per-commit policy contexts.  For $u\in D$, $\Delta(u)$ is
+the finite ordered trace of security-relevant concrete effect occurrences,
+$\mu(u)$ is its induced multiset, and $\gamma(u)$ is the policy-relevant
+execution metadata associated with the commit.  The ideal semantic view is
+$\omega(u)=(\mu(u),\gamma(u))$.  Each $P\in\mathcal P$ induces the ideal
+decision $I_P(\omega(u))$; multiset containment is the instance
+$I_B(\omega(u))=[\mu(u)\preceq B]$.  The snapshot $P$ used by the check is also the
+snapshot governing the corresponding commit.  A deterministic monitor over
+representation
+$\rho$ is
+\[
+  M:\mathrm{range}(\rho)\times\mathcal P
+  \rightarrow\{\Allow,\Deny,\Abstain\}.
+\]
+It is sound on $D$ when $M(\rho(u),P)=\Allow\Rightarrow I_P(\omega(u))=1$.
+It is permissive when $I_P(\omega(u))=1\Rightarrow
+M(\rho(u),P)=\Allow$.  Abstention may
+preserve safety but does not commit authorized work, so it is a loss of
+permissiveness in this statement.
+
+\paragraph{Proof of Theorem~\ref{thm:representation-insufficiency}.}
+Because $\rho$ is not authorization-sufficient, there are $u,v\in D$ and
+$P\in\mathcal P$ with $\rho(u)=\rho(v)$ and different ideal decisions. Rename
+the pair so that $I_P(\omega(u))=1$ and $I_P(\omega(v))=0$. Since the monitor views are
+identical, determinism gives
+\[
+ M(\rho(u),P)=M(\rho(v),P)=d.
+\]
+If $d=\Allow$, soundness fails on $v$. If $d\in\{\Deny,\Abstain\}$,
+permissiveness fails on $u$. Every possible decision violates at least one
+property, proving the theorem. \hfill$\square$
+
+\paragraph{Randomized monitors.}
+The same obstruction applies to probability-one guarantees. Equal inputs
+induce the same output distribution. Assigning positive probability to
+$\Allow$ gives positive unsafe-allow probability on the unauthorized context;
+assigning probability one to non-allow decisions gives false denial or
+abstention with probability one on the authorized context. Randomization can
+trade the two errors but cannot eliminate both.
+
+\paragraph{Proof of Proposition~\ref{prop:mediation-gap}.}
+The separating pair directly violates Definition~\ref{def:authorization-equivalence}.
+Theorem~\ref{thm:representation-insufficiency} then gives the downstream
+monitor consequence. \hfill$\square$
+
+\paragraph{Proof of Theorem~\ref{thm:finite-adequacy}.}
+Suppose the initial representation has $c_0\geq 1$ nonempty cells.  Each
+successful counterexample-guided step splits at least one nonempty cell into two
+nonempty cells, and no later step merges cells.  After $k$ refinements there are
+at least $c_0+k$ cells, while a partition of $D$ has at most $|D|$ cells.  There
+can therefore be at most $|D|-c_0\leq |D|-1$ such splits.  If the stopping
+condition leaves no policy-mixed cell, then for every pair in that cell and
+every $P\in\mathcal P$ the ideal decisions agree.  Equality of representations
+therefore implies equality of the full policy-decision vector, which is exactly
+authorization sufficiency on $(D,\mathcal P)$. \hfill$\square$
+
+\paragraph{Field necessity.}
+Let $\pi_{-f}$ erase atom component $f$. Component $f$ is necessary on
+$(D,\mathcal{P})$ if $\pi_{-f}\circ\rho_K$ is not
+authorization-sufficient although $\rho_K$ is. Theorem
+\ref{thm:representation-insufficiency} then shows that erasing $f$ forces an
+unsafe allow or loss of permissiveness for some admissible policy. This is a
+relative necessity result: changing $D$ or the admissible policy family can
+change which components are necessary.
+
+\paragraph{Proof of Theorem~\ref{thm:conditional-atom-mediation}.}
+Let $u$ be any allowed committed effectful call.  Complete mediation gives a
+pre-commit decision over $A_{d_t}(u)$, and the authorizer's allow rule gives
+$J_P(A_{d_t}(u))=1$.  Descriptor fidelity yields $I_P(\omega(u))=1$.
+Check--use consistency ensures that the context whose semantic commit view is
+$\omega(u)$ is exactly the checked context and that the same policy snapshot
+governs its commitment. \hfill$\square$
+
+\paragraph{Proof of Corollary~\ref{thm:single-commit}.}
+Consider an allowed and committed call.  Descriptor soundness puts each of its
+effect-bearing values in $F(u)$. Provenance soundness puts every value
+introduced by untrusted evidence in $U_V(h)$, and grounding soundness excludes
+it from $G_V(q)$ unless the authenticated task independently supports it.  The
+guard's first allow condition therefore rejects a solely untrusted value.  If
+an untrusted instruction changes only a registered effect kind, provenance
+soundness places that kind in $E(u)\cap U_E(h)$ and grounding soundness excludes
+it from $G_E(q)$; the second allow condition rejects it.  Thus no allowed
+registered effect or effect-bearing value is introduced solely by untrusted
+evidence.
+Complete mediation applies this argument to every effectful commit, and
+check--use consistency ensures the argument concerns the call actually
+executed. \hfill$\square$
+
+\paragraph{Scope of the proofs.}
+The proofs do not establish descriptor, provenance, or grounding soundness.
+Counterfactual
+execution can falsify a descriptor and can establish sufficiency only on a
+finite collision-complete domain. It cannot certify unseen, asynchronous, or
+out-of-domain effects.  The atom-mediation theorem additionally assumes policy
+correctness and policy-snapshot integrity; it does not establish either
+assumption.  The confinement theorem
+covers only the implemented provenance-origin policy. ACLs, delegation,
+quotas, history-dependent policy,
+and authenticated malicious requests require additional policy machinery.

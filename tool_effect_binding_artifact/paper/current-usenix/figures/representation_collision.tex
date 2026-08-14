@@ -1,0 +1,85 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  font=\scriptsize,
+  call/.style={draw=TEBlue, fill=TEBlueLight, align=left,
+               text width=3.45cm, minimum height=9mm, inner sep=3pt},
+  effects/.style={draw=TEDark!70, fill=black!3, align=left,
+                  text width=3.45cm, minimum height=12mm, inner sep=3pt},
+  view/.style={draw=TEDark!85, align=left, text width=3.45cm,
+               minimum height=15mm, inner sep=3pt},
+  coarse/.style={view, draw=TERed, fill=TERedLight, dashed},
+  atoms/.style={view, draw=TETeal, fill=TETealLight, line width=.7pt},
+  flow/.style={-{Latex[length=1.7mm]}, draw=TEDark!85, line width=.5pt},
+  guide/.style={draw=TEDark!55, line width=.4pt},
+  stage/.style={circle, draw=TEBlue, fill=TEBlueLight,
+               font=\scriptsize\bfseries, inner sep=1.2pt,
+               minimum size=4.1mm},
+  badge/.style={circle, draw=TEDark!55, fill=white,
+                minimum size=6.4mm, inner sep=0pt},
+]
+
+\node[stage] at (-4.00,0) {1};
+\node[call] (ucall) at (-2.0,0)
+  {\textbf{Requested call $u$}\\[-1pt]
+   \texttt{create\_event([Alice])}\\[-1pt]
+   \hfill $P(u)=\Allow$};
+\node[call] (vcall) at (2.0,0)
+  {\textbf{Expanded call $v$}\\[-1pt]
+   \texttt{create\_event([Alice,Eve])}\\[-1pt]
+   \hfill $P(v)=\Deny$};
+\node[badge] (ucal) at ($(ucall.north east)+(-.20,.05)$) {};
+\path (ucal.center) pic[scale=.72] {te-calendar};
+\node[badge, draw=TEOrange, fill=TEOrangeLight] (vcal)
+  at ($(vcall.north east)+(-.20,.05)$) {};
+\path (vcal.center) pic[scale=.72] {te-calendar};
+
+\node[stage] at (-4.00,-1.72) {2};
+\node[effects] (ueffects) at (-2.0,-1.72)
+  {$\mu(u)=\{\textsf{create}(e),$\\
+   \hspace*{9mm}$\textsf{invite}(e,A)\}$};
+\node[effects] (veffects) at (2.0,-1.72)
+  {$\mu(v)=\mu(u)\uplus$\\
+   \hspace*{9mm}$\{\mathbf{\textsf{invite}(e,E)}\}$};
+\node[badge] (ulayers) at ($(ueffects.north east)+(-.20,.05)$) {};
+\path (ulayers.center) pic[scale=.72] {te-layers};
+\node[badge, draw=TEOrange, fill=TEOrangeLight] (vlayers)
+  at ($(veffects.north east)+(-.20,.05)$) {};
+\path (vlayers.center) pic[scale=.72] {te-layers};
+
+\draw[flow] (ucall) -- (ueffects);
+\draw[flow] (vcall) -- (veffects);
+
+\node[stage] at (-4.00,-3.75) {3};
+\node[coarse] (coarse) at (-2.0,-3.75)
+  {\textbf{Coarse call view}\\[-1pt]
+   $\rho_c(u)=\rho_c(v)=\texttt{create\_event}$\\[1pt]
+   \textit{Required decision is lost.}};
+\node[atoms] (atomview) at (2.0,-3.75)
+  {\textbf{Effect-atom view}\\[-1pt]
+   $\rho_a(v)=\rho_a(u)\uplus\{\textsf{invite}(e,E)\}$\\[1pt]
+   \textit{The policy can separate $u$ and $v$.}};
+\node[badge, draw=TERed, fill=TERedLight] (warn)
+  at ($(coarse.north east)+(-.20,.05)$) {};
+\path (warn.center) pic[scale=.72] {te-warning};
+\node[badge, draw=TETeal, fill=TETealLight] (shield)
+  at ($(atomview.north east)+(-.20,.05)$) {};
+\path (shield.center) pic[scale=.72] {te-shield};
+
+\coordinate (fork) at (0,-2.72);
+\draw[guide] (ueffects.south) |- (fork);
+\draw[guide] (veffects.south) |- (fork);
+\draw[flow] (fork) -| (coarse.north);
+\draw[flow] (fork) -| (atomview.north);
+
+\node[anchor=north, font=\scriptsize\bfseries, text=TERed] at (-2.0,-4.62)
+  {$\rho_c$ collides};
+\node[anchor=north, font=\scriptsize\bfseries, text=TETeal] at (2.0,-4.62)
+  {$\rho_a$ preserves the distinction};
+\end{tikzpicture}
+\caption{Why the authorization object matters.  Calls $u$ and $v$ use the
+same tool, but source execution shows that $v$ adds an invitation that the
+policy rejects.  A coarse call view merges the pair; an effect-atom view
+exposes the additional committed effect before execution.}
+\label{fig:representation-collision}
+\end{figure}

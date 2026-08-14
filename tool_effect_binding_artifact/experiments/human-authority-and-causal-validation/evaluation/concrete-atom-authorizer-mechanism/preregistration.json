@@ -1,0 +1,60 @@
+{
+  "experiment": "toolsandbox_concrete_atom_authorizer_mechanism",
+  "frozen_at": "2026-08-13T00:00:00+08:00",
+  "status": "frozen_before_full_authorizer_run",
+  "input_hashes": {
+    "heldout_contexts_sha256": "755ea9eede206857b4f3c5d1db262fc12d231ee3cfd6b465eb2a5f8e8c99b72b",
+    "heldout_report_sha256": "111f4c293d130dcc1c0883407f42e4a539f24bb712357e0af12dec81736825ce",
+    "runner_sha256": "c7a82882f9de696cede62565819958031345c3a6cf38436f8467308aa9886d94"
+  },
+  "domain": {
+    "source": "heldout_toolsandbox_effect_binding_validation",
+    "n_tools": 5,
+    "n_contexts": 32,
+    "ordered_query_construction": "For each tool, every frozen context is used once as an authority anchor and paired with every frozen candidate context of that tool.",
+    "expected_full_queries": 232,
+    "post_result_case_deletion": false
+  },
+  "authority_relation": {
+    "authority_source": "source-executed effect atoms of the anchor context",
+    "ideal_allow": "The candidate source-effect multiset is a submultiset of the anchor source-effect multiset.",
+    "empty_effect_semantics": "An empty candidate effect is authorized by every anchor; a non-empty candidate is not authorized by an empty anchor.",
+    "decision_space": [
+      "ALLOW",
+      "DENY"
+    ]
+  },
+  "representations": {
+    "whole_call_tool_name": "tool identity only",
+    "raw_arguments_exact": "canonical exact equality of the untyped raw argument object",
+    "common_effect_atoms": "common effect fields without tool-specific typed qualifiers",
+    "concrete_effect_atoms": "the frozen typed contract instantiated from call arguments and pre-state",
+    "source_effect_oracle": "the normalized committed state delta"
+  },
+  "metrics": [
+    "unsafe_pre_allow",
+    "safe_false_deny",
+    "coverage",
+    "abstain",
+    "decision_accuracy"
+  ],
+  "acceptance_gates": {
+    "all_232_queries_emitted": true,
+    "no_silent_drops": true,
+    "source_oracle_accuracy": 1.0,
+    "concrete_atom_unsafe_pre_allow": 0.0,
+    "concrete_atom_safe_false_deny": 0.0,
+    "whole_call_has_at_least_one_unsafe_pre_allow": true,
+    "raw_arguments_have_at_least_one_false_deny": true
+  },
+  "claim_boundary": {
+    "allowed": "On this finite, source-executed ToolSandbox domain, the frozen concrete-atom representation implements the specified submultiset authority relation and separates failure modes of coarser or untyped views.",
+    "forbidden": [
+      "open-domain contract soundness",
+      "human-authored authority validation",
+      "complete authorization",
+      "production safety",
+      "global minimality of the atom representation"
+    ]
+  }
+}

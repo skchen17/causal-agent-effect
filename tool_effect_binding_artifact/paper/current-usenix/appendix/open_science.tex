@@ -1,0 +1,19 @@
+\section{Open Science}
+\label{app:open-science}
+
+The artifact package records source-executed effect oracles, frozen intervention
+and case manifests, conservative descriptors, row-level benchmark outputs,
+official-validator results, model identifiers and hashes, runtime decisions,
+tests, and environment locks.  A fail-fast status manifest identifies the
+frozen artifacts required by each reported result; the release package includes
+only claims whose required artifacts and keys pass that check.  Sidecar labels
+and source effects are used only for scoring and do not enter model prompts or
+deployable inputs.  Before release, the package is rebuilt from the final
+manuscript state and scanned to exclude credentials, absolute paths, repository
+history, and identifying metadata.
+
+Protocols hash model files, descriptors, case manifests, registered source, and
+monitor code.  Finalizers reject duplicate or missing keys, execution errors,
+method-specific denominators, changed sources, and mismatches between
+pre-commit records and executed calls.  Held-out cases use a frozen hash
+ordering recorded in the artifact.

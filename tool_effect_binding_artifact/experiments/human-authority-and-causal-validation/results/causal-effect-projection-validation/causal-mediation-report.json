@@ -1,0 +1,118 @@
+{
+  "claim_boundary": "E85 validates the causal-mediation metric implementation on a finite controlled tool model. It shows that the checks accept a complete contract and expose target, multi-resource, default, compound-effect, and placebo failures. It does not establish soundness for AgentDojo or external tools.",
+  "contract_summaries": {
+    "collapse_multi_resource": {
+      "atom_mediation_precision": 1.0,
+      "atom_mediation_recall": 0.8571428571428571,
+      "authorization_flip_agreement": 0.8888888888888888,
+      "effect_change_miss_rate": 0.14285714285714285,
+      "interaction_mediation_rate": 1.0,
+      "mediation_gap_rate": 0.1111111111111111,
+      "n_cases": 9,
+      "over_sensitivity_rate": 0.0,
+      "relation_counts": {
+        "faithful_mediation": 6,
+        "mediation_gap": 1,
+        "true_invariance": 2
+      },
+      "surface_invariance_rate": 1.0
+    },
+    "include_placebo": {
+      "atom_mediation_precision": 0.875,
+      "atom_mediation_recall": 1.0,
+      "authorization_flip_agreement": 1.0,
+      "effect_change_miss_rate": 0.0,
+      "interaction_mediation_rate": 1.0,
+      "mediation_gap_rate": 0.0,
+      "n_cases": 9,
+      "over_sensitivity_rate": 0.5,
+      "relation_counts": {
+        "faithful_mediation": 7,
+        "over_sensitive": 1,
+        "true_invariance": 1
+      },
+      "surface_invariance_rate": 0.5
+    },
+    "none": {
+      "atom_mediation_precision": 1.0,
+      "atom_mediation_recall": 1.0,
+      "authorization_flip_agreement": 1.0,
+      "effect_change_miss_rate": 0.0,
+      "interaction_mediation_rate": 1.0,
+      "mediation_gap_rate": 0.0,
+      "n_cases": 9,
+      "over_sensitivity_rate": 0.0,
+      "relation_counts": {
+        "faithful_mediation": 7,
+        "true_invariance": 2
+      },
+      "surface_invariance_rate": 1.0
+    },
+    "omit_compound_effect": {
+      "atom_mediation_precision": 0.8571428571428571,
+      "atom_mediation_recall": 0.8571428571428571,
+      "authorization_flip_agreement": 1.0,
+      "effect_change_miss_rate": 0.14285714285714285,
+      "interaction_mediation_rate": 0.0,
+      "mediation_gap_rate": 0.1111111111111111,
+      "n_cases": 9,
+      "over_sensitivity_rate": 0.0,
+      "relation_counts": {
+        "faithful_mediation": 6,
+        "mediation_gap": 1,
+        "true_invariance": 2
+      },
+      "surface_invariance_rate": 1.0
+    },
+    "omit_default_effect": {
+      "atom_mediation_precision": 0.0,
+      "atom_mediation_recall": 0.0,
+      "authorization_flip_agreement": 1.0,
+      "effect_change_miss_rate": 1.0,
+      "interaction_mediation_rate": 0.0,
+      "mediation_gap_rate": 1.0,
+      "n_cases": 9,
+      "over_sensitivity_rate": 0.0,
+      "relation_counts": {
+        "mediation_gap": 9
+      },
+      "surface_invariance_rate": 0.0
+    },
+    "omit_target": {
+      "atom_mediation_precision": 0.0,
+      "atom_mediation_recall": 0.0,
+      "authorization_flip_agreement": 0.3333333333333333,
+      "effect_change_miss_rate": 1.0,
+      "interaction_mediation_rate": 0.0,
+      "mediation_gap_rate": 1.0,
+      "n_cases": 9,
+      "over_sensitivity_rate": 0.0,
+      "relation_counts": {
+        "mediation_gap": 9
+      },
+      "surface_invariance_rate": 0.0
+    }
+  },
+  "intervention_axes": [
+    "commit_mode",
+    "compound",
+    "default",
+    "multi_resource",
+    "provenance",
+    "resource",
+    "surface_invariant",
+    "target"
+  ],
+  "n_contract_variants": 6,
+  "n_intervention_cases": 9,
+  "n_rows": 54,
+  "required_ablation_detection": {
+    "collapse_multi_resource": true,
+    "include_placebo": true,
+    "omit_compound_effect": true,
+    "omit_default_effect": true,
+    "omit_target": true
+  },
+  "scope": "finite controlled state-transition model; not AgentDojo or open-domain certification",
+  "status": "passed_bounded_finite_model"
+}

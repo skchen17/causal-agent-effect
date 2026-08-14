@@ -1,0 +1,146 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{RQ1: Do Calls Commit Compound Effects?}
+
+\input{tables/table_agentdojo_effect_prevalence}
+
+Compound effects occur in a widely used agent benchmark.  Source replay finds
+a state or external-interaction effect in 29.5\% of 339 AgentDojo calls.  Among
+the effectful calls, 17.0\% contain multiple logical effect units and 13.0\%
+cross effect types or benchmark subsystems
+(Table~\ref{tab:agentdojo-effect-prevalence}).
+
+\subsection{RQ2: Can Registration Recover Required Distinctions?}
+
+\input{figures/representation_results}
+
+\paragraph{Coarse-view collisions.}
+Coarse views lose distinctions that a policy can require.  In the 56-call
+source-executed domain, tool name and effect-only views create 564 and 548
+authorization-separating pairs.  Common fields reduce this to 118 but still
+merge payload, temporal, recurrence, and repeated-effect distinctions.  The
+typed effect representation matches the source-effect partition with no mixed
+cell (Figure~\ref{fig:representation-results}(a)).  This establishes sufficiency
+for the finite call domain and submultiset policy family.
+
+A frozen refinement lattice connects this endpoint to the procedure.  Adding
+date, subject, recurrence, payload, and visibility qualifiers in sequence
+reduces separating pairs from 124 to 60, 28, 12, 4, and zero.  All 211
+comparable edges in the 32-representation lattice preserve partition
+refinement, and none increases the separating-pair or ambiguous-cell lower
+bound.  The lattice's 124-pair erased endpoint applies five role-specific
+deletion and masking operations; it is intentionally coarser than the
+118-pair common-field view in Figure~\ref{fig:representation-results}(a), which
+only removes the qualifier map.  Both reach the same typed endpoint.  This is
+an empirical instance of Theorem~\ref{thm:finite-adequacy}; other domains may
+require a different qualifier order.
+
+\paragraph{Counterfactual repair and held-out transfer.}
+The initial source-grounded interventions ($N=80$) falsify the common-field
+representation in 18.8\% of cases.  Adding typed payload, time, recurrence, and
+setting qualifiers removes those observed gaps, but this is a post-failure
+repair on the same suite.  We therefore evaluate the frozen representation on
+a separate source.
+
+The pre-registered ToolSandbox domain exhibits the same gap.  Across 32
+contexts, common fields retain four mixed
+cells and 41 separating pairs.  Typed effects reproduce the 25-cell source
+partition without collision or overpartition.  In 28.1\% of contexts, a
+witness keeps the tool and explicit arguments fixed while pre-state changes the committed effect,
+showing why argument values alone are not a complete effect representation
+(Figure~\ref{fig:representation-results}(b)).
+
+\input{tables/table_registration_sufficiency}
+
+AgentDojo-wide registration is more conservative.  The runtime descriptor
+retains 100.0\% of 67 unique fields.  Searching multiple
+valid base calls and adding omission/default tests yields committed-effect
+witnesses for 88.0\% of 75 suite-scoped field instances, but only 50.7\% have
+at least five valid intervention kinds.  Invalid or unresolved executions make
+up 23.2\% of 1,325 attempts, mainly because mutations use nonexistent resources
+or violate preconditions.  The audit supports effect relevance for exercised
+fields, not sparse atom discovery (Table~\ref{tab:registration-sufficiency}).
+
+\subsection{RQ3: Can Atoms Realize the Frozen Policy?}
+
+\input{tables/table_concrete_atom_authorizer}
+
+Concrete atoms exactly realize the finite ToolSandbox decision relation.  In
+all 232 ordered context pairs, a candidate is authorized exactly when its
+source-executed effect multiset is contained in the authority anchor's
+multiset.  Tool identity has 100.0\% UPA.  Exact raw arguments reduce UPA to
+9.3\% but falsely deny 34.1\% of authorized pairs; common fields have 56.7\%
+UPA.  Concrete typed atoms match the source oracle with 0.0\% UPA and 0.0\%
+false denial (Table~\ref{tab:concrete-atom-authorizer}).  The anchors and ideal
+decisions are source-derived effect bounds, not deployment ACLs.
+
+\subsection{RQ4: What Does Runtime Mediation Establish?}
+
+\input{figures/security_utility_tradeoff}
+
+\paragraph{Official AgentDojo evaluation.}
+On all 629 official DeepSeek attack pairs, attack success is 1.0\% without a
+guard and 0.0\% with the provenance-origin monitor.  Excluding the case used to repair
+structured provenance, and excluding 20 output-only goals outside the method's
+scope, leaves 1.0\% versus 0.0\% over 608 pairs (one-sided exact McNemar
+$p=.0156$; Figure~\ref{fig:security-utility-tradeoff}(a)).  The 1.0-percentage-point estimate
+comes from a low baseline attack rate.
+
+The reduction is not produced by abstaining on most calls.  Across 2,783
+pre-commit checks, the monitor allows 96.8\%, denies 3.2\%, abstains on none, makes no
+runtime guard LLM call, and records no execution without \Allow.  No benign
+call is directly denied in the provenance-origin sanity run.  Nevertheless, attack-task
+utility is 72.0\%, versus 76.3\% without a guard and 75.8\% under Spotlighting.
+On paired tasks, 13.7\% succeed only without the guard and 9.4\% only with it,
+so the net loss is not identical to the direct block count.
+
+Spotlighting also reaches 0.0\% attack success and has higher utility in this
+run.  The result shows that a registered descriptor can drive deterministic
+pre-commit decisions with an exact audit trail, but it does not establish
+numerical dominance or an atom-specific security gain.  Repeated benign
+utility and held-out attack families use separately frozen protocols below;
+the fresh second-checkpoint comparison remains pending.
+
+\paragraph{Attribution and transfer.}
+
+\input{tables/table_granularity_and_transfer}
+
+On the 321-case applicability subset, the provenance-origin monitor records
+2.6\% attack success.  Whole-call provenance, effect-only checking, raw-field
+taint, and no blocking record 4.0\%, 7.7\%, 3.7\%, and 13.9\%, respectively.
+The monitor's benign utility is 64.6\%, versus 81.3\% for whole-call and
+raw-field checking (Table~\ref{tab:granularity-transfer}(a)).  Because
+field-level applicability selected this subset, these are mechanism
+comparisons rather than benchmark-wide estimates.
+
+The retrospective four-view diagnostic explains the selectivity tradeoff on
+the completed no-guard trajectories.  Whole-call provenance blocking would
+intercept 98.1\% of successful attacks but touch 53.1\% of 629 attack
+trajectories.  Effect-only checking intercepts 41.5\% and touches 7.5\%; the
+provenance-origin monitor intercepts 92.5\% and touches 14.9\%.  No view touches
+the 97 injection-free trajectories because they contain no marked
+untrusted control segment.  These are fixed-trajectory interception counts,
+not counterfactual ASR or utility: a live denial can change all later actions.
+
+The fixed AgentLAB transfer provides bounded evidence for multi-step mediation.
+Under one Qwen3-32B checkpoint and the same 303-case manifest, attack success
+falls from 31.4\% to 0.3\%, while attack-task utility falls from 61.1\% to
+43.6\%.  All executed guarded calls have an exactly matching pre-commit record
+(100.0\%, $N=1{,}334$).  This is a substantial security transfer with
+a 17.5-percentage-point utility cost in this saved replay.
+
+The completed raw-field control sharpens the attribution boundary.  On the
+same subset, raw-field taint records 3.7\% attack success and 81.3\% benign
+utility, compared with 2.6\% and 64.6\% for the provenance-origin monitor.  The
+two views disagree on 3.6\% of 788 effectful checks, always when raw-field taint
+allows and the monitor denies.  Effect semantics therefore change decisions,
+but do not improve selectivity or utility on this subset.
+
+\input{sections/generated_final_validation_results}
+
+Together, RQ1--RQ3 establish the finite-domain representation and mechanism
+claims.  RQ4 establishes audited descriptor-driven mediation, while its
+raw-field and prompting controls delimit the current runtime contribution.
+Appendix~\ref{app:additional-results} reports registration failures,
+sensitivity, controlled monitor stresses, and cost.

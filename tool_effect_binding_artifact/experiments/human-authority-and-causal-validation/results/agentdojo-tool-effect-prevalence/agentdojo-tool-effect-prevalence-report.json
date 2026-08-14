@@ -1,0 +1,76 @@
+{
+  "analysis_status": "descriptive protocol frozen after an exploratory coverage audit; not result-blind preregistration",
+  "benchmark": "AgentDojo v1.1.2",
+  "calls_by_suite": {
+    "banking": 33,
+    "slack": 98,
+    "travel": 124,
+    "workspace": 84
+  },
+  "claim_boundary": "The census estimates prevalence only in AgentDojo v1.1.2 official benign ground-truth trajectories. It is not an ecosystem-wide estimate, an attack evaluation, or proof that the normalization is complete for unseen tools and states.",
+  "effect_kind_counts": {
+    "account_attribute_changed": 3,
+    "calendar_event_created": 12,
+    "calendar_event_updated": 1,
+    "calendar_participant_added": 1,
+    "channel_membership_added": 8,
+    "channel_message_delivered": 8,
+    "direct_message_delivered": 12,
+    "email_delivered": 20,
+    "email_read_state_changed": 1,
+    "external_web_request": 18,
+    "file_created": 4,
+    "file_deleted": 2,
+    "file_permission_changed": 2,
+    "file_updated": 4,
+    "funds_transferred": 6,
+    "reservation_changed": 1,
+    "scheduled_transfer_changed": 4,
+    "webpage_published": 1,
+    "workspace_user_invited": 5
+  },
+  "experiment": "agentdojo_tool_effect_prevalence",
+  "limitations": [
+    "Official benign trajectories cover only the observed 55 of 74 tool instances.",
+    "Logical effect normalization is a frozen benchmark-state oracle, not independent human certification.",
+    "The result measures AgentDojo v1.1.2 and does not estimate ecosystem-wide prevalence.",
+    "No-op calls are retained; absence of a state delta in one reachable state does not prove a tool is read-only."
+  ],
+  "n_official_calls": 339,
+  "n_runtime_errors": 0,
+  "n_suites": 4,
+  "n_tasks": 97,
+  "prevalence": {
+    "compound_rate_all_calls": 0.05014749262536873,
+    "compound_rate_effectful_calls": 0.17,
+    "cross_namespace_rate_effectful_calls": 0.13,
+    "effectful_call_rate_all_calls": 0.2949852507374631,
+    "effectful_observed_tool_rate": 0.41818181818181815,
+    "heterogeneous_rate_effectful_calls": 0.13,
+    "maximum_effect_units_per_call": 6,
+    "multi_target_rate_effectful_calls": 0.07,
+    "n_compound_calls": 17,
+    "n_cross_namespace_calls": 13,
+    "n_effectful_calls": 100,
+    "n_effectful_observed_tools": 23,
+    "n_heterogeneous_compound_calls": 13,
+    "n_multi_target_calls": 7
+  },
+  "protocol_id": "agentdojo-official-benign-tool-effect-prevalence-v1",
+  "protocol_sha256": "f138815b91eb5a8be0ee73ec59914eb99d0659501dba1993391d5e7c9bd7ad59",
+  "source_evidence": {
+    "all_inventory_entries_hashed": true,
+    "attack_or_outcome_labels_used_by_oracle": false,
+    "candidate_contract_used_by_oracle": false,
+    "execution_errors": [],
+    "inventory_source_manifest_matches_protocol": true,
+    "inventory_source_manifest_sha256": "acf583a361ee0acad397b4f5d6aadb9e0bc1adcc0df08c3dd3e43d22a4393ef7"
+  },
+  "status": "passed",
+  "tool_inventory": {
+    "coverage": 0.7432432432432432,
+    "n_observed_tool_instances": 55,
+    "n_tool_instances": 74,
+    "n_unobserved_tool_instances": 19
+  }
+}

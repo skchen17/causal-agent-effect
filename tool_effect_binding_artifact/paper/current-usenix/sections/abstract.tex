@@ -1,0 +1,30 @@
+\begin{abstract}
+Tool-using language-model agents turn untrusted text into structured calls that
+commit external state.  A single call can create an object, disclose data to
+several principals, and change visibility.  A monitor that sees only the tool
+name, call, or raw arguments may therefore merge state changes that require
+different authorization decisions.  We study \emph{tool-effect binding}: the
+representation needed to connect a proposed call to the security-relevant
+effects it will commit.  We show that when a representation merges effects
+that an admissible policy distinguishes, every monitor over that representation
+must either allow an unauthorized effect or withhold authorized work.
+
+We introduce counterfactual registration, which treats a tool descriptor as a
+hypothesis, executes controlled call and state variants, and refines the
+descriptor when the observed effects expose a missing distinction.  Source
+execution determines what changed; a separate policy oracle determines whether
+the change must be authorized independently.  A common-field representation
+leaves 118 authorization-separating pairs across 56 source-executed calls,
+whereas typed effect atoms remove every observed collision.  The same
+representation removes all observed collisions in 32 held-out ToolSandbox
+contexts and exactly realizes their frozen 232-query policy relation.
+
+Finally, we use a conservative registered descriptor in a deterministic
+provenance-origin monitor.  On 608 scope-aligned AgentDojo attacks under
+DeepSeek, attack success falls from 1.0\% to 0.0\%, and every executed call has
+a matching pre-commit decision.  A same-model prompting defense reaches the
+same attack rate, while benign non-inferiority is not established.  We
+therefore treat this runtime experiment as a bounded mediation case study; the
+main representation claim rests on source-executed collisions and the frozen
+finite-policy test.
+\end{abstract}

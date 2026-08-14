@@ -1,0 +1,52 @@
+\section{Experimental Setup}
+\label{sec:experimental-setup}
+
+\paragraph{Controlled binding stresses.}
+We use 528 adapted rows in 24 paired groups, an 822-row/6,840-relation unified
+suite, and repaired 240-row resource/authority and 336-row provenance stresses.
+TS-Guard and Safiron run released checkpoints on our stress, not their original
+benchmarks; a frozen visible-policy oracle checks labels.
+
+\paragraph{Source-grounded contract validation.}
+The census replays all 339 calls in 97 official benign trajectories, covering
+55/74 tool instances; all source/function hashes are recorded. Calls execute
+sequentially in fresh in-memory task states without external services.
+
+For 16 source-hashed tools, 80 fresh-sandbox cases cover fields, interactions,
+an omitted default, expansion, placebos, and registry swaps. The common and
+post-failure typed projections share cases: this is repair, not held-out evidence.
+
+For five tools, 56 Cartesian-product calls use a separate state-difference
+oracle and a power-set authority family. Exhaustiveness is domain-bounded.
+
+\paragraph{Pre-registered held-out tools.}
+We freeze ToolSandbox revision \texttt{165848b9}, five unseen tools, hashes,
+contracts, and 32 contexts before evaluation~\cite{lu-etal-2025-toolsandbox}.
+A separate state oracle covers values, preconditions, and compound effects;
+all eight invalid contexts remain. Review is label-hidden AI artifact review.
+
+\paragraph{Official AgentDojo.}
+We fix AgentDojo v1.1.2, all 97 benign and 629 attack keys, native predicates,
+and error retention across workspace (280), Slack (126), travel (160), and
+banking (160).
+
+The common-checkpoint comparison uses temperature-zero Qwen3-32B Q4\_K\_M
+(SHA-256 prefix \texttt{efd97156}). Twelve long-context keys are capacity
+matched; nine non-evaluable baseline traces remain, with all-key bounds. A
+separate Qwen3.5-9B-derived run audits mediation.
+
+\paragraph{Granularity attribution and saved-attack transfer.}
+The 321-key attribution subset changes only atom-field versus whole-call monitor
+representation and is not benchmark-wide. We also replay 303 fixed public
+AgentLAB artifacts against matched Qwen3-32B victims and reconcile executed
+calls with checks~\cite{agentlab}; this is not adaptive generation.
+
+\paragraph{Reviewed authority and ablations.}
+A label-hidden AI artifact review accepts 44/97 manifests; 26 compile, covering
+169 attack keys. Seven exact-key ablations alter runtime mechanisms, but only
+two tasks authorize effects and one uses a typed resolver. Effectful optional
+fields have only empty or \texttt{None} defaults.
+
+\paragraph{Runtime cost.}
+The 2,000-iteration kernel benchmark crosses 1--32 fields and 0--64 unrelated
+resolver entries; trajectory times are post-hoc and observational.

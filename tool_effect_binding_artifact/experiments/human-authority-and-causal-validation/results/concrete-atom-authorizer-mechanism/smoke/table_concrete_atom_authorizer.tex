@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Small-scale authorizer mechanism check on frozen ToolSandbox executions. UPA is unsafe pre-allow and FD is false denial.}
+\label{tab:concrete-atom-authorizer}
+\begin{tabular}{lrrrr}
+\toprule
+View & UPA & FD & Coverage & Accuracy \\
+\midrule
+Tool name (whole call) & 1.000 & 0.000 & 1.000 & 0.600 \\
+Raw arguments (exact match) & 0.000 & 0.167 & 1.000 & 0.900 \\
+Common effect fields & 0.500 & 0.000 & 1.000 & 0.800 \\
+Concrete effect atoms & 0.000 & 0.000 & 1.000 & 1.000 \\
+Source-effect oracle & 0.000 & 0.000 & 1.000 & 1.000 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}\parbox{0.98\linewidth}{\footnotesize Each of the 20 ordered queries uses one executed context as the allowed concrete-effect multiset and checks another context of the same tool.}
+\end{table}

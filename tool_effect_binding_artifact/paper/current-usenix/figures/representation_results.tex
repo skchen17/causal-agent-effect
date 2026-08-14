@@ -1,0 +1,67 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  font=\scriptsize,
+  bar/.style={draw=TEDark!70, line width=.35pt},
+  tick/.style={draw=TEDark!45, line width=.35pt},
+  panel/.style={font=\scriptsize\bfseries, anchor=west, text=TEDark},
+  value/.style={font=\tiny, anchor=west, text=TEDark},
+]
+% Common axis maps 0--100 percent to 0--4.45 cm.
+\def\xzero{2.35}
+\def\xscale{0.0445}
+
+\node[panel] at (0,2.95) {(a) AgentDojo source domain (56 calls)};
+\foreach \label/\pct/\count/\yy/\barcolor in {
+  {Tool name}/100/564/2.50/TERed,
+  {Effect only}/97.2/548/2.08/TEOrange,
+  {Common fields}/20.9/118/1.66/TEBlue,
+  {Typed atoms}/0/0/1.24/TETeal}{
+    \node[anchor=east] at (\xzero-0.10,\yy) {\label};
+    \pgfmathsetmacro{\barend}{\xzero+\pct*\xscale}
+    \ifdim \pct pt=0pt
+      \fill[\barcolor] (\xzero,\yy) circle (1.6pt);
+      \node[value, text=\barcolor] at (\xzero+0.10,\yy) {\count};
+    \else
+      \path[bar, fill=\barcolor!70] (\xzero,\yy-0.12)
+        rectangle (\barend,\yy+0.12);
+      \node[value] at (\barend+0.08,\yy) {\count};
+    \fi
+}
+
+\node[panel] at (0,0.78) {(b) Held-out ToolSandbox (32 contexts)};
+\foreach \label/\pct/\count/\yy/\barcolor in {
+  {Tool name}/100/88/0.34/TERed,
+  {Common fields}/46.6/41/-0.08/TEBlue,
+  {Typed atoms}/0/0/-0.50/TETeal}{
+    \node[anchor=east] at (\xzero-0.10,\yy) {\label};
+    \pgfmathsetmacro{\barend}{\xzero+\pct*\xscale}
+    \ifdim \pct pt=0pt
+      \fill[\barcolor] (\xzero,\yy) circle (1.6pt);
+      \node[value, text=\barcolor] at (\xzero+0.10,\yy) {\count};
+    \else
+      \path[bar, fill=\barcolor!70] (\xzero,\yy-0.12)
+        rectangle (\barend,\yy+0.12);
+      \node[value] at (\barend+0.08,\yy) {\count};
+    \fi
+}
+
+\draw[tick] (\xzero,-0.82) -- (\xzero+4.45,-0.82);
+\foreach \pct in {0,50,100}{
+  \pgfmathsetmacro{\xx}{\xzero+\pct*\xscale}
+  \draw[tick] (\xx,-0.78)--(\xx,-0.87);
+  \node[font=\tiny, anchor=north] at (\xx,-0.88) {\pct\%};
+}
+\node[font=\tiny, anchor=north] at (\xzero+2.225,-1.17)
+  {separating pairs relative to tool-name view};
+\node[font=\tiny, anchor=west, text=TETeal] at (\xzero,-1.52)
+  {Bar-end labels give absolute pair counts; lower is better.};
+\end{tikzpicture}
+\caption{Representation collision falls as the authorization view preserves
+execution-relevant effects. Bars normalize policy-separating pair counts to
+the tool-name view within each domain; labels report absolute counts. Typed
+atoms reach the source-effect partition in both the development and held-out
+domains.}
+\label{fig:representation-results}
+\end{figure}

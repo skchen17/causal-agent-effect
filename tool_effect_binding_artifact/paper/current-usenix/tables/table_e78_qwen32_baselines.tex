@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Capacity-matched Qwen3-32B comparison on 726 AgentDojo keys. BU is benign utility, UA is utility under attack, and ASR is injection-goal success. Rates use evaluable rows. Attack denominators are 627 for No defense, MELON, Sandwiching, and Spotlighting, and 629 for PromptArmor and \sys{}; MELON BU uses 96 rows and all other BU rates use 97. Nine non-evaluable baseline rows and all-key bounds are retained in the artifact.}
+\label{tab:e78-qwen32-baselines}
+\begin{tabular}{lrrr}
+\toprule
+Method & BU & UA & ASR \\
+\midrule
+No defense & .649 & .550 & .086 \\
+MELON-style & .635 & .542 & .089 \\
+Prompt Sandwiching & .629 & .581 & .013 \\
+PromptArmor-style & .278 & .219 & .002 \\
+Spotlighting & .619 & .590 & .077 \\
+\sys{} & .340 & .329 & .005 \\
+\bottomrule
+\end{tabular}
+\end{table}

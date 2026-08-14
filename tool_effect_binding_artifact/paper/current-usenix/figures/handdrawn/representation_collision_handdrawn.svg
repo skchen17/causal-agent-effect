@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
+  <defs>
+    <style>
+      .ink { fill: none; stroke: #27323a; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { fill: none; stroke: #27323a; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+      .teal { fill: #dcefeb; stroke: #26766f; stroke-width: 3; }
+      .coral { fill: #fde1d6; stroke: #c9553d; stroke-width: 3; }
+      .paper { fill: #fff; stroke: #27323a; stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 21px; font-weight: 600; fill: #202a30; }
+      .body { font-family: Arial, sans-serif; font-size: 18px; fill: #202a30; }
+      .small { font-family: Arial, sans-serif; font-size: 16px; fill: #202a30; }
+      .mono { font-family: "Courier New", monospace; font-size: 17px; fill: #202a30; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M1,1 L9,5 L1,9" fill="none" stroke="#27323a" stroke-width="2"/>
+    </marker>
+    <marker id="arrowCoral" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M1,1 L9,5 L1,9" fill="none" stroke="#c9553d" stroke-width="2"/>
+    </marker>
+  </defs>
+
+  <rect width="1000" height="650" fill="#ffffff"/>
+
+  <!-- Authenticated task -->
+  <circle cx="64" cy="54" r="24" fill="#dcefeb" stroke="#26766f" stroke-width="3"/>
+  <path class="thin" d="M48 88 Q64 72 80 88 M56 51 Q64 59 72 51"/>
+  <path class="paper" d="M102 22 Q96 22 96 30 L96 85 Q96 93 104 93 L458 93 Q466 93 466 85 L466 30 Q466 22 458 22 Z"/>
+  <path class="paper" d="M112 93 L100 110 L132 93"/>
+  <text class="label" x="118" y="49">Authenticated user task</text>
+  <text class="body" x="118" y="76">Create a meeting and invite Alice.</text>
+
+  <!-- Left call -->
+  <text class="label" x="120" y="145">Authorized call u</text>
+  <rect class="paper" x="85" y="164" width="350" height="245" rx="12"/>
+  <rect class="teal" x="112" y="188" width="100" height="95" rx="10"/>
+  <path class="thin" d="M112 215 H212 M136 178 V200 M188 178 V200"/>
+  <path class="thin" d="M134 238 H190 M134 258 H176"/>
+  <text class="mono" x="238" y="207">create_event</text>
+  <text class="small" x="238" y="235">participants = [Alice]</text>
+  <rect class="teal" x="112" y="310" width="132" height="54" rx="27"/>
+  <text class="body" x="136" y="344">Create event</text>
+  <rect class="teal" x="260" y="310" width="142" height="54" rx="27"/>
+  <circle cx="287" cy="337" r="11" fill="#26766f"/>
+  <path d="M279 351 Q287 341 295 351" fill="none" stroke="#26766f" stroke-width="4"/>
+  <text class="body" x="306" y="344">Invite Alice</text>
+
+  <!-- Right call -->
+  <text class="label" x="604" y="145">Expanded call v</text>
+  <rect class="paper" x="565" y="164" width="350" height="245" rx="12"/>
+  <rect class="teal" x="592" y="188" width="100" height="95" rx="10"/>
+  <path class="thin" d="M592 215 H692 M616 178 V200 M668 178 V200"/>
+  <path class="thin" d="M614 238 H670 M614 258 H656"/>
+  <text class="mono" x="718" y="207">create_event</text>
+  <text class="small" x="718" y="235">participants =</text>
+  <text class="small" x="718" y="258">[Alice, Eve]</text>
+  <rect class="teal" x="585" y="310" width="128" height="54" rx="27"/>
+  <text class="small" x="606" y="343">Create event</text>
+  <rect class="teal" x="724" y="310" width="122" height="54" rx="27"/>
+  <text class="small" x="743" y="343">Invite Alice</text>
+  <rect class="coral" x="724" y="374" width="122" height="54" rx="27"/>
+  <text class="small" x="748" y="407">Invite Eve</text>
+
+  <!-- Injection note -->
+  <path class="coral" d="M782 88 Q778 88 778 94 L778 134 Q778 140 784 140 H937 Q943 140 943 134 V94 Q943 88 937 88 Z"/>
+  <text class="small" x="794" y="113">Untrusted content</text>
+  <text class="small" x="816" y="133">adds Eve</text>
+  <path d="M836 142 Q820 185 808 290" fill="none" stroke="#c9553d" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowCoral)"/>
+
+  <!-- Coarse view funnel -->
+  <path class="ink" d="M210 421 Q278 452 402 470 M790 421 Q720 452 598 470" marker-end="url(#arrow)"/>
+  <path d="M372 462 Q500 440 628 462 L584 533 Q500 551 416 533 Z" fill="#f1f3f4" stroke="#27323a" stroke-width="3" stroke-linejoin="round"/>
+  <text class="label" x="426" y="486">Coarse monitor view</text>
+  <text class="mono" x="426" y="517">create_event</text>
+  <text class="small" x="421" y="541">rho(u) = rho(v)</text>
+
+  <!-- Forced tradeoff -->
+  <path class="ink" d="M460 552 Q386 573 294 583" marker-end="url(#arrow)"/>
+  <path class="ink" d="M540 552 Q614 573 706 583" marker-end="url(#arrow)"/>
+  <rect class="coral" x="102" y="567" width="250" height="60" rx="12"/>
+  <text class="label" x="132" y="592">Allow both</text>
+  <text class="small" x="132" y="615">Eve is invited</text>
+  <rect class="paper" x="648" y="567" width="250" height="60" rx="12"/>
+  <path class="thin" d="M670 580 L708 616 M708 580 L670 616"/>
+  <text class="label" x="726" y="592">Deny both</text>
+  <text class="small" x="726" y="615">valid work is withheld</text>
+</svg>

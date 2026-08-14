@@ -1,0 +1,110 @@
+% Restrained, grayscale-distinguishable palette for paper figures.
+\definecolor{TEBlue}{HTML}{315F7D}
+\definecolor{TEBlueLight}{HTML}{DCEAF2}
+\definecolor{TETeal}{HTML}{2F7C75}
+\definecolor{TETealLight}{HTML}{DCEDE9}
+\definecolor{TEOrange}{HTML}{C5762C}
+\definecolor{TEOrangeLight}{HTML}{F5E4D1}
+\definecolor{TERed}{HTML}{AD554F}
+\definecolor{TERedLight}{HTML}{F2DEDC}
+\definecolor{TEGold}{HTML}{A88432}
+\definecolor{TEGoldLight}{HTML}{F7F0D9}
+\definecolor{TEDark}{HTML}{39464E}
+
+% Original vector icons. Keeping them in TikZ avoids external asset and
+% redistribution dependencies in the anonymous artifact.
+\tikzset{
+  pics/te-calendar/.style={code={
+    \draw[draw=TEDark, line width=.45pt, rounded corners=.25pt]
+      (-.22,-.17) rectangle (.22,.17);
+    \draw[draw=TEDark, line width=.45pt] (-.22,.07)--(.22,.07);
+    \draw[draw=TEDark, line width=.55pt] (-.12,.21)--(-.12,.12)
+      (.12,.21)--(.12,.12);
+    \fill[TEDark] (-.11,-.01) circle (.018) (0,-.01) circle (.018)
+      (.11,-.01) circle (.018) (-.11,-.10) circle (.018)
+      (0,-.10) circle (.018) (.11,-.10) circle (.018);
+  }},
+  pics/te-layers/.style={code={
+    \draw[draw=TEDark, line width=.45pt] (-.24,.08)--(0,.20)--(.24,.08)--(0,-.04)--cycle;
+    \draw[draw=TEDark, line width=.45pt] (-.24,0)--(0,-.12)--(.24,0);
+    \draw[draw=TEDark, line width=.45pt] (-.24,-.09)--(0,-.21)--(.24,-.09);
+  }},
+  pics/te-warning/.style={code={
+    \draw[draw=TEDark, line width=.5pt, rounded corners=.2pt]
+      (0,.23)--(-.23,-.19)--(.23,-.19)--cycle;
+    \draw[draw=TEDark, line width=.65pt] (0,.09)--(0,-.05);
+    \fill[TEDark] (0,-.12) circle (.018);
+  }},
+  pics/te-shield/.style={code={
+    \draw[draw=TEDark, line width=.5pt]
+      (0,.23)--(.20,.14)--(.17,-.07).. controls (.13,-.18) and (.04,-.22) ..
+      (0,-.24).. controls (-.04,-.22) and (-.13,-.18) ..(-.17,-.07)--(-.20,.14)--cycle;
+    \draw[draw=TEDark, line width=.65pt] (-.10,-.01)--(-.02,-.09)--(.12,.08);
+  }},
+  pics/te-tool/.style={code={
+    \draw[draw=TEDark, line width=.45pt] (-.20,.21) rectangle (.12,-.21);
+    \draw[draw=TEDark, line width=.45pt] (-.13,.12)--(.05,.12)
+      (-.13,.04)--(.05,.04) (-.13,-.04)--(.01,-.04);
+    \draw[draw=TEDark, line width=.55pt] (.06,-.08)--(.22,-.22);
+    \draw[draw=TEDark, line width=.55pt] (.08,-.11)--(.18,-.01);
+  }},
+  pics/te-flask/.style={code={
+    \draw[draw=TEDark, line width=.5pt]
+      (-.07,.23)--(.07,.23) (-.03,.23)--(-.03,.05)--(-.18,-.19)
+      .. controls (-.20,-.22) and (-.14,-.24) .. (-.10,-.24)
+      --(.10,-.24).. controls (.14,-.24) and (.20,-.22) ..(.18,-.19)
+      --(.03,.05)--(.03,.23);
+    \draw[draw=TEDark, line width=.4pt] (-.12,-.10)--(.12,-.10);
+  }},
+  pics/te-inspect/.style={code={
+    \draw[draw=TEDark, line width=.5pt] (-.05,.03) circle (.15);
+    \draw[draw=TEDark, line width=.7pt] (.06,-.09)--(.22,-.24);
+    \draw[draw=TEDark, line width=.55pt] (-.12,.02)--(-.06,-.05)--(.05,.08);
+  }},
+  pics/te-lock/.style={code={
+    \draw[draw=TEDark, line width=.5pt, rounded corners=.5pt]
+      (-.18,.03) rectangle (.18,-.22);
+    \draw[draw=TEDark, line width=.5pt] (-.11,.03)--(-.11,.11)
+      arc[start angle=180,end angle=0,radius=.11]--(.11,.03);
+    \fill[TEDark] (0,-.08) circle (.022);
+    \draw[draw=TEDark, line width=.45pt] (0,-.10)--(0,-.16);
+  }},
+  pics/te-input/.style={code={
+    \draw[draw=TEDark, line width=.45pt] (-.22,.17) rectangle (.22,-.17);
+    \draw[draw=TEDark, line width=.55pt, -{Latex[length=1.1mm]}]
+      (-.10,0)--(.12,0);
+    \draw[draw=TEDark, line width=.45pt] (.10,.08)--(.18,0)--(.10,-.08);
+  }},
+  pics/te-chip/.style={code={
+    \draw[draw=TEDark, line width=.5pt, rounded corners=.5pt]
+      (-.16,.16) rectangle (.16,-.16);
+    \foreach \p in {-.10,0,.10} {
+      \draw[draw=TEDark, line width=.4pt] (-.23,\p)--(-.16,\p) (.16,\p)--(.23,\p);
+      \draw[draw=TEDark, line width=.4pt] (\p,-.23)--(\p,-.16) (\p,.16)--(\p,.23);
+    }
+    \draw[draw=TEDark, line width=.4pt] (-.08,.06)--(0,-.04)--(.08,.06);
+  }},
+  pics/te-call/.style={code={
+    \draw[draw=TEDark, line width=.45pt, rounded corners=.5pt]
+      (-.23,.16) rectangle (.23,-.16);
+    \draw[draw=TEDark, line width=.55pt, -{Latex[length=1.1mm]}]
+      (-.12,0)--(.11,0);
+    \fill[TEDark] (-.13,.09) circle (.016) (-.08,.09) circle (.016);
+  }},
+  pics/te-gate/.style={code={
+    \draw[draw=TEDark, line width=.5pt] (-.19,-.22)--(-.19,.18)--(.19,.18)--(.19,-.22);
+    \draw[draw=TEDark, line width=.45pt] (-.10,-.22)--(-.10,.07)--(.10,.07)--(.10,-.22);
+    \draw[draw=TEDark, line width=.55pt] (-.06,-.03)--(0,-.10)--(.10,.01);
+  }},
+  pics/te-stop/.style={code={
+    \draw[draw=TEDark, line width=.5pt]
+      (-.10,.23)--(.10,.23)--(.23,.10)--(.23,-.10)--(.10,-.23)
+      --(-.10,-.23)--(-.23,-.10)--(-.23,.10)--cycle;
+    \draw[draw=TEDark, line width=.6pt] (-.08,.08)--(.08,-.08) (-.08,-.08)--(.08,.08);
+  }},
+  pics/te-key/.style={code={
+    \draw[draw=TEDark, line width=.55pt] (-.11,.08) circle (.11);
+    \draw[draw=TEDark, line width=.6pt] (-.02,-.01)--(.21,-.22);
+    \draw[draw=TEDark, line width=.5pt] (.10,-.12)--(.16,-.06) (.15,-.17)--(.21,-.11);
+  }}
+}

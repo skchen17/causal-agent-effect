@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Multi-base source-executed registration audit over 75 suite-scoped
+field instances and 1,325 intervention executions. ``Witness'' means that a
+valid mutation changed committed state.}
+\label{tab:registration-sufficiency}
+\begin{tabular}{lr}
+\toprule
+Registration outcome & Rate \\
+\midrule
+Unique fields retained & 100.0\% \\
+Fields with $\geq 5$ valid intervention kinds & 50.7\% \\
+Fields with a committed-effect witness & 88.0\% \\
+Valid intervention executions & 76.8\% \\
+Committed-effect-changing executions & 73.3\% \\
+Output-only executions & 0.8\% \\
+Effect-invariant executions & 2.7\% \\
+Invalid or unresolved executions & 23.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,101 @@
+\section{Introduction}
+\label{sec:introduction}
+
+A user asks an agent to create a meeting with Alice.  After reading an
+untrusted document, the agent calls the calendar tool with both Alice and Eve
+as participants.  The call performs the requested work---creating the
+meeting---but also commits an additional invitation.  This is a common shape of
+indirect prompt injection: content returned by one tool steers a later call
+toward an attacker-chosen effect~\cite{agentdojo,toolemu}.  Once the invitation
+is emitted, later model reasoning cannot turn that committed disclosure back
+into a harmless proposal.
+
+At the application boundary, both calls invoke \texttt{create\_event}.  Treating
+the whole call as one authorization unit forces the event creation and every
+invitation to share a decision.  Inspecting raw arguments exposes Alice and Eve
+but does not identify which state transitions those values control; defaults
+and pre-state can also change the realized effect without changing an explicit
+argument.  Provenance answers where a value came from, not what the tool will
+do with it.  The underlying problem is therefore representational: a monitor
+cannot authorize a distinction that its view of the call does not preserve.
+
+\input{figures/representation_collision}
+
+Figure~\ref{fig:representation-collision} illustrates this collision.  If two
+executions have the same monitor representation but some admissible policy
+must decide them differently, the monitor must either admit an unauthorized
+effect or withhold authorized work.  Complete mediation and least privilege do
+not recover the missing distinction; they require an adequate object of
+mediation.  We call this requirement \emph{tool-effect binding}.
+
+This observation separates four questions that are often conflated.  First,
+did an execution change external state?  Second, can an admissible policy
+require different decisions for two such changes?  Third, does the monitor's
+representation preserve that distinction?  Finally, does the runtime check the
+same call that it commits?  State-difference evidence answers the first
+question, a policy-separating witness answers the second, representation
+collisions answer the third, and a pre-commit audit answers the fourth.  No one
+layer substitutes for another.
+
+We represent a call as a set of concrete, independently authorizable
+\emph{effect atoms}.  In the example, these include creating the event,
+inviting Alice, and inviting Eve.  An atom records the effect kind and the
+tool-local resource, target, operation, commit mode, provenance, or qualifier
+that an admissible policy may need to distinguish.  A representation is minimal relative
+to a frozen tool domain and policy family when merging any two of its classes
+would erase a required authorization distinction.
+
+The central challenge is validating this representation.  A developer or an
+LLM may propose an effect inventory from a tool's description and schema, but
+the proposal alone says nothing about whether it matches the implementation.
+We therefore treat every candidate descriptor as an untrusted hypothesis.
+Before registration, a harness executes a valid call and controlled variants
+that change a field, default, target expansion, or pre-state.  A source-state
+oracle compares the committed effects.  If the effects change while the
+candidate representation does not, the execution supplies a counterexample
+and the descriptor is refined.  Proposal provides a starting point; execution
+provides the evidence.  Unresolved tests are retained instead of being
+interpreted as invariance.
+
+This use of counterfactuals differs from defenses that rerun an agent to ask
+which observation caused a proposed action~\cite{attriguard,causalarmor}.  We
+hold the planner out of the validation loop and intervene on the tool call or
+its pre-state to ask which effects the implementation commits.  The two
+questions are complementary: causal attribution can constrain why a call was
+proposed, while effect registration determines what must be mediated if that
+call is about to execute.
+
+After validation, the descriptor is hash-frozen into the tool interface.  The
+same trust boundary applies online: an agent proposes a call but cannot
+authorize it.  Immediately before commitment, a deterministic monitor expands
+the exact call through the registered descriptor and passes that effect view to
+an independently supplied authority predicate.  Only the checked call
+associated with an \Allow{} decision can execute.  The registration LLM is
+absent from this runtime path, and the runtime planner cannot enlarge its own
+authority.  Our AgentDojo prototype instantiates only provenance-origin
+confinement over registered fields and effect labels; richer ACL, delegation,
+and quota policies can consume a concrete atom view but are not implemented
+here.
+
+Our evaluation follows the same sequence.  First, source replay establishes
+that calls commit compound and pre-state-dependent effects.  Second,
+policy-separating pairs show that common call views lose required distinctions,
+while typed atoms preserve them in two finite source-executed domains.  Third,
+a concrete authorizer exactly realizes a frozen policy relation over those
+atoms.  Finally, an AgentDojo provenance-origin monitor demonstrates audited
+pre-commit mediation but does not outperform a prompting defense or a raw-field
+control on utility.  The first three results support the representation claim;
+the last exposes the current runtime tradeoff rather than hiding it.
+
+This paper makes three contributions:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Model.} We formalize authorization-sufficient effect
+  representations and prove the unavoidable safety--permission tradeoff
+  caused by a representation collision.
+  \item \textbf{Validate.} We introduce source-executed counterfactual
+  registration, in which execution counterexamples refine tool-local effect
+  atoms before a descriptor is frozen.
+  \item \textbf{Instantiate.} We realize the interface in a finite
+  concrete-atom authorizer and an audited provenance-origin monitor, separating
+  the representation result from the narrower runtime policy it enables.
+\end{itemize}

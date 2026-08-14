@@ -1,0 +1,57 @@
+\section{Related Work}
+\label{sec:related-work}
+
+\paragraph{Where defenses intervene.}
+AgentDojo, ToolEmu, and AgentLAB expose indirect prompt injection in tool-rich
+and long-horizon tasks~\cite{agentdojo,toolemu,agentlab}.  Step classifiers and
+prompt defenses decide whether a proposed action appears safe
+~\cite{toolsafe,safiron}; CaMeL and IPIGuard preserve trusted control or track
+data dependencies~\cite{camel,ipiguard}.  AttriGuard and CausalArmor go further
+by intervening on observations and rerunning the agent to estimate which input
+caused a proposed call~\cite{attriguard,causalarmor}.  These approaches reason
+upstream about why the planner selected an action.  Our registration procedure
+intervenes downstream on arguments, defaults, and pre-state, executes the tool,
+and asks which committed effects must remain distinguishable.  It produces an
+object for authorization rather than another classifier of the planner's
+choice.
+
+\paragraph{What authorization sees.}
+Agent policy systems bound tools, actions, parameters, or capabilities
+~\cite{progent,miniscope,clawguard,scopegate,agentguard}.  PACT assigns semantic
+roles to arguments, while AuthGraph compares clean authority with the
+provenance of argument values~\cite{pact,authgraph}.  SecureClaw and commit-time
+authorization emphasize checking fresh authority at the effect sink
+~\cite{secureclaw,committimeauth}.  These systems are complementary to our
+representation question.  An argument need not correspond one-to-one with an
+effect: defaults and pre-state can create effects without an explicit value,
+and one list argument can expand into several independently authorizable
+changes.  We supply validated effect objects to a policy; we do not infer the
+user's authority.  Contextual frameworks separately formalize task, action,
+source, and data-isolation boundaries~\cite{siu2026formalizing}.  Our
+enforcement boundary follows established complete
+mediation, least privilege, confused-deputy, information-flow, and provenance
+principles~\cite{saltzer1975protection,dennis1966programming,hardy1988confused,denning1976lattice,buneman2001why,cheney2009provenance}.
+
+\paragraph{How effects are specified.}
+Type-and-effect systems make program effects explicit by construction
+~\cite{lucassen1988effects}; ETAS brings effect rows and compiled monitors to an
+agent language~\cite{etas2026}.  Contract2Tool infers planning contracts,
+ContractGuard protects supplied contracts, and ToolGuardian combines
+descriptions, traces, mock execution, and source analysis to vet tools
+~\cite{contract2tool,contractguard,toolguardian2026}.  We address a narrower
+obligation that remains after an effect specification is proposed: does the
+representation preserve every distinction required by the selected policy
+family?  Paired executions can falsify that property for existing tools that
+were not written in an effect-typed language.
+
+\paragraph{How representations are validated.}
+Counterexample-guided abstraction refinement starts with a coarse abstraction
+and splits it when a concrete execution falsifies the abstraction
+~\cite{clarke2000cegar}.  Causal abstraction similarly asks whether
+interventions at a lower level are preserved by a higher-level model
+~\cite{pearl2009causality,beckers2019abstracting,geiger2022inducing}.  We adapt
+this idea to tool registration: a call or state intervention is useful only
+when execution changes the committed effect, and it requires a representational
+split only when the policy also separates the pair.  The conclusion is scoped
+to the frozen intervention and policy domains, not unrestricted causal
+discovery.

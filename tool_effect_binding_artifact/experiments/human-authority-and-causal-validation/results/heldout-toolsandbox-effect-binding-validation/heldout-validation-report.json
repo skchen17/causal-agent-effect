@@ -1,0 +1,82 @@
+{
+  "by_tool": {
+    "add_contact": {
+      "n_contexts": 8,
+      "n_execution_errors": 0,
+      "typed_relation_agreement": 8
+    },
+    "add_reminder": {
+      "n_contexts": 8,
+      "n_execution_errors": 0,
+      "typed_relation_agreement": 8
+    },
+    "remove_contact": {
+      "n_contexts": 2,
+      "n_execution_errors": 0,
+      "typed_relation_agreement": 2
+    },
+    "set_location_service_status": {
+      "n_contexts": 6,
+      "n_execution_errors": 4,
+      "typed_relation_agreement": 6
+    },
+    "set_low_battery_mode_status": {
+      "n_contexts": 8,
+      "n_execution_errors": 4,
+      "typed_relation_agreement": 8
+    }
+  },
+  "claim_boundary": "This is a pre-registered, source-hash-bound validation on five public ToolSandbox tools held out from the AgentDojo contract design. It uses AI artifact review, not independent human review, and establishes only finite-domain adequacy for the frozen calls, state variants, source oracle, and authority family.",
+  "experiment": "heldout_toolsandbox_effect_binding_validation",
+  "n_contexts": 32,
+  "n_execution_errors_retained": 8,
+  "n_tools": 5,
+  "n_witness_cells": 9,
+  "preregistration": "experiments/human-authority-and-causal-validation/evaluation/heldout-toolsandbox-effect-binding-validation/preregistration.json",
+  "representations": [
+    {
+      "authorization_collision_cells": 4,
+      "authorization_separating_pairs": 41,
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_cells": 11,
+      "overpartition_pairs": 0,
+      "representation": "common_fields"
+    },
+    {
+      "authorization_collision_cells": 0,
+      "authorization_separating_pairs": 0,
+      "finite_collision_complete": true,
+      "finite_partition_exact": true,
+      "n_cells": 25,
+      "overpartition_pairs": 0,
+      "representation": "source_full_effect"
+    },
+    {
+      "authorization_collision_cells": 5,
+      "authorization_separating_pairs": 88,
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_cells": 5,
+      "overpartition_pairs": 16,
+      "representation": "tool_name"
+    },
+    {
+      "authorization_collision_cells": 0,
+      "authorization_separating_pairs": 0,
+      "finite_collision_complete": true,
+      "finite_partition_exact": true,
+      "n_cells": 25,
+      "overpartition_pairs": 0,
+      "representation": "typed_contract"
+    }
+  ],
+  "source_revision": "165848b9a78cead7ca7fe7c89c688b58e6501219",
+  "source_verification_errors": [],
+  "status": "passed",
+  "typed_relation_agreement": {
+    "rate": 1.0,
+    "successes": 32,
+    "total": 32
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "agentdojo_benchmark_version": "v1.1.2",
+  "aggregate_by_contract_variant": {
+    "eight_field_projection": {
+      "mediation_gaps": 15,
+      "n_cases": 80,
+      "n_passed": 65,
+      "n_relation_eligible": 80,
+      "over_sensitive": 0,
+      "relation_pass_rate": 0.8125,
+      "unsupported": 0
+    },
+    "typed_qualifier_projection": {
+      "mediation_gaps": 0,
+      "n_cases": 80,
+      "n_passed": 80,
+      "n_relation_eligible": 80,
+      "over_sensitive": 0,
+      "relation_pass_rate": 1.0,
+      "unsupported": 0
+    }
+  },
+  "base_call_argument_hashes": {
+    "banking/schedule_transaction": "6c0eb14519376e2588ea64a6d5b26bdf9f75063dd272e5b7439aff1febdc232d",
+    "banking/send_money": "8f5697d57f4c472c86d46fd39f27029d3bec61c7c8e41819facf17ed0d21e8c9",
+    "slack/get_webpage": "231716c26fc76e9099554b0a4171213bb236f9d29dcdc5c6f58e45298e7389a9",
+    "slack/remove_user_from_slack": "611d30573977caf3e575bb2c66b8f6143ed8a4afe22fda245456c4b2c5febe26",
+    "slack/send_channel_message": "4afe73fd5448352b6b04ead394d29f9f85055a1cc3eb019cd6b164ed5f5b13d1",
+    "slack/send_direct_message": "b5f4a9cd56486b65e669a8b0e260a1a6017cb94cf6763782c3c4a64ff7de9874",
+    "travel/cancel_calendar_event": "8dd8329bd9652b741e3da17c7435b903645350c135ab479924f300ed4bb42402",
+    "travel/reserve_hotel": "bceca6e4a5e22d4da154c4d196631676ea59864aca4b5bface50dc76a8baf0db",
+    "travel/reserve_restaurant": "5d4a748c6e1d9dffc2690197c541e8b3467b40a30fa544191ec03fbdc551fd17",
+    "workspace/add_calendar_event_participants": "6533c4600add0e289c4bc5308daf6ce2e08123cea025754e42b053843bc5bc7e",
+    "workspace/append_to_file": "252a0de80241be1f8f7b29030007c08093982de69c99a7ab939b0d1aa84efd2d",
+    "workspace/cancel_calendar_event": "acc28f81ee198887a01acaefa95c2bfbf19ff94c603b9fa9f80927f1e33a2bfc",
+    "workspace/create_file": "6c22665ba3457ae739a7c764313f67e61d6bfd88569777b6b03b1eec146d8f44",
+    "workspace/delete_file": "ec82cc2861a351a75c9fd22024e671a75c38ecd4b3394456694f4e68bce2e4b0",
+    "workspace/reschedule_calendar_event": "a24bce622dcee0ad4c0f432bab301412539314851834f2f0d830e7ef8b43a928",
+    "workspace/share_file": "65d26265de187a7903035db2b4546d2ac0050c2f7ab0c2f82cfcc500487cf15e"
+  },
+  "base_call_source_counts": {
+    "default_state_source_fixture": 4,
+    "ground_truth_call_with_fresh_state_resource_binding": 1,
+    "official_ground_truth_call": 11
+  },
+  "base_call_sources": {
+    "banking/schedule_transaction": "official_ground_truth_call",
+    "banking/send_money": "official_ground_truth_call",
+    "slack/get_webpage": "official_ground_truth_call",
+    "slack/remove_user_from_slack": "default_state_source_fixture",
+    "slack/send_channel_message": "official_ground_truth_call",
+    "slack/send_direct_message": "official_ground_truth_call",
+    "travel/cancel_calendar_event": "default_state_source_fixture",
+    "travel/reserve_hotel": "official_ground_truth_call",
+    "travel/reserve_restaurant": "default_state_source_fixture",
+    "workspace/add_calendar_event_participants": "official_ground_truth_call",
+    "workspace/append_to_file": "official_ground_truth_call",
+    "workspace/cancel_calendar_event": "default_state_source_fixture",
+    "workspace/create_file": "official_ground_truth_call",
+    "workspace/delete_file": "official_ground_truth_call",
+    "workspace/reschedule_calendar_event": "official_ground_truth_call",
+    "workspace/share_file": "ground_truth_call_with_fresh_state_resource_binding"
+  },
+  "claim_boundary": "Source-grounded sandbox interventions over 16 reviewed AgentDojo v1.1.2 tool projections. The check compares the frozen eight-field atom projection with a typed effect-specific qualifier extension on identical generated cases. It does not establish complete contracts, deployed safety, or attack robustness.",
+  "experiment": "E85-AgentDojo-reviewed-projection-interventions",
+  "failure_category_counts": {
+    "eight_field_projection::mediation_gap": 15
+  },
+  "metrics_by_contract_variant_and_case_type": [
+    {
+      "case_type": "descriptor_swap",
+      "contract_variant": "eight_field_projection",
+      "mediation_gaps": 0,
+      "n_cases": 16,
+      "n_passed": 16,
+      "n_relation_eligible": 16,
+      "over_sensitive": 0,
+      "pass_rate": 1.0,
+      "unsupported": 0
+    },
+    {
+      "case_type": "expansion",
+      "contract_variant": "eight_field_projection",
+      "mediation_gaps": 0,
+      "n_cases": 1,
+      "n_passed": 1,
+      "n_relation_eligible": 1,
+      "over_sensitive": 0,
+      "pass_rate": 1.0,
+      "unsupported": 0
+    },
+    {
+      "case_type": "interaction",
+      "contract_variant": "eight_field_projection",
+      "mediation_gaps": 1,
+      "n_cases": 11,
+      "n_passed": 10,
+      "n_relation_eligible": 11,
+      "over_sensitive": 0,
+      "pass_rate": 0.9090909090909091,
+      "unsupported": 0
+    },
+    {
+      "case_type": "omitted_default",
+      "contract_variant": "eight_field_projection",
+      "mediation_gaps": 1,
+      "n_cases": 1,
+      "n_passed": 0,
+      "n_relation_eligible": 1,
+      "over_sensitive": 0,
+      "pass_rate": 0.0,
+      "unsupported": 0
+    },
+    {
+      "case_type": "single_field",
+      "contract_variant": "eight_field_projection",
+      "mediation_gaps": 13,
+      "n_cases": 35,
+      "n_passed": 22,
+      "n_relation_eligible": 35,
+      "over_sensitive": 0,
+      "pass_rate": 0.6285714285714286,
+      "unsupported": 0
+    },
+    {
+      "case_type": "surface_placebo",
+      "contract_variant": "eight_field_projection",
+      "mediation_gaps": 0,
+      "n_cases": 16,
+      "n_passed": 16,
+      "n_relation_eligible": 16,
+      "over_sensitive": 0,
+      "pass_rate": 1.0,
+      "unsupported": 0
+    },
+    {
+      "case_type": "descriptor_swap",
+      "contract_variant": "typed_qualifier_projection",
+      "mediation_gaps": 0,
+      "n_cases": 16,
+      "n_passed": 16,
+      "n_relation_eligible": 16,
+      "over_sensitive": 0,
+      "pass_rate": 1.0,
+      "unsupported": 0
+    },
+    {
+      "case_type": "expansion",
+      "contract_variant": "typed_qualifier_projection",
+      "mediation_gaps": 0,
+      "n_cases": 1,
+      "n_passed": 1,
+      "n_relation_eligible": 1,
+      "over_sensitive": 0,
+      "pass_rate": 1.0,
+      "unsupported": 0
+    },
+    {
+      "case_type": "interaction",
+      "contract_variant": "typed_qualifier_projection",
+      "mediation_gaps": 0,
+      "n_cases": 11,
+      "n_passed": 11,
+      "n_relation_eligible": 11,
+      "over_sensitive": 0,
+      "pass_rate": 1.0,
+      "unsupported": 0
+    },
+    {
+      "case_type": "omitted_default",
+      "contract_variant": "typed_qualifier_projection",
+      "mediation_gaps": 0,
+      "n_cases": 1,
+      "n_passed": 1,
+      "n_relation_eligible": 1,
+      "over_sensitive": 0,
+      "pass_rate": 1.0,
+      "unsupported": 0
+    },
+    {
+      "case_type": "single_field",
+      "contract_variant": "typed_qualifier_projection",
+      "mediation_gaps": 0,
+      "n_cases": 35,
+      "n_passed": 35,
+      "n_relation_eligible": 35,
+      "over_sensitive": 0,
+      "pass_rate": 1.0,
+      "unsupported": 0
+    },
+    {
+      "case_type": "surface_placebo",
+      "contract_variant": "typed_qualifier_projection",
+      "mediation_gaps": 0,
+      "n_cases": 16,
+      "n_passed": 16,
+      "n_relation_eligible": 16,
+      "over_sensitive": 0,
+      "pass_rate": 1.0,
+      "unsupported": 0
+    }
+  ],
+  "n_base_calls_executed": 16,
+  "n_reviewed_tool_instances": 16,
+  "n_source_verified_tool_instances": 16,
+  "source_integrity_errors": [],
+  "status": "passed_with_projection_gaps"
+}

@@ -1,0 +1,1 @@
+../shared/compatibility/scripts/run_finite_domain_effect_binding_validation.py

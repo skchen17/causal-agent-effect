@@ -1,0 +1,97 @@
+\section{Evaluation Methodology}
+\label{sec:evaluation}
+
+We organize the evaluation around four research questions that follow the
+paper's evidence chain.  RQ1 asks whether tool calls actually commit compound
+or pre-state-dependent effects.  RQ2 asks whether coarse representations lose
+policy-relevant distinctions and whether counterfactual registration recovers
+them.  RQ3 asks whether concrete atoms can implement a frozen authorization
+relation.  RQ4 asks what security, utility, and audit properties a
+descriptor-driven runtime monitor provides.  The questions use separate
+oracles and are not interchangeable: runtime attack success, for example,
+cannot establish representation sufficiency.
+
+\paragraph{RQ1: Do calls commit independently authorizable effects?}
+We replay all 339 calls in AgentDojo v1.1.2's 97 official benign trajectories
+from fresh prescribed states.  Before/after differences are normalized into
+resource, target, visibility, message, membership, and external-interaction
+effects.  We count both the number of logical effect occurrences and whether a
+call crosses effect types or benchmark subsystems.
+
+For a controlled representation test, we use 56 calls to five source-verified
+AgentDojo tools.  Under the power set of observed effect occurrences, unequal
+concrete effect multisets are authorization-separable.  Grouping calls by tool
+name, common fields, raw arguments, or typed effects therefore exposes exactly
+which policy distinctions each representation erases.
+
+\paragraph{RQ2: Can counterfactual registration recover required distinctions?}
+For each registered AgentDojo field, the harness attempts observed-value,
+typed, boundary, list-expansion, omission/default, and surface-only variants.
+It records committed-state change, output-only change, invariance, invalidity,
+and unresolved outcomes separately.  A state-changing pair establishes effect
+relevance over the exercised intervention family.  It establishes
+authorization necessity only when the policy oracle also separates the pair.
+The initial intervention suite is used to refine the candidate representation,
+not to estimate held-out generalization.
+
+We therefore freeze a second protocol over five previously unused ToolSandbox
+tools and 32 call/state contexts~\cite{lu-etal-2025-toolsandbox}.  These contexts
+exercise values, preconditions, defaults, and compound effects; invalid
+contexts remain in the results.  We compare the source-effect partition with
+partitions induced by common fields and frozen typed atoms.  The provenance
+component used later at runtime comes from trusted benchmark evidence
+boundaries and is evaluated as a policy input rather than source-validated as a
+tool semantic.
+
+\paragraph{RQ3: Can atoms realize the frozen policy relation?}
+The 32 ToolSandbox contexts also define a finite mechanism test.  Within each
+tool, every context serves as an authority anchor and is paired with every
+candidate context, producing 232 ordered queries.  The source oracle allows a
+candidate exactly when its executed effect multiset is a submultiset of the
+anchor's.  We compare tool identity, canonical exact arguments, common effect
+fields, concrete typed atoms, and the source oracle.  This isolates whether the
+atom interface can implement the specified relation; the anchors are finite
+source-derived bounds, not deployment ACLs.
+
+\paragraph{RQ4: What does descriptor-driven runtime mediation establish?}
+AgentDojo supplies 97 benign tasks and 629 official
+\texttt{important\_instructions} attack pairs across workspace, Slack, travel,
+and banking.  Under DeepSeek, we compare no guard, Spotlighting, and \sys{} with
+the same model, decoding, benchmark version, task keys, and validators.  Benign
+utility is repeated four times per method in interleaved order.  A second
+common-protocol comparison runs no guard, Spotlighting, Prompt Sandwiching, a
+PromptArmor-style local adapter, and \sys{} on all 726 keys under one local
+Qwen3-32B checkpoint.  These adapters are comparable implementations, not
+original-paper reproductions.
+
+Generalization tests use a frozen 320-case manifest spanning four suites and
+four public attack templates, plus a separate 40-case bounded-search
+diagnostic.  Neither permits result-informed repair.  For cross-environment
+transfer, we replay 303 fixed public AgentLAB attack artifacts under AgentDojo
+v1.2.1~\cite{agentlab}.  Matched no-guard and provenance-normalized \sys{}
+conditions use the same Qwen3-32B checkpoint and case manifest.  This transfer
+tests saved evidence under a new harness; it does not reproduce AgentLAB's
+cumulative attack optimization.
+
+We separate runtime security from mechanism attribution.  A retrospective
+diagnostic applies four views to the same completed no-guard trajectories and
+measures only whether a view could intercept a call.  A closed-loop 321-case
+applicability subset instead reruns no blocking, whole-call provenance,
+effect-only checking, \sys{}, and a raw-field taint control.  The control holds
+task grounding, provenance, totalization, and execution fixed while removing
+descriptor effect-label expansion.  This comparison tests whether registered
+effect semantics change decisions; source-executed collisions remain the
+independent evidence for representation quality because the AgentDojo registry
+retains every schema field.
+
+\paragraph{Metrics and integrity.}
+Official attack success and task utility use AgentDojo's native validators; no
+LLM judges either outcome.  We also report coverage, abstention, direct denials,
+runtime LLM calls, and executions without a preceding allow.  Exact-key
+security comparisons use McNemar tests.  Benign utility uses task-clustered
+bootstrap intervals, with non-inferiority requiring the one-sided 95\% lower
+bound to exceed $-0.05$.  The finite authorizer reports unsafe pre-allow, false
+denial, coverage, abstention, and accuracy over all 232 queries.  Every protocol
+freezes its model, descriptor, case manifest, and monitor identity; failed or
+missing rows remain visible, and no call reaches an external service.
+Appendix~\ref{app:open-science} gives the fail-fast reproduction checks.
