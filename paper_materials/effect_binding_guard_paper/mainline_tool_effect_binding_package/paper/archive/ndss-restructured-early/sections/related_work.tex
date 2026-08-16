@@ -1,0 +1,19 @@
+\section{Related Work}
+
+\paragraph{Agent safety benchmarks.}
+ToolEmu evaluates LM agents using an LM-emulated sandbox and highlights risks such as privacy leakage and financial loss in tool-rich settings \cite{toolemu}. AgentDojo provides dynamic environments for prompt-injection attacks and defenses over realistic agent tasks \cite{agentdojo}. These benchmarks motivate tool-use safety as a first-class problem. Our work differs by focusing on counterfactual binding diagnostics for pre-commit decisions rather than end-to-end task outcomes.
+
+\paragraph{Pre-execution and step-level guardrails.}
+ToolSafe/TS-Guard studies proactive step-level tool invocation safety and feedback-driven guardrails \cite{toolsafe}. Safiron studies foundational pre-execution guardrails trained with synthetic data and evaluated on Pre-Exec Bench \cite{safiron}. These systems ask whether a planned or candidate action is risky before execution. Our custom stress tests ask a more specific semantic question: whether the monitor's decision is bound to realized effect, resource, authorization, operation mode, and provenance rather than surface form.
+
+\paragraph{Structural prompt-injection defenses.}
+CaMeL separates trusted control from untrusted data and uses capability ideas to prevent unauthorized data flows \cite{camel}. IPIGuard uses a tool dependency graph to reduce unintended tool invocations under indirect prompt injection \cite{ipiguard}. These works shift defenses from prompt-only filtering toward execution structure. Our framework is compatible with that direction, but it targets the semantic layer between a candidate tool action and the policy object that a structural defense or capability system would check.
+
+\paragraph{Authorization and least privilege.}
+Progent introduces programmable privilege control policies for LLM agents \cite{progent}. MiniScope reconstructs permission hierarchies and applies a least-privilege framework for authorizing tool-calling agents \cite{miniscope}. These works are closest to the authorization motivation. The distinction is that this paper studies whether side-effectful tool calls are atomized and bound to the right authorization facts before policy enforcement. In our terminology, least privilege needs correct effect-resource-operation atoms.
+
+\paragraph{Provenance, virtualization, and audit.}
+Tool-use safety often depends on whether control flows from trusted user intent or untrusted retrieved content. CaMeL's data/control separation is one structural treatment of this problem; our provenance stress and overlay treat it as one binding axis. The consolidated package contains no verified BibTeX-ready ARGUS or AgentVisor references, so this draft does not cite them. They should be added only after source verification.
+
+\paragraph{Positioning.}
+The paper is not a general replacement for benchmarks, guardrails, capability systems, or permission frameworks. It supplies a diagnostic lens and a minimal semantic interface for pre-commit mediation: before a policy can be enforced, the candidate action must be bound to the specific effect-resource-operation atoms and their authorization/provenance context.

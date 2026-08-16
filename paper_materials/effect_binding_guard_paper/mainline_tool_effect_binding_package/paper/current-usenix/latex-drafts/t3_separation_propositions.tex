@@ -1,0 +1,180 @@
+% ============================================================================
+% DRAFT: t3_separation_propositions.tex   (W2 deliverable, T3 landing draft)
+% Date: 2026-08-04 / package: 2026-08-05
+% Source: paper/current-usenix/t3_principle_separation_propositions_2026-08-04.md
+% Status: INDEPENDENT DRAFT. Do NOT \input into main.tex until the PM
+%         approves placement and the claim-map diff review has run.
+%         This file does not modify any existing section.
+%
+% ----------------------------------------------------------------------------
+% 落位建议 (placement suggestion)
+%   Part 1 — the two propositions:
+%   File    : sections/security_analysis.tex
+%   Position: inside \subsection{The Cost of an Insufficient Joint View},
+%             immediately AFTER the discussion paragraph of
+%             Corollary~\ref{cor:compound-effect-binding} ("The corollary
+%             follows by using $B$ as the separating authority ...") and
+%             BEFORE Proposition~\ref{prop:ambiguous-cell}.
+%   Rationale: T3.1 depends on thm:representation-insufficiency and on
+%             cor:compound-effect-binding (it is their two-principle
+%             strengthening), and its permissiveness-side failure mode feeds
+%             directly into the ambiguous-cell lower bound that follows.
+%             This keeps both propositions in the opening part of the
+%             Security Analysis, as intended ("Security Analysis 开头").
+%   Part 2 — related-work contrast paragraph:
+%   File    : sections/related_work.tex
+%   Position: at the end of \paragraph{Authorization, effects, and contracts},
+%             immediately after the sentence "We build on complete mediation,
+%             capabilities, confused-deputy analysis, information flow, and
+%             provenance ~\cite{...}." (currently the last sentence of that
+%             paragraph block).
+%
+% ----------------------------------------------------------------------------
+% Dependencies (all existing; no new external citations needed)
+%   used   : def:authorization-equivalence, thm:representation-insufficiency,
+%            cor:compound-effect-binding, prop:authorization-quotient,
+%            prop:ambiguous-cell; obligation O3 (forward-referenced: O1--O5
+%            are formalized later in the same section, in "Conditional Effect
+%            Confinement" — the draft uses "O3 (formalized below)" once).
+%   defined: prop:principle-separation-effects, prop:whole-call-sufficient.
+%   Cross-draft dependency: the counterexample paragraph cites
+%            Table~\ref{tab:policy-family-sensitivity}, which resolves only
+%            after e2_policy_family_table.tex is landed (frozen E2 numbers).
+%
+% ----------------------------------------------------------------------------
+% Number policy (数字策略)
+%   Only frozen-domain numbers appear (E2 power-set deletion counts on the
+%   56-call domain: 16/16/16/8/4; common-contract baseline 118; typed 0).
+%   No v17 and no V0-V3 numbers are referenced.
+% ============================================================================
+
+% ============================ PART 1: propositions ===========================
+
+A natural question is whether classical enforcement principles already cover
+this obligation. Two of them constrain the scope and timing of decisions but
+not the representation on which decisions operate: least privilege restricts
+how much authority a bound may instantiate, and complete mediation---the
+obligation O3 formalized below---requires a guard decision before every
+externally effectful transition. Neither constrains what the guard looks at.
+
+\begin{proposition}[Least privilege and complete mediation do not imply safety]
+\label{prop:principle-separation-effects}
+Let $D$ be a finite instance domain and let $\rho_E$ be a monitor's
+effect-side representation. Suppose the monitor satisfies least privilege
+(bounds instantiate only the minimum necessary authority) and complete
+mediation (every externally effectful transition has a preceding guard
+decision, obligation O3). If $\rho_E$ is not authorization-sufficient on
+$D$---in particular, if there exist $u,v\in D$ with $\rho_E(u)=\rho_E(v)$ and
+some $B\in\mathcal{B}$ with $I_B(u)\neq I_B(v)$---then the monitor cannot be
+both sound and permissive on $D$: it must either allow the unauthorized
+context or withhold the authorized one.
+\end{proposition}
+
+\begin{proof}[Proof skeleton]
+\begin{enumerate}
+  \item By insufficiency, take $u,v\in D$ with $\rho_E(u)=\rho_E(v)$ and,
+        without loss of generality, $I_B(u)=1$ and $I_B(v)=0$ for some
+        $B\in\mathcal{B}$.
+  \item Under the same complete view of $B$, the two authorization instances
+        induce equal joint views, $R(u)=R(v)$, while $I(u)\neq I(v)$.
+  \item Least privilege and complete mediation constrain the scope and timing
+        of the decision, not the decision surface: any deterministic monitor
+        $M$ satisfying both remains a function of $R$. By
+        Theorem~\ref{thm:representation-insufficiency}, $M$ returns the same
+        decision on $R(u)=R(v)$.
+  \item Returning $\Allow$ violates soundness on $v$; returning $\Deny$ or
+        $\Abstain$ violates permissiveness on $u$, incurring the
+        Proposition~\ref{prop:ambiguous-cell} lower bound. The dichotomy is
+        unavoidable. \qedhere
+\end{enumerate}
+\end{proof}
+
+The proposition is the two-principle strengthening of
+Corollary~\ref{cor:compound-effect-binding}: that corollary exhibits the
+dichotomy for merged compound effects; the proposition shows that the
+dichotomy persists even for monitors that satisfy least privilege and complete
+mediation. The two principles are necessary obligations behind
+Theorem~\ref{thm:single-commit} (via O3) but are not a substitute for
+representation sufficiency.
+
+\paragraph{Counterexample family.}
+The separating structure is the calendar case of
+Section~\ref{sec:security-analysis}: two calls execute the same effect
+signature---\texttt{add\_participant(calendar event 6, target=}$\cdot$\texttt{)}---while
+an authorization-relevant attribute differs; the monitor's representation
+drops the attribute. Taking $u$ with target \texttt{internal@example.com}
+($I_B(u)=1$ for a bound admitting internal members) and $v$ with target
+\texttt{external@example.com} ($I_B(v)=0$), a monitor whose $\rho_E$ drops
+the subject attribute satisfies both principles yet cannot separate $u$ from
+$v$: allowing admits the unauthorized external invitee, while withholding
+false-denies the authorized internal one. This family is instantiated by the
+frozen finite domain: under the power-set authority family, deleting the
+subject, date, or recurrence qualifier creates 16 authorization-separating
+pairs each (payload 8, visibility 4), the common-field representation retains
+118 such pairs, and the reviewed typed representation retains none
+(Table~\ref{tab:policy-family-sensitivity}). A two-principle monitor over the
+coarser representation inherits exactly these collisions.
+
+\begin{proposition}[Existence of authorization-sufficient whole-call representations]
+\label{prop:whole-call-sufficient}
+For every finite domain $D\subseteq\mathcal{U}$, the map
+\[
+  \rho_W(u)=[u]_{\equiv_{\mathcal{B}}},
+\]
+assigning each context a canonical identifier of its
+authorization-equivalence class, is an authorization-sufficient
+representation on $D$, and it is a whole-call representation: one token per
+context, not a sequence of effect-instance atoms. Consequently, least
+privilege and complete mediation do not imply that an atom-level
+representation is required for sound enforcement.
+\end{proposition}
+
+\begin{proof}[Proof skeleton]
+\begin{enumerate}
+  \item $\rho_W(u)=\rho_W(v)$ iff $u\equiv_{\mathcal{B}}v$, hence
+        $I_B(u)=I_B(v)$ for every $B\in\mathcal{B}$: sufficiency holds by
+        Definition~\ref{def:authorization-equivalence}.
+  \item $\rho_W$ emits one class identifier per context, so it is a
+        whole-call representation.
+  \item By Proposition~\ref{prop:authorization-quotient}, the quotient is the
+        coarsest sufficient representation; the cells of $\rho_W$ are exactly
+        the quotient classes, so $\rho_W$ is its canonical implementation.
+  \item Combined with Proposition~\ref{prop:principle-separation-effects}:
+        the two principles neither imply safety (when the representation is
+        insufficient) nor imply atom-level binding ($\rho_W$ is a sufficient
+        whole-call counterexample). Atom-level binding is an engineering
+        choice within the family of sufficient representations---supported by
+        finite verification, registered-refinement convergence, and
+        multi-family sensitivity evidence---not a logical consequence of the
+        two principles. \qedhere
+\end{enumerate}
+\end{proof}
+
+The existence claim carries no computability commitment: $\rho_W$ requires an
+oracle for authorization equivalence, and the engineering objects that
+approximate it are collision-complete finite validation and registered
+refinement, not the map itself. The proposition's subject is the logical
+implication relation between principles and representation granularity, not
+the existence of a practical whole-call monitor.
+
+% ======================= PART 2: related-work paragraph ======================
+% Placement: sections/related_work.tex, end of the \paragraph{Authorization,
+% effects, and contracts} block (see header note). Draft text:
+
+% Least privilege and complete mediation constrain the scope and timing of
+% enforcement, not the representation on which it operates.
+% Proposition~\ref{prop:principle-separation-effects} constructs monitors that
+% satisfy both principles yet remain unsafe whenever the effect-side
+% representation merges authorization-inequivalent calls;
+% Proposition~\ref{prop:whole-call-sufficient} exhibits an
+% authorization-sufficient whole-call representation, so the two principles do
+% not imply atom-level binding. Tool-effect binding is therefore not a
+% relabeling of least privilege or of argument provenance: it is a property of
+% the representation itself.
+
+% ----------------------------------------------------------------------------
+% NON-COMMITMENT LIST (must survive porting, T3 md §4):
+%   no computable implementation of rho_W is claimed; no safety statement for
+%   obligation combinations beyond the two principles; no open-domain
+%   representation sufficiency.
+% ============================================================================

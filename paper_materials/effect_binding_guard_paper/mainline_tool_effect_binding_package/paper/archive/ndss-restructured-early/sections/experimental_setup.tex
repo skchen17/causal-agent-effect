@@ -1,0 +1,19 @@
+\section{Experimental Setup}
+
+\paragraph{Materials.}
+All experiments are drawn from the consolidated mainline package. The main source files are result JSONs under \texttt{results/analysis/results/} and \texttt{audit/analysis/results/}, tables under \texttt{tables/}, and writing-package claim maps under \texttt{method\_materials/writing\_package\_e58/}. The package summary reports 2,424 copied files, two missing expected historical directories, and no core-number issues.
+
+\paragraph{E47 existing/custom-stress methods.}
+E47 evaluates local baselines, released checkpoint components, and structural components on custom stress cases. ToolSafe/TS-Guard and Safiron are evaluated as released checkpoints on E47 custom stress, not as reproductions of their original benchmark numbers. IPIGuard and CaMeL are included through structural or component stress where the available interface supports our binding diagnostics.
+
+\paragraph{E48 hard guard.}
+E48 evaluates the reference hard guard on 822 controlled rows and 6,840 pairwise relations. We report the full result, a held-out split, and the source-balanced E50 robustness audit. The main metrics are UPA, FDeny, and coverage.
+
+\paragraph{E50 robustness and bottleneck stress.}
+E50 contains source-balanced repeats, resource/authorization stress, provenance stress, risk-coverage curves, threshold sensitivity, and failure examples. The resource/authorization stress has 240 rows; the provenance stress has 336 rows.
+
+\paragraph{E55/E56/E57 local pre-commit evidence.}
+E55 evaluates a local pre-commit authorization prototype on 600 rows across five domains. This draft uses E55-v2 strict results as the main pre-commit table because they are the corrected rerun. The original E55 strict result and human-corrected sensitivity are reported as audit/sensitivity evidence. E56 contributes strict replay and build/audit checks. E57-v2 contributes resource perturbation, reference-authorizer agreement, and a 60-row spot-audit packet. A separate E57 human audit of 60 rows found 54/60 decision agreement and generated corrected-label evidence; it is reported as a human audit, not merged with deterministic reference-authorizer agreement.
+
+\paragraph{Metrics and labels.}
+Unsafe pre-allow is computed as \textsc{Allow} on rows labeled \textsc{Deny}. Safe false-denial is computed as \textsc{Deny} on rows labeled \textsc{Allow}. Coverage is the fraction of rows on which a method emits \textsc{Allow} or \textsc{Deny} rather than \textsc{Abstain}. We do not compute false negative rate from F1 or substitute coverage-missing stress quantities for deployed-system quantities.

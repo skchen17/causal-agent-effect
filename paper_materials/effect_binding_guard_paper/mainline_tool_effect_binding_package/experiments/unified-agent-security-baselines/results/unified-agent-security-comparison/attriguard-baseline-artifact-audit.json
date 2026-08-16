@@ -1,0 +1,201 @@
+{
+  "attriguard_artifact": {
+    "deterministic_cross_case_sharding_available": true,
+    "doi": "10.5281/zenodo.20308739",
+    "file": "usenix-artifacts.zip",
+    "full_logdir": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_official_v112_attriguard",
+    "full_raw_json_logs": 411,
+    "license": "MIT",
+    "local_zip": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_external_baselines/attriguard_zenodo/usenix-artifacts.zip",
+    "local_zip_exists": true,
+    "native_artifact_parallel_runner_failed": true,
+    "record": "https://zenodo.org/records/20308739",
+    "sharded_runner_available": true,
+    "sharded_runner_imported_official_keys": 726,
+    "sharded_runner_protocol_attempted_official_keys": 726,
+    "sharded_runner_protocol_clean_official_keys": 716,
+    "sharded_runner_protocol_signatures": [],
+    "sharded_runner_protocol_uniform": false,
+    "sharded_runner_status": "failed",
+    "sharded_runner_status_json": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_attriguard_sharded_run_status.json",
+    "smoke_json_logs": 2,
+    "smoke_logdir": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_official_v112_attriguard_smoke",
+    "status": "verified_public_zenodo_artifact"
+  },
+  "baseline_rows": [
+    {
+      "attriguard_paper_role": "proposed_method",
+      "local_status": "local_artifact_downloaded_smoke_passed_full_pending",
+      "method_id": "attriguard",
+      "notes": "Zenodo record 20308739 exposes usenix-artifacts.zip under MIT license. The artifact runner smoke works on one workspace attack key with local Qwen using model_id=qwen3_32b_local, but the full 726-key run is not complete; the artifact's --max-workers path failed because it passes suite names rather than TaskSuite objects.",
+      "priority_for_unified_agentdojo": "candidate_after_adapter",
+      "public_artifact_status": "verified_zenodo_software_artifact",
+      "public_url": "https://doi.org/10.5281/zenodo.20308739"
+    },
+    {
+      "attriguard_paper_role": "detection_baseline",
+      "local_status": "local_model_present",
+      "method_id": "pi_detector",
+      "notes": "Best immediate classifier baseline because the model is already present locally.",
+      "priority_for_unified_agentdojo": "high",
+      "public_artifact_status": "verified_public_huggingface_model",
+      "public_url": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2"
+    },
+    {
+      "attriguard_paper_role": "detection_baseline",
+      "local_status": "not_runnable_without_hf_access",
+      "method_id": "promptguard",
+      "notes": "The model page is public but the current environment receives 401 for raw model files.",
+      "priority_for_unified_agentdojo": "blocked_by_credentials",
+      "public_artifact_status": "verified_gated_huggingface_model",
+      "public_url": "https://huggingface.co/meta-llama/Prompt-Guard-86M"
+    },
+    {
+      "attriguard_paper_role": "detection_baseline",
+      "local_status": "repo_cloned_adapter_implemented_full_run_pending",
+      "method_id": "piguard",
+      "notes": "Shallow clone is present under runs/e75_external_baselines/injecguard and E75 includes an adapted AgentDojo detector patch for the public leolee99/PIGuard checkpoint. Checkpoint status is ready_for_smoke; official-live imported keys: 0/726.",
+      "priority_for_unified_agentdojo": "high",
+      "public_artifact_status": "verified_git_repository",
+      "public_url": "https://github.com/safolab-wisc/injecguard"
+    },
+    {
+      "attriguard_paper_role": "detection_baseline",
+      "local_status": "checkpoint_download_partial_base_model_missing",
+      "method_id": "datasentinel",
+      "notes": "Open-Prompt-Injection is cloned. DataSentinelDetector wraps a QLoRA model and requires a fine-tuned checkpoint path (`ft_path`) plus a Mistral-7B base model. A public Google Drive checkpoint link exists in the README, but the current local file is only a partial download, so no AgentDojo adapter can run yet.",
+      "priority_for_unified_agentdojo": "medium",
+      "public_artifact_status": "verified_git_repository_family",
+      "public_url": "https://github.com/liu00222/Open-Prompt-Injection"
+    },
+    {
+      "attriguard_paper_role": "sanitizer_baseline",
+      "local_status": "paper_defined_local_adapter_available",
+      "method_id": "promptarmor",
+      "notes": "No official PromptArmor code artifact has been verified. E75 provides promptarmor_local as a clearly labeled PromptArmor-style local guard adapter; report it as comparable paper-defined implementation, not official reproduction. Current promptarmor_local imported official keys: 0/726. A shared hash cache is implemented for repeated tool-output sanitizer calls, but the full run is not complete.",
+      "priority_for_unified_agentdojo": "medium",
+      "public_artifact_status": "not_verified_as_public_code",
+      "public_url": "https://arxiv.org/abs/2507.15219"
+    },
+    {
+      "attriguard_paper_role": "detection_baseline",
+      "local_status": "repo_cloned_local_comparable_adapter_implemented_full_run_pending",
+      "method_id": "melon",
+      "notes": "MELON is cloned. Its official AgentDojo implementation re-executes masked trajectories and uses OpenAI text-embedding-3-large via an API key for action similarity. E75 now includes melon_local, a comparable local adapter using masked re-execution and lexical tool-call cosine similarity; it still needs smoke/full 726-key runs before inclusion.",
+      "priority_for_unified_agentdojo": "medium",
+      "public_artifact_status": "verified_git_repository",
+      "public_url": "https://github.com/kaijiezhu11/MELON"
+    },
+    {
+      "attriguard_paper_role": "prompting_baseline",
+      "local_status": "paper_defined_adapter_implemented_full_run_pending",
+      "method_id": "prompt_sandwiching",
+      "notes": "Implemented as a clearly labeled AgentDojo module-loaded prompt baseline; official-live imported keys: 0/726.",
+      "priority_for_unified_agentdojo": "high",
+      "public_artifact_status": "paper_defined_prompting_strategy",
+      "public_url": "https://learnprompting.org/docs/prompt_hacking/defensive_measures/sandwich_defense"
+    },
+    {
+      "attriguard_paper_role": "prompting_baseline",
+      "local_status": "paper_defined_delimiting_adapter_full_run_pending",
+      "method_id": "spotlighting",
+      "notes": "Implemented as the AgentDojo/Spotlighting-style delimiting baseline used by the official harness; official-live imported keys: 0/726.",
+      "priority_for_unified_agentdojo": "high",
+      "public_artifact_status": "verified_git_repository",
+      "public_url": "https://github.com/realArcherL/spotlighting-datamarking"
+    },
+    {
+      "attriguard_paper_role": "training_baseline",
+      "local_status": "not_installed",
+      "method_id": "struq",
+      "notes": "Do not mix with same-backbone guard results unless its defended model is run through the same AgentDojo protocol.",
+      "priority_for_unified_agentdojo": "separate_model_level_table",
+      "public_artifact_status": "verified_git_repository",
+      "public_url": "https://github.com/Sizhe-Chen/StruQ"
+    },
+    {
+      "attriguard_paper_role": "training_baseline",
+      "local_status": "not_installed",
+      "method_id": "secalign",
+      "notes": "Model-level baseline; separate from same-backbone guard table unless fully rerun.",
+      "priority_for_unified_agentdojo": "separate_model_level_table",
+      "public_artifact_status": "verified_git_repository",
+      "public_url": "https://github.com/facebookresearch/SecAlign"
+    },
+    {
+      "attriguard_paper_role": "training_baseline",
+      "local_status": "not_installed",
+      "method_id": "meta_secalign",
+      "notes": "Model-level baseline; separate from same-backbone guard table unless fully rerun.",
+      "priority_for_unified_agentdojo": "separate_model_level_table",
+      "public_artifact_status": "verified_git_repository",
+      "public_url": "https://github.com/facebookresearch/Meta_SecAlign"
+    },
+    {
+      "attriguard_paper_role": "system_level_baseline",
+      "local_status": "external_repo_present",
+      "method_id": "camel",
+      "notes": "External clone exists and old full-cross-product outputs exist, but key protocol alignment must be checked before merging.",
+      "priority_for_unified_agentdojo": "high_after_protocol_alignment",
+      "public_artifact_status": "verified_git_repository",
+      "public_url": "https://github.com/google-research/camel-prompt-injection"
+    },
+    {
+      "attriguard_paper_role": "system_level_baseline",
+      "local_status": "external_repo_present_and_saved_replay_present",
+      "method_id": "ipiguard",
+      "notes": "Already included as IPIGuard-normal in the exact-key saved replay table.",
+      "priority_for_unified_agentdojo": "already_in_saved_replay_table",
+      "public_artifact_status": "verified_git_repository",
+      "public_url": "https://github.com/Greysahy/ipiguard"
+    }
+  ],
+  "piguard_checkpoint": {
+    "adapter_patch": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/code/src/experiments/effect_binding_guard/e75_unified_agentdojo_comparison/agentdojo_piguard_detector_patch.py",
+    "adapter_patch_present": true,
+    "agentdojo_smoke_dir": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_official_v112_piguard_smoke",
+    "agentdojo_smoke_log_count": 2,
+    "agentdojo_smoke_logs": [
+      "runs/e75_agentdojo_official_v112_piguard_smoke/local-transformers_pi_detector-piguard/workspace/injection_task_0/none/none.json",
+      "runs/e75_agentdojo_official_v112_piguard_smoke/local-transformers_pi_detector-piguard/workspace/user_task_0/important_instructions/injection_task_0.json"
+    ],
+    "claim_boundary": "PIGuard has public code, a loaded checkpoint, and an E75 AgentDojo smoke adapter, but it is not a main-table same-protocol baseline until all 726 official keys are imported.",
+    "hf_cache_dir": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_external_baselines/hf_cache/hub/models--leolee99--PIGuard",
+    "hf_cache_present": true,
+    "incomplete_blobs": [],
+    "last_smoke_attempt": {
+      "agentdojo_smoke": "not_executed",
+      "failure_mode": "agentdojo_smoke_pending",
+      "model_load": "passed",
+      "tokenizer_load": "passed_with_network_escalation"
+    },
+    "latest_snapshot": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_external_baselines/hf_cache/hub/models--leolee99--PIGuard/snapshots/dd78b24e330193a22d2293ac66922dd4f982f563",
+    "main_table_eligible_now": false,
+    "method_id": "piguard",
+    "model_weight_ready": true,
+    "next_step": "Run an official AgentDojo smoke, then full 726-key import.",
+    "official_live_imported_keys": 0,
+    "repo_dir": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_external_baselines/injecguard",
+    "repo_present": true,
+    "snapshot_files": [
+      "added_tokens.json",
+      "config.json",
+      "model.safetensors",
+      "modeling_piguard.py",
+      "special_tokens_map.json",
+      "spm.model",
+      "tokenizer.json",
+      "tokenizer_config.json"
+    ],
+    "status": "ready_for_smoke",
+    "tokenizer_ready": true
+  },
+  "recommended_order": [
+    "Treat no_guard, repeat_user_prompt, spotlighting, transformers_pi_detector, prompt_sandwiching, PIGuard, PromptArmor-local, MELON-local, and this paper's current live guard as completed same-key official-live rows.",
+    "Next inspect or supply DataSentinel/Open-Prompt-Injection's required fine-tuned checkpoint path and continue the AttriGuard artifact shard runner.",
+    "Keep PromptGuard blocked until gated model access is available.",
+    "Keep StruQ/SecAlign/MetaSecAlign in a separate model-level comparison unless rerun with the same AgentDojo backbone.",
+    "Treat AttriGuard itself as a candidate adapter from Zenodo, not as absent code."
+  ],
+  "source_paper": "AttriGuard: Defeating Indirect Prompt Injection in LLM Agents via Causal Attribution of Tool Invocations"
+}

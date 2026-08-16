@@ -1,0 +1,24 @@
+{
+  "case_count": 240,
+  "claim_boundary": "Supports missing semantic layer diagnosis, not solved safety.",
+  "evidence_type": "semantic-layer diagnostic over IPIGuard DAG inputs",
+  "experiment_name": "Phase 6 IPIGuard semantic-layer comparison",
+  "group_count": 24,
+  "human_audited": true,
+  "known_limitations": "Added mapper is not original IPIGuard and not a deployable guard.",
+  "label_status": "audited custom-stress expected decisions; oracle row separated",
+  "method_scope_label": "diagnostic",
+  "output_artifacts": [
+    "analysis/results/tool_effect_fragmentation_ipiguard_semantic_phase6.json"
+  ],
+  "paper_section": "Semantic-layer analysis",
+  "row_count": 1200,
+  "source_data": [
+    "data/tool_effect_fragmentation/ipiguard_semantic_core_phase6.jsonl"
+  ],
+  "source_scripts": [
+    "src/experiments/tool_effect_fragmentation/run_tool_effect_fragmentation_phase6.py",
+    "src/experiments/tool_effect_fragmentation/phase6_semantic_worker.py"
+  ],
+  "stage": "Phase 6"
+}

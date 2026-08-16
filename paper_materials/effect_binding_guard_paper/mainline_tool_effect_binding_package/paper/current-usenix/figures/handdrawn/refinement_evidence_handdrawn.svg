@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="610" viewBox="0 0 1100 610">
+  <defs>
+    <style>
+      .ink { fill: none; stroke: #27323a; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .grid { stroke: #c9d0d4; stroke-width: 1.5; stroke-dasharray: 7 7; }
+      .label { font-family: Arial, sans-serif; font-size: 21px; font-weight: 600; fill: #202a30; }
+      .body { font-family: Arial, sans-serif; font-size: 17px; fill: #202a30; }
+      .number { font-family: Arial, sans-serif; font-size: 22px; font-weight: 700; fill: #26766f; }
+    </style>
+  </defs>
+  <rect width="1100" height="610" fill="#fff"/>
+  <text class="label" x="70" y="52">Counterexamples refine the representation</text>
+  <text class="body" x="70" y="82">Authorization-separating pairs remaining in the frozen finite domain</text>
+
+  <!-- Axes and grid -->
+  <path class="ink" d="M106 120 V510 H1035"/>
+  <line class="grid" x1="106" y1="150" x2="1035" y2="150"/>
+  <line class="grid" x1="106" y1="260" x2="1035" y2="260"/>
+  <line class="grid" x1="106" y1="370" x2="1035" y2="370"/>
+  <line class="grid" x1="106" y1="480" x2="1035" y2="480"/>
+  <text class="body" x="48" y="156">120</text>
+  <text class="body" x="59" y="266">80</text>
+  <text class="body" x="59" y="376">40</text>
+  <text class="body" x="72" y="486">0</text>
+
+  <!-- Hand-drawn staircase -->
+  <path d="M150 139 H310 V315 H470 V403 H630 V447 H790 V469 H950 V480"
+        fill="none" stroke="#26766f" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="150" cy="139" r="10" fill="#fff" stroke="#26766f" stroke-width="5"/>
+  <circle cx="310" cy="315" r="10" fill="#fff" stroke="#26766f" stroke-width="5"/>
+  <circle cx="470" cy="403" r="10" fill="#fff" stroke="#26766f" stroke-width="5"/>
+  <circle cx="630" cy="447" r="10" fill="#fff" stroke="#26766f" stroke-width="5"/>
+  <circle cx="790" cy="469" r="10" fill="#fff" stroke="#26766f" stroke-width="5"/>
+  <circle cx="950" cy="480" r="10" fill="#fff" stroke="#26766f" stroke-width="5"/>
+
+  <text class="number" x="132" y="124">124</text>
+  <text class="number" x="295" y="299">60</text>
+  <text class="number" x="455" y="387">28</text>
+  <text class="number" x="616" y="431">12</text>
+  <text class="number" x="782" y="452">4</text>
+  <text class="number" x="944" y="463">0</text>
+
+  <text class="body" text-anchor="middle" x="150" y="542">Common</text>
+  <text class="body" text-anchor="middle" x="150" y="565">fields</text>
+  <text class="body" text-anchor="middle" x="310" y="542">+ date</text>
+  <text class="body" text-anchor="middle" x="470" y="542">+ subject</text>
+  <text class="body" text-anchor="middle" x="630" y="542">+ recurrence</text>
+  <text class="body" text-anchor="middle" x="790" y="542">+ payload</text>
+  <text class="body" text-anchor="middle" x="950" y="542">+ visibility</text>
+
+  <path d="M950 480 Q1000 458 1026 412" fill="none" stroke="#c9553d" stroke-width="3" stroke-linecap="round"/>
+  <text class="body" x="874" y="385">No mixed cell remains</text>
+  <text class="body" x="874" y="408">on this frozen domain</text>
+</svg>

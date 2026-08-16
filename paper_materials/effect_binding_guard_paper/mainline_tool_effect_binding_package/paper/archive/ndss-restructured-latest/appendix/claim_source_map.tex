@@ -1,0 +1,27 @@
+\section{Claim-to-Source Map}
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Main claim-to-source map for the restructured v2 paper.}
+\label{tab:claim-source-map}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.25\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Claim & Source artifact & Safe wording \\
+\midrule
+Side-effectful tool calls are containers of effect-resource-operation atoms. & E55 atom schema and expansion code & Atomization is the semantic object used by the local pre-commit mediator. \\
+The paper is measurement plus diagnostic framework plus local pre-commit prototype. & Threat model, evaluation protocol, and limitation policy & Controlled custom-stress and local contract evidence, not a deployed-system guarantee. \\
+The hard guard has bounded improvement. & E48 tuple guard; E50 robustness & Low but nonzero UPA/FDeny on E48 and a resource/auth bottleneck on E50. \\
+Resource/auth is the central bottleneck. & E50 robustness & 0.383 UPA at 0.921 coverage on controlled resource/auth stress. \\
+Authorization-aware mediation improves local contract decidability. & E55-v2 strict & On E55-v2, coverage rises from 0.200 to 0.880 and UPA falls from 12/276 to 0/276. \\
+Atom/authorization ablations identify which semantic interfaces carry the improvement. & E55-v2 strict ablations & Removing multi-resource, operation-mode, or provenance interfaces raises UPA; removing alias resolution raises FDeny. \\
+Human-corrected sensitivity preserves zero UPA but introduces FDeny. & E55 human-corrected sensitivity & Corrected sensitivity has UPA 0/320 and FDeny 4/230. \\
+Validity checks reduce specific artifact risks. & E57-v2 validity; E57 human audit & Perturbation/reference-authorizer checks pass; human audit finds corrections. \\
+The atom interface transfers beyond E55-v2 under an independently specified contract. & E60 held-out contract manifest, leakage report, and results & E60 reaches 0.854 coverage, 0.000 UPA, and 0.812 atom exact-set match, with measurable FDeny and extraction degradation retained. \\
+Atom-level mediation remains useful on sandboxed realistic trace replay. & E61 trace manifest, leakage report, and results & E61 reaches 0.847 coverage, 0.000 UPA, and 0.733 atom exact-set match; harder trace sources expose parsing and provenance failures. \\
+Remaining errors are concentrated in extraction and missing/degraded authorization context. & E62 decomposition results & Gold atoms/context isolate checker behavior; extracted atoms and degraded context reduce atom match and coverage. \\
+The authorization interface has measurable burden and degrades conservatively when incomplete. & E63 burden and context-degradation results & Missing, stale, or contradictory context usually increases abstention or FDeny rather than unsafe allow in the studied artifact. \\
+Full atom-level mediation improves over non-atom local baselines, while diagnostic B5/B7 rows expose false-denial and capability-interface tradeoffs. & E64 baseline results & Baselines are local comparable adapters, not original-system benchmark reproductions; B7 can match full mediation when atom-equivalent capability context is supplied. \\
+\bottomrule
+\end{tabularx}
+\end{table}

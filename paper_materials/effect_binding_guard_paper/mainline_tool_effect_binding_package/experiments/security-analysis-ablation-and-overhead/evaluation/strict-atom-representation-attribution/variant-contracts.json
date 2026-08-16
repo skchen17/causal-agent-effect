@@ -1,0 +1,38 @@
+{
+  "common_inputs": {
+    "same_25_tool_names": true,
+    "same_frozen_plan_cache": true,
+    "same_recovery_policy": true,
+    "same_scorer": true,
+    "same_totalization": true
+  },
+  "variants": [
+    {
+      "contract": "Check only whether the tool name appears in the initial plan; no parameter, effect-role, provenance, or evidence checks.",
+      "id": "tool_identity_only",
+      "role": "control",
+      "variant": "V0"
+    },
+    {
+      "contract": "Instantiate the totalized call against the authority envelope and emit exactly one call-level match/mismatch; no per-field decision, no per-target expansion, no role-specific repair.",
+      "id": "opaque_whole_call",
+      "variant": "V1"
+    },
+    {
+      "contract": "Every official schema parameter is a security_field with role untyped_argument; unknown parameters fail closed.",
+      "id": "raw_schema_fields",
+      "variant": "V2"
+    },
+    {
+      "contract": "Counterfactually registered security_fields, field_roles and effect_kind; list targets expanded per descriptor semantics; non-security fields never block authority.",
+      "id": "validated_atom_fields",
+      "variant": "V3"
+    },
+    {
+      "contract": "V3 with roles rotated by a fixed seed; executed only if a semantic influence test shows roles change behavior, else non_applicable.",
+      "id": "shuffled_roles",
+      "role": "diagnostic_optional",
+      "variant": "V4"
+    }
+  ]
+}

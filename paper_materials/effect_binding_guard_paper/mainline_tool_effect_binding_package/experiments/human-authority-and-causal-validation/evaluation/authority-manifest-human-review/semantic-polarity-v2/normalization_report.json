@@ -1,0 +1,85 @@
+{
+  "authority_widened": false,
+  "binding_corrections": [
+    {
+      "binding_index": 1,
+      "field": "participants",
+      "task_key": "workspace/user_task_7",
+      "tool_name": "add_calendar_event_participants"
+    },
+    {
+      "binding_index": 0,
+      "field": "description",
+      "task_key": "travel/user_task_1",
+      "tool_name": "create_calendar_event"
+    },
+    {
+      "binding_index": 3,
+      "field": "participants",
+      "task_key": "travel/user_task_1",
+      "tool_name": "create_calendar_event"
+    },
+    {
+      "binding_index": 0,
+      "field": "amount",
+      "task_key": "banking/user_task_9",
+      "tool_name": "update_scheduled_transaction"
+    },
+    {
+      "binding_index": 3,
+      "field": "recipient",
+      "task_key": "banking/user_task_9",
+      "tool_name": "update_scheduled_transaction"
+    },
+    {
+      "binding_index": 5,
+      "field": "subject",
+      "task_key": "banking/user_task_9",
+      "tool_name": "update_scheduled_transaction"
+    },
+    {
+      "binding_index": 1,
+      "field": "first_name",
+      "task_key": "banking/user_task_13",
+      "tool_name": "update_user_info"
+    },
+    {
+      "binding_index": 2,
+      "field": "last_name",
+      "task_key": "banking/user_task_13",
+      "tool_name": "update_user_info"
+    }
+  ],
+  "claim_boundary": "This deterministic pass only corrects cases where a forbidden candidate binding was marked REJECT while the recorded rationale explicitly says the field is unauthorized. It does not approve invented exact values, unresolved free text, broad selectors, or any other rejected resolver.",
+  "experiment": "authority_review_semantic_polarity_normalization",
+  "n_binding_polarity_corrections": 8,
+  "n_newly_accepted_tasks": 1,
+  "n_rows": 97,
+  "newly_accepted_tasks": [
+    "workspace/user_task_7"
+  ],
+  "semantically_clear_but_schema_blocked": [
+    {
+      "binding_errors": [
+        "banking/user_task_9/binding[1]: resolver.read_tool is not in the frozen suite catalog",
+        "banking/user_task_9/binding[1]: resolver query uses unknown fields ['query']",
+        "banking/user_task_9/binding[2]: resolver.read_tool is not in the frozen suite catalog",
+        "banking/user_task_9/binding[2]: resolver query uses unknown fields ['query']",
+        "banking/user_task_9/binding[4]: resolver.read_tool is not in the frozen suite catalog",
+        "banking/user_task_9/binding[4]: resolver query uses unknown fields ['query']"
+      ],
+      "task_key": "banking/user_task_9"
+    },
+    {
+      "binding_errors": [
+        "banking/user_task_13/binding[0]: resolver query uses unknown fields ['query']",
+        "banking/user_task_13/binding[0]: resolver query omits required fields ['file_path']",
+        "banking/user_task_13/binding[3]: resolver query uses unknown fields ['query']",
+        "banking/user_task_13/binding[3]: resolver query omits required fields ['file_path']"
+      ],
+      "task_key": "banking/user_task_13"
+    }
+  ],
+  "source_packet": "experiments/human-authority-and-causal-validation/evaluation/authority-manifest-human-review/review_packet.reviewed.jsonl",
+  "status": "passed"
+}

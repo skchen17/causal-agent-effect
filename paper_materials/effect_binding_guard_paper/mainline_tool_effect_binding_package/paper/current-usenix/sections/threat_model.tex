@@ -1,0 +1,61 @@
+\section{Problem and Security Model}
+\label{sec:threat-model}
+
+\paragraph{System and enforcement boundary.}
+A user gives an agent an authenticated task $q$. The agent may read messages,
+documents, webpages, or database records before proposing a structured tool
+call $c=(t,\bar{x})$. The LLM is an untrusted control-plane component: its plan,
+effect description, and arguments are proposals rather than authority.
+Executing the totalized call from pre-state $s$ may commit several externally
+visible effects, such as creating an event, inviting principals, or changing
+visibility. Enforcement occurs after argument totalization and immediately
+before commit. The executor may commit only the exact call associated with the
+monitor's decision.
+
+\paragraph{Threat model.}
+The adversary controls content returned by one or more untrusted reads. It may
+embed instructions or attacker-chosen values, induce the agent to add a
+resource, target, payload, operation, or effect, and carry this influence across
+a multi-step trajectory. We assume the agent may follow the injected
+instruction completely; security does not rely on model alignment. The
+adversary cannot modify the authenticated task, forge trusted provenance,
+change a registered descriptor or policy, compromise the monitor, or replace a
+checked call before execution. It also cannot replace the registered tool
+implementation without triggering revalidation.
+
+\paragraph{Representation and commit objective.}
+Let $u=(t,\bar{x},s,h)$ denote an execution context containing a tool,
+totalized arguments, trusted pre-state, and provenance evidence. Let $\mu(u)$
+denote its committed effects. A policy context $P$ may additionally depend on
+trusted execution metadata $\gamma(u)$, including effect provenance. Writing
+$\omega(u)=(\mu(u),\gamma(u))$, it induces an ideal per-commit predicate
+$I_P(\omega(u))$. The desired commit condition is $I_P(\omega(u))=1$.
+
+The explicit-authority experiment instantiates $P$ with authenticated subject
+identity, resource ACLs, held capabilities, and attenuated delegations. The
+earlier source-relation diagnostic uses effect-set containment only as a finite
+interface-discrimination stress relation. In both settings, the descriptor is
+an observation contract rather than a source of authority: the authenticated
+user, harness, or external policy component supplies $P$, and the planner
+cannot enlarge it. A separate AgentDojo integration implements a narrower
+provenance-origin predicate. It tests mediation and auditability, not
+organization-wide entitlement.
+
+\paragraph{Registration-time trust assumptions.}
+Offline validation assumes that the copied sandbox faithfully runs the
+versioned implementation, the source execution oracle observes the exercised
+committed transition, interventions are reproducible, and the
+policy-separation relation is supplied independently of the candidate
+descriptor. These privileged observations generate registration evidence and
+do not sit on the deployed commit path. Failed or unresolved executions remain
+explicit and cannot justify dropping a field.
+
+\paragraph{Runtime enforcement TCB.}
+Runtime trusts the descriptor--implementation binding, authority and policy
+state, the provenance adapter where used, the monitor, and the exact-call
+executor. State-dependent instantiation additionally requires a fresh trusted
+pre-commit snapshot. The conditional guarantee assumes complete mediation and
+check--use consistency for both the call and policy snapshot. If the planner
+can alter authority, relabel provenance, replace the checked call, or race the
+trusted state, it has crossed the stated boundary. Section~\ref{sec:limitations}
+discusses semantic drift, concurrency, remote effects, and output-only goals.

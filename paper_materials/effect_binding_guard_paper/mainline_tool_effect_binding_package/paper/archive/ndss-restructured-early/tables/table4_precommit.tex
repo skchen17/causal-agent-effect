@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Authorization-aware local pre-commit prototype. E55-v2 is used as the main result; original E55 and human-corrected sensitivity are retained as audit/sensitivity evidence.}
+\label{tab:precommit}
+\begin{tabular}{lcccc}
+\toprule
+Method / source & UPA & FDeny & Coverage & Abstain \\
+\midrule
+E55-v2 existing hard guard & 0.043 & 0.000 & 0.200 & 0.800 \\
+E55-v2 authz-aware guard & 0.000 & 0.000 & 0.880 & 0.120 \\
+Original E55 authz-aware & 0.000 & 0.000 & 0.920 & 0.080 \\
+Original E55 human-corrected sensitivity & 0.000 & 0.017 & 0.920 & 0.080 \\
+\bottomrule
+\end{tabular}
+\end{table}

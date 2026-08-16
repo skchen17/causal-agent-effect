@@ -1,0 +1,10 @@
+# Structured Defense Summary
+
+| method | scope | surface_invariance | effect_sensitivity | unsafe_pre_allow | safe_false_deny | interpretation | authorization_sensitivity | resource_sensitivity | abstain_rate | unsafe_blocked | unsafe_misses |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ipiguard_topology_only | original_component_custom_stress | 1 | 0 |  |  | Topology is stable but has no authorization decision interface. |  |  |  |  |  |
+| deterministic_effect_resource_mapper | diagnostic | 0.708333 | 0.375 | 0 | 0.0595238 | Added semantic mapper; not original IPIGuard. | 0.375 | 0.375 | 0.579167 |  |  |
+| ipiguard_normalized_content | diagnostic | 0.708333 | 0.375 | 0 | 0.0595238 | Added semantic mapper; not original IPIGuard. | 0.375 | 0.375 | 0.579167 |  |  |
+| local_qwen_effect_resource_mapper | diagnostic | 0.991667 | 0.833333 | 0.333333 | 0.0178571 | Added semantic mapper; not original IPIGuard. | 0.375 | 0.125 | 0.0625 |  |  |
+| oracle_effect_resource_mapper | upper_bound | 1 | 1 | 0 | 0 | Added semantic mapper; not original IPIGuard. | 1 | 1 | 0 |  |  |
+| camel_structural_policy | original_component_custom_stress | 1 |  |  | 0 | Stable structural policy component; misses control-dependency violations in custom stress. |  |  |  | 0.75 | 6 |

@@ -1,0 +1,52 @@
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  node distance=4mm and 7mm,
+  box/.style={draw, rounded corners=1pt, align=center, minimum height=8mm, inner sep=3pt},
+  data/.style={box, fill=gray!8},
+  guard/.style={box, fill=black!10, line width=.7pt},
+  flow/.style={-{Latex[length=2mm]}, line width=.55pt},
+  trust/.style={flow, dashed},
+]
+\node[data] (schema) {Tool schema, description,\\and sandbox implementation};
+\node[box, right=of schema] (proposal) {Candidate effect inventory\\and template bindings};
+\node[guard, right=of proposal] (cf) {State-transition interventions\\and atom-mediation tests};
+\node[data, right=of cf] (registry) {Frozen contract registry\\or human review};
+
+\node[data, below=11mm of schema] (task) {Original task $q$\\and trusted interface};
+\node[guard, right=of task] (bound) {Authority bound $B_q$\\and resolver catalog};
+\node[data, right=of bound] (envelope) {Bounded envelope\\$\Gamma_q\preceq B_q$};
+
+\node[data, below=11mm of task] (call) {Candidate structured call\\$(t,x)$};
+\node[guard, right=of call] (total) {Totalize defaults\\$\bar{x}=\tau_t(x,s)$};
+\node[guard, right=of total] (atoms) {Instantiate all\\effect atoms};
+\node[guard, right=of atoms] (check) {Check every atom\\against $\Gamma_q$};
+\node[data, right=of check] (commit) {Execute same bound call\\or deny/replan};
+
+\node[data, below=11mm of atoms] (reads) {Untrusted read outputs};
+\node[guard, right=of reads] (ledger) {Typed resolver ledger\\and provenance};
+
+\draw[flow] (schema) -- (proposal);
+\draw[flow] (proposal) -- (cf);
+\draw[flow] (cf) -- (registry);
+\draw[flow] (task) -- (bound);
+\draw[flow] (bound) -- (envelope);
+\draw[flow] (call) -- (total);
+\draw[flow] (total) -- (atoms);
+\draw[flow] (atoms) -- (check);
+\draw[flow] (check) -- (commit);
+\draw[flow] (registry.south) |- (atoms.north);
+\draw[flow] (envelope.south) |- (check.north);
+\draw[trust] (reads) -- (ledger);
+\draw[trust] (ledger) -| (check);
+\draw[trust] (commit.south) |- (reads.east);
+
+\node[draw, dashed, fit=(schema)(proposal)(cf)(registry), inner sep=3mm,
+      label={[font=\bfseries]above:Offline onboarding}] {};
+\node[draw, dashed, fit=(task)(bound)(envelope)(call)(total)(atoms)(check)(commit)(reads)(ledger),
+      inner sep=3mm, label={[font=\bfseries]below:Online pre-commit mediation}] {};
+\end{tikzpicture}
+\caption{Normative \sys{} architecture. Offline onboarding freezes a deterministic effect contract only when its atoms preserve tested security-relevant execution differences. Online, a trusted authority bound limits any LLM plan; defaults are totalized before atom instantiation; and the checked call object is the one executed. Dashed flows carry untrusted observations only through typed resolver projections. E77 evaluates a narrower one-field instance and therefore does not discharge every box.}
+\label{fig:system-overview}
+\end{figure*}

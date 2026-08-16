@@ -1,0 +1,57 @@
+{
+  "B0_tool_name_proxy": [
+    "tool_call.tool"
+  ],
+  "B1_tool_call_level_authorizer": [
+    "tool_call",
+    "authorization_context.primary_resource",
+    "authorization_context.allowed_operations"
+  ],
+  "B2_resource_only_authorizer": [
+    "tool_call.parameters.target_ref",
+    "authorization_context.allowed_resource_ids",
+    "authorization_context.alias_map"
+  ],
+  "B3_effect_resource_tuple_authorizer": [
+    "effect",
+    "primary_resource",
+    "authorization_context.allowed_resource_ids"
+  ],
+  "B4_effect_resource_operation_without_provenance": [
+    "effect",
+    "resource",
+    "operation",
+    "commit_mode",
+    "authorization_context"
+  ],
+  "B5_effect_resource_operation_without_alias_canonicalization": [
+    "effect",
+    "resource",
+    "operation",
+    "commit_mode",
+    "authorization_context_without_alias_map"
+  ],
+  "B6_llm_judge_heuristic": [
+    "task",
+    "tool_call",
+    "runtime_evidence_text"
+  ],
+  "B7_least_privilege_capability_adapter": [
+    "tool_call.primary_resource",
+    "capability-like allowed operations/resources",
+    "provenance summary"
+  ],
+  "B8_released_guardrail_adapter": {
+    "claim_scope": "ToolSafe/TS-Guard-style comparable local adapter, not original benchmark reproduction.",
+    "path": "baselines/b8_released_guardrail/",
+    "status": "separate_comparable_adapter_available"
+  },
+  "Full_atom_level_mediation": [
+    "all extracted atoms",
+    "authorization_context",
+    "alias_map",
+    "operation mode",
+    "visibility",
+    "provenance/control source"
+  ]
+}

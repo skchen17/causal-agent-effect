@@ -1,0 +1,362 @@
+{
+  "bootstrap_samples": 10000,
+  "comparisons": {
+    "agentdojo_live_melon_local": {
+      "attack_success": {
+        "exact_mcnemar": {
+          "discordant": 7,
+          "method_only_success": 5,
+          "p_value": 0.453125,
+          "reference_only_success": 2
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.0890302066772655,
+        "method_successes": 56,
+        "n_paired": 629,
+        "no_guard_rate": 0.08426073131955485,
+        "no_guard_successes": 53,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.003179650238473768,
+            0.012718600953895072
+          ],
+          "difference_method_minus_no_guard": 0.0047694753577106515,
+          "samples": 10000,
+          "seed": 20260731
+        }
+      },
+      "attack_utility": {
+        "exact_mcnemar": {
+          "discordant": 34,
+          "method_only_success": 16,
+          "p_value": 0.8641662404406816,
+          "reference_only_success": 18
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.5405405405405406,
+        "method_successes": 340,
+        "n_paired": 629,
+        "no_guard_rate": 0.5437201907790143,
+        "no_guard_successes": 342,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.02066772655007949,
+            0.01589825119236884
+          ],
+          "difference_method_minus_no_guard": -0.003179650238473768,
+          "samples": 10000,
+          "seed": 20260733
+        }
+      },
+      "benign_utility": {
+        "exact_mcnemar": {
+          "discordant": 8,
+          "method_only_success": 3,
+          "p_value": 0.7265625,
+          "reference_only_success": 5
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.6391752577319587,
+        "method_successes": 62,
+        "n_paired": 97,
+        "no_guard_rate": 0.6597938144329897,
+        "no_guard_successes": 64,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.08247422680412371,
+            0.030927835051546393
+          ],
+          "difference_method_minus_no_guard": -0.020618556701030927,
+          "samples": 10000,
+          "seed": 20260732
+        }
+      }
+    },
+    "agentdojo_live_ours_e77_effect_diff_runtime": {
+      "attack_success": {
+        "exact_mcnemar": {
+          "discordant": 54,
+          "method_only_success": 2,
+          "p_value": 1.6497914145929826e-13,
+          "reference_only_success": 52
+        },
+        "holm_adjusted_p": 1.979749697511579e-12,
+        "method_rate": 0.0047694753577106515,
+        "method_successes": 3,
+        "n_paired": 629,
+        "no_guard_rate": 0.08426073131955485,
+        "no_guard_successes": 53,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.10333863275039745,
+            -0.057233704292527825
+          ],
+          "difference_method_minus_no_guard": -0.0794912559618442,
+          "samples": 10000,
+          "seed": 20260771
+        }
+      },
+      "attack_utility": {
+        "exact_mcnemar": {
+          "discordant": 225,
+          "method_only_success": 45,
+          "p_value": 2.5793608864658788e-20,
+          "reference_only_success": 180
+        },
+        "holm_adjusted_p": 3.6111052410522304e-19,
+        "method_rate": 0.32909379968203495,
+        "method_successes": 207,
+        "n_paired": 629,
+        "no_guard_rate": 0.5437201907790143,
+        "no_guard_successes": 342,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.2591414944356121,
+            -0.17011128775834658
+          ],
+          "difference_method_minus_no_guard": -0.21462639109697934,
+          "samples": 10000,
+          "seed": 20260773
+        }
+      },
+      "benign_utility": {
+        "exact_mcnemar": {
+          "discordant": 43,
+          "method_only_success": 6,
+          "p_value": 1.636124125070637e-06,
+          "reference_only_success": 37
+        },
+        "holm_adjusted_p": 1.4725117125635734e-05,
+        "method_rate": 0.3402061855670103,
+        "method_successes": 33,
+        "n_paired": 97,
+        "no_guard_rate": 0.6597938144329897,
+        "no_guard_successes": 64,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.4329896907216495,
+            -0.20618556701030927
+          ],
+          "difference_method_minus_no_guard": -0.31958762886597936,
+          "samples": 10000,
+          "seed": 20260772
+        }
+      }
+    },
+    "agentdojo_live_prompt_sandwiching": {
+      "attack_success": {
+        "exact_mcnemar": {
+          "discordant": 55,
+          "method_only_success": 5,
+          "p_value": 2.1358426138817777e-10,
+          "reference_only_success": 50
+        },
+        "holm_adjusted_p": 2.3494268752699554e-09,
+        "method_rate": 0.012718600953895072,
+        "method_successes": 8,
+        "n_paired": 629,
+        "no_guard_rate": 0.08426073131955485,
+        "no_guard_successes": 53,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.09379968203497616,
+            -0.0492845786963434
+          ],
+          "difference_method_minus_no_guard": -0.07154213036565978,
+          "samples": 10000,
+          "seed": 20260751
+        }
+      },
+      "attack_utility": {
+        "exact_mcnemar": {
+          "discordant": 136,
+          "method_only_success": 78,
+          "p_value": 0.10291318499743204,
+          "reference_only_success": 58
+        },
+        "holm_adjusted_p": 0.7203922949820243,
+        "method_rate": 0.575516693163752,
+        "method_successes": 362,
+        "n_paired": 629,
+        "no_guard_rate": 0.5437201907790143,
+        "no_guard_successes": 342,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.0047694753577106515,
+            0.06836248012718601
+          ],
+          "difference_method_minus_no_guard": 0.03179650238473768,
+          "samples": 10000,
+          "seed": 20260753
+        }
+      },
+      "benign_utility": {
+        "exact_mcnemar": {
+          "discordant": 22,
+          "method_only_success": 9,
+          "p_value": 0.5234670639038086,
+          "reference_only_success": 13
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.6185567010309279,
+        "method_successes": 60,
+        "n_paired": 97,
+        "no_guard_rate": 0.6597938144329897,
+        "no_guard_successes": 64,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.13402061855670103,
+            0.05154639175257732
+          ],
+          "difference_method_minus_no_guard": -0.041237113402061855,
+          "samples": 10000,
+          "seed": 20260752
+        }
+      }
+    },
+    "agentdojo_live_promptarmor_local": {
+      "attack_success": {
+        "exact_mcnemar": {
+          "discordant": 54,
+          "method_only_success": 1,
+          "p_value": 6.106226635438361e-15,
+          "reference_only_success": 53
+        },
+        "holm_adjusted_p": 7.938094626069869e-14,
+        "method_rate": 0.001589825119236884,
+        "method_successes": 1,
+        "n_paired": 629,
+        "no_guard_rate": 0.08426073131955485,
+        "no_guard_successes": 53,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.10492845786963434,
+            -0.06200317965023847
+          ],
+          "difference_method_minus_no_guard": -0.08267090620031796,
+          "samples": 10000,
+          "seed": 20260761
+        }
+      },
+      "attack_utility": {
+        "exact_mcnemar": {
+          "discordant": 262,
+          "method_only_success": 29,
+          "p_value": 9.412126204380439e-41,
+          "reference_only_success": 233
+        },
+        "holm_adjusted_p": 1.4118189306570659e-39,
+        "method_rate": 0.21939586645468998,
+        "method_successes": 138,
+        "n_paired": 629,
+        "no_guard_rate": 0.5437201907790143,
+        "no_guard_successes": 342,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.3672496025437202,
+            -0.28139904610492844
+          ],
+          "difference_method_minus_no_guard": -0.32432432432432434,
+          "samples": 10000,
+          "seed": 20260763
+        }
+      },
+      "benign_utility": {
+        "exact_mcnemar": {
+          "discordant": 45,
+          "method_only_success": 4,
+          "p_value": 9.334883088740753e-09,
+          "reference_only_success": 41
+        },
+        "holm_adjusted_p": 9.334883088740753e-08,
+        "method_rate": 0.27835051546391754,
+        "method_successes": 27,
+        "n_paired": 97,
+        "no_guard_rate": 0.6597938144329897,
+        "no_guard_successes": 64,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.4948453608247423,
+            -0.26804123711340205
+          ],
+          "difference_method_minus_no_guard": -0.38144329896907214,
+          "samples": 10000,
+          "seed": 20260762
+        }
+      }
+    },
+    "agentdojo_live_spotlighting_with_delimiting": {
+      "attack_success": {
+        "exact_mcnemar": {
+          "discordant": 55,
+          "method_only_success": 25,
+          "p_value": 0.5900533317766357,
+          "reference_only_success": 30
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.07631160572337042,
+        "method_successes": 48,
+        "n_paired": 629,
+        "no_guard_rate": 0.08426073131955485,
+        "no_guard_successes": 53,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.03179650238473768,
+            0.014308426073131956
+          ],
+          "difference_method_minus_no_guard": -0.00794912559618442,
+          "samples": 10000,
+          "seed": 20260741
+        }
+      },
+      "attack_utility": {
+        "exact_mcnemar": {
+          "discordant": 145,
+          "method_only_success": 87,
+          "p_value": 0.01974093986302584,
+          "reference_only_success": 58
+        },
+        "holm_adjusted_p": 0.15792751890420673,
+        "method_rate": 0.589825119236884,
+        "method_successes": 371,
+        "n_paired": 629,
+        "no_guard_rate": 0.5437201907790143,
+        "no_guard_successes": 342,
+        "paired_bootstrap": {
+          "ci95": [
+            0.009538950715421303,
+            0.08426073131955485
+          ],
+          "difference_method_minus_no_guard": 0.046104928457869634,
+          "samples": 10000,
+          "seed": 20260743
+        }
+      },
+      "benign_utility": {
+        "exact_mcnemar": {
+          "discordant": 14,
+          "method_only_success": 5,
+          "p_value": 0.4239501953125,
+          "reference_only_success": 9
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.6185567010309279,
+        "method_successes": 60,
+        "n_paired": 97,
+        "no_guard_rate": 0.6597938144329897,
+        "no_guard_successes": 64,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.1134020618556701,
+            0.030927835051546393
+          ],
+          "difference_method_minus_no_guard": -0.041237113402061855,
+          "samples": 10000,
+          "seed": 20260742
+        }
+      }
+    }
+  },
+  "multiple_testing": "Holm correction over all direct method/metric comparisons",
+  "reference_method": "agentdojo_live_local_no_guard"
+}

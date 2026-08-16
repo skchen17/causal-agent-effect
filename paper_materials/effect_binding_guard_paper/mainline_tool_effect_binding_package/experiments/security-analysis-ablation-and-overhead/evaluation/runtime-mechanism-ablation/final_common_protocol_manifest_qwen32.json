@@ -1,0 +1,208 @@
+{
+  "agentdojo_version": "v1.1.2",
+  "applicability": {
+    "artifact_type": "ablation_applicability_audit",
+    "claim_boundary": "A13 has no applicable dynamic security-default field in this reviewed AgentDojo slice and cannot support an empirical default-handling claim. A2, A7, A9, and A12 also have narrow applicability because only two reviewed tasks authorize effectful calls and one uses a typed resolver.",
+    "experiment": "E81",
+    "reviewed_authority_tool_counts": {
+      "add_calendar_event_participants": 1,
+      "update_password": 1
+    },
+    "reviewed_authority_tool_rows": 2,
+    "reviewed_tasks": 26,
+    "rows": {
+      "A11": {
+        "applicable_catalog_effectful_tools": 28,
+        "criterion": "model proposes an effectful tool outside the task envelope",
+        "dynamic_applicability_requires_runtime_audit": true
+      },
+      "A12": {
+        "applicable_resolver_rows": 1,
+        "criterion": "reviewed task uses a typed resolver binding"
+      },
+      "A13": {
+        "applicable_dynamic_security_defaults": 0,
+        "claim_eligible": false,
+        "fields": []
+      },
+      "A15": {
+        "a1_blocked_precommit_checks": 69,
+        "criterion": "A1 returns recoverable feedback after a blocked call"
+      },
+      "A2": {
+        "applicable_reviewed_tool_rows": 2,
+        "criterion": "reviewed task authorizes an effectful tool with field bindings"
+      },
+      "A7": {
+        "applicable_resolver_rows": 1,
+        "criterion": "reviewed task uses a typed resolver binding"
+      },
+      "A9": {
+        "applicable_reviewed_tool_rows": 2,
+        "round0_registered_rows": 0,
+        "rows": [
+          {
+            "reviewed_authority_fields": [
+              "password"
+            ],
+            "round0_registered": false,
+            "round0_security_fields": [],
+            "suite": "banking",
+            "tool_name": "update_password",
+            "user_task_id": "user_task_14"
+          },
+          {
+            "reviewed_authority_fields": [
+              "event_id",
+              "participants"
+            ],
+            "round0_registered": false,
+            "round0_security_fields": [],
+            "suite": "workspace",
+            "tool_name": "add_calendar_event_participants",
+            "user_task_id": "user_task_8"
+          }
+        ]
+      }
+    },
+    "status": "passed_with_nonapplicable_a13"
+  },
+  "artifact_type": "frozen_reviewed_subset_common_protocol",
+  "case_manifest": {
+    "all_official_injection_tasks_for_reviewed_tasks": true,
+    "attack_pair_counts": {
+      "banking": 36,
+      "slack": 5,
+      "travel": 14,
+      "workspace": 114
+    },
+    "n_attack_per_row": 169,
+    "n_benign_per_row": 26,
+    "n_total_per_row": 195,
+    "official_injection_task_counts": {
+      "banking": 9,
+      "slack": 5,
+      "travel": 7,
+      "workspace": 6
+    },
+    "suite_task_counts": {
+      "banking": 4,
+      "slack": 1,
+      "travel": 2,
+      "workspace": 19
+    },
+    "tasks": {
+      "banking": [
+        "user_task_1",
+        "user_task_14",
+        "user_task_7",
+        "user_task_8"
+      ],
+      "slack": [
+        "user_task_0"
+      ],
+      "travel": [
+        "user_task_10",
+        "user_task_5"
+      ],
+      "workspace": [
+        "user_task_0",
+        "user_task_1",
+        "user_task_10",
+        "user_task_11",
+        "user_task_14",
+        "user_task_16",
+        "user_task_17",
+        "user_task_2",
+        "user_task_22",
+        "user_task_23",
+        "user_task_24",
+        "user_task_26",
+        "user_task_27",
+        "user_task_28",
+        "user_task_3",
+        "user_task_30",
+        "user_task_39",
+        "user_task_5",
+        "user_task_8"
+      ]
+    }
+  },
+  "claim_boundary": "E81 is scoped to the 26 AgentDojo tasks with runtime-ready reviewed authority manifests and all 169 official attack pairs for those tasks. It is not the full 726-case benchmark. A13 has no applicable dynamic security-default field in this slice and is not claim-eligible.",
+  "execution_gate": "This manifest is not an ablation result. Rows become evidence only after the hybrid reviewed-authority/effect-descriptor runner passes source-hash, row-count, and audit-log checks.",
+  "experiment": "E81",
+  "generated_at": "2026-07-24T15:08:48.141804+00:00",
+  "input_sha256": {
+    "applicability_audit": "6fd36830b26c8a4b8952598e42b4a58172340f206ff34a6acb74cc4ecd83c56f",
+    "authority_manifests": "e046b3f45d86d3e59f4c303fb158d4a2cde58f3ec4b51d42d2e48f91b1c298b4",
+    "raw_descriptor_registry": "e7c63ecb67ee6aca13fcac3dc6ad87853969451e24d8aa98834e102ff916a650",
+    "runtime_catalog": "ec2e5dc3d2e52136a7f5d5294bb715e3aabc6c7dd159b87e426faf8f716c8468",
+    "trusted_effect_projections": "76a02a1bd1004f70da48bcdcc4368810c2545834bb642adf162d276d477a2cd0"
+  },
+  "model": {
+    "context_window": 65536,
+    "file_name": "Qwen3-32B-Q4_K_M.gguf",
+    "sha256": "efd971561896866f0e910cce52761ca77b1b138090c7f15fe284676d57d1f689",
+    "temperature": 0.0
+  },
+  "required_metrics": [
+    "benign_utility",
+    "attack_success_rate",
+    "attack_user_utility",
+    "coverage",
+    "abstain_or_block_rate",
+    "precommit_check_count",
+    "blocked_call_execution_count"
+  ],
+  "reviewed_inputs": {
+    "raw_registration_rows": 24,
+    "runtime_ready_authority_manifests": 26,
+    "trusted_security_effect_projections": 16
+  },
+  "rows": {
+    "A0": {
+      "label": "no_guard",
+      "single_change_from_a1": "remove_all_runtime_mediation"
+    },
+    "A1": {
+      "label": "full_reviewed_effect_contract_guard",
+      "single_change_from_a1": null
+    },
+    "A11": {
+      "label": "no_task_authority_envelope",
+      "single_change_from_a1": "remove_reviewed_task_scoped_authority_bound"
+    },
+    "A12": {
+      "label": "no_authorized_read_grounding",
+      "single_change_from_a1": "disable_typed_resolver_ledger"
+    },
+    "A13": {
+      "label": "omitted_fields_permissive",
+      "single_change_from_a1": "do_not_fail_closed_on_unresolved_security_defaults"
+    },
+    "A15": {
+      "label": "no_replan_recovery",
+      "single_change_from_a1": "replace_replan_feedback_with_terminal_denial"
+    },
+    "A2": {
+      "label": "tool_call_level_only",
+      "single_change_from_a1": "remove_field_and_atom_granularity"
+    },
+    "A7": {
+      "label": "no_provenance_control_binding",
+      "single_change_from_a1": "accept_untrusted_or_untyped_resolver_evidence"
+    },
+    "A9": {
+      "label": "schema_description_only_registration",
+      "single_change_from_a1": "replace_counterfactually_validated_registry_with_round0_registry"
+    }
+  },
+  "single_variable_gate": "A2, A7, A9, A11, A12, A13, and A15 must differ from A1 only by the declared switch. All rows share the model, task keys, official injection keys, decoding settings, tool schemas, and validators.",
+  "status": "protocol_frozen_runner_pending",
+  "task_suite_counts": {
+    "banking": 4,
+    "slack": 1,
+    "travel": 2,
+    "workspace": 19
+  }
+}

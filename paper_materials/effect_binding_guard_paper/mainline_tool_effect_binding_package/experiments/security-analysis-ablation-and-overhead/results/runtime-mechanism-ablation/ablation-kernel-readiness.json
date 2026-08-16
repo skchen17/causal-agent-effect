@@ -1,0 +1,77 @@
+{
+  "artifact_type": "runtime_ablation_kernel_readiness",
+  "claim_boundary": "The pure kernels and single-component counterexamples pass unit tests. No AgentDojo, ToolSandbox, long-horizon, security, utility, or overhead result is claimed until these rows run on one frozen protocol.",
+  "counterexample_tests": [
+    "A2 recipient substitution",
+    "A7 injected provenance/control",
+    "A9 raw descriptor missed binding",
+    "A11 unplanned effect",
+    "A12 legitimate resolver utility loss",
+    "A13 nonempty default omission",
+    "A15 terminal deny"
+  ],
+  "experiment": "E81",
+  "generated_at": "2026-07-12T15:56:32.473081+00:00",
+  "rows": {
+    "A1": {
+      "config_diff_from_A1": {}
+    },
+    "A11": {
+      "config_diff_from_A1": {
+        "task_envelope": [
+          true,
+          false
+        ]
+      }
+    },
+    "A12": {
+      "config_diff_from_A1": {
+        "authorized_read_grounding": [
+          true,
+          false
+        ]
+      }
+    },
+    "A13": {
+      "config_diff_from_A1": {
+        "omitted_fields_fail_closed": [
+          true,
+          false
+        ]
+      }
+    },
+    "A15": {
+      "config_diff_from_A1": {
+        "replan_enabled": [
+          true,
+          false
+        ]
+      }
+    },
+    "A2": {
+      "config_diff_from_A1": {
+        "field_granularity": [
+          true,
+          false
+        ]
+      }
+    },
+    "A7": {
+      "config_diff_from_A1": {
+        "provenance_control_binding": [
+          true,
+          false
+        ]
+      }
+    },
+    "A9": {
+      "config_diff_from_A1": {
+        "counterfactual_registration": [
+          true,
+          false
+        ]
+      }
+    }
+  },
+  "status": "implementation_ready_not_evaluated"
+}

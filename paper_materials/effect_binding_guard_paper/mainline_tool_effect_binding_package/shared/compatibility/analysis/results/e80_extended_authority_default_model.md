@@ -1,0 +1,1 @@
+../../../../experiments/security-analysis-ablation-and-overhead/results/conditional-effect-contract-security-model/extended-authority-default-model.md

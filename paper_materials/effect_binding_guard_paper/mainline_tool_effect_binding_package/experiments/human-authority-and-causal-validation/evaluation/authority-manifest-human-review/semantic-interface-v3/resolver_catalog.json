@@ -1,0 +1,802 @@
+{
+  "agentdojo_version": "v1.1.2",
+  "catalog_version": "e84_agentdojo_v1_1_2_read_tools_v1",
+  "claim_boundary": "Eligibility excludes tools registered as effectful and the external webpage fetch. A reviewer must still constrain each read invocation and typed projection.",
+  "parser_ids": [
+    "postal_address_block_v1"
+  ],
+  "projection_kinds": [
+    "filtered_record_field",
+    "list_items",
+    "parsed_text_field",
+    "record_field",
+    "record_list_field",
+    "scalar"
+  ],
+  "suites": {
+    "banking": {
+      "get_balance": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "get_iban": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "get_most_recent_transactions": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "n"
+        ],
+        "required_parameter_fields": []
+      },
+      "get_scheduled_transactions": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "get_user_info": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "read_file": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "file_path"
+        ],
+        "required_parameter_fields": [
+          "file_path"
+        ]
+      },
+      "schedule_transaction": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "amount",
+          "date",
+          "recipient",
+          "recurring",
+          "subject"
+        ],
+        "required_parameter_fields": [
+          "amount",
+          "date",
+          "recipient",
+          "recurring",
+          "subject"
+        ]
+      },
+      "send_money": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "amount",
+          "date",
+          "recipient",
+          "subject"
+        ],
+        "required_parameter_fields": [
+          "amount",
+          "date",
+          "recipient",
+          "subject"
+        ]
+      },
+      "update_password": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "password"
+        ],
+        "required_parameter_fields": [
+          "password"
+        ]
+      },
+      "update_scheduled_transaction": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "amount",
+          "date",
+          "id",
+          "recipient",
+          "recurring",
+          "subject"
+        ],
+        "required_parameter_fields": [
+          "id"
+        ]
+      },
+      "update_user_info": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "city",
+          "first_name",
+          "last_name",
+          "street"
+        ],
+        "required_parameter_fields": []
+      }
+    },
+    "slack": {
+      "add_user_to_channel": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "channel",
+          "user"
+        ],
+        "required_parameter_fields": [
+          "channel",
+          "user"
+        ]
+      },
+      "get_channels": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "get_users_in_channel": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "channel"
+        ],
+        "required_parameter_fields": [
+          "channel"
+        ]
+      },
+      "get_webpage": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "url"
+        ],
+        "required_parameter_fields": [
+          "url"
+        ]
+      },
+      "invite_user_to_slack": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "user",
+          "user_email"
+        ],
+        "required_parameter_fields": [
+          "user",
+          "user_email"
+        ]
+      },
+      "post_webpage": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "content",
+          "url"
+        ],
+        "required_parameter_fields": [
+          "content",
+          "url"
+        ]
+      },
+      "read_channel_messages": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "channel"
+        ],
+        "required_parameter_fields": [
+          "channel"
+        ]
+      },
+      "read_inbox": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "user"
+        ],
+        "required_parameter_fields": [
+          "user"
+        ]
+      },
+      "remove_user_from_slack": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "user"
+        ],
+        "required_parameter_fields": [
+          "user"
+        ]
+      },
+      "send_channel_message": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "body",
+          "channel"
+        ],
+        "required_parameter_fields": [
+          "body",
+          "channel"
+        ]
+      },
+      "send_direct_message": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "body",
+          "recipient"
+        ],
+        "required_parameter_fields": [
+          "body",
+          "recipient"
+        ]
+      }
+    },
+    "travel": {
+      "cancel_calendar_event": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "event_id"
+        ],
+        "required_parameter_fields": [
+          "event_id"
+        ]
+      },
+      "check_restaurant_opening_hours": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "restaurant_names"
+        ],
+        "required_parameter_fields": [
+          "restaurant_names"
+        ]
+      },
+      "create_calendar_event": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "description",
+          "end_time",
+          "location",
+          "participants",
+          "start_time",
+          "title"
+        ],
+        "required_parameter_fields": [
+          "end_time",
+          "start_time",
+          "title"
+        ]
+      },
+      "get_all_car_rental_companies_in_city": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "city"
+        ],
+        "required_parameter_fields": [
+          "city"
+        ]
+      },
+      "get_all_hotels_in_city": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "city"
+        ],
+        "required_parameter_fields": [
+          "city"
+        ]
+      },
+      "get_all_restaurants_in_city": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "city"
+        ],
+        "required_parameter_fields": [
+          "city"
+        ]
+      },
+      "get_car_fuel_options": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "company_name"
+        ],
+        "required_parameter_fields": [
+          "company_name"
+        ]
+      },
+      "get_car_price_per_day": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "company_name"
+        ],
+        "required_parameter_fields": [
+          "company_name"
+        ]
+      },
+      "get_car_rental_address": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "company_name"
+        ],
+        "required_parameter_fields": [
+          "company_name"
+        ]
+      },
+      "get_car_types_available": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "company_name"
+        ],
+        "required_parameter_fields": [
+          "company_name"
+        ]
+      },
+      "get_contact_information_for_restaurants": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "restaurant_names"
+        ],
+        "required_parameter_fields": [
+          "restaurant_names"
+        ]
+      },
+      "get_cuisine_type_for_restaurants": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "restaurant_names"
+        ],
+        "required_parameter_fields": [
+          "restaurant_names"
+        ]
+      },
+      "get_day_calendar_events": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "day"
+        ],
+        "required_parameter_fields": [
+          "day"
+        ]
+      },
+      "get_dietary_restrictions_for_all_restaurants": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "restaurant_names"
+        ],
+        "required_parameter_fields": [
+          "restaurant_names"
+        ]
+      },
+      "get_flight_information": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "arrival_city",
+          "departure_city"
+        ],
+        "required_parameter_fields": [
+          "arrival_city",
+          "departure_city"
+        ]
+      },
+      "get_hotels_address": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "hotel_name"
+        ],
+        "required_parameter_fields": [
+          "hotel_name"
+        ]
+      },
+      "get_hotels_prices": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "hotel_names"
+        ],
+        "required_parameter_fields": [
+          "hotel_names"
+        ]
+      },
+      "get_price_for_restaurants": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "restaurant_names"
+        ],
+        "required_parameter_fields": [
+          "restaurant_names"
+        ]
+      },
+      "get_rating_reviews_for_car_rental": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "company_name"
+        ],
+        "required_parameter_fields": [
+          "company_name"
+        ]
+      },
+      "get_rating_reviews_for_hotels": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "hotel_names"
+        ],
+        "required_parameter_fields": [
+          "hotel_names"
+        ]
+      },
+      "get_rating_reviews_for_restaurants": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "restaurant_names"
+        ],
+        "required_parameter_fields": [
+          "restaurant_names"
+        ]
+      },
+      "get_restaurants_address": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "restaurant_names"
+        ],
+        "required_parameter_fields": [
+          "restaurant_names"
+        ]
+      },
+      "get_user_information": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "reserve_car_rental": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "company",
+          "end_time",
+          "start_time"
+        ],
+        "required_parameter_fields": [
+          "company",
+          "end_time",
+          "start_time"
+        ]
+      },
+      "reserve_hotel": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "end_day",
+          "hotel",
+          "start_day"
+        ],
+        "required_parameter_fields": [
+          "end_day",
+          "hotel",
+          "start_day"
+        ]
+      },
+      "reserve_restaurant": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "restaurant",
+          "start_time"
+        ],
+        "required_parameter_fields": [
+          "restaurant",
+          "start_time"
+        ]
+      },
+      "search_calendar_events": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "date",
+          "query"
+        ],
+        "required_parameter_fields": [
+          "query"
+        ]
+      },
+      "send_email": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "attachments",
+          "bcc",
+          "body",
+          "cc",
+          "recipients",
+          "subject"
+        ],
+        "required_parameter_fields": [
+          "body",
+          "recipients",
+          "subject"
+        ]
+      }
+    },
+    "workspace": {
+      "add_calendar_event_participants": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "event_id",
+          "participants"
+        ],
+        "required_parameter_fields": [
+          "event_id",
+          "participants"
+        ]
+      },
+      "append_to_file": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "content",
+          "file_id"
+        ],
+        "required_parameter_fields": [
+          "content",
+          "file_id"
+        ]
+      },
+      "cancel_calendar_event": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "event_id"
+        ],
+        "required_parameter_fields": [
+          "event_id"
+        ]
+      },
+      "create_calendar_event": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "description",
+          "end_time",
+          "location",
+          "participants",
+          "start_time",
+          "title"
+        ],
+        "required_parameter_fields": [
+          "end_time",
+          "start_time",
+          "title"
+        ]
+      },
+      "create_file": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "content",
+          "filename"
+        ],
+        "required_parameter_fields": [
+          "content",
+          "filename"
+        ]
+      },
+      "delete_email": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "email_id"
+        ],
+        "required_parameter_fields": [
+          "email_id"
+        ]
+      },
+      "delete_file": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "file_id"
+        ],
+        "required_parameter_fields": [
+          "file_id"
+        ]
+      },
+      "get_current_day": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "get_day_calendar_events": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "day"
+        ],
+        "required_parameter_fields": [
+          "day"
+        ]
+      },
+      "get_draft_emails": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "get_file_by_id": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "file_id"
+        ],
+        "required_parameter_fields": [
+          "file_id"
+        ]
+      },
+      "get_received_emails": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "get_sent_emails": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "get_unread_emails": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "list_files": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [],
+        "required_parameter_fields": []
+      },
+      "reschedule_calendar_event": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "event_id",
+          "new_end_time",
+          "new_start_time"
+        ],
+        "required_parameter_fields": [
+          "event_id",
+          "new_start_time"
+        ]
+      },
+      "search_calendar_events": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "date",
+          "query"
+        ],
+        "required_parameter_fields": [
+          "query"
+        ]
+      },
+      "search_contacts_by_email": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "query"
+        ],
+        "required_parameter_fields": [
+          "query"
+        ]
+      },
+      "search_contacts_by_name": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "query"
+        ],
+        "required_parameter_fields": [
+          "query"
+        ]
+      },
+      "search_emails": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "query",
+          "sender"
+        ],
+        "required_parameter_fields": [
+          "query"
+        ]
+      },
+      "search_files": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "query"
+        ],
+        "required_parameter_fields": [
+          "query"
+        ]
+      },
+      "search_files_by_filename": {
+        "effectful_or_external_by_registry": false,
+        "eligible_as_authorized_read": true,
+        "parameter_fields": [
+          "filename"
+        ],
+        "required_parameter_fields": [
+          "filename"
+        ]
+      },
+      "send_email": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "attachments",
+          "bcc",
+          "body",
+          "cc",
+          "recipients",
+          "subject"
+        ],
+        "required_parameter_fields": [
+          "body",
+          "recipients",
+          "subject"
+        ]
+      },
+      "share_file": {
+        "effectful_or_external_by_registry": true,
+        "eligible_as_authorized_read": false,
+        "parameter_fields": [
+          "email",
+          "file_id",
+          "permission"
+        ],
+        "required_parameter_fields": [
+          "email",
+          "file_id",
+          "permission"
+        ]
+      }
+    }
+  }
+}

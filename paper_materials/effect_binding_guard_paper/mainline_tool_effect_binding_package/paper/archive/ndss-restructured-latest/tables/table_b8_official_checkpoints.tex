@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{B8-official/E67 released checkpoint baselines on the adapted common-input stress view.}
+\label{tab:b8-official-checkpoints}
+\begin{tabular}{llrrrrrr}
+\toprule
+Model & Dataset & Rows & UPA & FDeny & Coverage & Abstain & Parse-valid \\
+\midrule
+TS-Guard & E55-v2 & 600 & 0.656 & 0.016 & 0.930 & 0.070 & 0.930 \\
+TS-Guard & E60 & 480 & 1.000 & 0.000 & 1.000 & 0.000 & 1.000 \\
+TS-Guard & E61 artifact-generated & 300 & 0.189 & 0.000 & 0.993 & 0.007 & 0.993 \\
+TS-Guard & E61 external subset & 156 & 0.493 & 0.045 & 0.660 & 0.340 & 0.660 \\
+Safiron & E55-v2 & 600 & 0.094 & 0.631 & 1.000 & 0.000 & 1.000 \\
+Safiron & E60 & 480 & 0.917 & 0.121 & 1.000 & 0.000 & 1.000 \\
+Safiron & E61 artifact-generated & 300 & 0.063 & 0.217 & 1.000 & 0.000 & 1.000 \\
+Safiron & E61 external subset & 156 & 0.179 & 0.182 & 1.000 & 0.000 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}

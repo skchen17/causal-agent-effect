@@ -1,0 +1,82 @@
+{
+  "experiment_group": "real_model_supplements",
+  "status": "full_run_complete",
+  "date": "2026-06-28",
+  "claim_boundary": {
+    "E65": "real local LLM judge baseline over label-hidden deployable inputs; no tool execution and no deployed-safety claim",
+    "E66": "real local LLM atom extraction followed by the reference authorizer; extraction evidence, not a production guarantee",
+    "B8_official_E67": "released checkpoints on adapted common-input stress view; not original ToolSafe, TS-Guard, or Safiron benchmark reproduction"
+  },
+  "models": {
+    "qwen_gguf": {
+      "model_name": "Qwen3.5-9B-DeepSeek-V4-Flash-Q4_K_M.gguf",
+      "full_run_status": "passed"
+    },
+    "ts_guard": {
+      "model_name": "MurrayTom/TS-Guard",
+      "full_run_status": "passed"
+    },
+    "safiron": {
+      "model_name": "Safiron/Safiron",
+      "full_run_status": "passed"
+    }
+  },
+  "full_run_artifacts": {
+    "E65": [
+      "evaluation/e65_real_llm_judge/results_e65.json",
+      "evaluation/e65_real_llm_judge/results_e55_local_qwen.json",
+      "evaluation/e65_real_llm_judge/results_e60_local_qwen.json",
+      "evaluation/e65_real_llm_judge/results_e61_artifact_local_qwen.json",
+      "evaluation/e65_real_llm_judge/results_e61_external_local_qwen.json"
+    ],
+    "E66": [
+      "evaluation/e66_real_llm_atom_extractor/results_e66.json",
+      "evaluation/e66_real_llm_atom_extractor/results_e60_local_qwen_atoms.json",
+      "evaluation/e66_real_llm_atom_extractor/results_e61_artifact_local_qwen_atoms.json",
+      "evaluation/e66_real_llm_atom_extractor/results_e61_external_local_qwen_atoms.json"
+    ],
+    "B8_official_E67": [
+      "baselines/b8_official_checkpoints/results_b8_official.json",
+      "baselines/b8_official_checkpoints/results_ts_guard_e55.json",
+      "baselines/b8_official_checkpoints/results_ts_guard_e60.json",
+      "baselines/b8_official_checkpoints/results_ts_guard_e61_artifact.json",
+      "baselines/b8_official_checkpoints/results_ts_guard_e61_external.json",
+      "baselines/b8_official_checkpoints/results_safiron_e55.json",
+      "baselines/b8_official_checkpoints/results_safiron_e60.json",
+      "baselines/b8_official_checkpoints/results_safiron_e61_artifact.json",
+      "baselines/b8_official_checkpoints/results_safiron_e61_external.json"
+    ]
+  },
+  "dataset_row_counts": {
+    "E65": {
+      "e55": 600,
+      "e60": 480,
+      "e61_artifact": 300,
+      "e61_external": 156
+    },
+    "E66": {
+      "e60": 480,
+      "e61_artifact": 300,
+      "e61_external": 156
+    },
+    "B8_official_E67": {
+      "e55": 600,
+      "e60": 480,
+      "e61_artifact": 300,
+      "e61_external": 156
+    }
+  },
+  "reproduction_gate": {
+    "script": "scripts/reproduce_all_main_tables.py",
+    "status": "passed",
+    "n_rows": 573,
+    "outputs": [
+      "reproduction/all_main_tables.json",
+      "reproduction/all_main_tables.csv",
+      "reproduction/all_main_tables.md",
+      "reproduction/claim_to_source_map.json",
+      "reproduction/claim_to_source_map.md",
+      "reproduction/reproduction_status.json"
+    ]
+  }
+}

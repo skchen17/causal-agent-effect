@@ -1,0 +1,37 @@
+\section{Results}
+
+\subsection{Finding 1: Existing Methods Are Nontrivial but Incomplete}
+
+\input{tables/table1_existing_methods}
+
+Table~\ref{tab:existing-methods} shows that existing/custom-stress methods are not merely tool-name classifiers. TS-Guard reaches 0.883 surface invariance and 0.764 authorization sensitivity on the E47 custom stress, and Safiron reaches 1.000 effect sensitivity. Local Qwen variants also show nontrivial effect sensitivity. However, high performance on one axis does not imply joint binding. Safiron has 0.545 unsafe pre-allow in this custom stress; local Qwen effect/resource mapping has high surface invariance and effect sensitivity but 0.125 resource awareness and 0.333 unsafe pre-allow. These results support a diagnostic claim: current monitors can capture parts of the binding problem, but they remain incomplete when resource, authorization, and provenance must be bound jointly.
+
+\subsection{Finding 2: The Reference Hard Guard Improves but Remains Bounded}
+
+\input{tables/table2_reference_guard}
+
+Table~\ref{tab:reference-guard} reports the reference hard guard. On the 822-row E48 suite, the guard obtains 0.917 coverage with 0.036 unsafe pre-allow and 0.065 safe false-denial. On the held-out split, unsafe pre-allow rises to 0.051 while coverage remains 0.955. Source-balanced E50 repeats preserve the same qualitative result: 0.051 mean unsafe pre-allow, 0.059 mean safe false-denial, and 0.923 mean coverage. This is evidence that explicit tuple binding is useful, but it is not a safety certificate. The guard still makes unsafe pre-commit allows and safe false denials under controlled stress.
+
+\subsection{Finding 3: Resource/Authorization Binding Is the Main Bottleneck}
+
+\input{tables/table3_bottleneck}
+
+Table~\ref{tab:bottleneck} identifies the main bottleneck. On E50 resource/authorization stress, the hard guard has 0.383 unsafe pre-allow at 0.921 coverage. The 46 unsafe allows comprise 20 near-alias cases, 20 out-of-scope-resource cases, and six alternate-effect cases. This rules out a benign explanation in which the guard simply abstains on hard cases. Instead, it often makes a decision while missing the authorization-relevant resource relation. Provenance stress shows a different tradeoff: unsafe pre-allow is 0.000, but coverage falls to 0.545 and safe false-denial rises to 0.188. Provenance overlays can reduce unsafe pre-allow under controlled assumptions, but their utility cost must be reported rather than hidden.
+
+\subsection{Finding 4: Authorization Infrastructure Enables Local Pre-Commit Mediation}
+
+\input{tables/table4_precommit}
+
+Table~\ref{tab:precommit} shows the E55-v2 local pre-commit result. The existing hard guard on the same 600-row local contract has 0.200 coverage, 0.800 abstention, and 12/276 = 0.043 unsafe pre-allow. The authorization-aware prototype reaches 528/600 = 0.880 coverage and 72/600 = 0.120 abstention, while reducing unsafe pre-allow to 0/276 and safe false-denial to 0/252 under E55-v2 strict labels. The original E55 strict contract has 0.920 coverage and zero unsafe pre-allow; human-corrected sensitivity preserves zero unsafe pre-allow but introduces 4/230 = 0.017 safe false-denial. The conservative interpretation is that explicit authorization infrastructure can make local mediation more decidable, while human audit reveals residual label/atom boundary sensitivity.
+
+\subsection{Finding 5: Atom Interfaces Carry the Improvement}
+
+\input{tables/table5_ablation}
+
+Table~\ref{tab:ablation} reports original E55 strict ablations. Removing multi-resource expansion increases unsafe pre-allow to 0.333. Removing operation-mode binding or provenance overlay increases unsafe pre-allow to 0.148. Removing alias resolution does not create unsafe pre-allow in this ablation but raises safe false-denial to 0.211. These ablations support the atom-level abstraction: the improvement is not only a stricter deny rule. It depends on expanding calls into multiple resource-bearing atoms, distinguishing draft and commit modes, preserving provenance/control-source information, and resolving aliases when the contract supports it.
+
+\subsection{Finding 6: Audits Reduce Specific Artifact Concerns}
+
+\input{tables/table6_audit_validity}
+
+Table~\ref{tab:audit} separates deterministic validity checks from human audit evidence. E55-v2 leakage checks are clean, E55 decision-path audit passed, and E56 strict label-hidden replay passed. E57-v2 resource-name perturbation yields zero changed decisions and zero UPA/coverage delta for the authorization-aware guard, reducing the concern that the result is only a resource-name template artifact. The independent reference authorizer has 1.000 agreement on decisions, atom counts, and atom resource sets across the controlled E55-v2 dataset. The human audit is intentionally reported separately: it agrees on 54/60 decisions and has all checks true on 46/60 rows, while identifying six decision corrections, thirteen atom corrections, and ten violation-reason corrections. This supports corrected-label sensitivity analysis, not perfect construction agreement.

@@ -1,0 +1,53 @@
+{
+  "agentdojo_version": "v1.1.2",
+  "attack_case_count": 169,
+  "benign_case_count": 26,
+  "claim_boundary": "This is deterministic fixed-trajectory admissibility analysis, not a rerun of the agent and not an end-to-end ASR or utility result. The official-ground-truth oracle is an exact evaluation-only bound derived from benchmark user-task call chains; it is not independently justified user authority, may exclude valid alternative plans, and is never deployable input. The current runtime already uses reviewed projections for observation-only classification, so the zero effect-side delta is an integration consistency check rather than independent validation.",
+  "experiment": "joint_effect_authority_four_cell_fixed_trace_diagnostic",
+  "fixed_case_count": 195,
+  "implementation": {
+    "diagnostic_sha256": "acd1df96ec8bb167d5996f30c74a7dfeefeae0b0983e0e254b3963af0dee200a",
+    "official_oracle_builder_sha256": "f73cf62fb1adc9ed7dd59c91ed79280b878f3092197d594e4f8205ef330d9ded"
+  },
+  "inputs": {
+    "catalog": {
+      "path": "evaluation/e81_ablation/agentdojo_runtime_catalog.json",
+      "sha256": "ec2e5dc3d2e52136a7f5d5294bb715e3aabc6c7dd159b87e426faf8f716c8468"
+    },
+    "logs": {
+      "path": "experiments/unified-agent-security-baselines/runs/strong-model-baseline-comparison/qwen32-strong-baselines/agentdojo_logs/no_guard",
+      "selected_file_count": 195,
+      "sha256": "6be0356e42be808daf5792aad3820c63f819a8a09b9d8818daa4562fb69a18bc"
+    },
+    "manifests": {
+      "path": "experiments/human-authority-and-causal-validation/evaluation/authority-manifest-human-review/runtime_ready_trusted_manifests.jsonl",
+      "sha256": "e046b3f45d86d3e59f4c303fb158d4a2cde58f3ec4b51d42d2e48f91b1c298b4"
+    },
+    "official_oracle": {
+      "path": "experiments/security-analysis-ablation-and-overhead/results/joint-effect-authority-diagnostic/official-ground-truth-authority.jsonl",
+      "sha256": "0f6053ac65a3992ce9172a6e168d2bebc10f445df49a13db2e77b1b553310fbc"
+    },
+    "projections": {
+      "path": "experiments/human-authority-and-causal-validation/evaluation/causal-effect-projection-validation-2/trusted_security_effect_projections.jsonl",
+      "sha256": "76a02a1bd1004f70da48bcdcc4368810c2545834bb642adf162d276d477a2cd0"
+    }
+  },
+  "oracle_construction": {
+    "attack_goals_read_during_construction": false,
+    "attack_rows_read_during_construction": false,
+    "authority_semantics": "exact flattened security-field values from official calls",
+    "deployable": false,
+    "may_exclude_valid_alternative_plans": true,
+    "model_trace_rows_read_during_construction": false,
+    "requires_benign_utility_success": false,
+    "source": "AgentDojo v1.1.2 user-task ground_truth() call chain"
+  },
+  "reviewed_task_count": 26,
+  "runtime": {
+    "input_logs_modified": false,
+    "llm_calls": 0,
+    "tool_executions": 0
+  },
+  "source_reviewed_tool_count": 16,
+  "status": "passed"
+}

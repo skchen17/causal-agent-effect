@@ -1,0 +1,423 @@
+{
+  "artifact_type": "controlled_hardened_runtime_microbenchmark",
+  "claim_boundary": "This is an in-process CPU microbenchmark of the pure hardened precommit kernel. It excludes model, sandbox, canonicalization I/O, user simulation, and end-to-end trajectory latency; final E83 must report those separately.",
+  "configurations": 18,
+  "correctness": {
+    "all_allow": true,
+    "runtime_llm_calls": 0
+  },
+  "environment": {
+    "max_rss_kib": 342220,
+    "platform": "Linux-6.2.0-26-generic-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "python": "3.12.2"
+  },
+  "experiment": "E83",
+  "generated_at": "2026-07-13T00:22:57.309258+00:00",
+  "iterations_per_configuration": 2000,
+  "p50_wall_ns_slope_per_field": {
+    "0": 7140.599502487564,
+    "16": 7062.512793176974,
+    "64": 7072.596304193319
+  },
+  "rows": [
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 45790,
+        "mean": 21658.7,
+        "p50": 21455.0,
+        "p90": 21890.0,
+        "p95": 22433.999999999996
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 0,
+      "n_security_fields": 1,
+      "resolver_ledger_noise_entries": 0,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 53691,
+        "mean": 22265.2415,
+        "p50": 22050.0,
+        "p90": 22481.0,
+        "p95": 23111.95
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 38960,
+        "mean": 30767.965,
+        "p50": 30620.0,
+        "p90": 30920.0,
+        "p95": 31070.0
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 1,
+      "n_security_fields": 2,
+      "resolver_ledger_noise_entries": 0,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 45162,
+        "mean": 31397.144,
+        "p50": 31231.0,
+        "p90": 31551.0,
+        "p95": 31761.5
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 56370,
+        "mean": 45976.475,
+        "p50": 45890.0,
+        "p90": 46220.0,
+        "p95": 46370.0
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 2,
+      "n_security_fields": 4,
+      "resolver_ledger_noise_entries": 0,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 57071,
+        "mean": 46624.1665,
+        "p50": 46531.0,
+        "p90": 46881.0,
+        "p95": 47031.049999999996
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 92720,
+        "mean": 74316.885,
+        "p50": 73940.0,
+        "p90": 74451.0,
+        "p95": 75070.5
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 4,
+      "n_security_fields": 8,
+      "resolver_ledger_noise_entries": 0,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 93562,
+        "mean": 74998.175,
+        "p50": 74612.0,
+        "p90": 75182.0,
+        "p95": 75812.0
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 163500,
+        "mean": 131566.7395,
+        "p50": 131380.0,
+        "p90": 131970.0,
+        "p95": 132390.0
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 8,
+      "n_security_fields": 16,
+      "resolver_ledger_noise_entries": 0,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 164405,
+        "mean": 132311.3015,
+        "p50": 132104.0,
+        "p90": 132734.0,
+        "p95": 133154.5
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 283320,
+        "mean": 244335.7,
+        "p50": 243850.0,
+        "p90": 245361.0,
+        "p95": 248633.99999999997
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 16,
+      "n_security_fields": 32,
+      "resolver_ledger_noise_entries": 0,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 284128,
+        "mean": 245180.2835,
+        "p50": 244686.5,
+        "p90": 246210.0,
+        "p95": 249648.5
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 63760,
+        "mean": 50829.55,
+        "p50": 50730.0,
+        "p90": 51120.0,
+        "p95": 51260.5
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 0,
+      "n_security_fields": 1,
+      "resolver_ledger_noise_entries": 16,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 65792,
+        "mean": 51525.194,
+        "p50": 51412.0,
+        "p90": 51821.0,
+        "p95": 52002.0
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 72050,
+        "mean": 58365.88,
+        "p50": 58280.0,
+        "p90": 58630.0,
+        "p95": 58760.0
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 1,
+      "n_security_fields": 2,
+      "resolver_ledger_noise_entries": 16,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 72962,
+        "mean": 59079.202,
+        "p50": 58991.0,
+        "p90": 59342.9,
+        "p95": 59502.0
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 91130,
+        "mean": 73295.04,
+        "p50": 73150.0,
+        "p90": 73560.0,
+        "p95": 73800.5
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 2,
+      "n_security_fields": 4,
+      "resolver_ledger_noise_entries": 16,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 91972,
+        "mean": 74004.065,
+        "p50": 73852.0,
+        "p90": 74272.0,
+        "p95": 74522.5
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 126310,
+        "mean": 101418.44,
+        "p50": 101180.0,
+        "p90": 101730.0,
+        "p95": 102160.0
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 4,
+      "n_security_fields": 8,
+      "resolver_ledger_noise_entries": 16,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 146605,
+        "mean": 102210.835,
+        "p50": 101943.0,
+        "p90": 102523.0,
+        "p95": 102933.0
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 182780,
+        "mean": 158346.23,
+        "p50": 158065.0,
+        "p90": 158941.0,
+        "p95": 161710.5
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 8,
+      "n_security_fields": 16,
+      "resolver_ledger_noise_entries": 16,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 183605,
+        "mean": 159164.644,
+        "p50": 158864.0,
+        "p90": 159774.1,
+        "p95": 162675.94999999998
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 308740,
+        "mean": 270414.94,
+        "p50": 269820.0,
+        "p90": 273740.0,
+        "p95": 274860.5
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 16,
+      "n_security_fields": 32,
+      "resolver_ledger_noise_entries": 16,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 309639,
+        "mean": 271288.0355,
+        "p50": 270672.5,
+        "p90": 274743.0,
+        "p95": 275767.05
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 164150,
+        "mean": 131954.96,
+        "p50": 131420.0,
+        "p90": 132361.0,
+        "p95": 135800.5
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 0,
+      "n_security_fields": 1,
+      "resolver_ledger_noise_entries": 64,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 165065,
+        "mean": 132702.4135,
+        "p50": 132154.0,
+        "p90": 133133.1,
+        "p95": 136703.55
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 159980,
+        "mean": 139601.045,
+        "p50": 139280.0,
+        "p90": 140040.0,
+        "p95": 143412.5
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 1,
+      "n_security_fields": 2,
+      "resolver_ledger_noise_entries": 64,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 160804,
+        "mean": 140374.2675,
+        "p50": 140034.0,
+        "p90": 140845.0,
+        "p95": 144366.5
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 161490,
+        "mean": 154139.395,
+        "p50": 153845.0,
+        "p90": 154810.0,
+        "p95": 157880.0
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 2,
+      "n_security_fields": 4,
+      "resolver_ledger_noise_entries": 64,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 162524,
+        "mean": 154951.9015,
+        "p50": 154645.0,
+        "p90": 155645.9,
+        "p95": 158856.5
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 210100,
+        "mean": 182903.81,
+        "p50": 182480.0,
+        "p90": 184081.0,
+        "p95": 187191.0
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 4,
+      "n_security_fields": 8,
+      "resolver_ledger_noise_entries": 64,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 210816,
+        "mean": 183740.0505,
+        "p50": 183305.0,
+        "p90": 184915.0,
+        "p95": 188165.5
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 271060,
+        "mean": 238943.0445,
+        "p50": 238490.0,
+        "p90": 241313.0,
+        "p95": 243280.0
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 8,
+      "n_security_fields": 16,
+      "resolver_ledger_noise_entries": 64,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 272698,
+        "mean": 239777.2455,
+        "p50": 239297.0,
+        "p90": 242250.0,
+        "p95": 244207.0
+      }
+    },
+    {
+      "all_decisions": "ALLOW",
+      "cpu_ns": {
+        "max": 384350,
+        "mean": 351841.89,
+        "p50": 351125.0,
+        "p90": 355680.0,
+        "p95": 356592.0
+      },
+      "iterations": 2000,
+      "n_resolver_bindings": 16,
+      "n_security_fields": 32,
+      "resolver_ledger_noise_entries": 64,
+      "runtime_llm_calls": 0,
+      "wall_ns": {
+        "max": 385431,
+        "mean": 352756.9375,
+        "p50": 352030.0,
+        "p90": 356650.0,
+        "p95": 357600.0
+      }
+    }
+  ],
+  "status": "passed",
+  "warmup_per_configuration": 100
+}

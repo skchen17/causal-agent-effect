@@ -1,0 +1,196 @@
+{
+  "analysis_type": "payload_free_mechanistic_failure_taxonomy",
+  "claim_boundary": "Strata describe observed trajectory mechanics and association with utility; they do not identify a unique causal root cause. No prompt, injection payload, task text, model response, or tool-result body is copied into this artifact.",
+  "contains_prompts_or_model_outputs": false,
+  "experiment": "E77",
+  "feedback_association": {
+    "cases_with_feedback": 359,
+    "cases_without_feedback": 367,
+    "utility_rate_with_feedback": 0.14206128133704735,
+    "utility_rate_without_feedback": 0.5149863760217984,
+    "utility_successes_with_feedback": 51,
+    "utility_successes_without_feedback": 189
+  },
+  "generated_at": "2026-07-26T10:35:51.201738+00:00",
+  "modes": {
+    "attack": {
+      "cases_with_replan_feedback": 312,
+      "effectful_commits": 112,
+      "n": 629,
+      "replan_feedback_events": 794,
+      "strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 262,
+        "effectful_commit_and_replan_feedback": 49,
+        "effectful_commit_without_replan_feedback": 47,
+        "no_structured_tool_call": 6,
+        "read_only_or_unregistered_tool_trajectory": 262,
+        "terminal_unexecuted_call": 3
+      },
+      "terminal_unexecuted_calls": 3,
+      "utility_failure_strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 229,
+        "effectful_commit_and_replan_feedback": 35,
+        "effectful_commit_without_replan_feedback": 19,
+        "no_structured_tool_call": 6,
+        "read_only_or_unregistered_tool_trajectory": 130,
+        "terminal_unexecuted_call": 3
+      },
+      "utility_rate": 0.32909379968203495,
+      "utility_successes": 207,
+      "utility_successes_with_replan_feedback": 47
+    },
+    "benign": {
+      "cases_with_replan_feedback": 47,
+      "effectful_commits": 18,
+      "n": 97,
+      "replan_feedback_events": 115,
+      "strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 38,
+        "effectful_commit_and_replan_feedback": 9,
+        "effectful_commit_without_replan_feedback": 7,
+        "no_structured_tool_call": 1,
+        "read_only_or_unregistered_tool_trajectory": 41,
+        "terminal_unexecuted_call": 1
+      },
+      "terminal_unexecuted_calls": 1,
+      "utility_failure_strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 35,
+        "effectful_commit_and_replan_feedback": 8,
+        "no_structured_tool_call": 1,
+        "read_only_or_unregistered_tool_trajectory": 19,
+        "terminal_unexecuted_call": 1
+      },
+      "utility_rate": 0.3402061855670103,
+      "utility_successes": 33,
+      "utility_successes_with_replan_feedback": 4
+    }
+  },
+  "official_cases": 726,
+  "registered_effectful_tools": 25,
+  "row_artifact": "experiments/intent-bound-runtime-guard/results/effect-difference-runtime-guard/failure-taxonomy-rows.jsonl",
+  "row_schema": [
+    "attack_success",
+    "case_hash",
+    "effectful_calls_emitted",
+    "effectful_commits",
+    "effectful_replan_events",
+    "emitted_calls",
+    "executed_tool_results",
+    "mode",
+    "replan_feedback_events",
+    "stratum",
+    "suite",
+    "terminal_unexecuted_calls",
+    "utility"
+  ],
+  "security_check": {
+    "attack_cases": 629,
+    "benchmark_attack_successes": 3
+  },
+  "status": "passed",
+  "strict_finalizer_reconciliation": {
+    "metrics": {
+      "attack_cases": 629,
+      "attack_successes": 3,
+      "attack_utility_successes": 207,
+      "benign_cases": 97,
+      "benign_utility_successes": 33,
+      "official_cases": 726,
+      "status": "passed"
+    },
+    "passed": true,
+    "strict_report": "experiments/intent-bound-runtime-guard/results/effect-difference-runtime-guard/recovery-normalization-qwen32-full-context-repaired-report.json"
+  },
+  "suites": {
+    "banking": {
+      "cases_with_replan_feedback": 103,
+      "effectful_commits": 21,
+      "n": 160,
+      "replan_feedback_events": 248,
+      "strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 98,
+        "effectful_commit_and_replan_feedback": 5,
+        "effectful_commit_without_replan_feedback": 16,
+        "read_only_or_unregistered_tool_trajectory": 41
+      },
+      "terminal_unexecuted_calls": 0,
+      "utility_failure_strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 71,
+        "effectful_commit_and_replan_feedback": 3,
+        "effectful_commit_without_replan_feedback": 8,
+        "read_only_or_unregistered_tool_trajectory": 15
+      },
+      "utility_rate": 0.39375,
+      "utility_successes": 63,
+      "utility_successes_with_replan_feedback": 29
+    },
+    "slack": {
+      "cases_with_replan_feedback": 114,
+      "effectful_commits": 50,
+      "n": 126,
+      "replan_feedback_events": 296,
+      "strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 72,
+        "effectful_commit_and_replan_feedback": 41,
+        "effectful_commit_without_replan_feedback": 9,
+        "read_only_or_unregistered_tool_trajectory": 3,
+        "terminal_unexecuted_call": 1
+      },
+      "terminal_unexecuted_calls": 1,
+      "utility_failure_strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 72,
+        "effectful_commit_and_replan_feedback": 35,
+        "effectful_commit_without_replan_feedback": 3,
+        "read_only_or_unregistered_tool_trajectory": 3,
+        "terminal_unexecuted_call": 1
+      },
+      "utility_rate": 0.09523809523809523,
+      "utility_successes": 12,
+      "utility_successes_with_replan_feedback": 6
+    },
+    "travel": {
+      "cases_with_replan_feedback": 44,
+      "effectful_commits": 0,
+      "n": 160,
+      "replan_feedback_events": 73,
+      "strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 44,
+        "no_structured_tool_call": 7,
+        "read_only_or_unregistered_tool_trajectory": 106,
+        "terminal_unexecuted_call": 3
+      },
+      "terminal_unexecuted_calls": 3,
+      "utility_failure_strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 41,
+        "no_structured_tool_call": 7,
+        "read_only_or_unregistered_tool_trajectory": 58,
+        "terminal_unexecuted_call": 3
+      },
+      "utility_rate": 0.31875,
+      "utility_successes": 51,
+      "utility_successes_with_replan_feedback": 3
+    },
+    "workspace": {
+      "cases_with_replan_feedback": 98,
+      "effectful_commits": 59,
+      "n": 280,
+      "replan_feedback_events": 292,
+      "strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 86,
+        "effectful_commit_and_replan_feedback": 12,
+        "effectful_commit_without_replan_feedback": 29,
+        "read_only_or_unregistered_tool_trajectory": 153
+      },
+      "terminal_unexecuted_calls": 0,
+      "utility_failure_strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 80,
+        "effectful_commit_and_replan_feedback": 5,
+        "effectful_commit_without_replan_feedback": 8,
+        "read_only_or_unregistered_tool_trajectory": 73
+      },
+      "utility_rate": 0.40714285714285714,
+      "utility_successes": 114,
+      "utility_successes_with_replan_feedback": 13
+    }
+  }
+}

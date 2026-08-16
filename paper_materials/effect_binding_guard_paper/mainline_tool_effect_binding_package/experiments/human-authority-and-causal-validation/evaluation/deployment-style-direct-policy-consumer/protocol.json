@@ -1,0 +1,21 @@
+{
+  "experiment": "deployment_style_direct_policy_consumer",
+  "status": "frozen_before_full_run",
+  "frozen_at": "2026-08-14T13:42:00Z",
+  "refrozen_at": "2026-08-14T13:47:00Z",
+  "protocol_revision": "Removed the volatile upstream report file hash. The stable source-execution and policy hashes remain frozen; upstream status, context count, and policy binding are checked semantically. No decision semantics changed.",
+  "consumer_contract": {
+    "inputs": ["current representation", "frozen policy manifest"],
+    "forbidden_prediction_inputs": ["ideal decision", "source effects", "other representation", "test-cell labels"],
+    "unknown_effect_inventory": "ABSTAIN",
+    "unknown_policy_qualifier": "ABSTAIN",
+    "visible unauthorized fact": "DENY",
+    "all required visible facts authorized": "ALLOW"
+  },
+  "input_hashes": {
+    "policy_manifests_sha256": "664d632038dd8f95580fbb030ddfe659604bcee5a65cba50e19e591d05441440",
+    "source_executions_sha256": "50ff616244dc7c7bc6db58b136c3bbb283e68e9d13d6b5f80d6c6a72488b9ebc",
+    "runner_sha256": "8bad6d952f7935e401e56ab892d5e0f00e05c861c561ea568872652642155aa5"
+  },
+  "claim_boundary": "Direct pre-commit policy-consumer extension over the frozen four-domain source executions. The consumer does not read ideal labels before prediction. Opaque tool-name and raw-argument views abstain because importing descriptor semantics would change the representation being tested. This is a controlled mechanism test, not a deployment-policy prevalence estimate."
+}

@@ -1,0 +1,486 @@
+{
+  "bank-transfer-delegation-v2": {
+    "authority_principal": "treasury-delegate:limited",
+    "domain": "banking",
+    "policy_type": "delegation",
+    "rules": [
+      {
+        "commit_modes": [
+          "commit"
+        ],
+        "effect": "funds_transferred",
+        "qualifiers": {
+          "amount": {
+            "max": 500
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          }
+        },
+        "resources": [
+          "account:checking"
+        ],
+        "targets": [
+          "payee:acme"
+        ]
+      },
+      {
+        "commit_modes": [
+          "commit"
+        ],
+        "effect": "balance_debited",
+        "qualifiers": {
+          "amount": {
+            "max": 505
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          }
+        },
+        "resources": [
+          "account:checking"
+        ]
+      },
+      {
+        "commit_modes": [
+          "commit"
+        ],
+        "effect": "fee_charged",
+        "qualifiers": {
+          "amount": {
+            "max": 5
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          }
+        },
+        "resources": [
+          "account:checking"
+        ]
+      },
+      {
+        "commit_modes": [
+          "draft"
+        ],
+        "effect": "transfer_draft_saved",
+        "resources": [
+          "account:checking"
+        ]
+      }
+    ]
+  },
+  "calendar-team-acl-v2": {
+    "authority_principal": "calendar-owner:team",
+    "domain": "calendar",
+    "policy_type": "acl",
+    "rules": [
+      {
+        "effect": "event_created",
+        "qualifiers": {
+          "recurrence": {
+            "allowed": [
+              "none",
+              "weekly"
+            ]
+          },
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "calendar:team"
+        ]
+      },
+      {
+        "effect": "event_updated",
+        "resources": [
+          "calendar:team"
+        ]
+      },
+      {
+        "effect": "participant_invited",
+        "resources": [
+          "calendar:team"
+        ],
+        "targets": [
+          "alice@example.com",
+          "bob@example.com"
+        ]
+      },
+      {
+        "effect": "visibility_set",
+        "qualifiers": {
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "calendar:team"
+        ]
+      },
+      {
+        "effect": "recurrence_set",
+        "qualifiers": {
+          "recurrence": {
+            "allowed": [
+              "none",
+              "weekly"
+            ]
+          }
+        },
+        "resources": [
+          "calendar:team"
+        ]
+      },
+      {
+        "commit_modes": [
+          "draft"
+        ],
+        "effect": "calendar_draft_saved",
+        "resources": [
+          "calendar:team"
+        ]
+      }
+    ]
+  },
+  "cloud-object-capability-v2": {
+    "authority_principal": "object-copier:archive",
+    "domain": "cloud_storage",
+    "policy_type": "capability",
+    "rules": [
+      {
+        "effect": "object_copied",
+        "qualifiers": {
+          "data_class": {
+            "allowed": [
+              "public",
+              "internal"
+            ]
+          },
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "object:report",
+          "object:agenda"
+        ],
+        "targets": [
+          "bucket:archive"
+        ]
+      },
+      {
+        "effect": "object_visibility_set",
+        "qualifiers": {
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "object:report",
+          "object:agenda"
+        ]
+      },
+      {
+        "commit_modes": [
+          "draft"
+        ],
+        "effect": "object_copy_draft_saved",
+        "resources": [
+          "object:report",
+          "object:agenda"
+        ]
+      }
+    ]
+  },
+  "email-disclosure-capability-v2": {
+    "authority_principal": "mailbox-sender:team",
+    "domain": "email",
+    "policy_type": "capability",
+    "rules": [
+      {
+        "commit_modes": [
+          "commit"
+        ],
+        "effect": "email_sent",
+        "qualifiers": {
+          "classification": {
+            "allowed": [
+              "public",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "mailbox:team"
+        ]
+      },
+      {
+        "commit_modes": [
+          "draft"
+        ],
+        "effect": "email_draft_saved",
+        "resources": [
+          "mailbox:team"
+        ]
+      },
+      {
+        "effect": "recipient_contacted",
+        "qualifiers": {
+          "classification": {
+            "allowed": [
+              "public",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "mailbox:team"
+        ],
+        "targets": [
+          "alice@example.com",
+          "bob@example.com"
+        ]
+      },
+      {
+        "effect": "attachment_disclosed",
+        "qualifiers": {
+          "data_class": {
+            "allowed": [
+              "public",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "file:report",
+          "file:agenda"
+        ],
+        "targets": [
+          "alice@example.com",
+          "bob@example.com"
+        ]
+      }
+    ]
+  },
+  "expense-approval-delegation-v2": {
+    "authority_principal": "expense-manager:limited",
+    "domain": "expense",
+    "policy_type": "delegation",
+    "rules": [
+      {
+        "effect": "expense_approved",
+        "qualifiers": {
+          "amount": {
+            "max": 500
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          },
+          "vendor": {
+            "allowed": [
+              "vendor:acme"
+            ]
+          }
+        },
+        "resources": [
+          "expense:travel",
+          "expense:supplies"
+        ],
+        "targets": [
+          "alice",
+          "bob"
+        ]
+      },
+      {
+        "effect": "budget_reserved",
+        "qualifiers": {
+          "amount": {
+            "max": 500
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          }
+        },
+        "resources": [
+          "budget:team"
+        ]
+      },
+      {
+        "commit_modes": [
+          "draft"
+        ],
+        "effect": "expense_approval_draft_saved",
+        "resources": [
+          "expense:travel",
+          "expense:supplies"
+        ]
+      }
+    ]
+  },
+  "messaging-capability-v2": {
+    "authority_principal": "channel-writer:internal",
+    "domain": "messaging",
+    "policy_type": "capability",
+    "rules": [
+      {
+        "commit_modes": [
+          "commit"
+        ],
+        "effect": "message_posted",
+        "qualifiers": {
+          "payload_class": {
+            "allowed": [
+              "public",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "channel:internal"
+        ]
+      },
+      {
+        "commit_modes": [
+          "commit"
+        ],
+        "effect": "notification_delivered",
+        "resources": [
+          "channel:internal"
+        ],
+        "targets": [
+          "alice",
+          "bob"
+        ]
+      },
+      {
+        "commit_modes": [
+          "draft"
+        ],
+        "effect": "message_draft_saved",
+        "resources": [
+          "channel:internal"
+        ]
+      }
+    ]
+  },
+  "repository-access-delegation-v2": {
+    "authority_principal": "repo-admin:limited",
+    "domain": "repository",
+    "policy_type": "delegation",
+    "rules": [
+      {
+        "effect": "repository_access_granted",
+        "qualifiers": {
+          "expiry_days": {
+            "max": 30
+          },
+          "role": {
+            "allowed": [
+              "read",
+              "triage"
+            ]
+          }
+        },
+        "resources": [
+          "repo:core",
+          "repo:docs"
+        ],
+        "targets": [
+          "alice",
+          "bob"
+        ]
+      },
+      {
+        "commit_modes": [
+          "draft"
+        ],
+        "effect": "repository_access_draft_saved",
+        "resources": [
+          "repo:core",
+          "repo:docs"
+        ]
+      },
+      {
+        "effect": "repository_audit_recorded",
+        "resources": [
+          "repo:core",
+          "repo:docs"
+        ]
+      }
+    ]
+  },
+  "workspace-sharing-acl-v2": {
+    "authority_principal": "workspace-owner:team",
+    "domain": "workspace",
+    "policy_type": "acl",
+    "rules": [
+      {
+        "effect": "share_granted",
+        "qualifiers": {
+          "permission": {
+            "allowed": [
+              "viewer",
+              "commenter"
+            ]
+          }
+        },
+        "resources": [
+          "doc:report",
+          "doc:plan"
+        ],
+        "targets": [
+          "alice",
+          "bob"
+        ]
+      },
+      {
+        "effect": "visibility_set",
+        "qualifiers": {
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "doc:report",
+          "doc:plan"
+        ]
+      },
+      {
+        "commit_modes": [
+          "draft"
+        ],
+        "effect": "share_draft_saved",
+        "resources": [
+          "doc:report",
+          "doc:plan"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+\section{Experimental Setup}
+
+\paragraph{Materials.}
+The evaluation uses fixed JSON result artifacts distributed with the anonymized artifact bundle; Table~\ref{tab:claim-source-map} maps the main claims to their sources.
+
+\paragraph{E47 existing/custom-stress methods.}
+E47 evaluates local baselines, released checkpoint components, and structural components on custom stress cases. ToolSafe/TS-Guard and Safiron are evaluated as released checkpoints on E47 custom stress, not as reproductions of their original benchmark numbers. IPIGuard and CaMeL are included through structural or component stress where the available interface supports our binding diagnostics.
+
+\paragraph{E48 hard guard.}
+E48 evaluates the reference hard guard on 822 controlled rows and 6,840 pairwise relations. We report the full result, a held-out split, and the source-balanced E50 robustness audit. The main metrics are UPA, FDeny, and coverage.
+
+\paragraph{E50 robustness and bottleneck stress.}
+E50 contains source-balanced repeats, resource/authorization stress, provenance stress, risk-coverage curves, threshold sensitivity, and failure examples. The resource/authorization stress has 240 rows; the provenance stress has 336 rows. A policy oracle independently recomputes each resource/authorization label from the visible authorized effect, canonical resource and alias map, and commit permission; generation fails when the oracle and label disagree.
+
+\paragraph{E55/E56/E57 local pre-commit evidence.}
+E55 evaluates a local pre-commit authorization prototype on 600 rows across five domains. This paper uses E55-v2 strict results as the main pre-commit table because they are the corrected rerun. The original E55 strict result and human-corrected sensitivity are reported as audit/sensitivity evidence. E56 contributes strict replay and build/audit checks. E57-v2 contributes resource perturbation, reference-authorizer agreement, and a 60-row spot-audit packet. A separate E57 human audit of 60 rows found 54/60 decision agreement and generated corrected-label evidence; it is reported as a human audit, not merged with deterministic reference-authorizer agreement.
+
+\paragraph{E60 held-out contract.}
+E60 is an independently specified held-out authorization contract with 480 cases across five domains. Its tool names, argument fields, alias style, resource identifiers, and policy format differ from E55. Deployable inputs, gold atoms, and gold labels are stored separately, and a leakage scan checks that gold annotations do not enter the deployable view. The stress axes include multi-resource expansion, operation-mode shift, alias resolution, provenance/control-source shift, authorization shift, same-effect surface variants, incomplete context, and ambiguous resource identity.
+
+\paragraph{E61 realistic trace replay.}
+E61 evaluates 300 sandboxed or replayed multi-step traces across five domains. Source A contains clean sandbox traces, Source B contains noisy realistic traces with nested arguments and partial evidence, and Source C contains adversarial provenance-shift traces with untrusted tool-returned content. We additionally convert 156 saved AgentDojo-style/IPIGuard replay traces with mutating candidate tool calls into a separate external-trace subset. No real external side effects are executed. The trace manifests require deployable trace views, normalized traces, side-channel atoms and labels, and leakage scans; the external subset uses trace metadata plus rule-derived sidecar atoms rather than independent human annotation.
+
+\paragraph{E62--E64 mechanism, burden, and baselines.}
+E62 decomposes atom extraction and authorization checking under three modes: gold atoms with gold context, extracted atoms with gold context, and extracted atoms with degraded context. E63 measures interface burden and context degradation under alias, resource, provenance, operation-mode, visibility, stale-policy, contradictory-policy, and incomplete enterprise-context perturbations. E64 compares full atom-level mediation with tool-name, tool-call-level, resource-only, tuple-level, no-provenance, no-alias, LLM-judge, least-privilege/capability-style, and ToolSafe/TS-Guard-style released-guardrail comparable local baselines under deployable-input restrictions.
+
+\paragraph{Metrics and labels.}
+Unsafe pre-allow is computed as \textsc{Allow} on rows labeled \textsc{Deny}. Safe false-denial is computed as \textsc{Deny} on rows labeled \textsc{Allow}. Coverage is the fraction of rows on which a method emits \textsc{Allow} or \textsc{Deny} rather than \textsc{Abstain}. We do not compute false negative rate from F1 or substitute coverage-missing stress quantities for deployed-system quantities.

@@ -1,0 +1,211 @@
+{
+  "argument_role_maps": {
+    "add_contact": {
+      "is_self": "control",
+      "name": "content",
+      "phone_number": "target",
+      "relationship": "content"
+    },
+    "add_reminder": {
+      "content": "content",
+      "latitude": "selector",
+      "longitude": "selector",
+      "reminder_timestamp": "control"
+    },
+    "banking/schedule_transaction": {
+      "amount": "control",
+      "date": "control",
+      "recipient": "target",
+      "recurring": "control",
+      "subject": "content"
+    },
+    "remove_contact": {
+      "person_id": "selector"
+    },
+    "set_location_service_status": {
+      "on": "control"
+    },
+    "set_low_battery_mode_status": {
+      "on": "control"
+    },
+    "slack/send_direct_message": {
+      "body": "content",
+      "recipient": "target"
+    },
+    "workspace/add_calendar_event_participants": {
+      "event_id": "selector",
+      "participants": "target"
+    },
+    "workspace/create_file": {
+      "content": "content",
+      "filename": "selector"
+    },
+    "workspace/share_file": {
+      "email": "target",
+      "file_id": "selector",
+      "permission": "control"
+    }
+  },
+  "claim_boundary": "The result separates maximal call-argument representation from effect occurrences only on the frozen ToolSandbox contexts where pre-state changes realized no-op or compound effects. It does not reproduce or evaluate the full PACT system.",
+  "datasets": {
+    "agentdojo_finite_56": 56,
+    "toolsandbox_heldout_32": 32
+  },
+  "experiment": "pact_compatible_effect_granularity_comparison",
+  "gates": {
+    "finite_maximal_argument_view_complete": true,
+    "heldout_maximal_argument_view_has_collision": true,
+    "heldout_same_argument_state_witness_present": true,
+    "heldout_typed_effect_view_complete": true
+  },
+  "n_same_argument_state_witnesses": 9,
+  "n_witnesses": 1261,
+  "representations": [
+    {
+      "authorization_collision_cells": 5,
+      "authorization_separating_pairs": 564,
+      "contexts_in_collision_cells": 56,
+      "dataset": "agentdojo_finite_56",
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 5,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "tool_name"
+    },
+    {
+      "authorization_collision_cells": 5,
+      "authorization_separating_pairs": 564,
+      "contexts_in_collision_cells": 56,
+      "dataset": "agentdojo_finite_56",
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 5,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "pact_role_provenance"
+    },
+    {
+      "authorization_collision_cells": 0,
+      "authorization_separating_pairs": 0,
+      "contexts_in_collision_cells": 0,
+      "dataset": "agentdojo_finite_56",
+      "finite_collision_complete": true,
+      "finite_partition_exact": true,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 56,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "pact_value_role_provenance"
+    },
+    {
+      "authorization_collision_cells": 0,
+      "authorization_separating_pairs": 0,
+      "contexts_in_collision_cells": 0,
+      "dataset": "agentdojo_finite_56",
+      "finite_collision_complete": true,
+      "finite_partition_exact": true,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 56,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "typed_effect_occurrence"
+    },
+    {
+      "authorization_collision_cells": 0,
+      "authorization_separating_pairs": 0,
+      "contexts_in_collision_cells": 0,
+      "dataset": "agentdojo_finite_56",
+      "finite_collision_complete": true,
+      "finite_partition_exact": true,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 56,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "source_full_effect"
+    },
+    {
+      "authorization_collision_cells": 5,
+      "authorization_separating_pairs": 88,
+      "contexts_in_collision_cells": 32,
+      "dataset": "toolsandbox_heldout_32",
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_contexts": 32,
+      "n_effect_cells": 25,
+      "n_representation_cells": 5,
+      "overpartition_effect_cells": 1,
+      "overpartition_pairs": 16,
+      "representation": "tool_name"
+    },
+    {
+      "authorization_collision_cells": 6,
+      "authorization_separating_pairs": 72,
+      "contexts_in_collision_cells": 32,
+      "dataset": "toolsandbox_heldout_32",
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_contexts": 32,
+      "n_effect_cells": 25,
+      "n_representation_cells": 6,
+      "overpartition_effect_cells": 1,
+      "overpartition_pairs": 16,
+      "representation": "pact_role_provenance"
+    },
+    {
+      "authorization_collision_cells": 4,
+      "authorization_separating_pairs": 13,
+      "contexts_in_collision_cells": 14,
+      "dataset": "toolsandbox_heldout_32",
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_contexts": 32,
+      "n_effect_cells": 25,
+      "n_representation_cells": 22,
+      "overpartition_effect_cells": 1,
+      "overpartition_pairs": 23,
+      "representation": "pact_value_role_provenance"
+    },
+    {
+      "authorization_collision_cells": 0,
+      "authorization_separating_pairs": 0,
+      "contexts_in_collision_cells": 0,
+      "dataset": "toolsandbox_heldout_32",
+      "finite_collision_complete": true,
+      "finite_partition_exact": true,
+      "n_contexts": 32,
+      "n_effect_cells": 25,
+      "n_representation_cells": 25,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "typed_effect_occurrence"
+    },
+    {
+      "authorization_collision_cells": 0,
+      "authorization_separating_pairs": 0,
+      "contexts_in_collision_cells": 0,
+      "dataset": "toolsandbox_heldout_32",
+      "finite_collision_complete": true,
+      "finite_partition_exact": true,
+      "n_contexts": 32,
+      "n_effect_cells": 25,
+      "n_representation_cells": 25,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "source_full_effect"
+    }
+  ],
+  "source_paper": {
+    "arxiv": "2605.11039",
+    "comparison_boundary": "PACT-L2-inspired static argument roles and provenance only; not original code, automatic inference, policy, or benchmark reproduction",
+    "title": "The Granularity Mismatch in Agent Security: Argument-Level Provenance Solves Enforcement and Isolates the LLM Reasoning Bottleneck"
+  },
+  "status": "passed"
+}

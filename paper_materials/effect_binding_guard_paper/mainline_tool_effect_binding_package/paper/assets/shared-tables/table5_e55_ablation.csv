@@ -1,0 +1,5 @@
+metric,display_value,source_value,source_file,key_path,source_type,claim_scope,safe_wording,notes
+E55 no multi-resource UPA,0.333,0.3333333333333333,analysis/results/e55_precommit_authz_results_strict.json,methods.authz_aware_no_multi_resource_expansion.overall.unsafe_pre_allow.rate,existing_result_file,E55 ablation,Multi-resource expansion is necessary in E55.,
+E55 no operation mode UPA,0.148,0.14814814814814814,analysis/results/e55_precommit_authz_results_strict.json,methods.authz_aware_no_operation_mode.overall.unsafe_pre_allow.rate,existing_result_file,E55 ablation,Operation-mode binding is necessary in E55.,
+E55 no provenance UPA,0.148,0.14814814814814814,analysis/results/e55_precommit_authz_results_strict.json,methods.authz_aware_no_provenance_overlay.overall.unsafe_pre_allow.rate,existing_result_file,E55 ablation,Provenance overlay contributes safety in E55.,
+E55 no alias FDeny,0.211,0.21052631578947367,analysis/results/e55_precommit_authz_results_strict.json,methods.authz_aware_no_alias_resolution.overall.safe_false_deny.rate,existing_result_file,E55 ablation,Alias resolution protects utility in E55.,

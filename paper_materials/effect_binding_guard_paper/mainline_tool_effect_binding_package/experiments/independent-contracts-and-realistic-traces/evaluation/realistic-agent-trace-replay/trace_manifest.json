@@ -1,0 +1,24 @@
+{
+  "domains": {
+    "docvault": 60,
+    "maildesk": 60,
+    "meetroom": 60,
+    "paydesk": 60,
+    "teamchat": 60
+  },
+  "experiment": "E61",
+  "n_traces": 300,
+  "no_real_external_side_effects": true,
+  "sandboxed_or_replayed": true,
+  "source_counts": {
+    "A_clean_sandbox": 75,
+    "B_realistic_noisy": 135,
+    "C_adversarial_provenance_shift": 90
+  },
+  "trace_properties": {
+    "incomplete_or_ambiguous_context_rate": 0.24,
+    "multi_resource_or_nested_args_rate": 0.8,
+    "operation_mode_distinction_rate": 0.213,
+    "untrusted_tool_returned_content_rate": 0.3
+  }
+}

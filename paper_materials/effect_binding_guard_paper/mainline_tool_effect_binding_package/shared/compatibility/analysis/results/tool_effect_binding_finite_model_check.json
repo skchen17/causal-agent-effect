@@ -1,0 +1,67 @@
+{
+  "adequate_representation_verified": {
+    "create": 1,
+    "create_and_invite": 2,
+    "none": 0
+  },
+  "claim_boundary": "Executable finite-model sanity check of the definitions and proof implications; not empirical evidence or a substitute for the mathematical proofs.",
+  "compound_effect_witness": {
+    "decision_can_be_sound_and_permissive": {
+      "ABSTAIN": false,
+      "ALLOW": false,
+      "DENY": false
+    },
+    "representation": {
+      "create": 1,
+      "create_and_invite": 1,
+      "none": 0
+    },
+    "separating_bound": [
+      "create_event"
+    ]
+  },
+  "conditional_mediation": {
+    "policy_snapshot_mismatch_counterexample": {
+      "authorized_at_check": true,
+      "authorized_at_commit": false,
+      "context": "create_and_invite"
+    },
+    "sound_cases_checked": 16
+  },
+  "confinement_chain_verified": true,
+  "enumeration": {
+    "n_insufficient_representations": 21,
+    "n_monitor_decisions_per_collision": 3,
+    "n_representations": 27,
+    "n_separating_collisions_checked": 54
+  },
+  "model": {
+    "contexts": {
+      "create": [
+        "create_event"
+      ],
+      "create_and_invite": [
+        "create_event",
+        "invite_external"
+      ],
+      "none": []
+    },
+    "effects": [
+      "create_event",
+      "invite_external"
+    ],
+    "n_authority_bounds": 4
+  },
+  "multi_policy_sufficiency_verified": true,
+  "provenance_profile": {
+    "missing_effect_extraction_counterexample": true,
+    "profiles_checked": 256,
+    "unsound_grounding_counterexample": true
+  },
+  "provenance_sensitive_collision": {
+    "effect_only_representation_insufficient": true,
+    "opposite_provenance_policy_decisions": true,
+    "same_effect_multiset": true
+  },
+  "status": "passed"
+}

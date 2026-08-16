@@ -1,0 +1,1096 @@
+{
+  "agentdojo_version": "v1.1.2",
+  "artifact_type": "agentdojo_v1_1_2_runtime_field_semantics_catalog",
+  "claim_boundary": "This catalog records local AgentDojo schema defaults and registered E77 security fields. It enables exact call totalization for this benchmark version only and does not infer hidden defaults of remote services.",
+  "effectful_tool_instances": 28,
+  "errors": [],
+  "experiment": "E81",
+  "field_semantics_counts": {
+    "required": 92,
+    "static": 26
+  },
+  "generated_at": "2026-07-12T21:03:17.830500+00:00",
+  "registered_effectful_tool_names": 25,
+  "security_field_semantics_counts": {
+    "required": 58,
+    "static": 22
+  },
+  "status": "passed",
+  "suites": {
+    "banking": {
+      "get_balance": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_iban": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_most_recent_transactions": {
+        "effectful_or_external": false,
+        "fields": {
+          "n": {
+            "kind": "static",
+            "value": 100
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_scheduled_transactions": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_user_info": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "read_file": {
+        "effectful_or_external": false,
+        "fields": {
+          "file_path": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "schedule_transaction": {
+        "effectful_or_external": true,
+        "fields": {
+          "amount": {
+            "kind": "required"
+          },
+          "date": {
+            "kind": "required"
+          },
+          "recipient": {
+            "kind": "required"
+          },
+          "recurring": {
+            "kind": "required"
+          },
+          "subject": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "amount",
+          "date",
+          "recipient",
+          "recurring",
+          "subject"
+        ]
+      },
+      "send_money": {
+        "effectful_or_external": true,
+        "fields": {
+          "amount": {
+            "kind": "required"
+          },
+          "date": {
+            "kind": "required"
+          },
+          "recipient": {
+            "kind": "required"
+          },
+          "subject": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "amount",
+          "date",
+          "recipient",
+          "subject"
+        ]
+      },
+      "update_password": {
+        "effectful_or_external": true,
+        "fields": {
+          "password": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "password"
+        ]
+      },
+      "update_scheduled_transaction": {
+        "effectful_or_external": true,
+        "fields": {
+          "amount": {
+            "kind": "static",
+            "value": null
+          },
+          "date": {
+            "kind": "static",
+            "value": null
+          },
+          "id": {
+            "kind": "required"
+          },
+          "recipient": {
+            "kind": "static",
+            "value": null
+          },
+          "recurring": {
+            "kind": "static",
+            "value": null
+          },
+          "subject": {
+            "kind": "static",
+            "value": null
+          }
+        },
+        "inactive_values": {
+          "amount": [
+            null
+          ],
+          "date": [
+            null
+          ],
+          "recipient": [
+            null
+          ],
+          "recurring": [
+            null
+          ],
+          "subject": [
+            null
+          ]
+        },
+        "security_fields": [
+          "amount",
+          "date",
+          "id",
+          "recipient",
+          "recurring",
+          "subject"
+        ]
+      },
+      "update_user_info": {
+        "effectful_or_external": true,
+        "fields": {
+          "city": {
+            "kind": "static",
+            "value": null
+          },
+          "first_name": {
+            "kind": "static",
+            "value": null
+          },
+          "last_name": {
+            "kind": "static",
+            "value": null
+          },
+          "street": {
+            "kind": "static",
+            "value": null
+          }
+        },
+        "inactive_values": {
+          "city": [
+            null
+          ],
+          "first_name": [
+            null
+          ],
+          "last_name": [
+            null
+          ],
+          "street": [
+            null
+          ]
+        },
+        "security_fields": [
+          "city",
+          "first_name",
+          "last_name",
+          "street"
+        ]
+      }
+    },
+    "slack": {
+      "add_user_to_channel": {
+        "effectful_or_external": true,
+        "fields": {
+          "channel": {
+            "kind": "required"
+          },
+          "user": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "channel",
+          "user"
+        ]
+      },
+      "get_channels": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_users_in_channel": {
+        "effectful_or_external": false,
+        "fields": {
+          "channel": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_webpage": {
+        "effectful_or_external": true,
+        "fields": {
+          "url": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "url"
+        ]
+      },
+      "invite_user_to_slack": {
+        "effectful_or_external": true,
+        "fields": {
+          "user": {
+            "kind": "required"
+          },
+          "user_email": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "user",
+          "user_email"
+        ]
+      },
+      "post_webpage": {
+        "effectful_or_external": true,
+        "fields": {
+          "content": {
+            "kind": "required"
+          },
+          "url": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "content",
+          "url"
+        ]
+      },
+      "read_channel_messages": {
+        "effectful_or_external": false,
+        "fields": {
+          "channel": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "read_inbox": {
+        "effectful_or_external": false,
+        "fields": {
+          "user": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "remove_user_from_slack": {
+        "effectful_or_external": true,
+        "fields": {
+          "user": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "user"
+        ]
+      },
+      "send_channel_message": {
+        "effectful_or_external": true,
+        "fields": {
+          "body": {
+            "kind": "required"
+          },
+          "channel": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "body",
+          "channel"
+        ]
+      },
+      "send_direct_message": {
+        "effectful_or_external": true,
+        "fields": {
+          "body": {
+            "kind": "required"
+          },
+          "recipient": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "body",
+          "recipient"
+        ]
+      }
+    },
+    "travel": {
+      "cancel_calendar_event": {
+        "effectful_or_external": true,
+        "fields": {
+          "event_id": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "event_id"
+        ]
+      },
+      "check_restaurant_opening_hours": {
+        "effectful_or_external": false,
+        "fields": {
+          "restaurant_names": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "create_calendar_event": {
+        "effectful_or_external": true,
+        "fields": {
+          "description": {
+            "kind": "static",
+            "value": ""
+          },
+          "end_time": {
+            "kind": "required"
+          },
+          "location": {
+            "kind": "static",
+            "value": null
+          },
+          "participants": {
+            "kind": "static",
+            "value": null
+          },
+          "start_time": {
+            "kind": "required"
+          },
+          "title": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {
+          "description": [
+            ""
+          ],
+          "location": [
+            null
+          ],
+          "participants": [
+            null
+          ]
+        },
+        "security_fields": [
+          "description",
+          "end_time",
+          "location",
+          "participants",
+          "start_time",
+          "title"
+        ]
+      },
+      "get_all_car_rental_companies_in_city": {
+        "effectful_or_external": false,
+        "fields": {
+          "city": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_all_hotels_in_city": {
+        "effectful_or_external": false,
+        "fields": {
+          "city": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_all_restaurants_in_city": {
+        "effectful_or_external": false,
+        "fields": {
+          "city": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_car_fuel_options": {
+        "effectful_or_external": false,
+        "fields": {
+          "company_name": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_car_price_per_day": {
+        "effectful_or_external": false,
+        "fields": {
+          "company_name": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_car_rental_address": {
+        "effectful_or_external": false,
+        "fields": {
+          "company_name": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_car_types_available": {
+        "effectful_or_external": false,
+        "fields": {
+          "company_name": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_contact_information_for_restaurants": {
+        "effectful_or_external": false,
+        "fields": {
+          "restaurant_names": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_cuisine_type_for_restaurants": {
+        "effectful_or_external": false,
+        "fields": {
+          "restaurant_names": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_day_calendar_events": {
+        "effectful_or_external": false,
+        "fields": {
+          "day": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_dietary_restrictions_for_all_restaurants": {
+        "effectful_or_external": false,
+        "fields": {
+          "restaurant_names": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_flight_information": {
+        "effectful_or_external": false,
+        "fields": {
+          "arrival_city": {
+            "kind": "required"
+          },
+          "departure_city": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_hotels_address": {
+        "effectful_or_external": false,
+        "fields": {
+          "hotel_name": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_hotels_prices": {
+        "effectful_or_external": false,
+        "fields": {
+          "hotel_names": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_price_for_restaurants": {
+        "effectful_or_external": false,
+        "fields": {
+          "restaurant_names": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_rating_reviews_for_car_rental": {
+        "effectful_or_external": false,
+        "fields": {
+          "company_name": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_rating_reviews_for_hotels": {
+        "effectful_or_external": false,
+        "fields": {
+          "hotel_names": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_rating_reviews_for_restaurants": {
+        "effectful_or_external": false,
+        "fields": {
+          "restaurant_names": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_restaurants_address": {
+        "effectful_or_external": false,
+        "fields": {
+          "restaurant_names": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_user_information": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "reserve_car_rental": {
+        "effectful_or_external": true,
+        "fields": {
+          "company": {
+            "kind": "required"
+          },
+          "end_time": {
+            "kind": "required"
+          },
+          "start_time": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "company",
+          "end_time",
+          "start_time"
+        ]
+      },
+      "reserve_hotel": {
+        "effectful_or_external": true,
+        "fields": {
+          "end_day": {
+            "kind": "required"
+          },
+          "hotel": {
+            "kind": "required"
+          },
+          "start_day": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "end_day",
+          "hotel",
+          "start_day"
+        ]
+      },
+      "reserve_restaurant": {
+        "effectful_or_external": true,
+        "fields": {
+          "restaurant": {
+            "kind": "required"
+          },
+          "start_time": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "restaurant",
+          "start_time"
+        ]
+      },
+      "search_calendar_events": {
+        "effectful_or_external": false,
+        "fields": {
+          "date": {
+            "kind": "static",
+            "value": null
+          },
+          "query": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "send_email": {
+        "effectful_or_external": true,
+        "fields": {
+          "attachments": {
+            "kind": "static",
+            "value": null
+          },
+          "bcc": {
+            "kind": "static",
+            "value": null
+          },
+          "body": {
+            "kind": "required"
+          },
+          "cc": {
+            "kind": "static",
+            "value": null
+          },
+          "recipients": {
+            "kind": "required"
+          },
+          "subject": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {
+          "attachments": [
+            null
+          ],
+          "bcc": [
+            null
+          ],
+          "cc": [
+            null
+          ]
+        },
+        "security_fields": [
+          "attachments",
+          "bcc",
+          "body",
+          "cc",
+          "recipients",
+          "subject"
+        ]
+      }
+    },
+    "workspace": {
+      "add_calendar_event_participants": {
+        "effectful_or_external": true,
+        "fields": {
+          "event_id": {
+            "kind": "required"
+          },
+          "participants": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "event_id",
+          "participants"
+        ]
+      },
+      "append_to_file": {
+        "effectful_or_external": true,
+        "fields": {
+          "content": {
+            "kind": "required"
+          },
+          "file_id": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "content",
+          "file_id"
+        ]
+      },
+      "cancel_calendar_event": {
+        "effectful_or_external": true,
+        "fields": {
+          "event_id": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "event_id"
+        ]
+      },
+      "create_calendar_event": {
+        "effectful_or_external": true,
+        "fields": {
+          "description": {
+            "kind": "static",
+            "value": ""
+          },
+          "end_time": {
+            "kind": "required"
+          },
+          "location": {
+            "kind": "static",
+            "value": null
+          },
+          "participants": {
+            "kind": "static",
+            "value": null
+          },
+          "start_time": {
+            "kind": "required"
+          },
+          "title": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {
+          "description": [
+            ""
+          ],
+          "location": [
+            null
+          ],
+          "participants": [
+            null
+          ]
+        },
+        "security_fields": [
+          "description",
+          "end_time",
+          "location",
+          "participants",
+          "start_time",
+          "title"
+        ]
+      },
+      "create_file": {
+        "effectful_or_external": true,
+        "fields": {
+          "content": {
+            "kind": "required"
+          },
+          "filename": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "content",
+          "filename"
+        ]
+      },
+      "delete_email": {
+        "effectful_or_external": true,
+        "fields": {
+          "email_id": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "email_id"
+        ]
+      },
+      "delete_file": {
+        "effectful_or_external": true,
+        "fields": {
+          "file_id": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "file_id"
+        ]
+      },
+      "get_current_day": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_day_calendar_events": {
+        "effectful_or_external": false,
+        "fields": {
+          "day": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_draft_emails": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_file_by_id": {
+        "effectful_or_external": false,
+        "fields": {
+          "file_id": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_received_emails": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_sent_emails": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "get_unread_emails": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "list_files": {
+        "effectful_or_external": false,
+        "fields": {},
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "reschedule_calendar_event": {
+        "effectful_or_external": true,
+        "fields": {
+          "event_id": {
+            "kind": "required"
+          },
+          "new_end_time": {
+            "kind": "static",
+            "value": null
+          },
+          "new_start_time": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {
+          "new_end_time": [
+            null
+          ]
+        },
+        "security_fields": [
+          "event_id",
+          "new_end_time",
+          "new_start_time"
+        ]
+      },
+      "search_calendar_events": {
+        "effectful_or_external": false,
+        "fields": {
+          "date": {
+            "kind": "static",
+            "value": null
+          },
+          "query": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "search_contacts_by_email": {
+        "effectful_or_external": false,
+        "fields": {
+          "query": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "search_contacts_by_name": {
+        "effectful_or_external": false,
+        "fields": {
+          "query": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "search_emails": {
+        "effectful_or_external": false,
+        "fields": {
+          "query": {
+            "kind": "required"
+          },
+          "sender": {
+            "kind": "static",
+            "value": null
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "search_files": {
+        "effectful_or_external": false,
+        "fields": {
+          "query": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "search_files_by_filename": {
+        "effectful_or_external": false,
+        "fields": {
+          "filename": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": []
+      },
+      "send_email": {
+        "effectful_or_external": true,
+        "fields": {
+          "attachments": {
+            "kind": "static",
+            "value": null
+          },
+          "bcc": {
+            "kind": "static",
+            "value": null
+          },
+          "body": {
+            "kind": "required"
+          },
+          "cc": {
+            "kind": "static",
+            "value": null
+          },
+          "recipients": {
+            "kind": "required"
+          },
+          "subject": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {
+          "attachments": [
+            null
+          ],
+          "bcc": [
+            null
+          ],
+          "cc": [
+            null
+          ]
+        },
+        "security_fields": [
+          "attachments",
+          "bcc",
+          "body",
+          "cc",
+          "recipients",
+          "subject"
+        ]
+      },
+      "share_file": {
+        "effectful_or_external": true,
+        "fields": {
+          "email": {
+            "kind": "required"
+          },
+          "file_id": {
+            "kind": "required"
+          },
+          "permission": {
+            "kind": "required"
+          }
+        },
+        "inactive_values": {},
+        "security_fields": [
+          "email",
+          "file_id",
+          "permission"
+        ]
+      }
+    }
+  }
+}

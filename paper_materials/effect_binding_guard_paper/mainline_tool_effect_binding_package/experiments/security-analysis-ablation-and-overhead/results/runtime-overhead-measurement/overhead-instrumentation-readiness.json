@@ -1,0 +1,38 @@
+{
+  "artifact_type": "overhead_instrumentation_readiness",
+  "claim_boundary": "The append-only recorder and distribution summaries are implemented. No latency, token, memory, registration-cost, or scaling result is claimed until event counts reconcile with a frozen evaluation run.",
+  "event_schema": [
+    "run_id",
+    "event",
+    "case_id",
+    "tool_name",
+    "trajectory_index",
+    "wall_ns",
+    "cpu_ns",
+    "max_rss_kib_before",
+    "max_rss_kib_after",
+    "outcome",
+    "error_type",
+    "attributes"
+  ],
+  "experiment": "E83",
+  "generated_at": "2026-07-12T10:52:41.230332+00:00",
+  "required_dynamic_attributes": [
+    "input_tokens",
+    "output_tokens",
+    "atom_count",
+    "descriptor_bytes",
+    "resolver_count",
+    "decision"
+  ],
+  "required_event_types": [
+    "contract_registration",
+    "counterfactual_execution",
+    "task_envelope",
+    "precommit_check",
+    "canonicalization",
+    "replan_model_call",
+    "victim_model_call"
+  ],
+  "status": "implementation_ready_not_measured"
+}

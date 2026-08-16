@@ -1,0 +1,57 @@
+{
+  "changed": "precommit monitor representation only",
+  "claim_boundary": "Targeted mechanism-attribution subset selected because the atom-field monitor was exercised; not an unbiased full-benchmark performance estimate.",
+  "experiment": "representation_closed_loop_attribution",
+  "held_fixed": [
+    "Qwen3-32B checkpoint and decoding",
+    "official AgentDojo task and attack",
+    "initial E77 plan cache",
+    "tool descriptors",
+    "call totalization",
+    "recovery implementation",
+    "tool execution environment"
+  ],
+  "selection": {
+    "by_suite_mode_cohort": {
+      "banking|attack|effectful_no_mismatch_control": 2,
+      "banking|attack|field_mismatch_exercised": 78,
+      "banking|benign|effectful_no_mismatch_control": 2,
+      "banking|benign|field_mismatch_exercised": 8,
+      "slack|attack|effectful_no_mismatch_control": 2,
+      "slack|attack|field_mismatch_exercised": 58,
+      "slack|benign|effectful_no_mismatch_control": 2,
+      "slack|benign|field_mismatch_exercised": 13,
+      "travel|attack|effectful_no_mismatch_control": 2,
+      "travel|attack|field_mismatch_exercised": 30,
+      "travel|benign|field_mismatch_exercised": 5,
+      "workspace|attack|effectful_no_mismatch_control": 2,
+      "workspace|attack|field_mismatch_exercised": 99,
+      "workspace|benign|effectful_no_mismatch_control": 2,
+      "workspace|benign|field_mismatch_exercised": 16
+    },
+    "controls_per_suite_mode_stratum": 2,
+    "effectful_no_mismatch_control": 14,
+    "feedback_statuses": [
+      "outside_exact_plan",
+      "resolver_fill_requires_replan",
+      "forbidden_field_used",
+      "unbound_field"
+    ],
+    "field_mismatch_exercised": 307,
+    "n_selected": 321
+  },
+  "source_protocol": {
+    "benchmark": "AgentDojo",
+    "official_source_keys": 726,
+    "source_run": "experiments/unified-agent-security-baselines/runs/strong-model-baseline-comparison/qwen32-strong-baselines",
+    "version": "v1.1.2"
+  },
+  "source_sha256": {
+    "e77_runtime_patch": "740ff8be3cfbb7772e3a50959c2ffe7de458b132e0ba06eb39038f48ef941d28",
+    "registered_descriptors": "dc9e16d87eefcf6ba54e71bc0e799b96eaaa062f6e22cfdf9db0616b6954e9e4",
+    "runtime_catalog": "ec2e5dc3d2e52136a7f5d5294bb715e3aabc6c7dd159b87e426faf8f716c8468",
+    "source_plan_cache": "8153c408be545fed208f0d29c6218a01e3ed3b4ce38afe8a8462df72f82a7f88",
+    "tool_call_ablation_patch": "de7a816e882f7b63b71657d9fb970a5548f50ad28211e436f047b3e6c7c276a0"
+  },
+  "status": "manifest_ready"
+}

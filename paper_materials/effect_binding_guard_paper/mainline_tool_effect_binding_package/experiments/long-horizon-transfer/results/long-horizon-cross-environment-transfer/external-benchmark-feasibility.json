@@ -1,0 +1,100 @@
+{
+  "audit_type": "external_long_horizon_benchmark_static_gate",
+  "benchmarks": [
+    {
+      "benchmark_id": "toolsandbox",
+      "blocking_reasons": [
+        "Search scenarios require RapidAPI and must be excluded from the offline subset.",
+        "The user simulator must be replaced with the fixed local checkpoint for comparable runs.",
+        "Prompt-injection variants and per-prefix unauthorized-effect validators are not native and must be added."
+      ],
+      "current_gate": "ready_for_offline_environment_smoke",
+      "executable_tools": true,
+      "label_hidden_adapter_feasible": true,
+      "license_verified": true,
+      "local_model_endpoint": true,
+      "native_long_horizon_attacks": false,
+      "prefix_or_milestone_validator": true,
+      "proprietary_model_required_by_default": false,
+      "public_repository": "https://github.com/apple/ToolSandbox",
+      "real_external_side_effects_required": false,
+      "recommended_role": "Primary external long-task utility/state-dependency benchmark after an offline subset smoke.",
+      "source_complete": true,
+      "source_revision": "165848b9a78cead7ca7fe7c89c688b58e6501219",
+      "source_snapshot": "runs/e79_external_benchmarks/ToolSandbox",
+      "stateful_sandbox": true,
+      "terminal_validator": true,
+      "trajectory_state_snapshots": true
+    },
+    {
+      "benchmark_id": "agentlab",
+      "blocking_reasons": [
+        "Only public metadata is complete locally; the full source checkout has not completed.",
+        "The released default planner and judge use GPT-5.1, so a local replacement must be validated before a comparable run.",
+        "Its judge-based success labels must be separated from deployable agent and guard inputs."
+      ],
+      "current_gate": "blocked_pending_full_source_and_local_judge_adapter",
+      "executable_tools": true,
+      "label_hidden_adapter_feasible": true,
+      "license_verified": true,
+      "local_model_endpoint": true,
+      "native_long_horizon_attacks": true,
+      "prefix_or_milestone_validator": false,
+      "proprietary_model_required_by_default": true,
+      "public_repository": "https://github.com/TanqiuJiang/AgentLAB",
+      "real_external_side_effects_required": false,
+      "recommended_role": "Adaptive long-horizon security extension after dependency and judge replacement smokes.",
+      "source_complete": false,
+      "source_revision": null,
+      "source_snapshot": "runs/e79_external_benchmarks/metadata/AgentLAB",
+      "stateful_sandbox": true,
+      "terminal_validator": true,
+      "trajectory_state_snapshots": false
+    },
+    {
+      "benchmark_id": "tau2_bench",
+      "blocking_reasons": [
+        "Only public metadata is complete locally; the full source checkout has not completed.",
+        "The benchmark supplies dynamic user interaction but not an indirect-prompt-injection attack protocol.",
+        "Python 3.12+ requires an isolated environment from the current AgentDojo runner."
+      ],
+      "current_gate": "fallback_pending_full_source_checkout",
+      "executable_tools": true,
+      "label_hidden_adapter_feasible": true,
+      "license_verified": true,
+      "local_model_endpoint": true,
+      "native_long_horizon_attacks": false,
+      "prefix_or_milestone_validator": false,
+      "proprietary_model_required_by_default": false,
+      "public_repository": "https://github.com/sierra-research/tau2-bench",
+      "real_external_side_effects_required": false,
+      "recommended_role": "Fallback external long-task benchmark when dynamic user interaction is prioritized.",
+      "source_complete": false,
+      "source_revision": null,
+      "source_snapshot": "runs/e79_external_benchmarks/metadata/tau2-bench",
+      "stateful_sandbox": true,
+      "terminal_validator": true,
+      "trajectory_state_snapshots": true
+    }
+  ],
+  "execution_claim": "No benchmark, model, tool, or external API was executed by this static audit.",
+  "experiment": "E79",
+  "generated_at": "2026-07-12T06:32:08.254612+00:00",
+  "selection": {
+    "adaptive_attack_extension": "agentlab_after_local_judge_validation",
+    "fallback": "tau2_bench",
+    "offline_environment_smoke": "toolsandbox"
+  },
+  "source_hashes": {
+    "runs/e79_external_benchmarks/ToolSandbox/LICENSE": "2283d5566b38210fbfb9fcb06619f1d0a8101bff9df974ea8afc3393508e9015",
+    "runs/e79_external_benchmarks/ToolSandbox/README.md": "0e5cfb9077769e2dcbe74dbfc8b8fac8314d8a213ab34364ab6b2ecaf47d8fe8",
+    "runs/e79_external_benchmarks/ToolSandbox/pyproject.toml": "1374abe6c850da500a4f64534456b25cb029eb6dc1c0e3c3f78431949a2e5ad0",
+    "runs/e79_external_benchmarks/metadata/AgentLAB/LICENSE": "fe37b967d3aad913cc00282e9fe9acf7daf045dcf05a61e42d43496dcea22bae",
+    "runs/e79_external_benchmarks/metadata/AgentLAB/README.md": "4d0306b19e38c845c14f5f20803430677fa03652151d88ce626474f7f5510497",
+    "runs/e79_external_benchmarks/metadata/AgentLAB/requirements.txt": "0f437b97f604473b6f5221b658d0bab8246534046192a6b3040436488f58f0e7",
+    "runs/e79_external_benchmarks/metadata/tau2-bench/LICENSE": "e67c5aa0074dfcaefd3c3a1aedb94cb539234aecd15d5a972574e3200e6252fe",
+    "runs/e79_external_benchmarks/metadata/tau2-bench/README.md": "b04a02969664a9d3b704b201cf4f61af4a371019294142a4cf534229ce7637fa",
+    "runs/e79_external_benchmarks/metadata/tau2-bench/pyproject.toml": "a019397eef9592abbcdcd0b7a1a46c717c476dee60d6b31073448b3811a1d1fd"
+  },
+  "status": "passed"
+}

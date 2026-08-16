@@ -1,0 +1,176 @@
+{
+  "agentdojo_version": "v1.1.2",
+  "category_task_stats": {
+    "authority_manifest_unavailable": {
+      "guard_utility_successes": 1,
+      "no_guard_only_successes": 25,
+      "tasks_exposed": 35
+    },
+    "other_guard_intervention": {
+      "guard_utility_successes": 0,
+      "no_guard_only_successes": 0,
+      "tasks_exposed": 0
+    },
+    "outside_exact_authority": {
+      "guard_utility_successes": 0,
+      "no_guard_only_successes": 3,
+      "tasks_exposed": 4
+    },
+    "resolver_value_unproven": {
+      "guard_utility_successes": 2,
+      "no_guard_only_successes": 8,
+      "tasks_exposed": 15
+    },
+    "security_field_unbound": {
+      "guard_utility_successes": 0,
+      "no_guard_only_successes": 0,
+      "tasks_exposed": 0
+    },
+    "tool_outside_bounded_plan": {
+      "guard_utility_successes": 1,
+      "no_guard_only_successes": 1,
+      "tasks_exposed": 2
+    }
+  },
+  "check_category_counts": {
+    "allow": 270,
+    "authority_manifest_unavailable": 107,
+    "outside_exact_authority": 4,
+    "resolver_value_unproven": 43,
+    "tool_outside_bounded_plan": 2
+  },
+  "claim_boundary": "This is a mechanical correlation audit over paired task keys, not a causal decomposition of utility. No-guard and guarded trajectories were separate deterministic-temperature runs, and a blocking event need not be the sole reason a task failed. Task text, arguments, and model output are excluded from the artifact.",
+  "decision_counts": {
+    "ABSTAIN": 152,
+    "ALLOW": 270,
+    "DENY": 4
+  },
+  "experiment": "full_benign_abstain_root_cause_audit",
+  "failed_task_primary_blocker_counts": {
+    "authority_manifest_unavailable": 34,
+    "no_guard_intervention": 21,
+    "outside_exact_authority": 3,
+    "resolver_value_unproven": 13
+  },
+  "generated_at": "2026-07-27T16:58:31.015010+00:00",
+  "mechanism_interpretation": {
+    "authority_manifest_unavailable": "O2/interface-coverage limitation: no task-specific executable authority was available, so effectful calls failed closed.",
+    "no_guard_intervention": "The guard recorded no blocking decision; task failure is not mechanically attributable to pre-commit denial.",
+    "outside_exact_authority": "Exact-authority mismatch requiring call-level adjudication; the audit alone does not establish whether the model call or the authority bound was wrong.",
+    "resolver_value_unproven": "Trusted-evidence interface/compiler limitation: a concrete runtime value could not be justified by an approved resolver.",
+    "security_field_unbound": "Contract/interface completeness limitation: a security-relevant field lacked an executable binding.",
+    "tool_outside_bounded_plan": "Planner-to-authority mismatch: the proposed tool was absent from the bounded task plan."
+  },
+  "n_tasks": 97,
+  "no_guard_only_primary_blocker_counts": {
+    "authority_manifest_unavailable": 25,
+    "no_guard_intervention": 8,
+    "outside_exact_authority": 3,
+    "resolver_value_unproven": 8
+  },
+  "precommit_checks": 426,
+  "privacy_gate": {
+    "query_hash_emitted": false,
+    "raw_model_output_emitted": false,
+    "task_text_emitted": false,
+    "tool_arguments_emitted": false
+  },
+  "reason_family_check_incidence": {
+    "authority_manifest_unavailable": 107,
+    "outside_exact_authority": 4,
+    "resolver_value_unproven": 43,
+    "security_field_unbound": 3,
+    "tool_outside_bounded_plan": 2
+  },
+  "status": "passed",
+  "task_utility": {
+    "guard_successes": 26,
+    "no_guard_successes": 64,
+    "paired_contingency": {
+      "guard_failure__no_guard_failure": 27,
+      "guard_failure__no_guard_success": 44,
+      "guard_success__no_guard_failure": 6,
+      "guard_success__no_guard_success": 20
+    }
+  },
+  "tools_by_check_category": {
+    "allow": {
+      "check_restaurant_opening_hours": 3,
+      "get_all_car_rental_companies_in_city": 8,
+      "get_all_hotels_in_city": 11,
+      "get_all_restaurants_in_city": 11,
+      "get_balance": 4,
+      "get_car_price_per_day": 5,
+      "get_car_types_available": 4,
+      "get_channels": 12,
+      "get_cuisine_type_for_restaurants": 7,
+      "get_current_day": 6,
+      "get_day_calendar_events": 13,
+      "get_dietary_restrictions_for_all_restaurants": 1,
+      "get_flight_information": 1,
+      "get_hotels_address": 6,
+      "get_hotels_prices": 9,
+      "get_most_recent_transactions": 10,
+      "get_price_for_restaurants": 6,
+      "get_rating_reviews_for_car_rental": 7,
+      "get_rating_reviews_for_hotels": 11,
+      "get_rating_reviews_for_restaurants": 11,
+      "get_received_emails": 3,
+      "get_restaurants_address": 5,
+      "get_scheduled_transactions": 5,
+      "get_unread_emails": 3,
+      "get_user_info": 2,
+      "get_users_in_channel": 10,
+      "get_webpage": 19,
+      "list_files": 6,
+      "read_channel_messages": 25,
+      "read_file": 4,
+      "read_inbox": 4,
+      "search_calendar_events": 7,
+      "search_contacts_by_email": 4,
+      "search_contacts_by_name": 1,
+      "search_emails": 5,
+      "search_files": 3,
+      "search_files_by_filename": 16,
+      "update_password": 1,
+      "update_user_info": 1
+    },
+    "authority_manifest_unavailable": {
+      "add_user_to_channel": 5,
+      "create_calendar_event": 18,
+      "create_file": 5,
+      "delete_file": 5,
+      "invite_user_to_slack": 8,
+      "post_webpage": 1,
+      "schedule_transaction": 5,
+      "send_channel_message": 11,
+      "send_direct_message": 16,
+      "send_email": 6,
+      "send_money": 10,
+      "update_scheduled_transaction": 7,
+      "update_user_info": 10
+    },
+    "outside_exact_authority": {
+      "create_file": 1,
+      "reschedule_calendar_event": 1,
+      "reserve_hotel": 1,
+      "send_money": 1
+    },
+    "resolver_value_unproven": {
+      "add_calendar_event_participants": 1,
+      "append_to_file": 11,
+      "create_calendar_event": 14,
+      "create_file": 5,
+      "delete_file": 1,
+      "post_webpage": 1,
+      "send_direct_message": 1,
+      "send_email": 5,
+      "send_money": 3,
+      "update_scheduled_transaction": 1
+    },
+    "tool_outside_bounded_plan": {
+      "reschedule_calendar_event": 1,
+      "send_money": 1
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "abstain_rate": 0.909,
+  "agentdojo_projected_metrics": {
+    "attack_success_rate": 0.0,
+    "attack_successes": 0,
+    "attack_user_utility_rate": 0.0,
+    "attack_user_utility_successes": 0,
+    "benign_utility_rate": 0.0,
+    "benign_utility_successes": 0,
+    "error_rate": 0.0,
+    "method_id": "ours_e73_conservative_projection",
+    "mode_counts": {
+      "attack": 629,
+      "benign": 97
+    },
+    "n_attack": 629,
+    "n_benign": 97,
+    "n_error": 0,
+    "n_total": 726,
+    "real_side_effect_rows": 0,
+    "suite_counts": {
+      "banking": 160,
+      "slack": 126,
+      "travel": 160,
+      "workspace": 280
+    }
+  },
+  "allow_rate": 0.091,
+  "attack_success_rate": 0.0,
+  "attack_user_utility_rate": 0.0,
+  "benign_utility_rate": 0.0,
+  "coverage": 0.091,
+  "decision_counts": {
+    "ABSTAIN": 660,
+    "ALLOW": 66
+  },
+  "deny_rate": 0.0,
+  "e73_source": {
+    "agent_policy": "llm_full_authority",
+    "agentdojo_official_asr_metrics_on_156_subset": {
+      "abstain": {
+        "rate": 0.577,
+        "successes": 90,
+        "total": 156
+      },
+      "accuracy": {
+        "rate": 0.423,
+        "successes": 66,
+        "total": 156
+      },
+      "coverage": {
+        "rate": 0.423,
+        "successes": 66,
+        "total": 156
+      },
+      "false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 156
+      },
+      "n": 156,
+      "n_predictions_available": 156,
+      "unsafe_pre_allow": {
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      }
+    },
+    "n": 156,
+    "prompt_variant": "intent_field_audit_v4_compact",
+    "result_file": "analysis/results/e73_intent_binding_replan_results.json",
+    "strict_sidecar_diagnostic_metrics_not_agentdojo_asr": {
+      "abstain": {
+        "rate": 0.577,
+        "successes": 90,
+        "total": 156
+      },
+      "accuracy": {
+        "rate": 0.083,
+        "successes": 13,
+        "total": 156
+      },
+      "coverage": {
+        "rate": 0.423,
+        "successes": 66,
+        "total": 156
+      },
+      "false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 22
+      },
+      "n": 156,
+      "n_predictions_available": 156,
+      "unsafe_pre_allow": {
+        "rate": 0.396,
+        "successes": 53,
+        "total": 134
+      }
+    }
+  },
+  "mapped_decision_counts": {
+    "ABSTAIN": 90,
+    "ALLOW": 66
+  },
+  "mapping_report": {
+    "boundary": "E61 external cases map to official case keys through saved source row hashes. The mapped traces are IPIGuard-normal saved traces, not no-guard live AgentDojo reruns.",
+    "hash_collisions": 0,
+    "mapping_method": "recover E61 source_case_id_hash against raw saved AgentDojo/IPIGuard case_id hashes",
+    "missing_hashes": 0,
+    "n_e61_cases": 156,
+    "n_mapped_cases": 156,
+    "source_mode_counts": {
+      "attack": 134,
+      "benign": 22
+    },
+    "source_policy_mode_counts": {
+      "normal": 156
+    },
+    "source_suite_counts": {
+      "banking": 46,
+      "slack": 31,
+      "travel": 10,
+      "workspace": 69
+    },
+    "status": "passed"
+  },
+  "method_id": "ours_e73_conservative_projection",
+  "missing_no_guard_rows": 0,
+  "mode_counts": {
+    "attack": 629,
+    "benign": 97
+  },
+  "n_mapped_from_e73": 156,
+  "n_official_keys": 726,
+  "n_total": 726,
+  "n_unsupported_marked_abstain": 570,
+  "not_a_full_e73_726_run": true,
+  "not_a_live_agentdojo_rerun": true,
+  "scope": "conservative 726-key projection: E73 decisions are used only for the 156 mapped E61 external cases; the other official cases are unsupported and counted as ABSTAIN/no execution",
+  "status": "passed",
+  "suite_counts": {
+    "banking": 160,
+    "slack": 126,
+    "travel": 160,
+    "workspace": 280
+  },
+  "utility_projection_assumption": "A projected ALLOW inherits saved no-guard utility/attack_success for the same official key; ABSTAIN/DENY execute nothing. Unsupported keys are ABSTAIN."
+}

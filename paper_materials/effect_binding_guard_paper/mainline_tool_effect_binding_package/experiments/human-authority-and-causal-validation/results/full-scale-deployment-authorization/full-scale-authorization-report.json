@@ -1,0 +1,1208 @@
+{
+  "claim_boundary": "Controlled eight-tool copied-sandbox authorization experiment over frozen ACL, capability, and delegation policies. It measures representation sufficiency on the enumerated intervention and policy families; it does not establish open-world descriptor soundness, policy correctness, deployment prevalence, or production safety.",
+  "direct_policy_metrics": [
+    {
+      "abstain": {
+        "rate": 1.0,
+        "successes": 192,
+        "total": 192
+      },
+      "coverage": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 192
+      },
+      "covered_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 0
+      },
+      "decision_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 192
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 96
+      },
+      "n": 192,
+      "representation": "tool_name",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 96
+      }
+    },
+    {
+      "abstain": {
+        "rate": 1.0,
+        "successes": 192,
+        "total": 192
+      },
+      "coverage": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 192
+      },
+      "covered_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 0
+      },
+      "decision_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 192
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 96
+      },
+      "n": 192,
+      "representation": "canonical_raw_arguments",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 96
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.5520833333333334,
+        "successes": 106,
+        "total": 192
+      },
+      "coverage": {
+        "rate": 0.4479166666666667,
+        "successes": 86,
+        "total": 192
+      },
+      "covered_accuracy": {
+        "rate": 1.0,
+        "successes": 86,
+        "total": 86
+      },
+      "decision_accuracy": {
+        "rate": 0.4479166666666667,
+        "successes": 86,
+        "total": 192
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 96
+      },
+      "n": 192,
+      "representation": "common_effect_fields",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 96
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 192
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 192,
+        "total": 192
+      },
+      "covered_accuracy": {
+        "rate": 1.0,
+        "successes": 192,
+        "total": 192
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 192,
+        "total": 192
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 96
+      },
+      "n": 192,
+      "representation": "validated_typed_effects",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 96
+      }
+    }
+  ],
+  "evaluation": {
+    "descriptor_exact_set_match": {
+      "rate": 1.0,
+      "successes": 192,
+      "total": 192
+    },
+    "ideal_decisions": {
+      "ALLOW": 96,
+      "DENY": 96
+    },
+    "n_contexts": 192,
+    "n_domains": 8,
+    "n_pairs": 96,
+    "n_tools": 8
+  },
+  "experiment": "full_scale_deployment_authorization_representation",
+  "gates": {
+    "all_evaluation_contexts_retained": true,
+    "all_source_calls_execute_in_copied_state": true,
+    "coarse_views_have_policy_mixed_cells": true,
+    "frozen_inputs_match": true,
+    "heldout_descriptor_exact_set_match": true,
+    "heldout_policy_pairs_are_separating": true,
+    "no_silent_decision_drops": true,
+    "raw_arguments_have_state_dependent_collisions": true,
+    "registration_descriptor_exact_set_match": true,
+    "registration_relation_accuracy": true,
+    "typed_direct_full_accuracy": true,
+    "typed_direct_full_coverage": true,
+    "typed_direct_zero_false_denial": true,
+    "typed_direct_zero_unsafe_pre_allow": true,
+    "typed_has_no_policy_mixed_cells": true,
+    "typed_resolves_state_dependent_pairs": true
+  },
+  "generated_at": "2026-08-14T14:55:40.469447+00:00",
+  "input_hashes": {
+    "core_sha256": "57bd82bae4b4625e8adf65ea0ce35b4c997d72129469a276b34bf8345142a81e",
+    "descriptor_manifest_sha256": "bab439f5ff06cdcfe554386abc5cadbf77fae15ae164ae451c04c9ee9bd7603e",
+    "heldout_contexts_sha256": "f12fa3bb26309ee0a70e967013081b1ddecb5c34f6b2b016fb40d5fd093b7f07",
+    "policy_manifests_sha256": "1ed14cf3234379f2992ba1f7e084c2854614b81117236b9f6c57acfe903a294d",
+    "registration_counterfactuals_sha256": "6b999016989dc82791a15e1420e9477f873172af1c5e8fc6986702af5d292919",
+    "runner_sha256": "45a8c353ad460fd19532d6138a7594acfba6b904ea0d057cdd92672a44246020"
+  },
+  "mode": "full",
+  "per_domain": [
+    {
+      "common_effect_fields": {
+        "abstain": {
+          "rate": 0.5833333333333334,
+          "successes": 14,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.4166666666666667,
+          "successes": 10,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10
+        },
+        "decision_accuracy": {
+          "rate": 0.4166666666666667,
+          "successes": 10,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "common_effect_fields",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "domain": "calendar",
+      "ideal_decisions": {
+        "ALLOW": 12,
+        "DENY": 12
+      },
+      "n": 24,
+      "validated_typed_effects": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "validated_typed_effects",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      }
+    },
+    {
+      "common_effect_fields": {
+        "abstain": {
+          "rate": 0.5,
+          "successes": 12,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.5,
+          "successes": 12,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 12,
+          "total": 12
+        },
+        "decision_accuracy": {
+          "rate": 0.5,
+          "successes": 12,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "common_effect_fields",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "domain": "workspace",
+      "ideal_decisions": {
+        "ALLOW": 12,
+        "DENY": 12
+      },
+      "n": 24,
+      "validated_typed_effects": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "validated_typed_effects",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      }
+    },
+    {
+      "common_effect_fields": {
+        "abstain": {
+          "rate": 0.5,
+          "successes": 12,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.5,
+          "successes": 12,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 12,
+          "total": 12
+        },
+        "decision_accuracy": {
+          "rate": 0.5,
+          "successes": 12,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "common_effect_fields",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "domain": "messaging",
+      "ideal_decisions": {
+        "ALLOW": 12,
+        "DENY": 12
+      },
+      "n": 24,
+      "validated_typed_effects": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "validated_typed_effects",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      }
+    },
+    {
+      "common_effect_fields": {
+        "abstain": {
+          "rate": 0.625,
+          "successes": 15,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.375,
+          "successes": 9,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "decision_accuracy": {
+          "rate": 0.375,
+          "successes": 9,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "common_effect_fields",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "domain": "banking",
+      "ideal_decisions": {
+        "ALLOW": 12,
+        "DENY": 12
+      },
+      "n": 24,
+      "validated_typed_effects": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "validated_typed_effects",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      }
+    },
+    {
+      "common_effect_fields": {
+        "abstain": {
+          "rate": 0.5416666666666666,
+          "successes": 13,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.4583333333333333,
+          "successes": 11,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 11,
+          "total": 11
+        },
+        "decision_accuracy": {
+          "rate": 0.4583333333333333,
+          "successes": 11,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "common_effect_fields",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "domain": "email",
+      "ideal_decisions": {
+        "ALLOW": 12,
+        "DENY": 12
+      },
+      "n": 24,
+      "validated_typed_effects": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "validated_typed_effects",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      }
+    },
+    {
+      "common_effect_fields": {
+        "abstain": {
+          "rate": 0.5833333333333334,
+          "successes": 14,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.4166666666666667,
+          "successes": 10,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10
+        },
+        "decision_accuracy": {
+          "rate": 0.4166666666666667,
+          "successes": 10,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "common_effect_fields",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "domain": "repository",
+      "ideal_decisions": {
+        "ALLOW": 12,
+        "DENY": 12
+      },
+      "n": 24,
+      "validated_typed_effects": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "validated_typed_effects",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      }
+    },
+    {
+      "common_effect_fields": {
+        "abstain": {
+          "rate": 0.4583333333333333,
+          "successes": 11,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.5416666666666666,
+          "successes": 13,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 13,
+          "total": 13
+        },
+        "decision_accuracy": {
+          "rate": 0.5416666666666666,
+          "successes": 13,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "common_effect_fields",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "domain": "cloud_storage",
+      "ideal_decisions": {
+        "ALLOW": 12,
+        "DENY": 12
+      },
+      "n": 24,
+      "validated_typed_effects": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "validated_typed_effects",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      }
+    },
+    {
+      "common_effect_fields": {
+        "abstain": {
+          "rate": 0.625,
+          "successes": 15,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.375,
+          "successes": 9,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "decision_accuracy": {
+          "rate": 0.375,
+          "successes": 9,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "common_effect_fields",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "domain": "expense",
+      "ideal_decisions": {
+        "ALLOW": 12,
+        "DENY": 12
+      },
+      "n": 24,
+      "validated_typed_effects": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "validated_typed_effects",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      }
+    }
+  ],
+  "registration": {
+    "axes": {
+      "attachment_identity": 1,
+      "compliance_pre_state": 1,
+      "compound_effect": 8,
+      "default_omission": 6,
+      "fee_pre_state": 1,
+      "multi_resource": 2,
+      "operation": 2,
+      "operation_mode": 8,
+      "qualifier_amount": 2,
+      "qualifier_classification": 1,
+      "qualifier_currency": 2,
+      "qualifier_expiry": 1,
+      "qualifier_payload": 1,
+      "qualifier_permission": 1,
+      "qualifier_recurrence": 1,
+      "qualifier_role": 1,
+      "qualifier_visibility": 3,
+      "resource_identity": 8,
+      "surface_invariant": 8,
+      "target_expansion": 5,
+      "target_identity": 8,
+      "vendor_identity": 1
+    },
+    "counterfactual_relation_accuracy": {
+      "rate": 1.0,
+      "successes": 72,
+      "total": 72
+    },
+    "descriptor_exact_set_match": {
+      "rate": 1.0,
+      "successes": 144,
+      "total": 144
+    },
+    "n_contexts": 144,
+    "n_domains": 8,
+    "n_pairs": 72,
+    "n_tools": 8,
+    "registered_tools": [
+      "approve_expense",
+      "copy_cloud_object",
+      "post_message",
+      "schedule_meeting",
+      "send_email",
+      "set_repository_access",
+      "share_document",
+      "transfer_funds"
+    ],
+    "sensitive_pairs": 64,
+    "surface_invariant_pairs": 8
+  },
+  "representation_capacity": [
+    {
+      "fail_closed": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 0.5,
+          "successes": 96,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 1.0,
+          "successes": 96,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        }
+      },
+      "fail_open": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 0.5,
+          "successes": 96,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 1.0,
+          "successes": 96,
+          "total": 96
+        }
+      },
+      "minimum_unavoidable_row_errors": 96,
+      "n_cells": 8,
+      "n_mixed_cells": 8,
+      "n_rows_in_mixed_cells": 192,
+      "primary": {
+        "abstain": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        }
+      },
+      "representation": "tool_name"
+    },
+    {
+      "fail_closed": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 0.7135416666666666,
+          "successes": 137,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.5729166666666666,
+          "successes": 55,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        }
+      },
+      "fail_open": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 0.8645833333333334,
+          "successes": 166,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.2708333333333333,
+          "successes": 26,
+          "total": 96
+        }
+      },
+      "minimum_unavoidable_row_errors": 26,
+      "n_cells": 129,
+      "n_mixed_cells": 25,
+      "n_rows_in_mixed_cells": 81,
+      "primary": {
+        "abstain": {
+          "rate": 0.421875,
+          "successes": 81,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 0.578125,
+          "successes": 111,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 0.578125,
+          "successes": 111,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        }
+      },
+      "representation": "canonical_raw_arguments"
+    },
+    {
+      "fail_closed": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 0.671875,
+          "successes": 129,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.65625,
+          "successes": 63,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        }
+      },
+      "fail_open": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 0.90625,
+          "successes": 174,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.1875,
+          "successes": 18,
+          "total": 96
+        }
+      },
+      "minimum_unavoidable_row_errors": 18,
+      "n_cells": 86,
+      "n_mixed_cells": 7,
+      "n_rows_in_mixed_cells": 81,
+      "primary": {
+        "abstain": {
+          "rate": 0.421875,
+          "successes": 81,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 0.578125,
+          "successes": 111,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 0.578125,
+          "successes": 111,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        }
+      },
+      "representation": "common_effect_fields"
+    },
+    {
+      "fail_closed": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        }
+      },
+      "fail_open": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        }
+      },
+      "minimum_unavoidable_row_errors": 0,
+      "n_cells": 119,
+      "n_mixed_cells": 0,
+      "n_rows_in_mixed_cells": 0,
+      "primary": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 192
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 192,
+          "total": 192
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 96
+        }
+      },
+      "representation": "validated_typed_effects"
+    }
+  ],
+  "state_dependent_subset": {
+    "common_field_collisions": 5,
+    "n_pairs": 26,
+    "raw_argument_collisions": 26,
+    "typed_effect_collisions": 0
+  },
+  "status": "passed"
+}

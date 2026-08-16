@@ -1,0 +1,61 @@
+{
+  "agentdojo_version": "v1.1.2",
+  "audit_type": "e77_implementation_obligation_audit",
+  "claim_boundary": "This audit establishes exact pre-commit interception for executed valid calls in the completed AgentDojo run. It does not establish global contract or envelope soundness, nor mediation of remote services outside the sandbox.",
+  "default_semantics": {
+    "all_observed_optional_security_defaults_empty_or_none": true,
+    "nonempty_optional_defaults": [],
+    "optional_security_field_occurrences": 22
+  },
+  "experiment": "E80",
+  "generated_at": "2026-07-12T09:50:09.962470+00:00",
+  "logs": {
+    "invalid_calls_returning_error_results": 2,
+    "missing_official_logs": [],
+    "valid_calls_reaching_executor": 3173,
+    "valid_calls_without_tool_result": 62,
+    "valid_structured_calls_emitted": 3235
+  },
+  "obligations": {
+    "O1_contract_soundness": {
+      "evidence": "All 67 registered schema fields are retained as security fields and one-field sandbox tests are recorded.",
+      "gap": "Finite base-state field tests do not prove that every reachable compound effect is covered.",
+      "status": "partial"
+    },
+    "O2_envelope_soundness": {
+      "evidence": "Permission plans are produced before tool output and injected INFORMATION blocks are removed from resolver evidence.",
+      "gap": "The LLM-generated envelope has no independent semantic soundness proof for every task.",
+      "status": "partial"
+    },
+    "O3_complete_mediation": {
+      "evidence": "Every valid call with a tool-result event has an exactly matching pre-commit signature.",
+      "scope": "Official AgentDojo v1.1.2 sandbox logs only.",
+      "status": "passed_for_official_agentdojo_run"
+    },
+    "O4_check_use_integrity": {
+      "evidence": "The tool-result call signatures exactly match the checked signatures; the patched executor uses the checked call object.",
+      "gap": "No claim is made for concurrent remote services or post-check mutation outside this executor.",
+      "status": "passed_for_sandbox_call_object"
+    },
+    "O5_fail_closed_uncertainty": {
+      "evidence": "Missing descriptors/plans and unresolved fields replan; all optional security defaults in these suites are None or empty.",
+      "gap": "Other tool ecosystems may have effect-bearing nonempty defaults and require explicit default instantiation.",
+      "status": "partial"
+    }
+  },
+  "official_cases": 726,
+  "precommit_audit": {
+    "decisions": {
+      "ALLOW": 2227,
+      "NEEDS_REPLAN": 946
+    },
+    "effectful_allow": 245,
+    "effectful_checks": 1191,
+    "effectful_replan": 946,
+    "extra_check_occurrences": 0,
+    "missing_check_occurrences": 0,
+    "official_checks": 3173,
+    "signature_multiset_exact_match": true
+  },
+  "status": "passed_with_conditional_gaps"
+}

@@ -1,0 +1,30 @@
+{
+  "candidates": [
+    {
+      "name": "ToolSafe / TS-Guard",
+      "paper": "https://arxiv.org/abs/2601.10156",
+      "public_artifact": "https://github.com/MurrayTom/ToolSafe",
+      "adapter_status": "Selected as the released-guardrail anchor for the separate ToolSafe/TS-Guard-style comparable local adapter."
+    },
+    {
+      "name": "Safiron / Agentic-Guardian",
+      "paper": "https://arxiv.org/abs/2510.09781",
+      "public_artifact": "https://github.com/HowieHwong/Agentic-Guardian",
+      "adapter_status": "Public artifact noted, not selected for this comparable adapter pass."
+    },
+    {
+      "name": "IPIGuard",
+      "paper": "https://arxiv.org/abs/2508.15310",
+      "public_artifact": "https://github.com/Greysahy/ipiguard",
+      "adapter_status": "Used as the source family for the E61 saved external replay subset, not selected as the B8 adapter."
+    },
+    {
+      "name": "CaMeL",
+      "paper": "https://arxiv.org/abs/2503.18813",
+      "public_artifact": "https://github.com/google-research/camel-prompt-injection",
+      "adapter_status": "Public artifact noted, not selected for this comparable adapter pass."
+    }
+  ],
+  "selection_rule": "B8 is implemented separately under baselines/b8_released_guardrail as a comparable local adapter without gold labels or gold atoms and without claiming original-benchmark reproduction.",
+  "status": "separate_comparable_adapter_available"
+}

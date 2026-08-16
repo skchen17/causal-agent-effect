@@ -1,0 +1,56 @@
+label,value,successes,total,source,key_path,paper_location
+E48 rows,822,,,results/analysis/results/e48_tuple_guard_results.json,manifest.n_rows,Tables 2; Results
+E48 pairwise relations,6840,,,results/analysis/results/e48_tuple_guard_results.json,manifest.n_pairs,Tables 2; Results
+E48 full hard guard coverage,0.9172749391727494,754,822,results/analysis/results/e48_tuple_guard_results.json,methods.effect_binding_guard_full.overall.coverage,Tables 2; Results
+E48 full hard guard UPA,0.03611111111111111,13,360,results/analysis/results/e48_tuple_guard_results.json,methods.effect_binding_guard_full.overall.unsafe_pre_allow,Tables 2; Results
+E48 full hard guard FDeny,0.06493506493506493,30,462,results/analysis/results/e48_tuple_guard_results.json,methods.effect_binding_guard_full.overall.safe_false_deny,Tables 2; Results
+E48 held-out coverage,0.9553571428571429,214,224,results/analysis/results/e48_tuple_guard_results.json,methods.effect_binding_guard_full.by_split.test.coverage,Tables 2; Results
+E48 held-out UPA,0.05102040816326531,5,98,results/analysis/results/e48_tuple_guard_results.json,methods.effect_binding_guard_full.by_split.test.unsafe_pre_allow,Tables 2; Results
+E48 held-out FDeny,0.047619047619047616,6,126,results/analysis/results/e48_tuple_guard_results.json,methods.effect_binding_guard_full.by_split.test.safe_false_deny,Tables 2; Results
+E50 source-balanced coverage mean,0.923076923076923,,,results/analysis/results/e50_hard_guard_robustness_results.json,source_balanced.aggregate_fixed_policy.coverage.mean,Tables 2-3; Results
+E50 source-balanced UPA mean,0.051351351351351354,,,results/analysis/results/e50_hard_guard_robustness_results.json,source_balanced.aggregate_fixed_policy.unsafe_pre_allow.mean,Tables 2-3; Results
+E50 source-balanced FDeny mean,0.05894736842105263,,,results/analysis/results/e50_hard_guard_robustness_results.json,source_balanced.aggregate_fixed_policy.safe_false_deny.mean,Tables 2-3; Results
+E50 resource/auth rows,240,,,results/analysis/results/e50_hard_guard_robustness_results.json,resource_authorization_stress.n_rows,Tables 2-3; Results
+E50 resource/auth coverage,0.9208333333333333,221,240,results/analysis/results/e50_hard_guard_robustness_results.json,resource_authorization_stress.methods.effect_binding_guard_full.overall.coverage,Tables 2-3; Results
+E50 resource/auth UPA,0.38333333333333336,46,120,results/analysis/results/e50_hard_guard_robustness_results.json,resource_authorization_stress.methods.effect_binding_guard_full.overall.unsafe_pre_allow,Tables 2-3; Results
+E50 resource/auth FDeny,0.0,0,120,results/analysis/results/e50_hard_guard_robustness_results.json,resource_authorization_stress.methods.effect_binding_guard_full.overall.safe_false_deny,Tables 2-3; Results
+E50 provenance rows,336,,,results/analysis/results/e50_hard_guard_robustness_results.json,control_provenance_stress.n_rows,Tables 2-3; Results
+E50 provenance coverage,0.5446428571428571,183,336,results/analysis/results/e50_hard_guard_robustness_results.json,control_provenance_stress.methods.effect_binding_guard_full.overall.coverage,Tables 2-3; Results
+E50 provenance UPA,0.0,0,144,results/analysis/results/e50_hard_guard_robustness_results.json,control_provenance_stress.methods.effect_binding_guard_full.overall.unsafe_pre_allow,Tables 2-3; Results
+E50 provenance FDeny,0.1875,36,192,results/analysis/results/e50_hard_guard_robustness_results.json,control_provenance_stress.methods.effect_binding_guard_full.overall.safe_false_deny,Tables 2-3; Results
+E55-v2 strict label-hidden,True,,,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,strict_label_hidden,Tables 4-5; Results
+E55-v2 leakage-free,True,,,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,leakage_audit.leakage_free,Tables 4-5; Results
+E55-v2 leakage violations,0,,,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,leakage_audit.n_violations,Tables 4-5; Results
+E55-v2 rows,600,,,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,dataset.n_rows,Tables 4-5; Results
+E55-v2 existing hard guard coverage,0.2,120,600,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.existing_hard_effect_binding_guard.overall.coverage,Tables 4-5; Results
+E55-v2 existing hard guard UPA,0.043478260869565216,12,276,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.existing_hard_effect_binding_guard.overall.unsafe_pre_allow,Tables 4-5; Results
+E55-v2 existing hard guard FDeny,0.0,0,252,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.existing_hard_effect_binding_guard.overall.safe_false_deny,Tables 4-5; Results
+E55-v2 existing hard guard abstain,0.8,480,600,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.existing_hard_effect_binding_guard.overall.abstain_rate,Tables 4-5; Results
+E55-v2 authz-aware coverage,0.88,528,600,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.authz_aware_effect_binding_guard.overall.coverage,Tables 4-5; Results
+E55-v2 authz-aware UPA,0.0,0,276,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.authz_aware_effect_binding_guard.overall.unsafe_pre_allow,Tables 4-5; Results
+E55-v2 authz-aware FDeny,0.0,0,252,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.authz_aware_effect_binding_guard.overall.safe_false_deny,Tables 4-5; Results
+E55-v2 authz-aware abstain,0.12,72,600,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.authz_aware_effect_binding_guard.overall.abstain_rate,Tables 4-5; Results
+E55-v2 no multi-resource UPA,0.21739130434782608,60,276,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.authz_aware_no_multi_resource_expansion.overall.unsafe_pre_allow,Tables 4-5; Results
+E55-v2 no operation-mode UPA,0.21739130434782608,60,276,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.authz_aware_no_operation_mode.overall.unsafe_pre_allow,Tables 4-5; Results
+E55-v2 no provenance UPA,0.21739130434782608,60,276,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.authz_aware_no_provenance_overlay.overall.unsafe_pre_allow,Tables 4-5; Results
+E55-v2 no alias FDeny,0.23809523809523808,60,252,audit/analysis/results/e55_v2_precommit_authz_results_strict.json,methods.authz_aware_no_alias_resolution.overall.safe_false_deny,Tables 4-5; Results
+E55 decision-path audit passed,True,,,audit/analysis/results/e55_decision_path_audit.json,passed,Table 6; Audit appendix
+E56 strict replay passed,True,,,audit/analysis/results/e56_final_report.json,strict_mode_passed,Table 6; Audit appendix
+E56 decision-path audit passed,True,,,audit/analysis/results/e56_final_report.json,decision_path_audit_passed,Table 6; Audit appendix
+E57-v2 all validity gates passed,True,,,audit/analysis/results/e57_v2_validity_checks_report.json,all_validity_gates_passed,Table 6; Audit appendix
+E57-v2 perturbation stability passed,True,,,audit/analysis/results/e57_v2_validity_checks_report.json,perturbation_stability_passed,Table 6; Audit appendix
+E57-v2 perturbation UPA delta,0.0,,,audit/analysis/results/e57_v2_validity_checks_report.json,perturbation.authz_aware_upa_delta,Table 6; Audit appendix
+E57-v2 perturbation coverage delta,0.0,,,audit/analysis/results/e57_v2_validity_checks_report.json,perturbation.authz_aware_coverage_delta,Table 6; Audit appendix
+E57-v2 changed decisions,0,,,audit/analysis/results/e57_v2_validity_checks_report.json,perturbation.changed_decision_count,Table 6; Audit appendix
+E57-v2 reference agreement passed,True,,,audit/analysis/results/e57_v2_validity_checks_report.json,reference_authorizer_agreement_passed,Table 6; Audit appendix
+E57-v2 reference decision agreement,1.0,,,audit/analysis/results/e57_v2_validity_checks_report.json,reference_authorizer.decision_agreement,Table 6; Audit appendix
+E57-v2 reference atom-count agreement,1.0,,,audit/analysis/results/e57_v2_validity_checks_report.json,reference_authorizer.atom_count_agreement,Table 6; Audit appendix
+E57-v2 reference atom-resource agreement,1.0,,,audit/analysis/results/e57_v2_validity_checks_report.json,reference_authorizer.atom_resource_set_agreement,Table 6; Audit appendix
+E57-v2 spot-audit packet created,True,,,audit/analysis/results/e57_v2_validity_checks_report.json,spot_audit_packet_created,Table 6; Audit appendix
+E57-v2 spot-audit rows,60,,,audit/analysis/results/e57_v2_validity_checks_report.json,spot_audit.n_rows,Table 6; Audit appendix
+E57 human audit rows,60,,,audit/analysis/results/e57_human_audit_validation.json,row_count,Table 6; Audit appendix
+E57 human decision agreement,0.9,54,60,audit/analysis/results/e57_human_audit_validation.json,decision_agreement,Table 6; Audit appendix
+E57 human all-checks-true rate,0.7666666666666667,46,60,audit/analysis/results/e57_human_audit_validation.json,all_checks_true,Table 6; Audit appendix
+E57 human decision corrections,6,,,audit/analysis/results/e57_human_audit_validation.json,corrected_label_subset.decision_corrections,Table 6; Audit appendix
+E57 human atom corrections,13,,,audit/analysis/results/e57_human_audit_validation.json,corrected_label_subset.atom_corrections,Table 6; Audit appendix
+E57 human violation-reason corrections,10,,,audit/analysis/results/e57_human_audit_validation.json,corrected_label_subset.violation_reason_corrections,Table 6; Audit appendix

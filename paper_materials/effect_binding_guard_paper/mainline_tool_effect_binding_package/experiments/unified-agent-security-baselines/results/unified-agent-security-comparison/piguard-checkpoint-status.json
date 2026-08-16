@@ -1,0 +1,40 @@
+{
+  "adapter_patch": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/code/src/experiments/effect_binding_guard/e75_unified_agentdojo_comparison/agentdojo_piguard_detector_patch.py",
+  "adapter_patch_present": true,
+  "agentdojo_smoke_dir": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_official_v112_piguard_smoke",
+  "agentdojo_smoke_log_count": 2,
+  "agentdojo_smoke_logs": [
+    "runs/e75_agentdojo_official_v112_piguard_smoke/local-transformers_pi_detector-piguard/workspace/injection_task_0/none/none.json",
+    "runs/e75_agentdojo_official_v112_piguard_smoke/local-transformers_pi_detector-piguard/workspace/user_task_0/important_instructions/injection_task_0.json"
+  ],
+  "claim_boundary": "PIGuard is a same-protocol official-live AgentDojo row for this paper's common 726-key v1.1.2 table; it is not an original PIGuard benchmark reproduction.",
+  "hf_cache_dir": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_external_baselines/hf_cache/hub/models--leolee99--PIGuard",
+  "hf_cache_present": true,
+  "incomplete_blobs": [],
+  "last_smoke_attempt": {
+    "agentdojo_smoke": "passed",
+    "failure_mode": "",
+    "model_load": "passed",
+    "tokenizer_load": "passed_with_network_escalation"
+  },
+  "latest_snapshot": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_external_baselines/hf_cache/hub/models--leolee99--PIGuard/snapshots/dd78b24e330193a22d2293ac66922dd4f982f563",
+  "main_table_eligible_now": true,
+  "method_id": "piguard",
+  "model_weight_ready": true,
+  "next_step": "No PIGuard action needed for the same-protocol table; keep the checkpoint/run boundary with the metrics.",
+  "official_live_imported_keys": 726,
+  "repo_dir": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_external_baselines/injecguard",
+  "repo_present": true,
+  "snapshot_files": [
+    "added_tokens.json",
+    "config.json",
+    "model.safetensors",
+    "modeling_piguard.py",
+    "special_tokens_map.json",
+    "spm.model",
+    "tokenizer.json",
+    "tokenizer_config.json"
+  ],
+  "status": "full_726_imported",
+  "tokenizer_ready": true
+}

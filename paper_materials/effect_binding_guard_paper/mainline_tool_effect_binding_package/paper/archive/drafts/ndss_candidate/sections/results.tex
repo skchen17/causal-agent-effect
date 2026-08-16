@@ -1,0 +1,6 @@
+\section{Results}
+\textbf{Finding 6: Explicit authorization infrastructure turns abstention-heavy binding into high-coverage local pre-commit mediation.} On 600 local mock pre-commit rows, the existing hard guard has UPA 0.037, FDeny 0.000, and coverage 0.200. The authorization-aware guard has UPA 0.000, FDeny 0.000, and coverage 0.920.
+
+The ablations indicate why the infrastructure matters. Removing multi-resource expansion raises UPA to 0.333. Removing operation-mode semantics raises UPA to 0.148. Removing provenance overlay raises UPA to 0.148. Removing alias resolution leaves UPA at 0.000 but creates FDeny 0.211. Strict replay matches original deployable metrics: True. The decision-path audit passes: True.
+
+This finding is intentionally scoped. E55 is controlled local mock contract evidence; it does not execute real external side effects and does not validate production SaaS, browser, email, or banking systems.

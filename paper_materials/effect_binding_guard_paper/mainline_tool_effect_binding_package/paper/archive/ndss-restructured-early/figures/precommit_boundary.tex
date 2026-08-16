@@ -1,0 +1,30 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=6mm and 8mm,
+  box/.style={draw, rounded corners=1.5pt, align=center, minimum height=8mm, font=\small, fill=gray!8},
+  gate/.style={draw, diamond, aspect=1.7, align=center, font=\small, fill=blue!5},
+  arrow/.style={-Latex, thick}
+]
+\node[box] (task) {User task};
+\node[box, right=of task] (action) {Candidate\\tool action};
+\node[box, above right=of action] (schema) {Tool schema\\and arguments};
+\node[box, right=of schema] (auth) {Authorization\\context};
+\node[box, below right=of action] (prov) {Evidence and\\control source};
+\node[gate, right=22mm of action] (med) {Pre-commit\\mediator};
+\node[box, right=of med, fill=green!8] (allow) {ALLOW};
+\node[box, below=of allow, fill=red!8] (deny) {DENY};
+\node[box, above=of allow, fill=yellow!12] (abstain) {ABSTAIN};
+\draw[arrow] (task) -- (action);
+\draw[arrow] (action) -- (med);
+\draw[arrow] (schema) -- (med);
+\draw[arrow] (auth) -- (med);
+\draw[arrow] (prov) -- (med);
+\draw[arrow] (med) -- (allow);
+\draw[arrow] (med) -- (deny);
+\draw[arrow] (med) -- (abstain);
+\node[draw, dashed, rounded corners=2pt, fit=(action)(schema)(auth)(prov)(med), inner sep=4mm, label={[font=\small]below:pre-commit boundary before external side effects}] {};
+\end{tikzpicture}
+\caption{Pre-commit tool-effect binding boundary. The decision must bind the candidate action to effect, resource, operation, authorization, and provenance before commit.}
+\label{fig:precommit-boundary}
+\end{figure}

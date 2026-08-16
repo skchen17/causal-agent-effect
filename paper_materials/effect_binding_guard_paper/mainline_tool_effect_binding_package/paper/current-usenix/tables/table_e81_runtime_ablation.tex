@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Qwen3-32B single-switch ablations on the reviewed-authority subset
+(26 benign and 169 attack cases). A13 has no applicable dynamic
+security-default field in this slice and is not claim-eligible.}
+\label{tab:e81-runtime-ablation}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Variant & BU & UA & ASR \\
+\midrule
+A0 No guard & .769 & .716 & .030 \\
+A1 Full guard & .577 & .734 & .006 \\
+A2 Tool-call only & .577 & .734 & .006 \\
+A7 No provenance binding & .577 & .722 & .006 \\
+A9 Unvalidated registry & .500 & .633 & .006 \\
+A11 No task envelope & .577 & .716 & .018 \\
+A12 No read grounding & .538 & .686 & .006 \\
+A13 Permissive omissions & .577 & .722 & .006 \\
+A15 No replan recovery & .577 & .710 & .000 \\
+\bottomrule
+\end{tabular}
+\end{table}

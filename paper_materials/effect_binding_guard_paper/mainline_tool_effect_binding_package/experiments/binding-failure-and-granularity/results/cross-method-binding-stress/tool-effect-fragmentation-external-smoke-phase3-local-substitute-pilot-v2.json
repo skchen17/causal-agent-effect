@@ -1,0 +1,32 @@
+{
+  "safety_contract": {
+    "executes_side_effects": false,
+    "executes_tools": false,
+    "model_outputs_are_not_executed": true
+  },
+  "schema_version": "tool_effect_fragmentation_external_smoke_phase3_v1",
+  "systems": {
+    "camel": {
+      "backend": "local_gguf",
+      "claim_scope": "local_model_substitute",
+      "elapsed_seconds": 15.173020362854004,
+      "model_path": "/data/CSK/causal-agent-safety-research/models/Qwen3.5-9B-DeepSeek-V4-Flash-Q4_K_M.gguf",
+      "n_completed": 3,
+      "n_requested": 3,
+      "parse_valid": 3,
+      "parse_valid_rate": 1.0,
+      "status": "smoke_passed"
+    },
+    "ipiguard": {
+      "backend": "local_gguf",
+      "claim_scope": "local_model_substitute",
+      "elapsed_seconds": 13.884601354598999,
+      "model_path": "/data/CSK/causal-agent-safety-research/models/Qwen3.5-9B-DeepSeek-V4-Flash-Q4_K_M.gguf",
+      "n_completed": 3,
+      "n_requested": 3,
+      "parse_valid": 0,
+      "parse_valid_rate": 0.0,
+      "status": "smoke_failed"
+    }
+  }
+}

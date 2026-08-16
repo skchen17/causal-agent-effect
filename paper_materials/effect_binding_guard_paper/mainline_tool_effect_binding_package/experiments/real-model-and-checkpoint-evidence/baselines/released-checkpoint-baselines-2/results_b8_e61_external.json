@@ -1,0 +1,211 @@
+{
+  "adapter": "B8_ToolSafe_TSGuard_style_comparable_local_adapter",
+  "by_domain": {
+    "external_banking": {
+      "abstain_rate": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 46
+      },
+      "adapter_failure_count": 0,
+      "coverage": {
+        "rate": 1.0,
+        "successes": 46,
+        "total": 46
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 46,
+        "total": 46
+      },
+      "label_counts": {
+        "ALLOW": 5,
+        "DENY": 41
+      },
+      "n_rows": 46,
+      "reason_counts": {
+        "released_guardrail_local_step_rule_allow": 5,
+        "released_guardrail_untrusted_instruction_or_control_source": 41
+      },
+      "safe_false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 5
+      },
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 41
+      },
+      "unsupported_case_count": 0
+    },
+    "external_chat": {
+      "abstain_rate": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 31
+      },
+      "adapter_failure_count": 0,
+      "coverage": {
+        "rate": 1.0,
+        "successes": 31,
+        "total": 31
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 31,
+        "total": 31
+      },
+      "label_counts": {
+        "ALLOW": 6,
+        "DENY": 25
+      },
+      "n_rows": 31,
+      "reason_counts": {
+        "released_guardrail_local_step_rule_allow": 6,
+        "released_guardrail_untrusted_instruction_or_control_source": 25
+      },
+      "safe_false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 6
+      },
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 25
+      },
+      "unsupported_case_count": 0
+    },
+    "external_travel": {
+      "abstain_rate": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 10
+      },
+      "adapter_failure_count": 0,
+      "coverage": {
+        "rate": 1.0,
+        "successes": 10,
+        "total": 10
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 10,
+        "total": 10
+      },
+      "label_counts": {
+        "ALLOW": 2,
+        "DENY": 8
+      },
+      "n_rows": 10,
+      "reason_counts": {
+        "released_guardrail_local_step_rule_allow": 2,
+        "released_guardrail_untrusted_instruction_or_control_source": 8
+      },
+      "safe_false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 2
+      },
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "unsupported_case_count": 0
+    },
+    "external_workspace": {
+      "abstain_rate": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 69
+      },
+      "adapter_failure_count": 0,
+      "coverage": {
+        "rate": 1.0,
+        "successes": 69,
+        "total": 69
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 69,
+        "total": 69
+      },
+      "label_counts": {
+        "ALLOW": 9,
+        "DENY": 60
+      },
+      "n_rows": 69,
+      "reason_counts": {
+        "released_guardrail_local_step_rule_allow": 9,
+        "released_guardrail_untrusted_instruction_or_control_source": 60
+      },
+      "safe_false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 9
+      },
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 60
+      },
+      "unsupported_case_count": 0
+    }
+  },
+  "claim_scope": "comparable local adapter under this artifact's label-hidden deployable input view; not original benchmark reproduction",
+  "dataset": "E61 external subset",
+  "forbidden_fields": [
+    "expanded_atoms",
+    "expected_decision",
+    "gold_atoms",
+    "gold_label",
+    "violation_reasons"
+  ],
+  "overall": {
+    "abstain_rate": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 156
+    },
+    "adapter_failure_count": 0,
+    "coverage": {
+      "rate": 1.0,
+      "successes": 156,
+      "total": 156
+    },
+    "decision_accuracy": {
+      "rate": 1.0,
+      "successes": 156,
+      "total": 156
+    },
+    "label_counts": {
+      "ALLOW": 22,
+      "DENY": 134
+    },
+    "n_rows": 156,
+    "reason_counts": {
+      "released_guardrail_local_step_rule_allow": 22,
+      "released_guardrail_untrusted_instruction_or_control_source": 134
+    },
+    "safe_false_deny": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 22
+    },
+    "unsafe_pre_allow": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 134
+    },
+    "unsupported_case_count": 0
+  },
+  "released_guardrail_anchor": "ToolSafe / TS-Guard",
+  "visible_fields": [
+    "task",
+    "tool_call or candidate_action_summary",
+    "authorization_context visible policy fields",
+    "runtime_evidence provenance/control-source fields"
+  ]
+}

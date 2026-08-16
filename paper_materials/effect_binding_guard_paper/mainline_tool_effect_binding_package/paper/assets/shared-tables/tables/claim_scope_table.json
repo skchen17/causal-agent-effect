@@ -1,0 +1,42 @@
+[
+  {
+    "allowed_use": "No deployable safety claim.",
+    "claim_scope": "baseline",
+    "meaning": "Rule or local-LLM baseline; not a target system result."
+  },
+  {
+    "allowed_use": "Paper-grade for local stress only.",
+    "claim_scope": "paper_grade_custom_stress",
+    "meaning": "AgentDojo local custom stress anchor."
+  },
+  {
+    "allowed_use": "Not original-paper benchmark reproduction.",
+    "claim_scope": "official_method_custom_stress",
+    "meaning": "Released checkpoint evaluated on E47 transformed inputs."
+  },
+  {
+    "allowed_use": "Component evidence only.",
+    "claim_scope": "original_component_custom_stress",
+    "meaning": "Released mechanism component evaluated on E47 custom core."
+  },
+  {
+    "allowed_use": "Feasibility only when no-defense utility/ASR is low.",
+    "claim_scope": "original_pipeline_local_model",
+    "meaning": "Full pipeline using local non-paper model."
+  },
+  {
+    "allowed_use": "Not original method or deployable guard.",
+    "claim_scope": "diagnostic",
+    "meaning": "Added mapper or evidence diagnostic."
+  },
+  {
+    "allowed_use": "Not deployable.",
+    "claim_scope": "upper_bound",
+    "meaning": "Oracle/effect/evidence upper bound."
+  },
+  {
+    "allowed_use": "Valid for E47 counterfactual claims.",
+    "claim_scope": "audited_custom_stress",
+    "meaning": "Human-audited corrected custom stress labels."
+  }
+]

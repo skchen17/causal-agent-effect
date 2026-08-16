@@ -1,0 +1,12 @@
+\section{Reference Effect-Binding Guard}
+
+The reference hard Effect-Binding Guard is a deterministic monitor intended to test how far explicit tuple binding can go without a full authorization-aware contract. It is a diagnostic reference point rather than the endpoint of the defense.
+
+\paragraph{Inputs.}
+The guard consumes non-oracle views such as candidate action, argument summary, canonical visible summary, evidence summary, provenance summary, plan text, trajectory text, and tool inventory when available. It does not consume gold labels such as expected decision, gold effect, gold resource, gold authorization match, or gold provenance risk.
+
+\paragraph{Tuple binding.}
+The guard maps each candidate action to an effect/resource/authorization/provenance tuple and applies hard consistency checks. It abstains under multi-view disagreement, missing evidence, or insufficient provenance. It denies when the tuple indicates an unsafe action, and allows only when the tuple is compatible with the available authorization evidence. The method is intentionally conservative, because the experiment is designed to locate remaining binding bottlenecks rather than maximize apparent utility.
+
+\paragraph{Expected failure surface.}
+The guard can improve over pure surface proxies when the effect and resource are explicit. It is expected to fail when a resource or authorization relation is latent in a tool-specific argument, spread across multiple fields, or dependent on local aliases and operation-mode semantics. E50's resource/authorization stress was designed to test exactly this failure surface.

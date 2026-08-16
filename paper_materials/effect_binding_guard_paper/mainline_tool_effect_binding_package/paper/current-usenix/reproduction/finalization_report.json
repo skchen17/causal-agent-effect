@@ -1,0 +1,18 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "scripts/run_toolsandbox_concrete_atom_authorizer.py",
+        "--mode",
+        "full"
+      ],
+      "returncode": 1,
+      "stderr_tail": "Traceback (most recent call last):\n  File \"/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/scripts/run_toolsandbox_concrete_atom_authorizer.py\", line 384, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/scripts/run_toolsandbox_concrete_atom_authorizer.py\", line 372, in main\n    payload = run(args.mode, args.output_dir)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/scripts/run_toolsandbox_concrete_atom_authorizer.py\", line 297, in run\n    verify_inputs(prereg)\n  File \"/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/scripts/run_toolsandbox_concrete_atom_authorizer.py\", line 114, in verify_inputs\n    raise ValueError(f\"frozen input mismatch: {key}\")\nValueError: frozen input mismatch: runner_sha256\n",
+      "stdout_tail": ""
+    }
+  ],
+  "error": "command failed: ['/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python', 'scripts/run_toolsandbox_concrete_atom_authorizer.py', '--mode', 'full']",
+  "status": "failed",
+  "updated_at": "2026-08-15T22:19:17.741114+00:00"
+}

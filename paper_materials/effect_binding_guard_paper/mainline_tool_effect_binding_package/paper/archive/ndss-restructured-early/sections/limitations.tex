@@ -1,0 +1,16 @@
+\section{Limitations}
+
+\paragraph{Controlled stress, not deployment validation.}
+The evidence comes from controlled custom stress sets and a local mock pre-commit contract. It does not establish safety for real SaaS, browser, banking, email, calendar, file-sharing, Slack, or workspace systems. The numbers should not be interpreted as deployed false-allow or false-denial rates.
+
+\paragraph{Synthetic and deterministic artifacts.}
+The E55/E57 local contract is deterministic and synthetic. Its resource schemas, aliases, and authorization context are designed for the experiment. E57-v2 perturbation and independent reference-authorizer checks reduce lexical-template and implementation-coupling concerns, but they do not prove transfer to independently authored schemas.
+
+\paragraph{Baseline scope.}
+Released checkpoints are evaluated on our custom stress interface. These results are useful for diagnosing binding behavior under our stress axes, but they are not original-paper benchmark reproductions. The draft should therefore avoid claims that one external system is globally safer or weaker than another.
+
+\paragraph{Human audit findings.}
+The human audit found corrections. This is a strength for claim hygiene, but a limitation for label certainty. The paper should use corrected-label sensitivity wording and should not claim that the audit perfectly confirmed all labels, atoms, or violation reasons.
+
+\paragraph{Missing experiments.}
+The strongest remaining experimental gaps are an independently authored held-out E55-style contract, a realistic no-real-side-effect replay sandbox, and direct evaluation of stronger released guardrails on the E55 distribution. These would test whether the atom interface and authorization-aware mediation transfer beyond the current local contract.

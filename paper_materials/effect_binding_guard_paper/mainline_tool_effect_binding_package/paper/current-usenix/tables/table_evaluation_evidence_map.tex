@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Evaluation evidence map. Each protocol supports one step of the
+security argument; evidence from a later stage does not retroactively certify
+an earlier one.}
+\label{tab:evaluation-evidence-map}
+\begin{tabular}{@{}p{0.13\textwidth}p{0.17\textwidth}p{0.21\textwidth}p{0.23\textwidth}p{0.20\textwidth}@{}}
+\toprule
+Stage & Domain & Purpose & Evidence / decision source & Supported claim \\
+\midrule
+Source characterization & AgentDojo benign trajectories & Establish compound and state-dependent implementation behavior & Copied-sandbox before/after execution & Tool identity and call text may omit committed distinctions \\
+Interface falsification & 56-call source relation & Construct separating counterexamples & Source execution plus finite diagnostic policy relation & Coarse views are insufficient on witnessed pairs \\
+Post-freeze check & 11 tools, three public MCP implementations & Test a frozen candidate on descriptor-blind contexts & Independent source execution plus namespace policies & Candidate preserves the exercised distinctions \\
+Explicit authority & Four domains, 1,024 contexts & Measure downstream authorization consequences and a strong state-aware alternative & ACL, capability, and delegation engine & Sufficiency depends on preserved distinctions, not a privileged syntax \\
+Integration & 30 copied-sandbox trajectories; AgentDojo audit & Exercise pre-commit consumption and reconciliation & Explicit authority and native validators & A registered interface can be consumed at a check--use boundary \\
+\bottomrule
+\end{tabular}
+\end{table*}

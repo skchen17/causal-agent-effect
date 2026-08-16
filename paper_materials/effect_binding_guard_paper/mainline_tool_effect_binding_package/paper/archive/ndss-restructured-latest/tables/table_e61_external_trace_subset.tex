@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{E61 external-trace subset. The subset uses saved AgentDojo-style/IPIGuard replay traces with no real external side effects; labels and sidecar atoms are stored separately from deployable inputs.}
+\label{tab:e61-external}
+\begin{tabular}{lccccc}
+\toprule
+Trace set & Rows & UPA & FDeny & Coverage & Atom exact \\
+\midrule
+External IPIGuard/AgentDojo-style subset & 156 & 0.000 & 0.000 & 0.904 & 0.821 \\
+external banking & 46 & 0.000 & 0.000 & 0.891 & 0.848 \\
+external chat & 31 & 0.000 & 0.000 & 0.903 & 0.806 \\
+external travel & 10 & 0.000 & 0.000 & 1.000 & 0.900 \\
+external workspace & 69 & 0.000 & 0.000 & 0.899 & 0.797 \\
+\bottomrule
+\end{tabular}
+\end{table}

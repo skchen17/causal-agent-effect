@@ -1,0 +1,49 @@
+\section{Reproduction Notes}
+\label{sec:reproduction-notes}
+
+\paragraph{Lightweight reproduction shim.}
+The artifact includes two lightweight reproduction shims. The first command is:
+\begin{flushleft}
+\small\texttt{python reproduce\_main\_numbers.py}
+\end{flushleft}
+Run it from this paper directory. It writes JSON, CSV, and Markdown outputs to the reproduction directory. It validates the main reported E48, E50, E55-v2, E55-v2 ablation, E56, E57-v2, and human-audit numbers and audit checks from fixed result artifacts.
+
+The second command is:
+\begin{flushleft}
+\small\texttt{python scripts/reproduce\_all\_main\_tables.py}
+\end{flushleft}
+Run it from the artifact root. It validates Table~\ref{tab:existing-methods}, Tables~\ref{tab:reference-guard}--\ref{tab:audit}, the E60--E64 tables, the E61 external-subset table, and the B8 released-adapter table from fixed result artifacts. It also writes all-main-table outputs and a reproduced claim-to-source map. Full experiment reruns are outside these lightweight checks. If a required artifact or JSON key is absent, the scripts exit nonzero and write a short error status.
+
+For E60, the all-main-table shim depends on the independent-review validator output. A blocked strict-authorship status is not a reproduction failure; it is the conservative claim boundary used by the paper unless an external human review packet is provided and validated. For E61 external replay, the sidecar pipeline records the raw source hash, conversion rule, label source, and atom-sidecar source in the external raw manifest. For B8, the shim checks the comparable-adapter results under the label-hidden deployable-input contract.
+
+\paragraph{Key source files.}
+The main quantitative claims trace to:
+\begin{itemize}[leftmargin=*]
+\item \texttt{results/analysis/results/e48\_tuple\_guard\_results.json}
+\item \texttt{results/analysis/results/e50\_hard\_guard\_robustness\_results.json}
+\item \texttt{audit/analysis/results/e55\_v2\_precommit\_authz\_results\_strict.json}
+\item \texttt{results/analysis/results/e55\_precommit\_authz\_results\_strict.json}
+\item \texttt{results/analysis/results/e55\_human\_corrected\_sensitivity.json}
+\item \texttt{audit/analysis/results/e56\_final\_report.json}
+\item \texttt{audit/analysis/results/e57\_v2\_validity\_checks\_report.json}
+\item \texttt{audit/analysis/results/e57\_human\_audit\_validation.json}
+\item \texttt{evaluation/e60\_heldout\_contract/results\_e60.json}
+\item \texttt{evaluation/e60\_heldout\_contract/e60\_artifact\_level\_review.json}
+\item \texttt{evaluation/e61\_realistic\_trace\_replay/results\_e61.json}
+\item \texttt{evaluation/e61\_realistic\_trace\_replay/external\_trace\_subset/raw\_manifest.json}
+\item \texttt{evaluation/e61\_realistic\_trace\_replay/external\_trace\_subset/results\_external.json}
+\item \texttt{evaluation/e62\_extraction\_decomposition/}
+\item \texttt{evaluation/e63\_interface\_burden/}
+\item \texttt{baselines/baseline\_results.json}
+\item \texttt{baselines/b8\_released\_guardrail/results\_b8\_*.json}
+\end{itemize}
+
+\paragraph{Targeted tests from artifact notes.}
+The existing material check reports that the following targeted test command passed in the artifact source root:
+\begin{flushleft}
+\small\texttt{cd code}\\
+\small\texttt{PYTHONPATH=. python -m pytest}\\
+\small\texttt{../tests/tests/test\_effect\_binding\_guard\_e55\_precommit\_authz.py}\\
+\small\texttt{../tests/tests/test\_effect\_binding\_guard\_e57\_validity.py -q}
+\end{flushleft}
+with result \texttt{22 passed}. This reproduction note reports fixed artifact checks; full experiment reruns are outside the lightweight number-validation path.

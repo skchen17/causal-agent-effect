@@ -1,0 +1,1945 @@
+{
+  "rows": [
+    {
+      "brier_score": 0.06580912913093023,
+      "ece": 0.07425766127127252,
+      "feature_mode": "full",
+      "method": "logistic_calibrator",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.9844220081051896,
+          "ci_low": 0.8746648398478928,
+          "rate": 0.9545454545454546,
+          "successes": 63,
+          "total": 66
+        },
+        "deny_recall": {
+          "ci_high": 0.9149202769841487,
+          "ci_low": 0.7531029907801314,
+          "rate": 0.8513513513513513,
+          "successes": 63,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9835064940235673,
+          "ci_low": 0.8966896986726255,
+          "rate": 0.9578947368421052,
+          "successes": 91,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.08877246823970955,
+          "ci_low": 0.010796943829702532,
+          "rate": 0.031578947368421054,
+          "successes": 3,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.953945924403155,
+          "ci_low": 0.8713799915330105,
+          "rate": 0.9221556886227545,
+          "successes": 154,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.23119385062452902,
+          "ci_low": 0.07508967900487225,
+          "rate": 0.13513513513513514,
+          "successes": 10,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.06355703609668996,
+      "ece": 0.03610887167130268,
+      "feature_mode": "full",
+      "method": "calibrated_linear_fusion",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.9527716456706489,
+          "ci_low": 0.8150416221426188,
+          "rate": 0.9041095890410958,
+          "successes": 66,
+          "total": 73
+        },
+        "deny_recall": {
+          "ci_high": 0.9441933383034987,
+          "ci_low": 0.8009095372797369,
+          "rate": 0.8918918918918919,
+          "successes": 66,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9567124027538575,
+          "ci_low": 0.8425462090047543,
+          "rate": 0.9157894736842105,
+          "successes": 87,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.1443584833066845,
+          "ci_low": 0.03614850970030849,
+          "rate": 0.07368421052631578,
+          "successes": 7,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9494079887351797,
+          "ci_low": 0.864211176620331,
+          "rate": 0.9161676646706587,
+          "successes": 153,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.1826245758798552,
+          "ci_low": 0.04657934593059061,
+          "rate": 0.0945945945945946,
+          "successes": 7,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.04666804292299042,
+      "ece": 0.09084179843062287,
+      "feature_mode": "full",
+      "method": "small_gbdt_fusion",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.970391397933621,
+          "ci_low": 0.8494770066805462,
+          "rate": 0.9315068493150684,
+          "successes": 68,
+          "total": 73
+        },
+        "deny_recall": {
+          "ci_high": 0.9623106631906666,
+          "ci_low": 0.8341786176052062,
+          "rate": 0.918918918918919,
+          "successes": 68,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9707355104619193,
+          "ci_low": 0.8689918917654831,
+          "rate": 0.9368421052631579,
+          "successes": 89,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.11735042405807834,
+          "ci_low": 0.022687778480124224,
+          "rate": 0.05263157894736842,
+          "successes": 5,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9671527857742489,
+          "ci_low": 0.893293381903881,
+          "rate": 0.9401197604790419,
+          "successes": 157,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.14861386104924684,
+          "ci_low": 0.029203655548562038,
+          "rate": 0.06756756756756757,
+          "successes": 5,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.08069373634400796,
+      "ece": 0.14198599210368712,
+      "feature_mode": "full",
+      "method": "text_only_classifier_baseline",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.7342992862277856,
+          "ci_low": 0.5581460530797037,
+          "rate": 0.6513761467889908,
+          "successes": 71,
+          "total": 109
+        },
+        "deny_recall": {
+          "ci_high": 0.9861178204204044,
+          "ci_low": 0.8874510681944234,
+          "rate": 0.9594594594594594,
+          "successes": 71,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.6830400074353867,
+          "ci_low": 0.4889523520569727,
+          "rate": 0.5894736842105263,
+          "successes": 56,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.5005458185954855,
+          "ci_low": 0.30722742667775993,
+          "rate": 0.4,
+          "successes": 38,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.8188885070131389,
+          "ci_low": 0.6903551432453461,
+          "rate": 0.7604790419161677,
+          "successes": 127,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.09329471221654377,
+          "ci_low": 0.007443196562309684,
+          "rate": 0.02702702702702703,
+          "successes": 2,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.10599799493476474,
+      "ece": 0.10912007960051802,
+      "feature_mode": "no_provenance",
+      "method": "logistic_calibrator__no_provenance__no_provenance_overlay",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.022226130746301812,
+          "ci_low": 0.0,
+          "rate": 0.0,
+          "successes": 0,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 1.0,
+          "ci_low": 0.9777738692536981,
+          "rate": 1.0,
+          "successes": 169,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.9382384122941246,
+          "ci_low": 0.7816775692760262,
+          "rate": 0.8805970149253731,
+          "successes": 59,
+          "total": 67
+        },
+        "deny_recall": {
+          "ci_high": 0.8731303618972333,
+          "ci_low": 0.692120095441773,
+          "rate": 0.7972972972972973,
+          "successes": 59,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9567124027538575,
+          "ci_low": 0.8425462090047543,
+          "rate": 0.9157894736842105,
+          "successes": 87,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.1574537909952457,
+          "ci_low": 0.04328759724614253,
+          "rate": 0.08421052631578947,
+          "successes": 8,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9075724082591173,
+          "ci_low": 0.8040618279432782,
+          "rate": 0.863905325443787,
+          "successes": 146,
+          "total": 169
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.3078799045582269,
+          "ci_low": 0.12686963810276672,
+          "rate": 0.20270270270270271,
+          "successes": 15,
+          "total": 74
+        }
+      },
+      "overlay": false,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.08734347066581881,
+      "ece": 0.07913511586159734,
+      "feature_mode": "no_evidence",
+      "method": "logistic_calibrator__no_evidence",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.8913967204991099,
+          "ci_low": 0.7242360050880349,
+          "rate": 0.8227848101265823,
+          "successes": 65,
+          "total": 79
+        },
+        "deny_recall": {
+          "ci_high": 0.9346775819322541,
+          "ci_low": 0.7847320910446631,
+          "rate": 0.8783783783783784,
+          "successes": 65,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9019157017605267,
+          "ci_low": 0.7557021433573184,
+          "rate": 0.8421052631578947,
+          "successes": 80,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.23228777330670836,
+          "ci_low": 0.08985998634105129,
+          "rate": 0.14736842105263157,
+          "successes": 14,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9113693929386012,
+          "ci_low": 0.8085957677716707,
+          "rate": 0.8682634730538922,
+          "successes": 145,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.1990904627202631,
+          "ci_low": 0.055806661696501225,
+          "rate": 0.10810810810810811,
+          "successes": 8,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.061161197268713684,
+      "ece": 0.06666983297583874,
+      "feature_mode": "no_disagreement",
+      "method": "logistic_calibrator__no_disagreement",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.984883654346468,
+          "ci_low": 0.8781260781761931,
+          "rate": 0.9558823529411765,
+          "successes": 65,
+          "total": 68
+        },
+        "deny_recall": {
+          "ci_high": 0.9346775819322541,
+          "ci_low": 0.7847320910446631,
+          "rate": 0.8783783783783784,
+          "successes": 65,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9835064940235673,
+          "ci_low": 0.8966896986726255,
+          "rate": 0.9578947368421052,
+          "successes": 91,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.08877246823970955,
+          "ci_low": 0.010796943829702532,
+          "rate": 0.031578947368421054,
+          "successes": 3,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9628258219882605,
+          "ci_low": 0.8859135951092146,
+          "rate": 0.9341317365269461,
+          "successes": 156,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.1990904627202631,
+          "ci_low": 0.055806661696501225,
+          "rate": 0.10810810810810811,
+          "successes": 8,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.07464253361559346,
+      "ece": 0.07700146935884467,
+      "feature_mode": "no_local_qwen",
+      "method": "logistic_calibrator__no_local_qwen",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.9904922711335143,
+          "ci_low": 0.8827063524467295,
+          "rate": 0.9655172413793104,
+          "successes": 56,
+          "total": 58
+        },
+        "deny_recall": {
+          "ci_high": 0.8402362876727247,
+          "ci_low": 0.6479345618473262,
+          "rate": 0.7567567567567568,
+          "successes": 56,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9892030561702976,
+          "ci_low": 0.9112275317602905,
+          "rate": 0.968421052631579,
+          "successes": 92,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.07354263138349293,
+          "ci_low": 0.0057923854515239195,
+          "rate": 0.021052631578947368,
+          "successes": 2,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9259439885326091,
+          "ci_low": 0.8291414239196273,
+          "rate": 0.8862275449101796,
+          "successes": 148,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.33746529266622677,
+          "ci_low": 0.1486706552074038,
+          "rate": 0.22972972972972974,
+          "successes": 17,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.045781154127112235,
+      "ece": 0.04253886853896075,
+      "feature_mode": "decision_votes_only",
+      "method": "logistic_calibrator__decision_votes_only",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.9972791254725134,
+          "ci_low": 0.9178652058620286,
+          "rate": 0.9846153846153847,
+          "successes": 64,
+          "total": 65
+        },
+        "deny_recall": {
+          "ci_high": 0.9249103209951277,
+          "ci_low": 0.768806149375471,
+          "rate": 0.8648648648648649,
+          "successes": 64,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9942076145484762,
+          "ci_low": 0.9264573686165072,
+          "rate": 0.9789473684210527,
+          "successes": 93,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.05724009323665061,
+          "ci_low": 0.0018605283639709924,
+          "rate": 0.010526315789473684,
+          "successes": 1,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9671527857742489,
+          "ci_low": 0.893293381903881,
+          "rate": 0.9401197604790419,
+          "successes": 157,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.21526790895533687,
+          "ci_low": 0.0653224180677459,
+          "rate": 0.12162162162162163,
+          "successes": 9,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.08195932132995384,
+      "ece": 0.08173294673211356,
+      "feature_mode": "tuple_fields_only",
+      "method": "logistic_calibrator__tuple_fields_only",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.9851043661497328,
+          "ci_low": 0.8797860261535665,
+          "rate": 0.9565217391304348,
+          "successes": 66,
+          "total": 69
+        },
+        "deny_recall": {
+          "ci_high": 0.9441933383034987,
+          "ci_low": 0.8009095372797369,
+          "rate": 0.8918918918918919,
+          "successes": 66,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9835064940235673,
+          "ci_low": 0.8966896986726255,
+          "rate": 0.9578947368421052,
+          "successes": 91,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.08877246823970955,
+          "ci_low": 0.010796943829702532,
+          "rate": 0.031578947368421054,
+          "successes": 3,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9671527857742489,
+          "ci_low": 0.893293381903881,
+          "rate": 0.9401197604790419,
+          "successes": 157,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.1826245758798552,
+          "ci_low": 0.04657934593059061,
+          "rate": 0.0945945945945946,
+          "successes": 7,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.06580912913093023,
+      "ece": 0.07425766127127252,
+      "feature_mode": "full",
+      "method": "logistic_calibrator__no_provenance_overlay",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.022226130746301812,
+          "ci_low": 0.0,
+          "rate": 0.0,
+          "successes": 0,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 1.0,
+          "ci_low": 0.9777738692536981,
+          "rate": 1.0,
+          "successes": 169,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.9540520606710551,
+          "ci_low": 0.819651161993122,
+          "rate": 0.9066666666666666,
+          "successes": 68,
+          "total": 75
+        },
+        "deny_recall": {
+          "ci_high": 0.9623106631906666,
+          "ci_low": 0.8341786176052062,
+          "rate": 0.918918918918919,
+          "successes": 68,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9638514902996915,
+          "ci_low": 0.8556415166933156,
+          "rate": 0.9263157894736842,
+          "successes": 88,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.1443584833066845,
+          "ci_low": 0.03614850970030849,
+          "rate": 0.07368421052631578,
+          "successes": 7,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9544976955087705,
+          "ci_low": 0.8728494246289742,
+          "rate": 0.9230769230769231,
+          "successes": 156,
+          "total": 169
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.16582138239479394,
+          "ci_low": 0.03768933680933338,
+          "rate": 0.08108108108108109,
+          "successes": 6,
+          "total": 74
+        }
+      },
+      "overlay": false,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.05069790452143345,
+      "ece": 0.04884331604264397,
+      "feature_mode": "full_plus_source_scope",
+      "method": "logistic_calibrator__source_aware_diagnostic",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9125278184114969,
+          "ci_low": 0.807679992059104,
+          "rate": 0.86875,
+          "successes": 139,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.9913880422874833,
+          "ci_low": 0.8930250611770575,
+          "rate": 0.96875,
+          "successes": 62,
+          "total": 64
+        },
+        "deny_recall": {
+          "ci_high": 0.904730299570778,
+          "ci_low": 0.7375997655871838,
+          "rate": 0.8378378378378378,
+          "successes": 62,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8471523031472867,
+          "ci_low": 0.7256264723326904,
+          "rate": 0.7928994082840237,
+          "successes": 134,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9892030561702976,
+          "ci_low": 0.9112275317602905,
+          "rate": 0.968421052631579,
+          "successes": 92,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.07354263138349293,
+          "ci_low": 0.0057923854515239195,
+          "rate": 0.021052631578947368,
+          "successes": 2,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.953945924403155,
+          "ci_low": 0.8713799915330105,
+          "rate": 0.9221556886227545,
+          "successes": 154,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.24689700921986846,
+          "ci_low": 0.08507972301585126,
+          "rate": 0.14864864864864866,
+          "successes": 11,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed0",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.04464438084207741,
+      "ece": 0.03806318435189466,
+      "feature_mode": "full",
+      "method": "logistic_calibrator",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.8813564798164909,
+          "ci_low": 0.7656098584028624,
+          "rate": 0.83125,
+          "successes": 133,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 1.0,
+          "ci_low": 0.9449955327483907,
+          "rate": 1.0,
+          "successes": 66,
+          "total": 66
+        },
+        "deny_recall": {
+          "ci_high": 0.9441933383034987,
+          "ci_low": 0.8009095372797369,
+          "rate": 0.8918918918918919,
+          "successes": 66,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.940883307741425,
+          "ci_low": 0.8517499472157147,
+          "rate": 0.9053254437869822,
+          "successes": 153,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.7351652490695848,
+          "ci_low": 0.5946164701461594,
+          "rate": 0.6686390532544378,
+          "successes": 113,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9981394716360291,
+          "ci_low": 0.9427599067633495,
+          "rate": 0.9894736842105263,
+          "successes": 94,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.038866226366226365,
+          "ci_low": 0.0,
+          "rate": 0.0,
+          "successes": 0,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9795501070667247,
+          "ci_low": 0.9160163123533698,
+          "rate": 0.9580838323353293,
+          "successes": 160,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.1826245758798552,
+          "ci_low": 0.04657934593059061,
+          "rate": 0.0945945945945946,
+          "successes": 7,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed1",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.05696520277180179,
+      "ece": 0.053485396100996986,
+      "feature_mode": "full",
+      "method": "logistic_calibrator",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.8866271076488556,
+          "ci_low": 0.7725461426123724,
+          "rate": 0.8375,
+          "successes": 134,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.8980435065190016,
+          "ci_low": 0.7394676499262363,
+          "rate": 0.8333333333333334,
+          "successes": 70,
+          "total": 84
+        },
+        "deny_recall": {
+          "ci_high": 0.9787813312397599,
+          "ci_low": 0.8690943547687496,
+          "rate": 0.9459459459459459,
+          "successes": 70,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9026759430992459,
+          "ci_low": 0.797387004709615,
+          "rate": 0.8579881656804734,
+          "successes": 145,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8419771931096498,
+          "ci_low": 0.7192302939767923,
+          "rate": 0.7869822485207101,
+          "successes": 133,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9019157017605267,
+          "ci_low": 0.7557021433573184,
+          "rate": 0.8421052631578947,
+          "successes": 80,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.23228777330670836,
+          "ci_low": 0.08985998634105129,
+          "rate": 0.14736842105263157,
+          "successes": 14,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9354683820614659,
+          "ci_low": 0.8430305315520802,
+          "rate": 0.8982035928143712,
+          "successes": 150,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.1125489318055764,
+          "ci_low": 0.01388217957959554,
+          "rate": 0.04054054054054054,
+          "successes": 3,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed2",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.027854885279303014,
+      "ece": 0.04233784294094777,
+      "feature_mode": "full",
+      "method": "logistic_calibrator",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.8970822630125592,
+          "ci_low": 0.7865048113324178,
+          "rate": 0.85,
+          "successes": 136,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.9999999999999999,
+          "ci_low": 0.9441965323292892,
+          "rate": 1.0,
+          "successes": 65,
+          "total": 65
+        },
+        "deny_recall": {
+          "ci_high": 0.9346775819322541,
+          "ci_low": 0.7847320910446631,
+          "rate": 0.8783783783783784,
+          "successes": 65,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9220717909216751,
+          "ci_low": 0.8242763104613251,
+          "rate": 0.8816568047337278,
+          "successes": 149,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.7623946601310835,
+          "ci_low": 0.6252435010523353,
+          "rate": 0.6982248520710059,
+          "successes": 118,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9981394716360291,
+          "ci_low": 0.9427599067633495,
+          "rate": 0.9894736842105263,
+          "successes": 94,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.038866226366226365,
+          "ci_low": 0.0,
+          "rate": 0.0,
+          "successes": 0,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9755294540369065,
+          "ci_low": 0.9083302148025331,
+          "rate": 0.9520958083832335,
+          "successes": 159,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.1990904627202631,
+          "ci_low": 0.055806661696501225,
+          "rate": 0.10810810810810811,
+          "successes": 8,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed3",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.039290322754989095,
+      "ece": 0.04230492486762668,
+      "feature_mode": "full",
+      "method": "logistic_calibrator",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.04211735614995914,
+          "ci_low": 0.0032513513834124576,
+          "rate": 0.011834319526627219,
+          "successes": 2,
+          "total": 169
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.92764424887426,
+          "ci_low": 0.8291842977219646,
+          "rate": 0.8875,
+          "successes": 142,
+          "total": 160
+        },
+        "coverage": {
+          "ci_high": 0.9967486486165875,
+          "ci_low": 0.957882643850041,
+          "rate": 0.9881656804733728,
+          "successes": 167,
+          "total": 169
+        },
+        "deny_precision": {
+          "ci_high": 0.9999999999999999,
+          "ci_low": 0.9457719757882374,
+          "rate": 1.0,
+          "successes": 67,
+          "total": 67
+        },
+        "deny_recall": {
+          "ci_high": 0.9534206540694093,
+          "ci_low": 0.8173754241201446,
+          "rate": 0.9054054054054054,
+          "successes": 67,
+          "total": 74
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9758213889880776,
+          "ci_low": 0.9093821731173413,
+          "rate": 0.9526627218934911,
+          "successes": 161,
+          "total": 169
+        },
+        "n_predictions": 169,
+        "n_rows": 169,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.7008472464490407,
+          "rate": 1.0,
+          "successes": 9,
+          "total": 9
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8419771931096498,
+          "ci_low": 0.7192302939767923,
+          "rate": 0.7869822485207101,
+          "successes": 133,
+          "total": 169
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9981394716360291,
+          "ci_low": 0.9427599067633495,
+          "rate": 0.9894736842105263,
+          "successes": 94,
+          "total": 95
+        },
+        "safe_false_deny": {
+          "ci_high": 0.038866226366226365,
+          "ci_low": 0.0,
+          "rate": 0.0,
+          "successes": 0,
+          "total": 95
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9834319000451998,
+          "ci_low": 0.9238412699555495,
+          "rate": 0.9640718562874252,
+          "successes": 161,
+          "total": 167
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.16582138239479394,
+          "ci_low": 0.03768933680933338,
+          "rate": 0.08108108108108109,
+          "successes": 6,
+          "total": 74
+        }
+      },
+      "overlay": true,
+      "split": "source_balanced_seed4",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.042944001146023925,
+      "ece": 0.03483889467554088,
+      "feature_mode": "full",
+      "method": "logistic_calibrator",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.01686083665142801,
+          "ci_low": 0.0,
+          "rate": 0.0,
+          "successes": 0,
+          "total": 224
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.9045513044921922,
+          "ci_low": 0.8152470115308694,
+          "rate": 0.8660714285714286,
+          "successes": 194,
+          "total": 224
+        },
+        "coverage": {
+          "ci_high": 1.0,
+          "ci_low": 0.983139163348572,
+          "rate": 1.0,
+          "successes": 224,
+          "total": 224
+        },
+        "deny_precision": {
+          "ci_high": 0.9649719921005007,
+          "ci_low": 0.8598383015319639,
+          "rate": 0.9285714285714286,
+          "successes": 91,
+          "total": 98
+        },
+        "deny_recall": {
+          "ci_high": 0.9649719921005007,
+          "ci_low": 0.8598383015319639,
+          "rate": 0.9285714285714286,
+          "successes": 91,
+          "total": 98
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9590026112676219,
+          "ci_low": 0.8924661284181951,
+          "rate": 0.9330357142857143,
+          "successes": 209,
+          "total": 224
+        },
+        "n_predictions": 224,
+        "n_rows": 224,
+        "provenance_accuracy": {
+          "ci_high": null,
+          "ci_low": null,
+          "rate": null,
+          "successes": 0,
+          "total": 0
+        },
+        "resource_accuracy": {
+          "ci_high": 0.8660348204350575,
+          "ci_low": 0.7659832131461674,
+          "rate": 0.8214285714285714,
+          "successes": 184,
+          "total": 224
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.972831590771411,
+          "ci_low": 0.8897579028885562,
+          "rate": 0.9444444444444444,
+          "successes": 119,
+          "total": 126
+        },
+        "safe_false_deny": {
+          "ci_high": 0.11024209711144381,
+          "ci_low": 0.027168409228588992,
+          "rate": 0.05555555555555555,
+          "successes": 7,
+          "total": 126
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9624088932791248,
+          "ci_low": 0.8978378746508757,
+          "rate": 0.9375,
+          "successes": 210,
+          "total": 224
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.14016169846803606,
+          "ci_low": 0.03502800789949942,
+          "rate": 0.07142857142857142,
+          "successes": 7,
+          "total": 98
+        }
+      },
+      "overlay": true,
+      "split": "e48_hashed_split",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.22261235548350897,
+      "ece": 0.21946208608370238,
+      "feature_mode": "full",
+      "method": "logistic_calibrator",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.34938926831587813,
+          "ci_low": 0.13195287989578958,
+          "rate": 0.2222222222222222,
+          "successes": 12,
+          "total": 54
+        },
+        "authorization_accuracy": {
+          "ci_high": null,
+          "ci_low": null,
+          "rate": null,
+          "successes": 0,
+          "total": 0
+        },
+        "coverage": {
+          "ci_high": 0.8680471201042104,
+          "ci_low": 0.6506107316841219,
+          "rate": 0.7777777777777778,
+          "successes": 42,
+          "total": 54
+        },
+        "deny_precision": {
+          "ci_high": 1.0,
+          "ci_low": 0.8063865817272802,
+          "rate": 1.0,
+          "successes": 16,
+          "total": 16
+        },
+        "deny_recall": {
+          "ci_high": 0.8202802131162036,
+          "ci_low": 0.4670595949408046,
+          "rate": 0.6666666666666666,
+          "successes": 16,
+          "total": 24
+        },
+        "effect_accuracy": {
+          "ci_high": 0.8086273430493296,
+          "ci_low": 0.5717217482621142,
+          "rate": 0.7037037037037037,
+          "successes": 38,
+          "total": 54
+        },
+        "n_predictions": 54,
+        "n_rows": 54,
+        "provenance_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.9335841332189981,
+          "rate": 1.0,
+          "successes": 54,
+          "total": 54
+        },
+        "resource_accuracy": {
+          "ci_high": 1.0,
+          "ci_low": 0.9335841332189981,
+          "rate": 1.0,
+          "successes": 54,
+          "total": 54
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.9049502189759876,
+          "ci_low": 0.6269395261897256,
+          "rate": 0.8,
+          "successes": 24,
+          "total": 30
+        },
+        "safe_false_deny": {
+          "ci_high": 0.113517091390478,
+          "ci_low": 0.0,
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30
+        },
+        "selective_accuracy": {
+          "ci_high": 0.9868427513607937,
+          "ci_low": 0.8420986468452026,
+          "rate": 0.9523809523809523,
+          "successes": 40,
+          "total": 42
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.2584921520145059,
+          "ci_low": 0.02315832784297353,
+          "rate": 0.08333333333333333,
+          "successes": 2,
+          "total": 24
+        }
+      },
+      "overlay": true,
+      "split": "strict_loso_camel",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.38578196994262487,
+      "ece": 0.3828254933436499,
+      "feature_mode": "full",
+      "method": "logistic_calibrator",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.004977187029048447,
+          "ci_low": 0.0,
+          "rate": 0.0,
+          "successes": 0,
+          "total": 768
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.8689209724275259,
+          "ci_low": 0.8177484167321153,
+          "rate": 0.8450520833333334,
+          "successes": 649,
+          "total": 768
+        },
+        "coverage": {
+          "ci_high": 1.0,
+          "ci_low": 0.9950228129709515,
+          "rate": 1.0,
+          "successes": 768,
+          "total": 768
+        },
+        "deny_precision": {
+          "ci_high": 0.4846550039264201,
+          "ci_low": 0.41244197846316916,
+          "rate": 0.4482758620689655,
+          "successes": 325,
+          "total": 725
+        },
+        "deny_recall": {
+          "ci_high": 0.9816232041504156,
+          "ci_low": 0.9423366642117861,
+          "rate": 0.9672619047619048,
+          "successes": 325,
+          "total": 336
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9318816835739064,
+          "ci_low": 0.8921215834176629,
+          "rate": 0.9140625,
+          "successes": 702,
+          "total": 768
+        },
+        "n_predictions": 768,
+        "n_rows": 768,
+        "provenance_accuracy": {
+          "ci_high": null,
+          "ci_low": null,
+          "rate": null,
+          "successes": 0,
+          "total": 0
+        },
+        "resource_accuracy": {
+          "ci_high": 0.7656363950069781,
+          "ci_low": 0.7033717538152674,
+          "rate": 0.7356770833333334,
+          "successes": 565,
+          "total": 768
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.10270065498179513,
+          "ci_low": 0.05295589547139702,
+          "rate": 0.07407407407407407,
+          "successes": 32,
+          "total": 432
+        },
+        "safe_false_deny": {
+          "ci_high": 0.947044104528603,
+          "ci_low": 0.8972993450182049,
+          "rate": 0.9259259259259259,
+          "successes": 400,
+          "total": 432
+        },
+        "selective_accuracy": {
+          "ci_high": 0.5002064509734058,
+          "ci_low": 0.42983100748957415,
+          "rate": 0.46484375,
+          "successes": 357,
+          "total": 768
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.057663335788213935,
+          "ci_low": 0.01837679584958438,
+          "rate": 0.03273809523809524,
+          "successes": 11,
+          "total": 336
+        }
+      },
+      "overlay": true,
+      "split": "strict_loso_phase4",
+      "status": "complete"
+    },
+    {
+      "brier_score": 0.3623344717592636,
+      "ece": 0.3696953910773369,
+      "feature_mode": "full",
+      "method": "logistic_calibrator",
+      "overall": {
+        "abstain_rate": {
+          "ci_high": 0.004977187029048447,
+          "ci_low": 0.0,
+          "rate": 0.0,
+          "successes": 0,
+          "total": 768
+        },
+        "authorization_accuracy": {
+          "ci_high": 0.8689209724275259,
+          "ci_low": 0.8177484167321153,
+          "rate": 0.8450520833333334,
+          "successes": 649,
+          "total": 768
+        },
+        "coverage": {
+          "ci_high": 1.0,
+          "ci_low": 0.9950228129709515,
+          "rate": 1.0,
+          "successes": 768,
+          "total": 768
+        },
+        "deny_precision": {
+          "ci_high": 0.49177826693096277,
+          "ci_low": 0.4188164791692918,
+          "rate": 0.4550561797752809,
+          "successes": 324,
+          "total": 712
+        },
+        "deny_recall": {
+          "ci_high": 0.9794541435673196,
+          "ci_low": 0.938620630091938,
+          "rate": 0.9642857142857143,
+          "successes": 324,
+          "total": 336
+        },
+        "effect_accuracy": {
+          "ci_high": 0.9318816835739064,
+          "ci_low": 0.8921215834176629,
+          "rate": 0.9140625,
+          "successes": 702,
+          "total": 768
+        },
+        "n_predictions": 768,
+        "n_rows": 768,
+        "provenance_accuracy": {
+          "ci_high": null,
+          "ci_low": null,
+          "rate": null,
+          "successes": 0,
+          "total": 0
+        },
+        "resource_accuracy": {
+          "ci_high": 0.7656363950069781,
+          "ci_low": 0.7033717538152674,
+          "rate": 0.7356770833333334,
+          "successes": 565,
+          "total": 768
+        },
+        "safe_allowed_rate": {
+          "ci_high": 0.1339727938201399,
+          "ci_low": 0.07674963377740926,
+          "rate": 0.10185185185185185,
+          "successes": 44,
+          "total": 432
+        },
+        "safe_false_deny": {
+          "ci_high": 0.9232503662225907,
+          "ci_low": 0.8660272061798601,
+          "rate": 0.8981481481481481,
+          "successes": 388,
+          "total": 432
+        },
+        "selective_accuracy": {
+          "ci_high": 0.5145144678084513,
+          "ci_low": 0.44402624831775905,
+          "rate": 0.4791666666666667,
+          "successes": 368,
+          "total": 768
+        },
+        "unsafe_pre_allow": {
+          "ci_high": 0.061379369908061934,
+          "ci_low": 0.020545856432680334,
+          "rate": 0.03571428571428571,
+          "successes": 12,
+          "total": 336
+        }
+      },
+      "overlay": true,
+      "split": "strict_loso_ipiguard",
+      "status": "complete"
+    }
+  ],
+  "schema_version": "e49_ablation_results_v1"
+}

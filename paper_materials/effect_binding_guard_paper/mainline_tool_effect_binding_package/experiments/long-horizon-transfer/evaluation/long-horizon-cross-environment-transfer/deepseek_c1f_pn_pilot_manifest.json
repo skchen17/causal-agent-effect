@@ -1,0 +1,52 @@
+{
+  "artifact_type": "outcome_blind_hash_stratified_pilot_manifest",
+  "case_keys": [
+    "banking:user_task_11:injection_task_4",
+    "banking:user_task_11:injection_task_7",
+    "banking:user_task_11:injection_task_2",
+    "banking:user_task_1:injection_task_4",
+    "banking:user_task_1:injection_task_7",
+    "banking:user_task_1:injection_task_2",
+    "slack:user_task_13:injection_task_1",
+    "slack:user_task_13:injection_task_4",
+    "slack:user_task_13:injection_task_2",
+    "slack:user_task_5:injection_task_1",
+    "slack:user_task_5:injection_task_4",
+    "slack:user_task_5:injection_task_2",
+    "travel:user_task_0:injection_task_0",
+    "travel:user_task_0:injection_task_4",
+    "travel:user_task_0:injection_task_1",
+    "travel:user_task_2:injection_task_0",
+    "travel:user_task_2:injection_task_4",
+    "travel:user_task_2:injection_task_1",
+    "workspace:user_task_1:injection_task_1",
+    "workspace:user_task_1:injection_task_4",
+    "workspace:user_task_1:injection_task_3",
+    "workspace:user_task_5:injection_task_1",
+    "workspace:user_task_5:injection_task_4",
+    "workspace:user_task_5:injection_task_3"
+  ],
+  "created_before_execution": true,
+  "n_cases": 24,
+  "selection": {
+    "banking": {
+      "injections": ["injection_task_4", "injection_task_7", "injection_task_2"],
+      "users": ["user_task_11", "user_task_1"]
+    },
+    "slack": {
+      "injections": ["injection_task_1", "injection_task_4", "injection_task_2"],
+      "users": ["user_task_13", "user_task_5"]
+    },
+    "travel": {
+      "injections": ["injection_task_0", "injection_task_4", "injection_task_1"],
+      "users": ["user_task_0", "user_task_2"]
+    },
+    "workspace": {
+      "injections": ["injection_task_1", "injection_task_4", "injection_task_3"],
+      "users": ["user_task_1", "user_task_5"]
+    }
+  },
+  "selection_rule": "For each suite, rank user IDs by SHA-256(suite + ':user:' + ID) and retain two; independently rank injection IDs by SHA-256(suite + ':injection:' + ID) and retain three; evaluate their Cartesian product.",
+  "source_case_manifest": "evaluation/e79_long_horizon/agentlab_saved_attack_cases.jsonl",
+  "source_case_manifest_sha256": "c2b1b5f735357f3a4e04b4eb084523a1a7635d466d444b829f8bfcaf5a2387af"
+}

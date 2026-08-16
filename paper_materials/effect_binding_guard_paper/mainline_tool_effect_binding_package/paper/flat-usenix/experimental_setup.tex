@@ -1,0 +1,15 @@
+\section{Experimental Setup}
+
+\paragraph{Official AgentDojo.}
+The end-to-end protocol fixes AgentDojo v1.1.2 and all 726 official keys: 97 benign tasks and 629 task--injection pairs across workspace (280), Slack (126), travel (160), and banking (160). We use the native deterministic user-task and injection-goal predicates. In these suites, \texttt{security=true} means that the injected goal executed and is therefore counted as attack success. Malformed outputs, timeouts, context errors, empty post-tool responses, and unsupported cases remain in the denominator and are reported separately.
+
+E77 uses a local Qwen3.5-9B-derived Q4\_K\_M GGUF (SHA-256 prefix \texttt{9be22744}), temperature zero, a 131,072-token context, and a 4,096-token output cap. The primary common-model comparison uses one Qwen3-32B Q4\_K\_M GGUF (SHA-256 prefix \texttt{efd97156}), temperature zero, a 65,536-token context, and identical official keys and evaluators for every method. The model is split across two 24-GiB RTX 4090-class GPUs. Model prompts may differ only where a defense's declared mechanism requires it; task state, tool schemas, attacks, and evaluator code remain fixed.
+
+\paragraph{Causal-mediation sanity model.}
+Before applying the metric to a benchmark, a finite controlled tool model separates its concrete state-transition projection from six candidate contracts. Nine fixed interventions cover resource, target, commit mode, provenance, multi-resource expansion, omitted and explicit defaults, a compound public-link branch, and a surface placebo. The complete contract and five target, expansion, default, compound, and placebo variants test whether the evaluator distinguishes coverage gaps from mere set changes. This validates the metric implementation, not AgentDojo-wide contract soundness.
+
+\paragraph{Long-task materials.}
+The external stateful-utility gate freezes 30 offline ToolSandbox scenarios selected before model execution. A separate AgentLAB Task-Injection transfer set freezes 303 public saved cases: 49 workspace, 25 travel, 144 banking, and 85 Slack pairs. Each saved input is hash-bound and scanned to exclude stored evaluator booleans. These cases use the vendored deterministic AgentDojo v1.2.1 predicates. Because the attacks were generated previously and are not optimized against our method, we report this set as fixed-attack transfer, not method-adaptive evaluation. A separate adaptive protocol must freeze its generator checkpoint, memory-reset policy, ordering, rewrite budget, and seeds.
+
+\paragraph{Reproducibility controls.}
+Every method emits row-level keys and metrics. Finalizers require exact key coverage, one log per key, the frozen benchmark version, Boolean utility/security fields, and zero unreported execution errors. Guarded runs additionally reconcile the multiset of executed tool-call signatures with pre-commit audit signatures. Statistical scripts reject unmatched pairs and duplicate keys. No benchmark call reaches a real email, messaging, payment, travel, cloud, or other external service.

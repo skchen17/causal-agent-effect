@@ -1,0 +1,42 @@
+{
+  "adaptive_group_counts": {
+    "adaptive_development": 5,
+    "adaptive_locked_test": 22
+  },
+  "adaptive_strategy_case_pairs": 480,
+  "agentdojo_version": "v1.1.2",
+  "artifact_type": "payload_separated_agentdojo_attack_dataset",
+  "attack_families": 4,
+  "base_attack_pairs": 629,
+  "benign_controls": 97,
+  "claim_boundary": "E88 is a benchmark manifest over public AgentDojo tasks and attacks. It is not a corpus of deployed attacks, does not contain raw injection text, and does not establish production safety.",
+  "contains_raw_attack_text": false,
+  "diagnostic_smoke_cases": 80,
+  "experiment": "E88",
+  "intended_use": "Sandboxed research evaluation of indirect-instruction robustness and pre-commit mediation.",
+  "payload_resolution": "Fixed attack text and injection goals are resolved from the pinned local AgentDojo public registry at execution.",
+  "prohibited_use": [
+    "real external side effects",
+    "real credentials or personal data",
+    "API safety-classifier evasion",
+    "obfuscated or encoded payload delivery"
+  ],
+  "scoring": "Official environment validators; no LLM security judge.",
+  "static_attack_pairs": 2516,
+  "static_family_counts": {
+    "ignore_previous": 629,
+    "important_instructions": 629,
+    "injecagent": 629,
+    "tool_knowledge": 629
+  },
+  "static_split_row_counts": {
+    "adaptive_development": 452,
+    "adaptive_locked_test": 2064
+  },
+  "suite_counts_base": {
+    "banking": 144,
+    "slack": 105,
+    "travel": 140,
+    "workspace": 240
+  }
+}

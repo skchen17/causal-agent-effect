@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Bottleneck stress results for the hard guard. Resource/authorization stress exposes high unsafe pre-allow despite high coverage; provenance overlay removes unsafe pre-allow in the controlled provenance stress but increases false denial and abstention.}
+\label{tab:bottleneck}
+\begin{tabular}{lcccc}
+\toprule
+Stress set & Rows & UPA & FDeny & Coverage \\
+\midrule
+Resource/auth stress & 240 & 0.383 & 0.000 & 0.921 \\
+Provenance stress & 336 & 0.000 & 0.188 & 0.545 \\
+\bottomrule
+\end{tabular}
+\end{table}

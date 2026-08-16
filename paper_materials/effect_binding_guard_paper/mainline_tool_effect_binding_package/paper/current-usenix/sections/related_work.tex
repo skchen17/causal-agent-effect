@@ -1,0 +1,58 @@
+\section{Related Work}
+
+Agent defenses reason about several interfaces around a tool call: why the
+planner selected it, where its inputs originated, what the implementation may
+do, and whether the represented action is authorized. We focus on the missing
+validation step between execution semantics and authorization: whether the
+object exposed to policy preserves the implementation-level distinctions that
+policy needs.
+
+\paragraph{Action selection and causal attribution.}
+AgentDojo, ToolEmu, and AgentLAB expose indirect prompt injection in tool-rich
+and long-horizon tasks~\cite{agentdojo,toolemu,agentlab}. Prompt defenses and
+step classifiers assess whether a proposed action appears safe
+~\cite{toolsafe,safiron}. CaMeL and IPIGuard preserve trusted control or track
+data dependencies~\cite{camel,ipiguard}; AttriGuard and CausalArmor intervene
+on observations and rerun the agent to estimate which input caused a proposed
+call~\cite{attriguard,causalarmor}. These systems attribute an action to its
+upstream causes. Our interventions operate at the next boundary: they vary the
+call or pre-state, execute the tool, and test whether the authorization
+interface preserves the resulting policy distinction.
+
+\paragraph{Authority, provenance, and mediation.}
+Agent policy systems restrict tools, actions, parameters, or capabilities
+~\cite{progent,miniscope,clawguard,scopegate,agentguard}. PACT assigns semantic
+roles to arguments, while AuthGraph relates clean authority to argument
+provenance~\cite{pact,authgraph}. SecureClaw and commit-time authorization place
+fresh checks at the effect sink~\cite{secureclaw,committimeauth}. These systems
+supply authority or enforcement mechanisms. Their precision depends on the
+object presented for authorization: provenance identifies origin, call
+arguments encode requests, and policy decides represented effects, but none of
+these components alone establishes that the representation matches what the
+implementation commits. Our enforcement model builds on complete mediation,
+least privilege, confused-deputy, information-flow, and provenance principles
+~\cite{saltzer1975protection,dennis1966programming,hardy1988confused,denning1976lattice,buneman2001why,cheney2009provenance}.
+Contextual security models likewise separate task, action, source, and data
+boundaries~\cite{siu2026formalizing}.
+
+\paragraph{Effect specification.}
+Type-and-effect systems make effects explicit by construction
+~\cite{lucassen1988effects}, and ETAS brings effect rows and compiled monitors
+to an agent language~\cite{etas2026}. Contract2Tool infers planning contracts,
+ContractGuard protects supplied contracts, and ToolGuardian combines
+descriptions, traces, mock execution, and source analysis to vet tools
+~\cite{contract2tool,contractguard,toolguardian2026}. These techniques produce,
+protect, or analyze semantic descriptions. We treat such a description as a
+candidate authorization interface and ask whether its induced equivalence
+classes preserve the distinctions required by policy.
+
+\paragraph{Counterexample-guided interface validation.}
+Counterexample-guided abstraction refinement splits a coarse abstraction after
+concrete execution falsifies it~\cite{clarke2000cegar}. Causal abstraction asks
+whether interventions at a lower level are preserved by a higher-level
+model~\cite{pearl2009causality,beckers2019abstracting,geiger2022inducing}. We
+apply the same executable discipline to an authorization boundary. A source
+intervention establishes a semantic difference, a policy oracle establishes
+its security relevance, and equality under the candidate interface completes a
+failure certificate. The resulting validation record makes authorization
+observability policy-relative, implementation-grounded, and testable.

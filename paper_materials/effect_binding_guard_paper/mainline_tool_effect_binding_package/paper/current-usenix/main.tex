@@ -1,0 +1,47 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{usenix}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,fit,positioning,calc,shapes.geometric}
+\input{figures/tikz_style}
+
+\newcommand{\sys}{Provenance Monitor}
+\newcommand{\Allow}{\textnormal{\textsc{Allow}}}
+\newcommand{\Deny}{\textnormal{\textsc{Deny}}}
+\newcommand{\Abstain}{\textnormal{\textsc{Abstain}}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\title{Falsifying Authorization Interfaces for Tool-Using Agents:\\ Counterfactual Validation of Policy-Relevant Effects}
+\author{Anonymous Authors}
+\date{}
+
+\begin{document}
+\maketitle
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/threat_model}
+\input{sections/method}
+\input{sections/security_analysis}
+\input{sections/evaluation}
+\input{sections/results}
+\input{sections/limitations}
+\input{sections/conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\appendix
+\input{appendix/ethics}
+\input{appendix/open_science}
+\input{appendix/additional_results}
+\input{appendix/formal_proofs}
+\end{document}

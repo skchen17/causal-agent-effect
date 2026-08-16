@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\caption{Prototype interface-economy audit. Both interfaces make exact
+decisions and have no mixed cell. ``State leaves'' counts tool pre-state values
+crossing the policy-facing boundary; authority state is excluded. Code and
+latency describe these implementations, not production TCB or performance.}
+\label{tab:interface-economy}
+\begin{tabular}{llrrrrrr}
+\toprule
+Domain & Interface & Cells & Overpart. & Median bytes & State leaves & AST stmts & Median $\mu$s \\
+\midrule
+Explicit authority (1,024) & Typed effect & 297 & 0 & 241 & 0 & 132 & 73.0 \\
+ & State-aware request & 669 & 3,252 & 537 & 9 & 143 & 13.8 \\
+Third-party MCP (264) & Typed effect & 138 & 0 & 203 & 0 & 102 & 10.0 \\
+ & State-aware request & 161 & 90 & 271 & 4 & 83 & 13.6 \\
+\bottomrule
+\end{tabular}
+\end{table*}

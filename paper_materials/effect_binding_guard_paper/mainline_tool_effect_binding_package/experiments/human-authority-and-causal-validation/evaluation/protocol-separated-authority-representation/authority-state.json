@@ -1,0 +1,301 @@
+{
+  "capabilities": {
+    "cap:internal-messaging": {
+      "constraints": {
+        "message.notify": {
+          "target_groups": [
+            "team"
+          ]
+        },
+        "message.post": {
+          "payload_class": {
+            "allowed": [
+              "public",
+              "internal"
+            ]
+          }
+        }
+      },
+      "holder": "agent:assistant",
+      "operations": [
+        "message.post",
+        "message.notify",
+        "message.draft.save"
+      ],
+      "resources": [
+        "channel:internal"
+      ]
+    }
+  },
+  "delegations": {
+    "del:limited-transfer": {
+      "constraints": {
+        "bank.balance.debit": {
+          "amount": {
+            "max": 505
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          }
+        },
+        "bank.fee.charge": {
+          "amount": {
+            "max": 5
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          }
+        },
+        "bank.transfer.commit": {
+          "amount": {
+            "max": 500
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          },
+          "targets": [
+            "payee:acme"
+          ]
+        }
+      },
+      "delegate": "agent:assistant",
+      "issuer": "principal:treasury",
+      "operations": [
+        "bank.transfer.commit",
+        "bank.balance.debit",
+        "bank.fee.charge",
+        "bank.transfer.draft"
+      ],
+      "resources": [
+        "account:checking"
+      ]
+    }
+  },
+  "principals": {
+    "agent:assistant": {
+      "groups": [
+        "team",
+        "finance-operators"
+      ]
+    },
+    "alice": {
+      "groups": [
+        "team"
+      ]
+    },
+    "alice@example.com": {
+      "groups": [
+        "team"
+      ]
+    },
+    "bob": {
+      "groups": [
+        "team"
+      ]
+    },
+    "bob@example.com": {
+      "groups": [
+        "team"
+      ]
+    },
+    "eve": {
+      "groups": [
+        "external"
+      ]
+    },
+    "eve@example.com": {
+      "groups": [
+        "external"
+      ]
+    },
+    "mallory": {
+      "groups": [
+        "external"
+      ]
+    },
+    "mallory@example.com": {
+      "groups": [
+        "external"
+      ]
+    }
+  },
+  "resources": {
+    "account:checking": {
+      "acl": {},
+      "owner": "principal:treasury",
+      "type": "bank_account"
+    },
+    "account:savings": {
+      "acl": {},
+      "owner": "principal:treasury",
+      "type": "bank_account"
+    },
+    "calendar:external": {
+      "acl": {},
+      "owner": "principal:external-admin",
+      "type": "calendar"
+    },
+    "calendar:team": {
+      "acl": {
+        "agent:assistant": [
+          "calendar.event.upsert",
+          "calendar.participant.invite",
+          "calendar.participant.remove",
+          "calendar.visibility.set",
+          "calendar.recurrence.set",
+          "calendar.draft.save"
+        ]
+      },
+      "constraints": {
+        "calendar.event.upsert": {
+          "recurrence": {
+            "allowed": [
+              "none",
+              "weekly"
+            ]
+          },
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        },
+        "calendar.participant.invite": {
+          "target_groups": [
+            "team"
+          ]
+        },
+        "calendar.recurrence.set": {
+          "recurrence": {
+            "allowed": [
+              "none",
+              "weekly"
+            ]
+          }
+        },
+        "calendar.visibility.set": {
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        }
+      },
+      "owner": "principal:team-admin",
+      "type": "calendar"
+    },
+    "channel:external": {
+      "acl": {},
+      "owner": "principal:external-admin",
+      "type": "channel"
+    },
+    "channel:internal": {
+      "acl": {},
+      "owner": "principal:team-admin",
+      "type": "channel"
+    },
+    "doc:external": {
+      "acl": {},
+      "owner": "principal:external-admin",
+      "type": "document"
+    },
+    "doc:plan": {
+      "acl": {
+        "agent:assistant": [
+          "document.share.grant",
+          "document.share.revoke",
+          "document.share.change",
+          "document.visibility.set",
+          "document.share.draft"
+        ]
+      },
+      "constraints": {
+        "document.share.change": {
+          "permission": {
+            "allowed": [
+              "viewer",
+              "commenter"
+            ]
+          },
+          "target_groups": [
+            "team"
+          ]
+        },
+        "document.share.grant": {
+          "permission": {
+            "allowed": [
+              "viewer",
+              "commenter"
+            ]
+          },
+          "target_groups": [
+            "team"
+          ]
+        },
+        "document.visibility.set": {
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        }
+      },
+      "owner": "principal:team-admin",
+      "type": "document"
+    },
+    "doc:report": {
+      "acl": {
+        "agent:assistant": [
+          "document.share.grant",
+          "document.share.revoke",
+          "document.share.change",
+          "document.visibility.set",
+          "document.share.draft"
+        ]
+      },
+      "constraints": {
+        "document.share.change": {
+          "permission": {
+            "allowed": [
+              "viewer",
+              "commenter"
+            ]
+          },
+          "target_groups": [
+            "team"
+          ]
+        },
+        "document.share.grant": {
+          "permission": {
+            "allowed": [
+              "viewer",
+              "commenter"
+            ]
+          },
+          "target_groups": [
+            "team"
+          ]
+        },
+        "document.visibility.set": {
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        }
+      },
+      "owner": "principal:team-admin",
+      "type": "document"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "effect_sensitivity": 0.0,
+    "interpretation": "Topology is stable but has no authorization decision interface.",
+    "method": "ipiguard_topology_only",
+    "safe_false_deny": null,
+    "scope": "original_component_custom_stress",
+    "surface_invariance": 1.0,
+    "unsafe_pre_allow": null
+  },
+  {
+    "abstain_rate": 0.5791666666666667,
+    "authorization_sensitivity": 0.375,
+    "effect_sensitivity": 0.375,
+    "interpretation": "Added semantic mapper; not original IPIGuard.",
+    "method": "deterministic_effect_resource_mapper",
+    "resource_sensitivity": 0.375,
+    "safe_false_deny": 0.05952380952380953,
+    "scope": "diagnostic",
+    "surface_invariance": 0.7083333333333334,
+    "unsafe_pre_allow": 0.0
+  },
+  {
+    "abstain_rate": 0.5791666666666667,
+    "authorization_sensitivity": 0.375,
+    "effect_sensitivity": 0.375,
+    "interpretation": "Added semantic mapper; not original IPIGuard.",
+    "method": "ipiguard_normalized_content",
+    "resource_sensitivity": 0.375,
+    "safe_false_deny": 0.05952380952380953,
+    "scope": "diagnostic",
+    "surface_invariance": 0.7083333333333334,
+    "unsafe_pre_allow": 0.0
+  },
+  {
+    "abstain_rate": 0.0625,
+    "authorization_sensitivity": 0.375,
+    "effect_sensitivity": 0.8333333333333334,
+    "interpretation": "Added semantic mapper; not original IPIGuard.",
+    "method": "local_qwen_effect_resource_mapper",
+    "resource_sensitivity": 0.125,
+    "safe_false_deny": 0.017857142857142856,
+    "scope": "diagnostic",
+    "surface_invariance": 0.9916666666666667,
+    "unsafe_pre_allow": 0.3333333333333333
+  },
+  {
+    "abstain_rate": 0.0,
+    "authorization_sensitivity": 1.0,
+    "effect_sensitivity": 1.0,
+    "interpretation": "Added semantic mapper; not original IPIGuard.",
+    "method": "oracle_effect_resource_mapper",
+    "resource_sensitivity": 1.0,
+    "safe_false_deny": 0.0,
+    "scope": "upper_bound",
+    "surface_invariance": 1.0,
+    "unsafe_pre_allow": 0.0
+  },
+  {
+    "interpretation": "Stable structural policy component; misses control-dependency violations in custom stress.",
+    "method": "camel_structural_policy",
+    "safe_false_deny": 0.0,
+    "scope": "original_component_custom_stress",
+    "surface_invariance": 1.0,
+    "unsafe_blocked": 0.75,
+    "unsafe_misses": 6
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "annotation_source": "Trace metadata for allow/deny labels plus rule-derived sidecar atoms; not independent human annotation.",
+  "candidate_side_effectful_call_required": true,
+  "domains": {
+    "external_banking": 46,
+    "external_chat": 31,
+    "external_travel": 10,
+    "external_workspace": 69
+  },
+  "experiment": "E61_external_trace_subset",
+  "label_counts": {
+    "ALLOW": 22,
+    "DENY": 134
+  },
+  "n_traces": 156,
+  "no_real_external_side_effects": true,
+  "sandboxed_or_replayed": true,
+  "source": "data/data/tool_effect_fragmentation/ipiguard_phase5_traces.jsonl",
+  "source_system": "IPIGuard",
+  "source_type": "saved AgentDojo-style IPIGuard replay traces",
+  "trace_properties": {
+    "incomplete_or_ambiguous_context_rate": 0.077,
+    "multi_resource_or_nested_args_rate": 0.25,
+    "operation_mode_distinction_rate": 0.147,
+    "untrusted_tool_returned_content_rate": 0.859
+  }
+}

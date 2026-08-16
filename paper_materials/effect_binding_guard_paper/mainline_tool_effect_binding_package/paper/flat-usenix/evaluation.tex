@@ -1,0 +1,20 @@
+\section{Evaluation Methodology}
+
+The evaluation asks whether existing monitors jointly bind effects, whether frozen contracts cover independently varied tool behavior, whether pre-commit mediation improves prompt-injection security without collapsing utility, whether the property persists over long trajectories, and which component and cost account for the outcome.
+
+\paragraph{Causal-mediation contract tests.}
+Paired sandbox executions hold state and history fixed while intervening on one field, a declared interaction, an omitted default, or a surface placebo. An independent state-difference projection determines whether the concrete security effect changed; the candidate contract independently determines whether canonical atoms changed. We report atom mediation precision/recall, mediation-gap rate, true surface invariance, interaction coverage, authorization-flip agreement, unsafe pre-allow, false denial, coverage, and abstention. These tests concern execution semantics. A separate observation-attenuation test, when used, measures why an agent proposed a call and is reported as action-source attribution rather than contract validation. Reference sidecars remain outside deployable prompts and runtime inputs.
+
+\paragraph{Same-protocol AgentDojo comparison.}
+The primary prompt-injection comparison fixes AgentDojo version, official case keys, victim checkpoint, decoding configuration, task instances, attacks, and utility/attack-success evaluators across no guard, released detector checkpoints, prompting defenses, released-artifact adapters where feasible, and \sys{}. Each parse failure and runtime error remains in the denominator. Adapted baselines are labeled as common-input evaluations, not reproductions of their original papers.
+
+\paragraph{Long-horizon evaluation.}
+Stateful tasks are stratified by successful reference-trajectory length and contain dependency DAGs, legitimate resolver obligations, terminal utility validators, and per-prefix forbidden-effect validators. Attacks appear early, mid-trajectory, immediately before a high-impact commit, and repeatedly. Metrics include trajectory attack success, unauthorized committed atoms, first unsafe commit index, terminal success, milestone completion, legitimate effect recall, recovery, permission drift, latency, tokens, and extra model calls.
+
+\paragraph{Ablations and adaptive attacks.}
+Ablations remove resource, target, mode, provenance, default expansion, compound templates, counterfactual registration, task-envelope planning, authorized-read grounding, and fail-closed behavior one at a time under the same model and tasks. Descriptor swaps deliberately exchange resource, target, mode, or provenance bindings between compatible tools. Adaptive attacks target mediation gaps, aliases, resolver evidence, replan feedback, and individually plausible tool chains. We retain performance drops and utility failures.
+
+The adaptive protocol freezes 12 mechanism-specific strategies and selects 40 official AgentDojo attack keys before adaptive generation, 10 per suite by a deterministic hash ranking. Their Cartesian product contains 480 strategy--case pairs. Each row fixes the attacker-visible feedback, search budget, and an environment-level success relation; no LLM judges security. This manifest is a precommitted evaluation protocol, not an executed result.
+
+\paragraph{Statistical treatment.}
+Binary rates use Wilson 95\% intervals. Identical case keys support paired bootstrap intervals for rate differences and exact McNemar tests; families of related comparisons use Holm correction. Deterministic decoding does not remove infrastructure nondeterminism, so a stratified subset is repeated. Duplicate keys, missing metrics, method-specific denominators, and unmatched pairs fail the statistics pass rather than being silently dropped. All reported values are generated from row-level artifacts by a fail-fast reproduction script.

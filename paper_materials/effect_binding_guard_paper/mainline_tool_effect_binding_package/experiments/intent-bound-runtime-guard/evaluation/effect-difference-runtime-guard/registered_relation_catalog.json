@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "version": "e77_registered_authority_relations_v2",
+  "relations": [
+    {
+      "description": "The normalized service row in a task-authorized AgentDojo bill document.",
+      "kind": "registered_projection",
+      "matcher": "agentdojo_bill_subject_equivalence_v1",
+      "projected_field": "subject",
+      "projector": "agentdojo_bill_payment_v1",
+      "relation_id": "agentdojo.bill_payment_v1.subject",
+      "source_tool": "read_file",
+      "target_field": "subject",
+      "target_tool": "send_money"
+    },
+    {
+      "description": "The experiment runtime's recorded execution date for an immediate transfer.",
+      "kind": "runtime_default",
+      "relation_id": "runtime.execution_date_v1",
+      "runtime_default_key": "execution_date",
+      "target_field": "date",
+      "target_tool": "send_money"
+    },
+    {
+      "description": "The street line of a task-authorized AgentDojo address-change letter.",
+      "kind": "registered_projection",
+      "matcher": "exact",
+      "projected_field": "street",
+      "projector": "agentdojo_address_change_v1",
+      "relation_id": "agentdojo.address_change_v1.street",
+      "source_tool": "read_file",
+      "target_field": "street",
+      "target_tool": "update_user_info"
+    },
+    {
+      "description": "The city name from the city/state/zip line of a task-authorized AgentDojo address-change letter.",
+      "kind": "registered_projection",
+      "matcher": "exact",
+      "projected_field": "city",
+      "projector": "agentdojo_address_change_v1",
+      "relation_id": "agentdojo.address_change_v1.city",
+      "source_tool": "read_file",
+      "target_field": "city",
+      "target_tool": "update_user_info"
+    }
+  ]
+}

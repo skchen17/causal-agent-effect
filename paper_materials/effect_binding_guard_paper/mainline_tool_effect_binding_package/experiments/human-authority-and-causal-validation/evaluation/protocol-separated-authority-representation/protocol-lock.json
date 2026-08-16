@@ -1,0 +1,73 @@
+{
+  "claim_boundary": "Protocol-separated controlled benchmark; not independently authored and not a production prevalence estimate.",
+  "design": {
+    "domains": [
+      "calendar",
+      "workspace",
+      "messaging",
+      "banking"
+    ],
+    "evaluation_label_balancing": false,
+    "n_evaluation_contexts": 1024,
+    "n_registration_contexts": 384,
+    "pair_selection": "none before execution; mixed cells discovered after authority labels",
+    "post_result_case_deletion": false,
+    "representations": [
+      "tool_name",
+      "canonical_raw_arguments",
+      "common_effect_fields",
+      "validated_typed_effects"
+    ],
+    "runtime_descriptor_source": "experiments/human-authority-and-causal-validation/evaluation/protocol-separated-authority-representation/frozen-executable-descriptors.json"
+  },
+  "experiment": "protocol_separated_authority_representation",
+  "hashes": {
+    "authority_module": "04f238465e9ed4d8212f454f607418e09a323bed3c1c3d5a4ab420f8b6203fba",
+    "authority_state": "5d88e7c6851f41fb63d14a0601344988876e98408269076adeb7c4113e4800a6",
+    "descriptor_candidates": "41d18f0b2f2242e2f078b0aa6af05ac850ecbf14ad65dc77af67330573a7c824",
+    "descriptor_runtime_module": "56ec1bc08aa06a26cb04c37ba1110134d406bef647e96b09a997e8518484c262",
+    "evaluation_contexts": "3ffde5bea6067a5ae023e46bb9bfd4bf2fd4a096152d956305113c9c052455d5",
+    "frozen_descriptors": "6fcaf572c63a63039c40a1ac064c41897bb2b4000d1b007c7b0b406fb1319196",
+    "generator_config": "f1c0c5900c1efb00799219ad283e36f0b4ca76532420c3a071bad70f0e693c91",
+    "generator_module": "3f4f2a2c904226d1c03d58c57677b8563f9aa3606fd64943bae6d8ac45c6c5cf",
+    "oracle_module": "ff8766d27de8d13bac48e9b293a397b9737894aa308fb98d14551641a6ecd42b",
+    "registration_contexts": "fe34ca6925f3afda9c87eea92fe1bb3eb86cbd819e1196bb449666c4f8831d5e",
+    "runner_module": "8016771cea5ee953cb43336a21ad4abf13849ba8b4173a02132f7d1825bc1ff2",
+    "sandbox_module": "f78bb298d4f88117770f8db4eafee1215b7afb28775f832cbc81773884e8ddcf",
+    "specs_module": "ad316ef4d3cd9e02c4571c19d3166cfb21d379746bd5eca6bbb5f2e9dc8f9eef"
+  },
+  "registration_report": {
+    "axes": {
+      "default": 28,
+      "mode": 28,
+      "pre_state": 28,
+      "qualifier": 28,
+      "resource": 28,
+      "surface": 24,
+      "target": 28
+    },
+    "effective_sensitive_pairs": 168,
+    "exact_match_rate": 1.0,
+    "exact_matches": 384,
+    "n_contexts": 384,
+    "n_pairs": 192,
+    "relation_accuracy": 1.0,
+    "relation_passes": 192,
+    "surface_invariant_pairs": 24
+  },
+  "sequence": [
+    {
+      "at": "2026-08-14T15:35:52.815482+00:00",
+      "event": "authority_and_generator_frozen"
+    },
+    {
+      "at": "2026-08-14T15:35:52.815482+00:00",
+      "event": "descriptor_frozen_after_registration"
+    },
+    {
+      "at": "2026-08-14T15:35:52.857118+00:00",
+      "event": "descriptor_blind_evaluation_materialized"
+    }
+  ],
+  "status": "frozen_before_evaluation_execution"
+}

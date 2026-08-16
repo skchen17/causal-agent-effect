@@ -1,0 +1,5 @@
+\section{Threat Model and Security Goal}
+We study pre-commit mediation for LLM-agent tool calls. The monitor observes a user task, visible tool schema, candidate tool call, non-oracle evidence summaries when available, and provenance/control metadata. It must decide before commit whether the realized effects are authorized by the task.
+
+\subsection{Authorization Contract}
+E55 assumes an explicit authorization contract: authorized resource sets, aliases, operation modes, multi-resource expansion rules, public/private visibility constraints, trusted and untrusted control sources, and evidence availability. The guard may abstain when resource identity, provenance, or evidence is insufficient. This contract is visible infrastructure, not a hidden label.

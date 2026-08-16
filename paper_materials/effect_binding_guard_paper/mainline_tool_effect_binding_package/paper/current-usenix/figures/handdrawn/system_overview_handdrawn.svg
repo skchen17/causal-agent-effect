@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="670" viewBox="0 0 1500 670">
+  <defs>
+    <style>
+      .ink { fill: none; stroke: #27323a; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { fill: none; stroke: #27323a; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+      .station { fill: #fff; stroke: #27323a; stroke-width: 3; }
+      .paper { fill: #fff; stroke: #27323a; stroke-width: 2.2; }
+      .teal { fill: #dcefeb; stroke: #26766f; stroke-width: 3; }
+      .coral { fill: #fde1d6; stroke: #c9553d; stroke-width: 3; }
+      .gray { fill: #f1f3f4; stroke: #27323a; stroke-width: 3; }
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: 700; fill: #202a30; }
+      .label { font-family: Arial, sans-serif; font-size: 19px; font-weight: 600; fill: #202a30; }
+      .body { font-family: Arial, sans-serif; font-size: 16px; fill: #202a30; }
+      .small { font-family: Arial, sans-serif; font-size: 14px; fill: #202a30; }
+      .mono { font-family: "Courier New", monospace; font-size: 15px; fill: #202a30; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M1,1 L9,5 L1,9" fill="none" stroke="#27323a" stroke-width="2"/>
+    </marker>
+    <marker id="arrowCoral" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M1,1 L9,5 L1,9" fill="none" stroke="#c9553d" stroke-width="2"/>
+    </marker>
+  </defs>
+  <rect width="1500" height="670" fill="#fff"/>
+
+  <!-- Lanes -->
+  <path d="M34 46 Q740 32 1466 46 L1466 302 Q742 314 34 302 Z" fill="#f8faf9" stroke="#26766f" stroke-width="2.5" stroke-dasharray="10 8"/>
+  <path d="M34 351 Q740 337 1466 351 L1466 629 Q742 641 34 629 Z" fill="#fffaf7" stroke="#c9553d" stroke-width="2.5" stroke-dasharray="10 8"/>
+  <text class="title" x="62" y="82">OFFLINE: register and falsify</text>
+  <text class="title" x="62" y="390">RUNTIME: bind and mediate</text>
+
+  <!-- Offline station 1 -->
+  <rect class="station" x="68" y="112" width="260" height="146" rx="14"/>
+  <path class="thin" d="M96 144 H154 V218 H96 Z M107 161 H143 M107 179 H143 M107 197 H132"/>
+  <path class="thin" d="M178 202 L218 160 M190 213 L230 171 M174 198 L194 218 M214 158 L234 178"/>
+  <rect class="gray" x="244" y="143" width="55" height="74" rx="8"/>
+  <text class="small" x="253" y="174">SAN</text>
+  <text class="small" x="252" y="192">DBOX</text>
+  <text class="label" x="90" y="244">Schema + code + sandbox</text>
+
+  <!-- Offline station 2 -->
+  <path class="ink" d="M331 185 H397" marker-end="url(#arrow)"/>
+  <rect class="station" x="405" y="112" width="260" height="146" rx="14"/>
+  <circle class="teal" cx="460" cy="169" r="31"/>
+  <path class="thin" d="M443 169 Q460 184 477 169 M446 156 H474 M453 143 V132 M467 143 V132"/>
+  <path class="paper" d="M511 137 H637 V218 H511 Z"/>
+  <text class="mono" x="527" y="162">effect:</text>
+  <text class="mono" x="527" y="183">resource:</text>
+  <text class="mono" x="527" y="204">target:</text>
+  <text class="label" x="433" y="244">LLM proposes atom roles</text>
+
+  <!-- Offline station 3 -->
+  <path class="ink" d="M668 185 H734" marker-end="url(#arrow)"/>
+  <rect class="station" x="742" y="95" width="340" height="180" rx="14"/>
+  <rect class="teal" x="775" y="127" width="100" height="78" rx="9"/>
+  <rect class="coral" x="944" y="127" width="100" height="78" rx="9"/>
+  <path class="thin" d="M792 149 H858 M792 168 H844 M961 149 H1027 M961 168 H1013"/>
+  <path class="ink" d="M882 166 H929" marker-end="url(#arrow)"/>
+  <circle cx="911" cy="221" r="23" fill="#fff" stroke="#27323a" stroke-width="3"/>
+  <path class="ink" d="M928 238 L949 259"/>
+  <text class="small" x="779" y="225">base call</text>
+  <text class="small" x="948" y="225">mutated call</text>
+  <text class="label" x="790" y="259">Execute, diff, find counterexamples</text>
+
+  <!-- Feedback loop -->
+  <path d="M802 105 Q718 44 586 101" fill="none" stroke="#c9553d" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 6" marker-end="url(#arrowCoral)"/>
+  <text class="small" x="641" y="66" fill="#c9553d">refine on a witnessed gap</text>
+
+  <!-- Frozen card -->
+  <path class="ink" d="M1086 185 H1152" marker-end="url(#arrow)"/>
+  <rect class="teal" x="1160" y="100" width="270" height="170" rx="14"/>
+  <path class="thin" d="M1190 126 H1302 V231 H1190 Z M1206 150 H1287 M1206 174 H1287 M1206 198 H1263"/>
+  <circle cx="1361" cy="181" r="42" fill="#fff" stroke="#26766f" stroke-width="4"/>
+  <path d="M1339 181 L1354 197 L1385 160" fill="none" stroke="#26766f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="label" x="1192" y="254">Frozen descriptor or review</text>
+
+  <!-- Drop descriptor into runtime -->
+  <path class="ink" d="M1294 273 V430 Q1294 449 1274 449 H1168" marker-end="url(#arrow)"/>
+  <text class="small" x="1306" y="343">hash-frozen</text>
+
+  <!-- Runtime inputs -->
+  <rect class="station" x="68" y="424" width="300" height="158" rx="14"/>
+  <path class="thin" d="M92 452 H190 V531 H92 Z M107 473 H174 M107 494 H174 M107 515 H159"/>
+  <path class="coral" d="M218 448 H340 V513 H218 Z"/>
+  <text class="small" x="233" y="473">untrusted tool</text>
+  <text class="small" x="250" y="494">output</text>
+  <rect class="gray" x="218" y="525" width="122" height="39" rx="8"/>
+  <text class="mono" x="234" y="550">tool call</text>
+  <text class="label" x="94" y="570">Task + evidence + exact call</text>
+
+  <!-- Expand atoms -->
+  <path class="ink" d="M372 503 H438" marker-end="url(#arrow)"/>
+  <rect class="station" x="446" y="424" width="270" height="158" rx="14"/>
+  <rect class="teal" x="474" y="453" width="100" height="42" rx="21"/>
+  <rect class="teal" x="586" y="453" width="100" height="42" rx="21"/>
+  <rect class="coral" x="474" y="508" width="100" height="42" rx="21"/>
+  <rect class="gray" x="586" y="508" width="100" height="42" rx="21"/>
+  <text class="small" x="493" y="479">effect</text>
+  <text class="small" x="600" y="479">resource</text>
+  <text class="small" x="493" y="534">target</text>
+  <text class="small" x="596" y="534">provenance</text>
+  <text class="label" x="488" y="570">Expand concrete atoms</text>
+
+  <!-- Bind -->
+  <path class="ink" d="M720 503 H786" marker-end="url(#arrow)"/>
+  <rect class="station" x="794" y="424" width="300" height="158" rx="14"/>
+  <circle cx="846" cy="488" r="31" fill="#fff" stroke="#27323a" stroke-width="3"/>
+  <path class="ink" d="M868 510 L892 534"/>
+  <path class="thin" d="M918 456 H1060 M918 482 H1041 M918 508 H1060 M918 534 H1022"/>
+  <circle cx="930" cy="456" r="5" fill="#26766f"/>
+  <circle cx="930" cy="482" r="5" fill="#26766f"/>
+  <circle cx="930" cy="508" r="5" fill="#c9553d"/>
+  <text class="label" x="823" y="570">Bind to task and provenance</text>
+
+  <!-- Gate -->
+  <path class="ink" d="M1098 503 H1164" marker-end="url(#arrow)"/>
+  <rect class="teal" x="1172" y="424" width="258" height="158" rx="14"/>
+  <path class="thin" d="M1201 463 H1268 V541 H1201 Z M1268 482 H1301 V541 H1268"/>
+  <path d="M1318 480 L1336 499 L1372 460" fill="none" stroke="#26766f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="thin" d="M1317 528 H1374"/>
+  <text class="small" x="1323" y="550">DENY</text>
+  <text class="label" x="1207" y="570">Commit exact call or stop</text>
+
+  <!-- No runtime LLM -->
+  <circle cx="724" cy="618" r="20" fill="#fff" stroke="#c9553d" stroke-width="3"/>
+  <path class="thin" d="M713 618 Q724 628 735 618 M716 608 H732"/>
+  <path d="M708 602 L740 634" stroke="#c9553d" stroke-width="4" stroke-linecap="round"/>
+  <text class="small" x="754" y="624">No registration LLM on the runtime path</text>
+</svg>

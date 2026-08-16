@@ -1,0 +1,36 @@
+{
+  "api_key_serialized": false,
+  "case_counts": {
+    "authorized_exact": 10,
+    "effect_invariant_surface": 7,
+    "forbidden_effect": 3,
+    "missing_resolver_evidence": 1,
+    "mixed_authority_composite": 2,
+    "sensitive_counterfactual": 10,
+    "trusted_resolver_evidence": 1,
+    "untrusted_provenance": 1
+  },
+  "claim_boundary": "Mechanism probe over reviewed-task-derived counterfactuals. It does not establish end-to-end AgentDojo utility, production safety, or human-equivalent review.",
+  "conditions": [
+    "task_only",
+    "opaque_effect_summary",
+    "atomized",
+    "atom_cegar"
+  ],
+  "created_at": "2026-08-07T11:22:41.836496+00:00",
+  "dataset": "experiments/security-analysis-ablation-and-overhead/evaluation/utility-causal-diagnostics/probe_cases.jsonl",
+  "dataset_sha256": "d9701870e8a42fbd47620147c852ac87b2bcc4cae97947f691350a9f2d4f85b3",
+  "decision_labels_hidden_from_model": true,
+  "development_note": "Smoke runs were used to repair token-budget and probe-scope defects before the full diagnostic. Use a separately frozen v2 protocol for confirmatory paper evidence.",
+  "experiment": "utility_causal_diagnostics_v1",
+  "inputs": {
+    "descriptors": "experiments/intent-bound-runtime-guard/results/effect-difference-runtime-guard/registered-effect-diff-descriptors.jsonl",
+    "descriptors_sha256": "dc9e16d87eefcf6ba54e71bc0e799b96eaaa062f6e22cfdf9db0616b6954e9e4",
+    "review_packet": "experiments/human-authority-and-causal-validation/evaluation/authority-manifest-human-review/semantic-interface-v3/review_packet.reviewed.jsonl",
+    "review_packet_sha256": "df37ec6d09ddbfe7f20953c3cc44f89465f1b88d8256988c08e83ffc7b857bed"
+  },
+  "n_cases": 35,
+  "preregistration_status": "not_preregistered_development_probe",
+  "purpose": "diagnose representation, counterfactual, authority-interface, and recovery mechanisms; not an AgentDojo headline benchmark",
+  "status": "diagnostic_dataset_manifest"
+}

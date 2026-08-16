@@ -1,0 +1,35 @@
+{
+  "experiment": "deepseek_atom_description_benign_utility_pilot_v1",
+  "status": "frozen_after_adapter_smoke_before_paired_pilot",
+  "benchmark": "AgentDojo v1.1.2 native benign utility evaluator",
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "repeats": 2,
+  "conditions": [
+    "pristine",
+    "token_neutral",
+    "validated_atoms",
+    "validated_atoms_guided"
+  ],
+  "tasks": {
+    "banking": ["user_task_0", "user_task_9", "user_task_13"],
+    "slack": ["user_task_4", "user_task_6", "user_task_16"],
+    "travel": ["user_task_0", "user_task_1", "user_task_7"],
+    "workspace": ["user_task_4", "user_task_7", "user_task_33"]
+  },
+  "controls": {
+    "same_model": true,
+    "same_tasks": true,
+    "same_native_evaluator": true,
+    "same_tool_execution_sandbox": true,
+    "runtime_guard_used": false,
+    "real_external_side_effects": false,
+    "token_neutral_uses_existing_per_tool_matched_control": true
+  },
+  "primary_comparisons": [
+    "validated_atoms vs pristine",
+    "validated_atoms vs token_neutral",
+    "validated_atoms_guided vs token_neutral"
+  ],
+  "claim_boundary": "Paired 12-task development pilot. It measures benign utility under model-visible descriptors without a runtime guard; it is not a full-benchmark or security result."
+}

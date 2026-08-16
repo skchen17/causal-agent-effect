@@ -1,0 +1,3 @@
+# Abstract Skeleton
+
+LLM agent safety methods must decide whether realized tool effects are authorized, not only whether tool names or traces look benign. We introduce a counterfactual Tool-Effect Invariance stress package spanning AgentDojo, TS-Guard, Safiron, IPIGuard, and CaMeL-style components. The measurements show that stronger checkpoint and structural methods are not merely tool-name classifiers, yet none fully covers joint effect-resource-authorization-evidence reasoning. Human-audited corrected labels support the controlled counterfactual claims; oracle and local-pipeline rows are separated from deployable evidence.

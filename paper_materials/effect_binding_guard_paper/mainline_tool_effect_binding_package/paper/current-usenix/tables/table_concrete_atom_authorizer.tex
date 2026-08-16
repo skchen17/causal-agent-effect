@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\caption{Finite ToolSandbox authorizer check. UPA is unsafe pre-allow; FD is false denial.}
+\label{tab:concrete-atom-authorizer}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+View & UPA & FD & Coverage & Accuracy \\
+\midrule
+Tool name & 100.0\% & 0.0\% & 100.0\% & 35.3\% \\
+Exact raw args & 9.3\% & 34.1\% & 100.0\% & 81.9\% \\
+Common-field view & 56.7\% & 0.0\% & 100.0\% & 63.4\% \\
+Concrete atoms & 0.0\% & 0.0\% & 100.0\% & 100.0\% \\
+Source oracle & 0.0\% & 0.0\% & 100.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}\parbox{0.98\linewidth}{\footnotesize All 232 ordered queries use one executed context as the allowed effect multiset and check another context of the same tool.}
+\end{table}

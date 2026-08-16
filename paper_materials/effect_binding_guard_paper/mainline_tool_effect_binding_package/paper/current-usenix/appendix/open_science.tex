@@ -1,0 +1,36 @@
+\section{Open Science}
+\label{app:open-science}
+
+The artifact package records source-executed effect oracles, frozen intervention
+and case manifests, conservative descriptors, row-level benchmark outputs,
+official-validator results, model identifiers and hashes, runtime decisions,
+tests, and environment locks.  A fail-fast status manifest identifies the
+frozen artifacts required by each reported result; the release package includes
+only claims whose required artifacts and keys pass that check.  Sidecar labels
+and source effects are used only for scoring and do not enter model prompts or
+deployable inputs.  Before release, the package is rebuilt from the final
+manuscript state and scanned to exclude credentials, absolute paths, repository
+history, and identifying metadata.
+
+Protocols hash model files, descriptors, case manifests, registered source, and
+monitor code.  Finalizers reject duplicate or missing keys, execution errors,
+method-specific denominators, changed sources, and mismatches between
+pre-commit records and executed calls. Precommitted evaluation cases use a
+hash ordering recorded in the artifact.
+
+For the explicit-authority experiment, the artifact additionally includes the
+authority state, generator configuration, registration contexts, executable
+descriptor hashes, post-freeze evaluation contexts, source transitions, and
+per-representation decisions. The transition oracle and descriptor compiler
+are separate modules, and the reproduction gate checks all reported rows and
+table values.
+
+The third-party validation freezes public repository commits, licenses, MCP
+schemas, implementation hashes, 264 registration executions, and 264 disjoint
+post-freeze contexts. Each call runs in a disposable filesystem, database, or
+memory fixture. The evaluation generator is descriptor-blind, and zero human
+refinements are recorded. Executable failure certificates are selected by
+frozen category predicates rather than favorable manual choice. The small
+runtime study records model output, totalized call, descriptor and authority
+hashes, atoms, decision, checked and executed calls, post-state, and transition
+reconciliation for each trajectory.

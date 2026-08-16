@@ -1,0 +1,13 @@
+\section{Audit Details}
+
+\paragraph{Leakage and label-hidden replay.}
+The E55-v2 leakage audit reports \texttt{leakage\_free=true} with no violations. E56 reports strict mode passed and label-hidden replay metrics equal for the original E55 contract. These checks support the claim that gold labels were not used as deployable inputs in the relevant evaluation path.
+
+\paragraph{Reference authorizer.}
+The E57-v2 reference authorizer is marked as an independent local implementation agreement check. It reports 600 rows, decision agreement 1.000, atom-count agreement 1.000, atom resource-set agreement 1.000, and no disagreements. Its claim scope is consistency checking, not independent deployment truth.
+
+\paragraph{Resource perturbation.}
+The E57-v2 resource-name perturbation keeps the authorization-aware guard's UPA, coverage, decision accuracy, safe false-denial, and abstention unchanged. It reports changed decision count 0 and changed decision rate 0. This reduces the concern that the E55-v2 result depends only on memorized resource strings.
+
+\paragraph{Human audit.}
+The E57 human audit is a separate artifact. It reports 60 audited rows, 54/60 decision agreement, 46/60 all-checks-true, six decision corrections, thirteen atom corrections, and ten violation-reason corrections. The corrected cases primarily concern unknown-resource fallback and transaction-domain amount handling. The paper therefore uses corrected-label sensitivity wording.

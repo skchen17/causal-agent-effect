@@ -1,0 +1,161 @@
+{
+  "claim_boundary": "Direct pre-commit policy-consumer extension over the frozen four-domain source executions. The consumer does not read ideal labels before prediction. Opaque tool-name and raw-argument views abstain because importing descriptor semantics would change the representation being tested. This is a controlled mechanism test, not a deployment-policy prevalence estimate.",
+  "experiment": "deployment_style_direct_policy_consumer",
+  "gates": {
+    "all_predictions_emitted": true,
+    "common_has_nontrivial_coverage": true,
+    "frozen_inputs_match": true,
+    "no_silent_drops": true,
+    "opaque_views_fail_closed": true,
+    "typed_full_coverage": true,
+    "typed_zero_false_denial": true,
+    "typed_zero_unsafe_pre_allow": true
+  },
+  "generated_at": "2026-08-14T14:08:09.368402+00:00",
+  "ideal_decisions": {
+    "ALLOW": 24,
+    "DENY": 24
+  },
+  "input_hashes": {
+    "policy_manifests_sha256": "664d632038dd8f95580fbb030ddfe659604bcee5a65cba50e19e591d05441440",
+    "runner_sha256": "8bad6d952f7935e401e56ab892d5e0f00e05c861c561ea568872652642155aa5",
+    "source_executions_sha256": "50ff616244dc7c7bc6db58b136c3bbb283e68e9d13d6b5f80d6c6a72488b9ebc"
+  },
+  "metrics": [
+    {
+      "abstain": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "representation": "tool_name",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "representation": "canonical_raw_arguments",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.6666666666666666,
+        "successes": 32,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 0.3333333333333333,
+        "successes": 16,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.3333333333333333,
+        "successes": 16,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "representation": "common_effect_fields",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.875,
+        "successes": 21,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "representation": "validated_typed_effects",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      }
+    }
+  ],
+  "n_contexts": 48,
+  "n_decisions": 192,
+  "status": "passed"
+}

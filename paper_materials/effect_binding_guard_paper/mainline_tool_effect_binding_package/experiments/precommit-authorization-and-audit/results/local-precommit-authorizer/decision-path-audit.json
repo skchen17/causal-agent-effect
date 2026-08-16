@@ -1,0 +1,356 @@
+{
+  "blockers": [],
+  "forbidden_decision_fields": [
+    "expanded_atoms",
+    "expected_decision",
+    "gold_args_for_label_only",
+    "metadata",
+    "metadata.atom_authorization",
+    "metadata.gold_args_for_label_only",
+    "violation_reasons"
+  ],
+  "methods": {
+    "allow_all": {
+      "atoms_recomputed_from_visible_fields": false,
+      "authorization_from_visible_context": false,
+      "decision_path_status": "PASS",
+      "entry_point": "allow_all",
+      "expected_fields": [],
+      "field_classification": {},
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    },
+    "authz_aware_effect_binding_guard": {
+      "atoms_recomputed_from_visible_fields": true,
+      "authorization_from_visible_context": true,
+      "decision_path_status": "PASS",
+      "entry_point": "authz_aware_guard",
+      "expected_fields": [
+        "authorization_context",
+        "tool_name",
+        "tool_args",
+        "tool_inventory",
+        "provenance_summary",
+        "evidence_summary"
+      ],
+      "field_classification": {
+        "authorization_context": "deployable_label_hidden",
+        "evidence_summary": "deployable_label_hidden",
+        "provenance_summary": "deployable_label_hidden",
+        "tool_args": "deployable_label_hidden",
+        "tool_inventory": "deployable_label_hidden",
+        "tool_name": "deployable_label_hidden"
+      },
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [
+        "authorization_context",
+        "evidence_summary",
+        "provenance_summary",
+        "tool_args",
+        "tool_inventory",
+        "tool_name"
+      ],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    },
+    "authz_aware_no_alias_resolution": {
+      "atoms_recomputed_from_visible_fields": true,
+      "authorization_from_visible_context": true,
+      "decision_path_status": "PASS",
+      "entry_point": "authz_aware_guard",
+      "expected_fields": [
+        "authorization_context",
+        "tool_name",
+        "tool_args",
+        "tool_inventory",
+        "provenance_summary",
+        "evidence_summary"
+      ],
+      "field_classification": {
+        "authorization_context": "deployable_label_hidden",
+        "evidence_summary": "deployable_label_hidden",
+        "provenance_summary": "deployable_label_hidden",
+        "tool_args": "deployable_label_hidden",
+        "tool_inventory": "deployable_label_hidden",
+        "tool_name": "deployable_label_hidden"
+      },
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [
+        "authorization_context",
+        "evidence_summary",
+        "provenance_summary",
+        "tool_args",
+        "tool_inventory",
+        "tool_name"
+      ],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    },
+    "authz_aware_no_evidence_fallback": {
+      "atoms_recomputed_from_visible_fields": true,
+      "authorization_from_visible_context": true,
+      "decision_path_status": "PASS",
+      "entry_point": "authz_aware_guard",
+      "expected_fields": [
+        "authorization_context",
+        "tool_name",
+        "tool_args",
+        "tool_inventory",
+        "provenance_summary"
+      ],
+      "field_classification": {
+        "authorization_context": "deployable_label_hidden",
+        "provenance_summary": "deployable_label_hidden",
+        "tool_args": "deployable_label_hidden",
+        "tool_inventory": "deployable_label_hidden",
+        "tool_name": "deployable_label_hidden"
+      },
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [
+        "authorization_context",
+        "provenance_summary",
+        "tool_args",
+        "tool_inventory",
+        "tool_name"
+      ],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    },
+    "authz_aware_no_multi_resource_expansion": {
+      "atoms_recomputed_from_visible_fields": true,
+      "authorization_from_visible_context": true,
+      "decision_path_status": "PASS",
+      "entry_point": "authz_aware_guard",
+      "expected_fields": [
+        "authorization_context",
+        "tool_name",
+        "tool_args",
+        "tool_inventory",
+        "provenance_summary",
+        "evidence_summary"
+      ],
+      "field_classification": {
+        "authorization_context": "deployable_label_hidden",
+        "evidence_summary": "deployable_label_hidden",
+        "provenance_summary": "deployable_label_hidden",
+        "tool_args": "deployable_label_hidden",
+        "tool_inventory": "deployable_label_hidden",
+        "tool_name": "deployable_label_hidden"
+      },
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [
+        "authorization_context",
+        "evidence_summary",
+        "provenance_summary",
+        "tool_args",
+        "tool_inventory",
+        "tool_name"
+      ],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    },
+    "authz_aware_no_operation_mode": {
+      "atoms_recomputed_from_visible_fields": true,
+      "authorization_from_visible_context": true,
+      "decision_path_status": "PASS",
+      "entry_point": "authz_aware_guard",
+      "expected_fields": [
+        "authorization_context",
+        "tool_name",
+        "tool_args",
+        "tool_inventory",
+        "provenance_summary",
+        "evidence_summary"
+      ],
+      "field_classification": {
+        "authorization_context": "deployable_label_hidden",
+        "evidence_summary": "deployable_label_hidden",
+        "provenance_summary": "deployable_label_hidden",
+        "tool_args": "deployable_label_hidden",
+        "tool_inventory": "deployable_label_hidden",
+        "tool_name": "deployable_label_hidden"
+      },
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [
+        "authorization_context",
+        "evidence_summary",
+        "provenance_summary",
+        "tool_args",
+        "tool_inventory",
+        "tool_name"
+      ],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    },
+    "authz_aware_no_provenance_overlay": {
+      "atoms_recomputed_from_visible_fields": true,
+      "authorization_from_visible_context": true,
+      "decision_path_status": "PASS",
+      "entry_point": "authz_aware_guard",
+      "expected_fields": [
+        "authorization_context",
+        "tool_name",
+        "tool_args",
+        "tool_inventory",
+        "provenance_summary",
+        "evidence_summary"
+      ],
+      "field_classification": {
+        "authorization_context": "deployable_label_hidden",
+        "evidence_summary": "deployable_label_hidden",
+        "provenance_summary": "deployable_label_hidden",
+        "tool_args": "deployable_label_hidden",
+        "tool_inventory": "deployable_label_hidden",
+        "tool_name": "deployable_label_hidden"
+      },
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [
+        "authorization_context",
+        "evidence_summary",
+        "provenance_summary",
+        "tool_args",
+        "tool_inventory",
+        "tool_name"
+      ],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    },
+    "deny_all": {
+      "atoms_recomputed_from_visible_fields": false,
+      "authorization_from_visible_context": false,
+      "decision_path_status": "PASS",
+      "entry_point": "deny_all",
+      "expected_fields": [],
+      "field_classification": {},
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    },
+    "existing_hard_effect_binding_guard": {
+      "atoms_recomputed_from_visible_fields": false,
+      "authorization_from_visible_context": false,
+      "decision_path_status": "PASS",
+      "entry_point": "existing_hard_effect_binding_guard",
+      "expected_fields": [
+        "task",
+        "tool_name",
+        "tool_args",
+        "provenance_summary"
+      ],
+      "field_classification": {
+        "provenance_summary": "deployable_label_hidden",
+        "task": "deployable_label_hidden",
+        "tool_args": "deployable_label_hidden",
+        "tool_name": "deployable_label_hidden"
+      },
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [
+        "provenance_summary",
+        "task",
+        "tool_args",
+        "tool_name"
+      ],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    },
+    "text_rule_proxy": {
+      "atoms_recomputed_from_visible_fields": false,
+      "authorization_from_visible_context": false,
+      "decision_path_status": "PASS",
+      "entry_point": "text_rule_proxy",
+      "expected_fields": [
+        "candidate_action_summary",
+        "provenance_summary"
+      ],
+      "field_classification": {
+        "candidate_action_summary": "deployable_label_hidden",
+        "provenance_summary": "deployable_label_hidden"
+      },
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [
+        "candidate_action_summary",
+        "provenance_summary"
+      ],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    },
+    "tool_name_proxy": {
+      "atoms_recomputed_from_visible_fields": false,
+      "authorization_from_visible_context": false,
+      "decision_path_status": "PASS",
+      "entry_point": "tool_name_proxy",
+      "expected_fields": [
+        "tool_name"
+      ],
+      "field_classification": {
+        "tool_name": "deployable_label_hidden"
+      },
+      "forbidden_fields_observed": [],
+      "object_passed": "DeployableE55Input in strict mode",
+      "observed_accessed_fields": [
+        "tool_name"
+      ],
+      "reads_expanded_atoms": false,
+      "reads_expected_decision": false,
+      "reads_gold_args_for_label_only": false,
+      "reads_metadata_atom_authorization": false,
+      "reads_violation_reasons": false,
+      "uses_label_hidden_input": true
+    }
+  },
+  "passed": true,
+  "strict_object": "DeployableE55Input(case_id, domain, pair_group, label_hidden_input)"
+}

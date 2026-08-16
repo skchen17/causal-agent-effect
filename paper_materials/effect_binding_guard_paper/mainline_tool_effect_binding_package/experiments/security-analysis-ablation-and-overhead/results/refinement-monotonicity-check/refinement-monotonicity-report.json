@@ -1,0 +1,253 @@
+{
+  "claim_boundary_scope": "Deterministic recomputation over the frozen 56-call AgentDojo finite domain with the E2 power-set authority family, the E2 representation-signature decision procedure, and source-hash-bound effect data. The qualifier lattice is declared before metric computation. Results do not extend to open tool domains, unenumerated calls, other authority families, or refinement steps outside the restricted contract language.",
+  "collision_monotonicity": {
+    "lb_trajectory": true,
+    "sp_trajectory": true
+  },
+  "domain": {
+    "n_contexts": 56,
+    "name": "agentdojo_finite_domain"
+  },
+  "e2_cross_checks": [
+    {
+      "expected": 16,
+      "observed": 16,
+      "passed": true,
+      "role": "date"
+    },
+    {
+      "expected": 16,
+      "observed": 16,
+      "passed": true,
+      "role": "subject"
+    },
+    {
+      "expected": 16,
+      "observed": 16,
+      "passed": true,
+      "role": "recurrence"
+    },
+    {
+      "expected": 8,
+      "observed": 8,
+      "passed": true,
+      "role": "payload"
+    },
+    {
+      "expected": 4,
+      "observed": 4,
+      "passed": true,
+      "role": "visibility"
+    }
+  ],
+  "environment": {
+    "platform": "Linux-6.2.0-26-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12"
+  },
+  "experiment": "t1_refinement_monotonicity_trajectory_check",
+  "inputs": {
+    "baseline_report": {
+      "path": "experiments/human-authority-and-causal-validation/results/finite-domain-effect-binding-validation/finite-domain-validation-report.json",
+      "sha256": "6adf8a6340973ba7f22ac196fd366d1ed790e4b6625d1322a5ec7d9caca34d82"
+    },
+    "contexts": {
+      "n_contexts": 56,
+      "path": "experiments/human-authority-and-causal-validation/results/finite-domain-effect-binding-validation/finite-contexts.jsonl",
+      "sha256": "89ba86ca3f74e093c311e3f35436a9cf9d46e1e67dae91cbb6f2ee16ec686e0c"
+    }
+  },
+  "lattice": {
+    "comparable_pairs": 211,
+    "lb_monotone_violations": 0,
+    "refinement_violations": 0,
+    "sp_monotone_violations": 0,
+    "vertices": 32
+  },
+  "qualifiers": [
+    "date",
+    "subject",
+    "recurrence",
+    "payload",
+    "visibility"
+  ],
+  "representation_semantics_note": "The lattice erased end rho_empty applies all five E2 deletion operations (qualifier sub-keys dropped, payload resource masked, visibility set to a constant), while the E2 common-contract baseline strips only the entire qualifiers key. They are distinct coarse representations; both converge to the same typed end. The common baseline is reproduced independently as a sanity check.",
+  "script": "experiments/security-analysis-ablation-and-overhead/source/refinement-monotonicity-check/run_refinement_monotonicity_check.py",
+  "status": "passed",
+  "termination": {
+    "cycle_free": true,
+    "fixed_point_reached": true,
+    "partition_bound": 55,
+    "trajectory_length": 5,
+    "within_bound": true
+  },
+  "trajectory": [
+    {
+      "added": null,
+      "ambiguous_cell_lower_bound": 37,
+      "mixed_cells": 11,
+      "representation_cells": 19,
+      "separating_pairs": 124,
+      "step": 0,
+      "strict_improvement": false
+    },
+    {
+      "added": "date",
+      "ambiguous_cell_lower_bound": 33,
+      "mixed_cells": 15,
+      "representation_cells": 23,
+      "separating_pairs": 60,
+      "step": 1,
+      "strict_improvement": true
+    },
+    {
+      "added": "subject",
+      "ambiguous_cell_lower_bound": 25,
+      "mixed_cells": 23,
+      "representation_cells": 31,
+      "separating_pairs": 28,
+      "step": 2,
+      "strict_improvement": true
+    },
+    {
+      "added": "recurrence",
+      "ambiguous_cell_lower_bound": 9,
+      "mixed_cells": 7,
+      "representation_cells": 47,
+      "separating_pairs": 12,
+      "step": 3,
+      "strict_improvement": true
+    },
+    {
+      "added": "payload",
+      "ambiguous_cell_lower_bound": 4,
+      "mixed_cells": 4,
+      "representation_cells": 52,
+      "separating_pairs": 4,
+      "step": 4,
+      "strict_improvement": true
+    },
+    {
+      "added": "visibility",
+      "ambiguous_cell_lower_bound": 0,
+      "mixed_cells": 0,
+      "representation_cells": 56,
+      "separating_pairs": 0,
+      "step": 5,
+      "strict_improvement": true
+    }
+  ],
+  "trajectory_assertions": [
+    {
+      "added": "date",
+      "cells_monotone": true,
+      "refinement_holds": true,
+      "sp_monotone": true,
+      "step": 1
+    },
+    {
+      "added": "subject",
+      "cells_monotone": true,
+      "refinement_holds": true,
+      "sp_monotone": true,
+      "step": 2
+    },
+    {
+      "added": "recurrence",
+      "cells_monotone": true,
+      "refinement_holds": true,
+      "sp_monotone": true,
+      "step": 3
+    },
+    {
+      "added": "payload",
+      "cells_monotone": true,
+      "refinement_holds": true,
+      "sp_monotone": true,
+      "step": 4
+    },
+    {
+      "added": "visibility",
+      "cells_monotone": true,
+      "refinement_holds": true,
+      "sp_monotone": true,
+      "step": 5
+    }
+  ],
+  "trajectory_order": [
+    "date",
+    "subject",
+    "recurrence",
+    "payload",
+    "visibility"
+  ],
+  "validations": [
+    {
+      "check": "common-contract semantics (entire qualifiers key stripped, E2 baseline path) reproduce the frozen common-contract separating-pair baseline",
+      "expected": 118,
+      "observed": 118,
+      "passed": true
+    },
+    {
+      "check": "typed end (all qualifier roles kept) reproduces the frozen typed-contract zero-separating-pair baseline",
+      "expected": 0,
+      "observed": 0,
+      "passed": true
+    },
+    {
+      "check": "trajectory separates pairs monotonically non-increasing (T1(a) instance)",
+      "expected": "non-increasing",
+      "observed": [
+        124,
+        60,
+        28,
+        12,
+        4,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "check": "ambiguous-cell lower bound monotonically non-increasing along trajectory (Ambiguous-cell lower bound instance)",
+      "expected": "non-increasing",
+      "observed": [
+        37,
+        33,
+        25,
+        9,
+        4,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "check": "refinement holds on every subset-lattice edge (fine equality implies coarse equality)",
+      "expected": 0,
+      "observed": "0 violations over 211 comparable pairs",
+      "passed": true
+    },
+    {
+      "check": "separating pairs monotone on every lattice edge",
+      "expected": 0,
+      "observed": "0 violations over 211 comparable pairs",
+      "passed": true
+    },
+    {
+      "check": "ambiguous-cell lower bound monotone on every lattice edge",
+      "expected": 0,
+      "observed": "0 violations over 211 comparable pairs",
+      "passed": true
+    },
+    {
+      "check": "trajectory length within the partition-lattice bound |D|-1",
+      "expected": "<= 55",
+      "observed": 5,
+      "passed": true
+    },
+    {
+      "check": "trajectory reaches a fixed point (zero separating pairs)",
+      "expected": 0,
+      "observed": 0,
+      "passed": true
+    }
+  ]
+}

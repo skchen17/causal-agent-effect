@@ -1,0 +1,39 @@
+{
+  "artifact_type": "raw_llm_descriptor_registry",
+  "claim_boundary": "A9 freezes raw round-0 LLM schema/description descriptors before counterfactual validation. Omitted fields remain non-security-relevant for this ablation; parse/compile failures remain unregistered and fail closed.",
+  "compiled_rows": 24,
+  "contains_gold_labels_or_atoms": false,
+  "differing_tool_names": [
+    "add_calendar_event_participants",
+    "add_user_to_channel",
+    "append_to_file",
+    "cancel_calendar_event",
+    "create_calendar_event",
+    "create_file",
+    "invite_user_to_slack",
+    "post_webpage",
+    "reschedule_calendar_event",
+    "reserve_car_rental",
+    "reserve_hotel",
+    "reserve_restaurant",
+    "schedule_transaction",
+    "send_channel_message",
+    "send_direct_message",
+    "send_email",
+    "send_money",
+    "share_file",
+    "update_password",
+    "update_scheduled_transaction",
+    "update_user_info"
+  ],
+  "experiment": "E81-A9",
+  "generated_at": "2026-07-13T00:04:45.469500+00:00",
+  "registration_counts": {
+    "False": 13,
+    "True": 11
+  },
+  "round0_candidates": 24,
+  "status": "passed",
+  "tools_differing_from_counterfactually_validated_e77": 21,
+  "total_unclassified_fields": 9
+}

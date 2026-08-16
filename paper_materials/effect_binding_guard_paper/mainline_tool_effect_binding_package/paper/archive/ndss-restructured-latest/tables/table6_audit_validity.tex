@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Audit and validity checks. Deterministic E57-v2 checks and human audit checks answer different validity questions and are not merged into a single agreement claim.}
+\label{tab:audit}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.25\textwidth}}
+\toprule
+Check & Result & Scope \\
+\midrule
+E55-v2 leakage audit & leakage-free & deployable-input leakage diagnostic \\
+E55 decision-path audit & passed & implementation-path audit \\
+E56 strict label-hidden replay & passed & label-hidden replay and build audit \\
+E57-v2 resource perturbation & UPA delta 0.000; coverage delta 0.000; changed decisions 0 & naming-template robustness diagnostic \\
+E57-v2 reference authorizer & decision, atom-count, and atom resource-set agreement 1.000 & independent local implementation agreement \\
+E57-v2 spot-audit packet & 60 rows; required fields present & human-inspectable packet \\
+E57 human audit & decision agreement 54/60; all checks true 46/60 & post-hoc human audit with corrections \\
+E57 human corrections & 6 decision, 13 atom, 10 violation-reason corrections & label/atom sensitivity evidence \\
+\bottomrule
+\end{tabularx}
+\end{table*}

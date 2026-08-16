@@ -1,0 +1,86 @@
+[
+  {
+    "abstain": 0.34549878345498786,
+    "authorization_accuracy": 0.50390625,
+    "claim_scope": "method-feasibility custom stress",
+    "coverage": 0.6545012165450121,
+    "effect_accuracy": 0.791970802919708,
+    "method": "rule_tuple_guard",
+    "provenance_accuracy": 1.0,
+    "resource_accuracy": 0.3795620437956204,
+    "safe_false_deny": 0.09740259740259741,
+    "unsafe_pre_allow": 0.09444444444444444
+  },
+  {
+    "abstain": 0.037712895377128956,
+    "authorization_accuracy": 0.9296875,
+    "claim_scope": "method-feasibility custom stress",
+    "coverage": 0.962287104622871,
+    "effect_accuracy": 0.8090024330900243,
+    "method": "local_qwen_tuple_guard",
+    "provenance_accuracy": 0.8148148148148148,
+    "resource_accuracy": 0.8771289537712895,
+    "safe_false_deny": 0.0670995670995671,
+    "unsafe_pre_allow": 0.10555555555555556
+  },
+  {
+    "abstain": 0.0024330900243309003,
+    "authorization_accuracy": 0.859375,
+    "claim_scope": "method-feasibility custom stress",
+    "coverage": 0.9975669099756691,
+    "effect_accuracy": 0.8917274939172749,
+    "method": "multi_view_disagreement_guard",
+    "provenance_accuracy": 0.8148148148148148,
+    "resource_accuracy": 0.7530413625304136,
+    "safe_false_deny": 0.13636363636363635,
+    "unsafe_pre_allow": 0.075
+  },
+  {
+    "abstain": 0.07542579075425791,
+    "authorization_accuracy": 0.84765625,
+    "claim_scope": "method-feasibility custom stress",
+    "coverage": 0.9245742092457421,
+    "effect_accuracy": 0.8357664233576643,
+    "method": "evidence_gated_selective_guard",
+    "provenance_accuracy": 0.7222222222222222,
+    "resource_accuracy": 0.7262773722627737,
+    "safe_false_deny": 0.06493506493506493,
+    "unsafe_pre_allow": 0.06388888888888888
+  },
+  {
+    "abstain": 0.34549878345498786,
+    "authorization_accuracy": 0.50390625,
+    "claim_scope": "method-feasibility custom stress",
+    "coverage": 0.6545012165450121,
+    "effect_accuracy": 0.791970802919708,
+    "method": "control_provenance_minimal_check",
+    "provenance_accuracy": 1.0,
+    "resource_accuracy": 0.3795620437956204,
+    "safe_false_deny": 0.09740259740259741,
+    "unsafe_pre_allow": 0.09444444444444444
+  },
+  {
+    "abstain": 0.0827250608272506,
+    "authorization_accuracy": 0.84765625,
+    "claim_scope": "method-feasibility custom stress",
+    "coverage": 0.9172749391727494,
+    "effect_accuracy": 0.8357664233576643,
+    "method": "effect_binding_guard_full",
+    "provenance_accuracy": 1.0,
+    "resource_accuracy": 0.7262773722627737,
+    "safe_false_deny": 0.06493506493506493,
+    "unsafe_pre_allow": 0.03611111111111111
+  },
+  {
+    "abstain": 0.8613138686131386,
+    "authorization_accuracy": 0.12890625,
+    "claim_scope": "method-feasibility custom stress",
+    "coverage": 0.1386861313868613,
+    "effect_accuracy": 0.10218978102189781,
+    "method": "always_use_evidence",
+    "provenance_accuracy": 0.0,
+    "resource_accuracy": 0.08759124087591241,
+    "safe_false_deny": 0.032467532467532464,
+    "unsafe_pre_allow": 0.002777777777777778
+  }
+]

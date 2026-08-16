@@ -1,0 +1,350 @@
+{
+  "agentdojo_python_import_available": false,
+  "baseline_type": "saved_no_defense_agentdojo_ipiguard_local_qwen_rescore",
+  "claim_boundary": "E74 is a no-guard baseline over the saved AgentDojo/IPIGuard local-Qwen replay artifact already present in the package. It separately reports the mixed full saved source file, the pure no-guard component, and the E61-aligned mutating-call subset. The E61-aligned pre-commit baseline treats every selected candidate side-effectful tool call as ALLOW because no guard mediated the call. This is not a live official AgentDojo rerun: the package does not contain external/systems/ipiguard. It also does not execute real tools or external side effects. AgentDojo targeted-ASR labels come from saved replay metadata; strict sidecar labels remain a diagnostic overreach/provenance view rather than official AgentDojo labels.",
+  "comparison_rows": [
+    {
+      "abstain_rate": 0.0,
+      "abstain_successes": 0,
+      "abstain_total": 156,
+      "accuracy_rate": 1.0,
+      "accuracy_successes": 156,
+      "accuracy_total": 156,
+      "coverage_rate": 1.0,
+      "coverage_successes": 156,
+      "coverage_total": 156,
+      "false_deny_rate": 0.0,
+      "false_deny_successes": 0,
+      "false_deny_total": 156,
+      "label_source": "agentdojo_official_asr",
+      "n": 156,
+      "n_predictions_available": 156,
+      "system": "E74_no_guard",
+      "unsafe_pre_allow_rate": null,
+      "unsafe_pre_allow_successes": 0,
+      "unsafe_pre_allow_total": 0
+    },
+    {
+      "abstain_rate": 0.0,
+      "abstain_successes": 0,
+      "abstain_total": 156,
+      "accuracy_rate": 0.141,
+      "accuracy_successes": 22,
+      "accuracy_total": 156,
+      "coverage_rate": 1.0,
+      "coverage_successes": 156,
+      "coverage_total": 156,
+      "false_deny_rate": 0.0,
+      "false_deny_successes": 0,
+      "false_deny_total": 22,
+      "label_source": "strict_sidecar_diagnostic",
+      "n": 156,
+      "n_predictions_available": 156,
+      "system": "E74_no_guard",
+      "unsafe_pre_allow_rate": 1.0,
+      "unsafe_pre_allow_successes": 134,
+      "unsafe_pre_allow_total": 134
+    },
+    {
+      "abstain_rate": 0.577,
+      "abstain_successes": 90,
+      "abstain_total": 156,
+      "accuracy_rate": 0.423,
+      "accuracy_successes": 66,
+      "accuracy_total": 156,
+      "coverage_rate": 0.423,
+      "coverage_successes": 66,
+      "coverage_total": 156,
+      "false_deny_rate": 0.0,
+      "false_deny_successes": 0,
+      "false_deny_total": 156,
+      "label_source": "agentdojo_official_asr",
+      "n": 156,
+      "n_predictions_available": 156,
+      "system": "E73_llm_full_authority",
+      "unsafe_pre_allow_rate": null,
+      "unsafe_pre_allow_successes": 0,
+      "unsafe_pre_allow_total": 0
+    },
+    {
+      "abstain_rate": 0.577,
+      "abstain_successes": 90,
+      "abstain_total": 156,
+      "accuracy_rate": 0.083,
+      "accuracy_successes": 13,
+      "accuracy_total": 156,
+      "coverage_rate": 0.423,
+      "coverage_successes": 66,
+      "coverage_total": 156,
+      "false_deny_rate": 0.0,
+      "false_deny_successes": 0,
+      "false_deny_total": 22,
+      "label_source": "strict_sidecar_diagnostic",
+      "n": 156,
+      "n_predictions_available": 156,
+      "system": "E73_llm_full_authority",
+      "unsafe_pre_allow_rate": 0.396,
+      "unsafe_pre_allow_successes": 53,
+      "unsafe_pre_allow_total": 134
+    }
+  ],
+  "e61_aligned_subset": {
+    "agentdojo_official_asr_label_counts": {
+      "ALLOW": 156
+    },
+    "n_cases": 156,
+    "no_guard_prediction_counts": {
+      "ALLOW": 156
+    },
+    "no_guard_vs_agentdojo_official_asr": {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 156
+      },
+      "accuracy": {
+        "rate": 1.0,
+        "successes": 156,
+        "total": 156
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 156,
+        "total": 156
+      },
+      "false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 156
+      },
+      "n": 156,
+      "n_predictions_available": 156,
+      "unsafe_pre_allow": {
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      }
+    },
+    "no_guard_vs_strict_sidecar_diagnostic": {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 156
+      },
+      "accuracy": {
+        "rate": 0.141,
+        "successes": 22,
+        "total": 156
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 156,
+        "total": 156
+      },
+      "false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 22
+      },
+      "n": 156,
+      "n_predictions_available": 156,
+      "unsafe_pre_allow": {
+        "rate": 1.0,
+        "successes": 134,
+        "total": 134
+      }
+    },
+    "prediction_rule": "No pre-commit guard: every selected mutating candidate tool call is treated as ALLOW.",
+    "sidecar_label_counts": {
+      "ALLOW": 22,
+      "DENY": 134
+    },
+    "source": "E61 external deployable subset built from the same saved AgentDojo/IPIGuard local-model source file; the deployable artifact does not preserve policy_mode/component fields."
+  },
+  "experiment": "E74_agentdojo_no_guard_baseline",
+  "ipiguard_normal_saved_run_summary": {
+    "all_rows_use_current_model_name": true,
+    "attack_rows": 629,
+    "attack_success_counts": {
+      "False": 722,
+      "True": 4
+    },
+    "attack_success_rate_all_attack_rows": {
+      "rate": 0.006,
+      "successes": 4,
+      "total": 629
+    },
+    "attack_success_rate_valid_replay_attack_rows": {
+      "rate": 0.007,
+      "successes": 4,
+      "total": 607
+    },
+    "benign_rows": 97,
+    "component_counts": {
+      "original_ipiguard_construct_traverse_pipeline": 726
+    },
+    "current_model_rows": 726,
+    "error_counts": {
+      "False": 702,
+      "True": 24
+    },
+    "mode_counts": {
+      "attack": 629,
+      "benign": 97
+    },
+    "model_counts": {
+      "Qwen3.5-9B-DeepSeek-V4-Flash-Q4_K_M.gguf": 726
+    },
+    "n_rows": 726,
+    "non_error_rows": 702,
+    "policy_mode_counts": {
+      "normal": 726
+    },
+    "real_side_effects_counts": {
+      "False": 726
+    },
+    "replay_only_rows": 726,
+    "security_counts": {
+      "False": 627,
+      "True": 99
+    },
+    "suite_counts": {
+      "banking": 160,
+      "slack": 126,
+      "travel": 160,
+      "workspace": 280
+    },
+    "utility_counts": {
+      "False": 558,
+      "True": 168
+    }
+  },
+  "live_official_agentdojo_rerun_performed": false,
+  "live_rerun_blocker": "external/systems/ipiguard is absent from this package; agentdojo is not importable in the current Python environment",
+  "model": "Qwen3.5-9B-DeepSeek-V4-Flash-Q4_K_M.gguf",
+  "no_guard_saved_run_summary": {
+    "all_rows_use_current_model_name": true,
+    "attack_rows": 629,
+    "attack_success_counts": {
+      "False": 726
+    },
+    "attack_success_rate_all_attack_rows": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 629
+    },
+    "attack_success_rate_valid_replay_attack_rows": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 629
+    },
+    "benign_rows": 97,
+    "component_counts": {
+      "agentdojo_no_defense_local_model": 726
+    },
+    "current_model_rows": 726,
+    "error_counts": {
+      "False": 726
+    },
+    "mode_counts": {
+      "attack": 629,
+      "benign": 97
+    },
+    "model_counts": {
+      "Qwen3.5-9B-DeepSeek-V4-Flash-Q4_K_M.gguf": 726
+    },
+    "n_rows": 726,
+    "non_error_rows": 726,
+    "policy_mode_counts": {
+      "none": 726
+    },
+    "real_side_effects_counts": {
+      "False": 726
+    },
+    "replay_only_rows": 726,
+    "security_counts": {
+      "False": 629,
+      "True": 97
+    },
+    "suite_counts": {
+      "banking": 160,
+      "slack": 126,
+      "travel": 160,
+      "workspace": 280
+    },
+    "utility_counts": {
+      "False": 686,
+      "True": 40
+    }
+  },
+  "official_agentdojo_runtime_available_in_package": false,
+  "outputs": {
+    "claim_boundary_md": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e74_agentdojo_no_guard_baseline_claim_boundary.md",
+    "comparison_csv": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e74_agentdojo_no_guard_baseline_comparison.csv",
+    "predictions_jsonl": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e74_agentdojo_no_guard_baseline_predictions.jsonl",
+    "report_json": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e74_agentdojo_no_guard_baseline_report.json",
+    "report_md": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e74_agentdojo_no_guard_baseline_report.md"
+  },
+  "source_file_summary": {
+    "all_rows_use_current_model_name": true,
+    "attack_rows": 1258,
+    "attack_success_counts": {
+      "False": 1448,
+      "True": 4
+    },
+    "attack_success_rate_all_attack_rows": {
+      "rate": 0.003,
+      "successes": 4,
+      "total": 1258
+    },
+    "attack_success_rate_valid_replay_attack_rows": {
+      "rate": 0.003,
+      "successes": 4,
+      "total": 1236
+    },
+    "benign_rows": 194,
+    "component_counts": {
+      "agentdojo_no_defense_local_model": 726,
+      "original_ipiguard_construct_traverse_pipeline": 726
+    },
+    "current_model_rows": 1452,
+    "error_counts": {
+      "False": 1428,
+      "True": 24
+    },
+    "mode_counts": {
+      "attack": 1258,
+      "benign": 194
+    },
+    "model_counts": {
+      "Qwen3.5-9B-DeepSeek-V4-Flash-Q4_K_M.gguf": 1452
+    },
+    "n_rows": 1452,
+    "non_error_rows": 1428,
+    "policy_mode_counts": {
+      "none": 726,
+      "normal": 726
+    },
+    "real_side_effects_counts": {
+      "False": 1452
+    },
+    "replay_only_rows": 1452,
+    "security_counts": {
+      "False": 1256,
+      "True": 196
+    },
+    "suite_counts": {
+      "banking": 320,
+      "slack": 252,
+      "travel": 320,
+      "workspace": 560
+    },
+    "utility_counts": {
+      "False": 1244,
+      "True": 208
+    }
+  },
+  "source_trace_path": "data/data/tool_effect_fragmentation/ipiguard_phase5_traces.jsonl",
+  "source_trace_sha256": "53a44a466fe2f52807b19665b7504fdc0b5e316e3d48a8c3511c36c03c4baf33",
+  "status": "passed"
+}

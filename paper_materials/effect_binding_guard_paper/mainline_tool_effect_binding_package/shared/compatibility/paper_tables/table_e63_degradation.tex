@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{E63 context degradation. Missing, stale, or contradictory context should increase abstention or false denial rather than unsafe allow.}
+\label{tab:e63-degradation}
+\begin{tabular}{lcccc}
+\toprule
+Perturbation & UPA & FDeny & Coverage & Abstain \\
+\midrule
+remove alias entries & 0.000 & 0.238 & 0.855 & 0.145 \\
+remove canonical resource ids & 0.000 & 0.135 & 0.854 & 0.146 \\
+remove provenance annotations & 0.000 & 0.070 & 0.219 & 0.781 \\
+flip one permission & 0.000 & 1.000 & 1.000 & 0.000 \\
+introduce contradictory policy & 0.000 & 0.070 & 0.360 & 0.640 \\
+remove operation mode field & 0.000 & 1.000 & 1.000 & 0.000 \\
+remove visibility field & 0.000 & 0.963 & 0.979 & 0.021 \\
+split policy across partial contexts & 0.000 & 1.000 & 1.000 & 0.000 \\
+stale resource owner & 0.000 & 1.000 & 0.923 & 0.077 \\
+incomplete enterprise style context & 0.000 & 0.303 & 0.488 & 0.512 \\
+\bottomrule
+\end{tabular}
+\end{table*}

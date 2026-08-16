@@ -1,0 +1,143 @@
+\section{Evaluation Methodology}
+
+Our evaluation follows the evidence required by the security argument. We first
+characterize implementation-level effect distinctions that an authorization
+interface may need to preserve. We then use source-executed,
+policy-separating pairs to falsify coarse interfaces and test candidate
+interfaces under separate post-freeze protocols. Next, we hold calls, state,
+authority, and decision logic fixed to measure the authorization consequences
+of representation choice. A final AgentDojo study examines whether a registered
+interface can be consumed at an audited pre-commit boundary.
+
+\input{tables/table_evaluation_evidence_map}
+Table~\ref{tab:evaluation-evidence-map} maps each evidence source to the claim
+it tests and the oracle that supplies its reference decision.
+
+\paragraph{Interpretation of evidence.}
+The two result directions are asymmetric. One source-executed pair with
+different ideal decisions and the same representation conclusively falsifies
+that interface on any domain containing the pair. The absence of such a pair
+creates a conformance record for the implementation, interventions, and policy
+family exercised by the test. The artifact binds these elements and all
+unresolved tests to each accepted descriptor.
+
+Three evidence sources have distinct roles. The \emph{source execution oracle}
+answers what the implementation committed in a copied pre-state. The
+\emph{policy-separation oracle} determines whether two observed semantic views
+require different decisions under the diagnostic policy family; it is neither
+derived from the descriptor nor supplied by an LLM judge. The later
+\emph{explicit-authority engine} is a concrete downstream consumer over ACLs,
+capabilities, and delegations. It replaces the diagnostic separation relation
+rather than reusing it as a deployment policy.
+
+\paragraph{Implementation semantics.}
+We replay all 339 calls in AgentDojo v1.1.2's 97 official benign trajectories
+from fresh prescribed states. Before/after differences are normalized into
+resource, target, visibility, message, membership, and external-interaction
+effects. We count logical effect occurrences and calls that cross effect types
+or benchmark subsystems. A controlled 56-call source domain additionally
+records payload, temporal, recurrence, repeated-effect, and state-dependent
+distinctions.
+
+\paragraph{Interface falsification and post-freeze checking.}
+The registration harness changes observed values, types, boundaries, list
+cardinality, omitted defaults, and pre-state while holding the implementation
+fixed. Surface-only changes serve as invariance placebos. Every attempt is
+classified as a committed-effect change, output-only change, invariant,
+invalid, or unresolved. A pair becomes a failure certificate only when source
+execution changes, the policy-separation oracle requires another decision, and
+the candidate representation remains unchanged.
+
+The 56-call analysis uses a finite source-effect/submultiset policy family as
+an interface-discrimination stress relation. Deployment-style authority is
+evaluated separately. The initial 80-intervention suite drives refinement on
+the diagnostic relation.
+For independent implementation evidence, we pin three public MCP projects at
+specific commits: a filesystem server, a SQLite server, and a graph-memory
+server. Their 11 selected stateful tools are not derived from our benchmark.
+Registration uses 12 pairs per tool. We then freeze the descriptors and execute
+24 descriptor-blind contexts per tool with disjoint values, states, and list
+cardinalities. Each invocation runs the original MCP implementation in a fresh
+disposable fixture. The evaluation generator imports neither descriptor,
+policy, source oracle, nor registration outcome. The source oracle and
+descriptor compiler are separate modules with no mutual imports. For the
+primary positive decision check, an additional native oracle emits only raw
+filesystem, row, and graph deltas; a native-policy interpreter authorizes those
+deltas without importing the descriptor compiler or typed effect helpers. We compare
+tool name, raw call, state-aware request, common fields, typed effects, and a
+diagnostic source-effect oracle. Implementation provenance is recorded with
+each validation record.
+
+Before evaluation outcomes are read, a mutation manifest deletes templates or
+pre-state dependencies, disables list expansion, removes qualifier bindings,
+swaps resource and target, collapses operations, or ignores no-op/default
+behavior when applicable. Every mutant is tested during registration and on
+the frozen descriptor-blind contexts. Detection is policy-relative: a mutant
+that changes no decision in either frozen domain is retained as equivalent on
+that domain, not counted as killed.
+
+\paragraph{Authorization under explicit authority.}
+The downstream experiment uses four copied-sandbox domains: calendar,
+workspace sharing, messaging, and banking. Their authority state is expressed
+as resource ACLs, channel capabilities, and attenuated transfer delegations.
+The same tri-state engine consumes every representation. Calls, pre-states,
+authenticated subjects, authority state, and decision logic remain fixed; only
+the observation interface changes.
+
+Registration executes 192 counterfactual pairs spanning resource, target,
+operation mode, qualifier, default, pre-state, and surface-invariant changes.
+The resulting typed-effect descriptors are hash-frozen and loaded as
+executable JSON. Evaluation uses 1,024 contexts materialized after freeze from
+a precommitted generator and authority configuration. The source transition
+oracle and descriptor compiler are separate implementations with no mutual
+imports. The explicit-authority engine evaluates the observed transition,
+rather than a preassigned case label, to obtain the ideal decision; mixed
+representation cells are discovered only after execution.
+
+We compare the tool-name view, canonical raw-call view, common-field view, and
+typed-effect interface. We additionally evaluate a state-aware request view
+containing totalized arguments and ACL-relevant attributes of directly
+referenced resources. Its pure collision track contains no descriptor,
+post-state, effect name, or ideal label. A separately hashed request adapter
+contains disclosed tool-specific operation knowledge so the shared authority
+engine can consume this view. The raw-call view contains totalized call text;
+the state-aware view additionally exposes trusted pre-state attributes. Both
+are evaluated under Definition~\ref{def:authorization-equivalence}.
+
+We also audit the two complete consumption paths on both the 1,024-context and
+264-context domains. Besides collisions and decisions, we record representation
+cells, source-equivalent overpartition, serialized size, policy-facing trusted
+state, executable-code structure, declarative descriptor size, and latency for
+view construction, semantic adaptation, authorization, and the end-to-end
+check. Timing uses three warm-up and 30 complete measured batches.
+
+\paragraph{Pre-commit integration.}
+We first run 30 short trajectories over \texttt{schedule\_meeting},
+\texttt{share\_document}, and \texttt{transfer\_funds}. Local Qwen proposes a
+structured call but receives no authority label and makes no authorization
+decision. The frozen descriptor instantiates effects, the explicit-authority
+engine decides, and only an allowed checked call executes in the copied
+sandbox. Each commit is reconciled against both the checked call and observed
+post-state transition.
+
+AgentDojo supplies 97 benign tasks and 629 official indirect-injection pairs.
+Under a fixed DeepSeek model and native validators, repeated runs compare no
+guard, Spotlighting, and the provenance-origin consumer from
+Section~\ref{sec:security-analysis}. A second common protocol runs no guard,
+Spotlighting, Prompt Sandwiching, a PromptArmor-style local adapter, and the
+consumer on the same Qwen3-32B checkpoint and exact 726 benchmark keys. Every
+decision is reconciled with the executed call. Public-family and AgentLAB
+saved-replay protocols test transfer, while a raw-field control measures
+whether typed semantic roles alter runtime decisions.
+
+\paragraph{Metrics and integrity.}
+Interface tests report mixed cells and policy-separating pairs. The authority
+experiment reports unsafe allow among ideal denials, authorized work withheld
+among ideal allows, coverage, abstention, exact-decision rate, and the
+unavoidable-error lower bound induced by mixed cells. A denial and an
+abstention are distinct monitor outcomes, but either withholds an authorized
+operation; coverage separately records how often the monitor commits to
+\Allow{} or \Deny{}. Runtime outcomes use native benchmark validators; no LLM
+judges success. All protocols retain invalid and failed rows and execute no
+external side effect. Appendix~\ref{app:open-science} describes the fail-fast
+reproduction checks.

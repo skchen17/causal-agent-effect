@@ -1,0 +1,91 @@
+{
+  "artifact_review_status": "artifact-level-pass",
+  "author_anonymous_id": "A",
+  "checks": {
+    "contract_independence": {
+      "detail": {
+        "checks": {
+          "alias_style_differs_from_e55": true,
+          "argument_fields_differ_from_e55": true,
+          "at_least_three_domains": true,
+          "authorization_policy_format_differs_from_e55": true,
+          "n_cases_at_least_240": true,
+          "resource_identifiers_differ_from_e55": true,
+          "tool_names_differ_from_e55": true,
+          "uses_e55_schema_names_false": true
+        },
+        "contract_independence_review": {
+          "alias_style_differs_from_e55": true,
+          "argument_fields_differ_from_e55": true,
+          "authorization_policy_format_differs_from_e55": true,
+          "domains": {
+            "docvault": 96,
+            "maildesk": 96,
+            "meetroom": 96,
+            "paydesk": 96,
+            "teamchat": 96
+          },
+          "n_cases": 480,
+          "resource_identifiers_differ_from_e55": true,
+          "schema_family": "independent_rule_blocks_v1",
+          "tool_names_differ_from_e55": true,
+          "uses_e55_schema_names": false
+        }
+      },
+      "ok": true
+    },
+    "deployable_input_hidden": {
+      "detail": {
+        "n_rows": 480,
+        "n_violations": 0,
+        "violations": []
+      },
+      "ok": true
+    },
+    "leakage_zero": {
+      "detail": {
+        "artifact_leakage_report": {
+          "hits": {},
+          "leakage_free": true,
+          "n_violations": 0,
+          "path": "evaluation/e60_heldout_contract/deployable_inputs.jsonl"
+        },
+        "packet_data_separation_review": {
+          "deployable_input_contract": "deployable_annotation_free_view",
+          "gold_atoms_hidden_from_deployable_input": true,
+          "gold_labels_hidden_from_deployable_input": true,
+          "leakage_free": true,
+          "leakage_scan_passed": true,
+          "n_violations": 0
+        }
+      },
+      "ok": true
+    },
+    "no_post_evaluation_case_deletion": {
+      "detail": {
+        "case_deletion_after_evaluation": false,
+        "case_deletion_independently_verified": false,
+        "case_deletion_policy": "No E60 cases are removed or filtered after evaluation based on performance."
+      },
+      "ok": true
+    },
+    "required_fields": {
+      "detail": [],
+      "ok": true
+    },
+    "reviewed_artifacts_exist": {
+      "detail": [],
+      "ok": true
+    }
+  },
+  "claim_boundary": "The paper may describe E60 only as an independently specified held-out contract; strict independent authorship/review remains externally uncertified.",
+  "experiment": "E60",
+  "non_e55_designer_statement": "YES",
+  "packet_path": "evaluation/e60_heldout_contract/independent_author_review_packet.json",
+  "review_date": "2026-06-28",
+  "reviewer_anonymous_id": "A",
+  "safe_paper_wording": "We evaluate on a 480-case independently specified held-out contract with different tool names, argument fields, schema family, aliases, and authorization policies from E55.",
+  "status_reason": "Automatic artifact checks may pass, but strict independent authorship/review is not certified by the packet.",
+  "strict_authorship_status": "blocked-by-external-human-review",
+  "unsafe_until_certified": "We evaluate on an independently authored held-out contract."
+}

@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\caption{B8 released-guardrail comparable local adapter. The adapter is anchored to ToolSafe/TS-Guard's step-level guardrail framing and run under this paper's label-hidden deployable input contract; it is not an original benchmark reproduction.}
+\label{tab:b8-released-adapter}
+\begin{tabular}{lccccc}
+\toprule
+Dataset & Rows & UPA & FDeny & Coverage & Abstain \\
+\midrule
+E55-v2 & 600 & 0.435 & 0.095 & 0.900 & 0.100 \\
+E60 & 480 & 0.533 & 0.200 & 1.000 & 0.000 \\
+E61 artifact-generated & 300 & 0.189 & 0.222 & 1.000 & 0.000 \\
+E61 external subset & 156 & 0.000 & 0.000 & 1.000 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}

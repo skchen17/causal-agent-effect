@@ -1,0 +1,20 @@
+\section{E55 Appendix}
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Method & UPA & FDeny & Coverage & Atom exact \\
+\midrule
+\texttt{existing\_hard\_effect\_binding\_guard} & 0.037037037037037035 & 0.0 & 0.2 & 0.0 \\
+\texttt{authz\_aware\_effect\_binding\_guard} & 0.0 & 0.0 & 0.92 & 1.0 \\
+\texttt{authz\_aware\_no\_alias\_resolution} & 0.0 & 0.21052631578947367 & 0.92 & 1.0 \\
+\texttt{authz\_aware\_no\_multi\_resource\_expansion} & 0.3333333333333333 & 0.0 & 0.92 & 0.3 \\
+\texttt{authz\_aware\_no\_operation\_mode} & 0.14814814814814814 & 0.0 & 0.92 & 1.0 \\
+\texttt{authz\_aware\_no\_provenance\_overlay} & 0.14814814814814814 & 0.0 & 0.94 & 1.0 \\
+\bottomrule
+\end{tabular}
+\caption{E55 strict label-hidden ablation summary.}
+\end{table}
+
+Decision-path audit passed: True. Strict replay metric equality: True. Claim boundary: controlled local pre-commit contract evidence only.

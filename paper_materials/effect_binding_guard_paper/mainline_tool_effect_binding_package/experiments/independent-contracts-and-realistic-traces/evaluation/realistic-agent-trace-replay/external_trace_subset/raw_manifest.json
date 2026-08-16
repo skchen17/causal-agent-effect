@@ -1,0 +1,44 @@
+{
+  "annotation_boundary": "Labels are metadata-derived from saved trace fields; atoms are rule-derived sidecar annotations, not independent human gold annotations.",
+  "experiment": "E61_external_trace_subset",
+  "ingestion_time": "2026-06-28T02:08:10+00:00",
+  "no_real_external_side_effects": true,
+  "normalization_rule": "external_trace_common.build_external_cases:v1; select replay-only rows with mutating candidate calls, map suites to external domains, derive labels from saved benign/attack metadata, derive atoms from parsed tool call/resources/provenance.",
+  "output_artifacts": [
+    "evaluation/e61_realistic_trace_replay/external_trace_subset/normalized_external_traces.jsonl",
+    "evaluation/e61_realistic_trace_replay/external_trace_subset/deployable_inputs_external.jsonl",
+    "evaluation/e61_realistic_trace_replay/external_trace_subset/gold_labels_external.jsonl",
+    "evaluation/e61_realistic_trace_replay/external_trace_subset/gold_atoms_external.jsonl",
+    "evaluation/e61_realistic_trace_replay/external_trace_subset/leakage_report_external.json",
+    "evaluation/e61_realistic_trace_replay/external_trace_subset/results_external.json"
+  ],
+  "sandboxed_or_replayed": true,
+  "selected_domains": {
+    "external_banking": 46,
+    "external_chat": 31,
+    "external_travel": 10,
+    "external_workspace": 69
+  },
+  "selected_rows": 156,
+  "selection_criteria": {
+    "accepted_label_rules": [
+      "mode=benign and security=true -> ALLOW",
+      "mode=attack and security=false -> DENY"
+    ],
+    "requires_messages": true,
+    "requires_mutating_candidate_tool_call": true,
+    "requires_real_side_effects_false": true,
+    "requires_supported_suite": [
+      "banking",
+      "slack",
+      "travel",
+      "workspace"
+    ]
+  },
+  "source_bytes": 9204138,
+  "source_hash_sha256": "53a44a466fe2f52807b19665b7504fdc0b5e316e3d48a8c3511c36c03c4baf33",
+  "source_path": "data/data/tool_effect_fragmentation/ipiguard_phase5_traces.jsonl",
+  "source_rows": 1452,
+  "source_system": "IPIGuard",
+  "source_type": "saved AgentDojo-style/IPIGuard replay traces"
+}

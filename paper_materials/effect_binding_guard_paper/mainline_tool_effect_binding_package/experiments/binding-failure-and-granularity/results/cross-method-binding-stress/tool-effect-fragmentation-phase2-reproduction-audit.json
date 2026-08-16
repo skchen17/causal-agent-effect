@@ -1,0 +1,106 @@
+{
+  "acceptance_summary": {
+    "complete_adapter_failed_available": true,
+    "non_agentdojo_complete_audit": true,
+    "original_method_result_available": false,
+    "priority_order": [
+      "toolsafe",
+      "safiron",
+      "ipiguard",
+      "camel"
+    ]
+  },
+  "audits": {
+    "camel": {
+      "artifact_present": true,
+      "attempted_commands": [
+        "uv run --env-file .env main.py MODEL_NAME=<model>"
+      ],
+      "audit_complete": true,
+      "blockers": [
+        "OPENAI_API_KEY_missing_for_camel_eval"
+      ],
+      "claim_scope": "adapter_failed",
+      "model_or_api": "structural defense code; model selected at runtime",
+      "notes": [
+        "CaMeL is a structural-defense contrast, not a row classifier.",
+        "No non-side-effectful Tool-Effect dry-run adapter is currently wired."
+      ],
+      "repo_present": true,
+      "source_artifact_path": "/data/CSK/causal-agent-safety-research/external/systems/camel/main.py",
+      "source_commit_hash": "f083b6b396399d3b3c7f2ddaf613a5945eaf32d8",
+      "source_repo_url": "https://github.com/google-research/camel-prompt-injection",
+      "status": "adapter_failed_complete",
+      "system": "camel"
+    },
+    "ipiguard": {
+      "artifact_present": true,
+      "attempted_commands": [
+        "bash eval.sh"
+      ],
+      "audit_complete": true,
+      "blockers": [
+        "OPENAI_API_KEY_missing_for_official_eval",
+        "OPENAI_BASE_URL_missing_for_official_eval"
+      ],
+      "claim_scope": "adapter_failed",
+      "model_or_api": "OpenAI-compatible API configured by OPENAI_API_KEY/OPENAI_BASE_URL",
+      "notes": [
+        "IPIGuard official evaluation is API-backed and AgentDojo-based.",
+        "Phase 2 does not run the official eval unless OpenAI-compatible API credentials are configured externally."
+      ],
+      "repo_present": true,
+      "source_artifact_path": "/data/CSK/causal-agent-safety-research/external/systems/ipiguard/eval.sh",
+      "source_commit_hash": "4e686ed2f62c135cb12564a4466daa95f3ace878",
+      "source_repo_url": "https://github.com/Greysahy/ipiguard",
+      "status": "adapter_failed_complete",
+      "system": "ipiguard"
+    },
+    "safiron": {
+      "artifact_present": true,
+      "attempted_commands": [
+        "python -c \"from vllm import LLM; LLM(model='Safiron/Safiron')\"",
+        "python evaluation/eval.py --test-file <predictions.json> --model gpt-4o-mini --out-file evaluation/eval_results.json"
+      ],
+      "audit_complete": true,
+      "blockers": [
+        "safiron_model_not_verified_locally:/data/CSK/causal-agent-safety-research/models/Safiron/Safiron"
+      ],
+      "claim_scope": "adapter_failed",
+      "model_or_api": "https://huggingface.co/Safiron/Safiron",
+      "notes": [
+        "Pre-Ex-Bench dataset is present and already used by the proxy adapter.",
+        "Exact Safiron result requires model inference with vLLM and optional LLM explanation evaluator; this audit does not count model availability unless a local model path is verified."
+      ],
+      "repo_present": true,
+      "source_artifact_path": "/data/CSK/causal-agent-safety-research/external/systems/agentic_guardian/Pre-Ex-Bench/dataset.json",
+      "source_commit_hash": "cd4a9fc1d251c2430e21ffce33b4b09c5ebf53b8",
+      "source_repo_url": "https://github.com/HowieHwong/Agentic-Guardian",
+      "status": "adapter_failed_complete",
+      "system": "safiron"
+    },
+    "toolsafe": {
+      "artifact_present": true,
+      "attempted_commands": [
+        "python src/guardian_experiment.py --config ./src/config_guardrail_eval/agentdojo_traj.yaml"
+      ],
+      "audit_complete": true,
+      "blockers": [
+        "configured_local_ts_guard_model_missing:/mnt/shared-storage-user/mouyutao/AShell-ours/verl-main/checkpoints/verl_grpo_ashell_guardian_v2.4.0-rollout16_multitask_uniform/qwen2.5_7b_function_rm/global_step_80/actor_hf"
+      ],
+      "claim_scope": "adapter_failed",
+      "model_or_api": "https://huggingface.co/MurrayTom/TS-Guard",
+      "notes": [
+        "TS-Bench data and evaluation script are present in the cloned repository.",
+        "Exact TS-Guard reproduction requires the released/local guardian checkpoint and vLLM-compatible runtime."
+      ],
+      "repo_present": true,
+      "source_artifact_path": "/data/CSK/causal-agent-safety-research/external/systems/toolsafe/TS-Bench",
+      "source_commit_hash": "46358fa424a927a895c6c8322f99032c4eb5155e",
+      "source_repo_url": "https://github.com/MurrayTom/ToolSafe",
+      "status": "adapter_failed_complete",
+      "system": "toolsafe"
+    }
+  },
+  "schema_version": "tool_effect_fragmentation_phase2_reproduction_audit_v1"
+}

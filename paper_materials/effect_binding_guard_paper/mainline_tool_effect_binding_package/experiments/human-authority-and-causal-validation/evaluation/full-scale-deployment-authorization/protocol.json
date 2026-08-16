@@ -1,0 +1,45 @@
+{
+  "acceptance_gates": {
+    "all_cases_retained": true,
+    "each_coarse_view_has_policy_mixed_cells": true,
+    "heldout_descriptor_exact_set_match": 1.0,
+    "heldout_typed_coverage": 1.0,
+    "heldout_typed_direct_accuracy": 1.0,
+    "heldout_typed_false_denial": 0.0,
+    "heldout_typed_unsafe_pre_allow": 0.0,
+    "raw_arguments_have_state_dependent_collisions": true,
+    "registration_descriptor_exact_set_match": 1.0,
+    "registration_relation_accuracy": 1.0,
+    "typed_policy_mixed_cells": 0
+  },
+  "claim_boundary": "Controlled eight-tool copied-sandbox authorization experiment over frozen ACL, capability, and delegation policies. It measures representation sufficiency on the enumerated intervention and policy families; it does not establish open-world descriptor soundness, policy correctness, deployment prevalence, or production safety.",
+  "design": {
+    "n_domains": 8,
+    "n_heldout_contexts": 192,
+    "n_heldout_policy_separating_pairs": 96,
+    "n_registration_contexts": 144,
+    "n_registration_pairs": 72,
+    "n_tools": 8,
+    "post_result_case_deletion": false,
+    "registration_evaluation_split": "disjoint case IDs and concrete held-out values; registration has eight sensitive axes plus one surface-invariant pair per tool",
+    "representations": [
+      "tool_name",
+      "canonical_raw_arguments",
+      "common_effect_fields",
+      "validated_typed_effects"
+    ],
+    "same_policy_engine": "authorize_observation for all direct decisions; one cell consumer for all representation-capacity diagnostics",
+    "source_execution": "domain-specific copied in-memory sandbox; no external side effects"
+  },
+  "experiment": "full_scale_deployment_authorization_representation",
+  "frozen_at": "2026-08-14T14:55:40.356742+00:00",
+  "input_hashes": {
+    "core_sha256": "57bd82bae4b4625e8adf65ea0ce35b4c997d72129469a276b34bf8345142a81e",
+    "descriptor_manifest_sha256": "bab439f5ff06cdcfe554386abc5cadbf77fae15ae164ae451c04c9ee9bd7603e",
+    "heldout_contexts_sha256": "f12fa3bb26309ee0a70e967013081b1ddecb5c34f6b2b016fb40d5fd093b7f07",
+    "policy_manifests_sha256": "1ed14cf3234379f2992ba1f7e084c2854614b81117236b9f6c57acfe903a294d",
+    "registration_counterfactuals_sha256": "6b999016989dc82791a15e1420e9477f873172af1c5e8fc6986702af5d292919",
+    "runner_sha256": "45a8c353ad460fd19532d6138a7594acfba6b904ea0d057cdd92672a44246020"
+  },
+  "status": "frozen_before_full_run"
+}

@@ -1,0 +1,13 @@
+\section{Discussion}
+
+\paragraph{What is new.}
+The primary novelty is the measurement framing: tool-effect binding as a pre-commit safety property, together with counterfactual stress tests that isolate surface invariance from effect/resource/authorization/operation/provenance sensitivity. The authorization-aware prototype is a constructive validation of the measured bottleneck, not the main novelty by itself.
+
+\paragraph{Relationship to authorization systems.}
+Least-privilege systems and programmable privilege controls are complementary. Progent focuses on policy representation and deterministic enforcement over tool calls; MiniScope focuses on least-privilege authorization for tool-calling agents. Our work focuses on the prerequisite: whether the candidate action has been decomposed into the correct semantic authorization object before enforcement. A policy system can enforce the wrong thing if a hidden recipient, public-link change, or operation-mode shift is not represented in the object being checked.
+
+\paragraph{Why abstention matters.}
+Pre-commit mediation must allow abstention because the mediator may lack sufficient information to bind an action. A system that forces every ambiguous action into allow/deny can inflate apparent coverage at the cost of unsafe pre-allow or false denial. In this paper, abstention is a measurement dimension and a deployment design requirement. E55-v2's improvement is meaningful because coverage rises from 0.200 to 0.880 while unsafe pre-allow falls to zero under strict labels; not because the system avoids abstention entirely.
+
+\paragraph{How to read the numbers.}
+The reported metrics are controlled custom-stress and local-contract metrics. They should not be read as estimates of deployed-system incident rates. The E47 released-checkpoint results compare methods under our custom stress interface, not under the original benchmark protocols of ToolSafe, Safiron, IPIGuard, or CaMeL. The E55/E57 results are stronger than a prose-only design argument but weaker than independent deployment validation.

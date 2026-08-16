@@ -1,0 +1,23 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  axis/.style={draw, rounded corners=1.5pt, align=center, minimum width=25mm, minimum height=8mm, font=\small, fill=gray!8},
+  arrow/.style={-Latex, thick}
+]
+\node[axis] (surface) {Surface\\form};
+\node[axis, right=of surface] (effect) {Effect};
+\node[axis, right=of effect] (resource) {Resource};
+\node[axis, below=of effect] (auth) {Authorization};
+\node[axis, left=of auth] (operation) {Operation\\mode};
+\node[axis, right=of auth] (prov) {Provenance};
+\draw[arrow] (surface) -- node[above,font=\scriptsize]{invariant} (effect);
+\draw[arrow] (effect) -- node[above,font=\scriptsize]{sensitive} (resource);
+\draw[arrow] (resource) -- (prov);
+\draw[arrow] (effect) -- (auth);
+\draw[arrow] (auth) -- (operation);
+\draw[arrow] (auth) -- (prov);
+\node[align=center,font=\small, below=9mm of auth] (goal) {Counterfactual pairs isolate one axis while holding the others fixed when possible.};
+\end{tikzpicture}
+\caption{Counterfactual stress lattice. The framework tests whether monitors are invariant to harmless surface changes and sensitive to semantic changes that alter safe pre-commit decisions.}
+\label{fig:lattice}
+\end{figure}

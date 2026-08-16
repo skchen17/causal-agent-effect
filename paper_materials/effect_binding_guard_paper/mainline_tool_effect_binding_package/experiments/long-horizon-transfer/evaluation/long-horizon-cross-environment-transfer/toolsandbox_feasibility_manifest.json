@@ -1,0 +1,886 @@
+{
+  "all_external_search_excluded": true,
+  "category_counts": {
+    "CANONICALIZATION": 19,
+    "INSUFFICIENT_INFORMATION": 6,
+    "MULTIPLE_TOOL_CALL": 24,
+    "MULTIPLE_USER_TURN": 7,
+    "NO_DISTRACTION_TOOLS": 30,
+    "SINGLE_USER_TURN": 17,
+    "STATE_DEPENDENCY": 7
+  },
+  "claim_boundary": "This is a frozen 30-scenario offline adapter subset. ToolSandbox has at most five milestones in the selected tasks, so it tests stateful compositional utility but does not by itself establish 20+ call horizon behavior.",
+  "experiment": "E79",
+  "generated_at": "2026-07-12T06:31:38.279019+00:00",
+  "milestone_count_range": [
+    0,
+    5
+  ],
+  "n_offline_eligible_scenarios": 91,
+  "n_selected": 30,
+  "n_source_base_scenarios": 129,
+  "scenarios": [
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "search_holiday",
+        "timestamp_diff"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 4,
+      "n_minefields": 0,
+      "scenario_name": "find_days_till_holiday",
+      "selected_strata": [
+        "canonicalization",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "search_holiday",
+        "timestamp_diff"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 4,
+      "n_minefields": 0,
+      "scenario_name": "find_days_till_holiday_alt",
+      "selected_strata": [
+        "canonicalization",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "search_holiday",
+        "timestamp_diff"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "MULTIPLE_USER_TURN",
+        "NO_DISTRACTION_TOOLS"
+      ],
+      "max_messages": 30,
+      "n_milestones": 4,
+      "n_minefields": 0,
+      "scenario_name": "find_days_till_holiday_multiple_user_turn",
+      "selected_strata": [
+        "canonicalization",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "get_wifi_status",
+        "search_holiday",
+        "set_wifi_status",
+        "timestamp_diff"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN",
+        "STATE_DEPENDENCY"
+      ],
+      "max_messages": 30,
+      "n_milestones": 5,
+      "n_minefields": 0,
+      "scenario_name": "find_days_till_holiday_wifi_off",
+      "selected_strata": [
+        "state_dependency",
+        "canonicalization",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.setting",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "get_wifi_status",
+        "search_holiday",
+        "set_wifi_status",
+        "timestamp_diff"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN",
+        "STATE_DEPENDENCY"
+      ],
+      "max_messages": 30,
+      "n_milestones": 5,
+      "n_minefields": 0,
+      "scenario_name": "find_days_till_holiday_wifi_off_alt",
+      "selected_strata": [
+        "state_dependency",
+        "canonicalization",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.setting",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "get_wifi_status",
+        "search_holiday",
+        "set_wifi_status",
+        "timestamp_diff"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "MULTIPLE_USER_TURN",
+        "NO_DISTRACTION_TOOLS",
+        "STATE_DEPENDENCY"
+      ],
+      "max_messages": 30,
+      "n_milestones": 5,
+      "n_minefields": 0,
+      "scenario_name": "find_days_till_holiday_wifi_off_multiple_user_turn",
+      "selected_strata": [
+        "state_dependency",
+        "canonicalization",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.setting",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "modify_contact",
+        "search_contacts",
+        "search_messages"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 5,
+      "n_minefields": 0,
+      "scenario_name": "modify_contact_with_message_recency",
+      "selected_strata": [
+        "canonicalization",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.messaging",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "modify_contact",
+        "search_contacts",
+        "search_messages"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 5,
+      "n_minefields": 0,
+      "scenario_name": "modify_contact_with_message_recency_alt",
+      "selected_strata": [
+        "canonicalization",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.messaging",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "modify_contact",
+        "search_contacts"
+      ],
+      "categories": [
+        "INSUFFICIENT_INFORMATION",
+        "NO_DISTRACTION_TOOLS"
+      ],
+      "max_messages": 30,
+      "n_milestones": 0,
+      "n_minefields": 1,
+      "scenario_name": "modify_contact_with_message_recency_insufficient_information",
+      "selected_strata": [
+        "insufficient_information"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "modify_contact",
+        "search_contacts"
+      ],
+      "categories": [
+        "INSUFFICIENT_INFORMATION",
+        "NO_DISTRACTION_TOOLS"
+      ],
+      "max_messages": 30,
+      "n_milestones": 0,
+      "n_minefields": 1,
+      "scenario_name": "modify_contact_with_message_recency_insufficient_information_alt",
+      "selected_strata": [
+        "insufficient_information"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "modify_contact",
+        "search_contacts",
+        "search_messages"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "MULTIPLE_USER_TURN",
+        "NO_DISTRACTION_TOOLS"
+      ],
+      "max_messages": 30,
+      "n_milestones": 5,
+      "n_minefields": 0,
+      "scenario_name": "modify_contact_with_message_recency_multiple_user_turn",
+      "selected_strata": [
+        "canonicalization",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.messaging",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "modify_contact",
+        "search_contacts",
+        "search_messages"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "MULTIPLE_USER_TURN",
+        "NO_DISTRACTION_TOOLS"
+      ],
+      "max_messages": 30,
+      "n_milestones": 5,
+      "n_minefields": 0,
+      "scenario_name": "modify_contact_with_message_recency_multiple_user_turn_alt",
+      "selected_strata": [
+        "canonicalization",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.messaging",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "datetime_info_to_timestamp",
+        "end_conversation",
+        "get_current_timestamp",
+        "modify_reminder",
+        "search_reminder",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 3,
+      "n_minefields": 0,
+      "scenario_name": "modify_reminder_with_recency_latest",
+      "selected_strata": [
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "datetime_info_to_timestamp",
+        "end_conversation",
+        "get_current_timestamp",
+        "modify_reminder",
+        "search_reminder",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 3,
+      "n_minefields": 0,
+      "scenario_name": "modify_reminder_with_recency_latest_alt",
+      "selected_strata": [
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "datetime_info_to_timestamp",
+        "end_conversation",
+        "modify_reminder",
+        "search_reminder",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "INSUFFICIENT_INFORMATION",
+        "NO_DISTRACTION_TOOLS"
+      ],
+      "max_messages": 30,
+      "n_milestones": 0,
+      "n_minefields": 1,
+      "scenario_name": "modify_reminder_with_recency_latest_insufficient_information",
+      "selected_strata": [
+        "insufficient_information"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "search_contacts"
+      ],
+      "categories": [
+        "INSUFFICIENT_INFORMATION",
+        "NO_DISTRACTION_TOOLS"
+      ],
+      "max_messages": 30,
+      "n_milestones": 1,
+      "n_minefields": 0,
+      "scenario_name": "remove_contact_by_phone_no_remove_contact_insufficient_information",
+      "selected_strata": [
+        "insufficient_information"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.user_tools"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "search_contacts"
+      ],
+      "categories": [
+        "INSUFFICIENT_INFORMATION",
+        "NO_DISTRACTION_TOOLS"
+      ],
+      "max_messages": 30,
+      "n_milestones": 1,
+      "n_minefields": 0,
+      "scenario_name": "remove_contact_by_phone_no_remove_contact_insufficient_information_alt",
+      "selected_strata": [
+        "insufficient_information"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.user_tools"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "datetime_info_to_timestamp",
+        "end_conversation",
+        "get_current_timestamp",
+        "remove_reminder",
+        "search_reminder",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 3,
+      "n_minefields": 0,
+      "scenario_name": "remove_reminder_with_recency_latest",
+      "selected_strata": [
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "datetime_info_to_timestamp",
+        "end_conversation",
+        "get_current_timestamp",
+        "remove_reminder",
+        "search_reminder",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 3,
+      "n_minefields": 0,
+      "scenario_name": "remove_reminder_with_recency_latest_alt",
+      "selected_strata": [
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "datetime_info_to_timestamp",
+        "end_conversation",
+        "remove_reminder",
+        "search_reminder",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "INSUFFICIENT_INFORMATION",
+        "NO_DISTRACTION_TOOLS"
+      ],
+      "max_messages": 30,
+      "n_milestones": 0,
+      "n_minefields": 1,
+      "scenario_name": "remove_reminder_with_recency_latest_insufficient_information",
+      "selected_strata": [
+        "insufficient_information"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "search_reminder",
+        "shift_timestamp",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 3,
+      "n_minefields": 0,
+      "scenario_name": "search_reminder_with_creation_recency_yesterday",
+      "selected_strata": [
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "search_reminder",
+        "shift_timestamp",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 3,
+      "n_minefields": 0,
+      "scenario_name": "search_reminder_with_creation_recency_yesterday_implicit",
+      "selected_strata": [
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "search_reminder",
+        "shift_timestamp",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 3,
+      "n_minefields": 0,
+      "scenario_name": "search_reminder_with_recency_upcoming",
+      "selected_strata": [
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "search_reminder",
+        "shift_timestamp",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 3,
+      "n_minefields": 0,
+      "scenario_name": "search_reminder_with_recency_upcoming_implicit",
+      "selected_strata": [
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_current_timestamp",
+        "search_reminder",
+        "shift_timestamp",
+        "timestamp_to_datetime_info"
+      ],
+      "categories": [
+        "CANONICALIZATION",
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN"
+      ],
+      "max_messages": 30,
+      "n_milestones": 3,
+      "n_minefields": 0,
+      "scenario_name": "search_reminder_with_recency_yesterday",
+      "selected_strata": [
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.reminder",
+        "tool_sandbox.tools.user_tools",
+        "tool_sandbox.tools.utilities"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_cellular_service_status",
+        "search_contacts",
+        "send_message_with_phone_number",
+        "set_cellular_service_status"
+      ],
+      "categories": [
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN",
+        "STATE_DEPENDENCY"
+      ],
+      "max_messages": 30,
+      "n_milestones": 4,
+      "n_minefields": 0,
+      "scenario_name": "send_message_with_contact_content_cellular_off",
+      "selected_strata": [
+        "state_dependency",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.messaging",
+        "tool_sandbox.tools.setting",
+        "tool_sandbox.tools.user_tools"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_cellular_service_status",
+        "search_contacts",
+        "send_message_with_phone_number",
+        "set_cellular_service_status"
+      ],
+      "categories": [
+        "MULTIPLE_TOOL_CALL",
+        "NO_DISTRACTION_TOOLS",
+        "SINGLE_USER_TURN",
+        "STATE_DEPENDENCY"
+      ],
+      "max_messages": 30,
+      "n_milestones": 4,
+      "n_minefields": 0,
+      "scenario_name": "send_message_with_contact_content_cellular_off_alt",
+      "selected_strata": [
+        "state_dependency",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.messaging",
+        "tool_sandbox.tools.setting",
+        "tool_sandbox.tools.user_tools"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_cellular_service_status",
+        "search_contacts",
+        "send_message_with_phone_number",
+        "set_cellular_service_status"
+      ],
+      "categories": [
+        "MULTIPLE_TOOL_CALL",
+        "MULTIPLE_USER_TURN",
+        "NO_DISTRACTION_TOOLS",
+        "STATE_DEPENDENCY"
+      ],
+      "max_messages": 30,
+      "n_milestones": 4,
+      "n_minefields": 0,
+      "scenario_name": "send_message_with_contact_content_cellular_off_multiple_user_turn",
+      "selected_strata": [
+        "state_dependency",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.messaging",
+        "tool_sandbox.tools.setting",
+        "tool_sandbox.tools.user_tools"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "get_cellular_service_status",
+        "search_contacts",
+        "send_message_with_phone_number",
+        "set_cellular_service_status"
+      ],
+      "categories": [
+        "MULTIPLE_TOOL_CALL",
+        "MULTIPLE_USER_TURN",
+        "NO_DISTRACTION_TOOLS",
+        "STATE_DEPENDENCY"
+      ],
+      "max_messages": 30,
+      "n_milestones": 4,
+      "n_minefields": 0,
+      "scenario_name": "send_message_with_contact_content_cellular_off_multiple_user_turn_alt",
+      "selected_strata": [
+        "state_dependency",
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.messaging",
+        "tool_sandbox.tools.setting",
+        "tool_sandbox.tools.user_tools"
+      ],
+      "uses_external_search": false
+    },
+    {
+      "allowed_tools": [
+        "end_conversation",
+        "modify_contact",
+        "search_contacts"
+      ],
+      "categories": [
+        "MULTIPLE_TOOL_CALL",
+        "MULTIPLE_USER_TURN",
+        "NO_DISTRACTION_TOOLS"
+      ],
+      "max_messages": 30,
+      "n_milestones": 5,
+      "n_minefields": 0,
+      "scenario_name": "update_contact_relationship_with_relationship_twice_multiple_user_turn",
+      "selected_strata": [
+        "multi_tool_high_milestone"
+      ],
+      "tool_modules": [
+        "tool_sandbox.tools.contact",
+        "tool_sandbox.tools.user_tools"
+      ],
+      "uses_external_search": false
+    }
+  ],
+  "selection_hash": "78aee4120ca3616f978d9f8c9953cae84f3ccea622a8ffa3f49671ffa2fc77d0",
+  "selection_policy": {
+    "excluded": [
+      "RapidAPI-backed search tools",
+      "tool augmentation variants"
+    ],
+    "ranking": "milestones_desc_then_tool_count_desc_then_name",
+    "strata": {
+      "canonicalization": 7,
+      "insufficient_information": 6,
+      "multi_tool_high_milestone": 10,
+      "state_dependency": 7
+    },
+    "target_size": 30
+  },
+  "source_repository": "https://github.com/apple/ToolSandbox",
+  "source_revision": "165848b9a78cead7ca7fe7c89c688b58e6501219",
+  "status": "frozen_for_adapter_smoke",
+  "subset_id": "toolsandbox_offline_feasibility_v1"
+}

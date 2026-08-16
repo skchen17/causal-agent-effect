@@ -1,0 +1,82 @@
+[
+  {
+    "attack_success": 0.001053740779768177,
+    "attack_utility": 0.22760800842992623,
+    "benign_utility": 0.2268041237113402,
+    "component": "original_camel_generator_interpreter_inline_policy_normal",
+    "interpretation": "local-model feasibility; not defense-effectiveness evidence",
+    "n_rows": 1046,
+    "policy_denial_rate": 0.08221797323135756,
+    "runtime_error_rate": 0.0,
+    "scope": "original_pipeline_local_model",
+    "system": "camel"
+  },
+  {
+    "attack_success": 0.0010570824524312897,
+    "attack_utility": 0.25052854122621565,
+    "benign_utility": 0.22105263157894736,
+    "component": "original_camel_generator_interpreter_inline_policy_strict",
+    "interpretation": "local-model feasibility; not defense-effectiveness evidence",
+    "n_rows": 1046,
+    "policy_denial_rate": 0.06118546845124283,
+    "runtime_error_rate": 0.004780114722753346,
+    "scope": "original_pipeline_local_model",
+    "system": "camel"
+  },
+  {
+    "attack_success": 0.0010559662090813093,
+    "attack_utility": 0.2914466737064414,
+    "benign_utility": 0.23711340206185566,
+    "component": "original_camel_generator_interpreter_no_policy",
+    "interpretation": "local-model feasibility; not defense-effectiveness evidence",
+    "n_rows": 1046,
+    "policy_denial_rate": 0.0,
+    "runtime_error_rate": 0.0019120458891013384,
+    "scope": "original_pipeline_local_model",
+    "system": "camel"
+  },
+  {
+    "attack_success": 0.0,
+    "attack_utility": 0.057233704292527825,
+    "benign_utility": 0.041237113402061855,
+    "component": "agentdojo_no_defense_local_model",
+    "interpretation": "local-model feasibility; not defense-effectiveness evidence",
+    "n_rows": 726,
+    "policy_denial_rate": 0.0,
+    "runtime_error_rate": 0.0,
+    "scope": "original_pipeline_local_model",
+    "system": "ipiguard"
+  },
+  {
+    "attack_success": 0.006589785831960461,
+    "attack_utility": 0.24052718286655683,
+    "benign_utility": 0.23157894736842105,
+    "component": "original_ipiguard_construct_traverse_pipeline",
+    "interpretation": "local-model feasibility; not defense-effectiveness evidence",
+    "n_rows": 726,
+    "policy_denial_rate": 0.0,
+    "runtime_error_rate": 0.03305785123966942,
+    "scope": "original_pipeline_local_model",
+    "system": "ipiguard"
+  },
+  {
+    "benign_utility": null,
+    "component": "phase6_external_deepseek_gate",
+    "interpretation": "pending_missing_deepseek_api_key",
+    "n_rows": 0,
+    "passed": false,
+    "scope": "original_pipeline_external_model",
+    "successful_attacks": 0,
+    "system": "camel"
+  },
+  {
+    "benign_utility": null,
+    "component": "phase6_external_deepseek_gate",
+    "interpretation": "pending_missing_deepseek_api_key",
+    "n_rows": 0,
+    "passed": false,
+    "scope": "original_pipeline_external_model",
+    "successful_attacks": 0,
+    "system": "ipiguard"
+  }
+]

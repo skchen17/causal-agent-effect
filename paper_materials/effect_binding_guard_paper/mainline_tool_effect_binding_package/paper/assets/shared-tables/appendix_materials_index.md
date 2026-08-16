@@ -1,0 +1,40 @@
+# Appendix Materials Index
+
+| Source path |
+| --- |
+| paper_package_tool_effect_invariance/tables/appendix_camel_miss_decomposition.csv |
+| paper_package_tool_effect_invariance/tables/appendix_camel_miss_decomposition.json |
+| paper_package_tool_effect_invariance/tables/appendix_camel_miss_decomposition.md |
+| paper_package_tool_effect_invariance/tables/appendix_corrected_vs_weak_labels.csv |
+| paper_package_tool_effect_invariance/tables/appendix_corrected_vs_weak_labels.json |
+| paper_package_tool_effect_invariance/tables/appendix_corrected_vs_weak_labels.md |
+| paper_package_tool_effect_invariance/tables/appendix_external_pipeline_feasibility.csv |
+| paper_package_tool_effect_invariance/tables/appendix_external_pipeline_feasibility.json |
+| paper_package_tool_effect_invariance/tables/appendix_external_pipeline_feasibility.md |
+| paper_package_tool_effect_invariance/tables/appendix_failure_case_table.csv |
+| paper_package_tool_effect_invariance/tables/appendix_failure_case_table.json |
+| paper_package_tool_effect_invariance/tables/appendix_failure_case_table.md |
+| paper_package_tool_effect_invariance/tables/appendix_ipiguard_consistency_by_variant.csv |
+| paper_package_tool_effect_invariance/tables/appendix_ipiguard_consistency_by_variant.json |
+| paper_package_tool_effect_invariance/tables/appendix_ipiguard_consistency_by_variant.md |
+| paper_materials/effect_binding_guard_paper/tables/e47_measurement_existing_defenses.csv |
+| paper_materials/effect_binding_guard_paper/tables/e47_measurement_existing_defenses.json |
+| paper_materials/effect_binding_guard_paper/tables/e47_measurement_existing_defenses.md |
+| paper_materials/effect_binding_guard_paper/tables/e48_main_method.csv |
+| paper_materials/effect_binding_guard_paper/tables/e48_main_method.json |
+| paper_materials/effect_binding_guard_paper/tables/e48_main_method.md |
+| paper_materials/effect_binding_guard_paper/tables/e48_source_specific.csv |
+| paper_materials/effect_binding_guard_paper/tables/e48_source_specific.json |
+| paper_materials/effect_binding_guard_paper/tables/e48_source_specific.md |
+| paper_materials/effect_binding_guard_paper/tables/e49_learned_calibrator_diagnostic.csv |
+| paper_materials/effect_binding_guard_paper/tables/e49_learned_calibrator_diagnostic.json |
+| paper_materials/effect_binding_guard_paper/tables/e49_learned_calibrator_diagnostic.md |
+| paper_materials/effect_binding_guard_paper/tables/e50_robustness.csv |
+| paper_materials/effect_binding_guard_paper/tables/e50_robustness.json |
+| paper_materials/effect_binding_guard_paper/tables/e50_robustness.md |
+| paper_materials/effect_binding_guard_paper/tables/e55_precommit_authorization.csv |
+| paper_materials/effect_binding_guard_paper/tables/e55_precommit_authorization.json |
+| paper_materials/effect_binding_guard_paper/tables/e55_precommit_authorization.md |
+| paper_materials/effect_binding_guard_paper/tables/final_capability_matrix.csv |
+| paper_materials/effect_binding_guard_paper/tables/final_capability_matrix.json |
+| paper_materials/effect_binding_guard_paper/tables/final_capability_matrix.md |

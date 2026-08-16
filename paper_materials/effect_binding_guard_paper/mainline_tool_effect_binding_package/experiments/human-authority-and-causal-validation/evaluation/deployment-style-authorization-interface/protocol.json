@@ -1,0 +1,37 @@
+{
+  "experiment": "deployment_style_authorization_interface",
+  "status": "frozen_before_full_run",
+  "frozen_at": "2026-08-14T13:18:00Z",
+  "design": {
+    "n_contexts": 48,
+    "n_domains": 4,
+    "contexts_per_domain": 12,
+    "representations": [
+      "tool_name",
+      "canonical_raw_arguments",
+      "common_effect_fields",
+      "validated_typed_effects"
+    ],
+    "primary_consumer": "unanimous finite-policy cell; mixed cells ABSTAIN",
+    "diagnostics": [
+      "uniform mixed-cell ALLOW",
+      "uniform mixed-cell DENY"
+    ],
+    "unknown_or_invalid_rows": "retain and fail closed",
+    "post_result_case_deletion": false
+  },
+  "input_hashes": {
+    "contexts_sha256": "d48c8c72606be01b95aff0350353a6f968b9f03c9fc7514e8d32f927d0fce50a",
+    "policy_manifests_sha256": "664d632038dd8f95580fbb030ddfe659604bcee5a65cba50e19e591d05441440",
+    "runner_sha256": "5c4dccaeb6d4cce970abbbc73d762d5058e8b51c3b073c0c8fccd9bd65f8b203"
+  },
+  "acceptance_gates": {
+    "all_contexts_retained": true,
+    "source_descriptor_conformance_reported": true,
+    "mixed_cells_reported_for_every_representation": true,
+    "unsafe_allow_false_denial_abstain_coverage_accuracy_reported": true,
+    "state_dependent_raw_argument_subset_reported": true,
+    "negative_results_retained": true
+  },
+  "claim_boundary": "Controlled four-domain deployment-style authorization-policy experiment. It tests bounded authorization-interface conformance on frozen copied-sandbox contexts; it does not estimate deployment-policy prevalence, open-world descriptor soundness, complete authorization, or production safety."
+}

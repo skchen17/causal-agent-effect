@@ -1,0 +1,55 @@
+\section{Additional Tables}
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Canonical E55 version policy used in this paper.}
+\label{tab:e55-version-policy}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+Artifact & Role in paper & Rationale \\
+\midrule
+E55-v2 strict & Main pre-commit and ablation result & Corrected rerun with 600 rows, five domains, 0.880 authz-aware coverage, zero UPA, zero FDeny, and E55-v2 ablation values in Table~\ref{tab:ablation}. \\
+Original E55 strict & Historical comparison source & Provides original 0.920 coverage result and earlier ablation values 0.333, 0.148, 0.148, 0.211 for version comparison. \\
+Original E55 human-corrected sensitivity & Audit/sensitivity evidence & Preserves zero UPA but introduces 0.017 FDeny after six decision corrections. \\
+E57-v2 validity & Deterministic validity evidence & Resource perturbation and reference-authorizer checks on corrected v2. \\
+E57 human audit & Human audit evidence & Reports 54/60 decision agreement and corrected-label subset; not merged with reference-authorizer agreement. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\small
+\caption{E55-v2 versus original E55 ablation note. These values should not be mixed without labeling the source version.}
+\label{tab:e55-v2-ablation-note}
+\begin{tabular}{lcc}
+\toprule
+Ablation metric & Original E55 strict & E55-v2 strict \\
+\midrule
+No multi-resource expansion UPA & 0.333 & 0.217 \\
+No operation-mode binding UPA & 0.148 & 0.217 \\
+No provenance overlay UPA & 0.148 & 0.217 \\
+No alias resolution FDeny & 0.211 & 0.238 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Human audit correction summary.}
+\label{tab:human-audit-summary}
+\begin{tabular}{lc}
+\toprule
+Quantity & Value \\
+\midrule
+Human-audited rows & 60 \\
+Decision agreement & 54/60 = 0.900 \\
+All human checks true & 46/60 = 0.767 \\
+Decision corrections & 6 \\
+Atom corrections & 13 \\
+Violation-reason corrections & 10 \\
+\bottomrule
+\end{tabular}
+\end{table}

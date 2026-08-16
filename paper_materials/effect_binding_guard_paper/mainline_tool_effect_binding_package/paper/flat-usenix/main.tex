@@ -1,0 +1,43 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{usenix-2020-09}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,fit,positioning}
+
+\newcommand{\sys}{EffectContract}
+\newcommand{\atomtuple}{\langle e,o,r,y,v,m,p,k\rangle}
+\newcommand{\Allow}{\textsc{Allow}}
+\newcommand{\Deny}{\textsc{Deny}}
+\newcommand{\Abstain}{\textsc{Abstain}}
+
+\title{Binding Agent Tool Calls to Effects:\\ Counterfactual Contracts for Pre-Commit Mediation}
+\author{Anonymous Authors}
+\date{}
+
+\begin{document}
+\maketitle
+\input{abstract}
+\input{introduction}
+\input{threat_model}
+\input{design}
+\input{counterfactual_registration}
+\input{security_analysis}
+\input{evaluation}
+\input{experimental_setup}
+% Numerical results enter only after the corresponding artifacts pass their
+% protocol, completeness, and claim-boundary gates.
+\input{results}
+\input{related_work}
+\input{limitations}
+\input{conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\appendix
+\input{ethics}
+\input{open_science}
+\end{document}

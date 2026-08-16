@@ -1,0 +1,426 @@
+{
+  "n_rules": 5,
+  "rules": [
+    {
+      "field_role": "amount",
+      "frozen_hash": "b04911a9ed36d127c39352f92170b959e2d4008d893e5b829425ed440c7812a3",
+      "probes": [
+        {
+          "v": "2200",
+          "w": "2200.5"
+        }
+      ],
+      "rationale": "amount role semantic is numeric; trailing-zero strings denote the same number; the probe guards against precision collapse",
+      "rule_id": "R01",
+      "samples": [
+        {
+          "kind": "positive",
+          "v": "2200.00",
+          "w": "2200"
+        },
+        {
+          "kind": "positive",
+          "v": "2200.0",
+          "w": "2200"
+        }
+      ],
+      "scope": {
+        "roles": [
+          "amount"
+        ],
+        "tools": [
+          "banking/schedule_transaction"
+        ]
+      },
+      "tool": "banking/schedule_transaction",
+      "transform": {
+        "name": "amount_trailing_zeros",
+        "params": {}
+      },
+      "validation_record": {
+        "calibrated": true,
+        "evidence_kind": "modeled",
+        "field_role": "amount",
+        "n_probes": 1,
+        "n_samples": 2,
+        "overmerges": [],
+        "probes": [
+          {
+            "index": 0,
+            "merged": false,
+            "oracle_distinct": true,
+            "overmerge": false,
+            "rv": "2200",
+            "rw": "2200.5",
+            "v": "2200",
+            "w": "2200.5"
+          }
+        ],
+        "rule_id": "R01",
+        "samples": [
+          {
+            "d1_effect_preserved": true,
+            "d2_effect_preserved": true,
+            "evidence": "modeled",
+            "index": 0,
+            "kind": "positive",
+            "merge_oracle_equivalent": true,
+            "merged": true,
+            "rv": "2200",
+            "rw": "2200",
+            "sig_v": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice-a\"]},\"resource\":[\"num\",\"2200\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "sig_w": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice-a\"]},\"resource\":[\"num\",\"2200\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "v": "2200.00",
+            "violation": false,
+            "w": "2200"
+          },
+          {
+            "d1_effect_preserved": true,
+            "d2_effect_preserved": true,
+            "evidence": "modeled",
+            "index": 1,
+            "kind": "positive",
+            "merge_oracle_equivalent": true,
+            "merged": true,
+            "rv": "2200",
+            "rw": "2200",
+            "sig_v": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice-a\"]},\"resource\":[\"num\",\"2200\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "sig_w": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice-a\"]},\"resource\":[\"num\",\"2200\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "v": "2200.0",
+            "violation": false,
+            "w": "2200"
+          }
+        ],
+        "tool": "banking/schedule_transaction",
+        "transform": {
+          "name": "amount_trailing_zeros",
+          "params": {}
+        },
+        "verdict": "ACCEPT",
+        "verdict_reason": "all samples effect-preserving; no probe over-merged",
+        "violations": []
+      }
+    },
+    {
+      "field_role": "date",
+      "frozen_hash": "c23a00d8e83b1b1ed7fabc77b43475c6bbccdaead37c5aef9a4bd0fa95246a7f",
+      "probes": [
+        {
+          "v": "2026-08-01",
+          "w": "2026-08-02"
+        }
+      ],
+      "rationale": "date role semantic is the calendar date; both forms denote 2026-08-01 under the declared MM/DD/YYYY convention (semantic-dependent, per design); the probe guards against day drift",
+      "rule_id": "R02",
+      "samples": [
+        {
+          "kind": "positive",
+          "v": "2026-08-01",
+          "w": "08/01/2026"
+        }
+      ],
+      "scope": {
+        "roles": [
+          "date"
+        ],
+        "tools": [
+          "banking/schedule_transaction"
+        ]
+      },
+      "tool": "banking/schedule_transaction",
+      "transform": {
+        "name": "date_iso",
+        "params": {
+          "slash_convention": "MM/DD/YYYY"
+        }
+      },
+      "validation_record": {
+        "calibrated": true,
+        "evidence_kind": "mixed",
+        "field_role": "date",
+        "n_probes": 1,
+        "n_samples": 1,
+        "overmerges": [],
+        "probes": [
+          {
+            "index": 0,
+            "merged": false,
+            "oracle_distinct": true,
+            "overmerge": false,
+            "rv": "2026-08-01",
+            "rw": "2026-08-02",
+            "v": "2026-08-01",
+            "w": "2026-08-02"
+          }
+        ],
+        "rule_id": "R02",
+        "samples": [
+          {
+            "d1_effect_preserved": true,
+            "d2_effect_preserved": true,
+            "evidence": "mixed",
+            "index": 0,
+            "kind": "positive",
+            "merge_oracle_equivalent": true,
+            "merged": true,
+            "rv": "2026-08-01",
+            "rw": "2026-08-01",
+            "sig_v": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice-a\"]},\"resource\":[\"num\",\"10\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "sig_w": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice-a\"]},\"resource\":[\"num\",\"10\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "v": "2026-08-01",
+            "violation": false,
+            "w": "08/01/2026"
+          }
+        ],
+        "tool": "banking/schedule_transaction",
+        "transform": {
+          "name": "date_iso",
+          "params": {
+            "slash_convention": "MM/DD/YYYY"
+          }
+        },
+        "verdict": "ACCEPT",
+        "verdict_reason": "all samples effect-preserving; no probe over-merged",
+        "violations": []
+      }
+    },
+    {
+      "field_role": "subject_label",
+      "frozen_hash": "5f6eb27064b12dd4dc0020fea98b67c526dd726f433fc22a6449b9021c1a59bd",
+      "probes": [
+        {
+          "v": "invoice-a.",
+          "w": "invoice-a?"
+        }
+      ],
+      "rationale": "M3-R1: repeated terminal-punctuation runs are formatting artifacts; the label semantic folds them; the probe guards against cross-punctuation merging",
+      "rule_id": "R03",
+      "samples": [
+        {
+          "kind": "positive",
+          "v": "invoice-a..",
+          "w": "invoice-a."
+        }
+      ],
+      "scope": {
+        "roles": [
+          "subject_label"
+        ],
+        "tools": [
+          "banking/schedule_transaction"
+        ]
+      },
+      "tool": "banking/schedule_transaction",
+      "transform": {
+        "name": "fold_repeated_punctuation",
+        "params": {}
+      },
+      "validation_record": {
+        "calibrated": true,
+        "evidence_kind": "modeled",
+        "field_role": "subject_label",
+        "n_probes": 1,
+        "n_samples": 1,
+        "overmerges": [],
+        "probes": [
+          {
+            "index": 0,
+            "merged": false,
+            "oracle_distinct": true,
+            "overmerge": false,
+            "rv": "invoice-a.",
+            "rw": "invoice-a?",
+            "v": "invoice-a.",
+            "w": "invoice-a?"
+          }
+        ],
+        "rule_id": "R03",
+        "samples": [
+          {
+            "d1_effect_preserved": true,
+            "d2_effect_preserved": true,
+            "evidence": "modeled",
+            "index": 0,
+            "kind": "positive",
+            "merge_oracle_equivalent": true,
+            "merged": true,
+            "rv": "invoice-a.",
+            "rw": "invoice-a.",
+            "sig_v": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice-a.\"]},\"resource\":[\"num\",\"10\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "sig_w": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice-a.\"]},\"resource\":[\"num\",\"10\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "v": "invoice-a..",
+            "violation": false,
+            "w": "invoice-a."
+          }
+        ],
+        "tool": "banking/schedule_transaction",
+        "transform": {
+          "name": "fold_repeated_punctuation",
+          "params": {}
+        },
+        "verdict": "ACCEPT",
+        "verdict_reason": "all samples effect-preserving; no probe over-merged",
+        "violations": []
+      }
+    },
+    {
+      "field_role": "subject_label",
+      "frozen_hash": "eaf08e96e87c62e25bb02e8d53a5cdb5562283713b7a0dec06d47b36c2365dd4",
+      "probes": [
+        {
+          "v": "invoice a",
+          "w": "invoicea"
+        }
+      ],
+      "rationale": "label semantic collapses whitespace runs; the probe guards against token-gluing",
+      "rule_id": "R04",
+      "samples": [
+        {
+          "kind": "positive",
+          "v": "invoice  a",
+          "w": "invoice a"
+        }
+      ],
+      "scope": {
+        "roles": [
+          "subject_label"
+        ],
+        "tools": [
+          "banking/schedule_transaction"
+        ]
+      },
+      "tool": "banking/schedule_transaction",
+      "transform": {
+        "name": "fold_whitespace",
+        "params": {}
+      },
+      "validation_record": {
+        "calibrated": true,
+        "evidence_kind": "modeled",
+        "field_role": "subject_label",
+        "n_probes": 1,
+        "n_samples": 1,
+        "overmerges": [],
+        "probes": [
+          {
+            "index": 0,
+            "merged": false,
+            "oracle_distinct": true,
+            "overmerge": false,
+            "rv": "invoice a",
+            "rw": "invoicea",
+            "v": "invoice a",
+            "w": "invoicea"
+          }
+        ],
+        "rule_id": "R04",
+        "samples": [
+          {
+            "d1_effect_preserved": true,
+            "d2_effect_preserved": true,
+            "evidence": "modeled",
+            "index": 0,
+            "kind": "positive",
+            "merge_oracle_equivalent": true,
+            "merged": true,
+            "rv": "invoice a",
+            "rw": "invoice a",
+            "sig_v": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice a\"]},\"resource\":[\"num\",\"10\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "sig_w": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice a\"]},\"resource\":[\"num\",\"10\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "v": "invoice  a",
+            "violation": false,
+            "w": "invoice a"
+          }
+        ],
+        "tool": "banking/schedule_transaction",
+        "transform": {
+          "name": "fold_whitespace",
+          "params": {}
+        },
+        "verdict": "ACCEPT",
+        "verdict_reason": "all samples effect-preserving; no probe over-merged",
+        "violations": []
+      }
+    },
+    {
+      "field_role": "subject_label",
+      "frozen_hash": "3f39c53dfec01b74f89fb41c03ed38700fb308cf1153bd619756549f374ed4d7",
+      "probes": [
+        {
+          "v": "invoice-a",
+          "w": "invoice-b"
+        }
+      ],
+      "rationale": "label semantic is case-insensitive (inherited from the frozen guard's casefold in canonical_grounding_value); the probe guards against cross-label merging",
+      "rule_id": "R05",
+      "samples": [
+        {
+          "kind": "positive",
+          "v": "Invoice-A",
+          "w": "invoice-a"
+        }
+      ],
+      "scope": {
+        "roles": [
+          "subject_label"
+        ],
+        "tools": [
+          "banking/schedule_transaction"
+        ]
+      },
+      "tool": "banking/schedule_transaction",
+      "transform": {
+        "name": "casefold_value",
+        "params": {}
+      },
+      "validation_record": {
+        "calibrated": true,
+        "evidence_kind": "mixed",
+        "field_role": "subject_label",
+        "n_probes": 1,
+        "n_samples": 1,
+        "overmerges": [],
+        "probes": [
+          {
+            "index": 0,
+            "merged": false,
+            "oracle_distinct": true,
+            "overmerge": false,
+            "rv": "invoice-a",
+            "rw": "invoice-b",
+            "v": "invoice-a",
+            "w": "invoice-b"
+          }
+        ],
+        "rule_id": "R05",
+        "samples": [
+          {
+            "d1_effect_preserved": true,
+            "d2_effect_preserved": true,
+            "evidence": "mixed",
+            "index": 0,
+            "kind": "positive",
+            "merge_oracle_equivalent": true,
+            "merged": true,
+            "rv": "invoice-a",
+            "rw": "invoice-a",
+            "sig_v": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice-a\"]},\"resource\":[\"num\",\"10\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "sig_w": "[{\"commit_mode\":[\"exact\",\"scheduled\"],\"effect\":[\"exact\",\"funds_transfer_scheduled\"],\"operation\":[\"exact\",\"schedule\"],\"qualifiers\":{\"date\":[\"date\",\"2026-08-01\"],\"recurring\":[\"exact\",\"False\"],\"subject\":[\"label\",\"invoice-a\"]},\"resource\":[\"num\",\"10\"],\"target\":[\"exact\",\"CH9300762011623852957\"],\"visibility\":[\"exact\",\"private\"]}]",
+            "v": "Invoice-A",
+            "violation": false,
+            "w": "invoice-a"
+          }
+        ],
+        "tool": "banking/schedule_transaction",
+        "transform": {
+          "name": "casefold_value",
+          "params": {}
+        },
+        "verdict": "ACCEPT",
+        "verdict_reason": "all samples effect-preserving; no probe over-merged",
+        "violations": []
+      }
+    }
+  ],
+  "schema_version": 1
+}

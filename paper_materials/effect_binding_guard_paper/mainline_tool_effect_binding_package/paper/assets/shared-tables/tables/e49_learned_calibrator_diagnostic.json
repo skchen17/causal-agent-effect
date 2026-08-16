@@ -1,0 +1,26 @@
+[
+  {
+    "claim_scope": "diagnostic_not_main_method",
+    "coverage": 0.9881656804733728,
+    "interpretation": "Higher coverage but higher UPA than hard guard.",
+    "method": "learned_logistic_calibrator_source_balanced",
+    "safe_false_deny": 0.035789473684210524,
+    "unsafe_pre_allow": 0.0918918918918919
+  },
+  {
+    "claim_scope": "main_hard_baseline",
+    "coverage": 0.923076923076923,
+    "interpretation": "Safer baseline retained as main method.",
+    "method": "hard_full_guard_same_splits",
+    "safe_false_deny": 0.05894736842105264,
+    "unsafe_pre_allow": 0.05135135135135136
+  },
+  {
+    "claim_scope": "negative_diagnostic",
+    "coverage": 1.0,
+    "interpretation": "Resource/auth stress fails; learned calibration is appendix only.",
+    "method": "e49_resource_auth_stress",
+    "safe_false_deny": 0.05,
+    "unsafe_pre_allow": 0.7416666666666667
+  }
+]

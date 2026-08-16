@@ -1,0 +1,137 @@
+\section{Results}
+
+\subsection{Compound and State-Dependent Tool Effects}
+
+\input{tables/table_agentdojo_effect_prevalence}
+
+Tool calls can commit more than one independently relevant state change. Source
+replay observes a state or external-interaction effect in 29.5\% of 339
+AgentDojo calls. Among effectful calls, 17.0\% contain multiple logical effect
+units and 13.0\% cross effect types or benchmark subsystems
+(Table~\ref{tab:agentdojo-effect-prevalence}). In a separate ToolSandbox
+protocol~\cite{lu-etal-2025-toolsandbox}, 28.1\% of contexts keep the tool and explicit arguments fixed while
+pre-state changes the committed effect. These execution facts establish the
+semantic distinctions; the separating relations below determine which of them
+matter to authorization.
+
+\subsection{Constructive Falsification and Interface Conformance}
+
+\input{figures/representation_results}
+
+\paragraph{Executable failure certificates.}
+Coarse views merge executions that the diagnostic policy relation separates.
+In the 56-call source domain, the tool-name and effect-only views induce 564 and
+548 separating pairs. The common-field view leaves 118 pairs by merging
+payload, temporal, recurrence, and repeated-effect distinctions. Each pair is
+constructive: the tool executed, the committed semantic views differ, the
+policy-separation oracle requires different decisions, and the tested interface
+represents both executions identically. Any one pair therefore falsifies that
+interface on a domain containing it (Figure~\ref{fig:representation-results}(a)).
+
+\input{tables/table_failure_certificates}
+The deterministic extractor joins pre-state and call pairs to source
+transitions, ideal decisions, and representation keys. It selects the first
+valid row under each of six frozen category predicates. Table~\ref{tab:failure-certificates}
+shows two certificates with identical calls: a compliance flag adds a compound
+banking effect in one, while an alias map redirects both account and payee in
+the other. Each row independently rechecks source difference, policy
+separation, coarse equality, and refined distinction.
+
+\paragraph{Counterexamples guide monotone refinement.}
+Across 211 comparable edges in the
+32-representation lattice, restoring a witnessed distinction never coarsens
+the partition or increases its collision lower bound. One inspected path adds
+date, subject, recurrence, payload, and visibility distinctions and reduces the
+observed separating-pair count from 124 to zero. This behavior instantiates
+Proposition~\ref{thm:finite-adequacy} on the diagnostic relation.
+
+\paragraph{Independent implementations after freeze.}
+\input{tables/table_third_party_validation}
+The three pinned MCP implementations execute without source failure in all 264
+registration and 264 post-freeze contexts. A native-delta policy that consumes
+raw filesystem, row, and graph changes agrees with the typed path on every
+registration and post-freeze decision, with no typed compile failure.
+Tool name, raw call, and common fields retain 11, 5, and 12 mixed cells,
+respectively (Table~\ref{tab:third-party-validation}). The typed interface and
+the stronger state-aware request view retain none. Of 47 descriptor mutants
+generated without reading outcomes, registration detects 37. The remaining 10
+are decision-equivalent on both frozen domains, and none first fails after
+freeze.
+
+\paragraph{Unresolved evidence is retained.}
+AgentDojo-wide registration keeps all 67 schema fields because invalid or
+unresolved interventions provide no evidence for omission. The result is a
+conservative full-field registry rather than a sparse projection.
+Appendix~\ref{app:additional-results} reports the field-level witness and
+failure counts.
+
+\subsection{Authorization under Explicit Authority}
+
+\input{tables/table_protocol_separated_authority}
+
+The typed-effect interface preserves the distinctions exercised by the
+explicit-authority protocol. Its descriptors match the separately implemented
+transition oracle on all 384 registration contexts and satisfy all 192
+counterfactual relation checks. Across 1,024 contexts materialized after
+descriptor freeze, no policy-mixed cell is observed, and the shared authority
+engine reproduces every source-derived decision (Table~\ref{tab:protocol-separated-authorization}).
+
+Changing only the observation interface exposes the cost of erased
+distinctions. The tool-name view abstains on every context and therefore
+withholds all 240 authorized operations. The raw-call view covers 99.6\% of
+contexts but unsafely allows 1.1\% of ideal denials and withholds 50.4\% of
+authorized operations. The common-field view makes no incorrect covered
+decision, but abstention reduces coverage to 81.0\% and withholds 32.9\% of
+authorized operations. Its nine mixed cells also show that no deterministic
+consumer over that view can be both sound and fully permissive on this domain.
+
+The stronger state-aware request view also has no mixed cell and supports exact
+decisions on all 1,024 contexts. Its pure representation contains only
+totalized arguments and trusted attributes of directly referenced resources;
+the authorization track discloses a static tool-specific operation adapter.
+It is larger and more partitioned than the typed interface (669 versus 297
+cells, with 3,252 source-equivalent pairs split), but it is sufficient on this
+domain. The experiment therefore identifies two sufficient interfaces with
+different semantic placement.
+
+\paragraph{What normalization buys.}
+The economy audit confirms that sufficiency is not the distinguishing result.
+Both paths reproduce all decisions in both domains. The typed interface instead
+forms a less fragmented policy-facing representation: state-aware requests
+split 3,252 and 90 source-equivalent pairs in the 1,024- and 264-context
+domains, whereas the typed view splits none. Their median policy-facing views
+contain 9 and 4 tool-pre-state leaves, versus none after typed instantiation.
+The implementations expose different cost profiles. In the four-tool
+prototype, the generic typed interpreter is about 5.2$\times$ slower than the
+state-aware path. In the third-party prototype it is about 1.4$\times$ faster,
+and its hard-coded compiler is larger than the state-aware adapter. Across both
+domains, the typed interface consistently provides canonicalization, lower
+overpartition, and descriptor-local semantic adaptation.
+
+Pre-state explains part of the raw-call gap. Among 52 groups with identical
+arguments but state-dependent ideal decisions, call text collides in every
+group; the typed-effect and state-aware interfaces separate all of them.
+Explicit call text alone is therefore insufficient in these contexts; adding
+trusted state can recover the distinction.
+
+\subsection{Pre-Commit Consumption}
+
+In the 30-trajectory copied-sandbox study, local Qwen produces a parseable
+structured call for every task. The explicit-authority consumer allows all 10
+authorized or within-delegation calls and denies all 20 calls with an
+unauthorized target, compound unauthorized effect, adverse pre-state, or
+exceeded delegation. All 10 committed calls equal the checked call and their
+source-observed transitions reconcile with the instantiated atoms. The
+scenario-balanced study therefore exercises the complete
+call--descriptor--atom--authority--execute path.
+
+The narrower AgentDojo registered-field projection can drive an audited
+pre-commit hook. The monitor allows 96.8\% of 2,783 checks, produces no
+unreconciled execution, and never invokes an LLM after registration. Missing or
+unresolved bindings do not produce \Allow{}. In the matched Qwen3-32B run, the
+monitor lowers attack success from 10.0\% to 2.9\% while benign utility changes
+from 61.9\% to 60.8\%. Prompt Sandwiching reaches 1.0\% attack success and
+68.0\% benign utility, the best combined point in the five-method comparison;
+the PromptArmor-style adapter reaches 0.0\% attack success with 27.8\% benign
+utility. Appendix~\ref{app:additional-results} reports complete DeepSeek,
+Qwen3-32B, held-out, and transfer results.

@@ -1,0 +1,113 @@
+{
+  "asr_discordance": {
+    "guarded_only_success": 2,
+    "no_guard_only_success": 52
+  },
+  "claim_boundary": "Sensitivity analysis for dependence among AgentDojo task-injection pairs. It does not correct the disclosed non-uniform context capacities or establish cross-model generalization.",
+  "experiment": "E78 cluster-aware sensitivity audit",
+  "iterations": 30000,
+  "methods": {
+    "guarded": "agentdojo_live_ours_e77_effect_diff_runtime",
+    "reference": "agentdojo_live_local_no_guard"
+  },
+  "metrics": {
+    "asr_delta": {
+      "crossed_user_injection_cluster": {
+        "bootstrap_mass_ge_zero": 0.0,
+        "ci_95": [
+          -0.12559618441971382,
+          -0.04129570747218153
+        ],
+        "cluster_keys": [
+          "suite/user_task_id",
+          "suite/injection_task_id"
+        ]
+      },
+      "injection_task_cluster": {
+        "bootstrap_mass_ge_zero": 0.0,
+        "ci_95": [
+          -0.11128775834658187,
+          -0.0492845786963434
+        ],
+        "cluster_key": "injection_task_id",
+        "n_clusters": 27
+      },
+      "point_estimate": -0.0794912559618442,
+      "user_task_cluster": {
+        "bootstrap_mass_ge_zero": 0.0,
+        "ci_95": [
+          -0.10333863275039745,
+          -0.05564387917329094
+        ],
+        "cluster_key": "user_task_id",
+        "n_clusters": 97
+      }
+    },
+    "attack_utility_delta": {
+      "crossed_user_injection_cluster": {
+        "bootstrap_mass_ge_zero": 0.0,
+        "ci_95": [
+          -0.31001589825119236,
+          -0.11764705882352941
+        ],
+        "cluster_keys": [
+          "suite/user_task_id",
+          "suite/injection_task_id"
+        ]
+      },
+      "injection_task_cluster": {
+        "bootstrap_mass_ge_zero": 0.0,
+        "ci_95": [
+          -0.24006359300476948,
+          -0.1891891891891892
+        ],
+        "cluster_key": "injection_task_id",
+        "n_clusters": 27
+      },
+      "point_estimate": -0.21462639109697934,
+      "user_task_cluster": {
+        "bootstrap_mass_ge_zero": 0.0,
+        "ci_95": [
+          -0.3036565977742448,
+          -0.12400635930047695
+        ],
+        "cluster_key": "user_task_id",
+        "n_clusters": 97
+      }
+    }
+  },
+  "n_attack_pairs": 629,
+  "seed": 20260726,
+  "source": "analysis/results/e78_qwen32_frozen_case_rows.jsonl",
+  "status": "passed",
+  "suite_breakdown": {
+    "banking": {
+      "asr_delta": -0.08333333333333333,
+      "attack_utility_delta": -0.13194444444444445,
+      "n_injection_tasks": 9,
+      "n_pairs": 144,
+      "n_user_tasks": 16
+    },
+    "slack": {
+      "asr_delta": -0.2857142857142857,
+      "attack_utility_delta": -0.38095238095238093,
+      "n_injection_tasks": 5,
+      "n_pairs": 105,
+      "n_user_tasks": 21
+    },
+    "travel": {
+      "asr_delta": -0.04285714285714286,
+      "attack_utility_delta": -0.14285714285714285,
+      "n_injection_tasks": 7,
+      "n_pairs": 140,
+      "n_user_tasks": 20
+    },
+    "workspace": {
+      "asr_delta": -0.008333333333333333,
+      "attack_utility_delta": -0.23333333333333334,
+      "n_injection_tasks": 6,
+      "n_pairs": 240,
+      "n_user_tasks": 40
+    }
+  }
+}

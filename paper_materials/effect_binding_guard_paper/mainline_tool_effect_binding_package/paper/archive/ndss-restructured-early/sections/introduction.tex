@@ -1,0 +1,27 @@
+\section{Introduction}
+
+LLM agents increasingly act through tools that read, write, send, share, purchase, schedule, or modify state in external systems. In such settings the security-relevant question is not only whether an agent emits harmful text, but whether a concrete candidate action should be allowed to commit an external side effect. Benchmarks such as ToolEmu and AgentDojo make this risk concrete by evaluating agents across tool-rich tasks and adversarial inputs \cite{toolemu,agentdojo}. Guardrail and pre-execution systems such as ToolSafe/TS-Guard and Safiron similarly recognize that tool invocation must be judged before unsafe actions are executed \cite{toolsafe,safiron}.
+
+Pre-commit safety is relational. An email action may be safe when it sends a draft to the authorized recipient, unsafe when the same email includes a hidden Bcc, and indeterminate when the recipient is an unresolved alias. A file action may be safe when it shares a document with an authorized collaborator, unsafe when it turns on a public link, and indeterminate when the evidence for the file identity comes from an untrusted source. A payment action may depend on the account, payee, amount semantics, and whether the operation is a draft or a committed transfer. These examples expose a gap between coarse tool-level monitoring and the actual authorization object.
+
+This paper studies that gap as a \emph{tool-effect binding} problem. A monitor binds a candidate action when its decision is invariant to harmless surface changes but sensitive to changes in the policy-relevant effect, target resource, operation mode, authorization context, and provenance/control source. This question is upstream of policy enforcement. Authorization and least-privilege systems such as Progent and MiniScope define or enforce policies over agent actions \cite{progent,miniscope}; our question is whether the candidate action has been converted into the right policy-relevant semantic object before such enforcement can be trusted.
+
+We make three design choices to keep the claim defensible. First, we treat the work as a controlled measurement and diagnostic study, not a production benchmark. Second, we evaluate candidate monitors with counterfactual stress tests rather than only aggregate task success. Third, we introduce a local authorization-aware prototype only as a constructive probe: it tests whether explicit atom-level authorization infrastructure can remove the bottleneck that the measurement framework reveals.
+
+\input{figures/precommit_boundary}
+
+The results support a specific main line. Existing and released-checkpoint methods are not merely tool-name classifiers, but their joint binding is incomplete. A reference hard Effect-Binding Guard improves some controlled stress tradeoffs, yet resource/authorization cases remain the dominant failure mode. When a local pre-commit contract explicitly supplies authorization context, resource aliases, operation modes, and provenance/control-source information, an atom-level mediator can convert abstention-heavy behavior into higher-coverage controlled mediation. This is evidence for the value of explicit authorization infrastructure, not evidence that authorization is solved in deployed agents.
+
+\paragraph{Contributions.}
+This draft makes the following contributions.
+
+\begin{itemize}[leftmargin=*]
+\item We define tool-effect binding as a pre-commit safety property for side-effectful LLM-agent tool use, with decision invariance and sensitivity requirements over surface, effect, resource, authorization, operation, and provenance axes.
+\item We operationalize the property with a counterfactual stress-test framework and use it to diagnose existing/custom-stress methods under a clear boundary: released checkpoints are evaluated on our custom stress, not as original-paper benchmark reproductions.
+\item We introduce effect-resource-operation atoms as the semantic interface between tool calls and authorization checks, formalizing why a side-effectful tool call is a container of one or more security actions.
+\item We evaluate a reference hard Effect-Binding Guard and show bounded improvement, including 0.036 unsafe pre-allow at 0.917 coverage on E48 and a 0.383 unsafe pre-allow resource/authorization bottleneck on E50.
+\item We introduce a local authorization-aware pre-commit prototype and validate it with E55/E56/E57 strict replay, decision-path audit, perturbation, reference authorizer agreement, and human audit evidence, while preserving the boundary that this is controlled local contract evidence.
+\end{itemize}
+
+\paragraph{Claim boundary.}
+The supported claim is that counterfactual measurement exposes a resource/authorization binding bottleneck and that explicit authorization infrastructure can make a local pre-commit mediator more decidable under a controlled contract. The paper does not claim production safety, a complete permission system, independent deployment generalization, original benchmark reproduction for all compared methods, universal tool-schema robustness, or a solved authorization problem.

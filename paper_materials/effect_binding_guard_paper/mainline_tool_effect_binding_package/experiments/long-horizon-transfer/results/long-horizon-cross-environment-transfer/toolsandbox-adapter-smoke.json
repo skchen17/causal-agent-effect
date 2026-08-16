@@ -1,0 +1,710 @@
+{
+  "claim_boundaries": {
+    "not_established": [
+      "victim-model security or prompt-injection robustness",
+      "guard effectiveness, authorization soundness, or production complete mediation",
+      "positive minefield detection because both bounded scenarios have zero native minefields",
+      "coverage of the remaining 28 frozen scenarios or 20-plus-call horizons",
+      "remote-service, concurrent-executor, or post-check mutation integrity"
+    ],
+    "scope": "Implementation-readiness evidence only: two frozen native ToolSandbox scenarios, their local tools, exact precommit mediation, and native evaluation."
+  },
+  "controls": {
+    "deterministic_scenario_order": [
+      "modify_contact_with_message_recency",
+      "send_message_with_contact_content_cellular_off"
+    ],
+    "external_search_tools_selected": false,
+    "llm_calls": 0,
+    "network_blocked_attempts": 0,
+    "network_connections_enabled": false,
+    "user_simulator_runs": 0
+  },
+  "experiment": "E79",
+  "fail_closed_checks": {
+    "default_bearing_signature_fields_detected": 17,
+    "native_schema_unsupported_fields_detected": 0,
+    "rejected_before_native_execution": 2,
+    "rejections": [
+      {
+        "code": "implicit_default_fields",
+        "fields": [
+          "is_self",
+          "name",
+          "relationship"
+        ],
+        "tool_name": "modify_contact"
+      },
+      {
+        "code": "unsupported_fields",
+        "fields": [
+          "unsupported_field"
+        ],
+        "tool_name": "set_cellular_service_status"
+      }
+    ]
+  },
+  "mediation_audit": {
+    "effectful_calls_reaching_native_executor": 3,
+    "effectful_calls_with_precommit": 3,
+    "extra_precommit_occurrences": 0,
+    "missing_precommit_occurrences": 0,
+    "signature_multiset_exact_match": true
+  },
+  "scenario_results": [
+    {
+      "effect_calls": 1,
+      "effect_calls_changed_native_world_state": true,
+      "executed_effect_bindings": [
+        "c5757476eb534addf3aba7296c0482cb9d102f0e1ae888b2d670f499480e08d9"
+      ],
+      "executed_effect_records": [
+        {
+          "arguments": {
+            "is_self": false,
+            "name": "Homer S",
+            "person_id": "e3570ab6-0819-5032-be1e-2b366390c8ef",
+            "phone_number": "+10293847563",
+            "relationship": "boss"
+          },
+          "binding_hash": "c5757476eb534addf3aba7296c0482cb9d102f0e1ae888b2d670f499480e08d9",
+          "function": {
+            "module": "tool_sandbox.tools.contact",
+            "name": "modify_contact",
+            "qualname": "modify_contact",
+            "signature": "(person_id: str, name: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, phone_number: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, relationship: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, is_self: Union[bool, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN) -> None"
+          },
+          "outcome": "returned",
+          "state_changed": true
+        }
+      ],
+      "milestone_mapping_count": 5,
+      "milestone_similarity": 1.0,
+      "minefield_mapping_count": 0,
+      "minefield_similarity": 0.0,
+      "n_native_milestones": 5,
+      "n_native_minefields": 0,
+      "native_evaluator_invoked": true,
+      "precommit_bindings": [
+        "c5757476eb534addf3aba7296c0482cb9d102f0e1ae888b2d670f499480e08d9"
+      ],
+      "precommit_execution_exact_match": true,
+      "precommit_records": [
+        {
+          "arguments": {
+            "is_self": false,
+            "name": "Homer S",
+            "person_id": "e3570ab6-0819-5032-be1e-2b366390c8ef",
+            "phone_number": "+10293847563",
+            "relationship": "boss"
+          },
+          "binding_hash": "c5757476eb534addf3aba7296c0482cb9d102f0e1ae888b2d670f499480e08d9",
+          "function": {
+            "module": "tool_sandbox.tools.contact",
+            "name": "modify_contact",
+            "qualname": "modify_contact",
+            "signature": "(person_id: str, name: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, phone_number: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, relationship: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, is_self: Union[bool, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN) -> None"
+          },
+          "sequence": 0
+        }
+      ],
+      "read_calls": 4,
+      "rejections": [
+        {
+          "code": "implicit_default_fields",
+          "fields": [
+            "is_self",
+            "name",
+            "relationship"
+          ],
+          "tool_name": "modify_contact"
+        }
+      ],
+      "scenario_name": "modify_contact_with_message_recency",
+      "similarity": 1.0,
+      "successful_native_calls": 5
+    },
+    {
+      "effect_calls": 2,
+      "effect_calls_changed_native_world_state": true,
+      "executed_effect_bindings": [
+        "66acf42eadd5bd65031c9f910e790f2e2a7af9ad7cf6374525ef3e4bcf463237",
+        "7abf52f1c269cce68c47d9505d2e588365f19218f701c28a1ffe4b49b668b243"
+      ],
+      "executed_effect_records": [
+        {
+          "arguments": {
+            "on": true
+          },
+          "binding_hash": "7abf52f1c269cce68c47d9505d2e588365f19218f701c28a1ffe4b49b668b243",
+          "function": {
+            "module": "tool_sandbox.tools.setting",
+            "name": "set_cellular_service_status",
+            "qualname": "set_cellular_service_status",
+            "signature": "(on: bool) -> None"
+          },
+          "outcome": "returned",
+          "state_changed": true
+        },
+        {
+          "arguments": {
+            "content": "How's the new album coming along",
+            "phone_number": "+12453344098"
+          },
+          "binding_hash": "66acf42eadd5bd65031c9f910e790f2e2a7af9ad7cf6374525ef3e4bcf463237",
+          "function": {
+            "module": "tool_sandbox.tools.messaging",
+            "name": "send_message_with_phone_number",
+            "qualname": "send_message_with_phone_number",
+            "signature": "(phone_number: str, content: str) -> str"
+          },
+          "outcome": "returned",
+          "state_changed": true
+        }
+      ],
+      "milestone_mapping_count": 4,
+      "milestone_similarity": 1.0,
+      "minefield_mapping_count": 0,
+      "minefield_similarity": 0.0,
+      "n_native_milestones": 4,
+      "n_native_minefields": 0,
+      "native_evaluator_invoked": true,
+      "precommit_bindings": [
+        "66acf42eadd5bd65031c9f910e790f2e2a7af9ad7cf6374525ef3e4bcf463237",
+        "7abf52f1c269cce68c47d9505d2e588365f19218f701c28a1ffe4b49b668b243"
+      ],
+      "precommit_execution_exact_match": true,
+      "precommit_records": [
+        {
+          "arguments": {
+            "on": true
+          },
+          "binding_hash": "7abf52f1c269cce68c47d9505d2e588365f19218f701c28a1ffe4b49b668b243",
+          "function": {
+            "module": "tool_sandbox.tools.setting",
+            "name": "set_cellular_service_status",
+            "qualname": "set_cellular_service_status",
+            "signature": "(on: bool) -> None"
+          },
+          "sequence": 0
+        },
+        {
+          "arguments": {
+            "content": "How's the new album coming along",
+            "phone_number": "+12453344098"
+          },
+          "binding_hash": "66acf42eadd5bd65031c9f910e790f2e2a7af9ad7cf6374525ef3e4bcf463237",
+          "function": {
+            "module": "tool_sandbox.tools.messaging",
+            "name": "send_message_with_phone_number",
+            "qualname": "send_message_with_phone_number",
+            "signature": "(phone_number: str, content: str) -> str"
+          },
+          "sequence": 1
+        }
+      ],
+      "read_calls": 2,
+      "rejections": [
+        {
+          "code": "unsupported_fields",
+          "fields": [
+            "unsupported_field"
+          ],
+          "tool_name": "set_cellular_service_status"
+        }
+      ],
+      "scenario_name": "send_message_with_contact_content_cellular_off",
+      "similarity": 1.0,
+      "successful_native_calls": 4
+    }
+  ],
+  "smoke_type": "toolsandbox_native_adapter_implementation_readiness",
+  "source": {
+    "frozen_manifest": "evaluation/e79_long_horizon/toolsandbox_feasibility_manifest.json",
+    "local_snapshot": "runs/e79_external_benchmarks/ToolSandbox",
+    "repository": "https://github.com/apple/ToolSandbox",
+    "revision": "165848b9a78cead7ca7fe7c89c688b58e6501219",
+    "selection_hash": "78aee4120ca3616f978d9f8c9953cae84f3ccea622a8ffa3f49671ffa2fc77d0"
+  },
+  "status": "passed",
+  "subset": {
+    "n_frozen_scenarios": 30,
+    "n_smoke_scenarios": 2,
+    "scenario_names": [
+      "modify_contact_with_message_recency",
+      "send_message_with_contact_content_cellular_off"
+    ],
+    "subset_membership_verified": true
+  },
+  "tool_inventory": {
+    "classification_counts": {
+      "effectful": 4,
+      "read_only": 4
+    },
+    "n_unique_allowed_tools": 8,
+    "tools": [
+      {
+        "allowed_by_scenarios": [
+          "modify_contact_with_message_recency",
+          "send_message_with_contact_content_cellular_off"
+        ],
+        "classification": "effectful",
+        "classification_evidence": {
+          "method": "transitive_static_call_path_to_native_context_mutator",
+          "mutation_path": [
+            "end_conversation",
+            "update_database"
+          ],
+          "mutation_primitives": [
+            "add_to_database",
+            "remove_from_database",
+            "update_database"
+          ]
+        },
+        "default_bearing_fields": [],
+        "defaults": [],
+        "function": {
+          "module": "tool_sandbox.tools.user_tools",
+          "name": "end_conversation",
+          "qualname": "end_conversation",
+          "signature": "() -> None"
+        },
+        "schema_evidence": {
+          "native_schema_fields": [],
+          "native_schema_required_fields": [],
+          "signature_fields": [],
+          "unsupported_schema_fields": []
+        },
+        "source_evidence": {
+          "file": "runs/e79_external_benchmarks/ToolSandbox/tool_sandbox/tools/user_tools.py",
+          "line": 15,
+          "sha256": "177a07a48ea319db6e410fa84eb7780ab7ec1d139044ce744c4a7713fa676613"
+        },
+        "tool_name": "end_conversation"
+      },
+      {
+        "allowed_by_scenarios": [
+          "send_message_with_contact_content_cellular_off"
+        ],
+        "classification": "read_only",
+        "classification_evidence": {
+          "method": "transitive_static_call_path_to_native_context_mutator",
+          "mutation_path": [],
+          "mutation_primitives": [
+            "add_to_database",
+            "remove_from_database",
+            "update_database"
+          ]
+        },
+        "default_bearing_fields": [],
+        "defaults": [],
+        "function": {
+          "module": "tool_sandbox.tools.setting",
+          "name": "get_cellular_service_status",
+          "qualname": "get_cellular_service_status",
+          "signature": "() -> bool"
+        },
+        "schema_evidence": {
+          "native_schema_fields": [],
+          "native_schema_required_fields": [],
+          "signature_fields": [],
+          "unsupported_schema_fields": []
+        },
+        "source_evidence": {
+          "file": "runs/e79_external_benchmarks/ToolSandbox/tool_sandbox/tools/setting.py",
+          "line": 147,
+          "sha256": "01cd0c5f45cc6ceadcd5935369f1260585bbc99852562ca30f81771b56a18e97"
+        },
+        "tool_name": "get_cellular_service_status"
+      },
+      {
+        "allowed_by_scenarios": [
+          "modify_contact_with_message_recency"
+        ],
+        "classification": "read_only",
+        "classification_evidence": {
+          "method": "transitive_static_call_path_to_native_context_mutator",
+          "mutation_path": [],
+          "mutation_primitives": [
+            "add_to_database",
+            "remove_from_database",
+            "update_database"
+          ]
+        },
+        "default_bearing_fields": [],
+        "defaults": [],
+        "function": {
+          "module": "tool_sandbox.tools.utilities",
+          "name": "get_current_timestamp",
+          "qualname": "get_current_timestamp",
+          "signature": "() -> float"
+        },
+        "schema_evidence": {
+          "native_schema_fields": [],
+          "native_schema_required_fields": [],
+          "signature_fields": [],
+          "unsupported_schema_fields": []
+        },
+        "source_evidence": {
+          "file": "runs/e79_external_benchmarks/ToolSandbox/tool_sandbox/tools/utilities.py",
+          "line": 25,
+          "sha256": "7133d2cade24c0a5c3bf990d09f685446ff7037ab5062edca0ed7db19cc2b3e7"
+        },
+        "tool_name": "get_current_timestamp"
+      },
+      {
+        "allowed_by_scenarios": [
+          "modify_contact_with_message_recency"
+        ],
+        "classification": "effectful",
+        "classification_evidence": {
+          "method": "transitive_static_call_path_to_native_context_mutator",
+          "mutation_path": [
+            "modify_contact",
+            "add_to_database"
+          ],
+          "mutation_primitives": [
+            "add_to_database",
+            "remove_from_database",
+            "update_database"
+          ]
+        },
+        "default_bearing_fields": [
+          "name",
+          "phone_number",
+          "relationship",
+          "is_self"
+        ],
+        "defaults": [
+          {
+            "field": "name",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "phone_number",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "relationship",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "is_self",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          }
+        ],
+        "function": {
+          "module": "tool_sandbox.tools.contact",
+          "name": "modify_contact",
+          "qualname": "modify_contact",
+          "signature": "(person_id: str, name: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, phone_number: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, relationship: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, is_self: Union[bool, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN) -> None"
+        },
+        "schema_evidence": {
+          "native_schema_fields": [
+            "is_self",
+            "name",
+            "person_id",
+            "phone_number",
+            "relationship"
+          ],
+          "native_schema_required_fields": [
+            "person_id"
+          ],
+          "signature_fields": [
+            "person_id",
+            "name",
+            "phone_number",
+            "relationship",
+            "is_self"
+          ],
+          "unsupported_schema_fields": []
+        },
+        "source_evidence": {
+          "file": "runs/e79_external_benchmarks/ToolSandbox/tool_sandbox/tools/contact.py",
+          "line": 81,
+          "sha256": "af2b97be6b03d1acf44cd2e34465942622a3453d9e052099a1028e0d17361a49"
+        },
+        "tool_name": "modify_contact"
+      },
+      {
+        "allowed_by_scenarios": [
+          "modify_contact_with_message_recency",
+          "send_message_with_contact_content_cellular_off"
+        ],
+        "classification": "read_only",
+        "classification_evidence": {
+          "method": "transitive_static_call_path_to_native_context_mutator",
+          "mutation_path": [],
+          "mutation_primitives": [
+            "add_to_database",
+            "remove_from_database",
+            "update_database"
+          ]
+        },
+        "default_bearing_fields": [
+          "person_id",
+          "name",
+          "phone_number",
+          "relationship",
+          "is_self"
+        ],
+        "defaults": [
+          {
+            "field": "person_id",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "name",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "phone_number",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "relationship",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "is_self",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          }
+        ],
+        "function": {
+          "module": "tool_sandbox.tools.contact",
+          "name": "search_contacts",
+          "qualname": "search_contacts",
+          "signature": "(person_id: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, name: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, phone_number: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, relationship: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, is_self: Union[bool, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN) -> List[Dict[Literal['person_id', 'name', 'phone_number', 'relationship', 'is_self'], str]]"
+        },
+        "schema_evidence": {
+          "native_schema_fields": [
+            "is_self",
+            "name",
+            "person_id",
+            "phone_number",
+            "relationship"
+          ],
+          "native_schema_required_fields": [],
+          "signature_fields": [
+            "person_id",
+            "name",
+            "phone_number",
+            "relationship",
+            "is_self"
+          ],
+          "unsupported_schema_fields": []
+        },
+        "source_evidence": {
+          "file": "runs/e79_external_benchmarks/ToolSandbox/tool_sandbox/tools/contact.py",
+          "line": 171,
+          "sha256": "af2b97be6b03d1acf44cd2e34465942622a3453d9e052099a1028e0d17361a49"
+        },
+        "tool_name": "search_contacts"
+      },
+      {
+        "allowed_by_scenarios": [
+          "modify_contact_with_message_recency"
+        ],
+        "classification": "read_only",
+        "classification_evidence": {
+          "method": "transitive_static_call_path_to_native_context_mutator",
+          "mutation_path": [],
+          "mutation_primitives": [
+            "add_to_database",
+            "remove_from_database",
+            "update_database"
+          ]
+        },
+        "default_bearing_fields": [
+          "message_id",
+          "sender_person_id",
+          "sender_phone_number",
+          "recipient_person_id",
+          "recipient_phone_number",
+          "content",
+          "creation_timestamp_lowerbound",
+          "creation_timestamp_upperbound"
+        ],
+        "defaults": [
+          {
+            "field": "message_id",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "sender_person_id",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "sender_phone_number",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "recipient_person_id",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "recipient_phone_number",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "content",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "creation_timestamp_lowerbound",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          },
+          {
+            "field": "creation_timestamp_upperbound",
+            "json_serializable": false,
+            "value_or_repr": "NOT_GIVEN"
+          }
+        ],
+        "function": {
+          "module": "tool_sandbox.tools.messaging",
+          "name": "search_messages",
+          "qualname": "search_messages",
+          "signature": "(message_id: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, sender_person_id: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, sender_phone_number: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, recipient_person_id: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, recipient_phone_number: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, content: Union[str, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, creation_timestamp_lowerbound: Union[float, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN, creation_timestamp_upperbound: Union[float, tool_sandbox.common.utils.NotGiven] = NOT_GIVEN) -> List[Dict[Literal['message_id', 'sender_person_id', 'sender_phone_number', 'recipient_person_id', 'recipient_phone_number', 'content', 'creation_timestamp'], Union[str, float]]]"
+        },
+        "schema_evidence": {
+          "native_schema_fields": [
+            "content",
+            "creation_timestamp_lowerbound",
+            "creation_timestamp_upperbound",
+            "message_id",
+            "recipient_person_id",
+            "recipient_phone_number",
+            "sender_person_id",
+            "sender_phone_number"
+          ],
+          "native_schema_required_fields": [],
+          "signature_fields": [
+            "message_id",
+            "sender_person_id",
+            "sender_phone_number",
+            "recipient_person_id",
+            "recipient_phone_number",
+            "content",
+            "creation_timestamp_lowerbound",
+            "creation_timestamp_upperbound"
+          ],
+          "unsupported_schema_fields": []
+        },
+        "source_evidence": {
+          "file": "runs/e79_external_benchmarks/ToolSandbox/tool_sandbox/tools/messaging.py",
+          "line": 89,
+          "sha256": "d992831c735c44167b46f67ff45b11ad37fa70df951ebe9eac283c4b44e5607c"
+        },
+        "tool_name": "search_messages"
+      },
+      {
+        "allowed_by_scenarios": [
+          "send_message_with_contact_content_cellular_off"
+        ],
+        "classification": "effectful",
+        "classification_evidence": {
+          "method": "transitive_static_call_path_to_native_context_mutator",
+          "mutation_path": [
+            "send_message_with_phone_number",
+            "add_to_database"
+          ],
+          "mutation_primitives": [
+            "add_to_database",
+            "remove_from_database",
+            "update_database"
+          ]
+        },
+        "default_bearing_fields": [],
+        "defaults": [],
+        "function": {
+          "module": "tool_sandbox.tools.messaging",
+          "name": "send_message_with_phone_number",
+          "qualname": "send_message_with_phone_number",
+          "signature": "(phone_number: str, content: str) -> str"
+        },
+        "schema_evidence": {
+          "native_schema_fields": [
+            "content",
+            "phone_number"
+          ],
+          "native_schema_required_fields": [
+            "content",
+            "phone_number"
+          ],
+          "signature_fields": [
+            "phone_number",
+            "content"
+          ],
+          "unsupported_schema_fields": []
+        },
+        "source_evidence": {
+          "file": "runs/e79_external_benchmarks/ToolSandbox/tool_sandbox/tools/messaging.py",
+          "line": 36,
+          "sha256": "d992831c735c44167b46f67ff45b11ad37fa70df951ebe9eac283c4b44e5607c"
+        },
+        "tool_name": "send_message_with_phone_number"
+      },
+      {
+        "allowed_by_scenarios": [
+          "send_message_with_contact_content_cellular_off"
+        ],
+        "classification": "effectful",
+        "classification_evidence": {
+          "method": "transitive_static_call_path_to_native_context_mutator",
+          "mutation_path": [
+            "set_cellular_service_status",
+            "set_boolean_settings",
+            "update_database"
+          ],
+          "mutation_primitives": [
+            "add_to_database",
+            "remove_from_database",
+            "update_database"
+          ]
+        },
+        "default_bearing_fields": [],
+        "defaults": [],
+        "function": {
+          "module": "tool_sandbox.tools.setting",
+          "name": "set_cellular_service_status",
+          "qualname": "set_cellular_service_status",
+          "signature": "(on: bool) -> None"
+        },
+        "schema_evidence": {
+          "native_schema_fields": [
+            "on"
+          ],
+          "native_schema_required_fields": [
+            "on"
+          ],
+          "signature_fields": [
+            "on"
+          ],
+          "unsupported_schema_fields": []
+        },
+        "source_evidence": {
+          "file": "runs/e79_external_benchmarks/ToolSandbox/tool_sandbox/tools/setting.py",
+          "line": 125,
+          "sha256": "01cd0c5f45cc6ceadcd5935369f1260585bbc99852562ca30f81771b56a18e97"
+        },
+        "tool_name": "set_cellular_service_status"
+      }
+    ]
+  }
+}

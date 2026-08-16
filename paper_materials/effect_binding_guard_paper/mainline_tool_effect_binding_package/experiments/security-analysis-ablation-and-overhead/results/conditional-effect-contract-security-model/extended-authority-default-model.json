@@ -1,0 +1,45 @@
+{
+  "allow_cases_checked": 343,
+  "authority_expansion_cases_rejected": 4625,
+  "check_type": "extended_authority_bound_and_default_totalization_model",
+  "claim_boundary": "This is exhaustive validation of a three-atom finite model. It validates the proof obligations and counterexamples, not natural-language authority compilation, real contract coverage, or remote defaults.",
+  "counterexamples": {
+    "legacy_omitted_default_without_totalization": {
+      "actual": [
+        "Atom(effect='send', operation='commit', resource='message:body', target='alice', commit_mode='commit')",
+        "Atom(effect='publish', operation='commit', resource='file:budget', target='public', commit_mode='commit')"
+      ],
+      "contracted": [
+        "Atom(effect='send', operation='commit', resource='message:body', target='alice', commit_mode='commit')"
+      ],
+      "trusted": [
+        "Atom(effect='send', operation='commit', resource='message:body', target='alice', commit_mode='commit')"
+      ],
+      "unauthorized_committed": "Atom(effect='publish', operation='commit', resource='file:budget', target='public', commit_mode='commit')"
+    },
+    "llm_proposal_without_independent_bound": {
+      "decision_under_self_authorizing_proposal": "ALLOW",
+      "proposal": [
+        "Atom(effect='send', operation='commit', resource='message:body', target='alice', commit_mode='commit')",
+        "Atom(effect='publish', operation='commit', resource='file:budget', target='public', commit_mode='commit')"
+      ],
+      "trusted": [
+        "Atom(effect='send', operation='commit', resource='message:body', target='alice', commit_mode='commit')"
+      ],
+      "unauthorized_authority": "Atom(effect='publish', operation='commit', resource='file:budget', target='public', commit_mode='commit')"
+    }
+  },
+  "dynamic_default_cases_abstained": 8000,
+  "experiment": "E80",
+  "generated_at": "2026-07-12T10:55:11.314117+00:00",
+  "omitted_explicit_default_equivalence_cases": 8000,
+  "properties": {
+    "accepted_proposals_are_subsets_of_trusted_authority": true,
+    "allow_implies_committed_effects_within_trusted_authority": true,
+    "omitted_and_explicit_static_defaults_are_equivalent": true,
+    "unresolved_dynamic_defaults_abstain": true
+  },
+  "sound_cases_checked": 8000,
+  "status": "passed",
+  "universe_size": 3
+}

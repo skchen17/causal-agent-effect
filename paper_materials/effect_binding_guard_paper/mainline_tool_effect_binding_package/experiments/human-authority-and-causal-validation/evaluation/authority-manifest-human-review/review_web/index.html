@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E84 权限范围审查</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand-block">
+      <div class="brand-mark" aria-hidden="true">E84</div>
+      <div>
+        <h1>权限范围人工审查</h1>
+        <p>仅根据原始任务，确认每个候选字段是否应进入任务权限清单</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="validate-all" class="button secondary" type="button">验证全部</button>
+      <a id="download-output" class="button secondary disabled" href="/api/reviewed.jsonl">导出 JSONL</a>
+    </div>
+  </header>
+
+  <section class="reviewer-strip" aria-label="审查者信息">
+    <label>
+      <span>匿名审查者 ID</span>
+      <input id="global-reviewer-id" type="text" maxlength="80" placeholder="例如 REVIEWER_01" autocomplete="off">
+    </label>
+    <label>
+      <span>审查日期</span>
+      <input id="global-review-date" type="date">
+    </label>
+    <div class="progress-summary">
+      <div class="progress-copy"><strong id="task-progress">0 / 97</strong><span>已完成任务审查</span></div>
+      <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+    </div>
+  </section>
+
+  <div class="workspace">
+    <aside class="task-sidebar" aria-label="任务列表">
+      <div class="sidebar-controls">
+        <label class="search-field">
+          <span class="sr-only">搜索任务</span>
+          <input id="task-search" type="search" placeholder="搜索任务或编号">
+        </label>
+        <div class="filter-row">
+          <select id="suite-filter" aria-label="按套件筛选">
+            <option value="all">全部套件</option>
+            <option value="workspace">Workspace</option>
+            <option value="slack">Slack</option>
+            <option value="travel">Travel</option>
+            <option value="banking">Banking</option>
+          </select>
+          <select id="status-filter" aria-label="按状态筛选">
+            <option value="all">全部状态</option>
+            <option value="unreviewed">未审查</option>
+            <option value="in_progress">进行中</option>
+            <option value="accepted">已接受</option>
+            <option value="reviewed_rejected">已拒绝</option>
+          </select>
+        </div>
+      </div>
+      <nav id="task-list" class="task-list"></nav>
+    </aside>
+
+    <main id="review-main" class="review-main" tabindex="-1">
+      <div id="loading" class="loading-state">正在载入审查包...</div>
+      <div id="task-view" hidden>
+        <div class="task-heading-row">
+          <div>
+            <div id="task-kicker" class="task-kicker"></div>
+            <h2 id="task-title"></h2>
+          </div>
+          <span id="task-status" class="status-pill"></span>
+        </div>
+
+        <section class="source-band" aria-labelledby="original-task-heading">
+          <div class="section-heading">
+            <h3 id="original-task-heading">原始用户任务</h3>
+            <span class="evidence-label">唯一审查依据</span>
+          </div>
+          <blockquote id="original-task"></blockquote>
+        </section>
+
+        <section class="goal-band" aria-labelledby="candidate-goal-heading">
+          <h3 id="candidate-goal-heading">候选任务目标</h3>
+          <p id="candidate-goal"></p>
+          <p id="plan-warning" class="inline-warning" hidden></p>
+        </section>
+
+        <section class="bindings-section" aria-labelledby="bindings-heading">
+          <div class="section-heading">
+            <div>
+              <h3 id="bindings-heading">候选权限字段</h3>
+              <p id="binding-count"></p>
+            </div>
+          </div>
+          <div id="binding-list"></div>
+          <div id="empty-bindings" class="empty-state" hidden>
+            此任务没有候选副作用字段。请仍然确认任务级审查信息；接受表示已核对空权限清单符合原始任务。
+          </div>
+        </section>
+
+        <section class="task-decision" aria-labelledby="task-decision-heading">
+          <div class="section-heading">
+            <div>
+              <h3 id="task-decision-heading">任务级结论</h3>
+              <p>只有所有候选字段均被批准且填写完整时，任务才能接受。</p>
+            </div>
+          </div>
+          <label class="confirmation-row">
+            <input id="original-only-confirmed" type="checkbox">
+            <span>我确认本次判断只使用了上方原始用户任务，没有查看攻击目标、注入标识或实验标签。</span>
+          </label>
+          <fieldset class="task-choice">
+            <legend>任务是否接受为可信权限清单？</legend>
+            <label class="choice accept"><input type="radio" name="task-accepted" value="true"><span>接受任务清单</span></label>
+            <label class="choice reject"><input type="radio" name="task-accepted" value="false"><span>拒绝或保留人工处理</span></label>
+          </fieldset>
+          <label class="notes-field">
+            <span>任务级备注</span>
+            <textarea id="task-notes" rows="3" placeholder="记录拒绝原因、边界条件或需要后续处理的事项"></textarea>
+          </label>
+          <div id="task-errors" class="form-errors" hidden></div>
+        </section>
+
+        <footer class="task-footer">
+          <button id="previous-task" class="button secondary" type="button">上一项</button>
+          <div class="save-actions">
+            <span id="save-state" class="save-state" aria-live="polite"></span>
+            <button id="save-task" class="button primary" type="button">保存当前</button>
+            <button id="save-next" class="button primary" type="button">保存并下一项</button>
+          </div>
+          <button id="next-task" class="button secondary" type="button">下一项</button>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="validation-dialog">
+    <div class="dialog-heading">
+      <h2>完整性验证</h2>
+      <button id="close-validation" class="icon-button" type="button" aria-label="关闭">×</button>
+    </div>
+    <div id="validation-summary"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

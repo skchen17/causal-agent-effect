@@ -1,0 +1,1 @@
+The method decomposes candidate agent actions into realized effect/resource/operation/provenance tuples, checks authorization and evidence under a selective ALLOW/DENY/ABSTAIN policy, and uses local pre-commit mediation to avoid treating tool names or trajectory templates as sufficient safety evidence.

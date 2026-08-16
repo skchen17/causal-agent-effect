@@ -1,0 +1,57 @@
+{
+  "artifact_type": "common_model_protocol_manifest",
+  "benchmark": {
+    "attack": 629,
+    "benign": 97,
+    "name": "AgentDojo",
+    "official_case_keys": 726,
+    "suite_counts": {
+      "banking": 160,
+      "slack": 126,
+      "travel": 160,
+      "workspace": 280
+    },
+    "version": "v1.1.2"
+  },
+  "claim_boundary": "This manifest freezes the E78 protocol and model identity. It is not a performance result; method rows remain unavailable until all 726 keys pass the finalizer.",
+  "controls": {
+    "errors_retained": true,
+    "same_case_keys": true,
+    "same_initial_state": true,
+    "same_model": true,
+    "same_native_evaluators": true
+  },
+  "experiment": "E78",
+  "generated_at": "2026-07-12T11:00:09.075094+00:00",
+  "hardware": [
+    {
+      "memory_mib": 24564,
+      "name": "NVIDIA GeForce RTX 4090 D"
+    },
+    {
+      "memory_mib": 24564,
+      "name": "NVIDIA GeForce RTX 4090 D"
+    }
+  ],
+  "methods": [
+    "no_guard",
+    "transformers_pi_detector",
+    "piguard",
+    "spotlighting",
+    "prompt_sandwiching",
+    "promptarmor_local",
+    "melon_local",
+    "ours_e77_effect_diff_runtime",
+    "attriguard_adapted"
+  ],
+  "model": {
+    "bytes": 19762149024,
+    "context_window": 65536,
+    "file_name": "Qwen3-32B-Q4_K_M.gguf",
+    "output_cap": 4096,
+    "quantization": "Q4_K_M",
+    "sha256": "efd971561896866f0e910cce52761ca77b1b138090c7f15fe284676d57d1f689",
+    "temperature": 0.0
+  },
+  "status": "running_protocol_frozen"
+}

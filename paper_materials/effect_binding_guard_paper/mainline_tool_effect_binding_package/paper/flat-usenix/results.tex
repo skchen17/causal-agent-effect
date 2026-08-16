@@ -1,0 +1,31 @@
+\section{Results}
+
+\subsection{Official AgentDojo End-to-End Run}
+
+\input{table_e77_agentdojo}
+
+Table~\ref{tab:e77-agentdojo} reports the completed E77 runtime on all 726 official AgentDojo v1.1.2 cases. The local Qwen3.5-9B victim completes 32/97 benign tasks and 191/629 user tasks under attack. The official injection-goal evaluator records 0/629 successful attacks, with no malformed, missing-metric, context-length, server-error, or post-tool-empty rows. This is zero benchmark-defined attack success on one low-utility run, not a proof of effect-atom or trajectory confinement: benign and attack-side task utility are only 0.330 and 0.304, while O1, O2, and general O5 remain partial.
+
+The corrected audit separates the official cases from AgentDojo's auxiliary injection-task-as-user-task executions. The 726 logs contain 3,235 valid structured calls; 62 occur at a terminal boundary without a tool-result event and therefore never reach execution. The remaining 3,173 tool-result call signatures match the pre-commit audit signatures exactly as a multiset: 2,227 are allowed and 946 return replan feedback. All 611 plan events in this subset are parse-valid. No pre-commit check lacks a corresponding initial-task plan, no repeated-call override occurs, and the deterministic check invokes no LLM after the plan is fixed. Twenty auxiliary plan events and 80 auxiliary checks are excluded from these counts.
+
+E77 does not yet establish comparative superiority. It uses a 9B checkpoint and reports one completed proposed-method row. The main comparison requires the same victim checkpoint, decoding configuration, 726 cases, and evaluators for no guard, detector checkpoints, prompting defenses, released-artifact adapters, and \sys{}. We make comparative claims only from that common protocol.
+
+\subsection{Where E77 Loses Utility}
+
+A payload-free trajectory audit separates observed mechanics without assigning a unique causal root cause. Of 274 cases that receive at least one replan feedback event, 30 complete the user task (0.109), versus 193/452 (0.427) without feedback. The gap is sharper on benign tasks: 34/97 receive feedback and only one of those 34 succeeds. The 65 benign utility failures comprise 20 trajectories whose effectful calls are intercepted with no later effectful commit, seven that contain both feedback and an effectful commit, 16 with no structured tool call, 14 read-only or nonregistered-tool trajectories, and eight ending with an unexecuted structured call. There are no reported runtime/model-error rows in this partition. These categories show that recovery and authority resolution are major observed bottlenecks; they do not establish that the guard alone caused each failure.
+
+\subsection{Authority-Interface Burden}
+
+\input{table_e84_authority_burden}
+
+Table~\ref{tab:e84-authority-burden} makes the incomplete O2 interface concrete. We join the 97 label-hidden original tasks with E77 plans produced before any tool output. Eighty-one tasks have such a plan; the other 16 never initialized one because the evaluated trajectory produced no tool call. The 81 plans contain 287 field bindings, dominated by 177 resolver clauses. Of 72 concrete values inside 71 exact bindings, 60 are lexically grounded in the original request and 12 require either a declared canonical transform or rejection. All 97 tasks remain unapproved in the review packet. These counts measure the interface that a trusted compiler or reviewer must discharge; they are not evidence that lexical overlap establishes authority.
+
+\subsection{Controlled Runtime Cost}
+
+\input{table_e83_kernel_overhead}
+
+Table~\ref{tab:e83-kernel-overhead} isolates the pure hardened pre-commit kernel over exact clauses, typed resolver entries, default totalization, and witness hashing. Across 2,000 iterations per configuration, median latency rises from 22.1~$\mu$s for one security field to 244.7~$\mu$s for 32 fields with no unrelated ledger entries. With 64 unrelated entries, the corresponding medians are 132.2 and 352.0~$\mu$s. All 36,000 measured decisions are \textsc{Allow} and invoke no runtime LLM. This establishes only in-process kernel cost; final end-to-end results must separately include model planning, canonicalization I/O, sandbox execution, replan calls, and complete trajectory latency.
+
+% The following result units enter after their artifacts pass: E78 common-model
+% baselines, E79 long horizon, E81 ablations, E82 adaptive attacks, and E83
+% overhead/scaling.

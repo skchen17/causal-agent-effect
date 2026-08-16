@@ -1,0 +1,33 @@
+\section{Reproduction Notes}
+
+\paragraph{Package root.}
+The draft was built from:
+\begin{flushleft}
+\small\texttt{/data/CSK/causal-agent-safety-research/}\\
+\small\texttt{paper\_materials/effect\_binding\_guard\_paper/}\\
+\small\texttt{mainline\_tool\_effect\_binding\_package}
+\end{flushleft}
+The package summary reports 2,424 copied files and no core-number issues.
+
+\paragraph{Key source files.}
+The main quantitative claims trace to:
+\begin{itemize}[leftmargin=*]
+\item \texttt{results/analysis/results/e48\_tuple\_guard\_results.json}
+\item \texttt{results/analysis/results/e50\_hard\_guard\_robustness\_results.json}
+\item \texttt{audit/analysis/results/e55\_v2\_precommit\_authz\_results\_strict.json}
+\item \texttt{results/analysis/results/e55\_precommit\_authz\_results\_strict.json}
+\item \texttt{results/analysis/results/e55\_human\_corrected\_sensitivity.json}
+\item \texttt{audit/analysis/results/e56\_final\_report.json}
+\item \texttt{audit/analysis/results/e57\_v2\_validity\_checks\_report.json}
+\item \texttt{audit/analysis/results/e57\_human\_audit\_validation.json}
+\end{itemize}
+
+\paragraph{Targeted tests from package notes.}
+The existing material check reports that the following targeted test command passed in the packaged source root:
+\begin{flushleft}
+\small\texttt{cd code}\\
+\small\texttt{PYTHONPATH=. python -m pytest}\\
+\small\texttt{../tests/tests/test\_effect\_binding\_guard\_e55\_precommit\_authz.py}\\
+\small\texttt{../tests/tests/test\_effect\_binding\_guard\_e57\_validity.py -q}
+\end{flushleft}
+with result \texttt{22 passed}. This draft did not rerun experiments; it restructures and writes from existing materials.

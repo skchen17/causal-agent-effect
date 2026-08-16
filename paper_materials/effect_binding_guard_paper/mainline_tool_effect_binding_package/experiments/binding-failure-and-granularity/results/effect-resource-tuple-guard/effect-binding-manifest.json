@@ -1,0 +1,86 @@
+{
+  "audit_status_counts": {
+    "audit_gated_construction": 600,
+    "corrected_label_audited": 6,
+    "human_audited_primary": 162,
+    "human_audited_primary_secondary": 54
+  },
+  "available_claim_scopes": [
+    "baseline",
+    "diagnostic",
+    "original_component_custom_stress",
+    "original_method_custom_stress",
+    "upper_bound"
+  ],
+  "available_input_views": [
+    "argument_summary",
+    "candidate_action",
+    "canonical_visible_summary",
+    "evidence_summary",
+    "masked_tool_view",
+    "plan_text",
+    "provenance_summary",
+    "tool_inventory",
+    "trajectory_text",
+    "user_task"
+  ],
+  "available_methods": [
+    "camel_structural_policy",
+    "deterministic_effect_resource_mapper",
+    "effect_resource_oracle",
+    "execution_evidence_upper_bound",
+    "ipiguard_normalized_content",
+    "ipiguard_topology_only",
+    "local_qwen_effect_resource_mapper",
+    "local_qwen_self_audit",
+    "non_oracle_saved_evidence_verifier",
+    "oracle_effect_resource_mapper",
+    "plan_text_rule_proxy",
+    "safiron_official_counterfactual_stress",
+    "static_text_rule_proxy",
+    "tool_name_rule_proxy",
+    "trajectory_text_rule_proxy",
+    "ts_guard_official_counterfactual_stress"
+  ],
+  "claim_boundary": "Human audit is row-level for the sampled packet and construction-gated for remaining rows; labels never enter deployable_input.",
+  "deployable_input_leakage_violations": {},
+  "deployable_input_string_marker_violations": {},
+  "discovered_inputs": [
+    "data/tool_effect_fragmentation/counterfactual_core_phase4.jsonl",
+    "data/tool_effect_fragmentation/ipiguard_semantic_core_phase6.jsonl",
+    "analysis/results/tool_effect_fragmentation_ipiguard_component_phase6.jsonl",
+    "data/tool_effect_fragmentation/camel_structural_counterfactual_phase5.jsonl",
+    "data/tool_effect_fragmentation/human_audit_packet_phase6.jsonl",
+    "data/tool_effect_fragmentation/human_audit_secondary_phase6.jsonl",
+    "analysis/results/tool_effect_fragmentation_capability_matrix_phase6.json",
+    "analysis/results/tool_effect_fragmentation_counterfactual_phase4_toolsafe_predictions.jsonl",
+    "analysis/results/tool_effect_fragmentation_counterfactual_phase4_safiron_predictions.jsonl",
+    "analysis/results/tool_effect_fragmentation_counterfactual_phase4_local_qwen_predictions.jsonl",
+    "analysis/results/tool_effect_fragmentation_counterfactual_phase4_nonmodel_predictions.jsonl",
+    "analysis/results/tool_effect_fragmentation_ipiguard_semantic_phase6.jsonl",
+    "analysis/results/tool_effect_fragmentation_camel_component_phase5.jsonl",
+    "analysis/results/tool_effect_fragmentation_evidence_phase3.json"
+  ],
+  "group_counts": {
+    "camel": 6,
+    "ipiguard": 24,
+    "phase4": 24
+  },
+  "human_audited_labels_available": true,
+  "n_pairs": 6840,
+  "n_rows": 822,
+  "oracle_only_fields": [
+    "labels.expected_decision",
+    "labels.gold_effect",
+    "labels.gold_resource",
+    "labels.gold_authorization_match",
+    "labels.gold_provenance_risk"
+  ],
+  "schema_version": "e48_effect_binding_manifest_v1",
+  "shared_split_group_count": 24,
+  "source_counts": {
+    "camel": 54,
+    "ipiguard": 240,
+    "phase4": 528
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "environment": {
+    "ccy_expected": "1.3.1",
+    "ccy_observed": "1.4.1",
+    "ccy_version_deviation": true,
+    "external_api_keys_present": false,
+    "python": "3.12.2"
+  },
+  "execution_claim": "A public ToolSandbox state transition and native milestone validator were executed locally. No LLM, user simulator, search tool, external API, prompt-injection attack, or proposed guard was executed.",
+  "experiment": "E79",
+  "generated_at": "2026-07-12T06:22:17.197487+00:00",
+  "inventory": {
+    "category_counts": {
+      "CANONICALIZATION": 59,
+      "INSUFFICIENT_INFORMATION": 28,
+      "MULTIPLE_TOOL_CALL": 82,
+      "MULTIPLE_USER_TURN": 28,
+      "NO_DISTRACTION_TOOLS": 129,
+      "SINGLE_TOOL_CALL": 19,
+      "SINGLE_USER_TURN": 73,
+      "STATE_DEPENDENCY": 24
+    },
+    "milestone_count_max": 6,
+    "milestone_count_min": 0,
+    "n_all_scenario_variants": 1032,
+    "n_base_scenarios": 129,
+    "n_multi_milestone_base_scenarios": 98
+  },
+  "next_gate": "Select a fixed offline multi-tool subset, add label-hidden untrusted observations and prefix effect validators, then run the same victim checkpoint with no guard and the effect-binding guard.",
+  "smoke_type": "toolsandbox_offline_environment_and_validator",
+  "source": {
+    "local_snapshot": "runs/e79_external_benchmarks/ToolSandbox",
+    "repository": "https://github.com/apple/ToolSandbox",
+    "revision": "165848b9a78cead7ca7fe7c89c688b58e6501219"
+  },
+  "state_dependency_check": {
+    "blocked": true,
+    "error": "Wifi cannot be turned on in low battery mode",
+    "operation": "enable wifi while low-battery mode is active"
+  },
+  "state_transition_check": {
+    "final_wifi": false,
+    "initial_wifi": true,
+    "milestone_similarity": 1.0,
+    "minefield_similarity": 0,
+    "passed": true,
+    "scenario": "wifi_off"
+  },
+  "status": "passed"
+}

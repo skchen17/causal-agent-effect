@@ -1,0 +1,170 @@
+{
+  "analyzers": [
+    {
+      "expected_returncode": 0,
+      "returncode": 0,
+      "script": "experiments/intent-bound-runtime-guard/scripts/counterfactual-atom-envelope-guard/analyze_deepseek_confirmation.py",
+      "stderr_tail": ""
+    },
+    {
+      "expected_returncode": 2,
+      "returncode": 2,
+      "script": "experiments/intent-bound-runtime-guard/scripts/counterfactual-atom-envelope-guard/analyze_deepseek_guard_ladder.py",
+      "stderr_tail": ""
+    },
+    {
+      "expected_returncode": 0,
+      "returncode": 0,
+      "script": "experiments/intent-bound-runtime-guard/scripts/counterfactual-atom-envelope-guard/analyze_deepseek_c1f_regression.py",
+      "stderr_tail": ""
+    },
+    {
+      "expected_returncode": 0,
+      "returncode": 0,
+      "script": "experiments/intent-bound-runtime-guard/scripts/counterfactual-atom-envelope-guard/analyze_deepseek_strong_baselines.py",
+      "stderr_tail": ""
+    }
+  ],
+  "claim_boundary": "The evidence supports same-model AgentDojo sandbox security improvement. C1b passes four-run benign non-inferiority; C1f has a one-run benign sanity check and an explicit path-equivalence argument for its structured-provenance-only change. The evidence does not establish SOTA, adaptive-attack robustness, general trajectory safety, output-only protection, or production safety.",
+  "experiment": "DeepSeek guard-repair saved-artifact reproduction",
+  "frozen_source_hashes": [
+    {
+      "expected_sha256": "17cad9ff4724cdbc48315882b68183957bd9f11f56f69dc18b98a3459b5ead9a",
+      "label": "benign_confirmation",
+      "matched": true,
+      "observed_sha256": "17cad9ff4724cdbc48315882b68183957bd9f11f56f69dc18b98a3459b5ead9a",
+      "path": "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/deepseek_c1b_benign_confirmation.json"
+    },
+    {
+      "expected_sha256": "787b9a31c4801725ba4cc5029cffb1976b9f93405e48c3ebe84204998a677be8",
+      "label": "known_regression_log",
+      "matched": true,
+      "observed_sha256": "787b9a31c4801725ba4cc5029cffb1976b9f93405e48c3ebe84204998a677be8",
+      "path": "experiments/intent-bound-runtime-guard/runs/counterfactual-atom-envelope-guard/deepseek-confirmation-c1d-attack-r1/workspace/agentdojo_logs/local-ours_e77_effect_diff_runtime/workspace/user_task_8/important_instructions/injection_task_2.json"
+    },
+    {
+      "expected_sha256": "813848b02907ed846fdb52d9fb0fb1b149093835fa98b866574ec07d266d3d45",
+      "label": "policy",
+      "matched": true,
+      "observed_sha256": "813848b02907ed846fdb52d9fb0fb1b149093835fa98b866574ec07d266d3d45",
+      "path": "code/shadow_atom_envelope_c1f/src/experiments/effect_binding_guard/e77_effect_diff_runtime_guard/atom_envelope_policy.py"
+    },
+    {
+      "expected_sha256": "dc9e16d87eefcf6ba54e71bc0e799b96eaaa062f6e22cfdf9db0616b6954e9e4",
+      "label": "registered_descriptors",
+      "matched": true,
+      "observed_sha256": "dc9e16d87eefcf6ba54e71bc0e799b96eaaa062f6e22cfdf9db0616b6954e9e4",
+      "path": "experiments/intent-bound-runtime-guard/results/effect-difference-runtime-guard/registered-effect-diff-descriptors.jsonl"
+    },
+    {
+      "expected_sha256": "873c65875ba4bc982823a49adbdfa4627523aba7fcfa5d2fbfa8392cbeb863c9",
+      "label": "relation_catalog",
+      "matched": true,
+      "observed_sha256": "873c65875ba4bc982823a49adbdfa4627523aba7fcfa5d2fbfa8392cbeb863c9",
+      "path": "experiments/intent-bound-runtime-guard/evaluation/effect-difference-runtime-guard/registered_relation_catalog.json"
+    },
+    {
+      "expected_sha256": "9d4dc2e767754ef73a20ec7ad9bc07b444aa814d587c59043bc3dc8e80c61a10",
+      "label": "retrospective_interception",
+      "matched": true,
+      "observed_sha256": "9d4dc2e767754ef73a20ec7ad9bc07b444aa814d587c59043bc3dc8e80c61a10",
+      "path": "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/observed_trajectory_interception_report_c1f.json"
+    },
+    {
+      "expected_sha256": "ec2e5dc3d2e52136a7f5d5294bb715e3aabc6c7dd159b87e426faf8f716c8468",
+      "label": "runtime_catalog",
+      "matched": true,
+      "observed_sha256": "ec2e5dc3d2e52136a7f5d5294bb715e3aabc6c7dd159b87e426faf8f716c8468",
+      "path": "experiments/security-analysis-ablation-and-overhead/evaluation/runtime-mechanism-ablation/agentdojo_runtime_catalog.json"
+    },
+    {
+      "expected_sha256": "4eba75fffedaad0bb5d20c7c4609b51e15d4957acb030915602ff2acaae7fbc8",
+      "label": "runtime_patch",
+      "matched": true,
+      "observed_sha256": "4eba75fffedaad0bb5d20c7c4609b51e15d4957acb030915602ff2acaae7fbc8",
+      "path": "code/shadow_atom_envelope_c1f/src/experiments/effect_binding_guard/e77_effect_diff_runtime_guard/agentdojo_e77_runtime_patch.py"
+    },
+    {
+      "expected_sha256": "40bd57591a891b9b6909401b6102f11c2cc13ae5f24743a2409785b286ca19b8",
+      "label": "strict_policy_tests",
+      "matched": true,
+      "observed_sha256": "40bd57591a891b9b6909401b6102f11c2cc13ae5f24743a2409785b286ca19b8",
+      "path": "shared/compatibility/tests/tests/test_counterfactual_atom_envelope_policy.py"
+    },
+    {
+      "expected_sha256": "f0198bcb2560b6aab0e0313df7d69ad23a2e287106f1b4159e7277939042c689",
+      "label": "structured_provenance_tests",
+      "matched": true,
+      "observed_sha256": "f0198bcb2560b6aab0e0313df7d69ad23a2e287106f1b4159e7277939042c689",
+      "path": "shared/compatibility/tests/tests/test_counterfactual_atom_envelope_structured_provenance.py"
+    }
+  ],
+  "generated_at": "2026-08-08T14:23:36.624992+00:00",
+  "model_calls": 0,
+  "required_reports": [
+    "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/deepseek_c1b_joint_confirmation.json",
+    "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/deepseek_guard_ladder_confirmation.json",
+    "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/deepseek_c1f_structured_provenance_regression.json",
+    "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/deepseek_same_model_strong_baselines.json",
+    "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/final_guard_repair_report_2026-08-08.json"
+  ],
+  "run_statuses": {
+    "c1b_attack": {
+      "errors": 0,
+      "expected_total": 629,
+      "path": "experiments/intent-bound-runtime-guard/runs/counterfactual-atom-envelope-guard/deepseek-confirmation-c1b-attack-r1/confirmation_status.json",
+      "recorded_total": 629,
+      "status": "passed"
+    },
+    "c1f_attack": {
+      "errors": 0,
+      "expected_total": 629,
+      "path": "experiments/intent-bound-runtime-guard/runs/counterfactual-atom-envelope-guard/deepseek-confirmation-c1f-attack-r1/confirmation_status.json",
+      "recorded_total": 629,
+      "status": "passed"
+    },
+    "c1f_benign": {
+      "errors": 0,
+      "expected_total": 97,
+      "path": "experiments/intent-bound-runtime-guard/runs/counterfactual-atom-envelope-guard/deepseek-confirmation-c1f-benign-r1/confirmation_status.json",
+      "recorded_total": 97,
+      "status": "passed"
+    },
+    "no_guard_attack": {
+      "errors": 0,
+      "expected_total": 629,
+      "path": "experiments/intent-bound-runtime-guard/runs/counterfactual-atom-envelope-guard/deepseek-confirmation-no_guard-attack-r1/confirmation_status.json",
+      "recorded_total": 629,
+      "status": "passed"
+    },
+    "repeat_user_prompt_attack": {
+      "errors": 0,
+      "expected_total": 629,
+      "path": "experiments/intent-bound-runtime-guard/runs/counterfactual-atom-envelope-guard/deepseek-confirmation-repeat_user_prompt-attack-r1/confirmation_status.json",
+      "recorded_total": 629,
+      "status": "passed"
+    },
+    "repeat_user_prompt_benign": {
+      "errors": 0,
+      "expected_total": 97,
+      "path": "experiments/intent-bound-runtime-guard/runs/counterfactual-atom-envelope-guard/deepseek-confirmation-repeat_user_prompt-benign-r1/confirmation_status.json",
+      "recorded_total": 97,
+      "status": "passed"
+    },
+    "spotlighting_attack": {
+      "errors": 0,
+      "expected_total": 629,
+      "path": "experiments/intent-bound-runtime-guard/runs/counterfactual-atom-envelope-guard/deepseek-confirmation-spotlighting-attack-r1/confirmation_status.json",
+      "recorded_total": 629,
+      "status": "passed"
+    },
+    "spotlighting_benign": {
+      "errors": 0,
+      "expected_total": 97,
+      "path": "experiments/intent-bound-runtime-guard/runs/counterfactual-atom-envelope-guard/deepseek-confirmation-spotlighting-benign-r1/confirmation_status.json",
+      "recorded_total": 97,
+      "status": "passed"
+    }
+  },
+  "status": "passed"
+}

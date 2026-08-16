@@ -1,0 +1,78 @@
+{
+  "api_key_serialized": false,
+  "claim_boundary": "Paired 12-task development pilot. It measures benign utility under model-visible descriptors without a runtime guard; it is not a full-benchmark or security result.",
+  "completed_at": "2026-08-07T12:15:41.341716+00:00",
+  "expected_rows": 96,
+  "experiment": "deepseek_atom_description_benign_utility_pilot_v1",
+  "failures": [],
+  "inputs": {
+    "neutral_control_sha256": "4f27b4c28e5345025f204a97fc0a45f3703465395284b2d9d40b9ac401eba52f",
+    "protocol_path": "experiments/security-analysis-ablation-and-overhead/evaluation/atom-utility-preservation-confirmatory/deepseek_behavior_protocol.json",
+    "protocol_sha256": "34a2111834b148cd75eeaf448597d9e279d5e07e26dc46c68f112a437a3515a7",
+    "validated_descriptors_sha256": "dc9e16d87eefcf6ba54e71bc0e799b96eaaa062f6e22cfdf9db0616b6954e9e4"
+  },
+  "metrics": {
+    "pristine": {
+      "error_rows": 0,
+      "repeat_rates": [
+        0.8333333333333334,
+        0.9166666666666666
+      ],
+      "total": 24,
+      "utility_rate": 0.875,
+      "utility_successes": 21
+    },
+    "token_neutral": {
+      "error_rows": 0,
+      "repeat_rates": [
+        1.0,
+        1.0
+      ],
+      "total": 24,
+      "utility_rate": 1.0,
+      "utility_successes": 24
+    },
+    "validated_atoms": {
+      "error_rows": 0,
+      "repeat_rates": [
+        0.75,
+        0.9166666666666666
+      ],
+      "total": 24,
+      "utility_rate": 0.8333333333333334,
+      "utility_successes": 20
+    },
+    "validated_atoms_guided": {
+      "error_rows": 0,
+      "repeat_rates": [
+        0.8333333333333334,
+        0.9166666666666666
+      ],
+      "total": 24,
+      "utility_rate": 0.875,
+      "utility_successes": 21
+    }
+  },
+  "n_rows": 96,
+  "paired_vs_pristine": {
+    "token_neutral": {
+      "both_pass": 21,
+      "treatment_gain": 3
+    },
+    "validated_atoms": {
+      "both_fail": 2,
+      "both_pass": 19,
+      "treatment_gain": 1,
+      "treatment_loss": 2
+    },
+    "validated_atoms_guided": {
+      "both_fail": 1,
+      "both_pass": 19,
+      "treatment_gain": 2,
+      "treatment_loss": 2
+    }
+  },
+  "prompt_leakage_violations": 0,
+  "runtime_guard_used": false,
+  "status": "passed"
+}

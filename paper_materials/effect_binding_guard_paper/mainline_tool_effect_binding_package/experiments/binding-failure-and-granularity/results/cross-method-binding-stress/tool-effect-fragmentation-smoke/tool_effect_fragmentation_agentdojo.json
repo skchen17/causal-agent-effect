@@ -1,0 +1,770 @@
+{
+  "claim_boundary": [
+    "Paper-grade only for the local artifacts named in source_path/source_version.",
+    "Perturbed stress cases are synthetic transformations and should be reported as stress tests, not original benchmark metrics."
+  ],
+  "manifest": {
+    "adapter_status": "paper_grade",
+    "n_cases": 216,
+    "notes": [
+      "Uses local T122 env-diff/effect verifier artifacts; no new side-effectful execution."
+    ],
+    "paper_grade_eligible": true,
+    "source_path": "/data/CSK/causal-agent-safety-research/data/agentdojo_effect_verifier_t122_core.jsonl",
+    "source_version": "installed AgentDojo v1.2.2 artifacts",
+    "supported_granularities": [
+      "action_level_policy",
+      "multi_step_trajectory",
+      "pre_execution_plan",
+      "provenance_execution_evidence",
+      "static_input",
+      "step_invocation"
+    ],
+    "supported_perturbations": [
+      "hidden_trace_labels",
+      "original",
+      "same_effect_arg_schema_change",
+      "same_effect_tool_rename",
+      "same_effect_wrapper_tool",
+      "same_plan_different_planner_format",
+      "same_tool_different_effect",
+      "same_trajectory_different_trace_format",
+      "tool_name_graph_vs_effect_resource_graph"
+    ],
+    "system_name": "agentdojo"
+  },
+  "metrics_by_method": {
+    "arg_schema_classifier": {
+      "abstain_rate": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      },
+      "action_level_utility_under_attack": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "confusion": {
+        "abstain": 0,
+        "fn": 168,
+        "fp": 0,
+        "n": 216,
+        "tn": 0,
+        "tp": 48
+      },
+      "effect_invariance_gap": 0.0,
+      "fnr": {
+        "ci_high": 0.828094675417682,
+        "ci_low": 0.7177528802769636,
+        "rate": 0.7777777777777778,
+        "successes": 168,
+        "total": 216
+      },
+      "fpr": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "held_out_tool_fnr": {
+        "ci_high": 0.6857286837223692,
+        "ci_low": 0.31427131627763083,
+        "rate": 0.5,
+        "successes": 12,
+        "total": 24
+      },
+      "held_out_wrapper_fnr": {
+        "ci_high": 1.0,
+        "ci_low": 0.8620194241710247,
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "n_cases": 216,
+      "n_predictions": 216,
+      "row_action_mismatch": {
+        "ci_high": 0.8499642911798285,
+        "ci_low": 0.15003570882017148,
+        "rate": 0.5,
+        "successes": 2,
+        "total": 4
+      },
+      "safe_action_false_deny": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "same_effect_consistency": {
+        "ci_high": 0.8499642911798285,
+        "ci_low": 0.15003570882017148,
+        "rate": 0.5,
+        "successes": 2,
+        "total": 4
+      },
+      "same_tool_different_effect_error_rate": {
+        "ci_high": 0.8800079652065766,
+        "ci_low": 0.5510017468789357,
+        "rate": 0.75,
+        "successes": 18,
+        "total": 24
+      },
+      "tool_proxy_gap": 0.0,
+      "unsafe_action_pre_allow": {
+        "ci_high": 0.828094675417682,
+        "ci_low": 0.7177528802769636,
+        "rate": 0.7777777777777778,
+        "successes": 168,
+        "total": 216
+      }
+    },
+    "effect_resource_abstraction": {
+      "abstain_rate": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      },
+      "action_level_utility_under_attack": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "confusion": {
+        "abstain": 0,
+        "fn": 0,
+        "fp": 0,
+        "n": 216,
+        "tn": 0,
+        "tp": 216
+      },
+      "effect_invariance_gap": 0.0,
+      "fnr": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      },
+      "fpr": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "held_out_tool_fnr": {
+        "ci_high": 0.13798057582897535,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "held_out_wrapper_fnr": {
+        "ci_high": 0.13798057582897535,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "n_cases": 216,
+      "n_predictions": 216,
+      "row_action_mismatch": {
+        "ci_high": 0.48990002040399916,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "safe_action_false_deny": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "same_effect_consistency": {
+        "ci_high": 1.0,
+        "ci_low": 0.5100999795960008,
+        "rate": 1.0,
+        "successes": 4,
+        "total": 4
+      },
+      "same_tool_different_effect_error_rate": {
+        "ci_high": 0.13798057582897535,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "tool_proxy_gap": 0.0,
+      "unsafe_action_pre_allow": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      }
+    },
+    "execution_evidence_upper_bound": {
+      "abstain_rate": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      },
+      "action_level_utility_under_attack": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "confusion": {
+        "abstain": 0,
+        "fn": 0,
+        "fp": 0,
+        "n": 216,
+        "tn": 0,
+        "tp": 216
+      },
+      "effect_invariance_gap": 0.0,
+      "fnr": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      },
+      "fpr": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "held_out_tool_fnr": {
+        "ci_high": 0.13798057582897535,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "held_out_wrapper_fnr": {
+        "ci_high": 0.13798057582897535,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "n_cases": 216,
+      "n_predictions": 216,
+      "row_action_mismatch": {
+        "ci_high": 0.48990002040399916,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "safe_action_false_deny": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "same_effect_consistency": {
+        "ci_high": 1.0,
+        "ci_low": 0.5100999795960008,
+        "rate": 1.0,
+        "successes": 4,
+        "total": 4
+      },
+      "same_tool_different_effect_error_rate": {
+        "ci_high": 0.13798057582897535,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "tool_proxy_gap": 0.0,
+      "unsafe_action_pre_allow": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      }
+    },
+    "plan_level_llm_judge": {
+      "abstain_rate": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      },
+      "action_level_utility_under_attack": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "confusion": {
+        "abstain": 0,
+        "fn": 84,
+        "fp": 0,
+        "n": 216,
+        "tn": 0,
+        "tp": 132
+      },
+      "effect_invariance_gap": 0.0,
+      "fnr": {
+        "ci_high": 0.4553024705090629,
+        "ci_low": 0.3263585072130789,
+        "rate": 0.3888888888888889,
+        "successes": 84,
+        "total": 216
+      },
+      "fpr": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "held_out_tool_fnr": {
+        "ci_high": 0.6857286837223692,
+        "ci_low": 0.31427131627763083,
+        "rate": 0.5,
+        "successes": 12,
+        "total": 24
+      },
+      "held_out_wrapper_fnr": {
+        "ci_high": 0.13798057582897535,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "n_cases": 216,
+      "n_predictions": 216,
+      "row_action_mismatch": {
+        "ci_high": 0.8499642911798285,
+        "ci_low": 0.15003570882017148,
+        "rate": 0.5,
+        "successes": 2,
+        "total": 4
+      },
+      "safe_action_false_deny": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "same_effect_consistency": {
+        "ci_high": 0.8499642911798285,
+        "ci_low": 0.15003570882017148,
+        "rate": 0.5,
+        "successes": 2,
+        "total": 4
+      },
+      "same_tool_different_effect_error_rate": {
+        "ci_high": 1.0,
+        "ci_low": 0.8620194241710247,
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "tool_proxy_gap": 0.0,
+      "unsafe_action_pre_allow": {
+        "ci_high": 0.4553024705090629,
+        "ci_low": 0.3263585072130789,
+        "rate": 0.3888888888888889,
+        "successes": 84,
+        "total": 216
+      }
+    },
+    "static_llm_self_audit": {
+      "abstain_rate": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      },
+      "action_level_utility_under_attack": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "confusion": {
+        "abstain": 0,
+        "fn": 84,
+        "fp": 0,
+        "n": 216,
+        "tn": 0,
+        "tp": 132
+      },
+      "effect_invariance_gap": 0.0,
+      "fnr": {
+        "ci_high": 0.4553024705090629,
+        "ci_low": 0.3263585072130789,
+        "rate": 0.3888888888888889,
+        "successes": 84,
+        "total": 216
+      },
+      "fpr": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "held_out_tool_fnr": {
+        "ci_high": 0.6857286837223692,
+        "ci_low": 0.31427131627763083,
+        "rate": 0.5,
+        "successes": 12,
+        "total": 24
+      },
+      "held_out_wrapper_fnr": {
+        "ci_high": 0.13798057582897535,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "n_cases": 216,
+      "n_predictions": 216,
+      "row_action_mismatch": {
+        "ci_high": 0.8499642911798285,
+        "ci_low": 0.15003570882017148,
+        "rate": 0.5,
+        "successes": 2,
+        "total": 4
+      },
+      "safe_action_false_deny": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "same_effect_consistency": {
+        "ci_high": 0.8499642911798285,
+        "ci_low": 0.15003570882017148,
+        "rate": 0.5,
+        "successes": 2,
+        "total": 4
+      },
+      "same_tool_different_effect_error_rate": {
+        "ci_high": 1.0,
+        "ci_low": 0.8620194241710247,
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "tool_proxy_gap": 0.0,
+      "unsafe_action_pre_allow": {
+        "ci_high": 0.4553024705090629,
+        "ci_low": 0.3263585072130789,
+        "rate": 0.3888888888888889,
+        "successes": 84,
+        "total": 216
+      }
+    },
+    "step_level_classifier": {
+      "abstain_rate": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      },
+      "action_level_utility_under_attack": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "confusion": {
+        "abstain": 0,
+        "fn": 84,
+        "fp": 0,
+        "n": 216,
+        "tn": 0,
+        "tp": 132
+      },
+      "effect_invariance_gap": 0.0,
+      "fnr": {
+        "ci_high": 0.4553024705090629,
+        "ci_low": 0.3263585072130789,
+        "rate": 0.3888888888888889,
+        "successes": 84,
+        "total": 216
+      },
+      "fpr": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "held_out_tool_fnr": {
+        "ci_high": 0.6857286837223692,
+        "ci_low": 0.31427131627763083,
+        "rate": 0.5,
+        "successes": 12,
+        "total": 24
+      },
+      "held_out_wrapper_fnr": {
+        "ci_high": 0.13798057582897535,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "n_cases": 216,
+      "n_predictions": 216,
+      "row_action_mismatch": {
+        "ci_high": 0.8499642911798285,
+        "ci_low": 0.15003570882017148,
+        "rate": 0.5,
+        "successes": 2,
+        "total": 4
+      },
+      "safe_action_false_deny": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "same_effect_consistency": {
+        "ci_high": 0.8499642911798285,
+        "ci_low": 0.15003570882017148,
+        "rate": 0.5,
+        "successes": 2,
+        "total": 4
+      },
+      "same_tool_different_effect_error_rate": {
+        "ci_high": 1.0,
+        "ci_low": 0.8620194241710247,
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "tool_proxy_gap": 0.0,
+      "unsafe_action_pre_allow": {
+        "ci_high": 0.4553024705090629,
+        "ci_low": 0.3263585072130789,
+        "rate": 0.3888888888888889,
+        "successes": 84,
+        "total": 216
+      }
+    },
+    "tool_name_classifier": {
+      "abstain_rate": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      },
+      "action_level_utility_under_attack": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "confusion": {
+        "abstain": 0,
+        "fn": 120,
+        "fp": 0,
+        "n": 216,
+        "tn": 0,
+        "tp": 96
+      },
+      "effect_invariance_gap": 1.0,
+      "fnr": {
+        "ci_high": 0.6202780509462522,
+        "ci_low": 0.48889146019267704,
+        "rate": 0.5555555555555556,
+        "successes": 120,
+        "total": 216
+      },
+      "fpr": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "held_out_tool_fnr": {
+        "ci_high": 1.0,
+        "ci_low": 0.8620194241710247,
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "held_out_wrapper_fnr": {
+        "ci_high": 1.0,
+        "ci_low": 0.8620194241710247,
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "n_cases": 216,
+      "n_predictions": 216,
+      "row_action_mismatch": {
+        "ci_high": 1.0,
+        "ci_low": 0.5100999795960008,
+        "rate": 1.0,
+        "successes": 4,
+        "total": 4
+      },
+      "safe_action_false_deny": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "same_effect_consistency": {
+        "ci_high": 0.48990002040399916,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "same_tool_different_effect_error_rate": {
+        "ci_high": 1.0,
+        "ci_low": 0.8620194241710247,
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "tool_proxy_gap": 1.0,
+      "unsafe_action_pre_allow": {
+        "ci_high": 0.6202780509462522,
+        "ci_low": 0.48889146019267704,
+        "rate": 0.5555555555555556,
+        "successes": 120,
+        "total": 216
+      }
+    },
+    "trajectory_level_classifier": {
+      "abstain_rate": {
+        "ci_high": 0.017474399749637923,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 216
+      },
+      "action_level_utility_under_attack": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "confusion": {
+        "abstain": 0,
+        "fn": 84,
+        "fp": 0,
+        "n": 216,
+        "tn": 0,
+        "tp": 132
+      },
+      "effect_invariance_gap": 0.0,
+      "fnr": {
+        "ci_high": 0.4553024705090629,
+        "ci_low": 0.3263585072130789,
+        "rate": 0.3888888888888889,
+        "successes": 84,
+        "total": 216
+      },
+      "fpr": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "held_out_tool_fnr": {
+        "ci_high": 0.6857286837223692,
+        "ci_low": 0.31427131627763083,
+        "rate": 0.5,
+        "successes": 12,
+        "total": 24
+      },
+      "held_out_wrapper_fnr": {
+        "ci_high": 0.13798057582897535,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "n_cases": 216,
+      "n_predictions": 216,
+      "row_action_mismatch": {
+        "ci_high": 0.8499642911798285,
+        "ci_low": 0.15003570882017148,
+        "rate": 0.5,
+        "successes": 2,
+        "total": 4
+      },
+      "safe_action_false_deny": {
+        "ci_high": null,
+        "ci_low": null,
+        "rate": null,
+        "successes": 0,
+        "total": 0
+      },
+      "same_effect_consistency": {
+        "ci_high": 0.8499642911798285,
+        "ci_low": 0.15003570882017148,
+        "rate": 0.5,
+        "successes": 2,
+        "total": 4
+      },
+      "same_tool_different_effect_error_rate": {
+        "ci_high": 1.0,
+        "ci_low": 0.8620194241710247,
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "tool_proxy_gap": 0.0,
+      "unsafe_action_pre_allow": {
+        "ci_high": 0.4553024705090629,
+        "ci_low": 0.3263585072130789,
+        "rate": 0.3888888888888889,
+        "successes": 84,
+        "total": 216
+      }
+    }
+  },
+  "n_cases": 216,
+  "n_predictions": 1728,
+  "schema_version": "tool_effect_fragmentation_v1",
+  "system": "agentdojo"
+}

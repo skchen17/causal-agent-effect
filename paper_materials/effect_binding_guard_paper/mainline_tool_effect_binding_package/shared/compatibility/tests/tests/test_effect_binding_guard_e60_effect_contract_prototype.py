@@ -1,0 +1,1 @@
+../../../../experiments/counterfactual-descriptor-onboarding/tests/effect-contract-onboarding-prototype/test-effect-binding-guard-e60-effect-contract-prototype.py

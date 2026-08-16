@@ -1,0 +1,185 @@
+% ============================================================================
+% DRAFT: o6_obligation.tex   (W2 deliverable, O6 landing draft)
+% Date: 2026-08-04 / package: 2026-08-05
+% Source: paper/current-usenix/t2_o6_proposition_draft_2026-08-04.md
+%         (restated version: exclusion guarantee + evidence isolation)
+% Status: INDEPENDENT DRAFT. Do NOT \input into main.tex until:
+%         (1) the PM decides the §4.3 multi-value-field disposition
+%             (fix+rerun vs restrict+disclose);
+%         (2) the finalize re-measurement reports 0 hard-block violations;
+%         (3) the claim-map diff review has run.
+%         This file does not modify any existing section or table.
+%
+% ----------------------------------------------------------------------------
+% 落位建议 (placement suggestion)
+%   Part 1 — obligation text (O6 description block):
+%   File    : sections/security_analysis.tex, \subsection{Conditional Effect
+%             Confinement}
+%   Position: AFTER the discussion paragraph of
+%             Corollary~\ref{cor:trajectory-prefix} ("The proof is induction
+%             over committed transitions ... Appendix") and BEFORE
+%             \subsection{Instantiated Scope}.
+%   Rationale: O6 is a COMPANION obligation governing override events under
+%             the experimental allow_with_trail policy. It must NOT be
+%             inserted into the O1--O5 description list and must NOT enter
+%             the premises of thm:single-commit or cor:trajectory-prefix
+%             (both keep "Under O1--O5" unchanged). Placement after the
+%             trajectory-prefix discussion lets O6-d reference the
+%             evidence-supply premise of the induction directly.
+%   Part 2 — new row for tables/table_e80_obligations.tex:
+%   Position: append immediately before \bottomrule (see the tabular snippet
+%             in Part 2 below; column structure Obligation/Evidence/Status
+%             is the existing table's three columns).
+%   Part 3 — candidate sentences for \subsection{Instantiated Scope}
+%             (one sentence extending the obligation mapping; placeholders).
+%
+% ----------------------------------------------------------------------------
+% Wording constraints (t2_o6 md §2, §8 — enforced in this draft)
+%   - exclusion-guarantee + evidence-isolation framing throughout;
+%   - explicit "not an affirmative membership proof" clause (O6-b);
+%   - forbidden word "established" is never used of O6 conclusions
+%     (allowed replacements: recorded / excluded / isolated /
+%     witnessed-as-absent);
+%   - NO preliminary v17 measurement numbers (override totals, fallback
+%     share, violation counts) — all such slots are [V17-*] / [O6-*]
+%     placeholders until the finalize re-measurement;
+%   - O6 cites NO V0-V3 results.
+% Code evidence anchors (for the claim-map diff, not printed here):
+%   experiments/intent-bound-runtime-guard/source/effect-difference-runtime-guard/
+%     e77_runtime.py (apply_uncertainty_policy L162-235;
+%     AUTHORIZED_FIELD_STATUSES L44-51);
+%   agentdojo_e77_runtime_patch.py (audit landing L669-696; evidence
+%   write-back condition L723).
+% ============================================================================
+
+% ============================ PART 1: obligation text ========================
+
+The confinement theorem governs strict \Allow{} commits. The experimental
+runtime additionally admits one audited exception path: a uncertainty-policy
+override may release a commit whose strict decision is non-\Allow{} when
+every unresolved item is a resolver-filled field awaiting a registered
+projection. Because this path can release commits, its guarantees are stated
+as a separate obligation rather than as an extension of the O1--O5 premises.
+Let $d_s$ be the strict decision, $d_e$ the effective decision, and call
+commit $i$ an \emph{override event} when $d_s\neq\Allow$, $d_e=\Allow$, and
+the policy is \texttt{allow\_with\_trail}; let $T_i$ be its audit trail.
+
+\begin{description}[leftmargin=1.2em,style=nextline]
+  \item[O6: Override-trail integrity (exclusion guarantee + evidence isolation).]
+  For every override event $i$:
+  \begin{description}[leftmargin=1.2em,style=nextline]
+    \item[(O6-a) Exclusion guarantee.] $T_i$ records, per field on the
+    structured path and per reason on the fallback path, the comparison
+    status, and the trail satisfies the exclusion property
+    \[
+      \forall \text{field } f:\quad
+      \mathrm{status}_i(f)\in\mathcal{S}_{\mathrm{auth}}\cup\{\rho\},
+    \]
+    where $\mathcal{S}_{\mathrm{auth}}$ is the six-state set of registered
+    projections and authorization-evidence statuses and $\rho$ is the
+    resolver-fill state. No status or reason among the five expansion
+    findings $\mathcal{D}=\{$\texttt{forbidden\_field\_used},
+    \texttt{outside\_exact\_plan}, \texttt{tool\_not\_in},
+    \texttt{missing\_e77}, \texttt{revision\_binding\_invalid}$\}$ appears in
+    a released comparison record: a necessary condition of an override
+    release is $\mathcal{D}\cap\mathrm{findings}(T_i)=\varnothing$.
+    \item[(O6-b) No affirmative membership proof.] For a field in state
+    $\rho$, the trail records the fact that the resolver-filled value was
+    released and its source class. $T_i$ does not constitute an affirmative
+    membership proof that the covered effect values lie in
+    $B_q$ or $B^{(\eta(i))}$; no membership witness is claimed, and the
+    containment $\mu(u_i)\preceq B^{(\eta(i))}$ is not asserted for
+    override-released fields.
+    \item[(O6-c) Evidence isolation.] Let $E_i$ be the set of entries written
+    to the resolver evidence ledger after commit $i$. If commit $i$ is an
+    override event and side-effectful, its result does not enter the ledger:
+    the write-back condition is
+    $\neg\,\text{side-effectful}(u_i)\ \vee\ d_s=\Allow$, i.e.,
+    \[
+      \text{side-effectful}(u_i)\ \wedge\ d_s\neq\Allow
+      \ \Longrightarrow\ E_i=\varnothing.
+    \]
+    \item[(O6-d) No expansion of later authorization basis.] By (O6-c), the
+    evidence available to later commits $j>i$ through the
+    authorized-read and authorized-effect-result statuses contains no
+    override-released side-effect result; overrides therefore do not expand
+    the authorization basis of subsequent calls.
+  \end{description}
+\end{description}
+
+\paragraph{Scope conditions.}
+(S1)~O6 is stated about the current trail schema; the schema has no
+post-hoc re-verification field for resolver-filled values, which is the
+structural reason (O6-b) is negative and cannot be upgraded to an
+affirmative statement.
+(S2)~Let $\phi$ be the share of overrides released through the fallback
+path, which carries a call-level rather than per-field trail. If
+$\phi>20\%$, O6 is restricted to the structured path and $\phi$ is disclosed;
+the finalized measurement reports
+$\phi=$~[V17-OVERRIDE-FALLBACK-SHARE]~[PENDING-FINALIZE].
+(S3)~(O6-a) for fields producing more than one check requires strictest-first
+aggregation of per-check verdicts; the aggregation behavior of the current
+implementation is [O6-MULTIVALUE-DISPOSITION]~[PENDING-FINALIZE: replace with
+the disposition outcome --- either ``verified strictest-first after the fix
+and full re-run'' or a disclosed restriction to calls with at most one check
+per field].
+
+\paragraph{Compatibility.}
+O6 is a refinement of O5 under the experimental policy, not an exception to
+it: missing contracts, unresolved effect-bearing defaults or identities,
+contradictory authority, and unavailable provenance still cannot produce
+$\Allow$, and an override acts only on fields or reasons whose state is
+exactly $\rho$. O3 is preserved because the effective decision is produced
+and fully logged before execution, and the strict/effective pair is auditable
+row by row. O4 is preserved because the executor runs the checked totalized
+call; the override changes the decision label, not the executed argument
+object. O2 is not extended: the envelope containment chain is not claimed for
+override-released fields, which is precisely the role of (O6-b). For
+override commits, the provable substitutes for the O1--O5 inclusion chain are
+(O6-a), (O6-c), and (O6-d); by (O6-d), the evidence-supply premise used by
+the induction of Corollary~\ref{cor:trajectory-prefix} is not polluted by
+override-released results, so overrides do not break the premises of later
+commits.
+
+% ==================== PART 2: table_e80_obligations row ======================
+% Append the following row to tables/table_e80_obligations.tex immediately
+% before \bottomrule. Column structure matches the existing table:
+% Obligation / Evidence / Status.
+% RULE: the Status cell MUST remain "Partial" (never "Scoped pass") until the
+% finalize audit reports 0 five-class hard-block violations in final materials
+% AND the multi-value-field aggregation disposition is closed (t2_o6 md §7).
+
+% O6 override-trail & Dual strict/effective decision audit logged per commit;
+%   exclusion check of the five expansion findings across structured and
+%   fallback paths (re-measured at finalize); evidence-ledger write-back
+%   condition audit for override side effects
+%   [O6-MULTIVALUE-DISPOSITION-TEXT] & Partial \\
+
+% ================== PART 3: Instantiated Scope sentences =====================
+% Candidate sentences for sections/security_analysis.tex
+% \subsection{Instantiated Scope} (after the existing O1--O5 mapping
+% sentences). All measurement slots are placeholders until finalize.
+
+% The experimental runtime released [V17-OVERRIDE-COUNT] override events among
+% [V17-PRECOMMIT-COUNT] pre-commit checks; every override event logs the
+% strict and effective decisions side by side, and the exclusion property
+% (O6-a) holds for the audited override trails with
+% [V17-O6-VIOLATION-COUNT] violations in final materials, the evidence
+% isolation condition (O6-c) holds by the write-back rule, and the fallback
+% share is [V17-OVERRIDE-FALLBACK-SHARE]
+% [PENDING-FINALIZE: all four slots require the finalize re-measurement;
+%  before it, only the neutral sentence "the override-composition measurement
+%  is pre-registered and its disclosure is pending" is permitted (D1 skeleton
+%  R.9 rule 3)].
+
+% ----------------------------------------------------------------------------
+% TODO / pending decisions carried by this draft:
+%   1. §4.3 multi-value-field disposition (fix+rerun vs restrict+disclose)
+%      decides both the (S3) sentence and the table-row disclosure text.
+%   2. finalize re-measurement decides (S2) phi disclosure and the Status
+%      upgrade path; the obligation text itself is schema-relative (S1) and
+%      does not change with those numbers.
+%   3. claim-map diff: one new row for O6 (obligation-to-evidence mapping),
+%      boundary column = "Partial pending finalize; no membership witness
+%      claimed for override-released fields".
+% ============================================================================

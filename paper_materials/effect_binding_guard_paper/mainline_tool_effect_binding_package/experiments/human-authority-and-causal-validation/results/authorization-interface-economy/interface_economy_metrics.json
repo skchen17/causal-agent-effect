@@ -1,0 +1,385 @@
+[
+  {
+    "decision_agreement": 1.0,
+    "declarative_descriptor_bytes": 43101,
+    "domain": "explicit_authority_1024",
+    "interface": "typed_effect",
+    "mixed_cells": 0,
+    "n_cells": 297,
+    "n_contexts": 1024,
+    "overpartition_pairs": 0,
+    "raw_trusted_state_bytes": {
+      "max": 2,
+      "median": 2.0,
+      "min": 2,
+      "p95": 2
+    },
+    "raw_trusted_state_leaves": {
+      "max": 0,
+      "median": 0.0,
+      "min": 0,
+      "p95": 0
+    },
+    "runtime_code": {
+      "ast_statements": 132,
+      "branch_nodes": 48,
+      "n_tool_names_in_executable_code": 0,
+      "python_files": [
+        "shared/compatibility/scripts/independent_authority_benchmark/descriptor_runtime.py"
+      ],
+      "source_bytes": 6756,
+      "tool_names_in_executable_code": []
+    },
+    "scalar_leaves": {
+      "max": 50,
+      "median": 8.0,
+      "min": 0,
+      "p95": 39
+    },
+    "semantic_placement": {
+      "descriptor_entries": 4,
+      "new_tool_requires_declarative_entry": true,
+      "new_tool_requires_executable_dispatch_change": false,
+      "note": "generic descriptor interpreter",
+      "tool_specific_executable_adapter": false
+    },
+    "serialized_bytes": {
+      "max": 1545,
+      "median": 241.0,
+      "min": 2,
+      "p95": 1206
+    },
+    "timing": {
+      "authorization": {
+        "max": 3.744755859375,
+        "median": 3.67062744140625,
+        "min": 3.654412109375,
+        "p95": 3.7267578125,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "end_to_end": {
+        "max": 76.05375390625,
+        "median": 72.95361181640625,
+        "min": 72.7496845703125,
+        "p95": 73.732830078125,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "semantic_adaptation": {
+        "max": 0.0447568359375,
+        "median": 0.0398642578125,
+        "min": 0.0398447265625,
+        "p95": 0.04419140625,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "view_construction": {
+        "max": 67.24014453125,
+        "median": 65.1485224609375,
+        "min": 64.9694189453125,
+        "p95": 66.6393154296875,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      }
+    }
+  },
+  {
+    "decision_agreement": 1.0,
+    "declarative_descriptor_bytes": 0,
+    "domain": "explicit_authority_1024",
+    "interface": "state_aware_request",
+    "mixed_cells": 0,
+    "n_cells": 669,
+    "n_contexts": 1024,
+    "overpartition_pairs": 3252,
+    "raw_trusted_state_bytes": {
+      "max": 531,
+      "median": 294.0,
+      "min": 193,
+      "p95": 369
+    },
+    "raw_trusted_state_leaves": {
+      "max": 16,
+      "median": 9.0,
+      "min": 5,
+      "p95": 12
+    },
+    "runtime_code": {
+      "ast_statements": 143,
+      "branch_nodes": 46,
+      "n_tool_names_in_executable_code": 4,
+      "python_files": [
+        "shared/compatibility/scripts/independent_authority_benchmark/state_aware_view.py",
+        "shared/compatibility/scripts/independent_authority_benchmark/state_aware_request_adapter.py"
+      ],
+      "source_bytes": 12908,
+      "tool_names_in_executable_code": [
+        "post_message",
+        "schedule_meeting",
+        "share_document",
+        "transfer_funds"
+      ]
+    },
+    "scalar_leaves": {
+      "max": 26,
+      "median": 18.0,
+      "min": 12,
+      "p95": 19
+    },
+    "semantic_placement": {
+      "descriptor_entries": 0,
+      "new_tool_requires_declarative_entry": false,
+      "new_tool_requires_executable_dispatch_change": true,
+      "note": "tool-specific view construction and request adaptation",
+      "tool_specific_executable_adapter": true
+    },
+    "serialized_bytes": {
+      "max": 762,
+      "median": 537.0,
+      "min": 373,
+      "p95": 572
+    },
+    "timing": {
+      "authorization": {
+        "max": 3.7693759765625,
+        "median": 3.7559628906249998,
+        "min": 3.7454794921875,
+        "p95": 3.7693076171875,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "end_to_end": {
+        "max": 14.0884501953125,
+        "median": 13.8193251953125,
+        "min": 13.790423828125,
+        "p95": 13.92854296875,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "semantic_adaptation": {
+        "max": 1.7967265625,
+        "median": 1.7546396484375,
+        "min": 1.7297216796875,
+        "p95": 1.7825947265625,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "view_construction": {
+        "max": 6.5693173828125,
+        "median": 6.54848681640625,
+        "min": 6.5192958984375,
+        "p95": 6.5630380859375,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      }
+    }
+  },
+  {
+    "decision_agreement": 1.0,
+    "declarative_descriptor_bytes": 4864,
+    "domain": "third_party_mcp_264",
+    "interface": "typed_effect",
+    "mixed_cells": 0,
+    "n_cells": 138,
+    "n_contexts": 264,
+    "overpartition_pairs": 0,
+    "raw_trusted_state_bytes": {
+      "max": 2,
+      "median": 2.0,
+      "min": 2,
+      "p95": 2
+    },
+    "raw_trusted_state_leaves": {
+      "max": 0,
+      "median": 0.0,
+      "min": 0,
+      "p95": 0
+    },
+    "runtime_code": {
+      "ast_statements": 102,
+      "branch_nodes": 40,
+      "n_tool_names_in_executable_code": 11,
+      "python_files": [
+        "shared/compatibility/scripts/third_party_authorization_interface_validation/descriptor_compiler.py"
+      ],
+      "source_bytes": 9886,
+      "tool_names_in_executable_code": [
+        "add_observations",
+        "create_directory",
+        "create_entities",
+        "create_record",
+        "create_relations",
+        "delete_entities",
+        "delete_records",
+        "edit_file",
+        "move_file",
+        "update_records",
+        "write_file"
+      ]
+    },
+    "scalar_leaves": {
+      "max": 14,
+      "median": 7.0,
+      "min": 0,
+      "p95": 12
+    },
+    "semantic_placement": {
+      "descriptor_entries": 11,
+      "new_tool_requires_declarative_entry": true,
+      "new_tool_requires_executable_dispatch_change": true,
+      "note": "prototype descriptor plus tool-specific compiler",
+      "tool_specific_executable_adapter": true
+    },
+    "serialized_bytes": {
+      "max": 547,
+      "median": 203.0,
+      "min": 2,
+      "p95": 433
+    },
+    "timing": {
+      "authorization": {
+        "max": 1.8684318181818182,
+        "median": 1.7560984848484849,
+        "min": 1.752060606060606,
+        "p95": 1.8636931818181817,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "end_to_end": {
+        "max": 12.560886363636364,
+        "median": 10.022189393939394,
+        "min": 9.985503787878788,
+        "p95": 10.35589393939394,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "semantic_adaptation": {
+        "max": 0.04428030303030303,
+        "median": 0.04022727272727273,
+        "min": 0.040151515151515146,
+        "p95": 0.04041666666666666,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "view_construction": {
+        "max": 8.07582196969697,
+        "median": 7.867369318181819,
+        "min": 7.744901515151515,
+        "p95": 8.030026515151516,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      }
+    }
+  },
+  {
+    "decision_agreement": 1.0,
+    "declarative_descriptor_bytes": 0,
+    "domain": "third_party_mcp_264",
+    "interface": "state_aware_request",
+    "mixed_cells": 0,
+    "n_cells": 161,
+    "n_contexts": 264,
+    "overpartition_pairs": 90,
+    "raw_trusted_state_bytes": {
+      "max": 255,
+      "median": 140.0,
+      "min": 24,
+      "p95": 218
+    },
+    "raw_trusted_state_leaves": {
+      "max": 12,
+      "median": 4.0,
+      "min": 0,
+      "p95": 12
+    },
+    "runtime_code": {
+      "ast_statements": 83,
+      "branch_nodes": 29,
+      "n_tool_names_in_executable_code": 8,
+      "python_files": [
+        "shared/compatibility/scripts/third_party_authorization_interface_validation/state_aware_adapter.py"
+      ],
+      "source_bytes": 7076,
+      "tool_names_in_executable_code": [
+        "add_observations",
+        "create_directory",
+        "create_entities",
+        "create_record",
+        "create_relations",
+        "edit_file",
+        "update_records",
+        "write_file"
+      ]
+    },
+    "scalar_leaves": {
+      "max": 18,
+      "median": 8.0,
+      "min": 3,
+      "p95": 18
+    },
+    "semantic_placement": {
+      "descriptor_entries": 0,
+      "new_tool_requires_declarative_entry": false,
+      "new_tool_requires_executable_dispatch_change": true,
+      "note": "tool-specific state-aware request adapter",
+      "tool_specific_executable_adapter": true
+    },
+    "serialized_bytes": {
+      "max": 485,
+      "median": 271.0,
+      "min": 115,
+      "p95": 393
+    },
+    "timing": {
+      "authorization": {
+        "max": 2.0101022727272726,
+        "median": 1.8695833333333334,
+        "min": 1.8637727272727274,
+        "p95": 2.0024128787878785,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "end_to_end": {
+        "max": 13.937329545454546,
+        "median": 13.64872537878788,
+        "min": 13.539026515151516,
+        "p95": 13.83755303030303,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "semantic_adaptation": {
+        "max": 1.821003787878788,
+        "median": 1.7894507575757574,
+        "min": 1.7811931818181816,
+        "p95": 1.8207765151515152,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      },
+      "view_construction": {
+        "max": 9.028087121212122,
+        "median": 8.855316287878788,
+        "min": 8.818837121212121,
+        "p95": 9.019905303030304,
+        "timed_batches": 30,
+        "unit": "microseconds_per_context",
+        "warmup_batches": 3
+      }
+    }
+  }
+]

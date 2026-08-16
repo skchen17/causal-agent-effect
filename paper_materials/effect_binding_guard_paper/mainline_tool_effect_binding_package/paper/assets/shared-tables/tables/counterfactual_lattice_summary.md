@@ -1,0 +1,17 @@
+# Counterfactual Lattice Summary
+
+| method | same_effect_consistency | same_tool_different_effect_correctness | authorization_sensitivity | resource_mismatch_error | unsafe_pre_allow | safe_false_deny | coverage | claim_scope |
+|---|---|---|---|---|---|---|---|---|
+| allow_all | 1 | 0 | 0 | 1 | 1 | 0 | 1 | baseline |
+| arg_schema_rule_proxy | 0.588542 | 0 | 0 | 1 | 0.299242 | 0.700758 | 1 | baseline |
+| deny_all | 1 | 0 | 0 | 1 | 0 | 1 | 1 | baseline |
+| effect_resource_oracle | 1 | 1 | 1 | 0 | 0 | 0 | 1 | upper_bound |
+| execution_evidence_upper_bound | 1 | 1 | 1 | 0 | 0 | 0 | 1 | upper_bound |
+| local_qwen_self_audit | 0.864583 | 0.666667 | 0.564815 | 0.708333 | 0.00378788 | 0.481061 | 0.998106 | baseline |
+| non_oracle_saved_evidence_verifier | 0.25 | 0.0833333 | 0.00925926 | 0 | 0 | 0.0606061 | 0.25 | baseline |
+| plan_text_rule_proxy | 0.984375 | 0 | 0.902778 | 0 | 0.0795455 | 0.0795455 | 1 | baseline |
+| safiron_official_counterfactual_stress | 0.669271 | 1 | 0.087963 | 0.833333 | 0.545455 | 0.371212 | 1 | official_method_custom_stress |
+| static_text_rule_proxy | 0.984375 | 0 | 0.902778 | 0 | 0.0795455 | 0.0795455 | 1 | baseline |
+| tool_name_rule_proxy | 1 | 0 | 0 | 1 | 0.291667 | 0.708333 | 1 | baseline |
+| trajectory_text_rule_proxy | 0.984375 | 0 | 0.902778 | 0 | 0.0795455 | 0.0795455 | 1 | baseline |
+| ts_guard_official_counterfactual_stress | 0.882812 | 0.625 | 0.763889 | 0.166667 | 0.159091 | 0.0871212 | 1 | official_method_custom_stress |

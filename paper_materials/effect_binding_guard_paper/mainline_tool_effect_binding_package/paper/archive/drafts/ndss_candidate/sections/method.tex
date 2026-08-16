@@ -1,0 +1,4 @@
+\section{Method}
+The reference hard Effect-Binding Guard predicts a tuple consisting of realized effect, resource, authorization match, and provenance risk. It is useful as a binding monitor but remains conservative when resource identity or authorization scope is underspecified.
+
+The E55 authorization-aware prototype adds a pre-commit atom layer. A visible tool call is expanded into effect-resource-operation atoms, one per recipient, attendee, file, channel, account, payee, visibility, or operation component. The default policy requires every atom to be authorized. Alias resolution, operation-mode handling, provenance overlay, and optional evidence fallback are explicit infrastructure modules. The prototype never uses expected decisions, gold expanded atoms, violation reasons, or scoring metadata in strict mode.

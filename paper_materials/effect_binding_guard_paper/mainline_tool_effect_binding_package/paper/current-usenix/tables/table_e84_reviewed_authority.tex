@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Qwen3-32B on the fixed reviewed-authority subset (26 benign and 169 attack cases). Prompt Sandwiching and PromptArmor-local reuse complete E78 logs under the same checkpoint and context. The review is label-hidden AI artifact review, not independent human agreement.}
+\label{tab:e84-reviewed-authority}
+\begin{tabular}{lrrr}
+\toprule
+Method & BU & UA & ASR \\
+\midrule
+No defense & .769 & .716 & .030 \\
+Prompt Sandwiching & .692 & .769 & .012 \\
+PromptArmor-local & .154 & .136 & .000 \\
+Reviewed authority & .577 & .734 & .006 \\
+\bottomrule
+\end{tabular}
+\end{table}

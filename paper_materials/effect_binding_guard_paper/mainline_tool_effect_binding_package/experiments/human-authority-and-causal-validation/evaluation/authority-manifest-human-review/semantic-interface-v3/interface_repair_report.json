@@ -1,0 +1,52 @@
+{
+  "authority_widened": false,
+  "claim_boundary": "This AI artifact pass repairs two executable resolver interfaces using only original-task relations and public sandbox tool schemas. It does not certify independent human review, authorize free-form instructions, or generalize beyond the two named task interfaces.",
+  "experiment": "authority_resolver_interface_repair_v3",
+  "human_review_claimed": false,
+  "n_newly_accepted_tasks": 2,
+  "n_resolver_repairs": 5,
+  "n_rows": 97,
+  "newly_accepted_tasks": [
+    "banking/user_task_9",
+    "banking/user_task_13"
+  ],
+  "resolver_repairs": [
+    {
+      "authority_widened": false,
+      "field": "date",
+      "projection_kind": "filtered_record_field",
+      "task_key": "banking/user_task_9",
+      "tool_name": "update_scheduled_transaction"
+    },
+    {
+      "authority_widened": false,
+      "field": "id",
+      "projection_kind": "filtered_record_field",
+      "task_key": "banking/user_task_9",
+      "tool_name": "update_scheduled_transaction"
+    },
+    {
+      "authority_widened": false,
+      "field": "recurring",
+      "projection_kind": "filtered_record_field",
+      "task_key": "banking/user_task_9",
+      "tool_name": "update_scheduled_transaction"
+    },
+    {
+      "authority_widened": false,
+      "field": "city",
+      "projection_kind": "parsed_text_field",
+      "task_key": "banking/user_task_13",
+      "tool_name": "update_user_info"
+    },
+    {
+      "authority_widened": false,
+      "field": "street",
+      "projection_kind": "parsed_text_field",
+      "task_key": "banking/user_task_13",
+      "tool_name": "update_user_info"
+    }
+  ],
+  "source_packet": "experiments/human-authority-and-causal-validation/evaluation/authority-manifest-human-review/semantic-polarity-v2/review_packet.reviewed.jsonl",
+  "status": "passed"
+}

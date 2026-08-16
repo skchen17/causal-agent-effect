@@ -1,0 +1,250 @@
+{
+  "agentdojo_environment": {
+    "agentdojo_importable": true,
+    "agentdojo_pypi_available_checked": true,
+    "agentdojo_pypi_version_observed": "0.1.35",
+    "camel_repo_present": false,
+    "e75_venv_agentdojo_importable": true,
+    "e75_venv_agentdojo_path": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/lib/python3.12/site-packages/agentdojo/__init__.py",
+    "e75_venv_python": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+    "external_camel_repo_present": true,
+    "external_ipiguard_repo_present": true,
+    "external_toolsafe_repo_present": true,
+    "ipiguard_repo_present": false,
+    "local_pi_detector_model_present": true,
+    "recommended_live_runner_environment": "isolated venv under runs/e75_agentdojo_env, not the current conda environment"
+  },
+  "methods": [
+    {
+      "category": "agentdojo_pipeline",
+      "display_name": "No Defense",
+      "local_live_available": true,
+      "local_saved_replay_available": true,
+      "main_table_eligible_now": true,
+      "method_id": "no_guard",
+      "public_artifact": "AgentDojo built-in undefended pipeline",
+      "public_url": "https://github.com/ethz-spylab/agentdojo",
+      "reason": "Available in the saved replay with policy_mode=none and exact AgentDojo case keys."
+    },
+    {
+      "category": "attriguard_paper_candidate",
+      "display_name": "AttriGuard",
+      "local_live_available": true,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "attriguard",
+      "public_artifact": "USENIX Security 2026 artifact on Zenodo",
+      "public_url": "https://doi.org/10.5281/zenodo.20308739",
+      "reason": "Public artifact is verified and a one-case local smoke run exists, but the artifact runner has not completed the full unified 726-key AgentDojo run."
+    },
+    {
+      "category": "agentdojo_pipeline",
+      "display_name": "IPIGuard normal",
+      "local_live_available": true,
+      "local_saved_replay_available": true,
+      "main_table_eligible_now": true,
+      "method_id": "ipiguard_normal",
+      "public_artifact": "IPIGuard repository",
+      "public_url": "https://github.com/Greysahy/ipiguard",
+      "reason": "Available in the saved replay with policy_mode=normal and exact AgentDojo case keys."
+    },
+    {
+      "category": "this_paper_runtime_guard",
+      "display_name": "Ours: atom intent-binding replan guard",
+      "local_live_available": false,
+      "local_saved_replay_available": true,
+      "main_table_eligible_now": false,
+      "method_id": "ours_e73",
+      "public_artifact": "Current repository E73 artifacts",
+      "public_url": "",
+      "reason": "Current E73 output covers the E61 156-row pre-commit subset. If the conservative projection artifact is present, the remaining 570 official keys are marked unsupported/ABSTAIN; this is not a full same-key run."
+    },
+    {
+      "category": "this_paper_runtime_guard",
+      "display_name": "Ours: full atom-descriptor runtime",
+      "local_live_available": true,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "ours_full_atom_runtime",
+      "public_artifact": "Current repository E75 full runtime adapter",
+      "public_url": "",
+      "reason": "The live adapter implements fixed schema-derived atom descriptors, a task-start LLM permission plan, deterministic pre-commit comparison, and audited multi-step replan. It becomes main-table eligible only after all 726 official AgentDojo v1.1.2 keys complete under one protocol."
+    },
+    {
+      "category": "this_paper_runtime_guard",
+      "display_name": "Ours: LLM descriptor + counterfactual runtime",
+      "local_live_available": true,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "ours_llm_descriptor_runtime",
+      "public_artifact": "Current repository E76 adapter",
+      "public_url": "",
+      "reason": "The live adapter uses local-LLM-generated atom descriptors that must pass counterfactual field-registration gates before AgentDojo runtime. It is main-table eligible only after all 726 official AgentDojo v1.1.2 keys complete under one protocol."
+    },
+    {
+      "category": "this_paper_runtime_guard",
+      "display_name": "Ours: sandbox effect-diff descriptor runtime",
+      "local_live_available": true,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "ours_e77_effect_diff_runtime",
+      "public_artifact": "Current repository E77 adapter",
+      "public_url": "",
+      "reason": "The E77 adapter combines local-LLM effect inventories with independent sandbox state/output field counterfactuals, fail-closed unresolved fields, mediated external reads, and no retry override."
+    },
+    {
+      "category": "classifier_guard",
+      "display_name": "PromptGuard",
+      "local_live_available": false,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "promptguard",
+      "public_artifact": "Meta Prompt Guard model",
+      "public_url": "https://huggingface.co/meta-llama/Prompt-Guard-86M",
+      "reason": "Public model page exists, but model files are gated in the current environment and no local AgentDojo adapter has been run."
+    },
+    {
+      "category": "classifier_guard",
+      "display_name": "PI Detector",
+      "local_live_available": true,
+      "local_saved_replay_available": true,
+      "main_table_eligible_now": false,
+      "method_id": "pi_detector",
+      "public_artifact": "ProtectAI prompt-injection classifier",
+      "public_url": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2",
+      "reason": "Public/local model exists. The official AgentDojo transformers_pi_detector live result is tracked under agentdojo_live_transformers_pi_detector when the live import covers 726 keys; the adapted saved-key observation-screening projection remains secondary."
+    },
+    {
+      "category": "classifier_guard",
+      "display_name": "PIGuard/InjecGuard",
+      "local_live_available": true,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "piguard",
+      "public_artifact": "safolab-wisc/injecguard",
+      "public_url": "https://github.com/safolab-wisc/injecguard",
+      "reason": "Public code is cloned and an AgentDojo transformers_pi_detector adapter exists; it is not same-protocol live-table eligible until a 726-key official-live run is imported."
+    },
+    {
+      "category": "detector_guard",
+      "display_name": "DataSentinel",
+      "local_live_available": true,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "datasentinel",
+      "public_artifact": "Open-Prompt-Injection project family",
+      "public_url": "https://github.com/liu00222/Open-Prompt-Injection",
+      "reason": "Public repo is cloned and the README links a DataSentinel fine-tuned checkpoint, but the checkpoint/base-model requirements are not satisfied; current status is checkpoint_download_partial_base_model_missing."
+    },
+    {
+      "category": "agent_defense",
+      "display_name": "MELON",
+      "local_live_available": true,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "melon",
+      "public_artifact": "MELON repository",
+      "public_url": "https://github.com/kaijiezhu11/MELON",
+      "reason": "Public repo is cloned, but the official implementation expects OpenAI embeddings/API wiring; no local/adapted 726-key AgentDojo run exists yet."
+    },
+    {
+      "category": "agent_defense",
+      "display_name": "MELON-style local comparator",
+      "local_live_available": true,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "melon_local",
+      "public_artifact": "Comparable local implementation based on MELON's masked re-execution idea",
+      "public_url": "https://github.com/kaijiezhu11/MELON",
+      "reason": "Implemented as an E75 AgentDojo module-loaded local adapter using masked re-execution and local lexical tool-call similarity instead of MELON's OpenAI text-embedding-3-large dependency. It is not an official MELON benchmark reproduction and is main-table eligible only after a 726-key official-live import."
+    },
+    {
+      "category": "paper_defined_prompt_baseline",
+      "display_name": "Prompt Sandwiching",
+      "local_live_available": true,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "prompt_sandwiching",
+      "public_artifact": "Prompting defense described in prior work",
+      "public_url": "",
+      "reason": "Implemented as an E75 module-loaded AgentDojo live adapter; main-table eligibility requires imported logs covering all 726 official keys."
+    },
+    {
+      "category": "paper_defined_prompt_baseline",
+      "display_name": "Spotlighting",
+      "local_live_available": false,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "spotlighting",
+      "public_artifact": "Spotlighting/datamarking style defense",
+      "public_url": "https://github.com/realArcherL/spotlighting-datamarking",
+      "reason": "Needs a local implementation or verified adapter before inclusion in the main unified table."
+    },
+    {
+      "category": "sanitizer_guard",
+      "display_name": "PromptArmor",
+      "local_live_available": false,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "promptarmor",
+      "public_artifact": "Paper-defined sanitizer-style defense",
+      "public_url": "",
+      "reason": "No verified local code artifact is present; only include after a clearly labeled paper-defined implementation or public artifact is available."
+    },
+    {
+      "category": "paper_defined_sanitizer_baseline",
+      "display_name": "PromptArmor-style local guard",
+      "local_live_available": true,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "promptarmor_local",
+      "public_artifact": "Comparable local implementation of PromptArmor-style prompting",
+      "public_url": "https://arxiv.org/abs/2507.15219",
+      "reason": "Implemented as an E75 module-loaded AgentDojo live adapter; it is not an official PromptArmor code artifact. Main-table eligibility requires imported logs covering all 726 official keys."
+    },
+    {
+      "category": "structured_agent_defense",
+      "display_name": "CaMeL",
+      "local_live_available": true,
+      "local_saved_replay_available": true,
+      "main_table_eligible_now": false,
+      "method_id": "camel",
+      "public_artifact": "Google Research CaMeL artifact",
+      "public_url": "https://github.com/google-research/camel-prompt-injection",
+      "reason": "Public code exists. If e75_external_full_cross_rows.jsonl is present, CaMeL rows are aligned external phase5 saved full-cross runs filtered to official AgentDojo keys, not a new live rerun."
+    },
+    {
+      "category": "model_or_prompt_structure_baseline",
+      "display_name": "StruQ",
+      "local_live_available": false,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "struq",
+      "public_artifact": "Sizhe-Chen/StruQ",
+      "public_url": "https://github.com/Sizhe-Chen/StruQ",
+      "reason": "Model/prompt-structure baseline; should be reported separately unless adapted to the same AgentDojo agent backbone."
+    },
+    {
+      "category": "model_level_baseline",
+      "display_name": "SecAlign",
+      "local_live_available": false,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "secalign",
+      "public_artifact": "facebookresearch/SecAlign",
+      "public_url": "https://github.com/facebookresearch/SecAlign",
+      "reason": "Model-level baseline; should be separated from same-backbone guard comparisons unless the defended model is run through the same AgentDojo protocol."
+    },
+    {
+      "category": "model_level_baseline",
+      "display_name": "MetaSecAlign",
+      "local_live_available": false,
+      "local_saved_replay_available": false,
+      "main_table_eligible_now": false,
+      "method_id": "meta_secalign",
+      "public_artifact": "facebookresearch/Meta_SecAlign",
+      "public_url": "https://github.com/facebookresearch/Meta_SecAlign",
+      "reason": "Model-level baseline; should be separated from same-backbone guard comparisons unless the defended model is run through the same AgentDojo protocol."
+    }
+  ]
+}

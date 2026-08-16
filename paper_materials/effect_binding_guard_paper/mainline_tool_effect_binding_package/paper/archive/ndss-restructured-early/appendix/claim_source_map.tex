@@ -1,0 +1,20 @@
+\section{Claim-to-Source Map}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Main claim-to-source map for the restructured draft.}
+\label{tab:claim-source-map}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.25\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Claim & Source artifact & Safe wording \\
+\midrule
+The paper is measurement plus diagnostic framework plus local pre-commit prototype. & Claim boundary notes; planning log & Controlled custom-stress and local contract evidence, not production safety. \\
+The hard guard has bounded improvement. & E48 tuple guard; E50 robustness & Low but nonzero UPA/FDeny on E48 and a resource/auth bottleneck on E50. \\
+Resource/auth is the central bottleneck. & E50 robustness & 0.383 UPA at 0.921 coverage on controlled resource/auth stress. \\
+Authorization-aware mediation improves local contract decidability. & E55-v2 strict & On E55-v2, coverage rises from 0.200 to 0.880 and UPA falls from 12/276 to 0/276. \\
+Human-corrected sensitivity preserves zero UPA but introduces FDeny. & E55 human-corrected sensitivity & Corrected sensitivity has UPA 0/320 and FDeny 4/230. \\
+Validity checks reduce specific artifact risks. & E57-v2 validity; E57 human audit & Perturbation/reference-authorizer checks pass; human audit finds corrections. \\
+\bottomrule
+\end{tabularx}
+\end{table}

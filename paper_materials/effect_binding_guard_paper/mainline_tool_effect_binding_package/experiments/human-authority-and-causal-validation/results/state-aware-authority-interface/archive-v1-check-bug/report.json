@@ -1,0 +1,353 @@
+{
+  "acceptance_gates": {
+    "all_1024_contexts_retained": true,
+    "base_protocol_verified": true,
+    "case_ids_unique": true,
+    "five_rows_per_context": true,
+    "no_silent_adapter_failure": true,
+    "old_four_representation_results_unchanged": false,
+    "state_views_complete": true
+  },
+  "collision_metrics": [
+    {
+      "authorization_separating_pairs": 45944,
+      "minimum_unavoidable_errors": 240,
+      "n_cells": 4,
+      "n_mixed_cells": 4,
+      "overpartition_pairs": 0,
+      "representation": "tool_name",
+      "rows_in_mixed_cells": 1024,
+      "scalar_leaves": {
+        "max": 1,
+        "median": 1.0,
+        "p95": 1
+      },
+      "serialized_bytes": {
+        "max": 32,
+        "median": 30.0,
+        "p95": 32
+      }
+    },
+    {
+      "authorization_separating_pairs": 174,
+      "minimum_unavoidable_errors": 64,
+      "n_cells": 243,
+      "n_mixed_cells": 51,
+      "overpartition_pairs": 2842,
+      "representation": "canonical_raw_arguments",
+      "rows_in_mixed_cells": 208,
+      "scalar_leaves": {
+        "max": 9,
+        "median": 6.5,
+        "p95": 9
+      },
+      "serialized_bytes": {
+        "max": 253,
+        "median": 167.0,
+        "p95": 240
+      }
+    },
+    {
+      "authorization_separating_pairs": 207,
+      "minimum_unavoidable_errors": 24,
+      "n_cells": 106,
+      "n_mixed_cells": 9,
+      "overpartition_pairs": 0,
+      "representation": "common_effect_fields",
+      "rows_in_mixed_cells": 95,
+      "scalar_leaves": {
+        "max": 48,
+        "median": 6.0,
+        "p95": 30
+      },
+      "serialized_bytes": {
+        "max": 1497,
+        "median": 212.0,
+        "p95": 1020
+      }
+    },
+    {
+      "authorization_separating_pairs": 0,
+      "minimum_unavoidable_errors": 0,
+      "n_cells": 297,
+      "n_mixed_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "validated_typed_effects",
+      "rows_in_mixed_cells": 0,
+      "scalar_leaves": {
+        "max": 50,
+        "median": 8.0,
+        "p95": 39
+      },
+      "serialized_bytes": {
+        "max": 1545,
+        "median": 241.0,
+        "p95": 1206
+      }
+    },
+    {
+      "authorization_separating_pairs": 0,
+      "minimum_unavoidable_errors": 0,
+      "n_cells": 669,
+      "n_mixed_cells": 0,
+      "overpartition_pairs": 3252,
+      "representation": "state_aware_raw_call",
+      "rows_in_mixed_cells": 0,
+      "scalar_leaves": {
+        "max": 26,
+        "median": 18.0,
+        "p95": 19
+      },
+      "serialized_bytes": {
+        "max": 762,
+        "median": 537.0,
+        "p95": 572
+      }
+    }
+  ],
+  "direct_metrics": [
+    {
+      "abstain": 1.0,
+      "coverage": 0.0,
+      "covered_accuracy": null,
+      "decision_accuracy": 0.0,
+      "false_denial": 0.0,
+      "ideal_allow": 240,
+      "ideal_deny": 784,
+      "n": 1024,
+      "representation": "tool_name",
+      "stratum": "all",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 1.0,
+      "coverage": 0.0,
+      "covered_accuracy": null,
+      "decision_accuracy": 0.0,
+      "false_denial": 0.0,
+      "ideal_allow": 180,
+      "ideal_deny": 588,
+      "n": 768,
+      "representation": "tool_name",
+      "stratum": "routine",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 1.0,
+      "coverage": 0.0,
+      "covered_accuracy": null,
+      "decision_accuracy": 0.0,
+      "false_denial": 0.0,
+      "ideal_allow": 60,
+      "ideal_deny": 196,
+      "n": 256,
+      "representation": "tool_name",
+      "stratum": "boundary",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.00390625,
+      "coverage": 0.99609375,
+      "covered_accuracy": 0.8754901960784314,
+      "decision_accuracy": 0.8720703125,
+      "false_denial": 0.49166666666666664,
+      "ideal_allow": 240,
+      "ideal_deny": 784,
+      "n": 1024,
+      "representation": "canonical_raw_arguments",
+      "stratum": "all",
+      "unsafe_pre_allow": 0.011479591836734694
+    },
+    {
+      "abstain": 0.005208333333333333,
+      "coverage": 0.9947916666666666,
+      "covered_accuracy": 0.8704188481675392,
+      "decision_accuracy": 0.8658854166666666,
+      "false_denial": 0.5,
+      "ideal_allow": 180,
+      "ideal_deny": 588,
+      "n": 768,
+      "representation": "canonical_raw_arguments",
+      "stratum": "routine",
+      "unsafe_pre_allow": 0.015306122448979591
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 0.890625,
+      "decision_accuracy": 0.890625,
+      "false_denial": 0.4666666666666667,
+      "ideal_allow": 60,
+      "ideal_deny": 196,
+      "n": 256,
+      "representation": "canonical_raw_arguments",
+      "stratum": "boundary",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.1904296875,
+      "coverage": 0.8095703125,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 0.8095703125,
+      "false_denial": 0.0,
+      "ideal_allow": 240,
+      "ideal_deny": 784,
+      "n": 1024,
+      "representation": "common_effect_fields",
+      "stratum": "all",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.19791666666666666,
+      "coverage": 0.8020833333333334,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 0.8020833333333334,
+      "false_denial": 0.0,
+      "ideal_allow": 180,
+      "ideal_deny": 588,
+      "n": 768,
+      "representation": "common_effect_fields",
+      "stratum": "routine",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.16796875,
+      "coverage": 0.83203125,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 0.83203125,
+      "false_denial": 0.0,
+      "ideal_allow": 60,
+      "ideal_deny": 196,
+      "n": 256,
+      "representation": "common_effect_fields",
+      "stratum": "boundary",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 1.0,
+      "false_denial": 0.0,
+      "ideal_allow": 240,
+      "ideal_deny": 784,
+      "n": 1024,
+      "representation": "validated_typed_effects",
+      "stratum": "all",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 1.0,
+      "false_denial": 0.0,
+      "ideal_allow": 180,
+      "ideal_deny": 588,
+      "n": 768,
+      "representation": "validated_typed_effects",
+      "stratum": "routine",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 1.0,
+      "false_denial": 0.0,
+      "ideal_allow": 60,
+      "ideal_deny": 196,
+      "n": 256,
+      "representation": "validated_typed_effects",
+      "stratum": "boundary",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 1.0,
+      "false_denial": 0.0,
+      "ideal_allow": 240,
+      "ideal_deny": 784,
+      "n": 1024,
+      "representation": "state_aware_raw_call",
+      "stratum": "all",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 1.0,
+      "false_denial": 0.0,
+      "ideal_allow": 180,
+      "ideal_deny": 588,
+      "n": 768,
+      "representation": "state_aware_raw_call",
+      "stratum": "routine",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 1.0,
+      "false_denial": 0.0,
+      "ideal_allow": 60,
+      "ideal_deny": 196,
+      "n": 256,
+      "representation": "state_aware_raw_call",
+      "stratum": "boundary",
+      "unsafe_pre_allow": 0.0
+    }
+  ],
+  "experiment": "state_aware_authority_interface",
+  "interpretation": {
+    "direct_track": "Direct metrics also use the frozen tool-specific request adapter.",
+    "outcome_rule": "A tie or state-aware success is accepted; scientific status does not depend on typed effects winning.",
+    "representation_track": "Collision results use only the effect-free state-aware view."
+  },
+  "n_contexts": 1024,
+  "protocol_sha256": "40f8219ae3c808328a26b6ef788e8946d06766c73ee48dfc11966ca11d4c9b68",
+  "representations": [
+    "tool_name",
+    "canonical_raw_arguments",
+    "common_effect_fields",
+    "validated_typed_effects",
+    "state_aware_raw_call"
+  ],
+  "state_aware_failure_taxonomy_count": 0,
+  "state_dependent": {
+    "n_argument_groups": 256,
+    "n_state_policy_separating_groups": 52,
+    "representations": {
+      "canonical_raw_arguments": {
+        "colliding_groups": 52,
+        "rate": 1.0,
+        "total": 52
+      },
+      "common_effect_fields": {
+        "colliding_groups": 0,
+        "rate": 0.0,
+        "total": 52
+      },
+      "state_aware_raw_call": {
+        "colliding_groups": 0,
+        "rate": 0.0,
+        "total": 52
+      },
+      "tool_name": {
+        "colliding_groups": 52,
+        "rate": 1.0,
+        "total": 52
+      },
+      "validated_typed_effects": {
+        "colliding_groups": 0,
+        "rate": 0.0,
+        "total": 52
+      }
+    }
+  },
+  "status": "failed"
+}

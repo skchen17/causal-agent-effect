@@ -1,0 +1,13 @@
+\section{Discussion}
+
+\paragraph{Tool calls are containers, not security atoms.}
+The central design implication is that the unit of mediation should not be the tool invocation itself. A single call may contain several policy-relevant atoms: recipients, files, attendees, visibility changes, account/payee pairs, and draft/commit transitions. Tool-level monitoring can therefore be high coverage while still authorizing the wrong object. Atomization makes the enforcement target explicit before a policy is applied.
+
+\paragraph{Authorization must be runtime infrastructure.}
+The E50 bottleneck is not solved by a better wording of the safety question. Resource and authorization failures persist when the monitor lacks a typed representation of the authorization object. Progent, MiniScope, CaMeL, and related structural defenses are complementary because they provide enforcement or control structure; this paper identifies the semantic binding layer that those systems need before enforcement can target the right object.
+
+\paragraph{The stronger evidence shifts the bottleneck.}
+E55-v2 shows controlled local feasibility, while E60 and E61 test whether the same atom interface survives an independently specified contract and sandboxed realistic trace replay. The remaining failures are not primarily checker failures under gold atoms and context; E62 attributes much of the gap to atom extraction and missing or degraded authorization context, and E63 makes the interface burden explicit. This is a narrower and more useful conclusion than treating authorization infrastructure as complete.
+
+\paragraph{Abstention is a mediation outcome.}
+Pre-commit mediators should not be evaluated only by accuracy on forced allow/deny decisions. When resource identity, alias resolution, control source, or authorization scope is unresolved, abstention is the correct controlled outcome. Reporting UPA, FDeny, and coverage together distinguishes a useful mediator from a system that hides uncertainty by allowing or denying everything. E55-v2 is useful because it raises coverage while driving unsafe pre-allow to zero under the local contract, not because it eliminates abstention.

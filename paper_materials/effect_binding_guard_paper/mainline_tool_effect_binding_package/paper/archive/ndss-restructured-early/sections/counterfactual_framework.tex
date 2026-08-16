@@ -1,0 +1,25 @@
+\section{Counterfactual Stress-Test Framework}
+
+\input{figures/counterfactual_lattice}
+
+The measurement framework constructs controlled counterfactual cases that isolate semantic axes relevant to pre-commit decisions. The intent is not to reproduce every original benchmark result for each compared system. Instead, the framework asks whether a monitor can satisfy binding invariances and sensitivities on a controlled custom stress distribution.
+
+\paragraph{Axes.}
+We use six axes.
+\begin{itemize}[leftmargin=*]
+\item \textbf{Surface invariance:} paraphrases, schema-level variants, or tool-name alternatives that preserve the same security-relevant action should not change the decision.
+\item \textbf{Effect sensitivity:} changing the realized effect should change the decision when the authorization differs.
+\item \textbf{Resource sensitivity:} changing target resource, recipient, account, channel, file, or visibility should change the decision when the new resource is unauthorized.
+\item \textbf{Authorization sensitivity:} changing the authorization context should change the decision even when the surface action remains similar.
+\item \textbf{Operation-mode sensitivity:} draft, preview, schedule, and commit modes are different security actions.
+\item \textbf{Provenance sensitivity:} trusted user control and untrusted tool-returned control must be distinguished.
+\end{itemize}
+
+\paragraph{Pairwise relations.}
+For each pair $(c_i,c_j)$, the framework records which axes are held fixed and which axes are perturbed. A monitor receives only deployable or allowed input views for that method. Oracle labels and hidden fields are used for scoring, not as deployable inputs. The E48 unified evaluation contains 822 rows and 6,840 pairwise relations; its manifest records the available methods, input views, source counts, and leakage checks.
+
+\paragraph{Metrics.}
+The primary row metrics are UPA, FDeny, coverage, selective accuracy, effect/resource/authorization/provenance accuracy where defined, and abstain rate. Pairwise metrics include same-effect consistency, effect-change correctness, resource sensitivity, authorization sensitivity, provenance sensitivity, and flip-relation correctness. The paper emphasizes UPA, FDeny, and coverage in the main tables because they map directly to pre-commit safety tradeoffs.
+
+\paragraph{Validity checks.}
+The framework includes leakage and marker scans to check that deployable inputs do not contain gold labels. Later E55/E56/E57 checks add label-hidden replay, decision-path audit, resource perturbation, independent reference-authorizer agreement, and human spot audit. These checks reduce specific artifact risks, but they do not convert controlled synthetic/local contracts into deployment validation.

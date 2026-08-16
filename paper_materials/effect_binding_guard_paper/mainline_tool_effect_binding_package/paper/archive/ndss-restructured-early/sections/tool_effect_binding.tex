@@ -1,0 +1,22 @@
+\section{Tool-Effect Binding Problem}
+
+Tool-effect binding asks whether a monitor's decision is attached to the semantic side effect that would be committed, not merely to the surface form of a tool call. The binding problem appears whenever the same surface action can realize different effects, or different surfaces can realize the same effect.
+
+\paragraph{Objects.}
+Let $c$ denote a candidate action. A candidate action includes a tool name, a schema-level argument object, and a surrounding context. Let $S(c)$ be its surface representation, $E(c)$ its realized effect type, $R(c)$ its target resource set, $O(c)$ its operation mode, $A(c)$ its authorization relation under the current context, and $P(c)$ its provenance/control-source status. These are analytic variables used for measurement; in deployment they may be partially observed or unavailable.
+
+\paragraph{Binding requirement.}
+A monitor should be invariant to changes in $S(c)$ that preserve $(E,R,O,A,P)$, and sensitive to changes in $E$, $R$, $O$, $A$, or $P$ that alter the safe pre-commit decision. For example, renaming a recipient alias should not change the decision if the alias resolves to the same authorized principal. Adding an unauthorized Bcc should change the decision even if the tool name and primary effect remain the same.
+
+\paragraph{Failure modes.}
+We distinguish four recurrent failures.
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Tool-proxy behavior:} the monitor follows tool names or coarse action strings rather than the realized effect and resource.
+\item \textbf{Resource under-binding:} the monitor recognizes the effect but does not bind all target resources, recipients, accounts, channels, files, or visibility states.
+\item \textbf{Authorization under-binding:} the monitor identifies a resource but fails to check whether the current authorization context covers the requested operation.
+\item \textbf{Provenance/control-source under-binding:} the monitor permits an action whose controlling instruction or evidence comes from an untrusted source.
+\end{itemize}
+
+\paragraph{Reviewer-facing boundary.}
+The binding requirement is a precondition for robust policy enforcement, not a replacement for policy design. A monitor that extracts the wrong resource or operation can pass a well-specified policy for the wrong object. Conversely, a policy system can be formally precise but still unsafe if the candidate action is not correctly bound to the policy-relevant object before enforcement.

@@ -1,0 +1,75 @@
+\section{Results}
+
+\subsection{Finding 1: Existing Methods Have Partial Binding but Incomplete Joint Binding}
+
+\input{tables/table1_existing_methods}
+
+Table~\ref{tab:existing-methods} shows that existing/custom-stress methods are not merely tool-name classifiers. TS-Guard reaches 0.883 surface invariance and 0.764 authorization sensitivity on the E47 custom stress, and Safiron reaches 1.000 effect sensitivity. Local Qwen variants also show nontrivial effect sensitivity. The axis columns measure pairwise sensitivity or invariance under controlled perturbations, whereas UPA is a row-level safety error: an unsafe row is counted when the monitor allows a denied action. They must be read together. High performance on one axis does not imply joint binding. Safiron has 0.545 unsafe pre-allow in this custom stress; local Qwen effect/resource mapping has high surface invariance and effect sensitivity but 0.125 resource awareness and 0.333 unsafe pre-allow. Current monitors can capture parts of the binding problem, but they remain incomplete when resource, authorization, and provenance must be bound jointly.
+
+\subsection{Finding 2: Resource/Authorization Is the Dominant Bottleneck}
+
+\input{tables/table2_reference_guard}
+\input{tables/table3_bottleneck}
+
+Table~\ref{tab:reference-guard} reports the reference hard guard. On the 822-row E48 suite, the guard obtains 0.917 coverage with 0.036 unsafe pre-allow and 0.065 safe false-denial. On the held-out split, unsafe pre-allow rises to 0.051 while coverage remains 0.955. Source-balanced E50 repeats preserve the same qualitative result: 0.051 mean unsafe pre-allow, 0.059 mean safe false-denial, and 0.923 mean coverage.
+
+Table~\ref{tab:bottleneck} identifies the main bottleneck. On E50 resource/authorization stress, the hard guard has 0.383 unsafe pre-allow at 0.921 coverage. This rules out a benign explanation in which the guard simply abstains on hard cases. Instead, it often makes a decision while missing the authorization-relevant resource relation. The 46 unsafe allows comprise 20 near-alias cases, 20 out-of-scope-resource cases, and six alternate-effect cases. This is a granularity failure: the guard decides over an under-decomposed action object, so an apparently acceptable container can still include an unauthorized resource or authorization shift. Provenance stress shows a different tradeoff: unsafe pre-allow is 0.000, but coverage falls to 0.545 and safe false-denial rises to 0.188. Provenance overlays can reduce unsafe pre-allow under controlled assumptions, but their utility cost must be reported rather than hidden.
+
+\subsection{Finding 3: Atom-Level Mediation Improves Local Contract Decisions}
+
+\input{tables/table4_precommit}
+\input{tables/table5_ablation}
+\input{tables/table6_audit_validity}
+
+Table~\ref{tab:precommit} shows the E55-v2 local pre-commit warm-up. The existing hard guard on the same 600-row local contract has 0.200 coverage, 0.800 abstention, and 12/276 = 0.043 unsafe pre-allow. The authorization-aware prototype reaches 528/600 = 0.880 coverage and 72/600 = 0.120 abstention, while reducing unsafe pre-allow to 0/276 and safe false-denial to 0/252 under E55-v2 strict label-hidden evaluation. E55-v2 is no longer the sole proof of the paper; it is the controlled feasibility result showing that explicit authorization context and atom-level checking can turn abstention-heavy behavior into decidable local mediation.
+
+Table~\ref{tab:ablation} reports E55-v2 strict ablations. Removing multi-resource expansion, operation-mode binding, or provenance overlay each raises unsafe pre-allow to 60/276 = 0.217. The equality is an aggregate rate match in the current JSON artifacts; it does not establish that the same rows fail under all three ablations. Removing alias resolution raises safe false-denial to 60/252 = 0.238. Table~\ref{tab:audit} separates deterministic validity checks from human audit evidence: E57-v2 resource-name perturbation yields zero changed decisions and zero UPA/coverage delta, while the human audit agrees on 54/60 decisions and identifies corrections.
+
+\subsection{Finding 4: The Atom Interface Transfers to an Independently Specified Held-Out Contract}
+
+\input{tables/table_e60_heldout}
+
+Table~\ref{tab:e60-heldout} reports E60, a 480-case held-out contract across five domains with different tool names, argument fields, alias style, resource identifiers, and policy format from E55. Gold atoms and labels are separated from deployable inputs and the leakage scan reports zero violations. Full atom-level mediation reaches 0.854 coverage with 0.000 unsafe pre-allow, 0.083 safe false-denial, and 0.812 atom exact-set match. The result supports transfer of the atom abstraction beyond the E55 local schema, but the false-denial and extraction gap show measurable degradation that must be retained in the claim boundary.
+
+\subsection{Finding 5: Atom Extraction Works on Realistic Traces with Identifiable Failure Modes}
+
+\input{tables/table_e61_realistic_trace}
+\input{tables/table_e61_external_trace_subset}
+\input{tables/table_e61_combined}
+\input{../paper_figures/figure_e61_trace_pipeline}
+
+Table~\ref{tab:e61-realistic} reports E61, a 300-trace sandboxed replay evaluation. The trace manifest contains clean sandbox traces, noisy realistic traces, and adversarial provenance-shift traces; 30.0\% include untrusted tool-returned content, 80.0\% include nested or multi-resource arguments, 24.0\% include incomplete or ambiguous context, and 21.3\% include operation-mode distinctions. Full atom-level mediation reaches 0.847 coverage with 0.000 unsafe pre-allow, 0.053 safe false-denial, and 0.733 atom exact-set match. Source B and Source C are intentionally harder than clean sandbox replay; the drop in atom exact-set match identifies realistic trace parsing and provenance/control-source handling as remaining failure modes rather than hidden successes.
+Table~\ref{tab:e61-external} adds a separate 156-trace external replay subset from saved AgentDojo-style/IPIGuard traces with mutating candidate calls and no real external side effects. The subset reaches 0.904 coverage, 0.000 unsafe pre-allow, 0.000 safe false-denial, and 0.821 atom exact-set match. Its labels come from saved trace metadata and its atoms from a rule-derived sidecar, so it supports an external replay-subset claim, not independent human annotation or deployed-trace safety.
+Table~\ref{tab:e61-combined} reports the artifact-generated and external replay views side by side for accounting only; the paper does not pool the source types into a single performance claim.
+Figure~\ref{fig:e61-trace-pipeline} summarizes the label-hidden replay path used for these rows.
+
+\subsection{Finding 6: Extraction Errors and Missing Authorization Context Dominate Remaining Failures}
+
+\input{tables/table_e62_decomposition}
+\input{../paper_figures/figure_e62_error_attribution}
+
+Table~\ref{tab:e62-decomposition} decomposes the pipeline. Mode A uses gold atoms and gold authorization context, isolating the checker. Mode B replaces gold atoms with extracted atoms, and Mode C additionally degrades authorization context. On E60, coverage moves from 0.875 in Mode A to 0.854 in Mode B and 0.783 in Mode C; atom exact-set match falls from 1.000 to 0.812 when extraction is introduced. On E61, Mode A reaches perfect atom match by construction, Mode B falls to 0.733 atom exact-set match, and Mode C reduces coverage to 0.707 with 0.439 safe false-denial. These gaps attribute remaining errors primarily to extraction and missing or degraded authorization context rather than to checker logic alone.
+Figure~\ref{fig:e62-error-attribution} states the mode comparison used for the attribution.
+
+\subsection{Finding 7: Incomplete or Stale Context Produces Abstention/False-Denial Tradeoffs}
+
+\input{tables/table_e63_degradation}
+
+Table~\ref{tab:e63-degradation} evaluates systematic context degradation. Removing provenance annotations drives coverage down to 0.219 and abstention up to 0.781 with 0.000 unsafe pre-allow. Contradictory policy and incomplete enterprise-style context similarly produce high abstention. Removing operation-mode or visibility fields creates high false-denial rather than unsafe pre-allow. This is the intended conservative failure mode: incomplete, stale, or contradictory authorization context should surface as abstention or false denial rather than silent unsafe allow. The tradeoff is utility loss, not a complete authorization infrastructure.
+
+\subsection{Finding 8: Atom-Level Mediation Improves Non-Atom Baseline Tradeoffs}
+
+\input{tables/table_baselines_summary}
+\input{tables/table_b8_released_adapter}
+
+Table~\ref{tab:baselines-summary} summarizes E64 for the non-atom baselines: tool-name, tool-call-level, resource-only, tuple-level, no-provenance, and LLM-judge variants. Across E55-v2, E60, and E61, full atom-level mediation has lower unsafe pre-allow and higher coverage than the strongest non-atom baseline selected by unsafe pre-allow. On E60, that baseline has 0.311 unsafe pre-allow at 0.625 coverage, whereas full mediation has 0.000 unsafe pre-allow at 0.854 coverage. On E61, the corresponding numbers are 0.189 and 0.700 versus 0.000 and 0.847.
+
+The diagnostic B5 and B7 rows qualify the claim rather than strengthen it. Removing alias canonicalization can also reach zero unsafe pre-allow, but with substantially higher false denial; the least-privilege/capability-style adapter can match full mediation when its capability contract already carries atom-equivalent resource and provenance information. Thus E64 supports a granularity and interface conclusion: non-atom monitors miss policy-relevant structure, while capability-style success depends on supplying that structure explicitly. These comparisons use the same deployable input view and do not claim to reproduce any external paper's original benchmark protocol.
+
+Table~\ref{tab:b8-released-adapter} reports B8, a ToolSafe/TS-Guard-style released-guardrail comparable local adapter. B8 is not a reproduction of ToolSafe/TS-Guard's original benchmark or checkpoint protocol; it maps the same label-hidden deployable input views to step-level \textsc{Allow}/\textsc{Deny}/\textsc{Abstain} decisions. It remains weaker than full atom mediation on E55-v2, E60, and artifact-generated E61, but performs well on the external subset because those saved traces expose untrusted-control evidence directly. The comparison is therefore evidence about this common-input adapter setting, not global superiority over released guardrail systems.
+
+\subsection{Finding 9: Interface Burden Is Measurable and Bounded in the Studied Domains}
+
+\input{tables/table_e63_burden}
+
+Table~\ref{tab:e63-burden} reports the interface burden. Each studied domain uses two tool forms, eight atom expansion rules, eight authorization fields, and 312 alias entries across 156 combined E60/E61 cases, with estimated authoring time of 74 minutes per domain. These numbers are not deployment costs for real enterprises; they quantify the studied interface burden and make explicit which parts must be supplied by runtime systems, schema authors, or trace parsing. The result answers the infrastructure objection more directly than saying that the runtime ``provides context'': atom-level mediation requires concrete schema, alias, provenance, and policy interfaces, and its utility degrades when they are incomplete.

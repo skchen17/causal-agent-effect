@@ -1,0 +1,21 @@
+{
+  "safety_contract": {
+    "executes_side_effects": false,
+    "executes_tools": false,
+    "model_outputs_are_not_executed": true
+  },
+  "schema_version": "tool_effect_fragmentation_external_smoke_phase3_v1",
+  "systems": {
+    "toolsafe": {
+      "backend": "official_transformers",
+      "claim_scope": "original_method_smoke",
+      "elapsed_seconds": 51.48078155517578,
+      "model_path": "/data/CSK/causal-agent-safety-research/models/MurrayTom/TS-Guard",
+      "n_completed": 3,
+      "n_requested": 3,
+      "parse_valid": 0,
+      "parse_valid_rate": 0.0,
+      "status": "smoke_failed"
+    }
+  }
+}

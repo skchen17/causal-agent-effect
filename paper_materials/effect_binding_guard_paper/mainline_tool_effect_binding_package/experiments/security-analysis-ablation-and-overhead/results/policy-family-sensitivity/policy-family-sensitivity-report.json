@@ -1,0 +1,1117 @@
+{
+  "claim_boundary": {
+    "coarse_cells_with_residual_separation": [
+      {
+        "domain": "agentdojo_finite_domain",
+        "family": "resource",
+        "qualifier": "payload",
+        "redundancy_rate": 0.75,
+        "redundant_pairs": 6,
+        "separating_pairs": 2
+      }
+    ],
+    "direction": "mixed",
+    "fully_redundant_coarse_rows": 20,
+    "high_redundancy_template": "High redundancy (direction 1): under the coarser families, most or all collisions created by qualifier deletion are policy-invisible (redundant pairs). Qualifier necessity is therefore representation-relative: the paper's qualifier-necessity claim is scoped to the declared power-set authority family, and the coarser families quantify which effect details those policies cannot express. This is positive evidence that the representation is policy-relative rather than a fixed serialization.",
+    "low_redundancy_template": "Low redundancy (direction 2): under every tested coarser family, deleting non-vacuous qualifiers still created authorization-separating collisions. The typed qualifiers remain operationally necessary across the tested family lattice, not only under the power-set family. This counters the claim that the contract is a serialization of the state difference whose qualifiers become dispensable once authority is aggregated.",
+    "mixed_template": "Mixed: qualifier necessity varies by qualifier role and family; see the per-role verdict rows. Necessity claims are scoped to the domain-qualifier-family cells marked 'necessary'; cells marked 'redundant' delimit where the coarser family cannot express the distinction.",
+    "necessary_under_power_set_rows": 7,
+    "non_vacuous_coarse_rows": 24,
+    "observed_summary": "Across both domains, 7 of 10 non-baseline power-set deletion rows create authorization-separating collisions (the remainder are vacuous or no-effect); among 24 non-vacuous deletion rows under the three coarser families, 20 have redundancy rate 1.000. Exceptions with residual separating pairs under a coarser family: [{\"domain\": \"agentdojo_finite_domain\", \"family\": \"resource\", \"qualifier\": \"payload\", \"redundancy_rate\": 0.75, \"redundant_pairs\": 6, \"separating_pairs\": 2}].",
+    "power_set_deletion_rows": 10,
+    "selected_claim_boundary": "Mixed: qualifier necessity varies by qualifier role and family; see the per-role verdict rows. Necessity claims are scoped to the domain-qualifier-family cells marked 'necessary'; cells marked 'redundant' delimit where the coarser family cannot express the distinction."
+  },
+  "claim_boundary_scope": "Deterministic recomputation over two frozen finite domains with source-hash-bound effect oracles. Separability is defined relative to the declared family's projection of source-effect multisets; the families are declared before metric computation. Results do not extend to unenumerated calls, open tool domains, deployment policy languages, or families outside the enumerated lattice.",
+  "coverage": {
+    "complete": true,
+    "domains": [
+      "agentdojo_finite_domain",
+      "toolsandbox_heldout"
+    ],
+    "expected_rows": 48,
+    "families": [
+      "power_set",
+      "effect_kind",
+      "resource",
+      "count_truncated"
+    ],
+    "observed_rows": 48,
+    "qualifiers": [
+      "none",
+      "date",
+      "subject",
+      "recurrence",
+      "payload",
+      "visibility"
+    ]
+  },
+  "domains": [
+    "agentdojo_finite_domain",
+    "toolsandbox_heldout"
+  ],
+  "environment": {
+    "platform": "Linux-6.2.0-26-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12"
+  },
+  "experiment": "e2_policy_family_qualifier_deletion_sensitivity",
+  "families": [
+    "power_set",
+    "effect_kind",
+    "resource",
+    "count_truncated"
+  ],
+  "family_enumeration_principle": "The four authority families are the images of the paper's submultiset authority construction under a pre-enumerated lattice of occurrence projections: identity (power-set baseline), effect-name quotient, resource quotient, and the {0,1,>=2} count truncation of the effect-name quotient. Each family contains every submultiset of every observed projected effect multiset, so the families are closed under submultisets by construction. The set is fixed before any metric is computed; it is not selected from observed redundancy rates.",
+  "family_summary": {
+    "agentdojo_finite_domain": {
+      "count_truncated": {
+        "different_effect_pairs": 1540,
+        "family_separable_pairs": 992,
+        "separability_ceiling": 0.6441558441558441
+      },
+      "effect_kind": {
+        "different_effect_pairs": 1540,
+        "family_separable_pairs": 992,
+        "separability_ceiling": 0.6441558441558441
+      },
+      "power_set": {
+        "different_effect_pairs": 1540,
+        "family_separable_pairs": 1540,
+        "separability_ceiling": 1.0
+      },
+      "resource": {
+        "different_effect_pairs": 1540,
+        "family_separable_pairs": 1278,
+        "separability_ceiling": 0.8298701298701299
+      }
+    },
+    "toolsandbox_heldout": {
+      "count_truncated": {
+        "different_effect_pairs": 468,
+        "family_separable_pairs": 405,
+        "separability_ceiling": 0.8653846153846154
+      },
+      "effect_kind": {
+        "different_effect_pairs": 468,
+        "family_separable_pairs": 407,
+        "separability_ceiling": 0.8696581196581197
+      },
+      "power_set": {
+        "different_effect_pairs": 468,
+        "family_separable_pairs": 468,
+        "separability_ceiling": 1.0
+      },
+      "resource": {
+        "different_effect_pairs": 468,
+        "family_separable_pairs": 411,
+        "separability_ceiling": 0.8782051282051282
+      }
+    }
+  },
+  "grid_rows": [
+    {
+      "collision_pairs": 0,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 56,
+      "overpartition_cells": 0,
+      "qualifier": "none",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 56,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 56,
+      "overpartition_cells": 0,
+      "qualifier": "date",
+      "redundancy_rate": 0.0,
+      "redundant_pairs": 0,
+      "representation_cells": 40,
+      "separating_pairs": 16,
+      "status": "necessary",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 56,
+      "overpartition_cells": 0,
+      "qualifier": "subject",
+      "redundancy_rate": 0.0,
+      "redundant_pairs": 0,
+      "representation_cells": 40,
+      "separating_pairs": 16,
+      "status": "necessary",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 56,
+      "overpartition_cells": 0,
+      "qualifier": "recurrence",
+      "redundancy_rate": 0.0,
+      "redundant_pairs": 0,
+      "representation_cells": 40,
+      "separating_pairs": 16,
+      "status": "necessary",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 8,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 56,
+      "overpartition_cells": 0,
+      "qualifier": "payload",
+      "redundancy_rate": 0.0,
+      "redundant_pairs": 0,
+      "representation_cells": 51,
+      "separating_pairs": 8,
+      "status": "necessary",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 4,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 56,
+      "overpartition_cells": 0,
+      "qualifier": "visibility",
+      "redundancy_rate": 0.0,
+      "redundant_pairs": 0,
+      "representation_cells": 52,
+      "separating_pairs": 4,
+      "status": "necessary",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 548,
+      "family": "effect_kind",
+      "family_effect_cells": 6,
+      "overpartition_cells": 6,
+      "qualifier": "none",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 56,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 532,
+      "family": "effect_kind",
+      "family_effect_cells": 6,
+      "overpartition_cells": 6,
+      "qualifier": "date",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 40,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 532,
+      "family": "effect_kind",
+      "family_effect_cells": 6,
+      "overpartition_cells": 6,
+      "qualifier": "subject",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 40,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 532,
+      "family": "effect_kind",
+      "family_effect_cells": 6,
+      "overpartition_cells": 6,
+      "qualifier": "recurrence",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 40,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 8,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 540,
+      "family": "effect_kind",
+      "family_effect_cells": 6,
+      "overpartition_cells": 5,
+      "qualifier": "payload",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 8,
+      "representation_cells": 51,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 4,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 544,
+      "family": "effect_kind",
+      "family_effect_cells": 6,
+      "overpartition_cells": 6,
+      "qualifier": "visibility",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 4,
+      "representation_cells": 52,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 262,
+      "family": "resource",
+      "family_effect_cells": 13,
+      "overpartition_cells": 9,
+      "qualifier": "none",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 56,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 246,
+      "family": "resource",
+      "family_effect_cells": 13,
+      "overpartition_cells": 9,
+      "qualifier": "date",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 40,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 246,
+      "family": "resource",
+      "family_effect_cells": 13,
+      "overpartition_cells": 9,
+      "qualifier": "subject",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 40,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 246,
+      "family": "resource",
+      "family_effect_cells": 13,
+      "overpartition_cells": 9,
+      "qualifier": "recurrence",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 40,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 8,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 256,
+      "family": "resource",
+      "family_effect_cells": 13,
+      "overpartition_cells": 8,
+      "qualifier": "payload",
+      "redundancy_rate": 0.75,
+      "redundant_pairs": 6,
+      "representation_cells": 51,
+      "separating_pairs": 2,
+      "status": "necessary",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 4,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 258,
+      "family": "resource",
+      "family_effect_cells": 13,
+      "overpartition_cells": 9,
+      "qualifier": "visibility",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 4,
+      "representation_cells": 52,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 548,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 6,
+      "qualifier": "none",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 56,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 532,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 6,
+      "qualifier": "date",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 40,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 532,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 6,
+      "qualifier": "subject",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 40,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 532,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 6,
+      "qualifier": "recurrence",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 40,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 8,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 540,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 5,
+      "qualifier": "payload",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 8,
+      "representation_cells": 51,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 4,
+      "domain": "agentdojo_finite_domain",
+      "false_rejection_pairs": 544,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 6,
+      "qualifier": "visibility",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 4,
+      "representation_cells": 52,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 25,
+      "overpartition_cells": 0,
+      "qualifier": "none",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 4,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 25,
+      "overpartition_cells": 0,
+      "qualifier": "date",
+      "redundancy_rate": 0.0,
+      "redundant_pairs": 0,
+      "representation_cells": 21,
+      "separating_pairs": 4,
+      "status": "necessary",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 25,
+      "overpartition_cells": 0,
+      "qualifier": "subject",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "vacuous",
+      "vacuous": true
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 25,
+      "overpartition_cells": 0,
+      "qualifier": "recurrence",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "vacuous",
+      "vacuous": true
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 25,
+      "overpartition_cells": 0,
+      "qualifier": "payload",
+      "redundancy_rate": 0.0,
+      "redundant_pairs": 0,
+      "representation_cells": 15,
+      "separating_pairs": 16,
+      "status": "necessary",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 0,
+      "family": "power_set",
+      "family_effect_cells": 25,
+      "overpartition_cells": 0,
+      "qualifier": "visibility",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 61,
+      "family": "effect_kind",
+      "family_effect_cells": 7,
+      "overpartition_cells": 5,
+      "qualifier": "none",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 4,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 57,
+      "family": "effect_kind",
+      "family_effect_cells": 7,
+      "overpartition_cells": 5,
+      "qualifier": "date",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 4,
+      "representation_cells": 21,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 61,
+      "family": "effect_kind",
+      "family_effect_cells": 7,
+      "overpartition_cells": 5,
+      "qualifier": "subject",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "vacuous",
+      "vacuous": true
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 61,
+      "family": "effect_kind",
+      "family_effect_cells": 7,
+      "overpartition_cells": 5,
+      "qualifier": "recurrence",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "vacuous",
+      "vacuous": true
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 45,
+      "family": "effect_kind",
+      "family_effect_cells": 7,
+      "overpartition_cells": 5,
+      "qualifier": "payload",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 15,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 61,
+      "family": "effect_kind",
+      "family_effect_cells": 7,
+      "overpartition_cells": 5,
+      "qualifier": "visibility",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 57,
+      "family": "resource",
+      "family_effect_cells": 10,
+      "overpartition_cells": 3,
+      "qualifier": "none",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 4,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 53,
+      "family": "resource",
+      "family_effect_cells": 10,
+      "overpartition_cells": 3,
+      "qualifier": "date",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 4,
+      "representation_cells": 21,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 57,
+      "family": "resource",
+      "family_effect_cells": 10,
+      "overpartition_cells": 3,
+      "qualifier": "subject",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "vacuous",
+      "vacuous": true
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 57,
+      "family": "resource",
+      "family_effect_cells": 10,
+      "overpartition_cells": 3,
+      "qualifier": "recurrence",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "vacuous",
+      "vacuous": true
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 41,
+      "family": "resource",
+      "family_effect_cells": 10,
+      "overpartition_cells": 3,
+      "qualifier": "payload",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 15,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 57,
+      "family": "resource",
+      "family_effect_cells": 10,
+      "overpartition_cells": 3,
+      "qualifier": "visibility",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 63,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 5,
+      "qualifier": "none",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 4,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 59,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 5,
+      "qualifier": "date",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 4,
+      "representation_cells": 21,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 63,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 5,
+      "qualifier": "subject",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "vacuous",
+      "vacuous": true
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 63,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 5,
+      "qualifier": "recurrence",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "vacuous",
+      "vacuous": true
+    },
+    {
+      "collision_pairs": 16,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 47,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 5,
+      "qualifier": "payload",
+      "redundancy_rate": 1.0,
+      "redundant_pairs": 16,
+      "representation_cells": 15,
+      "separating_pairs": 0,
+      "status": "redundant",
+      "vacuous": false
+    },
+    {
+      "collision_pairs": 0,
+      "domain": "toolsandbox_heldout",
+      "false_rejection_pairs": 63,
+      "family": "count_truncated",
+      "family_effect_cells": 6,
+      "overpartition_cells": 5,
+      "qualifier": "visibility",
+      "redundancy_rate": null,
+      "redundant_pairs": 0,
+      "representation_cells": 25,
+      "separating_pairs": 0,
+      "status": "no_effect",
+      "vacuous": false
+    }
+  ],
+  "inputs": {
+    "agentdojo_finite_domain": {
+      "n_contexts": 56,
+      "path": "experiments/human-authority-and-causal-validation/results/finite-domain-effect-binding-validation/finite-contexts.jsonl",
+      "sha256": "89ba86ca3f74e093c311e3f35436a9cf9d46e1e67dae91cbb6f2ee16ec686e0c"
+    },
+    "toolsandbox_heldout": {
+      "n_contexts": 32,
+      "path": "experiments/human-authority-and-causal-validation/evaluation/heldout-toolsandbox-effect-binding-validation/heldout-contexts.jsonl",
+      "sha256": "755ea9eede206857b4f3c5d1db262fc12d231ee3cfd6b465eb2a5f8e8c99b72b"
+    }
+  },
+  "qualifier_role_mapping": {
+    "agentdojo_finite_domain": {
+      "date": {
+        "instantiated_by": [
+          "banking/schedule_transaction qualifiers.date"
+        ],
+        "operation": "drop qualifier keys {'date'}"
+      },
+      "payload": {
+        "instantiated_by": [
+          "workspace/create_file qualifiers.content/filename",
+          "slack/send_direct_message payload-digest resource"
+        ],
+        "operation": "drop qualifier keys {'content', 'filename'}; mask 'payload:<digest>' resources to 'payload:*'"
+      },
+      "recurrence": {
+        "instantiated_by": [
+          "banking/schedule_transaction qualifiers.recurring"
+        ],
+        "operation": "drop qualifier keys {'recurring'}"
+      },
+      "subject": {
+        "instantiated_by": [
+          "banking/schedule_transaction qualifiers.subject"
+        ],
+        "operation": "drop qualifier keys {'subject'}"
+      },
+      "visibility": {
+        "instantiated_by": [
+          "workspace/share_file permission visibility"
+        ],
+        "operation": "replace atom visibility with '__DELETED__'"
+      }
+    },
+    "toolsandbox_heldout": {
+      "date": {
+        "instantiated_by": [
+          "add_reminder qualifiers.reminder_timestamp"
+        ],
+        "operation": "drop qualifier keys {'reminder_timestamp'}"
+      },
+      "payload": {
+        "instantiated_by": [
+          "add_contact qualifiers.name/relationship/is_self",
+          "remove_contact qualifiers.removed_contact_identity",
+          "add_reminder qualifiers.content"
+        ],
+        "operation": "drop qualifier keys {'name', 'relationship', 'is_self', 'removed_contact_identity', 'content'}"
+      },
+      "recurrence": {
+        "instantiated_by": [],
+        "operation": "no-op (role not instantiated by the five held-out tools)"
+      },
+      "subject": {
+        "instantiated_by": [],
+        "operation": "no-op (role not instantiated by the five held-out tools)"
+      },
+      "visibility": {
+        "instantiated_by": [],
+        "operation": "replace atom visibility with '__DELETED__'"
+      }
+    }
+  },
+  "qualifiers": [
+    "none",
+    "date",
+    "subject",
+    "recurrence",
+    "payload",
+    "visibility"
+  ],
+  "script": "experiments/security-analysis-ablation-and-overhead/source/policy-family-sensitivity/run_policy_family_sensitivity.py",
+  "status": "passed",
+  "validations": [
+    {
+      "check": "typed contract is an exact partition under the power-set family with no deletion (reproduces the zero-collision baseline)",
+      "domain": "agentdojo_finite_domain",
+      "expected": {
+        "false_rejection_pairs": 0,
+        "overpartition_cells": 0,
+        "separating_pairs": 0
+      },
+      "observed": {
+        "false_rejection_pairs": 0,
+        "overpartition_cells": 0,
+        "representation_cells": 56,
+        "separating_pairs": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "typed contract is an exact partition under the power-set family with no deletion (reproduces the zero-collision baseline)",
+      "domain": "toolsandbox_heldout",
+      "expected": {
+        "false_rejection_pairs": 0,
+        "overpartition_cells": 0,
+        "separating_pairs": 0
+      },
+      "observed": {
+        "false_rejection_pairs": 0,
+        "overpartition_cells": 0,
+        "representation_cells": 25,
+        "separating_pairs": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "dropping all qualifiers reproduces the frozen common-contract separating-pair baseline",
+      "domain": "agentdojo_finite_domain",
+      "expected": {
+        "separating_pairs": 118
+      },
+      "observed": {
+        "separating_pairs": 118
+      },
+      "passed": true
+    },
+    {
+      "check": "dropping all qualifiers reproduces the frozen common-contract separating-pair baseline",
+      "domain": "toolsandbox_heldout",
+      "expected": {
+        "separating_pairs": 41
+      },
+      "observed": {
+        "separating_pairs": 41
+      },
+      "passed": true
+    },
+    {
+      "check": "vacuous deletion 'subject' leaves all family metrics unchanged",
+      "domain": "toolsandbox_heldout",
+      "expected": {
+        "mismatched_families": []
+      },
+      "observed": {
+        "mismatched_families": []
+      },
+      "passed": true
+    },
+    {
+      "check": "vacuous deletion 'recurrence' leaves all family metrics unchanged",
+      "domain": "toolsandbox_heldout",
+      "expected": {
+        "mismatched_families": []
+      },
+      "observed": {
+        "mismatched_families": []
+      },
+      "passed": true
+    }
+  ],
+  "verdicts": [
+    {
+      "domain": "agentdojo_finite_domain",
+      "qualifier": "date",
+      "status_by_family": {
+        "count_truncated": "redundant",
+        "effect_kind": "redundant",
+        "power_set": "necessary",
+        "resource": "redundant"
+      },
+      "summary": "necessary_only_under_power_set",
+      "vacuous": false
+    },
+    {
+      "domain": "agentdojo_finite_domain",
+      "qualifier": "subject",
+      "status_by_family": {
+        "count_truncated": "redundant",
+        "effect_kind": "redundant",
+        "power_set": "necessary",
+        "resource": "redundant"
+      },
+      "summary": "necessary_only_under_power_set",
+      "vacuous": false
+    },
+    {
+      "domain": "agentdojo_finite_domain",
+      "qualifier": "recurrence",
+      "status_by_family": {
+        "count_truncated": "redundant",
+        "effect_kind": "redundant",
+        "power_set": "necessary",
+        "resource": "redundant"
+      },
+      "summary": "necessary_only_under_power_set",
+      "vacuous": false
+    },
+    {
+      "domain": "agentdojo_finite_domain",
+      "qualifier": "payload",
+      "status_by_family": {
+        "count_truncated": "redundant",
+        "effect_kind": "redundant",
+        "power_set": "necessary",
+        "resource": "necessary"
+      },
+      "summary": "mixed",
+      "vacuous": false
+    },
+    {
+      "domain": "agentdojo_finite_domain",
+      "qualifier": "visibility",
+      "status_by_family": {
+        "count_truncated": "redundant",
+        "effect_kind": "redundant",
+        "power_set": "necessary",
+        "resource": "redundant"
+      },
+      "summary": "necessary_only_under_power_set",
+      "vacuous": false
+    },
+    {
+      "domain": "toolsandbox_heldout",
+      "qualifier": "date",
+      "status_by_family": {
+        "count_truncated": "redundant",
+        "effect_kind": "redundant",
+        "power_set": "necessary",
+        "resource": "redundant"
+      },
+      "summary": "necessary_only_under_power_set",
+      "vacuous": false
+    },
+    {
+      "domain": "toolsandbox_heldout",
+      "qualifier": "subject",
+      "status_by_family": {
+        "count_truncated": "vacuous",
+        "effect_kind": "vacuous",
+        "power_set": "vacuous",
+        "resource": "vacuous"
+      },
+      "summary": "vacuous",
+      "vacuous": true
+    },
+    {
+      "domain": "toolsandbox_heldout",
+      "qualifier": "recurrence",
+      "status_by_family": {
+        "count_truncated": "vacuous",
+        "effect_kind": "vacuous",
+        "power_set": "vacuous",
+        "resource": "vacuous"
+      },
+      "summary": "vacuous",
+      "vacuous": true
+    },
+    {
+      "domain": "toolsandbox_heldout",
+      "qualifier": "payload",
+      "status_by_family": {
+        "count_truncated": "redundant",
+        "effect_kind": "redundant",
+        "power_set": "necessary",
+        "resource": "redundant"
+      },
+      "summary": "necessary_only_under_power_set",
+      "vacuous": false
+    },
+    {
+      "domain": "toolsandbox_heldout",
+      "qualifier": "visibility",
+      "status_by_family": {
+        "count_truncated": "no_effect",
+        "effect_kind": "no_effect",
+        "power_set": "no_effect",
+        "resource": "no_effect"
+      },
+      "summary": "never_necessary_under_tested_families",
+      "vacuous": false
+    }
+  ]
+}

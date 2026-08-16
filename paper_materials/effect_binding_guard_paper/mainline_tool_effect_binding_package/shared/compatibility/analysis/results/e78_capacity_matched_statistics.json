@@ -1,0 +1,377 @@
+{
+  "claim_boundary": "Pairwise estimates use only keys with complete native metrics for both methods. The companion E78 report retains all-key uncertainty bounds for non-evaluable trajectories. Cluster resampling is a dependence sensitivity analysis, not cross-model evidence.",
+  "comparisons": {
+    "agentdojo_live_melon_local": {
+      "attack_success": {
+        "exact_mcnemar": {
+          "discordant": 6,
+          "method_only_success": 4,
+          "no_guard_only_success": 2,
+          "p_value": 0.6875
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.08931419457735247,
+        "method_successes": 56,
+        "n_paired": 627,
+        "no_guard_rate": 0.0861244019138756,
+        "no_guard_successes": 54,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.004784688995215311,
+            0.011164274322169059
+          ],
+          "difference_method_minus_no_guard": 0.003189792663476874,
+          "samples": 30000,
+          "seed": 20260730
+        }
+      },
+      "attack_utility": {
+        "exact_mcnemar": {
+          "discordant": 31,
+          "method_only_success": 13,
+          "no_guard_only_success": 18,
+          "p_value": 0.47312965989112854
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.5422647527910686,
+        "method_successes": 340,
+        "n_paired": 627,
+        "no_guard_rate": 0.5502392344497608,
+        "no_guard_successes": 345,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.025518341307814992,
+            0.009569377990430622
+          ],
+          "difference_method_minus_no_guard": -0.007974481658692184,
+          "samples": 30000,
+          "seed": 20260731
+        }
+      },
+      "benign_utility": {
+        "exact_mcnemar": {
+          "discordant": 8,
+          "method_only_success": 3,
+          "no_guard_only_success": 5,
+          "p_value": 0.7265625
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.6354166666666666,
+        "method_successes": 61,
+        "n_paired": 96,
+        "no_guard_rate": 0.65625,
+        "no_guard_successes": 63,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.08333333333333333,
+            0.03125
+          ],
+          "difference_method_minus_no_guard": -0.020833333333333332,
+          "samples": 30000,
+          "seed": 20260732
+        }
+      }
+    },
+    "agentdojo_live_ours_e77_effect_diff_runtime": {
+      "attack_success": {
+        "exact_mcnemar": {
+          "discordant": 54,
+          "method_only_success": 1,
+          "no_guard_only_success": 53,
+          "p_value": 6.106226635438361e-15
+        },
+        "holm_adjusted_p": 7.327471962526033e-14,
+        "method_rate": 0.003189792663476874,
+        "method_successes": 2,
+        "n_paired": 627,
+        "no_guard_rate": 0.0861244019138756,
+        "no_guard_successes": 54,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.10526315789473684,
+            -0.06060606060606061
+          ],
+          "difference_method_minus_no_guard": -0.08293460925039872,
+          "samples": 30000,
+          "seed": 20260770
+        }
+      },
+      "attack_utility": {
+        "exact_mcnemar": {
+          "discordant": 226,
+          "method_only_success": 44,
+          "no_guard_only_success": 182,
+          "p_value": 3.939469220608388e-21
+        },
+        "holm_adjusted_p": 5.515256908851744e-20,
+        "method_rate": 0.33014354066985646,
+        "method_successes": 207,
+        "n_paired": 627,
+        "no_guard_rate": 0.5502392344497608,
+        "no_guard_successes": 345,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.2647527910685805,
+            -0.17703349282296652
+          ],
+          "difference_method_minus_no_guard": -0.22009569377990432,
+          "samples": 30000,
+          "seed": 20260771
+        }
+      },
+      "benign_utility": {
+        "exact_mcnemar": {
+          "discordant": 44,
+          "method_only_success": 7,
+          "no_guard_only_success": 37,
+          "p_value": 5.299581744111492e-06
+        },
+        "holm_adjusted_p": 4.769623569700343e-05,
+        "method_rate": 0.3402061855670103,
+        "method_successes": 33,
+        "n_paired": 97,
+        "no_guard_rate": 0.6494845360824743,
+        "no_guard_successes": 63,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.422680412371134,
+            -0.18556701030927836
+          ],
+          "difference_method_minus_no_guard": -0.30927835051546393,
+          "samples": 30000,
+          "seed": 20260772
+        }
+      }
+    },
+    "agentdojo_live_prompt_sandwiching": {
+      "attack_success": {
+        "exact_mcnemar": {
+          "discordant": 56,
+          "method_only_success": 5,
+          "no_guard_only_success": 51,
+          "p_value": 1.170292474039769e-10
+        },
+        "holm_adjusted_p": 1.287321721443746e-09,
+        "method_rate": 0.0128,
+        "method_successes": 8,
+        "n_paired": 625,
+        "no_guard_rate": 0.0864,
+        "no_guard_successes": 54,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.0976,
+            -0.0512
+          ],
+          "difference_method_minus_no_guard": -0.0736,
+          "samples": 30000,
+          "seed": 20260740
+        }
+      },
+      "attack_utility": {
+        "exact_mcnemar": {
+          "discordant": 138,
+          "method_only_success": 79,
+          "no_guard_only_success": 59,
+          "p_value": 0.10545402577641182
+        },
+        "holm_adjusted_p": 0.7381781804348827,
+        "method_rate": 0.5824,
+        "method_successes": 364,
+        "n_paired": 625,
+        "no_guard_rate": 0.5504,
+        "no_guard_successes": 344,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.0048,
+            0.0688
+          ],
+          "difference_method_minus_no_guard": 0.032,
+          "samples": 30000,
+          "seed": 20260741
+        }
+      },
+      "benign_utility": {
+        "exact_mcnemar": {
+          "discordant": 22,
+          "method_only_success": 10,
+          "no_guard_only_success": 12,
+          "p_value": 0.8318119049072266
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.6288659793814433,
+        "method_successes": 61,
+        "n_paired": 97,
+        "no_guard_rate": 0.6494845360824743,
+        "no_guard_successes": 63,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.1134020618556701,
+            0.07216494845360824
+          ],
+          "difference_method_minus_no_guard": -0.020618556701030927,
+          "samples": 30000,
+          "seed": 20260742
+        }
+      }
+    },
+    "agentdojo_live_promptarmor_local": {
+      "attack_success": {
+        "exact_mcnemar": {
+          "discordant": 55,
+          "method_only_success": 1,
+          "no_guard_only_success": 54,
+          "p_value": 3.1086244689504383e-15
+        },
+        "holm_adjusted_p": 4.04121180963557e-14,
+        "method_rate": 0.001594896331738437,
+        "method_successes": 1,
+        "n_paired": 627,
+        "no_guard_rate": 0.0861244019138756,
+        "no_guard_successes": 54,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.10685805422647528,
+            -0.06220095693779904
+          ],
+          "difference_method_minus_no_guard": -0.08452950558213716,
+          "samples": 30000,
+          "seed": 20260750
+        }
+      },
+      "attack_utility": {
+        "exact_mcnemar": {
+          "discordant": 265,
+          "method_only_success": 29,
+          "no_guard_only_success": 236,
+          "p_value": 1.6651003813726828e-41
+        },
+        "holm_adjusted_p": 2.4976505720590244e-40,
+        "method_rate": 0.22009569377990432,
+        "method_successes": 138,
+        "n_paired": 627,
+        "no_guard_rate": 0.5502392344497608,
+        "no_guard_successes": 345,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.37320574162679426,
+            -0.28548644338118023
+          ],
+          "difference_method_minus_no_guard": -0.33014354066985646,
+          "samples": 30000,
+          "seed": 20260751
+        }
+      },
+      "benign_utility": {
+        "exact_mcnemar": {
+          "discordant": 44,
+          "method_only_success": 4,
+          "no_guard_only_success": 40,
+          "p_value": 1.7051434042514302e-08
+        },
+        "holm_adjusted_p": 1.7051434042514302e-07,
+        "method_rate": 0.27835051546391754,
+        "method_successes": 27,
+        "n_paired": 97,
+        "no_guard_rate": 0.6494845360824743,
+        "no_guard_successes": 63,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.4845360824742268,
+            -0.25773195876288657
+          ],
+          "difference_method_minus_no_guard": -0.3711340206185567,
+          "samples": 30000,
+          "seed": 20260752
+        }
+      }
+    },
+    "agentdojo_live_spotlighting_with_delimiting": {
+      "attack_success": {
+        "exact_mcnemar": {
+          "discordant": 56,
+          "method_only_success": 25,
+          "no_guard_only_success": 31,
+          "p_value": 0.5044037600228256
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.07667731629392971,
+        "method_successes": 48,
+        "n_paired": 626,
+        "no_guard_rate": 0.08626198083067092,
+        "no_guard_successes": 54,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.03354632587859425,
+            0.01437699680511182
+          ],
+          "difference_method_minus_no_guard": -0.009584664536741214,
+          "samples": 30000,
+          "seed": 20260760
+        }
+      },
+      "attack_utility": {
+        "exact_mcnemar": {
+          "discordant": 146,
+          "method_only_success": 86,
+          "no_guard_only_success": 60,
+          "p_value": 0.038179441579785256
+        },
+        "holm_adjusted_p": 0.30543553263828205,
+        "method_rate": 0.5910543130990416,
+        "method_successes": 370,
+        "n_paired": 626,
+        "no_guard_rate": 0.549520766773163,
+        "no_guard_successes": 344,
+        "paired_bootstrap": {
+          "ci95": [
+            0.003194888178913738,
+            0.07987220447284345
+          ],
+          "difference_method_minus_no_guard": 0.04153354632587859,
+          "samples": 30000,
+          "seed": 20260761
+        }
+      },
+      "benign_utility": {
+        "exact_mcnemar": {
+          "discordant": 15,
+          "method_only_success": 6,
+          "no_guard_only_success": 9,
+          "p_value": 0.60723876953125
+        },
+        "holm_adjusted_p": 1.0,
+        "method_rate": 0.6185567010309279,
+        "method_successes": 60,
+        "n_paired": 97,
+        "no_guard_rate": 0.6494845360824743,
+        "no_guard_successes": 63,
+        "paired_bootstrap": {
+          "ci95": [
+            -0.1134020618556701,
+            0.05154639175257732
+          ],
+          "difference_method_minus_no_guard": -0.030927835051546393,
+          "samples": 30000,
+          "seed": 20260762
+        }
+      }
+    }
+  },
+  "experiment": "E78 capacity-matched paired statistics",
+  "multiple_testing": "Holm correction over five method comparisons and three metrics",
+  "ours_attack_user_cluster": {
+    "bootstrap_mass_ge_zero": 0.0,
+    "ci95": [
+      -0.10685805422647528,
+      -0.06041335453100159
+    ],
+    "cluster": "suite/user_task_id",
+    "difference_method_minus_no_guard": -0.08293460925039872,
+    "n_clusters": 97,
+    "samples": 30000,
+    "seed": 20261730
+  },
+  "reference_method": "agentdojo_live_local_no_guard",
+  "source": "analysis/results/e78_capacity_matched_merged_rows.jsonl",
+  "status": "passed"
+}

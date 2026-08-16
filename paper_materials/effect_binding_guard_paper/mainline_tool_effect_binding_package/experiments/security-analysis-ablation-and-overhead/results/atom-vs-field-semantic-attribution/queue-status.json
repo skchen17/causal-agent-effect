@@ -1,0 +1,30 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "-m",
+        "pytest",
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/shared/compatibility/tests/tests/test_atom_vs_field_semantic_attribution.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": ".....                                                                    [100%]\n5 passed in 0.10s\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/shared/compatibility/scripts/run_atom_vs_field_semantic_attribution.py",
+        "--mode",
+        "full"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"status\": \"passed\",\n  \"mode\": \"full\",\n  \"n_contexts\": 88,\n  \"n_policy_result_rows\": 456,\n  \"n_ordered_decision_rows\": 8496\n}\n"
+    }
+  ],
+  "status": "passed",
+  "updated_at": "2026-08-15T22:20:18.855006+00:00",
+  "wait_pid": 1499289
+}

@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Existing/custom-stress method capability matrix. Scores come from the E47 custom stress artifacts and released-checkpoint custom-stress runs where applicable; they are not original-paper benchmark reproductions. Empty entries indicate not applicable to the method's available signal.}
+\label{tab:existing-methods}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X c c c c c}
+\toprule
+Method & Scope & Surface inv. & Effect sens. & Auth. sens. & Resource aware & UPA \\
+\midrule
+Tool-name proxy & local rule baseline & 1.000 & 0.000 & 0.000 & 0.000 & 0.292 \\
+Static/plan/trajectory text proxy & local text-rule baselines & 0.984 & 0.000 & 0.903 & 1.000 & 0.080 \\
+Local Qwen self-audit & local LLM self-audit & 0.865 & 0.667 & 0.565 & 0.292 & 0.004 \\
+TS-Guard checkpoint & released checkpoint on E47 custom stress & 0.883 & 0.625 & 0.764 & 0.833 & 0.159 \\
+Safiron checkpoint & released checkpoint on E47 custom stress & 0.669 & 1.000 & 0.088 & 0.167 & 0.545 \\
+Local Qwen effect/resource mapper & local LLM mapper & 0.992 & 0.833 & 0.375 & 0.125 & 0.333 \\
+IPIGuard topology-only & structural topology signal & 1.000 & 0.000 & -- & -- & -- \\
+CaMeL structural-policy stress & local component stress & 1.000 & -- & -- & -- & 0.250 \\
+\bottomrule
+\end{tabularx}
+\end{table*}

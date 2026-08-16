@@ -1,0 +1,58 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=0.82in]{geometry}
+\usepackage{times}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,shapes.geometric}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\upa}{unsafe pre-allow}
+\newcommand{\UPA}{Unsafe Pre-Allow}
+\newcommand{\fdeny}{safe false-denial}
+\newcommand{\FDeny}{Safe False-Denial}
+\newcommand{\eg}{e.g.,}
+\newcommand{\ie}{i.e.,}
+\newcommand{\toolbinding}{tool-effect binding}
+\newcommand{\atom}{effect-resource-operation atom}
+
+\title{Tool-Effect Binding in LLM Agents:\\ Counterfactual Measurement and Pre-Commit Authorization}
+\author{Anonymous Authors}
+\date{}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/threat_model}
+\input{sections/tool_effect_binding}
+\input{sections/atoms}
+\input{sections/counterfactual_framework}
+\input{sections/reference_guard}
+\input{sections/authz_prototype}
+\input{sections/experimental_setup}
+\input{sections/results}
+\input{sections/failure_analysis}
+\input{sections/discussion}
+\input{sections/related_work}
+\input{sections/limitations}
+\input{sections/ethics_artifact_scope}
+\input{sections/conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\appendix
+\input{appendix/additional_tables}
+\input{appendix/audit_details}
+\input{appendix/reproduction_notes}
+\input{appendix/claim_source_map}
+
+\end{document}

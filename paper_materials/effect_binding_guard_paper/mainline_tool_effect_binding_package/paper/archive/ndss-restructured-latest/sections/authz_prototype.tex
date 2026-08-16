@@ -1,0 +1,17 @@
+\section{Authorization-Aware Pre-Commit Prototype}
+
+\input{figures/authz_pipeline}
+
+The E55 local prototype tests a stronger interface: rather than inferring authorization only from generic text, the environment provides a typed authorization context and the mediator expands candidate calls into atoms before decision. This is a local mock contract. It should be read as feasibility evidence for explicit pre-commit authorization infrastructure, not as a deployable permission system.
+
+\paragraph{Pipeline.}
+The prototype performs five steps. First, it intercepts the candidate tool call before commit. Second, it expands the call into effect-resource-operation atoms. Third, it canonicalizes resource identifiers and aliases. Fourth, it checks each atom against the authorization context. Fifth, it applies provenance/control-source checks and emits \textsc{Allow}, \textsc{Deny}, or \textsc{Abstain}.
+
+\paragraph{Domain coverage.}
+The local contract covers five domains: email, calendar, file, Slack, and transaction. Each domain contains 120 rows in E55-v2, for 600 rows total. The stress axes include multi-resource expansion, operation shifts, provenance shifts, resource shifts, and same-effect surface changes. The domain examples are intentionally compact but cover security-relevant distinctions that coarse tool monitors often collapse.
+
+\paragraph{Abstention semantics.}
+Abstention is a first-class decision. In E55-v2, unknown resources, unresolved aliases, insufficient evidence fallback, or ambiguous draft/commit status are not silently allowed. The high-level goal is to convert dangerous automatic decisions into either denied or explicitly abstained pre-commit states.
+
+\paragraph{Why this matters.}
+The E50 bottleneck shows that tuple-level binding without a local authorization contract can make many decisions while missing unsafe resource/authorization cases. The E55 prototype asks the constructive follow-up: if the environment exposes the missing authorization interface and the mediator reasons over atoms, does the bottleneck reduce in a controlled setting? The answer is yes for the E55-v2 local contract, subject to the limitations and audit findings reported below.

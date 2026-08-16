@@ -1,0 +1,35 @@
+{
+  "check_type": "finite_effect_contract_security_model",
+  "claim_boundary": "This is exhaustive validation of a three-atom finite model, not a proof that the implementation's real contracts, envelopes, executor interception, or remote services satisfy O1-O5.",
+  "counterexample_without_contract_soundness": {
+    "actual_effects": [
+      "Atom(effect='send', operation='create', resource='message:user', target='alice', commit_mode='commit')",
+      "Atom(effect='transfer', operation='commit', resource='account:team', target='mallory', commit_mode='commit')"
+    ],
+    "contracted_effects": [
+      "Atom(effect='send', operation='create', resource='message:user', target='alice', commit_mode='commit')"
+    ],
+    "guard_decision": "ALLOW",
+    "unauthorized_committed_effect": "Atom(effect='transfer', operation='commit', resource='account:team', target='mallory', commit_mode='commit')"
+  },
+  "experiment": "E80",
+  "generated_at": "2026-07-27T16:42:53.628846+00:00",
+  "properties": {
+    "check_use_mismatch_fails_closed": true,
+    "consumable_residual_implies_cumulative_prefix_confinement": true,
+    "fixed_reusable_envelope_implies_pointwise_only": true,
+    "missing_contract_fails_closed": true,
+    "o1_to_o5_imply_single_commit_confinement": true,
+    "unresolved_fact_fails_closed": true
+  },
+  "reusable_authority_cumulative_counterexample": {
+    "allowed_occurrences": 1,
+    "committed_occurrences_after_two_calls": 2,
+    "consumable_committed_occurrences_after_two_calls": 1
+  },
+  "single_commit_allow_cases_checked": 1000,
+  "single_commit_sound_cases_checked": 5832,
+  "status": "passed",
+  "two_step_trajectory_cases_checked": 1259712,
+  "universe_size": 3
+}

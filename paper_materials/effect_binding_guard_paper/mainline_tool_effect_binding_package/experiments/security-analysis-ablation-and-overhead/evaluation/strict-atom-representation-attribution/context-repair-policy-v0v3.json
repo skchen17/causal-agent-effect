@@ -1,0 +1,140 @@
+{
+  "schema": "context-repair-policy-v0v3/1",
+  "policy_id": "ctx-repair-v0v3-2026-08-05",
+  "status": "preregistered",
+  "registered_at_utc": "2026-08-05T10:20:00+00:00",
+  "registered_at_local": "2026-08-05T18:20:00+08:00",
+  "registered_by": "experimental-researcher (D5 pre-registration, approved per recommendations_analysis_2026-08-05.md section 4.3 D5)",
+  "deadline_rationale": "Pre-registered before V0 (tool_identity_only) reaches the workspace suite; v17 precedent shows all context-length truncations occur in workspace user_task_35/user_task_38, the last ~280 cases of each variant's case order (suite order banking->slack->travel->workspace).",
+  "amendment_rule": "This document is immutable after the attestation hash is written. Any change requires a NEW policy document with a new policy_id and a new attestation; silent edits are prohibited. Results observed during V0-V3 must never feed back into these rules.",
+
+  "scope": {
+    "experiment": "strict_atom_representation_attribution",
+    "protocol_id": "bccf19ea51b13f27",
+    "protocol_json": "experiments/security-analysis-ablation-and-overhead/evaluation/strict-atom-representation-attribution/protocol.json",
+    "variants": ["tool_identity_only", "opaque_whole_call", "raw_schema_fields", "validated_atom_fields"],
+    "repeat_index": 0,
+    "case_scope": {"manifest": "all-official-cases.jsonl", "n_cases": 726, "manifest_sha256": "c3442ecd6e31dcc63c725d98e94231f9f0354b92be13fbd918891c4e5d71"},
+    "runs_base": "experiments/security-analysis-ablation-and-overhead/runs/strict-atom-representation-attribution/qwen32",
+    "variant_run_dir_pattern": "<runs_base>/<variant>/repeat-0/",
+    "server_log": "<runs_base>/_server-repeat-0/llama_cpp_server.log (one server per variant launch, same port 18087, log appended per launch)",
+    "model": {"file": "Qwen3-32B-Q4_K_M.gguf", "sha256": "efd971561896866f0e910cce52761ca77b1b138090c7f15fe284676d57d1f689"},
+    "base_context_window": 65536,
+    "base_tensor_split": [0.5, 0.5],
+    "agentdojo_logs_pipeline_pattern": "local-ours_e77_effect_diff_runtime-strict_<variant>"
+  },
+
+  "infrastructure_failure_classes": {
+    "note": "Detection rule semantics are inherited verbatim from the v17 P2-b precedent (p2b_execution_report_2026-08-05.md) and the context-repair-v17.py implementation; only the paths/patterns are re-mapped to the strict-attribution run layout.",
+    "F1_http_400": {
+      "signal": "server log access line with HTTP status 400",
+      "detection": "grep the variant's llama_cpp_server.log for the regex 'HTTP/1\\.1\" 400'; EXCLUDE lines containing 'CUDA Graph id 400' (known noise, P2-b precedent section 1)",
+      "precedent": "v17 r1 and r2: per-case 400 counts matched the truncated-case sets exactly (r2: 9 lines <-> 9 cases)",
+      "role": "corroborating evidence and trigger for inspection; NOT sufficient on its own to enumerate a case (attribution to a case requires the trajectory signature F3 or case-level failure F4), because a 400 line must be time-correlated with a case execution window"
+    },
+    "F2_server_log_error": {
+      "signal": "server-side hard errors",
+      "detection": "grep the server log for: HTTP status 5xx ('HTTP/1\\.1\" 5\\d\\d'), python tracebacks ('Traceback (most recent call last)'), CUDA/OOM fatal lines ('cudaMalloc failed', 'CUDA error', 'out of memory')",
+      "role": "infrastructure failure requiring case-level inspection; any such event during a variant window triggers a read-only review of the affected case(s); a case joins T_v only if F3/F4 confirm a corrupted trajectory"
+    },
+    "F3_post_tool_empty_assistant": {
+      "signal": "truncation signature in the case trajectory: an assistant message with empty flattened content appearing after at least one tool message",
+      "detection": "identical semantics to context-repair-v17.py::has_post_tool_empty_assistant (messages[1:], role==assistant, message_text(content).strip()=='' with a preceding role==tool message); same flattening as run_e75.message_content_text",
+      "precedent": "documented effect of AgentDojo LocalLLM swallowing the 400/context-length exception and returning an empty string (pm_process_review section 1.4; P2-b)",
+      "role": "AUTHORITATIVE enumeration signal (case-level, deterministic, does not depend on server-log attribution)"
+    },
+    "F4_case_level_failure": {
+      "signal": "case log error field non-null, or the paired row reports run_completed=false / scorer_completed=false, or an official case file is missing after variant completion",
+      "detection": "parse_case_log semantics of run-strict-attribution.py (error/run_completed/scorer_completed fields) plus the completeness check's missing-key list (check-variant-completeness.py)",
+      "role": "AUTHORITATIVE enumeration signal; such cases are infrastructure failures and must never be scored as security successes or failures before repair"
+    },
+    "non_failures_excluded": [
+      "NEEDS_REPLAN decisions, DENY decisions, low utility, or attack success are OUTCOMES, not infrastructure failures; they never trigger repair",
+      "'CUDA Graph id 400' server log noise is excluded from F1 by rule"
+    ]
+  },
+
+  "enumeration_rule": {
+    "timing": "per variant, after the variant runner exits AND check-variant-completeness.py has run (driver manifest CHECK line), before any downstream statistic is computed",
+    "independence": "INDEPENDENT ENUMERATION PER VARIANT. Each variant v has its own failure set T_v detected on its own run directory by F3/F4 (corroborated by F1/F2). The union-first/first-detected alternative is REJECTED because (i) trajectory length depends on the variant comparator (NEEDS_REPLAN/repair behavior differs), so a case truncated under one variant need not be truncated under another, and (ii) forcing repair of a clean case would violate 'repair only enumerated infrastructure failures'.",
+    "definition": "T_v = { official case c : F3(c) or F4(c) } detected on <runs_base>/<v>/repeat-0/",
+    "symmetry_of_policy_not_of_sets": "Symmetry is defined at the POLICY level: all four variants use byte-identical detection rules, the same window ladder, the same stage-selection rule, the same merge rule and the same claim boundary. Case sets may legitimately differ across variants; a case in multiple T_v sets is repaired once per affected variant under identical parameters.",
+    "consistency_cross_check": "after enumeration, every case in T_v should correspond to at least one F1 400 line attributable to its execution window (paired-case-results order + durations) when the server log permits attribution; unexplained divergences (T_v case with no 400, or 400 with no T_v case) are recorded in the detection report and reviewed before repair. The F3/F4 signature remains authoritative.",
+    "detection_report_artifact": "<results>/strict-atom-representation-attribution/context-repair-v0v3/<variant>-detection-report.json (read-only detection; never written into a run directory)"
+  },
+
+  "repair_execution_rule": {
+    "trigger": "repair is executed only if T_v is non-empty; empty T_v -> no repair, detection report archived, variant proceeds",
+    "gpu_exclusivity": "repair must not share the GPU with any experiment run. Guard (pre-registered): pgrep -f 'run-strict-attribution.py' returns nothing AND pgrep -f 'llama_cpp.server' returns nothing before the repair server is started. The v17 tool's built-in guard only matches the v17 runner pattern; the strict guard pattern is added by the adapter (section toolchain_binding.adaptations).",
+    "window_ladder": [
+      {"stage": 1, "window": 73728, "kv_cache_type": "f16"},
+      {"stage": 2, "window": 81920, "kv_cache_type": "f16"},
+      {"stage": 3, "window": 122880, "kv_cache_type": "q8_0"}
+    ],
+    "window_ladder_rationale": "P2-b precedent: 73728/f16 repaired 6/9 v17 cases; 81920/f16 repaired 2 more; 122880 required q8_0 KV to fit 2x RTX 4090 D (24 GiB each) and repaired the last case. Same hardware, same model, same base window (65536) apply here.",
+    "server_configuration": {
+      "tensor_split": [0.5, 0.5],
+      "tensor_split_note": "identical to the strict-attribution base-run split (run-strict-attribution.py::server_command already uses 0.5/0.5, unlike the v17 base run); therefore repair differs from base ONLY in n_ctx (+ kv_cache_type at stage 3). This is a strictly smaller disclosed divergence than the v17 P2-b repair.",
+      "n_gpu_layers": 65, "split_mode": 1, "flash_attn": true, "n_batch": 1024, "n_ubatch": 512,
+      "port": 18088, "port_note": "the live experiment uses 18087; repair uses 18088 and only after the gpu_exclusivity guard passes"
+    },
+    "stage_policy": "stage 1 re-runs all cases of T_v; stage k+1 re-runs only cases still carrying the F3 signature (or failing validation) after stage k; escalation stops at stage 3",
+    "unrepairable_case_rule": "if a case still fails validation after stage 3 (window 122880/q8_0), repair is declared FAILED for that case; its original row is kept, the case is EXCLUDED from official statistics with explicit disclosure (never silently imputed), and the event is reported to the user before any further action. No ad-hoc fourth window is allowed without a policy amendment.",
+    "selection_rule": "per case, the retained repaired row is the row from the LAST stage whose row validates clean (validate_repaired_row semantics: no error field, native boolean utility/security, no F3 signature)",
+    "environment_contract": "the repair rerun environment is run-strict-attribution.py::variant_env with only these substitutions: run/audit/plan-cache paths point at the repair directory, LOCAL_LLM_PORT/E77_PLANNER_PORT = repair port. STRICT_ATTRIB_VARIANT=<variant> is unchanged; frozen-input hashes (plan cache seed, manifests, registry) unchanged; temperature 0; benchmark v1.1.2; the E77_EXECUTION_DATE inherited from the variant's manifest/paired rows. No judgment threshold, comparator, descriptor, catalog or scorer parameter may change.",
+    "plan_cache_seeding": "the repair plan_cache.json is seeded by copying the variant's working plan_cache.json (v17 precedent: seed from base); the frozen common plan cache hash must remain the authoritative initial authority",
+    "failed_attempts_forensics": "any failed repair attempt (OOM, server failure, still-truncated) is archived in its own directory with manifest, exactly as P2-b archived stage1-73728-OOM-archived-split035-065 and the health-probe-404 attempt"
+  },
+
+  "merge_and_forensics_rule": {
+    "immutability": "the variant base run directory is READ-ONLY. Before merge: full-directory sha256 fingerprint (find -type f -exec sha256sum | sort | sha256sum). After merge: fingerprint repeated; diff must be empty. Same for every repair stage directory.",
+    "overlay": "merged variant directory created by hard-link overlay (v2/P2-b precedent); only repaired case logs replaced; original truncated rows remain in the base directory for forensics (base is never modified)",
+    "audit_and_cache": "merged runtime_audit.jsonl = base audit bytes + stage audits bytes (concatenation order = stage order); plan cache merged with the repair-touched-keys rule (context-repair-v17.py::merge_plan_caches)",
+    "merge_manifest_requirements": ["schema", "generated_at", "base_run_root", "base_manifest_sha256_or_directory_fingerprint", "stage_roots", "plan_hash", "selected_rows (per case: stage, window, kv, utility, security, source_sha256)", "n_selected", "n_retained_from_base", "claim_boundary", "original_artifacts_modified=false"],
+    "merged_root_naming": "<runs_base>/<variant>/repeat-0-context-repaired",
+    "per_variant_acceptance": [
+      "726 official case logs present; rows for cases NOT in T_v byte-identical to base (sha256 compare)",
+      "re-derived paired-case-results over the merged logs reproduce 726 rows; re-parsed metrics for cases outside T_v identical to the base paired rows",
+      "F3 signature count over merged agentdojo_logs == 0; F4 error count == 0",
+      "finalizer-passed marker written only after these checks"
+    ],
+    "final_four_variant_finalize": "after all affected variants are merged, assemble <runs_base>-merged/<variant>/repeat-0 (hard links) and run finalize-strict-attribution.py --runs-base <that directory> with the usual gates; the paper cites numbers only from the merged, finalizer-passed artifact"
+  },
+
+  "claim_boundary": "Context repair covers ONLY the enumerated cases T_v of each variant. All headline claims (ASR, utility, decision distributions, paired comparisons, H1-H5) are stated relative to the merged, finalizer-passed artifact. Repaired rows are disclosed per case (window, kv_cache_type, tensor_split, stage); the disclosed divergence from base is limited to context capacity (and stage-3 KV quantization). No conclusion may be drawn from a repaired case beyond what the merged artifact supports; in particular repair outcomes must not be used to argue security improvements unless the paired, non-repaired majority supports them.",
+
+  "toolchain_binding": {
+    "base_tool": {
+      "path": "experiments/intent-bound-runtime-guard/scripts/effect-difference-runtime-guard/context-repair-v17/context-repair-v17.py",
+      "sha256_at_preregistration": "a82198fc01a984f6ad92a8c97d85325ddc890315c4cd7e1e586be23d765ad4a8",
+      "subcommands_reused": {
+        "detect": "detection engine (detect_truncated_cases / has_post_tool_empty_assistant / official-case filter) reused unchanged; invoked through the adapter because strict run directories carry no protocol_manifest.json (inspect_base_run would refuse); detection outputs written under results/, never into run directories",
+        "repair": "server_command / wait_for_server(/v1/models probe) / benchmark_command shape / per-case validation (validate_repaired_row) / repair_report semantics reused; the v17 environment builder (base_env_for_repair) is NOT used - the strict variant_env contract applies instead (see repair_execution_rule.environment_contract)",
+        "merge": "overlay mechanics (hard-link copy, row replacement, link-breaking before rewrites), audit concatenation, plan-cache merge rule, plan_hash, merge_manifest schema and idempotency gate reused; the embedded v17 finalizer call is REPLACED by the per-variant acceptance checks + finalize-strict-attribution.py (see merge_and_forensics_rule)",
+        "selftest": "must pass unchanged before any live repair execution (CPU-only fixture)"
+      }
+    },
+    "adaptations": [
+      "a NEW adapter file (working name strict-context-repair-adapter.py, to be created under experiments/security-analysis-ablation-and-overhead/scripts/strict-atom-representation-attribution/ at repair time) imports context-repair-v17 and run-strict-attribution as libraries; context-repair-v17.py itself is NOT modified by the adapter",
+      "if any change to context-repair-v17.py becomes unavoidable, it requires a policy amendment (new policy_id), must be limited to disclosure-accuracy/path-mapping (never detection or selection semantics), and must be re-validated by selftest plus the v17 backtest of section self_check",
+      "adapter GPU-exclusivity guard adds the strict runner pattern (run-strict-attribution.py) to the liveness check",
+      "adapter records its own sha256 and the sha256 of every reused module in each detection/repair/merge manifest"
+    ],
+    "code_snapshot_at_preregistration": {
+      "run-strict-attribution.py": "6c1101666945bff144b618051539c4b67eee689e10462c7d6d418539d8ee7d19",
+      "finalize-strict-attribution.py": "e9673cc93c113368e487408a179f3bd8c9b9d5d1639be3fe7e265c50af122450",
+      "check-variant-completeness.py": "d230fc6f1e90eede4ad8042271efbad55771e0cd612c9d48585c07e5cf18614d",
+      "agentdojo_representation_patch.py": "29ac74ff4e2bf27a3daf882148106da1c82815c3dbfeb92a0aa30ae25828fb11"
+    }
+  },
+
+  "monitoring_rule": {
+    "bypass_monitor": "read-only sidecar monitoring runs while V0-V3 execute: periodic grep of the server log for F1/F2 patterns (excluding CUDA noise) and of completed case logs for F3/F4; never writes into run directories, never kills processes, never starts a GPU; alerts are written to results/strict-atom-representation-attribution/context-repair-v0v3/monitor/",
+    "action_on_signal": "a signal only schedules an earlier detection report; it never alters the running variant"
+  },
+
+  "self_check": {
+    "requirement": "before any V0-V3 repair is executed, the policy's detection rules are back-tested on the v17 r2 precedent data (past, already-analyzed data; ground truth known from P2-b): (1) F3 detection on the r2 base run must reproduce exactly the 9-case set T of p2b_execution_report section 1; (2) F1 server-log rule on the r2 server log must count exactly 9 non-noise 400 lines; (3) F3 detection on the r2 merged run must return 0 cases. Results are archived under results/strict-atom-representation-attribution/context-repair-v0v3/policy-selfcheck/ and referenced from the .md companion.",
+    "status": "pending (executed immediately after this pre-registration; see attestation + backtest artifacts)"
+  }
+}

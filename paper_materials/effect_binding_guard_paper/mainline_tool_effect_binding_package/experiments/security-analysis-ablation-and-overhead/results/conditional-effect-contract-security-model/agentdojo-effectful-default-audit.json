@@ -1,0 +1,341 @@
+{
+  "benchmark": "AgentDojo v1.1.2",
+  "claim_boundary": "This is a source-hash-recorded applicability audit for AgentDojo v1.1.2. It does not establish default safety for external APIs, undocumented server defaults, callbacks, or state-dependent defaults.",
+  "execution_error_tools": [],
+  "experiment": "agentdojo_effectful_default_applicability_audit",
+  "interpretation": "The current AgentDojo effectful tool schemas exercise only empty or None defaults. They validate omitted/explicit equivalence but cannot empirically test fail-closed handling of nonempty or dynamic effect-bearing defaults.",
+  "n_default_bearing_effectful_tool_instances": 7,
+  "n_dynamic_defaults": 0,
+  "n_nonempty_static_defaults": 0,
+  "n_omitted_explicit_equivalent_tools": 7,
+  "n_optional_default_fields": 22,
+  "status": "passed_no_effect_bearing_nonempty_defaults",
+  "tools": [
+    {
+      "dynamic_default_fields": [],
+      "explicit_default_call": {
+        "after_digest": "0e16f4704ec9f3d39c5d6750301e0274e52bb9d8c1d346aa72c9eb1f38ccdabc",
+        "arguments": {
+          "attachments": null,
+          "bcc": null,
+          "body": "bounded sandbox check",
+          "cc": null,
+          "recipients": [
+            "finite.a@example.com"
+          ],
+          "subject": "Default equivalence"
+        },
+        "before_digest": "d32ab8f8041f6c3221429f4a9fd0f5c05868d781e76d27dc58f4b1e64f8ba916",
+        "effect_digest": "9956abb4c457af760c63c1695ff29b1641664f530787122d934d7551a450e134",
+        "error": null,
+        "output_digest": "093a01acff49e6551332f435076df01255535949cd8d27e25791e1423e7249cd"
+      },
+      "n_optional_fields": 3,
+      "nonempty_default_fields": [],
+      "omitted_call": {
+        "after_digest": "0e16f4704ec9f3d39c5d6750301e0274e52bb9d8c1d346aa72c9eb1f38ccdabc",
+        "arguments": {
+          "body": "bounded sandbox check",
+          "recipients": [
+            "finite.a@example.com"
+          ],
+          "subject": "Default equivalence"
+        },
+        "before_digest": "d32ab8f8041f6c3221429f4a9fd0f5c05868d781e76d27dc58f4b1e64f8ba916",
+        "effect_digest": "9956abb4c457af760c63c1695ff29b1641664f530787122d934d7551a450e134",
+        "error": null,
+        "output_digest": "093a01acff49e6551332f435076df01255535949cd8d27e25791e1423e7249cd"
+      },
+      "omitted_explicit_effect_equivalent": true,
+      "omitted_explicit_output_equivalent": true,
+      "optional_defaults": {
+        "attachments": null,
+        "bcc": null,
+        "cc": null
+      },
+      "source_evidence": {
+        "function_name": "send_email",
+        "function_source_sha256": "c0bb331079e9bc57675ecbdbd28fd222c162abfccd6012b57809e7e85b6a21c8",
+        "function_start_line": 154,
+        "relative_module": "agentdojo.default_suites.v1.tools.email_client",
+        "source_file_sha256": "782adb70c81ec765919ae835494fac163dbb46f21ef46f6dcf18eab390b5e294"
+      },
+      "tool_instance_key": "workspace/send_email"
+    },
+    {
+      "dynamic_default_fields": [],
+      "explicit_default_call": {
+        "after_digest": "b75f2c8db2d6c2752218b7a89a1db0aafbd944425afe027ee973aad819072e14",
+        "arguments": {
+          "description": "",
+          "end_time": "2024-05-16 11:00",
+          "location": null,
+          "participants": null,
+          "start_time": "2024-05-16 10:00",
+          "title": "Default equivalence"
+        },
+        "before_digest": "d32ab8f8041f6c3221429f4a9fd0f5c05868d781e76d27dc58f4b1e64f8ba916",
+        "effect_digest": "699db6bb61e37f1594d3c726a1f94a3f5fb5d2894b3235969013038b47deb203",
+        "error": null,
+        "output_digest": "ca4bc13123038bb271b19f91f31f237b19e1ca63b8befa573fe1d6f1ad9184f9"
+      },
+      "n_optional_fields": 3,
+      "nonempty_default_fields": [],
+      "omitted_call": {
+        "after_digest": "b75f2c8db2d6c2752218b7a89a1db0aafbd944425afe027ee973aad819072e14",
+        "arguments": {
+          "end_time": "2024-05-16 11:00",
+          "start_time": "2024-05-16 10:00",
+          "title": "Default equivalence"
+        },
+        "before_digest": "d32ab8f8041f6c3221429f4a9fd0f5c05868d781e76d27dc58f4b1e64f8ba916",
+        "effect_digest": "699db6bb61e37f1594d3c726a1f94a3f5fb5d2894b3235969013038b47deb203",
+        "error": null,
+        "output_digest": "ca4bc13123038bb271b19f91f31f237b19e1ca63b8befa573fe1d6f1ad9184f9"
+      },
+      "omitted_explicit_effect_equivalent": true,
+      "omitted_explicit_output_equivalent": true,
+      "optional_defaults": {
+        "description": "",
+        "location": null,
+        "participants": null
+      },
+      "source_evidence": {
+        "function_name": "create_calendar_event",
+        "function_source_sha256": "19517d57606fe5b0f6c64c4993570b5443e18a5c3cfbb95eec076efa37380497",
+        "function_start_line": 137,
+        "relative_module": "agentdojo.default_suites.v1.tools.calendar_client",
+        "source_file_sha256": "5d551339fb87237dd1414a003b26f4f851dbdd2b0826225025e44f16420add22"
+      },
+      "tool_instance_key": "workspace/create_calendar_event"
+    },
+    {
+      "dynamic_default_fields": [],
+      "explicit_default_call": {
+        "after_digest": "fe4466160ac7824afca8d0669f919557933f6e2e4d2402e92b927f137a819878",
+        "arguments": {
+          "event_id": "6",
+          "new_end_time": null,
+          "new_start_time": "2024-05-15 10:30"
+        },
+        "before_digest": "d32ab8f8041f6c3221429f4a9fd0f5c05868d781e76d27dc58f4b1e64f8ba916",
+        "effect_digest": "5faf27de2e9b4775edd5094f8bc98d6da3821bd9c4adc5674c04026b98ce9282",
+        "error": null,
+        "output_digest": "11e1ec8faf3eecf04d5e930c211ff66f3f2f799dfee6ddd999d5c846ddfd0cca"
+      },
+      "n_optional_fields": 1,
+      "nonempty_default_fields": [],
+      "omitted_call": {
+        "after_digest": "fe4466160ac7824afca8d0669f919557933f6e2e4d2402e92b927f137a819878",
+        "arguments": {
+          "event_id": "6",
+          "new_start_time": "2024-05-15 10:30"
+        },
+        "before_digest": "d32ab8f8041f6c3221429f4a9fd0f5c05868d781e76d27dc58f4b1e64f8ba916",
+        "effect_digest": "5faf27de2e9b4775edd5094f8bc98d6da3821bd9c4adc5674c04026b98ce9282",
+        "error": null,
+        "output_digest": "11e1ec8faf3eecf04d5e930c211ff66f3f2f799dfee6ddd999d5c846ddfd0cca"
+      },
+      "omitted_explicit_effect_equivalent": true,
+      "omitted_explicit_output_equivalent": true,
+      "optional_defaults": {
+        "new_end_time": null
+      },
+      "source_evidence": {
+        "function_name": "reschedule_calendar_event",
+        "function_source_sha256": "400946bd13f7afcb2664d842d23c7f15fa8ed7f1590cbb3d0cdb948fcbe78634",
+        "function_start_line": 214,
+        "relative_module": "agentdojo.default_suites.v1.tools.calendar_client",
+        "source_file_sha256": "5d551339fb87237dd1414a003b26f4f851dbdd2b0826225025e44f16420add22"
+      },
+      "tool_instance_key": "workspace/reschedule_calendar_event"
+    },
+    {
+      "dynamic_default_fields": [],
+      "explicit_default_call": {
+        "after_digest": "e1f5642b5076aef03ae3c48a2439ed6af154c48fcd20aacdea6cb4ad953967b9",
+        "arguments": {
+          "description": "",
+          "end_time": "2024-05-16 11:00",
+          "location": null,
+          "participants": null,
+          "start_time": "2024-05-16 10:00",
+          "title": "Default equivalence"
+        },
+        "before_digest": "586f22ce93f3a429c1bafa0b7bfabac1d2eccba32abddfda042fd0f06aa1d6b0",
+        "effect_digest": "65d1298cc00e3c51ee80be348b9f361aec5c4d249cac7a4a61f669a9e3e11f81",
+        "error": null,
+        "output_digest": "401008ee897b1b8315f236d360ab68090a7fa0f462ef25a70d01286b5195d7ce"
+      },
+      "n_optional_fields": 3,
+      "nonempty_default_fields": [],
+      "omitted_call": {
+        "after_digest": "e1f5642b5076aef03ae3c48a2439ed6af154c48fcd20aacdea6cb4ad953967b9",
+        "arguments": {
+          "end_time": "2024-05-16 11:00",
+          "start_time": "2024-05-16 10:00",
+          "title": "Default equivalence"
+        },
+        "before_digest": "586f22ce93f3a429c1bafa0b7bfabac1d2eccba32abddfda042fd0f06aa1d6b0",
+        "effect_digest": "65d1298cc00e3c51ee80be348b9f361aec5c4d249cac7a4a61f669a9e3e11f81",
+        "error": null,
+        "output_digest": "401008ee897b1b8315f236d360ab68090a7fa0f462ef25a70d01286b5195d7ce"
+      },
+      "omitted_explicit_effect_equivalent": true,
+      "omitted_explicit_output_equivalent": true,
+      "optional_defaults": {
+        "description": "",
+        "location": null,
+        "participants": null
+      },
+      "source_evidence": {
+        "function_name": "create_calendar_event",
+        "function_source_sha256": "19517d57606fe5b0f6c64c4993570b5443e18a5c3cfbb95eec076efa37380497",
+        "function_start_line": 137,
+        "relative_module": "agentdojo.default_suites.v1.tools.calendar_client",
+        "source_file_sha256": "5d551339fb87237dd1414a003b26f4f851dbdd2b0826225025e44f16420add22"
+      },
+      "tool_instance_key": "travel/create_calendar_event"
+    },
+    {
+      "dynamic_default_fields": [],
+      "explicit_default_call": {
+        "after_digest": "31e9d2cce2f7c4aa5c4766a51779cf72b19d43c719bbd008e36cebff32245581",
+        "arguments": {
+          "attachments": null,
+          "bcc": null,
+          "body": "bounded sandbox check",
+          "cc": null,
+          "recipients": [
+            "finite.a@example.com"
+          ],
+          "subject": "Default equivalence"
+        },
+        "before_digest": "586f22ce93f3a429c1bafa0b7bfabac1d2eccba32abddfda042fd0f06aa1d6b0",
+        "effect_digest": "0f74cd9d05d1c501b9bc7828a1db838ed8a3fcdacaeac4c252e0100f0432edab",
+        "error": null,
+        "output_digest": "d180fbd50e2272383f00e302de435a68cf850af6e7a1597a4cf72260e58b11be"
+      },
+      "n_optional_fields": 3,
+      "nonempty_default_fields": [],
+      "omitted_call": {
+        "after_digest": "31e9d2cce2f7c4aa5c4766a51779cf72b19d43c719bbd008e36cebff32245581",
+        "arguments": {
+          "body": "bounded sandbox check",
+          "recipients": [
+            "finite.a@example.com"
+          ],
+          "subject": "Default equivalence"
+        },
+        "before_digest": "586f22ce93f3a429c1bafa0b7bfabac1d2eccba32abddfda042fd0f06aa1d6b0",
+        "effect_digest": "0f74cd9d05d1c501b9bc7828a1db838ed8a3fcdacaeac4c252e0100f0432edab",
+        "error": null,
+        "output_digest": "d180fbd50e2272383f00e302de435a68cf850af6e7a1597a4cf72260e58b11be"
+      },
+      "omitted_explicit_effect_equivalent": true,
+      "omitted_explicit_output_equivalent": true,
+      "optional_defaults": {
+        "attachments": null,
+        "bcc": null,
+        "cc": null
+      },
+      "source_evidence": {
+        "function_name": "send_email",
+        "function_source_sha256": "c0bb331079e9bc57675ecbdbd28fd222c162abfccd6012b57809e7e85b6a21c8",
+        "function_start_line": 154,
+        "relative_module": "agentdojo.default_suites.v1.tools.email_client",
+        "source_file_sha256": "782adb70c81ec765919ae835494fac163dbb46f21ef46f6dcf18eab390b5e294"
+      },
+      "tool_instance_key": "travel/send_email"
+    },
+    {
+      "dynamic_default_fields": [],
+      "explicit_default_call": {
+        "after_digest": "d11975807065b89a09381b0f62330010c46f3badf584c7633f735f283bcf58e5",
+        "arguments": {
+          "amount": null,
+          "date": null,
+          "id": 6,
+          "recipient": null,
+          "recurring": null,
+          "subject": null
+        },
+        "before_digest": "d11975807065b89a09381b0f62330010c46f3badf584c7633f735f283bcf58e5",
+        "effect_digest": "2689add925324c9376434447e792bff83b286617c8262d8c5edf7e69a698ee9d",
+        "error": null,
+        "output_digest": "c5f721b399b71d94be1d8a94d716ca30528479677e963c3acbac4e09107cf8bf"
+      },
+      "n_optional_fields": 5,
+      "nonempty_default_fields": [],
+      "omitted_call": {
+        "after_digest": "d11975807065b89a09381b0f62330010c46f3badf584c7633f735f283bcf58e5",
+        "arguments": {
+          "id": 6
+        },
+        "before_digest": "d11975807065b89a09381b0f62330010c46f3badf584c7633f735f283bcf58e5",
+        "effect_digest": "2689add925324c9376434447e792bff83b286617c8262d8c5edf7e69a698ee9d",
+        "error": null,
+        "output_digest": "c5f721b399b71d94be1d8a94d716ca30528479677e963c3acbac4e09107cf8bf"
+      },
+      "omitted_explicit_effect_equivalent": true,
+      "omitted_explicit_output_equivalent": true,
+      "optional_defaults": {
+        "amount": null,
+        "date": null,
+        "recipient": null,
+        "recurring": null,
+        "subject": null
+      },
+      "source_evidence": {
+        "function_name": "update_scheduled_transaction",
+        "function_source_sha256": "bbdecf87dbb85b1ce5bf8f754370f1e5334860dc1cddd63db5defb3ae6055acf",
+        "function_start_line": 115,
+        "relative_module": "agentdojo.default_suites.v1.tools.banking_client",
+        "source_file_sha256": "0e4273f521db7ff6d5e7f7f552e917b11940102abd932aea8a2998b517441b42"
+      },
+      "tool_instance_key": "banking/update_scheduled_transaction"
+    },
+    {
+      "dynamic_default_fields": [],
+      "explicit_default_call": {
+        "after_digest": "d11975807065b89a09381b0f62330010c46f3badf584c7633f735f283bcf58e5",
+        "arguments": {
+          "city": null,
+          "first_name": null,
+          "last_name": null,
+          "street": null
+        },
+        "before_digest": "d11975807065b89a09381b0f62330010c46f3badf584c7633f735f283bcf58e5",
+        "effect_digest": "2689add925324c9376434447e792bff83b286617c8262d8c5edf7e69a698ee9d",
+        "error": null,
+        "output_digest": "a50e51c64fbfba506f41bfb4b065fdbaba2006ccf435ca59372d6acbdbbd1b81"
+      },
+      "n_optional_fields": 4,
+      "nonempty_default_fields": [],
+      "omitted_call": {
+        "after_digest": "d11975807065b89a09381b0f62330010c46f3badf584c7633f735f283bcf58e5",
+        "arguments": {},
+        "before_digest": "d11975807065b89a09381b0f62330010c46f3badf584c7633f735f283bcf58e5",
+        "effect_digest": "2689add925324c9376434447e792bff83b286617c8262d8c5edf7e69a698ee9d",
+        "error": null,
+        "output_digest": "a50e51c64fbfba506f41bfb4b065fdbaba2006ccf435ca59372d6acbdbbd1b81"
+      },
+      "omitted_explicit_effect_equivalent": true,
+      "omitted_explicit_output_equivalent": true,
+      "optional_defaults": {
+        "city": null,
+        "first_name": null,
+        "last_name": null,
+        "street": null
+      },
+      "source_evidence": {
+        "function_name": "update_user_info",
+        "function_source_sha256": "82a6f13c5bf3cf623de86a46b5086a4b2903f51a6bdb20db0c230b2b6c63a93d",
+        "function_start_line": 46,
+        "relative_module": "agentdojo.default_suites.v1.tools.user_account",
+        "source_file_sha256": "f097c4b2b6cd6784272987d8d37dd7cc5d599620d64b371f7c2af8e65d7ad673"
+      },
+      "tool_instance_key": "banking/update_user_info"
+    }
+  ]
+}

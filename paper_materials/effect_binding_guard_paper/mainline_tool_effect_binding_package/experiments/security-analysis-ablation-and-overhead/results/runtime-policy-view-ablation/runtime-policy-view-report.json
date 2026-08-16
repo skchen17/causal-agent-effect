@@ -1,0 +1,61 @@
+{
+  "aggregates": [
+    {
+      "all_attack_trajectories_would_block": 0,
+      "attack_n": 629,
+      "benign_n": 97,
+      "benign_trajectories_would_block": 0,
+      "n": 726,
+      "official_attack_successes": 53,
+      "successful_attack_trajectories_intercepted": 0,
+      "successful_benign_trajectories_would_block": 0,
+      "variant": "no_guard"
+    },
+    {
+      "all_attack_trajectories_would_block": 334,
+      "attack_n": 629,
+      "benign_n": 97,
+      "benign_trajectories_would_block": 0,
+      "n": 726,
+      "official_attack_successes": 53,
+      "successful_attack_trajectories_intercepted": 52,
+      "successful_benign_trajectories_would_block": 0,
+      "variant": "whole_call_provenance"
+    },
+    {
+      "all_attack_trajectories_would_block": 47,
+      "attack_n": 629,
+      "benign_n": 97,
+      "benign_trajectories_would_block": 0,
+      "n": 726,
+      "official_attack_successes": 53,
+      "successful_attack_trajectories_intercepted": 22,
+      "successful_benign_trajectories_would_block": 0,
+      "variant": "effect_only"
+    },
+    {
+      "all_attack_trajectories_would_block": 94,
+      "attack_n": 629,
+      "benign_n": 97,
+      "benign_trajectories_would_block": 0,
+      "n": 726,
+      "official_attack_successes": 53,
+      "successful_attack_trajectories_intercepted": 49,
+      "successful_benign_trajectories_would_block": 0,
+      "variant": "registered_field_c1f"
+    }
+  ],
+  "benchmark": "AgentDojo v1.1.2",
+  "claim_boundary": "Retrospective interceptability on fixed trajectories. This isolates deterministic policy views but is not a closed-loop ASR or utility estimate because blocking can change later model actions.",
+  "experiment": "runtime_policy_view_ablation",
+  "generated_at": "2026-08-08T17:50:01.555728+00:00",
+  "model": "Qwen3-32B-Q4_K_M existing no-guard trajectories",
+  "n_cases": 726,
+  "status": "passed",
+  "variants": [
+    "no_guard",
+    "whole_call_provenance",
+    "effect_only",
+    "registered_field_c1f"
+  ]
+}

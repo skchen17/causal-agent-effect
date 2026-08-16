@@ -1,0 +1,52 @@
+{
+  "filesystem": {
+    "destination_prefixes": [
+      "team/"
+    ],
+    "operations": [
+      "filesystem.directory.create",
+      "filesystem.entry.move",
+      "filesystem.file.create",
+      "filesystem.file.edit"
+    ],
+    "payload_classes": [
+      "routine"
+    ],
+    "resource_prefixes": [
+      "team/"
+    ]
+  },
+  "memory": {
+    "entity_prefixes": [
+      "team:"
+    ],
+    "operations": [
+      "memory.entity.create",
+      "memory.entity.delete",
+      "memory.observation.add",
+      "memory.relation.create"
+    ],
+    "payload_classes": [
+      "routine"
+    ]
+  },
+  "sqlite": {
+    "operations": [
+      "sqlite.record.create",
+      "sqlite.record.delete",
+      "sqlite.record.update"
+    ],
+    "principals": [
+      "alice",
+      "bob"
+    ],
+    "tables": [
+      "records"
+    ],
+    "visibilities": [
+      "internal",
+      "private"
+    ]
+  },
+  "subject": "agent:validator"
+}

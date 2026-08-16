@@ -1,0 +1,101 @@
+\section{Introduction}
+
+A user asks an agent to create a meeting with Alice. After reading an untrusted
+document, the agent calls the calendar tool with both Alice and Eve as
+participants. The call creates the requested event and also commits an
+attacker-chosen invitation, a common indirect-prompt-injection failure in
+tool-using agents~\cite{agentdojo,toolemu}. The authorization question is not
+whether the agent may invoke \texttt{create\_event}. It is whether this
+execution may create this event, invite Alice, invite Eve, and apply the chosen
+visibility.
+
+Authorization cannot enforce a distinction that its observation interface has
+already erased. An ACL may permit Alice and reject Eve, but a monitor that sees
+only the tool name cannot apply that rule. Provenance may identify where the
+string ``Eve'' originated without identifying whether it controls an
+invitation, a message, or an inert note. Explicit arguments expose more of the
+request, yet defaults, aliases, list expansion, and pre-state can change the
+committed effect without changing the call text. Downstream model reasoning is
+subject to the same information boundary.
+
+\input{figures/representation_collision}
+
+Figure~\ref{fig:representation-collision} illustrates this boundary. Let
+$\rho$ be the execution representation available to an authorizer. If
+$\rho(u)=\rho(v)$ while an admissible policy must decide $u$ and $v$
+differently, every deterministic consumer of $\rho$ returns the same decision
+for both. Allowing admits one unauthorized execution; denying or abstaining
+withholds one authorized execution. Complete mediation and least privilege
+therefore require an adequate object of mediation. We call this representation
+obligation \emph{tool-effect binding}.
+
+Agent harnesses make tool-effect binding a first-class systems problem. They
+register evolving third-party tools from schemas and natural-language
+descriptions, ask an untrusted model to synthesize calls, and resolve important
+semantics inside the execution layer. A call may expand one list into several
+recipients, choose a default mode, overwrite an existing resource, or create a
+different transition under another pre-state. Unlike a security-typed API, the
+harness is rarely given a trusted effect object that already captures these
+distinctions. A model can propose such an object, but the proposal supplies
+neither semantic evidence nor authority.
+
+This paper asks whether a harness can test a proposed authorization interface
+against the implementation it will mediate. The key evidence is asymmetric.
+One executable pair with different policy decisions and an identical
+representation falsifies that interface wherever the pair is reachable. A
+successful registration instead creates a scoped conformance record: it names
+the implementation, interventions, policy family, and unresolved tests bound
+to the frozen descriptor. This asymmetry makes falsification the primary
+security result and conformance an auditable deployment contract.
+
+Our registration procedure treats a candidate descriptor as an untrusted
+hypothesis. It executes a valid call and controlled variants in copied
+sandboxes, varying fields, omissions, list cardinality, defaults, provenance,
+or pre-state. A source oracle records the committed transition. A separately
+supplied policy-separation oracle determines whether the semantic difference
+requires another authorization decision. When policy separates two executions
+that the descriptor merges, the pair becomes an executable failure certificate
+and forces refinement. Invalid and unresolved interventions remain in the
+validation record.
+
+We instantiate this methodology with typed effect atoms. Each atom represents
+one policy-relevant effect occurrence and retains the resource, target,
+operation, provenance, or qualifier needed by the selected policy family.
+List-valued calls expand when their members require independent decisions. The
+method itself is representation-neutral: an arguments-plus-trusted-state view
+can also be sufficient. Typed effects place tool-specific semantic adaptation
+in a registered descriptor; a state-aware request leaves that adaptation to a
+downstream consumer. We evaluate both paths and measure where they place state,
+code, normalization, and runtime cost.
+
+The evaluation follows the security argument from implementation behavior to
+authorization. Source replay first establishes compound and state-dependent
+effects. Executable separating pairs then expose collisions in tool-name,
+raw-call, and common-field interfaces. Post-freeze experiments run 11 tools
+from three public MCP implementations and compare candidate interfaces against
+a native-delta decision chain. A four-domain authorization benchmark holds
+calls, state, authority, and decision logic fixed while changing only the
+observation interface. Finally, copied-sandbox and AgentDojo studies exercise
+frozen interfaces at audited pre-commit boundaries.
+
+This paper makes three contributions:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Authorization observability.} We formalize the upper bound that
+  an observation interface places on every downstream authorizer and derive the
+  unavoidable safety--availability consequence of a policy-separating
+  collision.
+  \item \textbf{Executable interface falsification.} We combine source-executed
+  effect witnesses, independently supplied policy separation, and
+  representation collisions into concrete failure certificates and a
+  counterexample-guided registration discipline for existing tools.
+  \item \textbf{Validated interfaces and consumption.} We falsify coarse views
+  on project-local and independently implemented tools, evaluate typed-effect
+  and state-aware interfaces under shared ACL, capability, and delegation
+  authority, quantify their semantic-placement tradeoffs, and exercise a
+  frozen descriptor at pre-commit integration points.
+\end{itemize}
+
+The central outcome is a security discipline: an authorization interface is an
+implementation-grounded contract, not a declaration to be trusted on sight.
+Executable counterexamples expose missing distinctions before downstream policy
+depends on them.

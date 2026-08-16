@@ -1,0 +1,48 @@
+{
+  "artifact_type": "frozen_protocol",
+  "benchmark_version": "v1.1.2",
+  "experiment": "strict_atom_representation_attribution",
+  "frozen_at": "2026-08-05T18:35:00+00:00",
+  "protocol_version": "v2",
+  "supersedes": {
+    "protocol_version": "v1",
+    "protocol_id": "bccf19ea51b13f27",
+    "archive": "protocol-v1.json",
+    "archive_sha256": "bccf19ea51b13f27c12244c8c2805c53e6a6700247069732a90722c44dba0561"
+  },
+  "hashes": {
+    "all-official-cases.jsonl": "c3442ecd6e31dcc63c725d98e94231f9f0354b92be13fbd91889891c4f4e5d71",
+    "frozen-common-plan-cache.json": "ea881cfc4495c599f50221ea10b5dd45e1ae1f61d0e1eee98a0600ef8a16528d",
+    "raw-schema-field-registry.jsonl": "ba9f1b5add17731852fd9e5241b56363a188b0d0835ab045b23be6b1b02b1629",
+    "smoke-subset.jsonl": "66cc0656e25c44159436ba068a49aac76eb15e5b2b1040b211467caf6a00b545",
+    "stability-subset.jsonl": "f5b644838010a9798fe96649dbf78f5e745e2164a23350692d5e045b775a2245",
+    "whole-call-envelopes.json": "702331d4a37cae77f93e96deb49024139e6a430d8d96369ed9ebdb25c5d5abf1"
+  },
+  "lineage": {
+    "v0_tool_identity_only": {
+      "protocol_id": "bccf19ea51b13f27",
+      "note": "V0 was executed under protocol v1 and its rows record the v1 protocol_id. V0 semantics (planned tool identity only) are byte-identically unchanged by protocol v2, so V0 is NOT re-run; the lineage note replaces re-execution. All V0 rows were produced by a single runner process whose protocol_id was captured in memory before the v2 edit.",
+      "variant_code_paths_unchanged": true
+    },
+    "v1_v2_v3": {
+      "protocol_id": "this file's sha256 prefix",
+      "note": "V1 (opaque_whole_call) is re-run under protocol v2 true whole-call semantics after the mandatory four-variant smoke rerun (protocol section 9 Phase 2). V2/V3 comparator code paths are byte-identically unchanged."
+    }
+  },
+  "revision": {
+    "revision_id": "protocol_v2_true_whole_call",
+    "issued_at": "2026-08-05T18:35:00+00:00",
+    "motivation": "The protocol v1 V1 implementation was found to delegate to the V3/E77 field-level comparator internally (agentdojo_representation_patch.py _make_opaque_whole_call called base_compare), so the V1 condition did not operationalize a whole-call representation and its causal attribution to representation granularity was invalid. Protocol v2 redefines V1 as a TRUE whole-call comparator (option A from recommendations_analysis_2026-08-05.md section 2).",
+    "affected_clauses": [
+      "section 4 V1 definition (opaque_whole_call)",
+      "section 15 protocol-id rule (new protocol_id issued)",
+      "section 9 Phase 2 (mandatory four-variant smoke rerun under v2)"
+    ],
+    "change_record": "paper/current-usenix/strict_atom_representation_attribution_protocol_v2_2026-08-05.md"
+  },
+  "model": {
+    "file": "/data/CSK/causal-agent-safety-research/models/Qwen3-32B-GGUF/Qwen3-32B-Q4_K_M.gguf",
+    "sha256": "efd971561896866f0e910cce52761ca77b1b138090c7f15fe284676d57d1f689"
+  },
+  "status": "protocol-frozen"
+}

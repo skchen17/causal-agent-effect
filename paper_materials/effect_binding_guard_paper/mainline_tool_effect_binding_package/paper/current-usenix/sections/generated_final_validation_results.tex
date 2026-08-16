@@ -1,0 +1,13 @@
+\paragraph{Matched runtime comparisons.}
+
+\input{tables/table_final_matched_validation}
+
+Table~\ref{tab:final-matched-validation} reports the complete matched comparison. Across four interleaved DeepSeek repetitions, benign utility is 77.6\% without a guard, 78.6\% under Spotlighting, and 76.5\% under \sys{}. The mean monitor-minus-no-guard difference is -1.0 percentage points. The task-clustered one-sided 95\% lower bound is -5.4 percentage points, below the pre-registered $-5.0$-point margin; the run therefore misses the non-inferiority criterion by 0.4 percentage points.
+
+The matched Qwen3-32B run retains every exact benchmark key for all five methods.  No guard, Spotlighting, Prompt Sandwiching, the PromptArmor-style adapter, and \sys{} respectively achieve benign utility 61.9\%, 66.0\%, 68.0\%, 27.8\%, and 60.8\%; their attack success is 10.0\%, 9.5\%, 1.0\%, 0.0\%, and 2.9\% ($N=97$ benign and $N=629$ attack keys per method). Prompt Sandwiching provides the best combined utility--security point in this comparison. The PromptArmor-style adapter eliminates observed attack success while sharply reducing both utility measures.
+
+\input{tables/table_final_heldout}
+
+On the frozen 320-case public-family set, attack success is 1.2\% without a guard, 0.0\% under Spotlighting, and 0.0\% under \sys{}; native task utility is reported for the same rows in Table~\ref{tab:final-heldout}.
+
+On the separately frozen 40-key worst-of-four public-family set, attack success is 10.0\% without a guard and 5.0\% under the monitor; terminal utility is 45.0\% and 42.5\%.

@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{E62 extraction-vs-authorization decomposition. Mode A uses gold atoms and gold context, Mode B uses extracted atoms and gold context, and Mode C uses extracted atoms with degraded context.}
+\label{tab:e62-decomposition}
+\begin{tabular}{lccccc}
+\toprule
+Dataset/mode & Rows & UPA & FDeny & Coverage & Atom exact \\
+\midrule
+E55-v2 A & 600 & 0.000 & 0.000 & 1.000 & 1.000 \\
+E55-v2 B & 600 & 0.000 & 0.000 & 0.880 & 0.880 \\
+E55-v2 C & 600 & 0.000 & 0.071 & 0.730 & 0.880 \\
+E60 A & 480 & 0.000 & 0.000 & 0.875 & 1.000 \\
+E60 B & 480 & 0.000 & 0.083 & 0.854 & 0.812 \\
+E60 C & 480 & 0.000 & 0.533 & 0.783 & 0.812 \\
+E61 A & 300 & 0.000 & 0.000 & 1.000 & 1.000 \\
+E61 B & 300 & 0.000 & 0.053 & 0.847 & 0.733 \\
+E61 C & 300 & 0.000 & 0.439 & 0.707 & 0.733 \\
+\bottomrule
+\end{tabular}
+\end{table*}

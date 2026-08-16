@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Implementation evidence for the confinement obligations. ``Scoped'' means the check passes only for the stated sandbox or enumerated cases.}
+\label{tab:e80-obligations}
+\begin{tabular}{@{}p{.18\columnwidth}p{.52\columnwidth}p{.18\columnwidth}@{}}
+\toprule
+Obligation & Evidence & Status \\
+\midrule
+O1 abstraction & 4 calendar calls; finite mediation/ablation checks & Partial \\
+O2 envelope & invented literals rejected by independent manifest & Isolated \\
+O3 mediation & 3,173/3,173 executed calls intercepted & Scoped pass \\
+O4 check--use & exact call-signature multiset in sandbox & Scoped pass \\
+O5 uncertainty & static defaults totalized; legacy omission counterexample & Isolated \\
+\bottomrule
+\end{tabular}
+\end{table}

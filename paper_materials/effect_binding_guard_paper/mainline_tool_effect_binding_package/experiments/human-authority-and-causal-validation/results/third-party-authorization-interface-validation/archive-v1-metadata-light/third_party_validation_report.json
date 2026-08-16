@@ -1,0 +1,154 @@
+{
+  "authorization_metrics": [
+    {
+      "abstain_n": 264,
+      "abstain_rate": 1.0,
+      "coverage": 0.0,
+      "decision_accuracy": 0.0,
+      "false_deny_denom": 140,
+      "false_deny_n": 0,
+      "false_deny_rate": 0.0,
+      "n_contexts": 264,
+      "representation": "tool_name",
+      "unsafe_allow_denom": 124,
+      "unsafe_allow_n": 0,
+      "unsafe_allow_rate": 0.0
+    },
+    {
+      "abstain_n": 168,
+      "abstain_rate": 0.6363636363636364,
+      "coverage": 0.36363636363636365,
+      "decision_accuracy": 0.36363636363636365,
+      "false_deny_denom": 140,
+      "false_deny_n": 0,
+      "false_deny_rate": 0.0,
+      "n_contexts": 264,
+      "representation": "raw_call",
+      "unsafe_allow_denom": 124,
+      "unsafe_allow_n": 0,
+      "unsafe_allow_rate": 0.0
+    },
+    {
+      "abstain_n": 0,
+      "abstain_rate": 0.0,
+      "coverage": 1.0,
+      "decision_accuracy": 1.0,
+      "false_deny_denom": 140,
+      "false_deny_n": 0,
+      "false_deny_rate": 0.0,
+      "n_contexts": 264,
+      "representation": "state_aware_raw_call",
+      "unsafe_allow_denom": 124,
+      "unsafe_allow_n": 0,
+      "unsafe_allow_rate": 0.0
+    },
+    {
+      "abstain_n": 152,
+      "abstain_rate": 0.5757575757575758,
+      "coverage": 0.42424242424242425,
+      "decision_accuracy": 0.42424242424242425,
+      "false_deny_denom": 140,
+      "false_deny_n": 0,
+      "false_deny_rate": 0.0,
+      "n_contexts": 264,
+      "representation": "common_field",
+      "unsafe_allow_denom": 124,
+      "unsafe_allow_n": 0,
+      "unsafe_allow_rate": 0.0
+    },
+    {
+      "abstain_n": 0,
+      "abstain_rate": 0.0,
+      "coverage": 1.0,
+      "decision_accuracy": 1.0,
+      "false_deny_denom": 140,
+      "false_deny_n": 0,
+      "false_deny_rate": 0.0,
+      "n_contexts": 264,
+      "representation": "typed_effect",
+      "unsafe_allow_denom": 124,
+      "unsafe_allow_n": 0,
+      "unsafe_allow_rate": 0.0
+    },
+    {
+      "abstain_n": 0,
+      "abstain_rate": 0.0,
+      "coverage": 1.0,
+      "decision_accuracy": 1.0,
+      "false_deny_denom": 140,
+      "false_deny_n": 0,
+      "false_deny_rate": 0.0,
+      "n_contexts": 264,
+      "representation": "source_effect_oracle",
+      "unsafe_allow_denom": 124,
+      "unsafe_allow_n": 0,
+      "unsafe_allow_rate": 0.0
+    }
+  ],
+  "claim_boundary": "Independent implementations and descriptor-blind frozen contexts provide finite-domain falsification or bounded conformance evidence; zero collisions are not open-world certification.",
+  "collision_metrics": [
+    {
+      "max_cell_size": 24,
+      "mixed_cells": 11,
+      "n_cells": 11,
+      "n_contexts": 264,
+      "representation": "tool_name",
+      "separating_pairs": 1552
+    },
+    {
+      "max_cell_size": 20,
+      "mixed_cells": 5,
+      "n_cells": 155,
+      "n_contexts": 264,
+      "representation": "raw_call",
+      "separating_pairs": 100
+    },
+    {
+      "max_cell_size": 16,
+      "mixed_cells": 0,
+      "n_cells": 161,
+      "n_contexts": 264,
+      "representation": "state_aware_raw_call",
+      "separating_pairs": 0
+    },
+    {
+      "max_cell_size": 16,
+      "mixed_cells": 12,
+      "n_cells": 126,
+      "n_contexts": 264,
+      "representation": "common_field",
+      "separating_pairs": 200
+    },
+    {
+      "max_cell_size": 16,
+      "mixed_cells": 0,
+      "n_cells": 138,
+      "n_contexts": 264,
+      "representation": "typed_effect",
+      "separating_pairs": 0
+    },
+    {
+      "max_cell_size": 16,
+      "mixed_cells": 0,
+      "n_cells": 138,
+      "n_contexts": 264,
+      "representation": "source_effect_oracle",
+      "separating_pairs": 0
+    }
+  ],
+  "contexts_by_source": {
+    "filesystem": 96,
+    "memory": 96,
+    "sqlite": 72
+  },
+  "descriptor_v1_exact_match_rate": 1.0,
+  "human_refinements": 0,
+  "n_post_freeze_contexts": 264,
+  "n_registration_executions": 264,
+  "n_tools": 11,
+  "post_freeze_descriptor_failures": 0,
+  "post_freeze_failures_preserved": true,
+  "protocol_hash": "abe566f8846bd25d47750e6852841280196115bf14d1ee1a27773c72bd4f8d22",
+  "registration_descriptor_failures": 0,
+  "status": "passed"
+}

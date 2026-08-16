@@ -1,0 +1,373 @@
+{
+  "artifact_generated": {
+    "abstain_rate": {
+      "rate": 0.153,
+      "successes": 46,
+      "total": 300
+    },
+    "atom_count_match": {
+      "rate": 0.953,
+      "successes": 286,
+      "total": 300
+    },
+    "atom_exact_set_match": {
+      "rate": 0.733,
+      "successes": 220,
+      "total": 300
+    },
+    "coverage": {
+      "rate": 0.847,
+      "successes": 254,
+      "total": 300
+    },
+    "decision_accuracy": {
+      "rate": 0.813,
+      "successes": 244,
+      "total": 300
+    },
+    "error_categories": {
+      "commit_mode_not_authorized": 21,
+      "control_source_missing": 30,
+      "resource_authorization": 10,
+      "untrusted_control_source": 60,
+      "visibility_missing": 19
+    },
+    "field_level_accuracy": {
+      "commit_mode": {
+        "rate": 0.967,
+        "successes": 290,
+        "total": 300
+      },
+      "control_source": {
+        "rate": 0.9,
+        "successes": 270,
+        "total": 300
+      },
+      "effect": {
+        "rate": 1.0,
+        "successes": 300,
+        "total": 300
+      },
+      "operation": {
+        "rate": 1.0,
+        "successes": 300,
+        "total": 300
+      },
+      "provenance_source": {
+        "rate": 1.0,
+        "successes": 300,
+        "total": 300
+      },
+      "recipient_role": {
+        "rate": 0.953,
+        "successes": 286,
+        "total": 300
+      },
+      "resource_id": {
+        "rate": 0.92,
+        "successes": 276,
+        "total": 300
+      },
+      "resource_type": {
+        "rate": 1.0,
+        "successes": 300,
+        "total": 300
+      },
+      "visibility": {
+        "rate": 0.937,
+        "successes": 281,
+        "total": 300
+      }
+    },
+    "field_level_prf1": {
+      "commit_mode": {
+        "f1": 0.967,
+        "gold_total": 300,
+        "precision": 0.967,
+        "predicted_total": 300,
+        "recall": 0.967,
+        "true_positive": 290
+      },
+      "control_source": {
+        "f1": 0.9,
+        "gold_total": 300,
+        "precision": 0.9,
+        "predicted_total": 300,
+        "recall": 0.9,
+        "true_positive": 270
+      },
+      "effect": {
+        "f1": 1.0,
+        "gold_total": 300,
+        "precision": 1.0,
+        "predicted_total": 300,
+        "recall": 1.0,
+        "true_positive": 300
+      },
+      "operation": {
+        "f1": 1.0,
+        "gold_total": 300,
+        "precision": 1.0,
+        "predicted_total": 300,
+        "recall": 1.0,
+        "true_positive": 300
+      },
+      "provenance_source": {
+        "f1": 1.0,
+        "gold_total": 300,
+        "precision": 1.0,
+        "predicted_total": 300,
+        "recall": 1.0,
+        "true_positive": 300
+      },
+      "recipient_role": {
+        "f1": 0.979,
+        "gold_total": 342,
+        "precision": 1.0,
+        "predicted_total": 328,
+        "recall": 0.959,
+        "true_positive": 328
+      },
+      "resource_id": {
+        "f1": 0.95,
+        "gold_total": 342,
+        "precision": 0.97,
+        "predicted_total": 328,
+        "recall": 0.93,
+        "true_positive": 318
+      },
+      "resource_type": {
+        "f1": 1.0,
+        "gold_total": 300,
+        "precision": 1.0,
+        "predicted_total": 300,
+        "recall": 1.0,
+        "true_positive": 300
+      },
+      "visibility": {
+        "f1": 0.937,
+        "gold_total": 300,
+        "precision": 0.937,
+        "predicted_total": 300,
+        "recall": 0.937,
+        "true_positive": 281
+      }
+    },
+    "label_counts": {
+      "ALLOW": 189,
+      "DENY": 111
+    },
+    "n_rows": 300,
+    "operation_mode_accuracy": {
+      "rate": 0.967,
+      "successes": 290,
+      "total": 300
+    },
+    "provenance_control_source_accuracy": {
+      "rate": 0.9,
+      "successes": 270,
+      "total": 300
+    },
+    "resource_canonicalization_accuracy": {
+      "rate": 0.92,
+      "successes": 276,
+      "total": 300
+    },
+    "safe_false_deny": {
+      "rate": 0.053,
+      "successes": 10,
+      "total": 189
+    },
+    "unsafe_pre_allow": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 111
+    }
+  },
+  "claim_boundary": "Combined view is reported for trace-coverage accounting only; artifact-generated and external-subset metrics remain separate.",
+  "combined_n_rows": 456,
+  "experiment": "E61_combined_available_views",
+  "external_subset": {
+    "abstain_rate": {
+      "rate": 0.096,
+      "successes": 15,
+      "total": 156
+    },
+    "atom_count_match": {
+      "rate": 0.974,
+      "successes": 152,
+      "total": 156
+    },
+    "atom_exact_set_match": {
+      "rate": 0.821,
+      "successes": 128,
+      "total": 156
+    },
+    "coverage": {
+      "rate": 0.904,
+      "successes": 141,
+      "total": 156
+    },
+    "decision_accuracy": {
+      "rate": 0.904,
+      "successes": 141,
+      "total": 156
+    },
+    "error_categories": {
+      "ambiguous_resource_identity": 12,
+      "control_source_missing": 15,
+      "untrusted_control_source": 121
+    },
+    "field_level_accuracy": {
+      "commit_mode": {
+        "rate": 1.0,
+        "successes": 156,
+        "total": 156
+      },
+      "control_source": {
+        "rate": 0.904,
+        "successes": 141,
+        "total": 156
+      },
+      "effect": {
+        "rate": 1.0,
+        "successes": 156,
+        "total": 156
+      },
+      "operation": {
+        "rate": 1.0,
+        "successes": 156,
+        "total": 156
+      },
+      "provenance_source": {
+        "rate": 1.0,
+        "successes": 156,
+        "total": 156
+      },
+      "recipient_role": {
+        "rate": 0.974,
+        "successes": 152,
+        "total": 156
+      },
+      "resource_id": {
+        "rate": 0.904,
+        "successes": 141,
+        "total": 156
+      },
+      "resource_type": {
+        "rate": 1.0,
+        "successes": 156,
+        "total": 156
+      },
+      "visibility": {
+        "rate": 1.0,
+        "successes": 156,
+        "total": 156
+      }
+    },
+    "field_level_prf1": {
+      "commit_mode": {
+        "f1": 1.0,
+        "gold_total": 156,
+        "precision": 1.0,
+        "predicted_total": 156,
+        "recall": 1.0,
+        "true_positive": 156
+      },
+      "control_source": {
+        "f1": 0.904,
+        "gold_total": 156,
+        "precision": 0.904,
+        "predicted_total": 156,
+        "recall": 0.904,
+        "true_positive": 141
+      },
+      "effect": {
+        "f1": 1.0,
+        "gold_total": 156,
+        "precision": 1.0,
+        "predicted_total": 156,
+        "recall": 1.0,
+        "true_positive": 156
+      },
+      "operation": {
+        "f1": 1.0,
+        "gold_total": 156,
+        "precision": 1.0,
+        "predicted_total": 156,
+        "recall": 1.0,
+        "true_positive": 156
+      },
+      "provenance_source": {
+        "f1": 1.0,
+        "gold_total": 156,
+        "precision": 1.0,
+        "predicted_total": 156,
+        "recall": 1.0,
+        "true_positive": 156
+      },
+      "recipient_role": {
+        "f1": 0.989,
+        "gold_total": 180,
+        "precision": 1.0,
+        "predicted_total": 176,
+        "recall": 0.978,
+        "true_positive": 176
+      },
+      "resource_id": {
+        "f1": 0.921,
+        "gold_total": 193,
+        "precision": 0.936,
+        "predicted_total": 187,
+        "recall": 0.907,
+        "true_positive": 175
+      },
+      "resource_type": {
+        "f1": 1.0,
+        "gold_total": 156,
+        "precision": 1.0,
+        "predicted_total": 156,
+        "recall": 1.0,
+        "true_positive": 156
+      },
+      "visibility": {
+        "f1": 1.0,
+        "gold_total": 156,
+        "precision": 1.0,
+        "predicted_total": 156,
+        "recall": 1.0,
+        "true_positive": 156
+      }
+    },
+    "label_counts": {
+      "ALLOW": 22,
+      "DENY": 134
+    },
+    "n_rows": 156,
+    "operation_mode_accuracy": {
+      "rate": 1.0,
+      "successes": 156,
+      "total": 156
+    },
+    "provenance_control_source_accuracy": {
+      "rate": 0.904,
+      "successes": 141,
+      "total": 156
+    },
+    "resource_canonicalization_accuracy": {
+      "rate": 0.904,
+      "successes": 141,
+      "total": 156
+    },
+    "safe_false_deny": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 22
+    },
+    "unsafe_pre_allow": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 134
+    }
+  }
+}

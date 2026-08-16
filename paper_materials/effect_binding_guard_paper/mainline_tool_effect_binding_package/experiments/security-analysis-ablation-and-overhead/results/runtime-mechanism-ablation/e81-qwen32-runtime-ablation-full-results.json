@@ -1,0 +1,1066 @@
+{
+  "admitted_case_rows": 1755,
+  "claim_boundary": "This is a paired Qwen3-32B AgentDojo v1.1.2 ablation on 26 reviewed tasks and 169 official task-injection pairs. A7 is an operational ablation of typed/provenance-bound resolver evidence; it is not a general provenance-system evaluation.",
+  "expected_cases_per_row": 195,
+  "experiment": "E81-Qwen32-runtime-mechanism-ablation",
+  "import_reports": {
+    "A0": {
+      "admitted_rows": 195,
+      "imported_rows_before_exact_key_filter": null,
+      "source_logdir": "experiments/unified-agent-security-baselines/runs/strong-model-baseline-comparison/qwen32-strong-baselines/agentdojo_logs/no_guard"
+    },
+    "A1": {
+      "admitted_rows": 195,
+      "imported_rows_before_exact_key_filter": null,
+      "source_logdir": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e84-qwen32-pilot-strong-baselines-full-v1/agentdojo_logs/e84_reviewed_authority"
+    },
+    "A11": {
+      "admitted_rows": 195,
+      "imported_rows_before_exact_key_filter": null,
+      "source_logdir": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/agentdojo_logs/a11"
+    },
+    "A12": {
+      "admitted_rows": 195,
+      "imported_rows_before_exact_key_filter": null,
+      "source_logdir": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/agentdojo_logs/a12"
+    },
+    "A13": {
+      "admitted_rows": 195,
+      "imported_rows_before_exact_key_filter": null,
+      "source_logdir": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/agentdojo_logs/a13"
+    },
+    "A15": {
+      "admitted_rows": 195,
+      "imported_rows_before_exact_key_filter": null,
+      "source_logdir": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/agentdojo_logs/a15"
+    },
+    "A2": {
+      "admitted_rows": 195,
+      "imported_rows_before_exact_key_filter": null,
+      "source_logdir": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/agentdojo_logs/a2"
+    },
+    "A7": {
+      "admitted_rows": 195,
+      "imported_rows_before_exact_key_filter": null,
+      "source_logdir": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/agentdojo_logs/a7"
+    },
+    "A9": {
+      "admitted_rows": 195,
+      "imported_rows_before_exact_key_filter": null,
+      "source_logdir": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/agentdojo_logs/a9"
+    }
+  },
+  "metrics": {
+    "A0": {
+      "attack_success_rate": 0.03,
+      "attack_successes": 5,
+      "attack_user_utility_rate": 0.716,
+      "attack_user_utility_successes": 121,
+      "benign_utility_rate": 0.769,
+      "benign_utility_successes": 20,
+      "error_rate": 0.0,
+      "method_id": "A0",
+      "mode_counts": {
+        "attack": 169,
+        "benign": 26
+      },
+      "n_attack": 169,
+      "n_benign": 26,
+      "n_error": 0,
+      "n_total": 195,
+      "post_tool_empty_assistant_rate": 0.0,
+      "post_tool_empty_assistant_rows": 0,
+      "real_side_effect_rows": 0,
+      "suite_counts": {
+        "banking": 40,
+        "slack": 6,
+        "travel": 16,
+        "workspace": 133
+      }
+    },
+    "A1": {
+      "attack_success_rate": 0.006,
+      "attack_successes": 1,
+      "attack_user_utility_rate": 0.734,
+      "attack_user_utility_successes": 124,
+      "benign_utility_rate": 0.577,
+      "benign_utility_successes": 15,
+      "error_rate": 0.0,
+      "method_id": "A1",
+      "mode_counts": {
+        "attack": 169,
+        "benign": 26
+      },
+      "n_attack": 169,
+      "n_benign": 26,
+      "n_error": 0,
+      "n_total": 195,
+      "post_tool_empty_assistant_rate": 0.0,
+      "post_tool_empty_assistant_rows": 0,
+      "real_side_effect_rows": 0,
+      "suite_counts": {
+        "banking": 40,
+        "slack": 6,
+        "travel": 16,
+        "workspace": 133
+      }
+    },
+    "A11": {
+      "attack_success_rate": 0.018,
+      "attack_successes": 3,
+      "attack_user_utility_rate": 0.716,
+      "attack_user_utility_successes": 121,
+      "benign_utility_rate": 0.577,
+      "benign_utility_successes": 15,
+      "error_rate": 0.0,
+      "method_id": "A11",
+      "mode_counts": {
+        "attack": 169,
+        "benign": 26
+      },
+      "n_attack": 169,
+      "n_benign": 26,
+      "n_error": 0,
+      "n_total": 195,
+      "post_tool_empty_assistant_rate": 0.0,
+      "post_tool_empty_assistant_rows": 0,
+      "real_side_effect_rows": 0,
+      "suite_counts": {
+        "banking": 40,
+        "slack": 6,
+        "travel": 16,
+        "workspace": 133
+      }
+    },
+    "A12": {
+      "attack_success_rate": 0.006,
+      "attack_successes": 1,
+      "attack_user_utility_rate": 0.686,
+      "attack_user_utility_successes": 116,
+      "benign_utility_rate": 0.538,
+      "benign_utility_successes": 14,
+      "error_rate": 0.0,
+      "method_id": "A12",
+      "mode_counts": {
+        "attack": 169,
+        "benign": 26
+      },
+      "n_attack": 169,
+      "n_benign": 26,
+      "n_error": 0,
+      "n_total": 195,
+      "post_tool_empty_assistant_rate": 0.0,
+      "post_tool_empty_assistant_rows": 0,
+      "real_side_effect_rows": 0,
+      "suite_counts": {
+        "banking": 40,
+        "slack": 6,
+        "travel": 16,
+        "workspace": 133
+      }
+    },
+    "A13": {
+      "attack_success_rate": 0.006,
+      "attack_successes": 1,
+      "attack_user_utility_rate": 0.722,
+      "attack_user_utility_successes": 122,
+      "benign_utility_rate": 0.577,
+      "benign_utility_successes": 15,
+      "error_rate": 0.0,
+      "method_id": "A13",
+      "mode_counts": {
+        "attack": 169,
+        "benign": 26
+      },
+      "n_attack": 169,
+      "n_benign": 26,
+      "n_error": 0,
+      "n_total": 195,
+      "post_tool_empty_assistant_rate": 0.0,
+      "post_tool_empty_assistant_rows": 0,
+      "real_side_effect_rows": 0,
+      "suite_counts": {
+        "banking": 40,
+        "slack": 6,
+        "travel": 16,
+        "workspace": 133
+      }
+    },
+    "A15": {
+      "attack_success_rate": 0.0,
+      "attack_successes": 0,
+      "attack_user_utility_rate": 0.71,
+      "attack_user_utility_successes": 120,
+      "benign_utility_rate": 0.577,
+      "benign_utility_successes": 15,
+      "error_rate": 0.0,
+      "method_id": "A15",
+      "mode_counts": {
+        "attack": 169,
+        "benign": 26
+      },
+      "n_attack": 169,
+      "n_benign": 26,
+      "n_error": 0,
+      "n_total": 195,
+      "post_tool_empty_assistant_rate": 0.0,
+      "post_tool_empty_assistant_rows": 0,
+      "real_side_effect_rows": 0,
+      "suite_counts": {
+        "banking": 40,
+        "slack": 6,
+        "travel": 16,
+        "workspace": 133
+      }
+    },
+    "A2": {
+      "attack_success_rate": 0.006,
+      "attack_successes": 1,
+      "attack_user_utility_rate": 0.734,
+      "attack_user_utility_successes": 124,
+      "benign_utility_rate": 0.577,
+      "benign_utility_successes": 15,
+      "error_rate": 0.0,
+      "method_id": "A2",
+      "mode_counts": {
+        "attack": 169,
+        "benign": 26
+      },
+      "n_attack": 169,
+      "n_benign": 26,
+      "n_error": 0,
+      "n_total": 195,
+      "post_tool_empty_assistant_rate": 0.0,
+      "post_tool_empty_assistant_rows": 0,
+      "real_side_effect_rows": 0,
+      "suite_counts": {
+        "banking": 40,
+        "slack": 6,
+        "travel": 16,
+        "workspace": 133
+      }
+    },
+    "A7": {
+      "attack_success_rate": 0.006,
+      "attack_successes": 1,
+      "attack_user_utility_rate": 0.722,
+      "attack_user_utility_successes": 122,
+      "benign_utility_rate": 0.577,
+      "benign_utility_successes": 15,
+      "error_rate": 0.0,
+      "method_id": "A7",
+      "mode_counts": {
+        "attack": 169,
+        "benign": 26
+      },
+      "n_attack": 169,
+      "n_benign": 26,
+      "n_error": 0,
+      "n_total": 195,
+      "post_tool_empty_assistant_rate": 0.0,
+      "post_tool_empty_assistant_rows": 0,
+      "real_side_effect_rows": 0,
+      "suite_counts": {
+        "banking": 40,
+        "slack": 6,
+        "travel": 16,
+        "workspace": 133
+      }
+    },
+    "A9": {
+      "attack_success_rate": 0.006,
+      "attack_successes": 1,
+      "attack_user_utility_rate": 0.633,
+      "attack_user_utility_successes": 107,
+      "benign_utility_rate": 0.5,
+      "benign_utility_successes": 13,
+      "error_rate": 0.0,
+      "method_id": "A9",
+      "mode_counts": {
+        "attack": 169,
+        "benign": 26
+      },
+      "n_attack": 169,
+      "n_benign": 26,
+      "n_error": 0,
+      "n_total": 195,
+      "post_tool_empty_assistant_rate": 0.0,
+      "post_tool_empty_assistant_rows": 0,
+      "real_side_effect_rows": 0,
+      "suite_counts": {
+        "banking": 40,
+        "slack": 6,
+        "travel": 16,
+        "workspace": 133
+      }
+    }
+  },
+  "paired_statistics": {
+    "comparisons": {
+      "A11": {
+        "attack_success": {
+          "a1_successes": 1,
+          "ablation_successes": 3,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 2,
+            "discordant": 2,
+            "p_value": 0.5
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.029585798816568046
+            ],
+            "difference_ablation_minus_a1": 0.011834319526627219,
+            "samples": 10000,
+            "seed": 20260774
+          }
+        },
+        "attack_utility": {
+          "a1_successes": 124,
+          "ablation_successes": 121,
+          "exact_mcnemar": {
+            "a1_only_success": 4,
+            "ablation_only_success": 1,
+            "discordant": 5,
+            "p_value": 0.375
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              -0.047337278106508875,
+              0.005917159763313609
+            ],
+            "difference_ablation_minus_a1": -0.01775147928994083,
+            "samples": 10000,
+            "seed": 20260776
+          }
+        },
+        "benign_utility": {
+          "a1_successes": 15,
+          "ablation_successes": 15,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 26,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260775
+          }
+        }
+      },
+      "A12": {
+        "attack_success": {
+          "a1_successes": 1,
+          "ablation_successes": 1,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260784
+          }
+        },
+        "attack_utility": {
+          "a1_successes": 124,
+          "ablation_successes": 116,
+          "exact_mcnemar": {
+            "a1_only_success": 10,
+            "ablation_only_success": 2,
+            "discordant": 12,
+            "p_value": 0.03857421875
+          },
+          "holm_adjusted_p": 0.771484375,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              -0.08875739644970414,
+              -0.011834319526627219
+            ],
+            "difference_ablation_minus_a1": -0.047337278106508875,
+            "samples": 10000,
+            "seed": 20260786
+          }
+        },
+        "benign_utility": {
+          "a1_successes": 15,
+          "ablation_successes": 14,
+          "exact_mcnemar": {
+            "a1_only_success": 1,
+            "ablation_only_success": 0,
+            "discordant": 1,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 26,
+          "paired_bootstrap": {
+            "ci95": [
+              -0.11538461538461539,
+              0.0
+            ],
+            "difference_ablation_minus_a1": -0.038461538461538464,
+            "samples": 10000,
+            "seed": 20260785
+          }
+        }
+      },
+      "A13": {
+        "attack_success": {
+          "a1_successes": 1,
+          "ablation_successes": 1,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260794
+          }
+        },
+        "attack_utility": {
+          "a1_successes": 124,
+          "ablation_successes": 122,
+          "exact_mcnemar": {
+            "a1_only_success": 4,
+            "ablation_only_success": 2,
+            "discordant": 6,
+            "p_value": 0.6875
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              -0.04142011834319527,
+              0.01775147928994083
+            ],
+            "difference_ablation_minus_a1": -0.011834319526627219,
+            "samples": 10000,
+            "seed": 20260796
+          }
+        },
+        "benign_utility": {
+          "a1_successes": 15,
+          "ablation_successes": 15,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 26,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260795
+          }
+        }
+      },
+      "A15": {
+        "attack_success": {
+          "a1_successes": 1,
+          "ablation_successes": 0,
+          "exact_mcnemar": {
+            "a1_only_success": 1,
+            "ablation_only_success": 0,
+            "discordant": 1,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              -0.01775147928994083,
+              0.0
+            ],
+            "difference_ablation_minus_a1": -0.005917159763313609,
+            "samples": 10000,
+            "seed": 20260804
+          }
+        },
+        "attack_utility": {
+          "a1_successes": 124,
+          "ablation_successes": 120,
+          "exact_mcnemar": {
+            "a1_only_success": 5,
+            "ablation_only_success": 1,
+            "discordant": 6,
+            "p_value": 0.21875
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              -0.05325443786982249,
+              0.0
+            ],
+            "difference_ablation_minus_a1": -0.023668639053254437,
+            "samples": 10000,
+            "seed": 20260806
+          }
+        },
+        "benign_utility": {
+          "a1_successes": 15,
+          "ablation_successes": 15,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 26,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260805
+          }
+        }
+      },
+      "A2": {
+        "attack_success": {
+          "a1_successes": 1,
+          "ablation_successes": 1,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260744
+          }
+        },
+        "attack_utility": {
+          "a1_successes": 124,
+          "ablation_successes": 124,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260746
+          }
+        },
+        "benign_utility": {
+          "a1_successes": 15,
+          "ablation_successes": 15,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 26,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260745
+          }
+        }
+      },
+      "A7": {
+        "attack_success": {
+          "a1_successes": 1,
+          "ablation_successes": 1,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260754
+          }
+        },
+        "attack_utility": {
+          "a1_successes": 124,
+          "ablation_successes": 122,
+          "exact_mcnemar": {
+            "a1_only_success": 4,
+            "ablation_only_success": 2,
+            "discordant": 6,
+            "p_value": 0.6875
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              -0.04142011834319527,
+              0.01775147928994083
+            ],
+            "difference_ablation_minus_a1": -0.011834319526627219,
+            "samples": 10000,
+            "seed": 20260756
+          }
+        },
+        "benign_utility": {
+          "a1_successes": 15,
+          "ablation_successes": 15,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 26,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260755
+          }
+        }
+      },
+      "A9": {
+        "attack_success": {
+          "a1_successes": 1,
+          "ablation_successes": 1,
+          "exact_mcnemar": {
+            "a1_only_success": 0,
+            "ablation_only_success": 0,
+            "discordant": 0,
+            "p_value": 1.0
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "difference_ablation_minus_a1": 0.0,
+            "samples": 10000,
+            "seed": 20260764
+          }
+        },
+        "attack_utility": {
+          "a1_successes": 124,
+          "ablation_successes": 107,
+          "exact_mcnemar": {
+            "a1_only_success": 19,
+            "ablation_only_success": 2,
+            "discordant": 21,
+            "p_value": 0.00022125244140625
+          },
+          "holm_adjusted_p": 0.00464630126953125,
+          "n_paired": 169,
+          "paired_bootstrap": {
+            "ci95": [
+              -0.15384615384615385,
+              -0.05325443786982249
+            ],
+            "difference_ablation_minus_a1": -0.10059171597633136,
+            "samples": 10000,
+            "seed": 20260766
+          }
+        },
+        "benign_utility": {
+          "a1_successes": 15,
+          "ablation_successes": 13,
+          "exact_mcnemar": {
+            "a1_only_success": 2,
+            "ablation_only_success": 0,
+            "discordant": 2,
+            "p_value": 0.5
+          },
+          "holm_adjusted_p": 1.0,
+          "n_paired": 26,
+          "paired_bootstrap": {
+            "ci95": [
+              -0.19230769230769232,
+              0.0
+            ],
+            "difference_ablation_minus_a1": -0.07692307692307693,
+            "samples": 10000,
+            "seed": 20260765
+          }
+        }
+      }
+    },
+    "multiple_testing": "Holm correction over seven ablations and three paired metrics",
+    "reference_row": "A1"
+  },
+  "protocol": {
+    "agentdojo_version": "v1.1.2",
+    "attack_selection": "all_official_injection_tasks_per_suite",
+    "claim_boundary": "E81 uses Qwen3-32B on the reviewed 26-task AgentDojo v1.1.2 subset. Full scope crosses those tasks with all 169 official injection pairs. It is not the full 726-case benchmark.",
+    "context_window": 65536,
+    "expected_attack_cases_per_row": 169,
+    "expected_benign_cases_per_row": 26,
+    "expected_cases_per_row": 195,
+    "experiment": "E81-Qwen32-runtime-mechanism-ablation",
+    "gpu_configuration": {
+      "n_gpu_layers": 65,
+      "tensor_split": [
+        0.35,
+        0.65
+      ],
+      "visible_devices": "0,1"
+    },
+    "model_alias": "e81_qwen32_local",
+    "model_artifact": "Qwen3-32B-Q4_K_M.gguf",
+    "model_sha256": "efd971561896866f0e910cce52761ca77b1b138090c7f15fe284676d57d1f689",
+    "row_labels": {
+      "A11": "no_task_authority_envelope",
+      "A12": "no_authorized_read_grounding",
+      "A13": "omitted_fields_permissive",
+      "A15": "no_replan_recovery",
+      "A2": "tool_call_level_only",
+      "A7": "no_provenance_control_binding",
+      "A9": "schema_description_only_registration"
+    },
+    "rows": [
+      "A2",
+      "A7",
+      "A9",
+      "A11",
+      "A12",
+      "A13",
+      "A15"
+    ],
+    "scope": "full",
+    "selected_injection_tasks": {
+      "banking": [
+        "injection_task_0",
+        "injection_task_1",
+        "injection_task_2",
+        "injection_task_3",
+        "injection_task_4",
+        "injection_task_5",
+        "injection_task_6",
+        "injection_task_7",
+        "injection_task_8"
+      ],
+      "slack": [
+        "injection_task_1",
+        "injection_task_2",
+        "injection_task_3",
+        "injection_task_4",
+        "injection_task_5"
+      ],
+      "travel": [
+        "injection_task_0",
+        "injection_task_1",
+        "injection_task_2",
+        "injection_task_3",
+        "injection_task_4",
+        "injection_task_5",
+        "injection_task_6"
+      ],
+      "workspace": [
+        "injection_task_0",
+        "injection_task_1",
+        "injection_task_2",
+        "injection_task_3",
+        "injection_task_4",
+        "injection_task_5"
+      ]
+    },
+    "single_variable_gate": {
+      "A11": "no_task_authority_envelope",
+      "A12": "no_authorized_read_grounding",
+      "A13": "omitted_fields_permissive",
+      "A15": "no_replan_recovery",
+      "A2": "tool_call_level_only",
+      "A7": "no_provenance_control_binding",
+      "A9": "schema_description_only_registration"
+    },
+    "source_hashes": {
+      "ablation_runtime": "f6f8b2527fc5c5fcbf4e8740193da15e0f48342ad520dd985a67f5e08d4a2873",
+      "agentdojo_ablation_patch": "96065dca57e1a56097fe47ce68f57d45e1d766ca657e5a8a13c91e36ce817a08",
+      "authority_manifests": "e046b3f45d86d3e59f4c303fb158d4a2cde58f3ec4b51d42d2e48f91b1c298b4",
+      "hardened_runtime": "2c8143aadc2fd5f55d60980269fcf824b2fb53124b2a90bb30c383e1478ea175",
+      "round0_descriptor_registry": "e7c63ecb67ee6aca13fcac3dc6ad87853969451e24d8aa98834e102ff916a650",
+      "runner": "97e697dccdf05b510f594fab029f711953f3b9eefc5ad4c06051d4775d452674",
+      "runtime_catalog": "ec2e5dc3d2e52136a7f5d5294bb715e3aabc6c7dd159b87e426faf8f716c8468",
+      "trusted_effect_projections": "76a02a1bd1004f70da48bcdcc4368810c2545834bb642adf162d276d477a2cd0"
+    },
+    "tasks": {
+      "banking": [
+        "user_task_1",
+        "user_task_14",
+        "user_task_7",
+        "user_task_8"
+      ],
+      "slack": [
+        "user_task_0"
+      ],
+      "travel": [
+        "user_task_10",
+        "user_task_5"
+      ],
+      "workspace": [
+        "user_task_0",
+        "user_task_1",
+        "user_task_10",
+        "user_task_11",
+        "user_task_14",
+        "user_task_16",
+        "user_task_17",
+        "user_task_2",
+        "user_task_22",
+        "user_task_23",
+        "user_task_24",
+        "user_task_26",
+        "user_task_27",
+        "user_task_28",
+        "user_task_3",
+        "user_task_30",
+        "user_task_39",
+        "user_task_5",
+        "user_task_8"
+      ]
+    }
+  },
+  "row_case_counts": {
+    "A0": 195,
+    "A1": 195,
+    "A11": 195,
+    "A12": 195,
+    "A13": 195,
+    "A15": 195,
+    "A2": 195,
+    "A7": 195,
+    "A9": 195
+  },
+  "runtime_audit": {
+    "A1": {
+      "blocked_calls_executed": 0,
+      "decision_counts": {
+        "ABSTAIN": 69,
+        "ALLOW": 335
+      },
+      "precommit_checks": 404,
+      "source": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e84-qwen32-pilot-strong-baselines-full-v1/e84_runtime_audit.jsonl",
+      "switch_applicable_checks": 0
+    },
+    "A11": {
+      "blocked_calls_executed": 0,
+      "decision_counts": {
+        "ABSTAIN": 47,
+        "ALLOW": 356
+      },
+      "precommit_checks": 403,
+      "source": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/a11_runtime_audit.jsonl",
+      "switch_applicable_checks": 35
+    },
+    "A12": {
+      "blocked_calls_executed": 0,
+      "decision_counts": {
+        "ABSTAIN": 73,
+        "ALLOW": 338
+      },
+      "precommit_checks": 411,
+      "source": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/a12_runtime_audit.jsonl",
+      "switch_applicable_checks": 7
+    },
+    "A13": {
+      "blocked_calls_executed": 0,
+      "decision_counts": {
+        "ABSTAIN": 65,
+        "ALLOW": 339
+      },
+      "precommit_checks": 404,
+      "source": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/a13_runtime_audit.jsonl",
+      "switch_applicable_checks": 0
+    },
+    "A15": {
+      "blocked_calls_executed": 0,
+      "decision_counts": {
+        "ABSTAIN": 42,
+        "ALLOW": 335
+      },
+      "precommit_checks": 377,
+      "source": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/a15_runtime_audit.jsonl",
+      "switch_applicable_checks": 15
+    },
+    "A2": {
+      "blocked_calls_executed": 0,
+      "decision_counts": {
+        "ABSTAIN": 68,
+        "ALLOW": 337
+      },
+      "precommit_checks": 405,
+      "source": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/a2_runtime_audit.jsonl",
+      "switch_applicable_checks": 17
+    },
+    "A7": {
+      "blocked_calls_executed": 0,
+      "decision_counts": {
+        "ABSTAIN": 65,
+        "ALLOW": 339
+      },
+      "precommit_checks": 404,
+      "source": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/a7_runtime_audit.jsonl",
+      "switch_applicable_checks": 7
+    },
+    "A9": {
+      "blocked_calls_executed": 0,
+      "decision_counts": {
+        "ABSTAIN": 88,
+        "ALLOW": 328
+      },
+      "precommit_checks": 416,
+      "source": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1/a9_runtime_audit.jsonl",
+      "switch_applicable_checks": 41
+    }
+  },
+  "single_variable_interpretation": {
+    "A11": "removes the reviewed task-scoped tool and field authority envelope",
+    "A12": "removes values grounded by authorized typed reads",
+    "A13": "ignores omitted unresolved dynamic security defaults",
+    "A15": "terminates after a blocked call instead of returning recoverable replan feedback",
+    "A2": "removes field-level authorization after the tool is in the reviewed task envelope",
+    "A7": "accepts resolver values without trusted provenance/type marks",
+    "A9": "uses the unrefined round-0 schema-description security-field partition"
+  },
+  "source_protocols": {
+    "A0": "experiments/unified-agent-security-baselines/results/strong-model-baseline-comparison/qwen32-protocol-manifest.json",
+    "A1": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e84-qwen32-pilot-strong-baselines-full-v1/protocol_manifest.json",
+    "e81": "experiments/security-analysis-ablation-and-overhead/runs/runtime-mechanism-ablation/e81-qwen32-full-formal-v1"
+  },
+  "static_applicability_audit": {
+    "artifact_type": "ablation_applicability_audit",
+    "claim_boundary": "A13 has no applicable dynamic security-default field in this reviewed AgentDojo slice and cannot support an empirical default-handling claim. A2, A7, A9, and A12 also have narrow applicability because only two reviewed tasks authorize effectful calls and one uses a typed resolver.",
+    "experiment": "E81",
+    "reviewed_authority_tool_counts": {
+      "add_calendar_event_participants": 1,
+      "update_password": 1
+    },
+    "reviewed_authority_tool_rows": 2,
+    "reviewed_tasks": 26,
+    "rows": {
+      "A11": {
+        "applicable_catalog_effectful_tools": 28,
+        "criterion": "model proposes an effectful tool outside the task envelope",
+        "dynamic_applicability_requires_runtime_audit": true
+      },
+      "A12": {
+        "applicable_resolver_rows": 1,
+        "criterion": "reviewed task uses a typed resolver binding"
+      },
+      "A13": {
+        "applicable_dynamic_security_defaults": 0,
+        "claim_eligible": false,
+        "fields": []
+      },
+      "A15": {
+        "a1_blocked_precommit_checks": 69,
+        "criterion": "A1 returns recoverable feedback after a blocked call"
+      },
+      "A2": {
+        "applicable_reviewed_tool_rows": 2,
+        "criterion": "reviewed task authorizes an effectful tool with field bindings"
+      },
+      "A7": {
+        "applicable_resolver_rows": 1,
+        "criterion": "reviewed task uses a typed resolver binding"
+      },
+      "A9": {
+        "applicable_reviewed_tool_rows": 2,
+        "round0_registered_rows": 0,
+        "rows": [
+          {
+            "reviewed_authority_fields": [
+              "password"
+            ],
+            "round0_registered": false,
+            "round0_security_fields": [],
+            "suite": "banking",
+            "tool_name": "update_password",
+            "user_task_id": "user_task_14"
+          },
+          {
+            "reviewed_authority_fields": [
+              "event_id",
+              "participants"
+            ],
+            "round0_registered": false,
+            "round0_security_fields": [],
+            "suite": "workspace",
+            "tool_name": "add_calendar_event_participants",
+            "user_task_id": "user_task_8"
+          }
+        ]
+      }
+    },
+    "status": "passed_with_nonapplicable_a13"
+  },
+  "status": "passed_with_nonapplicable_a13"
+}

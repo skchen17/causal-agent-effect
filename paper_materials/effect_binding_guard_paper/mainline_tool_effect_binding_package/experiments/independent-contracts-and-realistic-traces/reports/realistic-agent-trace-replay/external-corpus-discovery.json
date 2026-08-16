@@ -1,0 +1,96 @@
+{
+  "candidates": [
+    {
+      "exists": true,
+      "message_rows": 1428,
+      "mode_counts": {
+        "attack": 1258,
+        "benign": 194
+      },
+      "n_rows": 1452,
+      "path": "data/data/tool_effect_fragmentation/ipiguard_phase5_traces.jsonl",
+      "reason": "Usable: saved AgentDojo-style IPIGuard traces contain replay-only messages, four suites, and mutating candidate tool calls.",
+      "side_effect_flags": {
+        "False": 1452
+      },
+      "suite_counts": {
+        "banking": 320,
+        "slack": 252,
+        "travel": 320,
+        "workspace": 560
+      },
+      "usable": true,
+      "usable_mutating_replay_rows": 156
+    },
+    {
+      "exists": true,
+      "message_rows": 0,
+      "mode_counts": {
+        "attack": 2847,
+        "benign": 291
+      },
+      "n_rows": 3138,
+      "path": "data/data/tool_effect_fragmentation/camel_phase5_traces.jsonl",
+      "reason": "Rows lack message trajectories needed for replay conversion.",
+      "side_effect_flags": {
+        "False": 3138
+      },
+      "suite_counts": {
+        "banking": 480,
+        "slack": 378,
+        "travel": 480,
+        "workspace": 1800
+      },
+      "usable": false,
+      "usable_mutating_replay_rows": 0
+    },
+    {
+      "exists": true,
+      "message_rows": 0,
+      "mode_counts": {},
+      "n_rows": 0,
+      "path": "data/data/tool_effect_fragmentation/external_pipeline_phase6_traces.jsonl",
+      "reason": "No rows.",
+      "side_effect_flags": {},
+      "suite_counts": {},
+      "usable": false,
+      "usable_mutating_replay_rows": 0
+    },
+    {
+      "exists": true,
+      "message_rows": 0,
+      "mode_counts": {
+        "None": 1296
+      },
+      "n_rows": 1296,
+      "path": "data/data/tool_effect_fragmentation/stress_cases_agentdojo.jsonl",
+      "reason": "Rows lack message trajectories needed for replay conversion.",
+      "side_effect_flags": {
+        "None": 1296
+      },
+      "suite_counts": {
+        "None": 1296
+      },
+      "usable": false,
+      "usable_mutating_replay_rows": 0
+    },
+    {
+      "exists": true,
+      "message_rows": 0,
+      "mode_counts": {
+        "None": 10368
+      },
+      "n_rows": 10368,
+      "path": "data/data/tool_effect_fragmentation/predictions_agentdojo.jsonl",
+      "reason": "Rows lack message trajectories needed for replay conversion.",
+      "side_effect_flags": {
+        "None": 10368
+      },
+      "suite_counts": {
+        "None": 10368
+      },
+      "usable": false,
+      "usable_mutating_replay_rows": 0
+    }
+  ]
+}

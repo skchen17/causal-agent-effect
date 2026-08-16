@@ -1,0 +1,22 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners=1.5pt, align=center, font=\small, minimum height=8mm, fill=gray!8},
+  atom/.style={draw, rounded corners=1.5pt, align=left, font=\scriptsize, minimum height=7mm, fill=blue!5},
+  arrow/.style={-Latex, thick}
+]
+\node[box, text width=34mm] (call) {Tool call:\\\texttt{send\_email(to, cc, bcc, attachment)}};
+\node[atom, text width=45mm, right=12mm of call, yshift=12mm] (a1) {Atom 1: send email\\resource: primary recipient\\operation: commit};
+\node[atom, text width=45mm, right=12mm of call] (a2) {Atom 2: expose attachment\\resource: file id\\visibility: recipient};
+\node[atom, text width=45mm, right=12mm of call, yshift=-12mm] (a3) {Atom 3: hidden recipient\\resource: bcc address\\recipient role: bcc};
+\draw[arrow] (call) -- (a1);
+\draw[arrow] (call) -- (a2);
+\draw[arrow] (call) -- (a3);
+\node[box, text width=34mm, right=10mm of a2, fill=green!8] (check) {Per-atom authorization\\and provenance check};
+\draw[arrow] (a1) -- (check);
+\draw[arrow] (a2) -- (check);
+\draw[arrow] (a3) -- (check);
+\end{tikzpicture}
+\caption{Effect-resource-operation atomization. A side-effectful tool call is a container of multiple security-relevant atoms rather than a single authorization object.}
+\label{fig:atomization}
+\end{figure}

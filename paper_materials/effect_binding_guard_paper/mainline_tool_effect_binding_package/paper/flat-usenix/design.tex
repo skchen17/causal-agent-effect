@@ -1,0 +1,30 @@
+\section{Design}
+
+Figure~\ref{fig:system-overview} separates offline contract onboarding from online pre-commit mediation. The separation is security-relevant: model-generated descriptions and plans are proposals, while frozen mappings, authority bounds, typed resolver relations, and the executor boundary form the trusted path.
+\input{system_overview}
+
+For registered tool $t$, totalized arguments $\bar{x}$, state $s$, and trusted pre-call evidence $h$, let $F_t(s,\bar{x})$ be the post-state and
+\[
+  \Delta_{sec}(t,\bar{x},s)=\Pi_{sec}\bigl(s,F_t(s,\bar{x})\bigr)
+\]
+be the security-relevant projection of the transition. A frozen contract $K_t$ deterministically produces atoms $A=K_t(\bar{x},s,h)$ whose concretization conservatively covers $\Delta_{sec}$. Each instantiated atom has the form
+\[
+  a=\atomtuple,
+\]
+where $e$ is effect kind, $o$ operation, $r$ resource, $y$ target principal, $v$ visibility, $m$ commit mode, $p$ provenance source, and $k$ control source. The tuple is an extensible event schema, not a claim that all tool semantics factor into independent scalar fields: conditional templates and compound atoms represent interactions. A domain may omit a component only when registration establishes bounded security invariance.
+
+Before checking, $\tau_t(x,s)$ totalizes the call by instantiating declared defaults and trusted implicit arguments. The guard and executor consume this same object; unresolved dynamic or undocumented defaults abstain. This prevents omission from hiding a nonempty effect-bearing default.
+
+\paragraph{Task envelope.}
+Before untrusted observations are processed, a trusted interface supplies an authority bound $B_q$. An LLM plan may narrow this bound, but every proposed tool, field, literal, and resolver is validated against it to form $\Gamma_q\preceq B_q$. Exact values carry request-source spans; resolver clauses name a fixed catalog entry and typed output projection. An authorized read may discharge an existing resolver. It cannot create new authority.
+
+In a multi-turn task, an authenticated user message may create a new authority epoch $B^{(k+1)}=\operatorname{Update}(B^{(k)},u_{k+1})$. The update function reads only the trusted user channel and registry. Tool outputs, model summaries, and replan feedback cannot change the epoch; the current LLM proposal must still be bounded by $B^{(k+1)}$.
+
+\paragraph{Frozen registry.}
+The architecture requires each descriptor to contain effect templates, deterministic bindings from structured arguments or trusted runtime evidence, multi-resource expansion rules, canonicalization requirements, provenance/control rules, and a registration record. A missing or rejected descriptor makes an effectful tool unavailable for automatic commitment. The evaluated E77 instance is narrower: it stores one coarse effect label plus all fields not proven invariant by a one-field sandbox test. We use it to test the mediation path, not as evidence that the full registry requirements are discharged.
+
+\paragraph{Pre-commit mediation.}
+For every candidate call, the complete design instantiates all applicable templates and emits atom-level check items. The guard returns $\Allow$ only when every atom matches an envelope clause. An explicit mismatch returns $\Deny$; unresolved identity, provenance, contract, or policy returns $\Abstain$. Replanning can revise the call but cannot alter $\Gamma_q$ merely because untrusted content requests expansion. E77 operationalizes this as \textsc{Allow} versus \textsc{NeedsReplan}; it does not provide a separately evaluated deny/abstain distinction.
+
+\paragraph{Decision witness.}
+The complete witness schema records contract and template identifiers, the instantiated atom, each value's source, the matched envelope clause, registry and envelope hashes, and the decision reason. E77 records the checked call signature, query hash, field checks, reasons, and a coarse atom projection; the remaining witness fields are requirements for the complete implementation. Deterministic witnesses, rather than hidden chain-of-thought, are the explanation mechanism.

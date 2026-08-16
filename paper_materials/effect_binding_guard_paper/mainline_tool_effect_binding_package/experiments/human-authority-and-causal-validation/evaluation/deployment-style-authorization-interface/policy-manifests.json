@@ -1,0 +1,185 @@
+{
+  "banking-delegation": {
+    "domain": "banking",
+    "policy_type": "delegation",
+    "rules": [
+      {
+        "effect": "funds_transferred",
+        "qualifiers": {
+          "amount": {
+            "max": 500
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          },
+          "delivery_mode": {
+            "allowed": [
+              "immediate"
+            ]
+          }
+        },
+        "resources": [
+          "account:checking"
+        ],
+        "targets": [
+          "payee:acme"
+        ]
+      },
+      {
+        "effect": "balance_debited",
+        "qualifiers": {
+          "amount": {
+            "max": 505
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          },
+          "delivery_mode": {
+            "allowed": [
+              "immediate"
+            ]
+          }
+        },
+        "resources": [
+          "account:checking"
+        ]
+      },
+      {
+        "effect": "fee_charged",
+        "qualifiers": {
+          "amount": {
+            "max": 5
+          },
+          "currency": {
+            "allowed": [
+              "USD"
+            ]
+          }
+        },
+        "resources": [
+          "account:checking"
+        ]
+      }
+    ]
+  },
+  "calendar-team-acl": {
+    "domain": "calendar",
+    "policy_type": "acl",
+    "rules": [
+      {
+        "effect": "event_created",
+        "resources": [
+          "evt-target",
+          "evt-expand",
+          "evt-vis-private",
+          "evt-vis-public",
+          "evt-compound-safe",
+          "evt-compound-deny",
+          "evt-default"
+        ]
+      },
+      {
+        "effect": "event_updated",
+        "resources": [
+          "evt-prestate"
+        ]
+      },
+      {
+        "effect": "participant_invited",
+        "targets": [
+          "alice@example.com",
+          "bob@example.com"
+        ]
+      },
+      {
+        "effect": "visibility_set",
+        "qualifiers": {
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "messaging-capability": {
+    "domain": "messaging",
+    "policy_type": "capability",
+    "rules": [
+      {
+        "effect": "message_posted",
+        "qualifiers": {
+          "delivery_mode": {
+            "allowed": [
+              "immediate"
+            ]
+          },
+          "payload_class": {
+            "allowed": [
+              "public",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "channel:internal"
+        ]
+      },
+      {
+        "effect": "notification_delivered",
+        "resources": [
+          "channel:internal"
+        ],
+        "targets": [
+          "alice",
+          "bob"
+        ]
+      }
+    ]
+  },
+  "workspace-share-acl": {
+    "domain": "workspace",
+    "policy_type": "acl",
+    "rules": [
+      {
+        "effect": "share_granted",
+        "qualifiers": {
+          "permission": {
+            "allowed": [
+              "viewer"
+            ]
+          }
+        },
+        "resources": [
+          "doc:report",
+          "doc:plan"
+        ],
+        "targets": [
+          "alice",
+          "bob"
+        ]
+      },
+      {
+        "effect": "visibility_set",
+        "qualifiers": {
+          "visibility": {
+            "allowed": [
+              "private",
+              "internal"
+            ]
+          }
+        },
+        "resources": [
+          "doc:report",
+          "doc:plan"
+        ]
+      }
+    ]
+  }
+}

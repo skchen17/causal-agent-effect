@@ -1,0 +1,656 @@
+{
+  "claim_boundary": "Controlled eight-tool copied-sandbox authorization experiment over frozen ACL, capability, and delegation policies. It measures representation sufficiency on the enumerated intervention and policy families; it does not establish open-world descriptor soundness, policy correctness, deployment prevalence, or production safety.",
+  "direct_policy_metrics": [
+    {
+      "abstain": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "coverage": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "covered_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 0
+      },
+      "decision_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 12
+      },
+      "n": 24,
+      "representation": "tool_name",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 12
+      }
+    },
+    {
+      "abstain": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "coverage": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "covered_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 0
+      },
+      "decision_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 12
+      },
+      "n": 24,
+      "representation": "canonical_raw_arguments",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 12
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.5833333333333334,
+        "successes": 14,
+        "total": 24
+      },
+      "coverage": {
+        "rate": 0.4166666666666667,
+        "successes": 10,
+        "total": 24
+      },
+      "covered_accuracy": {
+        "rate": 1.0,
+        "successes": 10,
+        "total": 10
+      },
+      "decision_accuracy": {
+        "rate": 0.4166666666666667,
+        "successes": 10,
+        "total": 24
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 12
+      },
+      "n": 24,
+      "representation": "common_effect_fields",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 12
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "covered_accuracy": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 12
+      },
+      "n": 24,
+      "representation": "validated_typed_effects",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 12
+      }
+    }
+  ],
+  "evaluation": {
+    "descriptor_exact_set_match": {
+      "rate": 1.0,
+      "successes": 24,
+      "total": 24
+    },
+    "ideal_decisions": {
+      "ALLOW": 12,
+      "DENY": 12
+    },
+    "n_contexts": 24,
+    "n_domains": 1,
+    "n_pairs": 12,
+    "n_tools": 1
+  },
+  "experiment": "full_scale_deployment_authorization_representation",
+  "gates": {
+    "all_evaluation_contexts_retained": true,
+    "all_source_calls_execute_in_copied_state": true,
+    "coarse_views_have_policy_mixed_cells": true,
+    "frozen_inputs_match": true,
+    "heldout_descriptor_exact_set_match": true,
+    "heldout_policy_pairs_are_separating": true,
+    "no_silent_decision_drops": true,
+    "raw_arguments_have_state_dependent_collisions": true,
+    "registration_descriptor_exact_set_match": true,
+    "registration_relation_accuracy": true,
+    "typed_direct_full_accuracy": true,
+    "typed_direct_full_coverage": true,
+    "typed_direct_zero_false_denial": true,
+    "typed_direct_zero_unsafe_pre_allow": true,
+    "typed_has_no_policy_mixed_cells": true,
+    "typed_resolves_state_dependent_pairs": true
+  },
+  "generated_at": "2026-08-14T14:52:10.004692+00:00",
+  "input_hashes": {
+    "core_sha256": "e274a9285e44eb34b584d908e7e36652621788a2a30e49e633f91bee01de087c",
+    "descriptor_manifest_sha256": "fc9a2109527756b65bd31e5f09cdcd5aaa4c80073f3c56223c555c63339796a4",
+    "heldout_contexts_sha256": "f12fa3bb26309ee0a70e967013081b1ddecb5c34f6b2b016fb40d5fd093b7f07",
+    "policy_manifests_sha256": "1ed14cf3234379f2992ba1f7e084c2854614b81117236b9f6c57acfe903a294d",
+    "registration_counterfactuals_sha256": "6b999016989dc82791a15e1420e9477f873172af1c5e8fc6986702af5d292919",
+    "runner_sha256": "ba5aed3f5ee21b582e79787ba134ed1eba01b5fbb333ad1a89ac227e18e1b75a"
+  },
+  "mode": "smoke",
+  "per_domain": [
+    {
+      "common_effect_fields": {
+        "abstain": {
+          "rate": 0.5833333333333334,
+          "successes": 14,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.4166666666666667,
+          "successes": 10,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10
+        },
+        "decision_accuracy": {
+          "rate": 0.4166666666666667,
+          "successes": 10,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "common_effect_fields",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "domain": "calendar",
+      "ideal_decisions": {
+        "ALLOW": 12,
+        "DENY": 12
+      },
+      "n": 24,
+      "validated_typed_effects": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "covered_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "n": 24,
+        "representation": "validated_typed_effects",
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      }
+    }
+  ],
+  "registration": {
+    "axes": {
+      "compound_effect": 1,
+      "default_omission": 1,
+      "operation_mode": 1,
+      "qualifier_recurrence": 1,
+      "qualifier_visibility": 1,
+      "resource_identity": 1,
+      "surface_invariant": 1,
+      "target_expansion": 1,
+      "target_identity": 1
+    },
+    "counterfactual_relation_accuracy": {
+      "rate": 1.0,
+      "successes": 9,
+      "total": 9
+    },
+    "descriptor_exact_set_match": {
+      "rate": 1.0,
+      "successes": 18,
+      "total": 18
+    },
+    "n_contexts": 18,
+    "n_domains": 1,
+    "n_pairs": 9,
+    "n_tools": 1,
+    "registered_tools": [
+      "schedule_meeting"
+    ],
+    "sensitive_pairs": 8,
+    "surface_invariant_pairs": 1
+  },
+  "representation_capacity": [
+    {
+      "fail_closed": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 0.5,
+          "successes": 12,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 1.0,
+          "successes": 12,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "fail_open": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 0.5,
+          "successes": 12,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 1.0,
+          "successes": 12,
+          "total": 12
+        }
+      },
+      "minimum_unavoidable_row_errors": 12,
+      "n_cells": 1,
+      "n_mixed_cells": 1,
+      "n_rows_in_mixed_cells": 24,
+      "primary": {
+        "abstain": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "representation": "tool_name"
+    },
+    {
+      "fail_closed": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 0.7083333333333334,
+          "successes": 17,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.5833333333333334,
+          "successes": 7,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "fail_open": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 0.875,
+          "successes": 21,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.25,
+          "successes": 3,
+          "total": 12
+        }
+      },
+      "minimum_unavoidable_row_errors": 3,
+      "n_cells": 16,
+      "n_mixed_cells": 3,
+      "n_rows_in_mixed_cells": 10,
+      "primary": {
+        "abstain": {
+          "rate": 0.4166666666666667,
+          "successes": 10,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.5833333333333334,
+          "successes": 14,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 0.5833333333333334,
+          "successes": 14,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "representation": "canonical_raw_arguments"
+    },
+    {
+      "fail_closed": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 0.5833333333333334,
+          "successes": 14,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.8333333333333334,
+          "successes": 10,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "fail_open": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 0.875,
+          "successes": 21,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.25,
+          "successes": 3,
+          "total": 12
+        }
+      },
+      "minimum_unavoidable_row_errors": 3,
+      "n_cells": 10,
+      "n_mixed_cells": 1,
+      "n_rows_in_mixed_cells": 13,
+      "primary": {
+        "abstain": {
+          "rate": 0.5416666666666666,
+          "successes": 13,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 0.4583333333333333,
+          "successes": 11,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 0.4583333333333333,
+          "successes": 11,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "representation": "common_effect_fields"
+    },
+    {
+      "fail_closed": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "fail_open": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "minimum_unavoidable_row_errors": 0,
+      "n_cells": 15,
+      "n_mixed_cells": 0,
+      "n_rows_in_mixed_cells": 0,
+      "primary": {
+        "abstain": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 24
+        },
+        "coverage": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "decision_accuracy": {
+          "rate": 1.0,
+          "successes": 24,
+          "total": 24
+        },
+        "false_denial": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        },
+        "unsafe_pre_allow": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 12
+        }
+      },
+      "representation": "validated_typed_effects"
+    }
+  ],
+  "state_dependent_subset": {
+    "common_field_collisions": 1,
+    "n_pairs": 3,
+    "raw_argument_collisions": 3,
+    "typed_effect_collisions": 0
+  },
+  "status": "passed"
+}

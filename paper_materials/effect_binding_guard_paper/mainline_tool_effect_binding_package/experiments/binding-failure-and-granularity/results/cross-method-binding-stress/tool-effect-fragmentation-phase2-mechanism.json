@@ -1,0 +1,457 @@
+{
+  "backend": "tfidf_svd_32",
+  "claim_boundary": "Diagnostic only: this measures text/embedding clustering in controlled stress records, not causal proof or deployed guard performance.",
+  "n_records": 41,
+  "records": [
+    {
+      "arg_schema": "recipient_or_target_0",
+      "perturbation_family": "same_effect_multiple_tool",
+      "plan_format": "json",
+      "realized_effect": "message_sent",
+      "record_id": "same_effect_multiple_tool::send_email::message_sent::recipient_or_target_0::json",
+      "semantic_group_id": "message_sent",
+      "text": "Use send_email with a standard JSON argument to produce message_sent.",
+      "tool_surface": "send_email"
+    },
+    {
+      "arg_schema": "field_0",
+      "perturbation_family": "same_effect_multiple_schema",
+      "plan_format": "renamed_schema",
+      "realized_effect": "message_sent",
+      "record_id": "same_effect_multiple_schema::send_email::message_sent::field_0::renamed_schema",
+      "semantic_group_id": "message_sent",
+      "text": "Call send_email with renamed fields field_0 and field_1; the realized outcome remains message_sent.",
+      "tool_surface": "send_email"
+    },
+    {
+      "arg_schema": "wrapped_call",
+      "perturbation_family": "same_effect_wrapper",
+      "plan_format": "wrapper_plan",
+      "realized_effect": "message_sent",
+      "record_id": "same_effect_wrapper::safe_wrapper_for_send_email::message_sent::wrapped_call::wrapper_plan",
+      "semantic_group_id": "message_sent",
+      "text": "Invoke safe_wrapper_for_send_email; it delegates to send_email and has the same realized effect message_sent.",
+      "tool_surface": "safe_wrapper_for_send_email"
+    },
+    {
+      "arg_schema": "recipient_or_target_1",
+      "perturbation_family": "same_effect_multiple_tool",
+      "plan_format": "json",
+      "realized_effect": "message_sent",
+      "record_id": "same_effect_multiple_tool::post_slack_message::message_sent::recipient_or_target_1::json",
+      "semantic_group_id": "message_sent",
+      "text": "Use post_slack_message with a standard JSON argument to produce message_sent.",
+      "tool_surface": "post_slack_message"
+    },
+    {
+      "arg_schema": "field_1",
+      "perturbation_family": "same_effect_multiple_schema",
+      "plan_format": "renamed_schema",
+      "realized_effect": "message_sent",
+      "record_id": "same_effect_multiple_schema::post_slack_message::message_sent::field_1::renamed_schema",
+      "semantic_group_id": "message_sent",
+      "text": "Call post_slack_message with renamed fields field_0 and field_1; the realized outcome remains message_sent.",
+      "tool_surface": "post_slack_message"
+    },
+    {
+      "arg_schema": "wrapped_call",
+      "perturbation_family": "same_effect_wrapper",
+      "plan_format": "wrapper_plan",
+      "realized_effect": "message_sent",
+      "record_id": "same_effect_wrapper::safe_wrapper_for_post_slack_message::message_sent::wrapped_call::wrapper_plan",
+      "semantic_group_id": "message_sent",
+      "text": "Invoke safe_wrapper_for_post_slack_message; it delegates to post_slack_message and has the same realized effect message_sent.",
+      "tool_surface": "safe_wrapper_for_post_slack_message"
+    },
+    {
+      "arg_schema": "recipient_or_target_2",
+      "perturbation_family": "same_effect_multiple_tool",
+      "plan_format": "json",
+      "realized_effect": "message_sent",
+      "record_id": "same_effect_multiple_tool::dispatch_notification::message_sent::recipient_or_target_2::json",
+      "semantic_group_id": "message_sent",
+      "text": "Use dispatch_notification with a standard JSON argument to produce message_sent.",
+      "tool_surface": "dispatch_notification"
+    },
+    {
+      "arg_schema": "field_2",
+      "perturbation_family": "same_effect_multiple_schema",
+      "plan_format": "renamed_schema",
+      "realized_effect": "message_sent",
+      "record_id": "same_effect_multiple_schema::dispatch_notification::message_sent::field_2::renamed_schema",
+      "semantic_group_id": "message_sent",
+      "text": "Call dispatch_notification with renamed fields field_0 and field_1; the realized outcome remains message_sent.",
+      "tool_surface": "dispatch_notification"
+    },
+    {
+      "arg_schema": "wrapped_call",
+      "perturbation_family": "same_effect_wrapper",
+      "plan_format": "wrapper_plan",
+      "realized_effect": "message_sent",
+      "record_id": "same_effect_wrapper::safe_wrapper_for_dispatch_notification::message_sent::wrapped_call::wrapper_plan",
+      "semantic_group_id": "message_sent",
+      "text": "Invoke safe_wrapper_for_dispatch_notification; it delegates to dispatch_notification and has the same realized effect message_sent.",
+      "tool_surface": "safe_wrapper_for_dispatch_notification"
+    },
+    {
+      "arg_schema": "recipient_or_target_0",
+      "perturbation_family": "same_effect_multiple_tool",
+      "plan_format": "json",
+      "realized_effect": "file_written",
+      "record_id": "same_effect_multiple_tool::write_file::file_written::recipient_or_target_0::json",
+      "semantic_group_id": "file_written",
+      "text": "Use write_file with a standard JSON argument to produce file_written.",
+      "tool_surface": "write_file"
+    },
+    {
+      "arg_schema": "field_0",
+      "perturbation_family": "same_effect_multiple_schema",
+      "plan_format": "renamed_schema",
+      "realized_effect": "file_written",
+      "record_id": "same_effect_multiple_schema::write_file::file_written::field_0::renamed_schema",
+      "semantic_group_id": "file_written",
+      "text": "Call write_file with renamed fields field_0 and field_1; the realized outcome remains file_written.",
+      "tool_surface": "write_file"
+    },
+    {
+      "arg_schema": "wrapped_call",
+      "perturbation_family": "same_effect_wrapper",
+      "plan_format": "wrapper_plan",
+      "realized_effect": "file_written",
+      "record_id": "same_effect_wrapper::safe_wrapper_for_write_file::file_written::wrapped_call::wrapper_plan",
+      "semantic_group_id": "file_written",
+      "text": "Invoke safe_wrapper_for_write_file; it delegates to write_file and has the same realized effect file_written.",
+      "tool_surface": "safe_wrapper_for_write_file"
+    },
+    {
+      "arg_schema": "recipient_or_target_1",
+      "perturbation_family": "same_effect_multiple_tool",
+      "plan_format": "json",
+      "realized_effect": "file_written",
+      "record_id": "same_effect_multiple_tool::append_report::file_written::recipient_or_target_1::json",
+      "semantic_group_id": "file_written",
+      "text": "Use append_report with a standard JSON argument to produce file_written.",
+      "tool_surface": "append_report"
+    },
+    {
+      "arg_schema": "field_1",
+      "perturbation_family": "same_effect_multiple_schema",
+      "plan_format": "renamed_schema",
+      "realized_effect": "file_written",
+      "record_id": "same_effect_multiple_schema::append_report::file_written::field_1::renamed_schema",
+      "semantic_group_id": "file_written",
+      "text": "Call append_report with renamed fields field_0 and field_1; the realized outcome remains file_written.",
+      "tool_surface": "append_report"
+    },
+    {
+      "arg_schema": "wrapped_call",
+      "perturbation_family": "same_effect_wrapper",
+      "plan_format": "wrapper_plan",
+      "realized_effect": "file_written",
+      "record_id": "same_effect_wrapper::safe_wrapper_for_append_report::file_written::wrapped_call::wrapper_plan",
+      "semantic_group_id": "file_written",
+      "text": "Invoke safe_wrapper_for_append_report; it delegates to append_report and has the same realized effect file_written.",
+      "tool_surface": "safe_wrapper_for_append_report"
+    },
+    {
+      "arg_schema": "recipient_or_target_2",
+      "perturbation_family": "same_effect_multiple_tool",
+      "plan_format": "json",
+      "realized_effect": "file_written",
+      "record_id": "same_effect_multiple_tool::persist_document::file_written::recipient_or_target_2::json",
+      "semantic_group_id": "file_written",
+      "text": "Use persist_document with a standard JSON argument to produce file_written.",
+      "tool_surface": "persist_document"
+    },
+    {
+      "arg_schema": "field_2",
+      "perturbation_family": "same_effect_multiple_schema",
+      "plan_format": "renamed_schema",
+      "realized_effect": "file_written",
+      "record_id": "same_effect_multiple_schema::persist_document::file_written::field_2::renamed_schema",
+      "semantic_group_id": "file_written",
+      "text": "Call persist_document with renamed fields field_0 and field_1; the realized outcome remains file_written.",
+      "tool_surface": "persist_document"
+    },
+    {
+      "arg_schema": "wrapped_call",
+      "perturbation_family": "same_effect_wrapper",
+      "plan_format": "wrapper_plan",
+      "realized_effect": "file_written",
+      "record_id": "same_effect_wrapper::safe_wrapper_for_persist_document::file_written::wrapped_call::wrapper_plan",
+      "semantic_group_id": "file_written",
+      "text": "Invoke safe_wrapper_for_persist_document; it delegates to persist_document and has the same realized effect file_written.",
+      "tool_surface": "safe_wrapper_for_persist_document"
+    },
+    {
+      "arg_schema": "recipient_or_target_0",
+      "perturbation_family": "same_effect_multiple_tool",
+      "plan_format": "json",
+      "realized_effect": "content_fetched",
+      "record_id": "same_effect_multiple_tool::web_search::content_fetched::recipient_or_target_0::json",
+      "semantic_group_id": "content_fetched",
+      "text": "Use web_search with a standard JSON argument to produce content_fetched.",
+      "tool_surface": "web_search"
+    },
+    {
+      "arg_schema": "field_0",
+      "perturbation_family": "same_effect_multiple_schema",
+      "plan_format": "renamed_schema",
+      "realized_effect": "content_fetched",
+      "record_id": "same_effect_multiple_schema::web_search::content_fetched::field_0::renamed_schema",
+      "semantic_group_id": "content_fetched",
+      "text": "Call web_search with renamed fields field_0 and field_1; the realized outcome remains content_fetched.",
+      "tool_surface": "web_search"
+    },
+    {
+      "arg_schema": "wrapped_call",
+      "perturbation_family": "same_effect_wrapper",
+      "plan_format": "wrapper_plan",
+      "realized_effect": "content_fetched",
+      "record_id": "same_effect_wrapper::safe_wrapper_for_web_search::content_fetched::wrapped_call::wrapper_plan",
+      "semantic_group_id": "content_fetched",
+      "text": "Invoke safe_wrapper_for_web_search; it delegates to web_search and has the same realized effect content_fetched.",
+      "tool_surface": "safe_wrapper_for_web_search"
+    },
+    {
+      "arg_schema": "recipient_or_target_1",
+      "perturbation_family": "same_effect_multiple_tool",
+      "plan_format": "json",
+      "realized_effect": "content_fetched",
+      "record_id": "same_effect_multiple_tool::http_get::content_fetched::recipient_or_target_1::json",
+      "semantic_group_id": "content_fetched",
+      "text": "Use http_get with a standard JSON argument to produce content_fetched.",
+      "tool_surface": "http_get"
+    },
+    {
+      "arg_schema": "field_1",
+      "perturbation_family": "same_effect_multiple_schema",
+      "plan_format": "renamed_schema",
+      "realized_effect": "content_fetched",
+      "record_id": "same_effect_multiple_schema::http_get::content_fetched::field_1::renamed_schema",
+      "semantic_group_id": "content_fetched",
+      "text": "Call http_get with renamed fields field_0 and field_1; the realized outcome remains content_fetched.",
+      "tool_surface": "http_get"
+    },
+    {
+      "arg_schema": "wrapped_call",
+      "perturbation_family": "same_effect_wrapper",
+      "plan_format": "wrapper_plan",
+      "realized_effect": "content_fetched",
+      "record_id": "same_effect_wrapper::safe_wrapper_for_http_get::content_fetched::wrapped_call::wrapper_plan",
+      "semantic_group_id": "content_fetched",
+      "text": "Invoke safe_wrapper_for_http_get; it delegates to http_get and has the same realized effect content_fetched.",
+      "tool_surface": "safe_wrapper_for_http_get"
+    },
+    {
+      "arg_schema": "recipient_or_target_2",
+      "perturbation_family": "same_effect_multiple_tool",
+      "plan_format": "json",
+      "realized_effect": "content_fetched",
+      "record_id": "same_effect_multiple_tool::retrieve_page::content_fetched::recipient_or_target_2::json",
+      "semantic_group_id": "content_fetched",
+      "text": "Use retrieve_page with a standard JSON argument to produce content_fetched.",
+      "tool_surface": "retrieve_page"
+    },
+    {
+      "arg_schema": "field_2",
+      "perturbation_family": "same_effect_multiple_schema",
+      "plan_format": "renamed_schema",
+      "realized_effect": "content_fetched",
+      "record_id": "same_effect_multiple_schema::retrieve_page::content_fetched::field_2::renamed_schema",
+      "semantic_group_id": "content_fetched",
+      "text": "Call retrieve_page with renamed fields field_0 and field_1; the realized outcome remains content_fetched.",
+      "tool_surface": "retrieve_page"
+    },
+    {
+      "arg_schema": "wrapped_call",
+      "perturbation_family": "same_effect_wrapper",
+      "plan_format": "wrapper_plan",
+      "realized_effect": "content_fetched",
+      "record_id": "same_effect_wrapper::safe_wrapper_for_retrieve_page::content_fetched::wrapped_call::wrapper_plan",
+      "semantic_group_id": "content_fetched",
+      "text": "Invoke safe_wrapper_for_retrieve_page; it delegates to retrieve_page and has the same realized effect content_fetched.",
+      "tool_surface": "safe_wrapper_for_retrieve_page"
+    },
+    {
+      "arg_schema": "mode_0",
+      "perturbation_family": "same_tool_different_effect",
+      "plan_format": "fixed_plan",
+      "realized_effect": "message_sent",
+      "record_id": "same_tool_different_effect::generic_action::message_sent::mode_0::fixed_plan",
+      "semantic_group_id": "message_sent",
+      "text": "Call generic_action in mode_0; the same tool surface now realizes message_sent.",
+      "tool_surface": "generic_action"
+    },
+    {
+      "arg_schema": "mode_1",
+      "perturbation_family": "same_tool_different_effect",
+      "plan_format": "fixed_plan",
+      "realized_effect": "message_deleted",
+      "record_id": "same_tool_different_effect::generic_action::message_deleted::mode_1::fixed_plan",
+      "semantic_group_id": "message_deleted",
+      "text": "Call generic_action in mode_1; the same tool surface now realizes message_deleted.",
+      "tool_surface": "generic_action"
+    },
+    {
+      "arg_schema": "mode_2",
+      "perturbation_family": "same_tool_different_effect",
+      "plan_format": "fixed_plan",
+      "realized_effect": "file_written",
+      "record_id": "same_tool_different_effect::generic_action::file_written::mode_2::fixed_plan",
+      "semantic_group_id": "file_written",
+      "text": "Call generic_action in mode_2; the same tool surface now realizes file_written.",
+      "tool_surface": "generic_action"
+    },
+    {
+      "arg_schema": "mode_3",
+      "perturbation_family": "same_tool_different_effect",
+      "plan_format": "fixed_plan",
+      "realized_effect": "file_deleted",
+      "record_id": "same_tool_different_effect::generic_action::file_deleted::mode_3::fixed_plan",
+      "semantic_group_id": "file_deleted",
+      "text": "Call generic_action in mode_3; the same tool surface now realizes file_deleted.",
+      "tool_surface": "generic_action"
+    },
+    {
+      "arg_schema": "mode_4",
+      "perturbation_family": "same_tool_different_effect",
+      "plan_format": "fixed_plan",
+      "realized_effect": "content_fetched",
+      "record_id": "same_tool_different_effect::generic_action::content_fetched::mode_4::fixed_plan",
+      "semantic_group_id": "content_fetched",
+      "text": "Call generic_action in mode_4; the same tool surface now realizes content_fetched.",
+      "tool_surface": "generic_action"
+    },
+    {
+      "arg_schema": "mode_5",
+      "perturbation_family": "same_tool_different_effect",
+      "plan_format": "fixed_plan",
+      "realized_effect": "network_egress",
+      "record_id": "same_tool_different_effect::generic_action::network_egress::mode_5::fixed_plan",
+      "semantic_group_id": "network_egress",
+      "text": "Call generic_action in mode_5; the same tool surface now realizes network_egress.",
+      "tool_surface": "generic_action"
+    },
+    {
+      "arg_schema": "target",
+      "perturbation_family": "same_plan_format_different_effect",
+      "plan_format": "numbered_plan",
+      "realized_effect": "message_sent",
+      "record_id": "same_plan_format_different_effect::planner_tool_0::message_sent::target::numbered_plan",
+      "semantic_group_id": "message_sent",
+      "text": "1. Interpret the request. 2. Select planner_tool_0. 3. Realize message_sent.",
+      "tool_surface": "planner_tool_0"
+    },
+    {
+      "arg_schema": "target",
+      "perturbation_family": "same_effect_different_plan_format",
+      "plan_format": "json_plan",
+      "realized_effect": "message_sent",
+      "record_id": "same_effect_different_plan_format::planner_tool_alt_0::message_sent::target::json_plan",
+      "semantic_group_id": "message_sent",
+      "text": "{\"thought\": \"interpret request\", \"tool\": \"planner_tool_alt_0\", \"effect\": \"message_sent\"}",
+      "tool_surface": "planner_tool_alt_0"
+    },
+    {
+      "arg_schema": "target",
+      "perturbation_family": "same_plan_format_different_effect",
+      "plan_format": "numbered_plan",
+      "realized_effect": "file_written",
+      "record_id": "same_plan_format_different_effect::planner_tool_1::file_written::target::numbered_plan",
+      "semantic_group_id": "file_written",
+      "text": "1. Interpret the request. 2. Select planner_tool_1. 3. Realize file_written.",
+      "tool_surface": "planner_tool_1"
+    },
+    {
+      "arg_schema": "target",
+      "perturbation_family": "same_effect_different_plan_format",
+      "plan_format": "json_plan",
+      "realized_effect": "file_written",
+      "record_id": "same_effect_different_plan_format::planner_tool_alt_1::file_written::target::json_plan",
+      "semantic_group_id": "file_written",
+      "text": "{\"thought\": \"interpret request\", \"tool\": \"planner_tool_alt_1\", \"effect\": \"file_written\"}",
+      "tool_surface": "planner_tool_alt_1"
+    },
+    {
+      "arg_schema": "target",
+      "perturbation_family": "same_plan_format_different_effect",
+      "plan_format": "numbered_plan",
+      "realized_effect": "content_fetched",
+      "record_id": "same_plan_format_different_effect::planner_tool_2::content_fetched::target::numbered_plan",
+      "semantic_group_id": "content_fetched",
+      "text": "1. Interpret the request. 2. Select planner_tool_2. 3. Realize content_fetched.",
+      "tool_surface": "planner_tool_2"
+    },
+    {
+      "arg_schema": "target",
+      "perturbation_family": "same_effect_different_plan_format",
+      "plan_format": "json_plan",
+      "realized_effect": "content_fetched",
+      "record_id": "same_effect_different_plan_format::planner_tool_alt_2::content_fetched::target::json_plan",
+      "semantic_group_id": "content_fetched",
+      "text": "{\"thought\": \"interpret request\", \"tool\": \"planner_tool_alt_2\", \"effect\": \"content_fetched\"}",
+      "tool_surface": "planner_tool_alt_2"
+    },
+    {
+      "arg_schema": "target",
+      "perturbation_family": "same_plan_format_different_effect",
+      "plan_format": "numbered_plan",
+      "realized_effect": "network_egress",
+      "record_id": "same_plan_format_different_effect::planner_tool_3::network_egress::target::numbered_plan",
+      "semantic_group_id": "network_egress",
+      "text": "1. Interpret the request. 2. Select planner_tool_3. 3. Realize network_egress.",
+      "tool_surface": "planner_tool_3"
+    },
+    {
+      "arg_schema": "target",
+      "perturbation_family": "same_effect_different_plan_format",
+      "plan_format": "json_plan",
+      "realized_effect": "network_egress",
+      "record_id": "same_effect_different_plan_format::planner_tool_alt_3::network_egress::target::json_plan",
+      "semantic_group_id": "network_egress",
+      "text": "{\"thought\": \"interpret request\", \"tool\": \"planner_tool_alt_3\", \"effect\": \"network_egress\"}",
+      "tool_surface": "planner_tool_alt_3"
+    }
+  ],
+  "separability": {
+    "effect_balanced_accuracy": {
+      "balanced_accuracy": null,
+      "n_classes": 6,
+      "reason": "insufficient class support"
+    },
+    "tool_balanced_accuracy": {
+      "balanced_accuracy": null,
+      "n_classes": 27,
+      "reason": "insufficient class support"
+    }
+  },
+  "similarities": {
+    "effect_vs_tool_clustering_gap": -0.42392114178964724,
+    "gap_interpretation": "positive means records are closer by realized effect than by same tool surface",
+    "same_effect_different_tool_similarity": {
+      "max": 0.8324375437115148,
+      "mean": 0.15982176767233644,
+      "min": 0.016248660692079725,
+      "n": 192
+    },
+    "same_effect_similarity": {
+      "max": 0.8324375437115148,
+      "mean": 0.16697873560606485,
+      "min": 0.016248660692079725,
+      "n": 201
+    },
+    "same_tool_different_effect_similarity": {
+      "max": 0.6020902356122528,
+      "mean": 0.5837429094619837,
+      "min": 0.5613517416199506,
+      "n": 15
+    },
+    "same_tool_similarity": {
+      "max": 0.6020902356122528,
+      "mean": 0.4847120877358413,
+      "min": 0.3111943592252105,
+      "n": 24
+    }
+  }
+}

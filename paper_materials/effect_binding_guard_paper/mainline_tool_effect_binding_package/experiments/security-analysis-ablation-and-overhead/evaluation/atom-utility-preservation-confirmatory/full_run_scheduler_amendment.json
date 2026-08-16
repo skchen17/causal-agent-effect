@@ -1,0 +1,30 @@
+{
+  "experiment": "deepseek_compact_atom_description_full_benign_noninferiority_v1",
+  "recorded_at": "2026-08-07T20:40:43+08:00",
+  "amendment_type": "execution_scheduler_only",
+  "reason": "The external model endpoint can exhibit time-correlated variation. Reversing condition order in repeat 1 reduces a fixed condition-order confound.",
+  "state_when_recorded": {
+    "repeat_0_pristine_complete": 97,
+    "repeat_0_compact_neutral_complete": 97,
+    "repeat_0_compact_atoms_complete": 40,
+    "repeat_1_complete": 0,
+    "primary_compact_atom_result_available": false
+  },
+  "unchanged": [
+    "model",
+    "temperature",
+    "benchmark version",
+    "97 task keys",
+    "two repeats",
+    "three condition definitions",
+    "native utility evaluator",
+    "runtime guard disabled",
+    "5-point non-inferiority margin",
+    "task-clustered bootstrap decision rule"
+  ],
+  "execution_order": {
+    "repeat_0": ["pristine", "compact_neutral", "compact_atoms"],
+    "repeat_1": ["compact_atoms", "compact_neutral", "pristine"]
+  },
+  "case_deletion_or_relabeling": false
+}

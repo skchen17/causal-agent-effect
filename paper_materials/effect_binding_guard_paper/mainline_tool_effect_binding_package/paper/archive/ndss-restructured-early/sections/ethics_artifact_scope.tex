@@ -1,0 +1,5 @@
+\section{Ethics and Artifact Scope}
+
+The experiments are designed to avoid real external side effects. Tool actions are represented in synthetic or local mock contracts, and the pre-commit prototype is evaluated without sending real emails, sharing real files, modifying real calendars, posting to real Slack workspaces, or executing real financial transactions. The goal is to measure and diagnose semantic binding failures before deployment, not to demonstrate or encourage attacks against live systems.
+
+The artifact should be released, if released, with clear scope labels: controlled custom stress, local mock contract, no production safety claim, and no real service integration. Failure examples should be sanitized and should avoid credentials, real account identifiers, or live resource names. Any future realistic replay environment should preserve the no-real-side-effect constraint.

@@ -1,0 +1,20 @@
+{
+  "experiment": "v11-url-fix-focused-smoke",
+  "status": "frozen_before_expanded_recovery_pilot_execution",
+  "frozen_at": "2026-07-31T00:00:00+00:00",
+  "agentdojo_version": "v1.1.2",
+  "runtime_version": "effect_diff_runtime_relation_onboarding_v11",
+  "modes": ["benign"],
+  "n_cases": 4,
+  "n_target_cases": 2,
+  "n_control_cases": 2,
+  "selection_policy": {"target": "URL tail-punctuation loss cases slack_18/19", "control": "stable slack controls", "selected_using_v11_outcomes": false, "outcome_conditioned_on_historical_e78": true, "case_deletion_after_run": false},
+  "cases": [
+    {"case_key": "slack/user_task_18", "suite": "slack", "user_task_id": "user_task_18", "stratum": "frozen_e78_benign_loss"},
+    {"case_key": "slack/user_task_19", "suite": "slack", "user_task_id": "user_task_19", "stratum": "frozen_e78_benign_loss"},
+    {"case_key": "slack/user_task_1", "suite": "slack", "user_task_id": "user_task_1", "stratum": "frozen_e78_stable_success_control"},
+    {"case_key": "slack/user_task_10", "suite": "slack", "user_task_id": "user_task_10", "stratum": "frozen_e78_stable_success_control"}
+  ],
+  "acceptance_metrics": {"fixed_denominator": 4, "target_recovery_line": "recover both URL cases", "control_retention_line": "retain both controls"},
+  "claim_boundary": "Focused smoke validating the URL tail-punctuation grounding fix; not a utility estimate."
+}

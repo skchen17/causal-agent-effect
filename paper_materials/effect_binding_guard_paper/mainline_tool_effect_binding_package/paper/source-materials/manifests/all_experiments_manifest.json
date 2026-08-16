@@ -1,0 +1,272 @@
+[
+  {
+    "case_count": 1863,
+    "claim_boundary": "Supports tool-surface fragility diagnostics, not original-method failure claims.",
+    "evidence_type": "saved AgentDojo/custom stress",
+    "experiment_name": "AgentDojo tool-surface and held-out-tool stress",
+    "group_count": 24,
+    "human_audited": false,
+    "known_limitations": "AgentDojo local stress anchor; not a universal benchmark of deployed systems.",
+    "label_status": "custom stress labels; Phase 4/6 audited labels support main counterfactual claims",
+    "method_scope_label": "paper_grade_custom_stress",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_agentdojo_phase3.json",
+      "analysis/results/tool_effect_fragmentation_phase3_unified.json"
+    ],
+    "paper_section": "Measurement setup and surface-fragmentation baseline",
+    "row_count": 14904,
+    "source_data": [
+      "data/tool_effect_fragmentation/phase3_stress_cases.jsonl",
+      "data/tool_effect_fragmentation/phase3_predictions.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/run_tool_effect_fragmentation_phase2.py",
+      "src/experiments/tool_effect_fragmentation/run_tool_effect_fragmentation_phase3.py"
+    ],
+    "stage": "Phase 2/3"
+  },
+  {
+    "case_count": 528,
+    "claim_boundary": "Use as official-checkpoint custom stress, not a general ToolSafe failure claim.",
+    "evidence_type": "released checkpoint on E47 inputs",
+    "experiment_name": "ToolSafe / TS-Guard official checkpoint custom stress",
+    "group_count": 24,
+    "human_audited": true,
+    "known_limitations": "Not original TS-Guard benchmark reproduction.",
+    "label_status": "audited custom-stress labels for Phase 4 core",
+    "method_scope_label": "official_method_custom_stress",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_toolsafe_official_stress_phase3.json",
+      "analysis/results/tool_effect_fragmentation_counterfactual_phase4_toolsafe.json"
+    ],
+    "paper_section": "Official checkpoint counterfactual results",
+    "row_count": 528,
+    "source_data": [
+      "data/tool_effect_fragmentation/counterfactual_core_phase4.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/phase3_official_stress.py",
+      "src/experiments/tool_effect_fragmentation/phase4_inference.py"
+    ],
+    "stage": "Phase 3/4"
+  },
+  {
+    "case_count": 528,
+    "claim_boundary": "Use as official-checkpoint custom stress, not a general Safiron failure claim.",
+    "evidence_type": "released checkpoint on E47 inputs",
+    "experiment_name": "Safiron official checkpoint custom stress",
+    "group_count": 24,
+    "human_audited": true,
+    "known_limitations": "Not original Safiron benchmark reproduction.",
+    "label_status": "audited custom-stress labels for Phase 4 core",
+    "method_scope_label": "official_method_custom_stress",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_safiron_official_stress_phase3.json",
+      "analysis/results/tool_effect_fragmentation_counterfactual_phase4_safiron.json"
+    ],
+    "paper_section": "Official checkpoint counterfactual results",
+    "row_count": 528,
+    "source_data": [
+      "data/tool_effect_fragmentation/counterfactual_core_phase4.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/phase3_official_stress.py",
+      "src/experiments/tool_effect_fragmentation/phase4_inference.py"
+    ],
+    "stage": "Phase 3/4"
+  },
+  {
+    "case_count": 528,
+    "claim_boundary": "Shows capability gaps under controlled counterfactual axes.",
+    "evidence_type": "strict paired counterfactual core",
+    "experiment_name": "Phase 4 counterfactual tool-effect lattice",
+    "group_count": 24,
+    "human_audited": true,
+    "known_limitations": "Controlled custom stress, not deployed-agent safety validation.",
+    "label_status": "human-audited after Phase 6 corrected-label update",
+    "method_scope_label": "audited_custom_stress",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_counterfactual_phase4.json"
+    ],
+    "paper_section": "Counterfactual stress design and main results",
+    "row_count": 528,
+    "source_data": [
+      "data/tool_effect_fragmentation/counterfactual_core_phase4.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/run_tool_effect_fragmentation_phase4.py"
+    ],
+    "stage": "Phase 4"
+  },
+  {
+    "case_count": 168,
+    "claim_boundary": "Topology stability is not equivalent to effect-level safety.",
+    "evidence_type": "released DAG prompt/parser component",
+    "experiment_name": "Phase 5 IPIGuard DAG component stress",
+    "group_count": 24,
+    "human_audited": true,
+    "known_limitations": "DAG topology has no realized-effect decision interface.",
+    "label_status": "custom stress labels; semantic-layer claims separated",
+    "method_scope_label": "original_component_custom_stress",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_ipiguard_phase5.json",
+      "analysis/results/tool_effect_fragmentation_ipiguard_component_phase5.jsonl"
+    ],
+    "paper_section": "Structured defense analysis",
+    "row_count": 168,
+    "source_data": [
+      "data/tool_effect_fragmentation/ipiguard_counterfactual_phase5.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/run_tool_effect_fragmentation_phase5.py",
+      "src/experiments/tool_effect_fragmentation/phase5_ipiguard_component_worker.py"
+    ],
+    "stage": "Phase 5"
+  },
+  {
+    "case_count": 54,
+    "claim_boundary": "Misses are custom structural stress findings, not general CaMeL failure claims.",
+    "evidence_type": "generic SecurityPolicyEngine component",
+    "experiment_name": "Phase 5 CaMeL structural policy component stress",
+    "group_count": 6,
+    "human_audited": true,
+    "known_limitations": "Component stress, not full CaMeL generated-code benchmark.",
+    "label_status": "corrected human-audited labels; no_side_effect_tool fixed",
+    "method_scope_label": "original_component_custom_stress",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_camel_phase5.json",
+      "analysis/results/tool_effect_fragmentation_camel_miss_decomposition_phase6.json"
+    ],
+    "paper_section": "Structured defense analysis and failure taxonomy",
+    "row_count": 54,
+    "source_data": [
+      "data/tool_effect_fragmentation/camel_structural_counterfactual_phase5.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/phase5_camel.py",
+      "src/experiments/tool_effect_fragmentation/phase5_camel_component_worker.py"
+    ],
+    "stage": "Phase 5/6"
+  },
+  {
+    "case_count": 4590,
+    "claim_boundary": "Do not use as defense-effectiveness evidence.",
+    "evidence_type": "full local-model pipeline feasibility",
+    "experiment_name": "Phase 5 IPIGuard / CaMeL original-pipeline local-model feasibility",
+    "group_count": null,
+    "human_audited": false,
+    "known_limitations": "Local GGUF model has low no-defense attack success and low utility.",
+    "label_status": "pipeline feasibility/status, not main safety labels",
+    "method_scope_label": "original_pipeline_local_model",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_phase5_unified.json"
+    ],
+    "paper_section": "Reproducibility and limitations",
+    "row_count": 4590,
+    "source_data": [
+      "data/tool_effect_fragmentation/ipiguard_phase5_traces.jsonl",
+      "data/tool_effect_fragmentation/camel_phase5_traces.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/phase5_pipeline_worker.py",
+      "src/experiments/tool_effect_fragmentation/phase5_original_runner.py"
+    ],
+    "stage": "Phase 5"
+  },
+  {
+    "case_count": 222,
+    "claim_boundary": "Model-generated labels alone do not satisfy this gate.",
+    "evidence_type": "primary and secondary human audit",
+    "experiment_name": "Phase 6 human audit",
+    "group_count": null,
+    "human_audited": true,
+    "known_limitations": "Audit validates custom-stress labels, not external deployment validity.",
+    "label_status": "corrected labels pass upgrade gate",
+    "method_scope_label": "audited_custom_stress",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_human_audit_phase6.json"
+    ],
+    "paper_section": "Human audit",
+    "row_count": 278,
+    "source_data": [
+      "data/tool_effect_fragmentation/human_audit_packet_phase6.jsonl",
+      "data/tool_effect_fragmentation/human_audit_secondary_phase6.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/phase6_core.py"
+    ],
+    "stage": "Phase 6"
+  },
+  {
+    "case_count": 240,
+    "claim_boundary": "Supports missing semantic layer diagnosis, not solved safety.",
+    "evidence_type": "semantic-layer diagnostic over IPIGuard DAG inputs",
+    "experiment_name": "Phase 6 IPIGuard semantic-layer comparison",
+    "group_count": 24,
+    "human_audited": true,
+    "known_limitations": "Added mapper is not original IPIGuard and not a deployable guard.",
+    "label_status": "audited custom-stress expected decisions; oracle row separated",
+    "method_scope_label": "diagnostic",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_ipiguard_semantic_phase6.json"
+    ],
+    "paper_section": "Semantic-layer analysis",
+    "row_count": 1200,
+    "source_data": [
+      "data/tool_effect_fragmentation/ipiguard_semantic_core_phase6.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/run_tool_effect_fragmentation_phase6.py",
+      "src/experiments/tool_effect_fragmentation/phase6_semantic_worker.py"
+    ],
+    "stage": "Phase 6"
+  },
+  {
+    "case_count": 54,
+    "claim_boundary": "Do not claim CaMeL generally fails.",
+    "evidence_type": "corrected-label component miss decomposition",
+    "experiment_name": "Phase 6 CaMeL unsafe miss decomposition",
+    "group_count": 6,
+    "human_audited": true,
+    "known_limitations": "Component-level custom stress; effect/resource/authorization capabilities not directly evaluable.",
+    "label_status": "corrected human-audited labels",
+    "method_scope_label": "audited_custom_stress",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_camel_miss_decomposition_phase6.json"
+    ],
+    "paper_section": "Structured defense failure taxonomy",
+    "row_count": 54,
+    "source_data": [
+      "data/tool_effect_fragmentation/camel_structural_counterfactual_phase5.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/run_tool_effect_fragmentation_phase6.py"
+    ],
+    "stage": "Phase 6"
+  },
+  {
+    "case_count": 528,
+    "claim_boundary": "Do not present oracle/upper-bound rows as deployable methods.",
+    "evidence_type": "non-oracle evidence diagnostic plus oracle upper bounds",
+    "experiment_name": "Non-oracle evidence verifier and oracle / upper-bound comparisons",
+    "group_count": 24,
+    "human_audited": true,
+    "known_limitations": "Non-oracle evidence has limited coverage; oracle rows are not deployable.",
+    "label_status": "audited custom-stress labels; oracle rows separated",
+    "method_scope_label": "diagnostic_or_upper_bound",
+    "output_artifacts": [
+      "analysis/results/tool_effect_fragmentation_evidence_phase3.json",
+      "analysis/results/tool_effect_fragmentation_counterfactual_phase4.json"
+    ],
+    "paper_section": "Evidence grounding and upper-bound analysis",
+    "row_count": null,
+    "source_data": [
+      "data/tool_effect_fragmentation/counterfactual_core_phase4.jsonl"
+    ],
+    "source_scripts": [
+      "src/experiments/tool_effect_fragmentation/phase3_evidence.py",
+      "src/experiments/tool_effect_fragmentation/phase4_methods.py"
+    ],
+    "stage": "Phase 3/4/6"
+  }
+]

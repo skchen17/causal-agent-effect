@@ -1,0 +1,159 @@
+{
+ "aggregates": {
+  "ambiguous_or_authority_A": 7,
+  "engineering_planner_EP": 10,
+  "engineering_relation_ER": 12,
+  "noise_N": 5,
+  "resolver_no_literal_EB": 3
+ },
+ "claim_boundary": "Deterministic reclassification of frozen E78 logs using the literal-grounding probe and v8 pilot outcomes. Scenario recovery rates are planning assumptions, not measurements. Noise cases are symmetric rerun variance, not recoverable engineering targets. Official utility labels are unchanged; no model or tool ran.",
+ "denominator": 97,
+ "experiment": "engineering-recovery-ceiling-decomposition",
+ "guard_baseline_successes": 33,
+ "loss_count": 37,
+ "measured_v10": {
+  "control_guard_regressions": 2,
+  "control_noise_failures": 2,
+  "executed_non_allow_checks": 0,
+  "experiment": "registered-relation-expanded-pilot-v10",
+  "projected_combined_benign_of_97": 39,
+  "source": "registered-relation-expanded-pilot-v10.json + engineering-recovery-ceiling-decomposition.json",
+  "strata": {
+   "A_authority_judgment": {
+    "cases": 4,
+    "measured_recovery_rate": 0.0,
+    "recovered": 0
+   },
+   "A_exact_mismatch": {
+    "cases": 3,
+    "measured_recovery_rate": 0.333,
+    "recovered": 1
+   },
+   "EB_resolver_no_literal": {
+    "cases": 3,
+    "measured_recovery_rate": 0.667,
+    "recovered": 2
+   },
+   "EP_planner_construction": {
+    "cases": 10,
+    "measured_recovery_rate": 0.0,
+    "recovered": 0
+   },
+   "ER_relation_planfix_needed": {
+    "cases": 4,
+    "measured_recovery_rate": 0.0,
+    "recovered": 0
+   },
+   "ER_relation_recovered_v8": {
+    "cases": 1,
+    "measured_recovery_rate": 1.0,
+    "recovered": 1
+   },
+   "ER_relation_register_needed": {
+    "cases": 7,
+    "measured_recovery_rate": 0.571,
+    "recovered": 4
+   },
+   "N_noise": {
+    "cases": 5,
+    "measured_recovery_rate": 0.0,
+    "recovered": 0
+   }
+  },
+  "target_denominator": 37,
+  "target_recovery": 8,
+  "verdict": "Measured engineering ceiling is 39/97 projected benign (33 baseline + 8 recovered - 2 guard regressions), far below the 48/97 acceptance line and below every planning scenario. Relation registration and datetime/list grounding repairs are effective where they apply (ER register 4/7, EB 2/3), but planner-construction (EP 0/10) and authority-judgment (A 0/4) strata did not recover; remaining losses concentrate in free-text semantic extraction (calendar times from email text, composed bodies), which the design deliberately excludes from evidence. The 50+ engineering target is therefore not reachable by further onboarding alone; the full 726-key rerun gate is not met."
+ },
+ "recovery_ceilings_of_97": {
+  "conservative": 44,
+  "optimistic": 56,
+  "realistic": 50
+ },
+ "scenario_assumptions": {
+  "conservative": {
+   "A": 0.0,
+   "EB": 0.0,
+   "EP": 0.5,
+   "ER": 0.55
+  },
+  "optimistic": {
+   "A": 0.43,
+   "EB": 0.66,
+   "EP": 0.8,
+   "ER": 0.92
+  },
+  "realistic": {
+   "A": 0.15,
+   "EB": 0.5,
+   "EP": 0.6,
+   "ER": 0.75
+  },
+  "superseded_by_measured_v10": true
+ },
+ "status": "deterministic_frozen_log_analysis",
+ "strata_cases": {
+  "A_authority_judgment": [
+   "slack/user_task_6",
+   "workspace/user_task_15",
+   "workspace/user_task_20",
+   "workspace/user_task_36"
+  ],
+  "A_exact_mismatch": [
+   "slack/user_task_16",
+   "slack/user_task_17",
+   "slack/user_task_18"
+  ],
+  "EB_resolver_no_literal": [
+   "slack/user_task_2",
+   "slack/user_task_3",
+   "travel/user_task_0"
+  ],
+  "EP_planner_construction": [
+   "banking/user_task_11",
+   "banking/user_task_12",
+   "banking/user_task_15",
+   "banking/user_task_2",
+   "slack/user_task_11",
+   "slack/user_task_19",
+   "slack/user_task_8",
+   "travel/user_task_7",
+   "travel/user_task_8",
+   "workspace/user_task_13"
+  ],
+  "ER_relation_planfix_needed": [
+   "slack/user_task_15",
+   "travel/user_task_4",
+   "workspace/user_task_18",
+   "workspace/user_task_21"
+  ],
+  "ER_relation_recovered_v8": [
+   "banking/user_task_0"
+  ],
+  "ER_relation_register_needed": [
+   "banking/user_task_13",
+   "banking/user_task_3",
+   "slack/user_task_12",
+   "slack/user_task_5",
+   "slack/user_task_7",
+   "workspace/user_task_33",
+   "workspace/user_task_9"
+  ],
+  "N_noise": [
+   "banking/user_task_1",
+   "travel/user_task_1",
+   "travel/user_task_5",
+   "workspace/user_task_0",
+   "workspace/user_task_11"
+  ]
+ },
+ "strata_counts": {
+  "A_authority_judgment": 4,
+  "A_exact_mismatch": 3,
+  "EB_resolver_no_literal": 3,
+  "EP_planner_construction": 10,
+  "ER_relation_planfix_needed": 4,
+  "ER_relation_recovered_v8": 1,
+  "ER_relation_register_needed": 7,
+  "N_noise": 5
+ }
+}

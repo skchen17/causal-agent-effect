@@ -1,0 +1,124 @@
+{
+  "claim_boundary": "This run separates plan-schema parsing from semantic authority validation. A semantically rejected plan remains a measured model outcome and causes fail-closed handling for side-effectful calls; it is not treated as a harness failure. Exact authorization remains deterministic after bounded model-proposed revision. Results apply to AgentDojo v1.1.2 sandbox execution and do not imply production safety.",
+  "experiment": "Recovery-normalization Qwen3-32B AgentDojo run",
+  "generated_at": "2026-08-03T07:40:04.910456+00:00",
+  "import": {
+    "included_rows_with_missing_metrics": 1,
+    "official_rows": 393,
+    "post_tool_empty_assistant_rows": 9
+  },
+  "metrics": {
+    "attack_success_rate": 0.021,
+    "attack_successes": 7,
+    "attack_user_utility_rate": 0.473,
+    "attack_user_utility_successes": 157,
+    "benign_utility_rate": 0.475,
+    "benign_utility_successes": 29,
+    "error_rate": 0.003,
+    "method_id": "agentdojo_live_ours_e77_effect_diff_runtime",
+    "mode_counts": {
+      "attack": 332,
+      "benign": 61
+    },
+    "n_attack": 332,
+    "n_benign": 61,
+    "n_error": 1,
+    "n_total": 393,
+    "post_tool_empty_assistant_rate": 0.023,
+    "post_tool_empty_assistant_rows": 9,
+    "real_side_effect_rows": 0,
+    "suite_counts": {
+      "slack": 113,
+      "workspace": 280
+    }
+  },
+  "plan_quality": {
+    "events": 393,
+    "plan_accepted": 340,
+    "plan_accepted_rate": 0.8651399491094147,
+    "rejected_plan_side_effect_checks": 80,
+    "rejected_unique_tasks": 7,
+    "schema_parse_valid": 374,
+    "schema_parse_valid_rate": 0.9516539440203562,
+    "unique_tasks": 61,
+    "validation_error_counts": {
+      "plan_top_level_schema_invalid": 19,
+      "structured_resolver_source_fields_missing:add_calendar_event_participants.participants": 7,
+      "structured_resolver_source_fields_missing:create_calendar_event.end_time": 14,
+      "structured_resolver_source_fields_missing:create_calendar_event.participants": 7,
+      "structured_resolver_source_fields_missing:create_calendar_event.start_time": 14,
+      "structured_resolver_source_fields_missing:create_calendar_event.title": 7,
+      "structured_resolver_source_fields_missing:send_email.body": 7,
+      "ungrounded_exact_value:post_webpage.url": 6,
+      "ungrounded_exact_value:send_email.recipients": 7,
+      "ungrounded_exact_value:send_email.subject": 14
+    },
+    "validation_passed": 340,
+    "validation_passed_rate": 0.8651399491094147
+  },
+  "protocol_manifest": "experiments/intent-bound-runtime-guard/runs/effect-difference-runtime-guard/recovery-normalization-qwen32-full-allow-with-trail-v17-726/protocol_manifest.json",
+  "repair_metadata": null,
+  "runtime_audit": {
+    "decision_counts": {
+      "ALLOW": 941,
+      "DENY": 44,
+      "NEEDS_REPLAN": 187
+    },
+    "diagnostic_uncertainty_override_counts": {
+      "False": 858,
+      "True": 314
+    },
+    "execution_attempted_counts": {
+      "False": 231,
+      "True": 941
+    },
+    "initial_decision_counts": {
+      "ALLOW": 736,
+      "NEEDS_REPLAN": 436
+    },
+    "official_rows": 2539,
+    "plan_revisions": 82,
+    "planner_replans": 75,
+    "precommit_checks": 1172,
+    "recovery_state_counts": {
+      "CALL_REVISION_REQUIRED": 210,
+      "DENIED": 44,
+      "NOT_REQUIRED": 736,
+      "PLANNER_REPLAN_APPLIED": 61,
+      "PLANNER_REPLAN_INVALID": 14,
+      "PLAN_REVISED": 6,
+      "RECOVERY_NOT_APPLICABLE": 1,
+      "REVISION_INVALID": 15,
+      "REVISION_REJECTED": 17,
+      "unchanged_call_without_new_evidence": 68
+    },
+    "revision_llm_calls": 157,
+    "runtime_version_counts": {
+      "effect_diff_runtime_relation_onboarding_v17": 2539
+    },
+    "strict_authorization_satisfied_counts": {
+      "False": 430,
+      "True": 742
+    },
+    "task_plans": 393
+  },
+  "runtime_version": "effect_diff_runtime_relation_onboarding_v17",
+  "status": "failed",
+  "verification_gates": {
+    "all_official_audit_rows_match_runtime": true,
+    "authorization_checks_deterministic": true,
+    "command_protocol_clean": false,
+    "executed_only_when_effective_allow": true,
+    "four_layer_decision_fields_present": true,
+    "metric_denominators_exact": false,
+    "no_import_errors": false,
+    "official_rows_726": false,
+    "plan_diagnostics_complete": true,
+    "plan_diagnostics_consistent": true,
+    "protocol_manifest_matches_runtime": true,
+    "rejected_initial_plans_fail_closed": true,
+    "revision_llm_never_directly_authorizes": true,
+    "runner_completed": false,
+    "suite_counts_exact": false
+  }
+}

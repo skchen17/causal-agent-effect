@@ -1,0 +1,82 @@
+[
+  {
+    "abstain": 0.0827250608272506,
+    "authorization_accuracy": 0.84765625,
+    "coverage": 0.9172749391727494,
+    "effect_accuracy": 0.8357664233576643,
+    "method": "e48_reproduction_full_guard",
+    "provenance_accuracy": 1.0,
+    "resource_accuracy": 0.7262773722627737,
+    "safe_false_deny": 0.06493506493506493,
+    "scope": "main_reproduction",
+    "unsafe_pre_allow": 0.03611111111111111
+  },
+  {
+    "abstain": 0.07692307692307693,
+    "claim_scope": "robustness_audit",
+    "coverage": 0.923076923076923,
+    "method": "source_balanced_fixed_policy_mean",
+    "safe_false_deny": 0.05894736842105263,
+    "unsafe_pre_allow": 0.051351351351351354
+  },
+  {
+    "abstain": 0.2222222222222222,
+    "authorization_accuracy": null,
+    "coverage": 0.7777777777777778,
+    "effect_accuracy": 0.6481481481481481,
+    "method": "strict_loso_camel",
+    "provenance_accuracy": 1.0,
+    "resource_accuracy": 0.8888888888888888,
+    "safe_false_deny": 0.0,
+    "scope": "LOSO",
+    "unsafe_pre_allow": 0.0
+  },
+  {
+    "abstain": 0.10833333333333334,
+    "authorization_accuracy": 0.7958333333333333,
+    "coverage": 0.8916666666666667,
+    "effect_accuracy": 0.8791666666666667,
+    "method": "strict_loso_ipiguard",
+    "provenance_accuracy": null,
+    "resource_accuracy": 0.675,
+    "safe_false_deny": 0.08333333333333333,
+    "scope": "LOSO",
+    "unsafe_pre_allow": 0.125
+  },
+  {
+    "abstain": 0.056818181818181816,
+    "authorization_accuracy": 0.8712121212121212,
+    "coverage": 0.9431818181818182,
+    "effect_accuracy": 0.8352272727272727,
+    "method": "strict_loso_phase4",
+    "provenance_accuracy": null,
+    "resource_accuracy": 0.7329545454545454,
+    "safe_false_deny": 0.06060606060606061,
+    "scope": "LOSO",
+    "unsafe_pre_allow": 0.015151515151515152
+  },
+  {
+    "abstain": 0.07916666666666666,
+    "authorization_accuracy": 0.4125,
+    "coverage": 0.9208333333333333,
+    "effect_accuracy": 0.8958333333333334,
+    "method": "resource_authorization_stress",
+    "provenance_accuracy": null,
+    "resource_accuracy": 0.9083333333333333,
+    "safe_false_deny": 0.0,
+    "scope": "evaluation_only_controlled_stress",
+    "unsafe_pre_allow": 0.6166666666666667
+  },
+  {
+    "abstain": 0.45535714285714285,
+    "authorization_accuracy": 0.4375,
+    "coverage": 0.5446428571428571,
+    "effect_accuracy": 0.4375,
+    "method": "expanded_control_provenance_stress",
+    "provenance_accuracy": 1.0,
+    "resource_accuracy": 0.6875,
+    "safe_false_deny": 0.1875,
+    "scope": "evaluation_only_controlled_stress",
+    "unsafe_pre_allow": 0.0
+  }
+]

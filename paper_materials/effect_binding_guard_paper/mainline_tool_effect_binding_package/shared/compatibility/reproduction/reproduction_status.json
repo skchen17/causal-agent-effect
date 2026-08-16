@@ -1,0 +1,177 @@
+{
+  "claim_boundaries": {
+    "B8": {
+      "adapter": "B8_ToolSafe_TSGuard_style_comparable_local_adapter",
+      "claim_scope": "comparable local adapter under this artifact's label-hidden deployable input view; not original benchmark reproduction",
+      "safe_wording": "ToolSafe/TS-Guard-style comparable local adapter under label-hidden deployable-input restrictions; not original benchmark reproduction"
+    },
+    "B8_official_E67": {
+      "claim_scope": "released checkpoints on adapted common-input stress view; not original benchmark reproduction",
+      "safe_wording": "released checkpoints on this paper's adapted common-input stress view; not original ToolSafe, TS-Guard, or Safiron benchmark reproduction"
+    },
+    "E60": {
+      "claim_boundary": "The paper may describe E60 only as an independently specified held-out contract; strict independent authorship/review remains externally uncertified.",
+      "safe_wording": "We evaluate on a 480-case independently specified held-out contract with different tool names, argument fields, schema family, aliases, and authorization policies from E55.",
+      "strict_authorship_status": "blocked-by-external-human-review"
+    },
+    "E61_external": {
+      "annotation_boundary": "Labels are metadata-derived from saved trace fields; atoms are rule-derived sidecar annotations, not independent human gold annotations.",
+      "result_annotation_boundary": "Labels are derived from saved trace metadata; atoms are rule-derived sidecar annotations, not independent human labels.",
+      "safe_wording": "saved external replay subset with metadata-derived labels and rule-derived atom sidecars; not real deployed traces or human-gold annotations",
+      "source_type": "saved AgentDojo-style/IPIGuard replay traces"
+    },
+    "E65_real_LLM_judge": {
+      "claim_scope": "real local LLM judge baseline; label-hidden deployable input view; no tool execution",
+      "model": "Qwen3.5-9B-DeepSeek-V4-Flash-Q4_K_M.gguf",
+      "safe_wording": "real local LLM judge baseline over label-hidden deployable inputs; no tool execution and no deployed-safety claim"
+    },
+    "E66_real_LLM_atom_extractor": {
+      "claim_scope": "real local LLM atom extractor plus reference authorizer; label-hidden deployable input view",
+      "model": "Qwen3.5-9B-DeepSeek-V4-Flash-Q4_K_M.gguf",
+      "safe_wording": "real local LLM atom extraction followed by the reference authorizer; extraction evidence, not a production guarantee"
+    }
+  },
+  "n_rows": 573,
+  "outputs": [
+    "reproduction/all_main_tables.json",
+    "reproduction/all_main_tables.csv",
+    "reproduction/all_main_tables.md",
+    "reproduction/claim_to_source_map.json",
+    "reproduction/claim_to_source_map.md"
+  ],
+  "required_artifacts": [
+    {
+      "exists": true,
+      "path": "evaluation/e60_heldout_contract/e60_artifact_level_review.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e60_heldout_contract/deployable_inputs.jsonl"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e60_heldout_contract/gold_atoms.jsonl"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e60_heldout_contract/gold_labels.jsonl"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e60_heldout_contract/leakage_report.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e60_heldout_contract/results_e60.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e61_realistic_trace_replay/external_trace_subset/raw_manifest.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e61_realistic_trace_replay/external_trace_subset/trace_manifest_external.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e61_realistic_trace_replay/external_trace_subset/leakage_report_external.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e61_realistic_trace_replay/external_trace_subset/results_external.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e61_realistic_trace_replay/external_trace_subset/results_combined_external_available.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_released_guardrail/results_b8_e55.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_released_guardrail/results_b8_e60.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_released_guardrail/results_b8_e61_artifact.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_released_guardrail/results_b8_e61_external.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e65_real_llm_judge/results_e65.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e65_real_llm_judge/results_e55_local_qwen.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e65_real_llm_judge/results_e60_local_qwen.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e65_real_llm_judge/results_e61_artifact_local_qwen.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e65_real_llm_judge/results_e61_external_local_qwen.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e66_real_llm_atom_extractor/results_e66.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e66_real_llm_atom_extractor/results_e60_local_qwen_atoms.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e66_real_llm_atom_extractor/results_e61_artifact_local_qwen_atoms.json"
+    },
+    {
+      "exists": true,
+      "path": "evaluation/e66_real_llm_atom_extractor/results_e61_external_local_qwen_atoms.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_official_checkpoints/results_b8_official.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_official_checkpoints/results_ts_guard_e55.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_official_checkpoints/results_ts_guard_e60.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_official_checkpoints/results_ts_guard_e61_artifact.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_official_checkpoints/results_ts_guard_e61_external.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_official_checkpoints/results_safiron_e55.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_official_checkpoints/results_safiron_e60.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_official_checkpoints/results_safiron_e61_artifact.json"
+    },
+    {
+      "exists": true,
+      "path": "baselines/b8_official_checkpoints/results_safiron_e61_external.json"
+    }
+  ],
+  "status": "passed"
+}

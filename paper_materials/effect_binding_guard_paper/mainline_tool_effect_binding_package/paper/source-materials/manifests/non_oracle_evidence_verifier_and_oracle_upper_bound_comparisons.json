@@ -1,0 +1,25 @@
+{
+  "case_count": 528,
+  "claim_boundary": "Do not present oracle/upper-bound rows as deployable methods.",
+  "evidence_type": "non-oracle evidence diagnostic plus oracle upper bounds",
+  "experiment_name": "Non-oracle evidence verifier and oracle / upper-bound comparisons",
+  "group_count": 24,
+  "human_audited": true,
+  "known_limitations": "Non-oracle evidence has limited coverage; oracle rows are not deployable.",
+  "label_status": "audited custom-stress labels; oracle rows separated",
+  "method_scope_label": "diagnostic_or_upper_bound",
+  "output_artifacts": [
+    "analysis/results/tool_effect_fragmentation_evidence_phase3.json",
+    "analysis/results/tool_effect_fragmentation_counterfactual_phase4.json"
+  ],
+  "paper_section": "Evidence grounding and upper-bound analysis",
+  "row_count": null,
+  "source_data": [
+    "data/tool_effect_fragmentation/counterfactual_core_phase4.jsonl"
+  ],
+  "source_scripts": [
+    "src/experiments/tool_effect_fragmentation/phase3_evidence.py",
+    "src/experiments/tool_effect_fragmentation/phase4_methods.py"
+  ],
+  "stage": "Phase 3/4/6"
+}

@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Same-model DeepSeek AgentDojo attack comparison ($N=629$). AU is
+utility under attack. The scope-aligned comparison uses $N=608$ after excluding
+one disclosed repair case and 20 output-only goals.}
+\label{tab:deepseek-runtime}
+\begin{tabular}{lrr}
+\toprule
+Method & AU & Attack success \\
+\midrule
+No guard & 76.3\% & 1.0\% \\
+Repeat user prompt & 78.5\% & 0.8\% \\
+Spotlighting & 75.8\% & 0.0\% \\
+\sys{} & 72.0\% & 0.0\% \\
+\midrule
+\multicolumn{3}{l}{Scope aligned: no guard 1.0\%; \sys{} 0.0\% ($p=.0156$).}\\
+\bottomrule
+\end{tabular}
+\end{table}

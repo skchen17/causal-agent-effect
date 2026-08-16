@@ -1,0 +1,1 @@
+E47-E57 provide controlled custom-stress evidence that stable agent safety decisions require binding realized effects to resources, authorization context, provenance/control source, and operation mode. The evidence supports a measurement framework and local pre-commit prototype, not production safety.

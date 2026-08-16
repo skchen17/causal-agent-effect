@@ -1,0 +1,56 @@
+{
+  "artifact_hashes": {
+    "authorization-decisions.jsonl": "8e5a5b763e25fc9c55ba9d34a11036f2646817f9313a3dbc1b54ac892ed1d558",
+    "claim-boundary.md": "658a6be8606557d01d9cc507eebc71a48c239db4c358fc208f0f08654cfee7af",
+    "claim-to-source.md": "ea2f58592863d912a1ae898e038d26dfb2a55ad8750921b2a4d3b7d27ddf027b",
+    "direct-policy-metrics.csv": "3e4c2713f1093d0340bd93d53ab0cdb560a4e5ece3e538011fc9b1da005ffa76",
+    "full-scale-authorization-report.json": "9afdd87e42b23ec890f0cfe24b9e1056b34b0acc9ba3868ccc74efdaa2383f32",
+    "full-scale-authorization-report.md": "7d6048c8779b650fe73408b400854de01e4efbc90fb100af41e760d08ad4fe1b",
+    "heldout-source-executions.jsonl": "ce734c0cb9d14c1fe63acb9c7c224b72772af36e31efd6cf0ac61b90813459a2",
+    "policy-separating-pair-audit.jsonl": "f563b408026d0d7d23802d3b1e0f7a15ce685a074aeef7c127ecaa5ff23c4bda",
+    "registration-pair-validation.jsonl": "05cee81dcd9c1f350a959cd3798f9adae424af0a5e4e3376ecd3cc9cb2fb3e21",
+    "registration-source-executions.jsonl": "25afbd232db0f3ef7565ccaa6cab9bda69d4434479b39e6e76279904e1650f51",
+    "representation-capacity.csv": "1abe48497ec99ccb34f2080b941c33898b83bc05a1512aa028b2ce255ed26d0a",
+    "representation-collision-witnesses.jsonl": "3c89cfce996e778585a68032b8b3a838384dd4220a483cf32942ea3cf8dd49d2",
+    "table_full_scale_deployment_authorization.tex": "52e41d91a754b6bebfabeeab90aee32947d809cbc36ab4b4dfe86ad6236827ca"
+  },
+  "commands": [
+    "python shared/compatibility/scripts/run_full_scale_deployment_authorization.py --mode full",
+    "PYTHONPATH=. python -m pytest shared/compatibility/tests/tests/test_full_scale_deployment_authorization.py -q"
+  ],
+  "counts": {
+    "authorization_decisions": 768,
+    "heldout_contexts": 192,
+    "registration_contexts": 144
+  },
+  "experiment": "full_scale_deployment_authorization_representation",
+  "gates": {
+    "all_evaluation_contexts_retained": true,
+    "all_source_calls_execute_in_copied_state": true,
+    "coarse_views_have_policy_mixed_cells": true,
+    "frozen_inputs_match": true,
+    "heldout_descriptor_exact_set_match": true,
+    "heldout_policy_pairs_are_separating": true,
+    "no_silent_decision_drops": true,
+    "raw_arguments_have_state_dependent_collisions": true,
+    "registration_descriptor_exact_set_match": true,
+    "registration_relation_accuracy": true,
+    "typed_direct_full_accuracy": true,
+    "typed_direct_full_coverage": true,
+    "typed_direct_zero_false_denial": true,
+    "typed_direct_zero_unsafe_pre_allow": true,
+    "typed_has_no_policy_mixed_cells": true,
+    "typed_resolves_state_dependent_pairs": true
+  },
+  "generated_at": "2026-08-14T14:55:40.487506+00:00",
+  "input_hashes": {
+    "core_sha256": "57bd82bae4b4625e8adf65ea0ce35b4c997d72129469a276b34bf8345142a81e",
+    "descriptor_manifest_sha256": "bab439f5ff06cdcfe554386abc5cadbf77fae15ae164ae451c04c9ee9bd7603e",
+    "heldout_contexts_sha256": "f12fa3bb26309ee0a70e967013081b1ddecb5c34f6b2b016fb40d5fd093b7f07",
+    "policy_manifests_sha256": "1ed14cf3234379f2992ba1f7e084c2854614b81117236b9f6c57acfe903a294d",
+    "registration_counterfactuals_sha256": "6b999016989dc82791a15e1420e9477f873172af1c5e8fc6986702af5d292919",
+    "runner_sha256": "45a8c353ad460fd19532d6138a7594acfba6b904ea0d057cdd92672a44246020"
+  },
+  "mode": "full",
+  "status": "passed"
+}

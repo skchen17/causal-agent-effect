@@ -1,0 +1,8 @@
+# E49 Claim Boundary
+
+- E49 evaluates lightweight learned calibration over E48 non-oracle tuple features on controlled custom stress artifacts.
+- The main model excludes construction metadata, source metadata, audit status, gold tuple fields, oracle outputs, and E48 globally calibrated policy decisions.
+- Provenance hard overlay is part of the main method and is reported separately from learned risk fusion.
+- Resource/auth and control-provenance stress sets are evaluation-only and are not used for training or threshold selection.
+- Results do not establish production safety, a complete permission system, original-paper benchmark reproduction, or real deployed-agent readiness.
+- If learned fusion does not improve over the E48 hard guard under source-balanced splits, the correct interpretation is calibration diagnostic evidence, not a solved guard.

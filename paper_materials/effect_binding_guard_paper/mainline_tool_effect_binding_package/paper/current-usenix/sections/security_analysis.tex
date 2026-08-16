@@ -1,0 +1,176 @@
+\section{Security Analysis}
+\label{sec:security-analysis}
+
+\subsection{Authorization Observability}
+
+For execution context $u$, let $\mu(u)$ be its committed effects and let
+$\gamma(u)$ contain policy-relevant metadata such as effect provenance.  The
+ideal commit view is $\omega(u)=(\mu(u),\gamma(u))$.  Each policy context
+$P\in\mathcal P$ induces an ideal decision $I_P(\omega(u))$.  Our main
+conformance experiment instantiates $P$ with resource ACLs, capabilities, and
+delegations; an earlier finite stress relation uses effect-set containment.
+The policy snapshot used for the check must also govern the commit.  A monitor
+sees $\rho(u)$ rather than $\omega(u)$; a descriptor instantiates
+$\rho_d(u)=A_{d_t}(u)$.
+
+Representation induces the observational equivalence relation
+$u\sim_\rho v$ exactly when $\rho(u)=\rho(v)$.  Every downstream authorizer
+whose call-dependent input is $\rho$ is constant within each such class.  The
+interface therefore upper-bounds the resolution of every downstream policy,
+independently of the policy language's sophistication.
+
+\begin{definition}[Authorization sufficiency]
+\label{def:authorization-equivalence}
+A representation $\rho$ is authorization-sufficient on domain $D$ for policy
+family $\mathcal P$ when
+\[
+ \rho(u)=\rho(v) \Longrightarrow
+ I_P(\omega(u))=I_P(\omega(v))
+\]
+for every $u,v\in D$ and $P\in\mathcal P$.
+\end{definition}
+
+This definition applies to every representation and is relative to the stated
+policy family. Changes that no admissible policy distinguishes may remain
+merged; any representation, including a typed-atom view, must separate every
+pair that the family decides differently.
+
+\begin{theorem}[Authorization-observability collision]
+\label{thm:representation-insufficiency}
+If $\rho$ is not authorization-sufficient, no deterministic monitor whose only
+call-dependent input is $\rho(u)$ can, even when given $P$, both allow every
+authorized context and reject every unauthorized context.
+\end{theorem}
+
+\paragraph{Proof sketch.}
+Insufficiency gives $u,v,P$ with equal representations and opposite ideal
+decisions.  The monitor must return the same decision for both.  Allowing
+admits the unauthorized member; denying or abstaining withholds the authorized
+member.
+
+For any fixed $P$, the number of authorized rows in a representation cell that
+also contains an unauthorized row is therefore a lower bound on false denial
+or abstention for every sound monitor over that view.  Tool-name, whole-call,
+and atom views are all subject to this result; an atom view is useful only when
+it preserves the distinctions required by the policy family.
+
+The theorem isolates the representation precondition that conventional policy
+correctness arguments assume.  Agent harnesses make that precondition directly
+testable because schemas, defaults, aliases, and pre-state jointly determine
+what a generated call commits, while downstream policy can act only on the
+interface exposed before commitment.
+
+The theorem exposes a precondition shared by ACL, capability, provenance, and
+model-based policy consumers. Our validation procedure makes that precondition
+executable and produces implementation-grounded counterexamples when it fails.
+
+\subsection{Executable Interface Falsification}
+
+An intervention $v=do_J(u)$ changes selected call fields, trusted provenance,
+or pre-state while holding the tool implementation fixed.  Source execution
+observes committed state changes; the trusted harness records policy-relevant
+provenance and control metadata.  Together they instantiate $\omega$ on the
+tested pair.
+
+\begin{proposition}[Counterfactual witness]
+\label{prop:mediation-gap}
+If $\rho(u)=\rho(v)$ but some $P\in\mathcal P$ satisfies
+$I_P(\omega(u))\ne I_P(\omega(v))$, then $\rho$ is insufficient on every domain
+containing $u$ and $v$.
+\end{proposition}
+
+The proposition makes counterfactual testing a falsification procedure.  An
+output-only change with unchanged $\omega$ is not a witness.  The same committed
+state reached under a different trusted provenance may be a witness when an
+admissible policy distinguishes that provenance.  Conversely, a representation
+change under a true semantic-invariant placebo indicates unnecessary
+sensitivity.
+
+Operationally, an effect witness plus a policy-separating witness becomes an
+interface failure certificate exactly when the candidate representation merges
+the pair. The source execution oracle, policy-separation oracle, and candidate representation supply
+three logically separate inputs to the test.
+
+For a finite domain, counterexample-guided refinement repeatedly splits a
+representation cell using a witnessed separating field or qualifier.  Call a
+cell \emph{policy-mixed} when it contains $u,v$ for which at least one
+$P\in\mathcal P$ gives different ideal decisions.
+
+\begin{proposition}[Finite refinement termination]
+\label{thm:finite-adequacy}
+On finite $D$, a refinement procedure that never merges cells can perform at
+most $|D|-1$ nonempty cell splits.  If each step separates a witnessed
+authorization collision and the procedure stops only when no policy-mixed cell
+remains, the resulting representation is authorization-sufficient on
+$(D,\mathcal P)$.
+\end{proposition}
+
+\paragraph{Proof sketch.}
+Every split strictly increases the number of nonempty cells, which is bounded
+by $|D|$.  At termination, equal representations imply membership in the same
+nonmixed cell.  By the definition of policy-mixed, their ideal decisions agree
+for every $P\in\mathcal P$.
+
+The proposition's contract includes $D$ and $\mathcal P$. Generated
+interventions define $D$, and unresolved interventions remain explicit in the
+validation record. Each accepted descriptor therefore carries the exact domain
+on which the adequacy result applies.
+
+\subsection{Conditional Consumer Composition}
+
+The representation results become a commit guarantee only when the descriptor,
+policy, and enforcement path satisfy separate obligations.  Let $J_P$ be the
+ideal policy predicate expressed over a descriptor's atom view.
+
+\begin{proposition}[Conditional interface consumption]
+\label{thm:conditional-atom-mediation}
+Assume four obligations for every reachable effectful call $u$.  First,
+descriptor fidelity gives $J_P(A_{d_t}(u))=I_P(\omega(u))$ for every admissible
+$P$.  Second, the authorizer returns \Allow{} only when
+$J_P(A_{d_t}(u))=1$.  Third, every effectful call is mediated before commit.
+Finally, the executor commits exactly the checked call under the same policy
+snapshot.  Then every allowed committed call satisfies $I_P(\omega(u))=1$.
+\end{proposition}
+
+\paragraph{Proof sketch.}
+Consider an allowed committed call $u$.  Complete mediation supplies a check
+for $u$, and authorizer soundness gives $J_P(A_{d_t}(u))=1$.  Descriptor
+fidelity therefore gives $I_P(\omega(u))=1$.  Call and policy-snapshot
+check--use consistency make this conclusion apply at commitment.
+
+This composition result separates interface fidelity from policy correctness.
+Counterfactual tests probe the first obligation, and our explicit-authority
+experiment checks the resulting interface under one shared ACL, capability,
+and delegation engine.  The AgentDojo integration below instantiates only a
+narrow provenance-origin policy over registered fields.
+
+\subsection{Integration Instance: Provenance-Origin Confinement}
+
+For the integration study, let $F(u)$ and $E(u)$ be the registered field values
+and effect kinds of call $u$.  Let $U_V(h),U_E(h)$ denote values and requests
+from provenance-marked untrusted evidence, and let $G_V(q),G_E(q)$ denote those
+grounded in the authenticated task.  The monitor allows only when
+\[
+  F(u)\cap U_V(h)\subseteq G_V(q)
+  \quad\text{and}\quad
+  E(u)\cap U_E(h)\subseteq G_E(q).
+\]
+
+\begin{corollary}[Conditional provenance-origin confinement]
+\label{thm:single-commit}
+If the descriptor, provenance adapter, and grounding relation are sound for the
+registered fields and effect kinds, and every committed call is exactly the
+call checked, then an allowed call contains no registered effect or value
+introduced solely by untrusted evidence outside the authenticated task.
+\end{corollary}
+
+\paragraph{Proof sketch.}
+Any violating value lies in $F(u)\cap U_V(h)$ but outside $G_V(q)$, contradicting
+the first condition; the same argument over $E(u)$ contradicts the second for
+an effect-only violation.  Exact mediation transfers the check to commitment.
+
+This corollary characterizes the integration policy.  The explicit-authority
+experiment evaluates ACL, capability, and delegation decisions separately;
+runtime audits here test mediation and check--use consistency.
+Appendix~\ref{app:formal-proofs} gives the complete definitions and proof
+details.

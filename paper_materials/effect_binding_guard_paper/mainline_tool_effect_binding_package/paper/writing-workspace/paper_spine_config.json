@@ -1,0 +1,26 @@
+{
+  "workflow": "rewrite_existing",
+  "scene": "conference",
+  "tier": "pro",
+  "output_language": "en",
+  "target_name": "USENIX Security Symposium 2027 Cycle 2",
+  "materials_dir": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package",
+  "draft_path": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/paper/current-usenix/main.tex",
+  "user_motivation": "Confirmed working motivation: the representation at an enforcement boundary induces equivalence classes over tool executions and therefore upper-bounds the distinctions available to every downstream authorization policy. The paper makes this authorization-observability obligation explicit and validates candidate interfaces through source-executed effect witnesses, independent policy-separating witnesses, and representation collisions. Typed effect atoms are one candidate interface; the narrow deterministic provenance-origin mediator is a separate integration case, not a complete ACL, delegation, quota, or general authority-envelope system.",
+  "official_urls": [
+    "https://www.usenix.org/conference/usenixsecurity27/call-for-papers/",
+    "https://www.usenix.org/conferences/author-resources/paper-templates"
+  ],
+  "special_requirements": [
+    "Treat E47--E50 and source-executed collision audits as problem and representation evidence; use E55-v2 only as historical controlled feasibility evidence.",
+    "Disclose that the current AgentDojo registry retains 67/67 fields and that field roles are lexical audit annotations rather than independently validated semantics.",
+    "Use C1f only as a bounded provenance-origin mediation case study; do not describe it as complete task authority, ACL, delegation, or quota enforcement.",
+    "Keep the technical body within 13 pages under the official USENIX template; references and appendices are excluded.",
+    "Include an Open Science Appendix and an anonymous reproducible artifact.",
+    "Every number must carry sample size or numerator/denominator and source artifact/key path where available.",
+    "Do not claim production safety, original-paper benchmark reproduction, unconditional complete mediation, or guarantees beyond tested contract and TCB assumptions."
+  ],
+  "word_output": "none",
+  "translation_package": "none",
+  "ui_language": "zh"
+}

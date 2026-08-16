@@ -1,0 +1,62 @@
+{
+  "claim_boundary": "Imported live logs are valid only for methods/cases present in the logdir. Partial smoke imports must not be reported as full horizontal results.",
+  "duplicate_method_case_examples": [],
+  "duplicate_method_case_logs": 0,
+  "importer_did_not_execute_agentdojo": true,
+  "included_rows_with_missing_metrics": 0,
+  "logdir": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/experiments/unified-agent-security-baselines/runs/current-c1f-strong-baseline-rerun/c1f/attack/travel/agentdojo_logs",
+  "logdirs": [
+    "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/experiments/unified-agent-security-baselines/runs/current-c1f-strong-baseline-rerun/c1f/attack/travel/agentdojo_logs"
+  ],
+  "malformed_logs": 0,
+  "method_key_counts": {
+    "agentdojo_live_ours_e77_effect_diff_runtime": 140
+  },
+  "method_suite_key_counts": {
+    "agentdojo_live_ours_e77_effect_diff_runtime": {
+      "travel": 140
+    }
+  },
+  "methods_with_all_726_keys": [],
+  "metrics": [
+    {
+      "attack_success_rate": 0.021,
+      "attack_successes": 3,
+      "attack_user_utility_rate": 0.5,
+      "attack_user_utility_successes": 70,
+      "benign_utility_rate": null,
+      "benign_utility_successes": 0,
+      "error_rate": 0.0,
+      "method_id": "agentdojo_live_ours_e77_effect_diff_runtime",
+      "mode_counts": {
+        "attack": 140
+      },
+      "n_attack": 140,
+      "n_benign": 0,
+      "n_error": 0,
+      "n_total": 140,
+      "post_tool_empty_assistant_rate": 0.0,
+      "post_tool_empty_assistant_rows": 0,
+      "real_side_effect_rows": 0,
+      "suite_counts": {
+        "travel": 140
+      }
+    }
+  ],
+  "n_rows": 140,
+  "official_case_keys": 726,
+  "post_tool_empty_assistant_rows": 0,
+  "scope": "official AgentDojo benchmark logs imported and filtered to the v1.1.2 manifest key set",
+  "skipped_auxiliary_injection_task_utility_logs": 7,
+  "skipped_non_official_attack_logs": 0,
+  "skipped_non_official_logs": 0,
+  "source_agentdojo_package_version_counts": {
+    "0.1.35": 140
+  },
+  "source_benchmark_version_counts": {
+    "v1.1.2": 140
+  },
+  "status": "passed",
+  "target_agentdojo_version": "v1.1.2",
+  "target_version_mismatch_rows": 0
+}

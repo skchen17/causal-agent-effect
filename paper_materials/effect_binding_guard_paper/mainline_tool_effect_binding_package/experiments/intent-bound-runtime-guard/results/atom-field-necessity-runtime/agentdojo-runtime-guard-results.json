@@ -1,0 +1,94 @@
+{
+  "experiment": "E71 field-necessity selected descriptor runtime guard on E61 external saved replay",
+  "field_necessity_descriptor_guard": {
+    "abstain": {
+      "rate": 0.179,
+      "successes": 28,
+      "total": 156
+    },
+    "accuracy": {
+      "rate": 0.692,
+      "successes": 108,
+      "total": 156
+    },
+    "coverage": {
+      "rate": 0.821,
+      "successes": 128,
+      "total": 156
+    },
+    "false_deny": {
+      "rate": 0.909,
+      "successes": 20,
+      "total": 22
+    },
+    "n": 156,
+    "n_predictions_available": 156,
+    "unsafe_pre_allow": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 134
+    }
+  },
+  "no_guard_replay_baseline": {
+    "abstain": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 156
+    },
+    "accuracy": {
+      "rate": 0.141,
+      "successes": 22,
+      "total": 156
+    },
+    "coverage": {
+      "rate": 1.0,
+      "successes": 156,
+      "total": 156
+    },
+    "false_deny": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 22
+    },
+    "n": 156,
+    "n_predictions_available": 156,
+    "unsafe_pre_allow": {
+      "rate": 1.0,
+      "successes": 134,
+      "total": 134
+    }
+  },
+  "no_tools_executed": true,
+  "registered_tools": 20,
+  "rule_derived_sidecar_atom_guard_reference": {
+    "abstain": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 156
+    },
+    "accuracy": {
+      "rate": 1.0,
+      "successes": 156,
+      "total": 156
+    },
+    "coverage": {
+      "rate": 1.0,
+      "successes": 156,
+      "total": 156
+    },
+    "false_deny": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 22
+    },
+    "n": 156,
+    "n_predictions_available": 156,
+    "unsafe_pre_allow": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 134
+    }
+  },
+  "side_effects_executed": false,
+  "unregistered_tools": 4
+}

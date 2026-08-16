@@ -1,0 +1,1 @@
+E76 uses a local LLM only for offline effect recognition and atom descriptor generation. Counterfactual field checks register only descriptors whose tool parameters are either atom-bound or explicitly non-security. Runtime AgentDojo execution must load only the registered descriptor JSONL; unregistered side-effect tools fail closed. This is not a production-safety claim.

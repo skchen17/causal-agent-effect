@@ -1,0 +1,27 @@
+{
+  "experiment": "E88",
+  "status": "dataset_ready_execution_queued",
+  "agentdojo_version": "v1.1.2",
+  "base_attack_pairs": 629,
+  "fixed_attack_families": 4,
+  "fixed_static_cases": 2516,
+  "benign_controls": 97,
+  "adaptive_strategy_case_pairs": 480,
+  "materialization_status": "passed",
+  "materialized_in_memory": 2516,
+  "materialization_errors": 0,
+  "raw_attack_text_persisted": false,
+  "model_calls_during_build": 0,
+  "external_side_effects": 0,
+  "security_evaluator": "official_environment_validator_or_explicit_post_state_relation",
+  "victim_execution_status": "not_executed",
+  "execution_queue": {
+    "service": "e88-agentdojo-staged.service",
+    "state": "waiting_for_existing_gpu_queue",
+    "smoke_cases": 80,
+    "smoke_methods": 2,
+    "full_methods": 8,
+    "minimum_active_attack_families": 2
+  },
+  "claim_boundary": "The dataset and attack templates are ready and validated; no E88 victim-model ASR or utility result is claimed."
+}

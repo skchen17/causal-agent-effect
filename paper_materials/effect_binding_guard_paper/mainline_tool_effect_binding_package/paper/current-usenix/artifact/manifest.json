@@ -1,0 +1,164 @@
+{
+  "artifact": "anonymous_usenix27_effect_binding_candidate",
+  "claim_boundary": "Paper-evidence readiness does not certify a released artifact. Release additionally requires an anonymous stable URL, a complete scrub, and reproduction in a clean environment.",
+  "generated_at": "2026-08-16T04:24:29.239116+00:00",
+  "paper_files": {
+    "claim_to_source": {
+      "path": "paper/current-usenix/claim_to_source.md",
+      "present": true,
+      "sha256": "f72df2535dd37024f2e65f44116ca6d778915f560111a33d82c9298c6e0f0e20"
+    },
+    "main_pdf": {
+      "path": "paper/current-usenix/main.pdf",
+      "present": true,
+      "sha256": "1b800becda8880b75d6962afcea78ebee7d11537c76c2bb104f6846df5788c2b"
+    },
+    "reference_verification": {
+      "path": "paper/current-usenix/reference_verification_report.json",
+      "present": true,
+      "sha256": "71d06f12597cdba2cb32933a513bcbe0d4f4136b8313ab8575e92dd3724630cb"
+    }
+  },
+  "release_gates": {
+    "anonymous_stable_url_inserted": false,
+    "clean_environment_reproduction_passed": false,
+    "full_artifact_credential_identity_path_scan_passed": false,
+    "paper_evidence_gates_passed": true
+  },
+  "required_evidence": {
+    "active_claim_reproduction": {
+      "gate_passed": true,
+      "path": "paper/current-usenix/reproduction/reproduction_status.json",
+      "present": true,
+      "sha256": "7a9251e709e3aa6008cd1c373939829ed07b7e3de2b02f1fb45dc5be5bfd0e37",
+      "status": "passed"
+    },
+    "agentlab_current_c1f": {
+      "gate_passed": true,
+      "path": "analysis/results/e79_agentlab_saved_transfer_current_pair_results.json",
+      "present": true,
+      "sha256": "504d4007a2c33a5fe6fece4ea72dbf977c5adadf05b5912967bd361103747d4a",
+      "status": "passed"
+    },
+    "authorization_interface_economy": {
+      "gate_passed": true,
+      "path": "experiments/human-authority-and-causal-validation/results/authorization-interface-economy/interface_economy_report.json",
+      "present": true,
+      "sha256": "8681acbc0b8d20e8d37041c91a59b610d66e45ef7b1d13cbb5d4e9ae12756ece",
+      "status": "passed"
+    },
+    "closed_loop_granularity_attribution": {
+      "gate_passed": true,
+      "path": "experiments/security-analysis-ablation-and-overhead/results/representation-closed-loop-attribution/closed-loop-attribution-report.json",
+      "present": true,
+      "sha256": "33011de63fd509070598367e41fddc3eaa5c7d6b5c55a09095442285a184b1e5",
+      "status": "passed"
+    },
+    "current_c1f_bounded_adaptive": {
+      "gate_passed": true,
+      "path": "experiments/adaptive-injection-benchmark/results/bounded-public-family-search-current-c1f/results.json",
+      "present": true,
+      "sha256": "807f3ee5e5f945302cf6cdebc77f9418ff2f11acb0f10334ce603b3dadca840d",
+      "status": "passed"
+    },
+    "current_c1f_closed_loop_four_view": {
+      "gate_passed": true,
+      "path": "experiments/security-analysis-ablation-and-overhead/results/c1f-closed-loop-four-view/closed-loop-four-view-report.json",
+      "present": true,
+      "sha256": "5da6d741598822b3d4019ab14a0498fc8b819ec7a2c2d7a7b0bdcf0e9c59d877",
+      "status": "passed"
+    },
+    "current_c1f_qwen32_strong_baselines": {
+      "gate_passed": true,
+      "path": "experiments/unified-agent-security-baselines/results/current-c1f-strong-baseline-rerun/results.json",
+      "present": true,
+      "sha256": "47e0ee217d61d41b7f76e1922cad0d60e98242c64b5e3cf6d5d931e7dc964783",
+      "status": "passed"
+    },
+    "current_c1f_raw_field_attribution": {
+      "gate_passed": true,
+      "path": "experiments/security-analysis-ablation-and-overhead/results/c1f-raw-field-attribution/raw-field-attribution-report.json",
+      "present": true,
+      "sha256": "6352eca8a862d2afc6db44f9ce1c85597d46baf6a499ea328f94a4e82d31ed2c",
+      "status": "passed"
+    },
+    "deepseek_locked_heldout": {
+      "gate_passed": true,
+      "path": "experiments/adaptive-injection-benchmark/results/usenix-heldout-public-families/results.json",
+      "present": true,
+      "sha256": "e160504c24614689dd3f0f3189460a82e6e5ef87d5725b4c545ecc8177e3ce62",
+      "status": "passed"
+    },
+    "deepseek_repeated_benign": {
+      "gate_passed": true,
+      "path": "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/deepseek_benign_interleaved_results.json",
+      "present": true,
+      "sha256": "1165a9330e8988c38a7a32b884bf9204916759981975a688aeab8bd06f9a6c9c",
+      "status": "passed"
+    },
+    "final_case_outcomes": {
+      "gate_passed": true,
+      "path": "paper/current-usenix/reproduction/final_case_outcomes_summary.json",
+      "present": true,
+      "sha256": "da3025751d5e0536d3736ed08039e87f144b6bad79b186798f098028fccf6435",
+      "status": "passed"
+    },
+    "finite_representation_validation": {
+      "gate_passed": true,
+      "path": "experiments/human-authority-and-causal-validation/results/finite-domain-effect-binding-validation/finite-domain-validation-report.json",
+      "present": true,
+      "sha256": "6adf8a6340973ba7f22ac196fd366d1ed790e4b6625d1322a5ec7d9caca34d82",
+      "status": "passed"
+    },
+    "frozen_c1f_runtime": {
+      "gate_passed": true,
+      "path": "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/final_guard_repair_report_2026-08-08.json",
+      "present": true,
+      "sha256": "171bcb811e80e26836cb8bdb02b25724063b52cd7252852ecf9077b2f7c26599",
+      "status": "passed"
+    },
+    "generated_final_validation": {
+      "gate_passed": true,
+      "path": "paper/current-usenix/reproduction/generated_final_validation_manifest.json",
+      "present": true,
+      "sha256": "93767387e19320a2208bff1c712057af1af32d9b3519ca6d562c3b9dfd553c45",
+      "status": "passed"
+    },
+    "heldout_toolsandbox_validation": {
+      "gate_passed": true,
+      "path": "experiments/human-authority-and-causal-validation/results/heldout-toolsandbox-effect-binding-validation/heldout-validation-report.json",
+      "present": true,
+      "sha256": "111f4c293d130dcc1c0883407f42e4a539f24bb712357e0af12dec81736825ce",
+      "status": "passed"
+    },
+    "native_delta_mechanical_validation": {
+      "gate_passed": true,
+      "path": "experiments/human-authority-and-causal-validation/results/native-delta-mechanical-validation/native_delta_validation_report.json",
+      "present": true,
+      "sha256": "79aa10cba617ebc8d8822b88a6b1a2fb6645b7a3c8a6a4a2cef38ac473acc473",
+      "status": "passed"
+    },
+    "qwen32_matched_full": {
+      "gate_passed": true,
+      "path": "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/qwen32_matched_results.json",
+      "present": true,
+      "sha256": "601bd00d65e3544d2760b39dd3c976ea53124f9bffa99d1b7d770ce9fc0f2c2a",
+      "status": "passed"
+    },
+    "registration_sufficiency": {
+      "gate_passed": true,
+      "path": "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/registration_sufficiency_audit_v2.json",
+      "present": true,
+      "sha256": "b99c75c5244c1a6e41ac7894890994ad9c0638420106e73b732ea693c569dbdc",
+      "status": "passed"
+    },
+    "runtime_policy_view_diagnostic": {
+      "gate_passed": true,
+      "path": "experiments/security-analysis-ablation-and-overhead/results/runtime-policy-view-ablation/runtime-policy-view-report.json",
+      "present": true,
+      "sha256": "9d966e02bba35ee08745795e4dc4a14e122aa5b7d619283f5411d28ed5a6c3ec",
+      "status": "passed"
+    }
+  },
+  "status": "paper_evidence_ready_artifact_release_pending"
+}

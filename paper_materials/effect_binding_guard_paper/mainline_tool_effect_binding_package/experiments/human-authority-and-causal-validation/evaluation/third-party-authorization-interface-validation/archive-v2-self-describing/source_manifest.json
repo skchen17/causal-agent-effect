@@ -1,0 +1,493 @@
+{
+  "all_preflight_passed": true,
+  "sources": [
+    {
+      "commit": "76d64c822f5125032f89eb71dbdb94e42b434821",
+      "git_clean": true,
+      "implementation_hash": "535f321f01b0d8de8aed74b377d041969e9cd4874b5c1518c702b44c178bfb30",
+      "implementation_hashes": {
+        "src/filesystem/index.ts": "caec9b4973bd7dfadb1eba6e59b6b6ccad6e9f5bd8d4a9bb03dc18ec3c15e043",
+        "src/filesystem/package.json": "949ba811fa6f506606751a0a7d2f4335630137b0dcffd978a9a6eb1231f584cd"
+      },
+      "license": "MIT",
+      "license_evidence": "LICENSE",
+      "public_url": "https://github.com/modelcontextprotocol/servers.git",
+      "sandboxing": "fresh local disposable fixture per invocation; no network or external side effect",
+      "selected_schema_hash": "80cd7ba6f3b46fa24cc54fe2fec39166acc7a65bebeadb4326e76ce85698c74d",
+      "selected_schemas": [
+        {
+          "annotations": {
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false,
+            "readOnlyHint": false
+          },
+          "description": "Create a new directory or ensure a directory exists. Can create multiple nested directories in one operation. If the directory already exists, this operation will succeed silently. Perfect for setting up directory structures for projects or ensuring required paths exist. Only works within allowed directories.",
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "properties": {
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "type": "object"
+          },
+          "name": "create_directory",
+          "outputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "content"
+            ],
+            "type": "object"
+          },
+          "title": "Create Directory"
+        },
+        {
+          "annotations": {
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": false,
+            "readOnlyHint": false
+          },
+          "description": "Make line-based edits to a text file. Each edit replaces exact line sequences with new content. Returns a git-style diff showing the changes made. Only works within allowed directories.",
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "properties": {
+              "dryRun": {
+                "default": false,
+                "description": "Preview changes using git-style diff format",
+                "type": "boolean"
+              },
+              "edits": {
+                "items": {
+                  "properties": {
+                    "newText": {
+                      "description": "Text to replace with",
+                      "type": "string"
+                    },
+                    "oldText": {
+                      "description": "Text to search for - must match exactly",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "oldText",
+                    "newText"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "edits"
+            ],
+            "type": "object"
+          },
+          "name": "edit_file",
+          "outputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "content"
+            ],
+            "type": "object"
+          },
+          "title": "Edit File"
+        },
+        {
+          "annotations": {
+            "destructiveHint": true,
+            "idempotentHint": false,
+            "openWorldHint": false,
+            "readOnlyHint": false
+          },
+          "description": "Move or rename files and directories. Can move files between directories and rename them in a single operation. If the destination exists, the operation will fail. Works across different directories and can be used for simple renaming within the same directory. Both source and destination must be within allowed directories.",
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "properties": {
+              "destination": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "source",
+              "destination"
+            ],
+            "type": "object"
+          },
+          "name": "move_file",
+          "outputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "content"
+            ],
+            "type": "object"
+          },
+          "title": "Move File"
+        },
+        {
+          "annotations": {
+            "destructiveHint": true,
+            "idempotentHint": true,
+            "openWorldHint": false,
+            "readOnlyHint": false
+          },
+          "description": "Create a new file or completely overwrite an existing file with new content. Use with caution as it will overwrite existing files without warning. Handles text content with proper encoding. Only works within allowed directories.",
+          "execution": {
+            "taskSupport": "forbidden"
+          },
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "properties": {
+              "content": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "content"
+            ],
+            "type": "object"
+          },
+          "name": "write_file",
+          "outputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "content"
+            ],
+            "type": "object"
+          },
+          "title": "Write File"
+        }
+      ],
+      "selected_tool_names": [
+        "create_directory",
+        "edit_file",
+        "move_file",
+        "write_file"
+      ],
+      "source": "filesystem"
+    },
+    {
+      "commit": "e9d6e5f99757b02f3fce4c3e199b1552c76a46bf",
+      "git_clean": true,
+      "implementation_hash": "52a8b7251f52e300972f329036760134b014a070eb57c7ed239ab0db2fef6e55",
+      "implementation_hashes": {
+        "mcp-sqlite-server.js": "816269f2765829f8c337bedcc3a77c4e7aa7e2f865f40b18d16484f5d7bed27c",
+        "package.json": "13e8798003f7bf7def1c52bb19cf3191c75189d28da4eee35333d1c679846a06"
+      },
+      "license": "MIT",
+      "license_evidence": "LICENSE",
+      "public_url": "https://github.com/jparkerweb/mcp-sqlite.git",
+      "sandboxing": "fresh local disposable fixture per invocation; no network or external side effect",
+      "selected_schema_hash": "55c032b7912251058fab5c1156e2906af712b317e663ac621580f95d52cb1c82",
+      "selected_schemas": [
+        {
+          "description": "Insert a new record into a table with specified data",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "type": "object"
+              },
+              "table": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "table",
+              "data"
+            ],
+            "type": "object"
+          },
+          "name": "create_record"
+        },
+        {
+          "description": "Delete records from a table based on specified conditions",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "conditions": {
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "type": "object"
+              },
+              "table": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "table",
+              "conditions"
+            ],
+            "type": "object"
+          },
+          "name": "delete_records"
+        },
+        {
+          "description": "Update records in a table based on specified conditions",
+          "inputSchema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "additionalProperties": false,
+            "properties": {
+              "conditions": {
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "type": "object"
+              },
+              "data": {
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "type": "object"
+              },
+              "table": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "table",
+              "data",
+              "conditions"
+            ],
+            "type": "object"
+          },
+          "name": "update_records"
+        }
+      ],
+      "selected_tool_names": [
+        "create_record",
+        "delete_records",
+        "update_records"
+      ],
+      "source": "sqlite"
+    },
+    {
+      "commit": "1886bd0505b50b241abf8f9880a5c80a8846adbc",
+      "git_clean": true,
+      "implementation_hash": "9145e5f29f0625abdd4c9e3baa05de806f82cc76522d42caba420d2aa49d0b3e",
+      "implementation_hashes": {
+        "index.js": "15033cf2b6efb6c4de9ed4e5d8e814dc8614f9aee65bbde91d7d1f5755f0f589",
+        "package.json": "ba7d988f57064fbebeb9d9fc70c1dbb41d6ea6f00a781862c0f28a718bbba3f6"
+      },
+      "license": "MIT",
+      "license_evidence": "package.json and README; repository has no standalone LICENSE file",
+      "public_url": "https://github.com/AojdevStudio/simple-memory-mcp.git",
+      "sandboxing": "fresh local disposable fixture per invocation; no network or external side effect",
+      "selected_schema_hash": "a0d3ae9097cd58c374c14a22deb1ef9a566b9783e3a2f63a1e3c7572fe4b9993",
+      "selected_schemas": [
+        {
+          "description": "Add new observations to existing entities in the knowledge graph",
+          "inputSchema": {
+            "properties": {
+              "observations": {
+                "items": {
+                  "properties": {
+                    "contents": {
+                      "description": "An array of observation contents to add",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "entityName": {
+                      "description": "The name of the entity to add the observations to",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "entityName",
+                    "contents"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "observations"
+            ],
+            "type": "object"
+          },
+          "name": "add_observations"
+        },
+        {
+          "description": "Create multiple new entities in the knowledge graph",
+          "inputSchema": {
+            "properties": {
+              "entities": {
+                "items": {
+                  "properties": {
+                    "entityType": {
+                      "description": "The type of the entity",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the entity",
+                      "type": "string"
+                    },
+                    "observations": {
+                      "description": "An array of observation contents associated with the entity",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "entityType",
+                    "observations"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "entities"
+            ],
+            "type": "object"
+          },
+          "name": "create_entities"
+        },
+        {
+          "description": "Create multiple new relations between entities in the knowledge graph. Relations should be in active voice",
+          "inputSchema": {
+            "properties": {
+              "relations": {
+                "items": {
+                  "properties": {
+                    "from": {
+                      "description": "The name of the entity where the relation starts",
+                      "type": "string"
+                    },
+                    "relationType": {
+                      "description": "The type of the relation",
+                      "type": "string"
+                    },
+                    "to": {
+                      "description": "The name of the entity where the relation ends",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "from",
+                    "to",
+                    "relationType"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "relations"
+            ],
+            "type": "object"
+          },
+          "name": "create_relations"
+        },
+        {
+          "description": "Delete multiple entities and their associated relations from the knowledge graph",
+          "inputSchema": {
+            "properties": {
+              "entityNames": {
+                "description": "An array of entity names to delete",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "entityNames"
+            ],
+            "type": "object"
+          },
+          "name": "delete_entities"
+        }
+      ],
+      "selected_tool_names": [
+        "add_observations",
+        "create_entities",
+        "create_relations",
+        "delete_entities"
+      ],
+      "source": "memory"
+    }
+  ]
+}

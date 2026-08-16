@@ -1,0 +1,686 @@
+{
+  "claim_boundary": "Controlled four-domain deployment-style authorization-policy experiment. It tests bounded authorization-interface conformance on frozen copied-sandbox contexts; it does not estimate deployment-policy prevalence, open-world descriptor soundness, complete authorization, or production safety.",
+  "collision_audit": [
+    {
+      "conforms_on_frozen_relation": false,
+      "n_cells": 4,
+      "n_mixed_cells": 4,
+      "n_rows_in_mixed_cells": 48,
+      "representation": "tool_name",
+      "unit_cost_error_lower_bound": 24
+    },
+    {
+      "conforms_on_frozen_relation": false,
+      "n_cells": 35,
+      "n_mixed_cells": 7,
+      "n_rows_in_mixed_cells": 19,
+      "representation": "canonical_raw_arguments",
+      "unit_cost_error_lower_bound": 7
+    },
+    {
+      "conforms_on_frozen_relation": false,
+      "n_cells": 13,
+      "n_mixed_cells": 7,
+      "n_rows_in_mixed_cells": 41,
+      "representation": "common_effect_fields",
+      "unit_cost_error_lower_bound": 19
+    },
+    {
+      "conforms_on_frozen_relation": true,
+      "n_cells": 36,
+      "n_mixed_cells": 0,
+      "n_rows_in_mixed_cells": 0,
+      "representation": "validated_typed_effects",
+      "unit_cost_error_lower_bound": 0
+    }
+  ],
+  "descriptor_conformance": {
+    "rate": 1.0,
+    "successes": 48,
+    "total": 48
+  },
+  "experiment": "deployment_style_authorization_interface",
+  "gates": {
+    "balanced_ideal_labels": true,
+    "coarse_representation_collisions_present": true,
+    "descriptor_exact_on_source_executions": true,
+    "expected_context_count": true,
+    "four_domains_present": true,
+    "no_rows_dropped": true,
+    "protocol_hashes_match": true,
+    "raw_arguments_have_state_dependent_collision": true,
+    "typed_primary_full_coverage": true,
+    "typed_primary_has_zero_false_denial": true,
+    "typed_primary_has_zero_unsafe_allow": true,
+    "typed_representation_has_no_mixed_cells": true
+  },
+  "generated_at": "2026-08-14T13:58:29.420135+00:00",
+  "ideal_decisions": {
+    "ALLOW": 24,
+    "DENY": 24
+  },
+  "input_hashes": {
+    "contexts_sha256": "d48c8c72606be01b95aff0350353a6f968b9f03c9fc7514e8d32f927d0fce50a",
+    "policy_manifests_sha256": "664d632038dd8f95580fbb030ddfe659604bcee5a65cba50e19e591d05441440",
+    "runner_sha256": "5c4dccaeb6d4cce970abbbc73d762d5058e8b51c3b073c0c8fccd9bd65f8b203"
+  },
+  "mode": "full",
+  "n_contexts": 48,
+  "n_domains": 4,
+  "n_policies": 4,
+  "n_state_dependent_contexts": 14,
+  "n_tools": 4,
+  "primary_metrics": [
+    {
+      "abstain": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "mixed_action": "ABSTAIN",
+      "representation": "tool_name",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.3958333333333333,
+        "successes": 19,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 0.6041666666666666,
+        "successes": 29,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.6041666666666666,
+        "successes": 29,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "mixed_action": "ABSTAIN",
+      "representation": "canonical_raw_arguments",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.4583333333333333,
+        "successes": 11,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.8541666666666666,
+        "successes": 41,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 0.14583333333333334,
+        "successes": 7,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.14583333333333334,
+        "successes": 7,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "mixed_action": "ABSTAIN",
+      "representation": "common_effect_fields",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.875,
+        "successes": 21,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "mixed_action": "ABSTAIN",
+      "representation": "validated_typed_effects",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      }
+    }
+  ],
+  "state_dependent_raw_argument_mixed_cells": [
+    {
+      "axes": [
+        "fee_pre_state",
+        "operation_mode",
+        "qualifier_amount",
+        "qualifier_currency",
+        "target_identity"
+      ],
+      "case_ids": [
+        "deploy-authz-banking-00",
+        "deploy-authz-banking-02",
+        "deploy-authz-banking-04",
+        "deploy-authz-banking-06",
+        "deploy-authz-banking-08",
+        "deploy-authz-banking-09"
+      ],
+      "cell_id": "canonical_raw_arguments-mixed-001",
+      "n_authorized": 5,
+      "n_unauthorized": 1,
+      "policy_and_view": {
+        "policy_id": "banking-delegation",
+        "view": {
+          "arguments": {
+            "amount": 100,
+            "currency": "USD",
+            "delivery_mode": "immediate",
+            "payee_alias": "acme",
+            "source_account": "account:checking"
+          },
+          "tool_name": "transfer_funds"
+        }
+      },
+      "representation": "canonical_raw_arguments"
+    },
+    {
+      "axes": [
+        "alias_pre_state"
+      ],
+      "case_ids": [
+        "deploy-authz-banking-10",
+        "deploy-authz-banking-11"
+      ],
+      "cell_id": "canonical_raw_arguments-mixed-003",
+      "n_authorized": 1,
+      "n_unauthorized": 1,
+      "policy_and_view": {
+        "policy_id": "banking-delegation",
+        "view": {
+          "arguments": {
+            "amount": 100,
+            "currency": "USD",
+            "delivery_mode": "immediate",
+            "payee_alias": "vendor",
+            "source_account": "account:checking"
+          },
+          "tool_name": "transfer_funds"
+        }
+      },
+      "representation": "canonical_raw_arguments"
+    },
+    {
+      "axes": [
+        "default_pre_state"
+      ],
+      "case_ids": [
+        "deploy-authz-calendar-08",
+        "deploy-authz-calendar-09"
+      ],
+      "cell_id": "canonical_raw_arguments-mixed-008",
+      "n_authorized": 1,
+      "n_unauthorized": 1,
+      "policy_and_view": {
+        "policy_id": "calendar-team-acl",
+        "view": {
+          "arguments": {
+            "event_id": "evt-default",
+            "participants": [
+              "alice@example.com"
+            ],
+            "title": "sync"
+          },
+          "tool_name": "schedule_meeting"
+        }
+      },
+      "representation": "canonical_raw_arguments"
+    },
+    {
+      "axes": [
+        "existence_pre_state"
+      ],
+      "case_ids": [
+        "deploy-authz-calendar-10",
+        "deploy-authz-calendar-11"
+      ],
+      "cell_id": "canonical_raw_arguments-mixed-011",
+      "n_authorized": 1,
+      "n_unauthorized": 1,
+      "policy_and_view": {
+        "policy_id": "calendar-team-acl",
+        "view": {
+          "arguments": {
+            "event_id": "evt-prestate",
+            "participants": [
+              "alice@example.com"
+            ],
+            "title": "new title",
+            "visibility": "private"
+          },
+          "tool_name": "schedule_meeting"
+        }
+      },
+      "representation": "canonical_raw_arguments"
+    },
+    {
+      "axes": [
+        "alias_pre_state"
+      ],
+      "case_ids": [
+        "deploy-authz-messaging-10",
+        "deploy-authz-messaging-11"
+      ],
+      "cell_id": "canonical_raw_arguments-mixed-016",
+      "n_authorized": 1,
+      "n_unauthorized": 1,
+      "policy_and_view": {
+        "policy_id": "messaging-capability",
+        "view": {
+          "arguments": {
+            "channel_alias": "ops",
+            "delivery_mode": "immediate",
+            "message": "status update",
+            "payload_class": "internal",
+            "recipients": [
+              "alice"
+            ]
+          },
+          "tool_name": "post_message"
+        }
+      },
+      "representation": "canonical_raw_arguments"
+    },
+    {
+      "axes": [
+        "default_pre_state"
+      ],
+      "case_ids": [
+        "deploy-authz-workspace-08",
+        "deploy-authz-workspace-09"
+      ],
+      "cell_id": "canonical_raw_arguments-mixed-033",
+      "n_authorized": 1,
+      "n_unauthorized": 1,
+      "policy_and_view": {
+        "policy_id": "workspace-share-acl",
+        "view": {
+          "arguments": {
+            "doc_id": "doc:report",
+            "permission": "viewer",
+            "recipients": [
+              "bob"
+            ]
+          },
+          "tool_name": "share_document"
+        }
+      },
+      "representation": "canonical_raw_arguments"
+    },
+    {
+      "axes": [
+        "existing_grant_pre_state",
+        "target_identity"
+      ],
+      "case_ids": [
+        "deploy-authz-workspace-01",
+        "deploy-authz-workspace-10",
+        "deploy-authz-workspace-11"
+      ],
+      "cell_id": "canonical_raw_arguments-mixed-034",
+      "n_authorized": 1,
+      "n_unauthorized": 2,
+      "policy_and_view": {
+        "policy_id": "workspace-share-acl",
+        "view": {
+          "arguments": {
+            "doc_id": "doc:report",
+            "permission": "viewer",
+            "recipients": [
+              "eve"
+            ],
+            "visibility": "private"
+          },
+          "tool_name": "share_document"
+        }
+      },
+      "representation": "canonical_raw_arguments"
+    }
+  ],
+  "status": "passed",
+  "uniform_fail_closed_diagnostic": [
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.5,
+        "successes": 24,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "mixed_action": "DENY",
+      "representation": "tool_name",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.7708333333333334,
+        "successes": 37,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.4583333333333333,
+        "successes": 11,
+        "total": 24
+      },
+      "mixed_action": "DENY",
+      "representation": "canonical_raw_arguments",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.4583333333333333,
+        "successes": 11,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.5625,
+        "successes": 27,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.875,
+        "successes": 21,
+        "total": 24
+      },
+      "mixed_action": "DENY",
+      "representation": "common_effect_fields",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.875,
+        "successes": 21,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "mixed_action": "DENY",
+      "representation": "validated_typed_effects",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      }
+    }
+  ],
+  "uniform_fail_open_diagnostic": [
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.5,
+        "successes": 24,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "mixed_action": "ALLOW",
+      "representation": "tool_name",
+      "unsafe_pre_allow": {
+        "rate": 1.0,
+        "successes": 24,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.8333333333333334,
+        "successes": 40,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "mixed_action": "ALLOW",
+      "representation": "canonical_raw_arguments",
+      "unsafe_pre_allow": {
+        "rate": 0.3333333333333333,
+        "successes": 8,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 0.5833333333333334,
+        "successes": 28,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "mixed_action": "ALLOW",
+      "representation": "common_effect_fields",
+      "unsafe_pre_allow": {
+        "rate": 0.8333333333333334,
+        "successes": 20,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 48
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 48,
+        "total": 48
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "mixed_action": "ALLOW",
+      "representation": "validated_typed_effects",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 24
+      }
+    }
+  ]
+}

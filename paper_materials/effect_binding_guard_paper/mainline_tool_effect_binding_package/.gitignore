@@ -1,0 +1,42 @@
+# Local model/runtime state
+**/runs/
+**/.hf_cache/
+**/hf_cache/
+**/site-packages/
+**/*-env/
+models/
+external/
+
+# Generated server and watcher output
+*.log
+*_watch.sh
+*_watch_*.sh
+
+# Python/tool caches
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+*.py[cod]
+.qoder/
+.codex/
+.agents/
+
+# LaTeX intermediates; keep the final paper PDF
+*.aux
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+
+# Large or duplicated generated inventories/packages
+PROJECT_FILE_CONTENT_MAP.csv
+paper/current-usenix/artifact/anonymous_package/
+paper/current-usenix/artifact/anonymous_effect_binding_artifact.tar.gz
+
+# Download fragments and local archives
+*.partial
+*.tar
+*.tar.gz
+*.zip

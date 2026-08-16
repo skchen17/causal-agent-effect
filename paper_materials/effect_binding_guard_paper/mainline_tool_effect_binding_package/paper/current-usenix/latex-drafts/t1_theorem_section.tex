@@ -1,0 +1,281 @@
+% ============================================================================
+% DRAFT: t1_theorem_section.tex   (W2 deliverable, T1 landing draft)
+% Date: 2026-08-04 / package: 2026-08-05
+% Source: paper/current-usenix/t1_refinement_monotonicity_theorem_2026-08-04.md
+% Status: INDEPENDENT DRAFT. Do NOT \input into main.tex until the PM
+%         approves placement and the claim-map diff review has run.
+%         This file does not modify any existing section.
+%
+% ----------------------------------------------------------------------------
+% 落位建议 (placement suggestion)
+%   File    : sections/security_analysis.tex
+%   Position: new \subsection between "Counterfactual Witnesses and Bounded
+%             Adequacy" (ends: "...surface and policy-irrelevant fields should
+%             remain absent.") and "Conditional Effect Confinement".
+%   Rationale:
+%     - depends on the field-necessity criterion and collision-complete /
+%       finite-adequacy machinery defined in that subsection;
+%     - upgrades the appendix "Field necessity" paragraph from a single-point
+%       argument to a monotone search statement (improvement_whitepaper T1);
+%     - precedes "Conditional Effect Confinement" and does NOT alter the
+%       O1--O5 premises of thm:single-commit (only cites O5 fail-closed).
+%
+% ----------------------------------------------------------------------------
+% Dependencies (all existing labels; no new external citations needed)
+%   used   : def:authorization-equivalence, prop:authorization-quotient,
+%            prop:evidence-refinement, prop:ambiguous-cell,
+%            def:collision-complete, thm:finite-adequacy;
+%            method.tex §3 split/bind/trigger/expansion semantics and
+%            "conservative registration or human review" fail-closed clause.
+%   defined: sec:registration-convergence, def:refinement-lattice,
+%            prop:refinement-operations, thm:refinement-order,
+%            thm:refinement-termination, thm:refinement-collision-monotone,
+%            cor:refinement-monotone-search.
+%   companion edit (separate step, NOT included here): appendix/formal_proofs.tex
+%            gains four proof paragraphs — skeletons are given in the trailing
+%            comment block of this file.
+%
+% ----------------------------------------------------------------------------
+% Number policy (数字策略)
+%   WRITTEN numbers are frozen-domain results only (56-call domain + E2 grid):
+%     trajectory SP 124->60->28->12->4->0; LB 37->33->25->9->4->0;
+%     211 comparable lattice edges, 0 violations; length 5 <= |D|-1 = 55;
+%     single-role deletion 16/16/16/8/4; common-contract baseline 118.
+%   This subsection references NO v17 and NO V0-V3 numbers by construction.
+% Frozen data sources (read-only):
+%   experiments/security-analysis-ablation-and-overhead/results/
+%     refinement-monotonicity-check/refinement-monotonicity-report.{json,md}
+%   experiments/security-analysis-ablation-and-overhead/results/
+%     policy-family-sensitivity/policy-family-sensitivity-report.md (cross-check)
+%   NOTE: Table ref below (tab:policy-family-sensitivity) resolves only after
+%   the companion draft e2_policy_family_table.tex is landed.
+% ============================================================================
+
+\subsection{Counterfactual Registration Converges}
+\label{sec:registration-convergence}
+
+The field-necessity criterion above is stated one field at a time. Registration,
+however, searches a space of representations: the counterexample-guided loop of
+Section~\ref{sec:security-analysis}'s method starts from a coarse candidate and
+applies refinement operations until no authorization-separating collision
+remains. We now show that, on a frozen finite domain and within the restricted
+contract language, this search is a monotone descent with a bounded runtime.
+
+\begin{definition}[Authorization partition and refinement order]
+\label{def:refinement-lattice}
+On a finite instance domain $D\subseteq\mathcal{U}$, let
+\[
+  Q(D)=\bigl\{[u]_{\equiv_{\mathcal{B}}}:u\in D\bigr\}
+\]
+be the authorization partition induced by
+$\equiv_{\mathcal{B}}$ (Definition~\ref{def:authorization-equivalence}), and
+let
+\[
+  P_\rho(D)=\bigl\{\rho^{-1}(z)\cap D:z\in\mathcal{Z}\bigr\}\setminus\{\emptyset\}
+\]
+be the partition induced by a representation $\rho$. Say that $\rho'$ refines
+$\rho$ on $D$, written $\rho'\preceq\rho$, when
+$\rho'(u)=\rho'(v)\Rightarrow\rho(u)=\rho(v)$ for all $u,v\in D$; equivalently,
+every $P_{\rho'}$-cell is contained in a $P_\rho$-cell. The partitions of a
+finite $D$ ordered by $\preceq$ form a finite lattice; every strict refinement
+increases the number of cells by at least one, so every strict refinement
+chain has length at most $|D|-1$.
+\end{definition}
+
+By Proposition~\ref{prop:authorization-quotient}, $Q(D)$ is the coarsest
+authorization-sufficient representation, so registration searches for a
+representable approximation to $Q(D)$ inside the sublattice reachable by the
+restricted contract language. Let $\mathrm{SP}(\rho)$ be the set of separating
+pairs---pairs $(u,v)$ with $\rho(u)=\rho(v)$ and $I_B(u)\neq I_B(v)$ for some
+$B\in\mathcal{B}$---and write $|\mathrm{SP}(\rho)|$ for its cardinality. Let
+$\mathrm{LB}(\rho)$ be the ambiguous-cell lower bound of
+Proposition~\ref{prop:ambiguous-cell} applied to $P_\rho(D)$.
+
+Registration refines through four operation classes: a \emph{split} separates
+an effect label or attribute range, a \emph{bind} instantiates a symbolic or
+wildcard attribute to a typed value, a \emph{trigger} records whether an
+effect is conditioned on an argument or state predicate, and an
+\emph{expansion} emits one occurrence per affected object or principal.
+
+\begin{proposition}[Registered refinement operations refine]
+\label{prop:refinement-operations}
+Let $\rho'$ be obtained from $\rho$ by one admissible application of a split,
+bind, trigger, or expansion refinement on the frozen domain $D$. If the
+operation does not expand the underlying bound family $\mathcal{B}$ or the
+authority view, then $\rho'\preceq\rho$.
+\end{proposition}
+
+\begin{proof}[Proof skeleton]
+Verify $\rho'(u)=\rho'(v)\Rightarrow\rho(u)=\rho(v)$ by operation:
+\begin{enumerate}
+  \item split: $\rho'$ re-partitions each $\rho$-cell by a new attribute
+        range; two contexts equal under $\rho'$ lie in the same sub-cell of a
+        single $\rho$-cell;
+  \item bind: binding injects the information that an attribute takes a
+        specific value; $\rho'$-equality implies the same coarser binding
+        state under $\rho$;
+  \item trigger: the trigger predicate adds one boolean distinction;
+        $\rho'$-equality implies equal trigger status, hence $\rho$-equality;
+  \item expansion: expansion counts are part of the representation, and
+        already-expanded objects are not re-expanded; $\rho'$-equality implies
+        equal expansion counts, hence equality under the unexpanded
+        representation. \qedhere
+\end{enumerate}
+\end{proof}
+
+The legality condition is essential: free-form observations or model
+assertions that expand the underlying bound are not refinements in this sense
+(the restriction stated after Proposition~\ref{prop:evidence-refinement}), and
+the results below do not apply to such steps.
+
+\begin{theorem}[Registered refinement preserves partition order]
+\label{thm:refinement-order}
+Let $D\subseteq\mathcal{U}$ be a finite instance domain and let
+$\rho_0,\rho_1,\ldots$ be a refinement trajectory generated by the restricted
+contract language on $D$ in the sense of
+Proposition~\ref{prop:refinement-operations}. Then for every step $i$,
+\[
+  \rho_{i+1}\preceq\rho_i,
+\]
+and consequently the separating-pair set is monotone non-increasing:
+\[
+  \mathrm{SP}(\rho_{i+1})\subseteq\mathrm{SP}(\rho_i),
+  \qquad
+  |\mathrm{SP}(\rho_{i+1})|\le|\mathrm{SP}(\rho_i)|.
+\]
+\end{theorem}
+
+\begin{proof}[Proof skeleton]
+The first claim is Proposition~\ref{prop:refinement-operations} applied step
+by step. For the second, let $(u,v)\in\mathrm{SP}(\rho_{i+1})$: then
+$\rho_{i+1}(u)=\rho_{i+1}(v)$, so $\rho_i(u)=\rho_i(v)$ by
+$\rho_{i+1}\preceq\rho_i$, while the ideal decisions under $\mathcal{B}$ are
+unchanged by representation-side operations; hence
+$(u,v)\in\mathrm{SP}(\rho_i)$. This is the effect-side instance of the cell
+nesting argument of Proposition~\ref{prop:evidence-refinement}.
+\end{proof}
+
+\begin{theorem}[Bounded termination of registered refinement]
+\label{thm:refinement-termination}
+Let $D$ be a finite instance domain with $|D|=n$, and let
+$\rho_0,\rho_1,\ldots$ be a registered refinement trajectory that stops
+exactly when it reaches a representation with no authorization-separating
+collision or when no admissible refinement applies. Then the trajectory
+terminates after at most $n-1$ strict refinements, in one of two states:
+\begin{enumerate}
+  \item a fixed point $\rho^\ast$ with $|\mathrm{SP}(\rho^\ast)|=0$, which is
+        authorization-sufficient on $D$ whenever the validating suite is
+        collision-complete (Definition~\ref{def:collision-complete},
+        Theorem~\ref{thm:finite-adequacy}); or
+  \item fail-closed routing to conservative registration or human review, the
+        registration-side instance of obligation O5.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof skeleton]
+Every strict refinement increases the number of $P_\rho$-cells by at least one
+(Definition~\ref{def:refinement-lattice}), and the number of cells is bounded
+by $n$; hence at most $n-1$ strict refinements occur, and the trajectory
+cannot cycle. If it stops with no remaining collision, the fixed point
+satisfies $|\mathrm{SP}(\rho^\ast)|=0$, and a collision-complete suite then
+certifies sufficiency on $D$ by Theorem~\ref{thm:finite-adequacy}. If it stops
+because no admissible refinement eliminates a collision, the unresolved
+mediation gap routes the tool to conservative registration or human review,
+per the registration procedure; no $\Allow$-producing registration results.
+\end{proof}
+
+\begin{theorem}[Collision measures are monotone along refinement]
+\label{thm:refinement-collision-monotone}
+Along every trajectory of Theorem~\ref{thm:refinement-order},
+\[
+  |\mathrm{SP}(\rho_{i+1})|\le|\mathrm{SP}(\rho_i)|,
+  \qquad
+  \mathrm{LB}(\rho_{i+1})\le\mathrm{LB}(\rho_i).
+\]
+In particular, the number of authorized instances that any sound monitor must
+withhold (Proposition~\ref{prop:ambiguous-cell}) never increases as
+registration refines.
+\end{theorem}
+
+\begin{proof}[Proof skeleton]
+The first inequality is Theorem~\ref{thm:refinement-order}. For the second,
+every $\rho_{i+1}$-cell is contained in a $\rho_i$-cell; any authorized
+instance counted by the $\rho_{i+1}$ lower bound lies in a mixed
+$\rho_{i+1}$-cell whose unauthorized member is also contained in the enclosing
+$\rho_i$-cell, so it was already counted by the $\rho_i$ lower bound. This
+reuses the argument of Proposition~\ref{prop:evidence-refinement}.
+\end{proof}
+
+\begin{corollary}[Monotone minimal-sufficiency search]
+\label{cor:refinement-monotone-search}
+$\Phi(\rho)=(|\mathrm{SP}(\rho)|,\mathrm{LB}(\rho))$ is a non-increasing
+potential along every registered refinement trajectory. A field or qualifier
+is operationally necessary on $(D,\mathcal{B})$ if and only if erasing it
+strictly increases $\Phi$; hence registration searching for a minimal
+sufficient contract performs a monotone descent in $\Phi$ on the finite
+partition lattice.
+\end{corollary}
+
+The corollary restates the appendix field-necessity criterion as a property of
+the whole search path: a retained field is one whose deletion raises the
+potential, and a field whose deletion leaves $\Phi$ unchanged is redundant on
+$(D,\mathcal{B})$---the same criterion applied by the qualifier-deletion
+sensitivity grid below.
+
+\paragraph{Instantiation on the frozen 56-call domain.}
+On the 56-call frozen domain, the refinement trajectory obtained by adding the
+five typed qualifier roles in registration order is monotone non-increasing in
+separating pairs, $124\to60\to28\to12\to4\to0$, with ambiguous-cell lower
+bound $37\to33\to25\to9\to4\to0$; across all 211 comparable edges of the
+five-role subset lattice, refinement order preservation and monotonicity of
+both measures hold with zero violations, and the trajectory reaches the
+zero-collision fixed point after 5 strict refinements, within the
+$|D|-1=55$ bound of Theorem~\ref{thm:refinement-termination}. The
+separating-pair decision procedure is exactly the one used by the
+policy-family sensitivity grid (Table~\ref{tab:policy-family-sensitivity}):
+single-role deletion yields $16/16/16/8/4$ separating pairs for
+date/subject/recurrence/payload/visibility, matching the power-set rows, and
+the check independently reproduces the frozen common-contract baseline of 118
+separating pairs. One representation-semantics note: the lattice's fully
+erased endpoint applies all five deletion operations and therefore starts at
+124 separating pairs, whereas the common-contract baseline strips only the
+entire qualifier key (118 pairs); these are two distinct coarse
+representations, and both converge monotonically to the same typed endpoint.
+
+\paragraph{Scope.}
+Three qualifications are retained. First, legality: a step that expands the
+underlying bound or authority view is not a refinement, and
+Theorems~\ref{thm:refinement-order}--\ref{thm:refinement-collision-monotone}
+do not apply to it. Second, relativity: all statements are relative to the
+frozen domain $D$, the declared family $\mathcal{B}$, and the restricted
+refinement language; convergence over an open tool domain or an unrestricted
+synthesis language is not claimed. Third, the trajectory check above is
+instantiation evidence on one frozen domain and one authority family, using
+the E2 sensitivity data source; termination in general follows from finiteness
+of the partition lattice, not from that single trajectory.
+
+% ============================================================================
+% COMPANION EDIT (appendix/formal_proofs.tex) — proof skeletons to be landed
+% together with this subsection (T1 md §5.2, steps S2/S3/S4/S5):
+%
+% \paragraph{Proof of Proposition~\ref{prop:refinement-operations}.}
+%   Four-case structural verification (split/bind/trigger/expansion) as in the
+%   inline proof skeleton above; state the legality condition explicitly.
+%
+% \paragraph{Proof of Theorem~\ref{thm:refinement-order}.}
+%   Cell nesting -> SP set inclusion; cite the
+%   Proposition~\ref{prop:evidence-refinement} cell argument.
+%
+% \paragraph{Proof of Theorem~\ref{thm:refinement-termination}.}
+%   Potential argument (strict refinement adds >=1 cell, cell count <= n),
+%   fixed-point / fail-closed dichotomy, Theorem~\ref{thm:finite-adequacy}
+%   for the sufficiency branch, O5 for the fail-closed branch.
+%
+% \paragraph{Proof of Theorem~\ref{thm:refinement-collision-monotone}.}
+%   LB monotonicity via the evidence-refinement cell-containment argument.
+%
+% NON-COMMITMENT LIST (must survive porting, T1 md §6):
+%   no open-tool-domain convergence; no sufficiency beyond collision-complete
+%   suites; no refinement outside the restricted language; no monotonicity
+%   when bounds are mutable.
+% ============================================================================

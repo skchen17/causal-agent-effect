@@ -1,0 +1,189 @@
+{
+  "claim_boundary": "Duration is a post-hoc paired observation from historical sequential runs. It includes model inference, sandbox work, and any recovery calls, but server load and execution order were not randomized. Twelve E77 rows also use disclosed larger-context repairs. The duration difference therefore describes observed trajectory cost and must not be interpreted as the causal latency added by the guard. Recovery counts are mechanistic audit totals; feedback/utility rates are associations, not causal effects.",
+  "duration": {
+    "all": {
+      "no_guard": {
+        "max_seconds": 1859.1195895671844,
+        "mean_seconds": 84.89780273976076,
+        "median_seconds": 53.272162079811096,
+        "min_seconds": 6.091922998428345,
+        "n": 726,
+        "p95_seconds": 158.84483242034912
+      },
+      "ours": {
+        "max_seconds": 479.97589778900146,
+        "mean_seconds": 108.68880455388839,
+        "median_seconds": 85.54312837123871,
+        "min_seconds": 8.256591320037842,
+        "n": 726,
+        "p95_seconds": 266.55643129348755
+      },
+      "paired": {
+        "equal_duration_cases": 0,
+        "mean_delta_seconds": 23.791001814127625,
+        "median_delta_seconds": 18.950108766555786,
+        "median_ratio": 1.3604710145852188,
+        "n": 726,
+        "ours_faster_cases": 194,
+        "ours_slower_cases": 532
+      }
+    },
+    "attack": {
+      "no_guard": {
+        "max_seconds": 1859.1195895671844,
+        "mean_seconds": 89.18216580124083,
+        "median_seconds": 54.631211042404175,
+        "min_seconds": 6.091922998428345,
+        "n": 629,
+        "p95_seconds": 162.6916961669922
+      },
+      "ours": {
+        "max_seconds": 479.97589778900146,
+        "mean_seconds": 105.59919629112147,
+        "median_seconds": 82.34188270568848,
+        "min_seconds": 8.256591320037842,
+        "n": 629,
+        "p95_seconds": 266.45089054107666
+      },
+      "paired": {
+        "equal_duration_cases": 0,
+        "mean_delta_seconds": 16.417030489880634,
+        "median_delta_seconds": 16.151703596115112,
+        "median_ratio": 1.2954071981699784,
+        "n": 629,
+        "ours_faster_cases": 184,
+        "ours_slower_cases": 445
+      }
+    },
+    "benign": {
+      "no_guard": {
+        "max_seconds": 321.34054613113403,
+        "mean_seconds": 57.115695877173515,
+        "median_seconds": 41.351707220077515,
+        "min_seconds": 13.444790601730347,
+        "n": 97,
+        "p95_seconds": 137.28404569625854
+      },
+      "ours": {
+        "max_seconds": 362.57495307922363,
+        "mean_seconds": 128.72348081451102,
+        "median_seconds": 116.60859775543213,
+        "min_seconds": 8.269468784332275,
+        "n": 97,
+        "p95_seconds": 279.8509912490845
+      },
+      "paired": {
+        "equal_duration_cases": 0,
+        "mean_delta_seconds": 71.6077849373375,
+        "median_delta_seconds": 66.23594784736633,
+        "median_ratio": 2.182662921337496,
+        "n": 97,
+        "ours_faster_cases": 10,
+        "ours_slower_cases": 87
+      }
+    }
+  },
+  "experiment": "E78 post-hoc paired trajectory duration and E77 recovery analysis",
+  "generated_at": "2026-07-26T10:27:44.825705+00:00",
+  "protocol": {
+    "benchmark": "AgentDojo v1.1.2",
+    "duration_field": "native AgentDojo per-trajectory wall-clock duration",
+    "e77_context_boundary": {
+      "original_rows": 714,
+      "repaired_rows": 12,
+      "uniform_context_window": false
+    },
+    "model": "Qwen3-32B-Q4_K_M",
+    "paired_case_keys": 726
+  },
+  "recovery": {
+    "attack": {
+      "cases_with_replan_feedback": 312,
+      "effectful_commits": 112,
+      "n": 629,
+      "replan_feedback_events": 794,
+      "strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 262,
+        "effectful_commit_and_replan_feedback": 49,
+        "effectful_commit_without_replan_feedback": 47,
+        "no_structured_tool_call": 6,
+        "read_only_or_unregistered_tool_trajectory": 262,
+        "terminal_unexecuted_call": 3
+      },
+      "terminal_unexecuted_calls": 3,
+      "utility_failure_strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 229,
+        "effectful_commit_and_replan_feedback": 35,
+        "effectful_commit_without_replan_feedback": 19,
+        "no_structured_tool_call": 6,
+        "read_only_or_unregistered_tool_trajectory": 130,
+        "terminal_unexecuted_call": 3
+      },
+      "utility_rate": 0.32909379968203495,
+      "utility_successes": 207,
+      "utility_successes_with_replan_feedback": 47
+    },
+    "benign": {
+      "cases_with_replan_feedback": 47,
+      "effectful_commits": 18,
+      "n": 97,
+      "replan_feedback_events": 115,
+      "strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 38,
+        "effectful_commit_and_replan_feedback": 9,
+        "effectful_commit_without_replan_feedback": 7,
+        "no_structured_tool_call": 1,
+        "read_only_or_unregistered_tool_trajectory": 41,
+        "terminal_unexecuted_call": 1
+      },
+      "terminal_unexecuted_calls": 1,
+      "utility_failure_strata": {
+        "effectful_calls_intercepted_no_effectful_commit": 35,
+        "effectful_commit_and_replan_feedback": 8,
+        "no_structured_tool_call": 1,
+        "read_only_or_unregistered_tool_trajectory": 19,
+        "terminal_unexecuted_call": 1
+      },
+      "utility_rate": 0.3402061855670103,
+      "utility_successes": 33,
+      "utility_successes_with_replan_feedback": 4
+    },
+    "checks_transitioned_to_allow": 32,
+    "final_decisions": {
+      "ALLOW": 2016,
+      "NEEDS_REPLAN": 914
+    },
+    "initial_decisions": {
+      "ALLOW": 1984,
+      "NEEDS_REPLAN": 946
+    },
+    "plan_revisions": 738,
+    "precommit_checks": 2930,
+    "recovery_states": {
+      "DENIED": 406,
+      "NOT_REQUIRED": 1984,
+      "PLAN_REVISED": 32,
+      "REVISION_INVALID": 36,
+      "REVISION_REJECTED": 264,
+      "revision_allowed": 3,
+      "revision_budget_exhausted": 96,
+      "unchanged_call_without_new_evidence": 109
+    },
+    "revision_llm_calls": 738,
+    "trajectory_feedback_association": {
+      "cases_with_feedback": 359,
+      "cases_without_feedback": 367,
+      "utility_rate_with_feedback": 0.14206128133704735,
+      "utility_rate_without_feedback": 0.5149863760217984,
+      "utility_successes_with_feedback": 51,
+      "utility_successes_without_feedback": 189
+    }
+  },
+  "status": "passed_with_observational_timing_caveat",
+  "verification": {
+    "failure_taxonomy_reconciles": true,
+    "positive_finite_duration": true,
+    "same_726_case_keys": true,
+    "strict_e77_report_passed": true
+  }
+}

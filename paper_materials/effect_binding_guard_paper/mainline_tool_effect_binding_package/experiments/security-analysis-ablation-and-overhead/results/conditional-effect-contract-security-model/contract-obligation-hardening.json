@@ -1,0 +1,48 @@
+{
+  "check_type": "contract_obligation_hardening_o2_o5",
+  "claim_boundary": "The checks expose two concrete E77 failure modes and validate isolated hardening mechanisms. They do not retroactively change E77 results or prove O1 contract soundness, arbitrary-language envelope soundness, or remote executor semantics.",
+  "experiment": "E80",
+  "generated_at": "2026-07-12T10:15:51.364076+00:00",
+  "hardened_checks": {
+    "instantiated_defaults": [
+      "visibility"
+    ],
+    "manifest_violations": [
+      "literal_not_grounded:send_email.recipients"
+    ],
+    "static_default_totalized": {
+      "resource_id": "doc-1",
+      "visibility": "public"
+    },
+    "ungrounded_literal_rejected": true
+  },
+  "legacy_negative_witnesses": {
+    "omitted_forbidden_field": {
+      "checks": [],
+      "decision": "ALLOW",
+      "reasons": [
+        "all_effect_fields_match_initial_permission_plan"
+      ]
+    },
+    "ungrounded_exact_literal": {
+      "checks": [
+        {
+          "field": "recipients",
+          "intent": "send",
+          "mode": "exact",
+          "status": "matched_exact",
+          "value": "attacker@example.com"
+        }
+      ],
+      "decision": "ALLOW",
+      "reasons": [
+        "all_effect_fields_match_initial_permission_plan"
+      ]
+    }
+  },
+  "obligation_status": {
+    "O2": "implementation_mechanism_passed; arbitrary-natural-language-manifest-construction-remains_conditional",
+    "O5": "declared-static-default-path_passed; undocumented-or-state-dependent-defaults-remain_conditional"
+  },
+  "status": "passed"
+}

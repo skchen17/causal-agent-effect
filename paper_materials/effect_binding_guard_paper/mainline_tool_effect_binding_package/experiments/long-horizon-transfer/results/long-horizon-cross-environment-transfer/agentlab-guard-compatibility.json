@@ -1,0 +1,64 @@
+{
+  "audit_type": "agentlab_v121_e77_guard_schema_compatibility",
+  "claim_boundary": "All AgentLAB AgentDojo v1.2.1 tools classified effectful by the E77 map have registered descriptors with matching schema fields. This is a schema gate only; the E77 patch has not yet mediated a v1.2.1 victim trajectory.",
+  "experiment": "E79",
+  "generated_at": "2026-07-12T10:33:54.121384+00:00",
+  "missing_registered_effectful_tools": [],
+  "next_gate": "Run one saved-attack victim case for no guard and E77 with exact precommit audit reconciliation, then execute the frozen 303-pair set under one checkpoint.",
+  "registered_descriptor_source": "analysis/results/e77_registered_effect_diff_descriptors.jsonl",
+  "schema_field_mismatches": [],
+  "status": "schema_compatible_not_runtime_validated",
+  "suite_inventory": {
+    "banking": {
+      "effectful_tools": [
+        "schedule_transaction",
+        "send_money",
+        "update_password",
+        "update_scheduled_transaction",
+        "update_user_info"
+      ],
+      "n_effectful_tools": 5,
+      "n_tools": 11
+    },
+    "slack": {
+      "effectful_tools": [
+        "add_user_to_channel",
+        "invite_user_to_slack",
+        "post_webpage",
+        "remove_user_from_slack",
+        "send_channel_message",
+        "send_direct_message"
+      ],
+      "n_effectful_tools": 6,
+      "n_tools": 11
+    },
+    "travel": {
+      "effectful_tools": [
+        "cancel_calendar_event",
+        "create_calendar_event",
+        "reserve_car_rental",
+        "reserve_hotel",
+        "reserve_restaurant",
+        "send_email"
+      ],
+      "n_effectful_tools": 6,
+      "n_tools": 28
+    },
+    "workspace": {
+      "effectful_tools": [
+        "add_calendar_event_participants",
+        "append_to_file",
+        "cancel_calendar_event",
+        "create_calendar_event",
+        "create_file",
+        "delete_email",
+        "delete_file",
+        "reschedule_calendar_event",
+        "send_email",
+        "share_file"
+      ],
+      "n_effectful_tools": 10,
+      "n_tools": 24
+    }
+  }
+}

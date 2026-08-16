@@ -1,0 +1,214 @@
+\section{Executable Authorization-Interface Validation}
+
+\input{figures/system_overview}
+
+Figure~\ref{fig:system-overview} separates offline validation from downstream
+consumption. Registration tests an untrusted candidate descriptor against the
+tool implementation; the frozen descriptor then supplies an observation
+interface to independently authenticated authority. A developer or LLM may seed names
+and bindings, but neither the proposal nor a planner decision supplies evidence
+or enlarges authority.
+
+An \emph{effect atom} is one candidate policy-relevant unit.  A \emph{tool
+descriptor} is the executable, security-critical observation contract produced
+by offline registration.  The descriptor is useful only insofar as its
+instantiated atoms preserve distinctions required by the selected policy
+family.
+
+The registration evidence has two stages.  A committed-state difference is an
+\emph{effect witness}: it shows that the intervention changes what the tool
+does.  A pair becomes an \emph{authorization-separating witness} only when an
+admissible policy decides the two resulting semantic views differently.  The
+first justifies retaining information about an effect; the second justifies a
+distinction in an authorization-sufficient representation. One such
+counterexample falsifies a candidate view on every domain containing the pair.
+The validation record names the implementation, intervention domain, policy
+family, and unresolved tests associated with the accepted descriptor.
+
+The three evidence objects compose into one executable failure certificate when
+\[
+\begin{aligned}
+  \omega(u)&\ne\omega(v),\\
+  I_P(\omega(u))&\ne I_P(\omega(v)),\qquad \rho(u)=\rho(v).
+\end{aligned}
+\]
+This triple is an \emph{authorization-interface counterexample}.
+
+\subsection{From Committed Effects to Authorization Observations}
+
+Let $u=(t,\bar{x},s,h)$ contain a tool name, totalized arguments, pre-state, and
+typed provenance evidence, and let $\mu(u)$ be the multiset of committed state changes produced by
+executing $u$.  As in Section~\ref{sec:threat-model}, $\omega(u)$ augments this
+multiset with policy-relevant trusted execution metadata.  An \emph{effect atom} records one occurrence that an admissible
+policy may need to authorize independently.  For example, adding a participant
+to an existing calendar event can produce
+\[
+ \langle\textsf{invite},\textsf{event:17},\textsf{sarah@example.com},
+          \textsf{commit},\textsf{tool-output}\rangle.
+\]
+Here the components denote effect kind, operated resource, target principal,
+operation or commit mode, and control provenance.  A tool-specific atom may
+also retain a payload, visibility, date, or other qualifier when the policy
+family can distinguish its values.  Lists expand per target or resource when
+their members can be authorized independently.
+
+A candidate typed-effect descriptor $d_t$ contains (i) argument-totalization rules,
+(ii) proposed effect kinds, (iii) effect-bearing schema fields and their
+bindings or roles, (iv) inactive values, and (v) counterfactual evidence for
+those choices.  Its instantiation function defines the monitor view
+\[
+  \rho_d(u)=A_{d_t}(u)
+    =\operatorname{instantiate}(d_t,\bar{x},s,h),
+\]
+a canonical multiset of concrete atoms. Thus $\mu(u)$ is what execution
+actually commits, whereas $\rho_d(u)$ is the effect representation available
+before commitment. This typed form is one candidate interface family; the
+validation criterion applies to any representation $\rho$. We instantiate it
+on 11 tools from three public MCP implementations and in a four-domain
+explicit-authority benchmark.  The
+separate AgentDojo integration consumes a conservative registered-field
+projection with lexical role annotations.
+
+Atom equality is field-wise after descriptor-defined canonicalization, and
+multiplicity is preserved: inviting the same principal to two resources is not
+collapsed into one occurrence. A general descriptor may bind aliases to stable
+resource or principal identifiers. The evaluated descriptor canonicalizes case
+and whitespace, numeric and date forms, normalized URLs, and values linked by a
+matching authorized-read ledger entry. Alias-sensitive and typed-resource
+views are evaluated separately.
+
+\paragraph{Policy-relative minimality.}
+Minimality is relative to a frozen intervention domain $D$ and policy family
+$\mathcal P$.  A representation is minimal on $(D,\mathcal P)$ when merging
+any two of its classes creates a pair that some $P\in\mathcal P$ decides
+differently.  Accordingly, changing committed state establishes that a field
+is effect-relevant.  A trusted provenance or control-source change can also be
+authorization-relevant without changing state.  Either establishes
+authorization necessity only when an admissible policy separates the resulting
+semantic views. A returned-string change alone establishes neither. Minimality
+therefore describes the induced partition on $(D,\mathcal P)$ rather than a
+particular universal tuple schema.
+
+\subsection{Falsification-First Registration}
+
+Registration consumes a versioned tool schema and implementation, sandbox
+states, an intervention catalog, and, when authorization sufficiency is being
+tested, a policy-separation oracle from $\mathcal P$. It proceeds as follows.
+
+\paragraph{1. Propose.}
+A developer or an LLM proposes effect names and field bindings from the tool
+name, description, and schema. Registration treats this proposal as an
+untrusted initial hypothesis. Executable validation, rather than proposer
+confidence, determines which bindings enter the frozen descriptor.
+
+\paragraph{2. Intervene and execute.}
+For a valid base call, the harness changes a field value or its presence while
+holding the implementation and initial state fixed.  Interventions include
+typed alternatives, observed alternatives, boundary values, list expansion,
+and omission/default cases when supported.  Surface-only variants serve as
+placebos.  Both calls execute in copied sandboxes, so no external side effect
+is produced.
+
+The source execution oracle is intentionally privileged. It observes post-execution
+state in a copied sandbox and answers \emph{what happened?}  It is useful for
+offline testing but cannot serve at the real commit boundary, where the effect
+must be authorized before it occurs. The policy-separation oracle separately asks
+\emph{does this semantic difference require another decision?}  The descriptor
+answers a third question: \emph{what can policy observe before commit?}
+
+For the third-party validation, we additionally separate the positive decision
+check from the typed vocabulary. A native oracle emits only filesystem tree,
+database row, or graph-memory before/after deltas. A separate native-policy
+interpreter decides those deltas directly from the authority manifest and
+shares no typed compiler or atom vocabulary. The typed path independently
+compiles the pre-commit request and invokes the existing authority engine.
+
+\paragraph{3. Classify evidence.}
+A state-difference oracle compares committed state, returned output, and
+execution validity; provenance interventions additionally use the trusted
+harness annotation.  The harness records \emph{committed-effect changed},
+\emph{policy-metadata changed}, \emph{output-only changed},
+\emph{semantic-invariant}, or \emph{invalid/unresolved}.  The first is evidence
+that a field participates in the exercised effect relation; the second records
+a change such as trusted control provenance.  Either becomes an
+authorization-separating counterexample only if the selected policy-separation oracle
+distinguishes the two semantic views.  An invariant outcome supports omission
+only over the tested states and interventions; an invalid outcome is never
+treated as evidence of irrelevance.
+
+\paragraph{4. Refine, retain, or freeze.}
+A developer, reviewer, or tool-specific refinement rule uses a counterexample
+to add a field, split a list-valued effect, or introduce a qualifier. Repeating
+this step implements the refinement procedure analyzed in
+Section~\ref{sec:security-analysis}. A descriptor is accepted when its recorded
+test domain and policy family contain no remaining separating collision. The
+AgentDojo registry applies a conservative variant: it retains fields with
+effect-change evidence and fields whose tests remain unresolved. A later
+multi-base audit broadens the evidence while preserving the original frozen
+registry.
+The descriptor, implementation identity, intervention manifest, and evidence
+are hash-frozen together; runtime code cannot invoke the proposer.
+
+\paragraph{Running example.}
+Consider a calendar tool whose participant argument is a list.  The proposal
+may initially describe the call only as \textsf{create-event}.  Registration
+executes a base call that invites Alice and a paired call that additionally
+invites Eve.  If the state oracle observes a second invitation and the policy
+allows Alice but not Eve, the pair is an authorization-separating
+counterexample.  Refinement therefore expands the participant list into one
+\textsf{invite} atom per principal.  A surface paraphrase that preserves the
+same event and participants should leave the atom multiset unchanged.  The
+frozen record binds the descriptor to the calendar implementation,
+interventions, and policy family exercised by these checks.
+
+\subsection{Downstream Consumer Contract}
+
+For context $u=(t,\bar{x},s,h)$, a downstream consumer applies the descriptor's
+totalization rules and instantiates $\rho_d(u)$ as defined above.  Failed
+totalization or unresolved descriptor bindings cannot produce \Allow{}.  The contract
+\[
+  \operatorname{Authorize}(\rho_d(u),P)
+       \rightarrow \{\Allow,\Deny,\Abstain\}
+\]
+receives the registered view and independently supplied authority context $P$.  Such a
+policy may check ACLs, delegation, visibility, quotas, or other
+resource-specific constraints. This equation specifies the interface whose
+input we validate. Registration supplies observability; $P$ supplies authority.
+
+The consumer can also receive a state-aware request. This alternative passes
+totalized arguments plus selected trusted pre-state to a tool-specific request
+adapter. Both paths can be sufficient. They differ in semantic placement: our
+four-tool typed path uses a generic descriptor interpreter and declarative
+per-tool rules, while the state-aware path embeds operation knowledge in
+executable adapter code. In the third-party prototype, both paths contain
+tool-specific code. The interface-economy audit measures their state exposure,
+partitioning, code structure, and latency separately.
+
+Runtime instantiation does not execute the tool or consult the post-state source
+oracle. It reads only totalized arguments, trusted provenance, and the current
+trusted pre-commit snapshot required by the descriptor. A state-derived atom is
+therefore valid only for that snapshot; freshness and check--use consistency
+must hold until the checked call commits.
+
+Our end-to-end consumer uses explicit authority state rather than an
+effect-multiset bound.  Resource ACLs grant operations to an authenticated
+subject; messaging capabilities bind a holder to channels and qualifier
+constraints; banking delegations attenuate resource, payee, amount, and
+currency.  Concrete post-state transitions and pre-commit atoms enter the same
+tri-state authority engine through separately implemented adapters. Tool name,
+raw arguments, common fields, and a stronger state-aware request view expose
+alternative observation interfaces;
+unknown policy facts produce \Abstain{}.  Policy, authority, state, and decision
+logic remain fixed while only the observation interface changes.
+
+\subsection{Integration Case Study}
+
+To exercise the contract in complete agent trajectories, we attach a frozen
+registered-field projection to AgentDojo's pre-commit hook.  The adapter
+totalizes schema fields, preserves marked untrusted provenance through
+structured outputs, expands list values independently, and rejects a registered
+effect or value introduced solely by untrusted evidence outside the
+authenticated task. Missing registration or unresolved bindings produce
+\Abstain{}. The executor commits only the exact checked call and reconciles
+every decision with execution. This consumer enforces a provenance-origin
+policy over registered fields at the AgentDojo commit boundary.

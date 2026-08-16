@@ -1,0 +1,50 @@
+[
+  {
+    "abstain": 0.044642857142857144,
+    "authorization_accuracy": 0.8839285714285714,
+    "coverage": 0.9553571428571429,
+    "effect_accuracy": 0.8928571428571429,
+    "method": "held_out_test_full_guard",
+    "provenance_accuracy": null,
+    "resource_accuracy": 0.8125,
+    "safe_false_deny": 0.047619047619047616,
+    "scope": "legacy_hashed_test_no_camel",
+    "unsafe_pre_allow": 0.05102040816326531
+  },
+  {
+    "abstain": 0.1036036036036036,
+    "authorization_accuracy": 0.8571428571428571,
+    "coverage": 0.8963963963963963,
+    "effect_accuracy": 0.7927927927927928,
+    "method": "human_audited_subset",
+    "provenance_accuracy": 1.0,
+    "resource_accuracy": 0.7522522522522522,
+    "safe_false_deny": 0.046511627906976744,
+    "scope": "audited_subset",
+    "unsafe_pre_allow": 0.03225806451612903
+  },
+  {
+    "abstain": 0.10833333333333334,
+    "authorization_accuracy": 0.7958333333333333,
+    "coverage": 0.8916666666666667,
+    "effect_accuracy": 0.8791666666666667,
+    "method": "ipiguard_semantic_core",
+    "provenance_accuracy": null,
+    "resource_accuracy": 0.675,
+    "safe_false_deny": 0.08333333333333333,
+    "scope": "source_specific",
+    "unsafe_pre_allow": 0.125
+  },
+  {
+    "abstain": 0.2222222222222222,
+    "authorization_accuracy": null,
+    "coverage": 0.7777777777777778,
+    "effect_accuracy": 0.6481481481481481,
+    "method": "camel_provenance_core",
+    "provenance_accuracy": 1.0,
+    "resource_accuracy": 0.8888888888888888,
+    "safe_false_deny": 0.0,
+    "scope": "source_specific",
+    "unsafe_pre_allow": 0.0
+  }
+]

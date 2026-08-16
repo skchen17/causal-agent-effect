@@ -1,0 +1,54 @@
+{
+  "agentdojo_version": "v1.1.2",
+  "artifacts": {
+    "descriptor_candidates_jsonl": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e76_llm_descriptor_candidates.jsonl",
+    "feedback_jsonl": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e76_counterfactual_descriptor_feedback.jsonl",
+    "registered_jsonl": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e76_registered_llm_tool_descriptors.jsonl",
+    "scores_csv": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e76_counterfactual_descriptor_scores.csv",
+    "tool_views_jsonl": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e76_agentdojo_tool_onboarding_views.jsonl"
+  },
+  "claim_boundary": "E76 uses a local LLM only for offline effect recognition and atom descriptor generation. Counterfactual field checks register only descriptors whose tool parameters are either atom-bound or explicitly non-security. Runtime AgentDojo execution must load only the registered descriptor JSONL; unregistered side-effect tools fail closed. This is not a production-safety claim.",
+  "experiment": "E76 LLM-generated atom descriptor AgentDojo runtime registration",
+  "n_descriptor_candidates": 30,
+  "n_feedback_rows": 30,
+  "n_tool_views": 24,
+  "registered_tools": [
+    "add_calendar_event_participants",
+    "add_user_to_channel",
+    "append_to_file",
+    "cancel_calendar_event",
+    "create_file",
+    "delete_email",
+    "delete_file",
+    "post_webpage",
+    "remove_user_from_slack",
+    "reschedule_calendar_event",
+    "reserve_car_rental",
+    "reserve_hotel",
+    "reserve_restaurant",
+    "schedule_transaction",
+    "send_channel_message",
+    "send_direct_message",
+    "send_email",
+    "send_money",
+    "share_file",
+    "update_scheduled_transaction",
+    "update_user_info"
+  ],
+  "registry_summary": {
+    "failure_categories": [
+      "missing_required_field_bindings",
+      "unclassified_tool_fields"
+    ],
+    "n_tools": 24,
+    "parse_valid_tools": 24,
+    "registered_tools": 21,
+    "unregistered_tools": 3
+  },
+  "status": "passed",
+  "unregistered_tools": [
+    "create_calendar_event",
+    "invite_user_to_slack",
+    "update_password"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "commands": [
+    "python scripts/build_tool_effect_paper_package.py --force",
+    "python scripts/build_tool_effect_paper_package.py --validate-only",
+    "python -m pytest tests/test_tool_effect_fragmentation_phase4.py tests/test_tool_effect_fragmentation_phase5.py tests/test_tool_effect_fragmentation_phase6.py -q"
+  ],
+  "copied_artifacts": 61,
+  "experiment_manifests": 11,
+  "failure_examples": 10,
+  "tables": [
+    "appendix_camel_miss_decomposition",
+    "appendix_corrected_vs_weak_labels",
+    "appendix_external_pipeline_feasibility",
+    "appendix_failure_case_table",
+    "appendix_ipiguard_consistency_by_variant",
+    "claim_scope_table",
+    "counterfactual_lattice_summary",
+    "human_audit_summary",
+    "main_capability_matrix",
+    "official_checkpoint_summary",
+    "structured_defense_summary"
+  ]
+}

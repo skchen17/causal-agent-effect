@@ -1,0 +1,1763 @@
+{
+  "descriptors": [
+    {
+      "lets": {
+        "calendar_id": {
+          "resolve": {
+            "mapping": {
+              "state": "aliases"
+            },
+            "value": {
+              "arg": "calendar_ref"
+            }
+          }
+        },
+        "event_id": {
+          "arg": "event_id"
+        },
+        "mode": {
+          "arg": "commit_mode",
+          "default": {
+            "literal": "commit"
+          }
+        },
+        "old_participants": {
+          "default": {
+            "literal": []
+          },
+          "state": "calendars.{calendar_id}.events.{event_id}.participants"
+        },
+        "old_recurrence": {
+          "state": "calendars.{calendar_id}.events.{event_id}.recurrence"
+        },
+        "old_visibility": {
+          "state": "calendars.{calendar_id}.events.{event_id}.visibility"
+        },
+        "recurrence": {
+          "coalesce": [
+            {
+              "arg": "recurrence"
+            },
+            {
+              "state": "calendars.{calendar_id}.default_recurrence"
+            }
+          ]
+        },
+        "visibility": {
+          "coalesce": [
+            {
+              "arg": "visibility"
+            },
+            {
+              "state": "calendars.{calendar_id}.default_visibility"
+            }
+          ]
+        }
+      },
+      "rules": [
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "draft"
+            },
+            "effect": "calendar.draft.save",
+            "operation": "calendar.draft.save",
+            "qualifiers": {
+              "event_id": {
+                "var": "event_id"
+              }
+            },
+            "resource_id": {
+              "var": "calendar_id"
+            },
+            "resource_type": {
+              "literal": "calendar"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "rule_id": "calendar-draft",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "draft"
+              }
+            ]
+          }
+        },
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "scheduled"
+            },
+            "effect": "calendar.event.schedule",
+            "operation": "calendar.event.schedule",
+            "qualifiers": {
+              "event_id": {
+                "var": "event_id"
+              }
+            },
+            "resource_id": {
+              "var": "calendar_id"
+            },
+            "resource_type": {
+              "literal": "calendar"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "rule_id": "calendar-schedule",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "scheduled"
+              }
+            ]
+          }
+        },
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "calendar.event.upsert",
+            "operation": "calendar.event.upsert",
+            "qualifiers": {
+              "event_id": {
+                "var": "event_id"
+              },
+              "recurrence": {
+                "var": "recurrence"
+              },
+              "visibility": {
+                "var": "visibility"
+              }
+            },
+            "resource_id": {
+              "var": "calendar_id"
+            },
+            "resource_type": {
+              "literal": "calendar"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "rule_id": "calendar-upsert",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "commit"
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "arg": "participants",
+                "default": {
+                  "literal": []
+                }
+              },
+              "name": "person"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "calendar.participant.invite",
+            "operation": "calendar.participant.invite",
+            "qualifiers": {
+              "event_id": {
+                "var": "event_id"
+              }
+            },
+            "resource_id": {
+              "var": "calendar_id"
+            },
+            "resource_type": {
+              "literal": "calendar"
+            },
+            "target_principal": {
+              "var": "person"
+            }
+          },
+          "rule_id": "calendar-invite",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "not": {
+                  "contains": [
+                    {
+                      "var": "old_participants"
+                    },
+                    {
+                      "var": "person"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "var": "old_participants"
+              },
+              "name": "person"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "calendar.participant.remove",
+            "operation": "calendar.participant.remove",
+            "qualifiers": {
+              "event_id": {
+                "var": "event_id"
+              }
+            },
+            "resource_id": {
+              "var": "calendar_id"
+            },
+            "resource_type": {
+              "literal": "calendar"
+            },
+            "target_principal": {
+              "var": "person"
+            }
+          },
+          "rule_id": "calendar-remove",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "not": {
+                  "contains": [
+                    {
+                      "arg": "participants",
+                      "default": {
+                        "literal": []
+                      }
+                    },
+                    {
+                      "var": "person"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "calendar.visibility.set",
+            "operation": "calendar.visibility.set",
+            "qualifiers": {
+              "event_id": {
+                "var": "event_id"
+              },
+              "visibility": {
+                "var": "visibility"
+              }
+            },
+            "resource_id": {
+              "var": "calendar_id"
+            },
+            "resource_type": {
+              "literal": "calendar"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "rule_id": "calendar-visibility",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "any": [
+                  {
+                    "missing": {
+                      "var": "old_visibility"
+                    }
+                  },
+                  {
+                    "ne": [
+                      {
+                        "var": "old_visibility"
+                      },
+                      {
+                        "var": "visibility"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "calendar.recurrence.set",
+            "operation": "calendar.recurrence.set",
+            "qualifiers": {
+              "event_id": {
+                "var": "event_id"
+              },
+              "recurrence": {
+                "var": "recurrence"
+              }
+            },
+            "resource_id": {
+              "var": "calendar_id"
+            },
+            "resource_type": {
+              "literal": "calendar"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "rule_id": "calendar-recurrence",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "any": [
+                  {
+                    "missing": {
+                      "var": "old_recurrence"
+                    }
+                  },
+                  {
+                    "ne": [
+                      {
+                        "var": "old_recurrence"
+                      },
+                      {
+                        "var": "recurrence"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "schema_version": 1,
+      "tool_name": "schedule_meeting"
+    },
+    {
+      "rules": [
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "doc_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "doc_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "doc_ref"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "draft"
+            },
+            "effect": "document.share.draft",
+            "operation": "document.share.draft",
+            "qualifiers": {},
+            "resource_id": {
+              "var": "doc_id"
+            },
+            "resource_type": {
+              "literal": "document"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "lets": {
+            "doc_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "doc_ref"
+                }
+              }
+            },
+            "mode": {
+              "arg": "commit_mode",
+              "default": {
+                "literal": "commit"
+              }
+            },
+            "old_visibility": {
+              "state": "documents.{doc_id}.visibility"
+            },
+            "operation": {
+              "arg": "operation",
+              "default": {
+                "literal": "grant"
+              }
+            },
+            "visibility": {
+              "coalesce": [
+                {
+                  "arg": "visibility"
+                },
+                {
+                  "state": "documents.{doc_id}.default_visibility"
+                }
+              ]
+            }
+          },
+          "rule_id": "doc-draft",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "draft"
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "doc_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "doc_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "doc_ref"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "document.visibility.set",
+            "operation": "document.visibility.set",
+            "qualifiers": {
+              "visibility": {
+                "var": "visibility"
+              }
+            },
+            "resource_id": {
+              "var": "doc_id"
+            },
+            "resource_type": {
+              "literal": "document"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "lets": {
+            "doc_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "doc_ref"
+                }
+              }
+            },
+            "mode": {
+              "arg": "commit_mode",
+              "default": {
+                "literal": "commit"
+              }
+            },
+            "old_visibility": {
+              "state": "documents.{doc_id}.visibility"
+            },
+            "operation": {
+              "arg": "operation",
+              "default": {
+                "literal": "grant"
+              }
+            },
+            "visibility": {
+              "coalesce": [
+                {
+                  "arg": "visibility"
+                },
+                {
+                  "state": "documents.{doc_id}.default_visibility"
+                }
+              ]
+            }
+          },
+          "rule_id": "doc-visibility",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "ne": [
+                  {
+                    "var": "old_visibility"
+                  },
+                  {
+                    "var": "visibility"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "doc_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "doc_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "doc_ref"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "document.public_link.create",
+            "operation": "document.public_link.create",
+            "qualifiers": {},
+            "resource_id": {
+              "var": "doc_id"
+            },
+            "resource_type": {
+              "literal": "document"
+            },
+            "target_principal": {
+              "literal": "principal:public"
+            }
+          },
+          "lets": {
+            "doc_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "doc_ref"
+                }
+              }
+            },
+            "mode": {
+              "arg": "commit_mode",
+              "default": {
+                "literal": "commit"
+              }
+            },
+            "old_visibility": {
+              "state": "documents.{doc_id}.visibility"
+            },
+            "operation": {
+              "arg": "operation",
+              "default": {
+                "literal": "grant"
+              }
+            },
+            "visibility": {
+              "coalesce": [
+                {
+                  "arg": "visibility"
+                },
+                {
+                  "state": "documents.{doc_id}.default_visibility"
+                }
+              ]
+            }
+          },
+          "rule_id": "doc-public",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "eq": [
+                  {
+                    "var": "visibility"
+                  },
+                  {
+                    "literal": "public"
+                  }
+                ]
+              },
+              {
+                "ne": [
+                  {
+                    "var": "old_visibility"
+                  },
+                  {
+                    "literal": "public"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "doc_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "doc_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "doc_ref"
+            },
+            {
+              "from": {
+                "arg": "recipients",
+                "default": {
+                  "literal": []
+                }
+              },
+              "name": "person"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "document.share.grant",
+            "operation": "document.share.grant",
+            "qualifiers": {
+              "permission": {
+                "arg": "permission"
+              }
+            },
+            "resource_id": {
+              "var": "doc_id"
+            },
+            "resource_type": {
+              "literal": "document"
+            },
+            "target_principal": {
+              "var": "person"
+            }
+          },
+          "lets": {
+            "doc_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "doc_ref"
+                }
+              }
+            },
+            "mode": {
+              "arg": "commit_mode",
+              "default": {
+                "literal": "commit"
+              }
+            },
+            "old_permission": {
+              "state": "documents.{doc_id}.acl.{person}"
+            },
+            "old_visibility": {
+              "state": "documents.{doc_id}.visibility"
+            },
+            "operation": {
+              "arg": "operation",
+              "default": {
+                "literal": "grant"
+              }
+            },
+            "visibility": {
+              "coalesce": [
+                {
+                  "arg": "visibility"
+                },
+                {
+                  "state": "documents.{doc_id}.default_visibility"
+                }
+              ]
+            }
+          },
+          "rule_id": "doc-grant",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "ne": [
+                  {
+                    "var": "operation"
+                  },
+                  {
+                    "literal": "revoke"
+                  }
+                ]
+              },
+              {
+                "missing": {
+                  "var": "old_permission"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "doc_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "doc_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "doc_ref"
+            },
+            {
+              "from": {
+                "arg": "recipients",
+                "default": {
+                  "literal": []
+                }
+              },
+              "name": "person"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "document.share.change",
+            "operation": "document.share.change",
+            "qualifiers": {
+              "permission": {
+                "arg": "permission"
+              }
+            },
+            "resource_id": {
+              "var": "doc_id"
+            },
+            "resource_type": {
+              "literal": "document"
+            },
+            "target_principal": {
+              "var": "person"
+            }
+          },
+          "lets": {
+            "doc_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "doc_ref"
+                }
+              }
+            },
+            "mode": {
+              "arg": "commit_mode",
+              "default": {
+                "literal": "commit"
+              }
+            },
+            "old_permission": {
+              "state": "documents.{doc_id}.acl.{person}"
+            },
+            "old_visibility": {
+              "state": "documents.{doc_id}.visibility"
+            },
+            "operation": {
+              "arg": "operation",
+              "default": {
+                "literal": "grant"
+              }
+            },
+            "visibility": {
+              "coalesce": [
+                {
+                  "arg": "visibility"
+                },
+                {
+                  "state": "documents.{doc_id}.default_visibility"
+                }
+              ]
+            }
+          },
+          "rule_id": "doc-change",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "ne": [
+                  {
+                    "var": "operation"
+                  },
+                  {
+                    "literal": "revoke"
+                  }
+                ]
+              },
+              {
+                "exists": {
+                  "var": "old_permission"
+                }
+              },
+              {
+                "ne": [
+                  {
+                    "var": "old_permission"
+                  },
+                  {
+                    "arg": "permission"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "doc_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "doc_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "doc_ref"
+            },
+            {
+              "from": {
+                "arg": "recipients",
+                "default": {
+                  "literal": []
+                }
+              },
+              "name": "person"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "document.share.revoke",
+            "operation": "document.share.revoke",
+            "qualifiers": {
+              "permission": {
+                "var": "old_permission"
+              }
+            },
+            "resource_id": {
+              "var": "doc_id"
+            },
+            "resource_type": {
+              "literal": "document"
+            },
+            "target_principal": {
+              "var": "person"
+            }
+          },
+          "lets": {
+            "doc_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "doc_ref"
+                }
+              }
+            },
+            "mode": {
+              "arg": "commit_mode",
+              "default": {
+                "literal": "commit"
+              }
+            },
+            "old_permission": {
+              "state": "documents.{doc_id}.acl.{person}"
+            },
+            "old_visibility": {
+              "state": "documents.{doc_id}.visibility"
+            },
+            "operation": {
+              "arg": "operation",
+              "default": {
+                "literal": "grant"
+              }
+            },
+            "visibility": {
+              "coalesce": [
+                {
+                  "arg": "visibility"
+                },
+                {
+                  "state": "documents.{doc_id}.default_visibility"
+                }
+              ]
+            }
+          },
+          "rule_id": "doc-revoke",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "eq": [
+                  {
+                    "var": "operation"
+                  },
+                  {
+                    "literal": "revoke"
+                  }
+                ]
+              },
+              {
+                "exists": {
+                  "var": "old_permission"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "schema_version": 1,
+      "tool_name": "share_document"
+    },
+    {
+      "rules": [
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "channel_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "channel_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "channel_ref"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "draft"
+            },
+            "effect": "message.draft.save",
+            "operation": "message.draft.save",
+            "qualifiers": {},
+            "resource_id": {
+              "var": "channel_id"
+            },
+            "resource_type": {
+              "literal": "channel"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "lets": {
+            "channel_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "channel_ref"
+                }
+              }
+            },
+            "mode": {
+              "coalesce": [
+                {
+                  "arg": "commit_mode"
+                },
+                {
+                  "state": "default_delivery_mode"
+                }
+              ]
+            }
+          },
+          "rule_id": "message-draft",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "draft"
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "channel_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "channel_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "channel_ref"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "scheduled"
+            },
+            "effect": "message.schedule",
+            "operation": "message.schedule",
+            "qualifiers": {},
+            "resource_id": {
+              "var": "channel_id"
+            },
+            "resource_type": {
+              "literal": "channel"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "lets": {
+            "channel_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "channel_ref"
+                }
+              }
+            },
+            "mode": {
+              "coalesce": [
+                {
+                  "arg": "commit_mode"
+                },
+                {
+                  "state": "default_delivery_mode"
+                }
+              ]
+            }
+          },
+          "rule_id": "message-schedule",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "scheduled"
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "channel_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "channel_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "channel_ref"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "message.post",
+            "operation": "message.post",
+            "qualifiers": {
+              "payload_class": {
+                "arg": "payload_class"
+              }
+            },
+            "resource_id": {
+              "var": "channel_id"
+            },
+            "resource_type": {
+              "literal": "channel"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "lets": {
+            "channel_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "channel_ref"
+                }
+              }
+            },
+            "mode": {
+              "coalesce": [
+                {
+                  "arg": "commit_mode"
+                },
+                {
+                  "state": "default_delivery_mode"
+                }
+              ]
+            }
+          },
+          "rule_id": "message-post",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "commit"
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "channel_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "channel_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "channel_ref"
+            },
+            {
+              "from": {
+                "arg": "recipients",
+                "default": {
+                  "literal": []
+                }
+              },
+              "name": "person"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "message.notify",
+            "operation": "message.notify",
+            "qualifiers": {},
+            "resource_id": {
+              "var": "channel_id"
+            },
+            "resource_type": {
+              "literal": "channel"
+            },
+            "target_principal": {
+              "var": "person"
+            }
+          },
+          "lets": {
+            "channel_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "channel_ref"
+                }
+              }
+            },
+            "mode": {
+              "coalesce": [
+                {
+                  "arg": "commit_mode"
+                },
+                {
+                  "state": "default_delivery_mode"
+                }
+              ]
+            }
+          },
+          "rule_id": "message-notify",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "commit"
+              }
+            ]
+          }
+        },
+        {
+          "bindings": [
+            {
+              "from": {
+                "coalesce": [
+                  {
+                    "arg": "channel_refs"
+                  },
+                  {
+                    "wrap": {
+                      "arg": "channel_ref"
+                    }
+                  }
+                ]
+              },
+              "name": "channel_ref"
+            }
+          ],
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "message.external_relay",
+            "operation": "message.external_relay",
+            "qualifiers": {},
+            "resource_id": {
+              "var": "channel_id"
+            },
+            "resource_type": {
+              "literal": "channel"
+            },
+            "target_principal": {
+              "literal": "principal:external"
+            }
+          },
+          "lets": {
+            "bridged": {
+              "state": "channels.{channel_id}.external_bridge"
+            },
+            "channel_id": {
+              "resolve": {
+                "mapping": {
+                  "state": "aliases"
+                },
+                "value": {
+                  "var": "channel_ref"
+                }
+              }
+            },
+            "mode": {
+              "coalesce": [
+                {
+                  "arg": "commit_mode"
+                },
+                {
+                  "state": "default_delivery_mode"
+                }
+              ]
+            }
+          },
+          "rule_id": "message-relay",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "eq": [
+                  {
+                    "var": "bridged"
+                  },
+                  {
+                    "literal": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "schema_version": 1,
+      "tool_name": "post_message"
+    },
+    {
+      "lets": {
+        "account": {
+          "resolve": {
+            "mapping": {
+              "state": "account_aliases"
+            },
+            "value": {
+              "arg": "account_ref"
+            }
+          }
+        },
+        "amount": {
+          "arg": "amount"
+        },
+        "currency": {
+          "arg": "currency"
+        },
+        "fee": {
+          "calc": {
+            "op": "mul",
+            "round": 2,
+            "values": [
+              {
+                "arg": "amount"
+              },
+              {
+                "state": "fee_rate"
+              }
+            ]
+          }
+        },
+        "mode": {
+          "arg": "commit_mode",
+          "default": {
+            "literal": "commit"
+          }
+        },
+        "payee": {
+          "resolve": {
+            "mapping": {
+              "state": "payee_aliases"
+            },
+            "value": {
+              "arg": "payee_ref"
+            }
+          }
+        }
+      },
+      "rules": [
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "draft"
+            },
+            "effect": "bank.transfer.draft",
+            "operation": "bank.transfer.draft",
+            "qualifiers": {},
+            "resource_id": {
+              "var": "account"
+            },
+            "resource_type": {
+              "literal": "bank_account"
+            },
+            "target_principal": {
+              "var": "payee"
+            }
+          },
+          "rule_id": "bank-draft",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "draft"
+              }
+            ]
+          }
+        },
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "scheduled"
+            },
+            "effect": "bank.transfer.schedule",
+            "operation": "bank.transfer.schedule",
+            "qualifiers": {
+              "amount": {
+                "var": "amount"
+              },
+              "currency": {
+                "var": "currency"
+              }
+            },
+            "resource_id": {
+              "var": "account"
+            },
+            "resource_type": {
+              "literal": "bank_account"
+            },
+            "target_principal": {
+              "var": "payee"
+            }
+          },
+          "rule_id": "bank-schedule",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "scheduled"
+              }
+            ]
+          }
+        },
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "bank.transfer.commit",
+            "operation": "bank.transfer.commit",
+            "qualifiers": {
+              "amount": {
+                "var": "amount"
+              },
+              "currency": {
+                "var": "currency"
+              }
+            },
+            "resource_id": {
+              "var": "account"
+            },
+            "resource_type": {
+              "literal": "bank_account"
+            },
+            "target_principal": {
+              "var": "payee"
+            }
+          },
+          "rule_id": "bank-transfer",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "commit"
+              }
+            ]
+          }
+        },
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "bank.balance.debit",
+            "operation": "bank.balance.debit",
+            "qualifiers": {
+              "amount": {
+                "calc": {
+                  "op": "add",
+                  "round": 2,
+                  "values": [
+                    {
+                      "var": "amount"
+                    },
+                    {
+                      "var": "fee"
+                    }
+                  ]
+                }
+              },
+              "currency": {
+                "var": "currency"
+              }
+            },
+            "resource_id": {
+              "var": "account"
+            },
+            "resource_type": {
+              "literal": "bank_account"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "rule_id": "bank-debit",
+          "when": {
+            "eq": [
+              {
+                "var": "mode"
+              },
+              {
+                "literal": "commit"
+              }
+            ]
+          }
+        },
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "bank.fee.charge",
+            "operation": "bank.fee.charge",
+            "qualifiers": {
+              "amount": {
+                "var": "fee"
+              },
+              "currency": {
+                "var": "currency"
+              }
+            },
+            "resource_id": {
+              "var": "account"
+            },
+            "resource_type": {
+              "literal": "bank_account"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "rule_id": "bank-fee",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "gt": [
+                  {
+                    "var": "fee"
+                  },
+                  {
+                    "literal": 0
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "emit": {
+            "commit_mode": {
+              "literal": "commit"
+            },
+            "effect": "bank.compliance.override",
+            "operation": "bank.compliance.override",
+            "qualifiers": {},
+            "resource_id": {
+              "var": "account"
+            },
+            "resource_type": {
+              "literal": "bank_account"
+            },
+            "target_principal": {
+              "literal": null
+            }
+          },
+          "rule_id": "bank-hold",
+          "when": {
+            "all": [
+              {
+                "eq": [
+                  {
+                    "var": "mode"
+                  },
+                  {
+                    "literal": "commit"
+                  }
+                ]
+              },
+              {
+                "eq": [
+                  {
+                    "state": "compliance_hold"
+                  },
+                  {
+                    "literal": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "schema_version": 1,
+      "tool_name": "transfer_funds"
+    }
+  ],
+  "schema_version": 1
+}

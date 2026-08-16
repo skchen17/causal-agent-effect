@@ -1,0 +1,101 @@
+{
+  "authority_family": "all submultisets of the observed atomic-effect occurrences",
+  "benchmark": "AgentDojo v1.1.2",
+  "claim_boundary": "Exhaustive only for the enumerated finite call domain, fixed AgentDojo v1.1.2 source hashes, source-specific effect oracle, and the declared finite submultiset authority family.",
+  "contexts_per_tool": {
+    "banking/schedule_transaction": 32,
+    "slack/send_direct_message": 4,
+    "workspace/add_calendar_event_participants": 8,
+    "workspace/create_file": 4,
+    "workspace/share_file": 8
+  },
+  "empty_effect_sets": 0,
+  "execution_errors": 0,
+  "experiment": "finite_domain_effect_binding_validation",
+  "n_contexts": 56,
+  "n_tools": 5,
+  "n_witnesses": 21,
+  "oracle": "tool-specific committed effects reconstructed from fresh before/after AgentDojo state; independent of candidate representation values",
+  "representations": [
+    {
+      "authorization_collision_cells": 5,
+      "authorization_separating_pairs": 564,
+      "contexts_in_collision_cells": 56,
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 5,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "tool_name"
+    },
+    {
+      "authorization_collision_cells": 6,
+      "authorization_separating_pairs": 548,
+      "contexts_in_collision_cells": 56,
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 6,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "source_effect_only"
+    },
+    {
+      "authorization_collision_cells": 5,
+      "authorization_separating_pairs": 118,
+      "contexts_in_collision_cells": 36,
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 25,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "source_common_fields"
+    },
+    {
+      "authorization_collision_cells": 5,
+      "authorization_separating_pairs": 118,
+      "contexts_in_collision_cells": 36,
+      "finite_collision_complete": false,
+      "finite_partition_exact": false,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 25,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "reviewed_common_contract"
+    },
+    {
+      "authorization_collision_cells": 0,
+      "authorization_separating_pairs": 0,
+      "contexts_in_collision_cells": 0,
+      "finite_collision_complete": true,
+      "finite_partition_exact": true,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 56,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "reviewed_typed_contract"
+    },
+    {
+      "authorization_collision_cells": 0,
+      "authorization_separating_pairs": 0,
+      "contexts_in_collision_cells": 0,
+      "finite_collision_complete": true,
+      "finite_partition_exact": true,
+      "n_contexts": 56,
+      "n_effect_cells": 56,
+      "n_representation_cells": 56,
+      "overpartition_effect_cells": 0,
+      "overpartition_pairs": 0,
+      "representation": "source_full_effect"
+    }
+  ],
+  "source_verification_errors": [],
+  "status": "passed"
+}

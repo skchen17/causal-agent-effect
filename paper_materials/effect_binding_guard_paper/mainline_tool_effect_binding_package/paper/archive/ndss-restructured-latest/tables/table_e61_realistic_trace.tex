@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\caption{E61 realistic trace replay. Source A is clean sandbox replay, Source B is noisy realistic replay, and Source C stresses adversarial provenance shifts.}
+\label{tab:e61-realistic}
+\begin{tabular}{lccccc}
+\toprule
+Trace set & Rows & UPA & FDeny & Coverage & Atom exact \\
+\midrule
+E61 all traces & 300 & 0.000 & 0.053 & 0.847 & 0.733 \\
+A clean sandbox & 75 & 0.000 & 0.044 & 1.000 & 0.840 \\
+B realistic noisy & 135 & 0.000 & 0.058 & 0.881 & 0.719 \\
+C adversarial provenance shift & 90 & 0.000 & -- & 0.667 & 0.667 \\
+\bottomrule
+\end{tabular}
+\end{table}

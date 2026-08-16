@@ -1,0 +1,489 @@
+{
+  "claim_boundary": "Controlled four-domain deployment-style authorization-policy experiment. It tests bounded authorization-interface conformance on frozen copied-sandbox contexts; it does not estimate deployment-policy prevalence, open-world descriptor soundness, complete authorization, or production safety.",
+  "collision_audit": [
+    {
+      "conforms_on_frozen_relation": false,
+      "n_cells": 4,
+      "n_mixed_cells": 4,
+      "n_rows_in_mixed_cells": 8,
+      "representation": "tool_name",
+      "unit_cost_error_lower_bound": 4
+    },
+    {
+      "conforms_on_frozen_relation": true,
+      "n_cells": 8,
+      "n_mixed_cells": 0,
+      "n_rows_in_mixed_cells": 0,
+      "representation": "canonical_raw_arguments",
+      "unit_cost_error_lower_bound": 0
+    },
+    {
+      "conforms_on_frozen_relation": true,
+      "n_cells": 8,
+      "n_mixed_cells": 0,
+      "n_rows_in_mixed_cells": 0,
+      "representation": "common_effect_fields",
+      "unit_cost_error_lower_bound": 0
+    },
+    {
+      "conforms_on_frozen_relation": true,
+      "n_cells": 8,
+      "n_mixed_cells": 0,
+      "n_rows_in_mixed_cells": 0,
+      "representation": "validated_typed_effects",
+      "unit_cost_error_lower_bound": 0
+    }
+  ],
+  "descriptor_conformance": {
+    "rate": 1.0,
+    "successes": 8,
+    "total": 8
+  },
+  "experiment": "deployment_style_authorization_interface",
+  "gates": {
+    "balanced_ideal_labels": true,
+    "coarse_representation_collisions_present": true,
+    "descriptor_exact_on_source_executions": true,
+    "expected_context_count": true,
+    "four_domains_present": true,
+    "no_rows_dropped": true,
+    "protocol_hashes_match": true,
+    "raw_arguments_have_state_dependent_collision": true,
+    "typed_primary_full_coverage": true,
+    "typed_primary_has_zero_false_denial": true,
+    "typed_primary_has_zero_unsafe_allow": true,
+    "typed_representation_has_no_mixed_cells": true
+  },
+  "generated_at": "2026-08-14T14:00:52.989395+00:00",
+  "ideal_decisions": {
+    "ALLOW": 4,
+    "DENY": 4
+  },
+  "input_hashes": {
+    "contexts_sha256": "d48c8c72606be01b95aff0350353a6f968b9f03c9fc7514e8d32f927d0fce50a",
+    "policy_manifests_sha256": "664d632038dd8f95580fbb030ddfe659604bcee5a65cba50e19e591d05441440",
+    "runner_sha256": "0376acd7053f3e6c2129651c56f4941e0b7bec2372ccfc1bb78b7a0d26fb8639"
+  },
+  "mode": "smoke",
+  "n_contexts": 8,
+  "n_domains": 4,
+  "n_policies": 4,
+  "n_state_dependent_contexts": 0,
+  "n_tools": 4,
+  "primary_metrics": [
+    {
+      "abstain": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "ABSTAIN",
+      "representation": "tool_name",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 1.0,
+        "successes": 4,
+        "total": 4
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "ABSTAIN",
+      "representation": "canonical_raw_arguments",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "ABSTAIN",
+      "representation": "common_effect_fields",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "ABSTAIN",
+      "representation": "validated_typed_effects",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      }
+    }
+  ],
+  "state_dependent_raw_argument_mixed_cells": [],
+  "status": "passed",
+  "uniform_fail_closed_diagnostic": [
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 0.5,
+        "successes": 4,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 1.0,
+        "successes": 4,
+        "total": 4
+      },
+      "mixed_action": "DENY",
+      "representation": "tool_name",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 1.0,
+        "successes": 4,
+        "total": 4
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "DENY",
+      "representation": "canonical_raw_arguments",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "DENY",
+      "representation": "common_effect_fields",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "DENY",
+      "representation": "validated_typed_effects",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      }
+    }
+  ],
+  "uniform_fail_open_diagnostic": [
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 0.5,
+        "successes": 4,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "ALLOW",
+      "representation": "tool_name",
+      "unsafe_pre_allow": {
+        "rate": 1.0,
+        "successes": 4,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "ALLOW",
+      "representation": "canonical_raw_arguments",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "ALLOW",
+      "representation": "common_effect_fields",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 8
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 8,
+        "total": 8
+      },
+      "false_denial": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "mixed_action": "ALLOW",
+      "representation": "validated_typed_effects",
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      },
+      "withheld_authorized_work": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 4
+      }
+    }
+  ]
+}

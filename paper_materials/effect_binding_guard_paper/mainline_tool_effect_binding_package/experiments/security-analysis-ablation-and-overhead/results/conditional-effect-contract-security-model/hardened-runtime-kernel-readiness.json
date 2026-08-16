@@ -1,0 +1,24 @@
+{
+  "artifact_type": "hardened_precommit_kernel_readiness",
+  "claim_boundary": "The pure hardened kernel passes controlled unit tests. It is not integrated into the completed E77 run, does not automatically construct trusted manifests from arbitrary language, and has no benchmark metric.",
+  "experiment": "E80",
+  "generated_at": "2026-07-12T11:03:54.378691+00:00",
+  "implemented_sequence": [
+    "totalize declared defaults and reject unknown/dynamic defaults",
+    "bound LLM proposal by independent source-span/resolver manifest",
+    "check each scalar or list-expanded security-field value",
+    "accept resolver values only from matching typed authorized-read ledger entries",
+    "emit registry and totalized-call hashes without a runtime LLM call"
+  ],
+  "status": "kernel_passed_not_integrated",
+  "tested_fail_closed_cases": [
+    "invented exact literal",
+    "invented resolver",
+    "nonempty forbidden default",
+    "additional recipient",
+    "untyped resolver output",
+    "untrusted resolver output",
+    "dynamic default",
+    "unknown call field"
+  ]
+}

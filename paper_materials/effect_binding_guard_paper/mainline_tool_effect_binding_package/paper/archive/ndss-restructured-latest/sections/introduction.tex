@@ -1,0 +1,26 @@
+\section{Introduction}
+
+LLM agents increasingly act through tools that read, write, send, share, purchase, schedule, or modify state in external systems. In this setting, the security-relevant question is no longer only whether an agent emits harmful text. It is whether a concrete candidate action should be allowed to commit an external side effect. Benchmarks such as ToolEmu and AgentDojo make this risk concrete across tool-rich tasks and adversarial inputs \cite{toolemu,agentdojo}; pre-execution guardrails such as ToolSafe/TS-Guard and Safiron similarly recognize that tool invocation must be judged before unsafe actions execute \cite{toolsafe,safiron}.
+
+Pre-commit safety is relational. An email action may be safe when it drafts to an authorized recipient, unsafe when the same call includes an unauthorized Bcc, and indeterminate when the recipient is an unresolved alias. A file action may be safe when it shares a document with an authorized collaborator, unsafe when it creates a public link, and indeterminate when the file identity is inferred from untrusted evidence. A payment action may depend on the account, payee, amount semantics, and whether the operation is a draft or committed transfer. These examples expose the core problem: a side-effectful tool call is not an atomic security action. It is a container of security-relevant sub-actions.
+
+This paper studies that gap as a \emph{tool-effect binding} problem. A monitor binds a candidate action when its decision is invariant to harmless surface changes but sensitive to changes in the policy-relevant effect, target resource, operation mode, authorization context, and provenance/control source. This question is upstream of policy enforcement. Authorization and least-privilege systems such as Progent and MiniScope define or enforce policies over agent actions \cite{progent,miniscope}; our question is whether the candidate action has been converted into the right policy-relevant semantic object before such enforcement can be trusted.
+
+Our approach has three parts. First, we build counterfactual stress tests that separate surface invariance from effect, resource, authorization, operation-mode, and provenance sensitivity. Second, we evaluate existing/custom-stress methods and a reference hard Effect-Binding Guard to locate where binding fails. Third, we introduce effect-resource-operation atoms and evaluate atom-level mediation beyond the original local contract: independently specified held-out contracts, realistic trace replay with an external replay subset, extraction-vs-authorization decomposition, context-degradation analysis, and stronger comparable baselines.
+
+\input{figures/precommit_boundary}
+
+The results support a specific main line. Existing and released-checkpoint methods are not merely tool-name classifiers, but their joint binding remains incomplete. A reference hard Effect-Binding Guard improves controlled stress tradeoffs, yet E50 exposes resource/authorization binding as the central bottleneck: 0.383 unsafe pre-allow at 0.921 coverage. E55-v2 shows controlled feasibility when a local pre-commit contract supplies authorization context, resource aliases, operation modes, and provenance/control-source information. E60 and E61 then test whether the interface transfers to independently specified contracts and realistic trace replay; E62--E64 identify extraction/context failures, quantify interface burden, and compare against stronger baselines.
+
+Our claim is scoped to controlled counterfactual measurement and local contract evidence. The threat model and limitations state the deployment exclusions; the main contribution is the semantic object and evidence chain for atom-level pre-commit authorization.
+
+\paragraph{Contributions.}
+This paper makes four contributions.
+
+\begin{itemize}[leftmargin=*]
+\item We define tool-effect binding and effect-resource-operation atoms as the pre-commit semantic object for side-effectful LLM-agent tool calls.
+\item We develop a counterfactual stress-test framework that separates surface invariance from effect, resource, authorization, operation-mode, and provenance sensitivity.
+\item We show that existing/custom-stress methods have nontrivial local capabilities but incomplete joint binding, and identify resource/authorization binding as the central bottleneck.
+\item We demonstrate, through a local authorization-aware prototype and audits, that explicit atom-level authorization infrastructure substantially improves controlled pre-commit mediation.
+\item We add independently specified held-out contracts, realistic trace replay with a saved external subset, extraction-vs-authorization decomposition, interface-burden analysis, and stronger comparable baselines to evaluate whether the atom interface survives the main synthetic/circularity/baseline objections.
+\end{itemize}

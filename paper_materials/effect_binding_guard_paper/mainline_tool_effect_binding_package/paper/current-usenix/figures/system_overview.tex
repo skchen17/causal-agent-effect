@@ -1,0 +1,76 @@
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[
+  font=\scriptsize,
+  box/.style={draw=TEDark!62, fill=white, rounded corners=2pt,
+              align=center, minimum height=8mm, inner sep=3pt},
+  evidencebox/.style={box, draw=TEBlue, fill=TEBlueLight},
+  policybox/.style={box, draw=TEGold!85, fill=TEGoldLight},
+  contractbox/.style={box, draw=TETeal, fill=TETealLight},
+  stopbox/.style={box, draw=TERed, fill=TERedLight},
+  flow/.style={-{Latex[length=1.8mm]}, draw=TEDark!75, line width=.65pt},
+  feedback/.style={flow, draw=TEOrange},
+  title/.style={font=\scriptsize\bfseries, anchor=west, text=TEDark},
+  note/.style={font=\tiny, align=center, text=TEDark!78},
+]
+
+\draw[TEDark!20] (-2.65,2.10)--(-2.65,-2.38);
+\draw[TEDark!20] (2.20,2.10)--(2.20,-2.38);
+\node[title] at (-8.25,1.88) {(a) EXECUTABLE REGISTRATION};
+\node[title] at (-2.35,1.88) {(b) REGISTERED INTERFACE};
+\node[title] at (2.50,1.88) {(c) POLICY-BACKED CONFORMANCE};
+
+\node[evidencebox, text width=1.40cm] (candidate) at (-7.15,1.00)
+  {Candidate\\descriptor};
+\node[evidencebox, text width=1.55cm] (implementation) at (-4.05,1.00)
+  {Tool schema +\\implementation};
+\node[evidencebox, text width=1.85cm] (execute) at (-5.60,.14)
+  {Execute base +\\controlled mutant};
+\node[policybox, text width=2.05cm] (separate) at (-5.60,-.72)
+  {Effect difference +\\policy separation};
+\draw[flow] (candidate.south)--(execute.north west);
+\draw[flow] (implementation.south)--(execute.north east);
+\draw[flow] (execute)--(separate);
+\node[stopbox, text width=1.68cm] (revise) at (-7.02,-1.60)
+  {Counterexample:\\refine / review};
+\node[contractbox, text width=1.68cm] (freeze) at (-4.18,-1.60)
+  {No tested collision:\\hash-freeze};
+\draw[feedback] (separate.south) |- (revise.north);
+\draw[flow, draw=TETeal] (separate.south) |- (freeze.north);
+
+\node[evidencebox, text width=1.15cm] (call) at (-1.72,.82)
+  {Exact call +\\pre-state};
+\node[contractbox, text width=1.50cm] (atoms) at (.02,.82)
+  {Instantiated\\effect atoms $\rho_d(u)$};
+\node[policybox, text width=1.28cm] (auth) at (.02,-.35)
+  {Independent\\authority $P$};
+\node[contractbox, text width=1.18cm] (decision) at (.02,-1.38)
+  {$\Allow$ / $\Deny$ /\\$\Abstain$};
+\draw[flow] (call)--(atoms);
+\draw[flow] (atoms)--(auth);
+\draw[flow] (auth)--(decision);
+
+\node[evidencebox, text width=1.25cm] (samecontext) at (3.08,1.02)
+  {Same call, state,\\subject, policy};
+\node[evidencebox, text width=1.42cm] (source) at (4.72,.18)
+  {Sandbox state diff\\$\rightarrow$ transition};
+\node[contractbox, text width=1.42cm] (typed) at (7.48,.18)
+  {Frozen descriptor\\$\rightarrow$ atoms};
+\draw[flow] (samecontext.east) -| (source.north);
+\draw[flow] (samecontext.east) -| (typed.north);
+\node[policybox, text width=1.48cm] (sameengine) at (6.10,-.86)
+  {Same ACL / capability /\\delegation engine};
+\draw[flow] (source.south) |- (sameengine.west);
+\draw[flow] (typed.south) |- (sameengine.east);
+\node[contractbox, text width=2.10cm] (compare) at (6.10,-1.72)
+  {Compare decisions, coverage,\\and policy-mixed cells};
+\draw[flow] (sameengine)--(compare);
+\end{tikzpicture}
+\caption{Validation targets the security-critical observation interface before
+authorization. Registration (left) tests a proposed descriptor through
+source-executed interventions. The registered descriptor (middle) exposes concrete
+effects to independently authenticated policy. Our conformance experiment
+(right) compares post-state transitions and pre-commit representations under
+the same authority engine.}
+\label{fig:system-overview}
+\end{figure*}

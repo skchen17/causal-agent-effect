@@ -1,0 +1,188 @@
+{
+  "authority_semantics": "candidate source-effect multiset must be a submultiset of the anchor context's source-effect multiset",
+  "claim_boundary": {
+    "allowed": "On this finite, source-executed ToolSandbox domain, the frozen concrete-atom representation implements the specified submultiset authority relation and separates failure modes of coarser or untyped views.",
+    "forbidden": [
+      "open-domain contract soundness",
+      "human-authored authority validation",
+      "complete authorization",
+      "production safety",
+      "global minimality of the atom representation"
+    ]
+  },
+  "experiment": "toolsandbox_concrete_atom_authorizer_mechanism",
+  "gates": {
+    "all_queries_emitted": true,
+    "all_selected_contexts_retained": true,
+    "coarse_view_has_unsafe_pre_allow": true,
+    "concrete_atom_zero_false_deny": true,
+    "concrete_atom_zero_unsafe_pre_allow": true,
+    "input_hashes_match": true,
+    "no_abstentions_or_silent_drops": true,
+    "nontrivial_authority_labels": true,
+    "raw_arguments_have_false_denial": true,
+    "source_oracle_exact": true
+  },
+  "generated_at": "2026-08-13T08:19:52.575575+00:00",
+  "ideal_decisions": {
+    "ALLOW": 82,
+    "DENY": 150
+  },
+  "input_hashes": {
+    "heldout_contexts_sha256": "755ea9eede206857b4f3c5d1db262fc12d231ee3cfd6b465eb2a5f8e8c99b72b",
+    "heldout_report_sha256": "111f4c293d130dcc1c0883407f42e4a539f24bb712357e0af12dec81736825ce",
+    "runner_sha256": "c7a82882f9de696cede62565819958031345c3a6cf38436f8467308aa9886d94"
+  },
+  "metrics": [
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 232
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 232,
+        "total": 232
+      },
+      "decision_accuracy": {
+        "rate": 0.35344827586206895,
+        "successes": 82,
+        "total": 232
+      },
+      "method": "whole_call_tool_name",
+      "n_queries": 232,
+      "safe_false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 82
+      },
+      "unsafe_pre_allow": {
+        "rate": 1.0,
+        "successes": 150,
+        "total": 150
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 232
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 232,
+        "total": 232
+      },
+      "decision_accuracy": {
+        "rate": 0.8189655172413793,
+        "successes": 190,
+        "total": 232
+      },
+      "method": "raw_arguments_exact",
+      "n_queries": 232,
+      "safe_false_deny": {
+        "rate": 0.34146341463414637,
+        "successes": 28,
+        "total": 82
+      },
+      "unsafe_pre_allow": {
+        "rate": 0.09333333333333334,
+        "successes": 14,
+        "total": 150
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 232
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 232,
+        "total": 232
+      },
+      "decision_accuracy": {
+        "rate": 0.6336206896551724,
+        "successes": 147,
+        "total": 232
+      },
+      "method": "common_effect_atoms",
+      "n_queries": 232,
+      "safe_false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 82
+      },
+      "unsafe_pre_allow": {
+        "rate": 0.5666666666666667,
+        "successes": 85,
+        "total": 150
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 232
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 232,
+        "total": 232
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 232,
+        "total": 232
+      },
+      "method": "concrete_effect_atoms",
+      "n_queries": 232,
+      "safe_false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 82
+      },
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 150
+      }
+    },
+    {
+      "abstain": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 232
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 232,
+        "total": 232
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 232,
+        "total": 232
+      },
+      "method": "source_effect_oracle",
+      "n_queries": 232,
+      "safe_false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 82
+      },
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 150
+      }
+    }
+  ],
+  "mode": "full",
+  "n_contexts": 32,
+  "n_queries": 232,
+  "n_tools": 5,
+  "status": "passed"
+}

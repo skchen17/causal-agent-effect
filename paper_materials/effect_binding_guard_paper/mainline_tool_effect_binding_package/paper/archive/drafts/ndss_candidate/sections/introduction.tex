@@ -1,0 +1,6 @@
+\section{Introduction}
+LLM agents increasingly mediate side-effectful tools such as messaging, file sharing, calendars, workspace administration, and transaction APIs. Safety decisions for these tools cannot be reduced to a tool name. A single tool surface may realize different effects, and the same effect may appear through different tools, wrappers, or trace formats.
+
+Prior experiments in this repository show intentionally mixed evidence. Counterfactual stress tests identify tool-effect fragmentation and structural defenses that remain sensitive to schema or graph surfaces. The hard Effect-Binding Guard is therefore framed as a measurement and method-feasibility artifact: it binds candidate actions into effect, resource, authorization, and provenance tuples, then uses disagreement, evidence fallback, and provenance checks to decide whether to allow, deny, or abstain.
+
+\textbf{Reviewer-facing interpretation.} E55 shows that the resource/authorization bottleneck is also an interface problem. Without explicit authorization infrastructure, the old hard guard abstains heavily. With typed authorization context, resource alias maps, operation-mode semantics, multi-resource atom expansion, and provenance metadata, many previously unresolved pre-commit decisions become decidable in a controlled local mock setting.

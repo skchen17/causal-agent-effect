@@ -1,0 +1,173 @@
+{
+  "experiment": "E63",
+  "rerun_request": "Switch E63 iterative counterfactual contract refinement from the prior Qwen GGUF run to the local Gemma4 checkpoint and rerun.",
+  "requested_model_path": "/data/CSK/causal-agent-safety-research/.hf_cache/hub/models--google--gemma-4-26B-A4B-it",
+  "resolved_snapshot_path": "/data/CSK/causal-agent-safety-research/.hf_cache/hub/models--google--gemma-4-26B-A4B-it/snapshots/462a98a12e28e2cbcfccaf78fe41e3e50235e6ae",
+  "date": "2026-07-02",
+  "status": "four_bit_smoke_blocked_full_run_not_executed",
+  "four_bit_quantization_status": "implemented_but_not_runnable_for_e63_full_run_on_current_stack",
+  "four_bit_full_run_executed": false,
+  "full_run_executed": false,
+  "smoke_generation_executed": true,
+  "e63_result_files_overwritten": false,
+  "model_artifact_check": {
+    "config_loadable": true,
+    "tokenizer_loadable": true,
+    "manual_tokenizer_files_added_to_snapshot": [
+      "tokenizer.json",
+      "tokenizer_config.json",
+      "chat_template.jinja",
+      "generation_config.json",
+      "processor_config.json"
+    ]
+  },
+  "new_reproducibility_code": {
+    "runner": "code/src/experiments/effect_binding_guard/e63_counterfactual_contract_refinement/run_e63_gemma4_transformers.py",
+    "parser_update": "code/src/experiments/effect_binding_guard/e62_local_llm_proposer_validation/contract_parser.py",
+    "compact_prompt_update": "code/src/experiments/effect_binding_guard/e63_counterfactual_contract_refinement/prompting.py",
+    "notes": [
+      "The Gemma4 runner maps model.language_model.* checkpoint keys to Gemma4ForCausalLM text-only keys exactly.",
+      "The runner validates that language weights have zero non-lm-head missing keys and zero unexpected language keys.",
+      "The runner forces Gemma4 MoE experts to the eager implementation to avoid the default batched_mm 80GB allocation on E63-length prompts.",
+      "The parser now strips common <think>, <thought>, and <analysis> blocks before JSON extraction.",
+      "The Gemma4 runner now supports a BitsAndBytes 4-bit path with a no-standalone-lm-head text-only class, explicit two-GPU layer maps, NF4/FP4 selection, BF16/FP16/FP32 compute dtype selection, and optional compact prompts.",
+      "Compact E63 prompting reduces the first-round Gemma4 chat prompt from roughly 1414 chat-template tokens to roughly 676 tokens, but does not make the current 4-bit stack runnable for E63 generation."
+    ]
+  },
+  "completed_smoke_runs": [
+    {
+      "name": "e63_gemma4_smoke_eager_128",
+      "command": "cd code && CUDA_VISIBLE_DEVICES=0,1 PYTHONPATH=. python -m src.experiments.effect_binding_guard.e63_counterfactual_contract_refinement.run_e63_gemma4_transformers --tool-limit 1 --max-rounds 0 --max-new-tokens 128 --prefix e63_gemma4_smoke_eager_128",
+      "result": "executed",
+      "report_json": "analysis/results/e63_gemma4_smoke_eager_128_report.json",
+      "round_metrics_csv": "analysis/results/e63_gemma4_smoke_eager_128_round_metrics.csv",
+      "candidate_contracts_jsonl": "analysis/results/e63_gemma4_smoke_eager_128_candidate_contracts.jsonl",
+      "n_tools": 1,
+      "tool": "forward_email",
+      "prompt_leakage_violations": 0,
+      "feedback_leakage_violations": 0,
+      "language_weight_keys": 657,
+      "missing_non_lm_head": 0,
+      "unexpected_language_keys": 0,
+      "experts_implementation": "eager",
+      "eager_expert_modules": 153,
+      "parse_valid": 0,
+      "freezeable": 0,
+      "validation_passed": 0,
+      "failure": "The model produced a real partial JSON prefix, but the 128-token cap truncated the object; parser result was JSONDecodeError.",
+      "raw_output_prefix": "<FINAL_JSON>{\\n  \"tool_name\": \"forward_email\",\\n  \"templates\": [\\n    {\\n      \"commit_mode_field\": \"commit_mode\","
+    }
+  ],
+  "interrupted_or_failed_generation_runs": [
+    {
+      "name": "e63_gemma4_smoke",
+      "result": "failed",
+      "failure": "Default Transformers MoE batched_mm path loaded the text-only model but OOMed on the E63 prompt, attempting an 83.60 GiB allocation."
+    },
+    {
+      "name": "e63_gemma4_smoke_32tok",
+      "result": "failed",
+      "failure": "Same default batched_mm OOM on E63 prompt despite max_new_tokens=32, showing the failure is prompt prefill/MoE implementation, not output length."
+    },
+    {
+      "name": "manual_eager_32tok_debug",
+      "result": "executed",
+      "failure": "No failure; forced eager MoE produced a real JSON prefix for the E63 prompt, confirming the checkpoint can generate when the batched_mm path is avoided."
+    },
+    {
+      "name": "e63_gemma4_smoke_eager_512",
+      "result": "interrupted_by_operator",
+      "failure": "No OOM after eager MoE, but generation exceeded 10 minutes for one tool/raw round and was interrupted before output was returned."
+    },
+    {
+      "name": "e63_gemma4_smoke_compact_256",
+      "result": "interrupted_by_operator",
+      "failure": "No OOM after eager MoE, but generation exceeded 12 minutes for one tool/raw round and was interrupted before output was returned."
+    },
+    {
+      "name": "e63_gemma4_4bit_smoke",
+      "result": "failed",
+      "report_json": "analysis/results/e63_gemma4_4bit_smoke_report.json",
+      "failure": "BitsAndBytes 4-bit text-only load with no standalone lm_head reached E63 generation, but the one-tool smoke failed before output with a 22 MiB residual CUDA OOM on GPU 1."
+    },
+    {
+      "name": "e63_gemma4_4bit_smoke_balanced_128",
+      "result": "failed",
+      "report_json": "analysis/results/e63_gemma4_4bit_smoke_balanced_128_report.json",
+      "failure": "A balanced explicit two-GPU layer split reached E63 generation, but failed before output with a 20 MiB residual CUDA OOM on GPU 1."
+    },
+    {
+      "name": "e63_gemma4_4bit_smoke_custommap_128",
+      "result": "failed",
+      "report_json": "analysis/results/e63_gemma4_4bit_smoke_custommap_128_report.json",
+      "failure": "A custom layer map placing the final layer on GPU 0 reached E63 generation, but failed before output with a 24 MiB residual CUDA OOM on GPU 0."
+    },
+    {
+      "name": "e63_gemma4_4bit_compact_smoke_256",
+      "result": "failed",
+      "report_json": "analysis/results/e63_gemma4_4bit_compact_smoke_256_report.json",
+      "failure": "Compact E63 prompt plus NF4/BF16 4-bit load failed before output with CUBLAS_STATUS_NOT_SUPPORTED inside BitsAndBytes 4-bit matmul."
+    },
+    {
+      "name": "e63_gemma4_4bit_compact_fp4_smoke_64",
+      "result": "failed",
+      "report_json": "analysis/results/e63_gemma4_4bit_compact_fp4_smoke_64_report.json",
+      "failure": "Compact E63 prompt plus FP4/BF16 4-bit load failed before output with the same CUBLAS_STATUS_NOT_SUPPORTED BitsAndBytes matmul error."
+    }
+  ],
+  "serving_attempts": [
+    {
+      "backend": "vllm_openai_compatible",
+      "configuration": "bf16, tensor_parallel_size=2, max_model_len=2048, cpu_offload_gb=8, offload_backend=auto/uva",
+      "result": "failed",
+      "failure": "vLLM initialized CPU offload but failed during KV/input-batch initialization with AssertionError: Cannot re-initialize the input batch when CPU weight offloading is enabled."
+    },
+    {
+      "backend": "vllm_openai_compatible",
+      "configuration": "bf16, tensor_parallel_size=2, max_model_len=1024, max_num_seqs=1, max_num_batched_tokens=1024, no CPU offload",
+      "result": "failed",
+      "failure": "CUDA OOM during model construction: each 24GB GPU was short by roughly 484 MiB for the BF16 checkpoint."
+    },
+    {
+      "backend": "vllm_openai_compatible",
+      "configuration": "bitsandbytes load_format/quantization, tensor_parallel_size=2",
+      "result": "failed",
+      "failure": "vLLM reported Gemma4ForConditionalGeneration MoE does not support BitsAndBytes quantization yet."
+    },
+    {
+      "backend": "transformers_text_only",
+      "configuration": "Gemma4ForCausalLM text-only exact key mapping, BF16, two GPUs plus CPU offload, default batched_mm MoE",
+      "result": "failed",
+      "failure": "Language weights loaded correctly, but E63 prompt generation OOMed in transformers.integrations.moe.batched_mm_experts_forward with an 82-83 GiB allocation."
+    },
+    {
+      "backend": "transformers_text_only",
+      "configuration": "Gemma4ForCausalLM text-only exact key mapping, BF16, two GPUs plus CPU offload, forced eager MoE",
+      "result": "smoke_only",
+      "failure": "No OOM, but throughput is too slow for E63 full-run on this machine; 128-token smoke completed with truncated JSON, 256/512-token runs were interrupted after long runtime."
+    },
+    {
+      "backend": "transformers",
+      "configuration": "4-bit/8-bit BitsAndBytes paths",
+      "result": "failed",
+      "failure": "4-bit auto dispatch required CPU/disk placement; explicit two-GPU maps OOMed or hit BitsAndBytes/Accelerate hook incompatibilities. vLLM BitsAndBytes does not support Gemma4 MoE."
+    },
+    {
+      "backend": "transformers_text_only",
+      "configuration": "Gemma4ForCausalLMNoStandaloneHead, BitsAndBytes 4-bit NF4/FP4, explicit two-GPU layer maps, compact E63 prompt, PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True",
+      "result": "smoke_blocked",
+      "failure": "The 4-bit path can load far enough to attempt generation and a very short non-E63 prompt can emit tokens, but E63 smoke prompts either exhaust the remaining 20-24 MiB of GPU memory or fail in BitsAndBytes 4-bit matmul with CUBLAS_STATUS_NOT_SUPPORTED. Full-run was not started because it would not produce real contract outputs."
+    }
+  ],
+  "environment_changes_made": [
+    "Installed transformers==5.12.1 so AutoConfig recognizes model_type=gemma4.",
+    "Installed bitsandbytes==0.49.2 to satisfy vLLM BitsAndBytes version requirements."
+  ],
+  "claim_boundary": "Gemma4 produced real local model output for one BF16 E63 raw-round smoke under a text-only Transformers loader with eager MoE, but it did not produce a parse-valid contract. The 4-bit Gemma4 path was implemented and smoke-tested, but E63 smoke generation failed before any contract output. No Gemma4 full-run E63 result was executed. This is engineering feasibility/blocker evidence, not model-quality evidence for the paper.",
+  "recommended_next_steps": [
+    "Use a serving stack or quantized checkpoint that supports Gemma4 MoE efficiently without the eager Python expert loop.",
+    "Use a smaller Gemma-family model or a GGUF/AWQ/GPTQ variant that can complete 512-1024 token JSON outputs at practical speed.",
+    "If Gemma4 must be used on this machine, first build a schema-specific constrained decoder or shorter DSL prompt so contracts close within approximately 128 tokens.",
+    "Keep the prior Qwen GGUF E63 full-run as the valid full local-LLM E63 evidence until a Gemma4 full-run completes."
+  ]
+}

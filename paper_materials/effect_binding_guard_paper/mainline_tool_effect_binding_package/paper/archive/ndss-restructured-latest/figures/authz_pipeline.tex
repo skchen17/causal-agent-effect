@@ -1,0 +1,22 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=5mm,
+  box/.style={draw, rounded corners=1.5pt, align=center, font=\small, minimum height=8mm, fill=gray!8, text width=27mm},
+  arrow/.style={-Latex, thick}
+]
+\node[box] (intercept) {Intercept candidate call};
+\node[box, right=of intercept] (expand) {Expand into atoms};
+\node[box, right=of expand] (alias) {Canonicalize aliases};
+\node[box, right=of alias] (auth) {Check authorization context};
+\node[box, below=of auth] (prov) {Apply provenance overlay};
+\node[box, left=of prov, fill=green!8] (decision) {ALLOW / DENY / ABSTAIN};
+\draw[arrow] (intercept) -- (expand);
+\draw[arrow] (expand) -- (alias);
+\draw[arrow] (alias) -- (auth);
+\draw[arrow] (auth) -- (prov);
+\draw[arrow] (prov) -- (decision);
+\end{tikzpicture}
+\caption{Authorization-aware local pre-commit prototype pipeline. The prototype is a local mock contract for pre-commit mediation, not a full enterprise authorization layer.}
+\label{fig:authz-pipeline}
+\end{figure}

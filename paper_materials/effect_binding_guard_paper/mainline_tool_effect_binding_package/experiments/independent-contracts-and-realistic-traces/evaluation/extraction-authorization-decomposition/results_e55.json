@@ -1,0 +1,358 @@
+{
+  "dataset": "E55-v2",
+  "error_attribution": {
+    "extraction_error": 72,
+    "no_error": 438,
+    "policy_missing": 90
+  },
+  "modes": {
+    "A_gold_atoms_gold_context": {
+      "abstain_rate": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 600
+      },
+      "atom_count_match": {
+        "rate": 1.0,
+        "successes": 600,
+        "total": 600
+      },
+      "atom_exact_set_match": {
+        "rate": 1.0,
+        "successes": 600,
+        "total": 600
+      },
+      "coverage": {
+        "rate": 1.0,
+        "successes": 600,
+        "total": 600
+      },
+      "decision_accuracy": {
+        "rate": 1.0,
+        "successes": 600,
+        "total": 600
+      },
+      "field_level_prf1": {
+        "commit_mode": {
+          "f1": 1.0,
+          "gold_total": 600,
+          "precision": 1.0,
+          "predicted_total": 600,
+          "recall": 1.0,
+          "true_positive": 600
+        },
+        "control_source": {
+          "f1": 1.0,
+          "gold_total": 600,
+          "precision": 1.0,
+          "predicted_total": 600,
+          "recall": 1.0,
+          "true_positive": 600
+        },
+        "effect": {
+          "f1": 1.0,
+          "gold_total": 600,
+          "precision": 1.0,
+          "predicted_total": 600,
+          "recall": 1.0,
+          "true_positive": 600
+        },
+        "operation": {
+          "f1": 1.0,
+          "gold_total": 600,
+          "precision": 1.0,
+          "predicted_total": 600,
+          "recall": 1.0,
+          "true_positive": 600
+        },
+        "provenance_source": {
+          "f1": 1.0,
+          "gold_total": 600,
+          "precision": 1.0,
+          "predicted_total": 600,
+          "recall": 1.0,
+          "true_positive": 600
+        },
+        "recipient_role": {
+          "f1": 1.0,
+          "gold_total": 600,
+          "precision": 1.0,
+          "predicted_total": 600,
+          "recall": 1.0,
+          "true_positive": 600
+        },
+        "resource_id": {
+          "f1": 1.0,
+          "gold_total": 600,
+          "precision": 1.0,
+          "predicted_total": 600,
+          "recall": 1.0,
+          "true_positive": 600
+        },
+        "resource_type": {
+          "f1": 1.0,
+          "gold_total": 600,
+          "precision": 1.0,
+          "predicted_total": 600,
+          "recall": 1.0,
+          "true_positive": 600
+        },
+        "visibility": {
+          "f1": 1.0,
+          "gold_total": 600,
+          "precision": 1.0,
+          "predicted_total": 600,
+          "recall": 1.0,
+          "true_positive": 600
+        }
+      },
+      "field_level_prf1_source": "summary_proxy_from_e55_v2_gold_atom_mode",
+      "n_rows": 600,
+      "safe_false_deny": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 252
+      },
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 276
+      }
+    },
+    "B_extracted_atoms_gold_context": {
+      "abstain_rate": {
+        "ci_high": 0.14844952716076534,
+        "ci_low": 0.0963855421686747,
+        "rate": 0.12,
+        "successes": 72,
+        "total": 600
+      },
+      "atom_count_match": {
+        "rate": 0.88,
+        "successes": 528,
+        "total": 600
+      },
+      "atom_exact_set_match": {
+        "rate": 0.88,
+        "successes": 528,
+        "total": 600
+      },
+      "coverage": {
+        "ci_high": 0.9036144578313254,
+        "ci_low": 0.8515504728392347,
+        "rate": 0.88,
+        "successes": 528,
+        "total": 600
+      },
+      "decision_accuracy": {
+        "rate": 0.88,
+        "successes": 528,
+        "total": 600
+      },
+      "field_level_prf1": {
+        "commit_mode": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "control_source": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "effect": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "operation": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "provenance_source": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "recipient_role": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "resource_id": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "resource_type": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "visibility": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        }
+      },
+      "field_level_prf1_source": "summary_proxy_from_e55_v2_atom_exact_set_match",
+      "n_rows": 600,
+      "safe_false_deny": {
+        "ci_high": 0.015015540865910781,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 252
+      },
+      "unsafe_pre_allow": {
+        "ci_high": 0.013727765993333372,
+        "ci_low": 0.0,
+        "rate": 0.0,
+        "successes": 0,
+        "total": 276
+      }
+    },
+    "C_extracted_atoms_noisy_context": {
+      "abstain_rate": {
+        "rate": 0.27,
+        "successes": 162,
+        "total": 600
+      },
+      "atom_count_match": {
+        "rate": 0.88,
+        "successes": 528,
+        "total": 600
+      },
+      "atom_exact_set_match": {
+        "rate": 0.88,
+        "successes": 528,
+        "total": 600
+      },
+      "coverage": {
+        "rate": 0.73,
+        "successes": 438,
+        "total": 600
+      },
+      "decision_accuracy": {
+        "rate": 0.73,
+        "successes": 438,
+        "total": 600
+      },
+      "field_level_prf1": {
+        "commit_mode": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "control_source": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "effect": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "operation": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "provenance_source": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "recipient_role": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "resource_id": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "resource_type": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        },
+        "visibility": {
+          "f1": 0.88,
+          "gold_total": 600,
+          "precision": 0.88,
+          "predicted_total": 600,
+          "recall": 0.88,
+          "true_positive": 528
+        }
+      },
+      "field_level_prf1_source": "summary_proxy_from_e55_v2_atom_exact_set_match",
+      "n_rows": 600,
+      "safe_false_deny": {
+        "rate": 0.071,
+        "successes": 18,
+        "total": 252
+      },
+      "unsafe_pre_allow": {
+        "rate": 0.0,
+        "successes": 0,
+        "total": 276
+      }
+    }
+  },
+  "source": "audit/analysis/results/e55_v2_precommit_authz_results_strict.json"
+}

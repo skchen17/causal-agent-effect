@@ -1,0 +1,9 @@
+\section{System and Threat Model}
+
+The protected system is a sandboxed tool-using agent. A user supplies an original task $q$; the agent observes tool schemas and may receive attacker-controlled content from reads such as messages, documents, search results, and records. A candidate structured call contains a registered tool identifier and arguments. The executor can mutate only the sandbox state used by the benchmark.
+
+The attacker controls untrusted observations and may attempt to add a tool, replace a resource or target, exploit an alias, upgrade preview or draft behavior to commitment, increase visibility, launder a value through later reasoning, exploit replan feedback, or distribute a goal across multiple trajectory steps. It may adapt its injected text after observing agent behavior. It cannot modify the trusted registry, guard, tool schema, structured arguments after checking, or benchmark validator.
+
+The trusted computing base contains the frozen effect contracts, permission-envelope representation, canonicalization and provenance interfaces, pre-commit guard, executor interception, and benchmark state. Malicious tool implementations, a compromised host, and post-check argument mutation are outside the base model. Calls with unresolved contracts, ambiguous identities, contradictory authority, or unavailable required provenance must not be automatically allowed.
+
+The security objective is \emph{task-intent confinement}: an attacker-controlled observation must not cause a committed effect outside the authority established by the original user task and its explicit resolver obligations. This is not a global content-safety policy. A dangerous effect intentionally requested by the user is not classified as an indirect-injection success solely because it is dangerous.

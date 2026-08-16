@@ -1,0 +1,80 @@
+{
+  "candidate": "C1d_role_sensitive_atom_intent_envelope",
+  "claim_boundary": "Frozen role-sensitive sandbox candidate. Retrospective interception is a mechanism diagnostic, not a live ASR or production-safety result.",
+  "development_evidence": {
+    "benign_c1b_successes": [
+      75,
+      76,
+      80,
+      78
+    ],
+    "benign_lower_95": -0.028350515463917526,
+    "benign_mean_difference": 0.01288659793814433,
+    "benign_no_guard_successes": [
+      75,
+      77,
+      76,
+      76
+    ],
+    "benign_path_equivalence_basis": "C1d changes only decisions in the presence of explicit untrusted-control segments; the four-repetition benign audit observed none and no block.",
+    "retrospective_attack_cases": 629,
+    "retrospective_attack_trajectories_blocked": 89,
+    "retrospective_benign_trajectories_blocked": 0,
+    "retrospective_successful_attacks": 53,
+    "retrospective_successful_attacks_intercepted": 49,
+    "tests_passed": 80
+  },
+  "frozen_at": "2026-08-08T07:01:22.022629+00:00",
+  "mechanism": {
+    "authority_fields": "Hard-taint target principal, resource/operation, scope constraint, network destination, and identity-bearing attachment fields.",
+    "effect_grounding": "Treat an effect as task-requested when an action-alias group matches and at least one authority-bearing call value is independently grounded in the original task.",
+    "payload_fields": "Record untrusted payload data without treating payload provenance alone as authority expansion.",
+    "runtime_llm_calls": 0
+  },
+  "required_live_evidence": {
+    "agentdojo_version": "v1.1.2",
+    "attack_pairs": 629,
+    "model": "deepseek-v4-flash",
+    "official_attack_labels_only": true,
+    "retain_all_failures": true
+  },
+  "source_artifacts": {
+    "benign_confirmation": {
+      "path": "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/deepseek_c1b_benign_confirmation.json",
+      "sha256": "17cad9ff4724cdbc48315882b68183957bd9f11f56f69dc18b98a3459b5ead9a"
+    },
+    "intent_grounding_tests": {
+      "path": "shared/compatibility/tests/tests/test_counterfactual_atom_envelope_intent_grounding.py",
+      "sha256": "452a6a0c65ec8418f11aa74476c4bd9224ceb591ab22f644e5ca100a0da6676d"
+    },
+    "policy": {
+      "path": "code/shadow_atom_envelope_c1d/src/experiments/effect_binding_guard/e77_effect_diff_runtime_guard/atom_envelope_policy.py",
+      "sha256": "4e6ca6c4440b9828300a6b02e285a86f7f3c53925960ac258e1a51e4626318bf"
+    },
+    "registered_descriptors": {
+      "path": "experiments/intent-bound-runtime-guard/results/effect-difference-runtime-guard/registered-effect-diff-descriptors.jsonl",
+      "sha256": "dc9e16d87eefcf6ba54e71bc0e799b96eaaa062f6e22cfdf9db0616b6954e9e4"
+    },
+    "relation_catalog": {
+      "path": "experiments/intent-bound-runtime-guard/evaluation/effect-difference-runtime-guard/registered_relation_catalog.json",
+      "sha256": "873c65875ba4bc982823a49adbdfa4627523aba7fcfa5d2fbfa8392cbeb863c9"
+    },
+    "retrospective_interception": {
+      "path": "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/observed_trajectory_interception_report_c1d.json",
+      "sha256": "6624eaf646eb141effa2301d60ebcecf658d49cbeecbde8b3d5b1277e8bd6968"
+    },
+    "role_sensitive_tests": {
+      "path": "shared/compatibility/tests/tests/test_counterfactual_atom_envelope_role_sensitive.py",
+      "sha256": "8b07d0214a58f5cb3ec8b0f8e577e6b0ebe77e1a98213884ced6dad0cefdc683"
+    },
+    "runtime_catalog": {
+      "path": "experiments/security-analysis-ablation-and-overhead/evaluation/runtime-mechanism-ablation/agentdojo_runtime_catalog.json",
+      "sha256": "ec2e5dc3d2e52136a7f5d5294bb715e3aabc6c7dd159b87e426faf8f716c8468"
+    },
+    "runtime_patch": {
+      "path": "code/shadow_atom_envelope_c1d/src/experiments/effect_binding_guard/e77_effect_diff_runtime_guard/agentdojo_e77_runtime_patch.py",
+      "sha256": "0114058ad967a78a1d8ed2a42c7e8669305dbb5757d0f19f64d43eb7bdd38076"
+    }
+  },
+  "status": "frozen_before_c1d_live_confirmation"
+}

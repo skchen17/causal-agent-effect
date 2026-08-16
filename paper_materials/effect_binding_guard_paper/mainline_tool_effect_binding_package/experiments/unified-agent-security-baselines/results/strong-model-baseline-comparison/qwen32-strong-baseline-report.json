@@ -1,0 +1,329 @@
+{
+  "attriguard": {
+    "failure_artifact": "analysis/results/e78_qwen32_attriguard_protocol_failures.jsonl",
+    "note": "Raw 726-key metrics are retained as provisional sensitivity only; protocol-error rows prevent strict primary comparison.",
+    "primary_table_eligible": false,
+    "protocol_clean_keys": 716,
+    "protocol_error_keys": 10,
+    "raw_official_keys": 726
+  },
+  "claim_boundary": "Five baseline rows and the current effect-binding runtime share one Qwen3-32B checkpoint, the same 726 AgentDojo v1.1.2 case keys, native evaluators, and sandbox execution. MELON-style, Prompt Sandwiching, and PromptArmor-style are comparable local adapters, not original-paper reproductions. AttriGuard remains provisional because 10 workspace attempts exceeded the frozen context protocol. The proposed-method row is admitted only after its recovery-normalization strict finalizer passes. It combines 714 original trajectories with 12 disclosed context-capacity repairs; it is therefore a complete native-metric overlay, not a uniform-context rerun.",
+  "complete_direct_method_rows": 4356,
+  "complete_direct_methods": 6,
+  "current_method_context_repair": {
+    "context_windows": [
+      73728,
+      81920,
+      122880
+    ],
+    "longest_repair_kv_cache_type": "q8_0",
+    "original_rows_retained": 714,
+    "repaired_rows": 12,
+    "uniform_context_window": false
+  },
+  "current_method_strict_report": "recovery-normalization-qwen32-full-context-repaired-report.json",
+  "current_proposed_method": "agentdojo_live_ours_e77_effect_diff_runtime",
+  "experiment": "E78 Qwen3-32B same-protocol AgentDojo strong baselines",
+  "frozen_case_rows": 5082,
+  "generated_at": "2026-07-24T09:10:58.382596+00:00",
+  "historical_command_diagnostics": "The historical E75 runner overwrote its shared command-status artifact after each method. All direct rows have complete native utility/security fields, but per-case HTTP/context diagnostics cannot be reconstructed as a clean-protocol certificate.",
+  "metrics": [
+    {
+      "attack_success_rate": 0.08426073131955485,
+      "attack_success_wilson95": [
+        0.06499561557294531,
+        0.1085730678464133
+      ],
+      "attack_successes": 53,
+      "attack_utility_rate": 0.5437201907790143,
+      "attack_utility_successes": 342,
+      "attack_utility_wilson95": [
+        0.5046474378246316,
+        0.5822621652574628
+      ],
+      "benign_utility_rate": 0.6597938144329897,
+      "benign_utility_successes": 64,
+      "benign_utility_wilson95": [
+        0.5610358669448852,
+        0.7463773771963067
+      ],
+      "display_name": "No defense",
+      "evidence_class": "official_same_protocol",
+      "method_id": "agentdojo_live_local_no_guard",
+      "n_attack": 629,
+      "n_benign": 97,
+      "n_error": 0,
+      "n_total": 726,
+      "paper_primary_eligible_now": true,
+      "protocol_clean_certified": false,
+      "protocol_status": "complete_726_native_metrics_command_diagnostics_not_frozen",
+      "suite_counts": {
+        "banking": 160,
+        "slack": 126,
+        "travel": 160,
+        "workspace": 280
+      }
+    },
+    {
+      "attack_success_rate": 0.0890302066772655,
+      "attack_success_wilson95": [
+        0.06919690520898053,
+        0.11385282581933379
+      ],
+      "attack_successes": 56,
+      "attack_utility_rate": 0.5405405405405406,
+      "attack_utility_successes": 340,
+      "attack_utility_wilson95": [
+        0.5014662676529723,
+        0.5791226370231516
+      ],
+      "benign_utility_rate": 0.6391752577319587,
+      "benign_utility_successes": 62,
+      "benign_utility_wilson95": [
+        0.5399919512124193,
+        0.7277550678782961
+      ],
+      "display_name": "MELON-style",
+      "evidence_class": "comparable_local_adapter",
+      "method_id": "agentdojo_live_melon_local",
+      "n_attack": 629,
+      "n_benign": 97,
+      "n_error": 0,
+      "n_total": 726,
+      "paper_primary_eligible_now": true,
+      "protocol_clean_certified": false,
+      "protocol_status": "complete_726_native_metrics_command_diagnostics_not_frozen",
+      "suite_counts": {
+        "banking": 160,
+        "slack": 126,
+        "travel": 160,
+        "workspace": 280
+      }
+    },
+    {
+      "attack_success_rate": 0.0047694753577106515,
+      "attack_success_wilson95": [
+        0.001623349869567232,
+        0.013927873400529159
+      ],
+      "attack_successes": 3,
+      "attack_utility_rate": 0.32909379968203495,
+      "attack_utility_successes": 207,
+      "attack_utility_wilson95": [
+        0.2935072375767896,
+        0.3667552231022965
+      ],
+      "benign_utility_rate": 0.3402061855670103,
+      "benign_utility_successes": 33,
+      "benign_utility_wilson95": [
+        0.2536226228036932,
+        0.43896413305511484
+      ],
+      "display_name": "Effect-binding runtime guard",
+      "evidence_class": "proposed_method_strict_finalizer",
+      "method_id": "agentdojo_live_ours_e77_effect_diff_runtime",
+      "n_attack": 629,
+      "n_benign": 97,
+      "n_error": 0,
+      "n_total": 726,
+      "paper_primary_eligible_now": true,
+      "protocol_clean_certified": true,
+      "protocol_status": "strict_context_repair_overlay_finalizer_passed",
+      "suite_counts": {
+        "banking": 160,
+        "slack": 126,
+        "travel": 160,
+        "workspace": 280
+      }
+    },
+    {
+      "attack_success_rate": 0.012718600953895072,
+      "attack_success_wilson95": [
+        0.006458497378689873,
+        0.024894471906332746
+      ],
+      "attack_successes": 8,
+      "attack_utility_rate": 0.575516693163752,
+      "attack_utility_successes": 362,
+      "attack_utility_wilson95": [
+        0.5365467729040645,
+        0.6135698142377346
+      ],
+      "benign_utility_rate": 0.6185567010309279,
+      "benign_utility_successes": 60,
+      "benign_utility_wilson95": [
+        0.5191274393745442,
+        0.708953354665695
+      ],
+      "display_name": "Prompt Sandwiching",
+      "evidence_class": "comparable_prompting_adapter",
+      "method_id": "agentdojo_live_prompt_sandwiching",
+      "n_attack": 629,
+      "n_benign": 97,
+      "n_error": 0,
+      "n_total": 726,
+      "paper_primary_eligible_now": true,
+      "protocol_clean_certified": false,
+      "protocol_status": "complete_726_native_metrics_command_diagnostics_not_frozen",
+      "suite_counts": {
+        "banking": 160,
+        "slack": 126,
+        "travel": 160,
+        "workspace": 280
+      }
+    },
+    {
+      "attack_success_rate": 0.001589825119236884,
+      "attack_success_wilson95": [
+        0.0002806983198852895,
+        0.008949826544240614
+      ],
+      "attack_successes": 1,
+      "attack_utility_rate": 0.21939586645468998,
+      "attack_utility_successes": 138,
+      "attack_utility_wilson95": [
+        0.18881160651847115,
+        0.25338675915463327
+      ],
+      "benign_utility_rate": 0.27835051546391754,
+      "benign_utility_successes": 27,
+      "benign_utility_wilson95": [
+        0.19891172811416313,
+        0.37467635259321574
+      ],
+      "display_name": "PromptArmor-style",
+      "evidence_class": "comparable_local_adapter",
+      "method_id": "agentdojo_live_promptarmor_local",
+      "n_attack": 629,
+      "n_benign": 97,
+      "n_error": 0,
+      "n_total": 726,
+      "paper_primary_eligible_now": true,
+      "protocol_clean_certified": false,
+      "protocol_status": "complete_726_native_metrics_command_diagnostics_not_frozen",
+      "suite_counts": {
+        "banking": 160,
+        "slack": 126,
+        "travel": 160,
+        "workspace": 280
+      }
+    },
+    {
+      "attack_success_rate": 0.07631160572337042,
+      "attack_success_wilson95": [
+        0.058039047418322234,
+        0.09972788998611014
+      ],
+      "attack_successes": 48,
+      "attack_utility_rate": 0.589825119236884,
+      "attack_utility_successes": 371,
+      "attack_utility_wilson95": [
+        0.5509541074675496,
+        0.6276056225011167
+      ],
+      "benign_utility_rate": 0.6185567010309279,
+      "benign_utility_successes": 60,
+      "benign_utility_wilson95": [
+        0.5191274393745442,
+        0.708953354665695
+      ],
+      "display_name": "Spotlighting",
+      "evidence_class": "agentdojo_builtin_prompting_defense",
+      "method_id": "agentdojo_live_spotlighting_with_delimiting",
+      "n_attack": 629,
+      "n_benign": 97,
+      "n_error": 0,
+      "n_total": 726,
+      "paper_primary_eligible_now": true,
+      "protocol_clean_certified": false,
+      "protocol_status": "complete_726_native_metrics_command_diagnostics_not_frozen",
+      "suite_counts": {
+        "banking": 160,
+        "slack": 126,
+        "travel": 160,
+        "workspace": 280
+      }
+    },
+    {
+      "attack_success_rate": 0.012718600953895072,
+      "attack_success_wilson95": [
+        0.006458497378689873,
+        0.024894471906332746
+      ],
+      "attack_successes": 8,
+      "attack_utility_rate": 0.34181240063593005,
+      "attack_utility_successes": 215,
+      "attack_utility_wilson95": [
+        0.3058054792644058,
+        0.3797397750385624
+      ],
+      "benign_utility_rate": 0.41237113402061853,
+      "benign_utility_successes": 40,
+      "benign_utility_wilson95": [
+        0.319573240177898,
+        0.5118453033575773
+      ],
+      "display_name": "AttriGuard adapted artifact",
+      "evidence_class": "released_artifact_adapter",
+      "method_id": "agentdojo_live_attriguard",
+      "n_attack": 629,
+      "n_benign": 97,
+      "n_error": 0,
+      "n_total": 726,
+      "paper_primary_eligible_now": false,
+      "protocol_clean_certified": false,
+      "protocol_status": "provisional_10_of_726_protocol_errors",
+      "suite_counts": {
+        "banking": 160,
+        "slack": 126,
+        "travel": 160,
+        "workspace": 280
+      }
+    }
+  ],
+  "missing_planned_methods": {
+    "piguard": "no full-run logs",
+    "transformers_pi_detector": "no full-run logs"
+  },
+  "paired_statistics": "analysis/results/e78_qwen32_paired_statistics.json",
+  "primary_baseline_methods": [
+    "agentdojo_live_local_no_guard",
+    "agentdojo_live_melon_local",
+    "agentdojo_live_spotlighting_with_delimiting",
+    "agentdojo_live_prompt_sandwiching",
+    "agentdojo_live_promptarmor_local",
+    "agentdojo_live_ours_e77_effect_diff_runtime"
+  ],
+  "protocol": {
+    "benchmark": {
+      "attack": 629,
+      "benign": 97,
+      "name": "AgentDojo",
+      "official_case_keys": 726,
+      "suite_counts": {
+        "banking": 160,
+        "slack": 126,
+        "travel": 160,
+        "workspace": 280
+      },
+      "version": "v1.1.2"
+    },
+    "controls": {
+      "errors_retained": true,
+      "same_case_keys": true,
+      "same_initial_state": true,
+      "same_model": true,
+      "same_native_evaluators": true
+    },
+    "model": {
+      "bytes": 19762149024,
+      "context_window": 65536,
+      "file_name": "Qwen3-32B-Q4_K_M.gguf",
+      "output_cap": 4096,
+      "quantization": "Q4_K_M",
+      "sha256": "efd971561896866f0e910cce52761ca77b1b138090c7f15fe284676d57d1f689",
+      "temperature": 0.0
+    }
+  },
+  "status": "frozen_complete_metrics_with_protocol_caveats"
+}

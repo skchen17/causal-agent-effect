@@ -1,0 +1,25 @@
+{
+  "case_count": 54,
+  "claim_boundary": "Misses are custom structural stress findings, not general CaMeL failure claims.",
+  "evidence_type": "generic SecurityPolicyEngine component",
+  "experiment_name": "Phase 5 CaMeL structural policy component stress",
+  "group_count": 6,
+  "human_audited": true,
+  "known_limitations": "Component stress, not full CaMeL generated-code benchmark.",
+  "label_status": "corrected human-audited labels; no_side_effect_tool fixed",
+  "method_scope_label": "original_component_custom_stress",
+  "output_artifacts": [
+    "analysis/results/tool_effect_fragmentation_camel_phase5.json",
+    "analysis/results/tool_effect_fragmentation_camel_miss_decomposition_phase6.json"
+  ],
+  "paper_section": "Structured defense analysis and failure taxonomy",
+  "row_count": 54,
+  "source_data": [
+    "data/tool_effect_fragmentation/camel_structural_counterfactual_phase5.jsonl"
+  ],
+  "source_scripts": [
+    "src/experiments/tool_effect_fragmentation/phase5_camel.py",
+    "src/experiments/tool_effect_fragmentation/phase5_camel_component_worker.py"
+  ],
+  "stage": "Phase 5/6"
+}

@@ -1,0 +1,27 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\caption{Closed-loop monitor-view comparison and fixed saved-attack transfer.
+Panel (a) uses 48 benign and 273 attack cases from a selection-conditioned
+AgentDojo subset. Panel (b) replays 303 fixed AgentLAB task-injection artifacts saved
+under AgentDojo v1.2.1, while the main AgentDojo results use v1.1.2; it is not
+adaptive attack generation.}
+\label{tab:granularity-transfer}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Setting & Benign utility & Attack utility & ASR \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{(a) Monitor representation, AgentDojo v1.1.2}}\\
+No blocking & 62.5\% & 56.0\% & 13.9\% \\
+Whole-call provenance & 81.3\% & 21.2\% & 4.0\% \\
+Effect only & 77.1\% & 53.8\% & 7.7\% \\
+Raw-field taint & 81.3\% & 59.3\% & 3.7\% \\
+Registered fields & 64.6\% & 54.2\% & 2.6\% \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{(b) Fixed AgentLAB transfer, AgentDojo v1.2.1}}\\
+No defense & -- & 61.1\% & 31.4\% \\
+Provenance-origin monitor & -- & 43.6\% & 0.3\% \\
+\bottomrule
+\end{tabular}
+\end{table}

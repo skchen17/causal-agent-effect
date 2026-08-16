@@ -1,0 +1,16 @@
+\section{Failure Analysis}
+
+\paragraph{Resource and authorization failures.}
+The dominant failure mode is not a failure to notice that a tool call is side-effectful. It is failure to bind the action to the specific resource and authorization relation. In E50, the hard guard frequently decides rather than abstains, yet it allows unsafe resource/authorization cases. This suggests that surface-level safety categories and even effect labels are insufficient when the policy-relevant question is ``which object, under which authorization, with which operation?''
+
+\paragraph{Multi-resource containers.}
+E55 ablations show why a tool call must be treated as a container. If multi-resource expansion is removed, the prototype can authorize the visible primary action while missing hidden or secondary resources. Email Bcc fields, event attendees, file visibility changes, Slack role/channel changes, and transaction payee/account combinations all create this pattern.
+
+\paragraph{Operation-mode and provenance failures.}
+Operation mode changes convert apparently similar calls into different security actions. A draft may be acceptable when a committed send is not; a scheduled payment may differ from an immediate transfer. Provenance/control-source failures are separate: a call whose resource is authorized may still be unsafe when the controlling instruction comes from an untrusted fetched page or tool output. E50 provenance stress shows that hard provenance overlays can remove unsafe pre-allow under the controlled setup, but at the cost of false-denial and abstention.
+
+\paragraph{Human audit corrections.}
+The E57 human audit found corrections rather than merely confirming the construction. Some corrections concern unknown-resource fallback in email and file cases; others concern transaction-domain amount handling, where amount should not always be treated as a resource-authorization atom. These corrections are valuable because they sharpen the claim boundary. The corrected sensitivity preserves zero unsafe pre-allow for the full authz-aware guard, but introduces a small safe false-denial rate. The paper therefore reports the prototype as robust to corrected-label sensitivity on unsafe pre-allow, not as perfectly labeled.
+
+\paragraph{Residual reviewer risks.}
+The local contract is synthetic and deterministic. Resource aliases, authorization context, and atom expansion are designed by the same project, although E57-v2 independent reference-authorizer agreement reduces single-implementation coupling concerns. The remaining high-value experiment is an independently authored held-out local contract or realistic replay sandbox that preserves no-real-side-effect safety while testing whether the same atom interface transfers.

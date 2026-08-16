@@ -1,0 +1,14 @@
+{
+  "attested_at_local": "2026-08-05T18:23:07+08:00",
+  "attested_at_utc": "2026-08-05T10:23:07+00:00",
+  "attested_by": "experimental-researcher",
+  "files": {
+    "context-repair-policy-v0v3.json": "fae2c1ac294787b53db680bca61b2c6485c02acba41732b2528d53cf883f87eb",
+    "context-repair-policy-v0v3.md": "a8170067e4947d5ccd28b7cf658246dd68d42f1b97f4b91536d17a809b93cb7c"
+  },
+  "policy_id": "ctx-repair-v0v3-2026-08-05",
+  "preregistration_order_discipline": "policy documents written -> hashes attested (this file) -> policy self-check backtest on v17 precedent data -> any future repair execution",
+  "purpose": "Fixes the pre-registration timestamp and content hashes of the symmetric context-repair policy BEFORE V0 enters the workspace suite and before any V0-V3 result is known. Any later divergence of either file from these hashes invalidates the pre-registration and requires a new policy_id.",
+  "schema": "context-repair-policy-v0v3-attestation/1",
+  "v0_status_at_attestation": "tool_identity_only ~233/726 (slack/travel segment); server log HTTP-400 non-noise count = 0; workspace suite not yet reached"
+}

@@ -1,0 +1,11 @@
+# Appendix External Pipeline Feasibility
+
+| system | component | scope | n_rows | runtime_error_rate | policy_denial_rate | benign_utility | attack_utility | attack_success | interpretation | successful_attacks | passed |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| camel | original_camel_generator_interpreter_inline_policy_normal | original_pipeline_local_model | 1046 | 0 | 0.082218 | 0.226804 | 0.227608 | 0.00105374 | local-model feasibility; not defense-effectiveness evidence |  |  |
+| camel | original_camel_generator_interpreter_inline_policy_strict | original_pipeline_local_model | 1046 | 0.00478011 | 0.0611855 | 0.221053 | 0.250529 | 0.00105708 | local-model feasibility; not defense-effectiveness evidence |  |  |
+| camel | original_camel_generator_interpreter_no_policy | original_pipeline_local_model | 1046 | 0.00191205 | 0 | 0.237113 | 0.291447 | 0.00105597 | local-model feasibility; not defense-effectiveness evidence |  |  |
+| ipiguard | agentdojo_no_defense_local_model | original_pipeline_local_model | 726 | 0 | 0 | 0.0412371 | 0.0572337 | 0 | local-model feasibility; not defense-effectiveness evidence |  |  |
+| ipiguard | original_ipiguard_construct_traverse_pipeline | original_pipeline_local_model | 726 | 0.0330579 | 0 | 0.231579 | 0.240527 | 0.00658979 | local-model feasibility; not defense-effectiveness evidence |  |  |
+| camel | phase6_external_deepseek_gate | original_pipeline_external_model | 0 |  |  |  |  |  | pending_missing_deepseek_api_key | 0 | False |
+| ipiguard | phase6_external_deepseek_gate | original_pipeline_external_model | 0 |  |  |  |  |  | pending_missing_deepseek_api_key | 0 | False |

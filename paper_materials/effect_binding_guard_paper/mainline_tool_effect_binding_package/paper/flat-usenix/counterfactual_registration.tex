@@ -1,0 +1,21 @@
+\section{Counterfactual Contract Registration}
+
+Registration starts from a tool schema, description, implementation or sandbox, and a declared security projection. An LLM may propose an effect inventory and bindings, but its output is an untrusted synthesis candidate. The validator tests whether the candidate is a sufficient abstraction of observed tool effects, not whether the model can repeat schema fields.
+
+For a base call $x$ and intervention set $J$, let $x'=do(x_J\leftarrow v_J)$ while the pre-state, history, nonintervened arguments, implementation version, and observation function remain fixed. The concrete relation is
+\[
+  R_\Delta(x,x')=[\Delta_{sec}(t,x,s)\not\equiv\Delta_{sec}(t,x',s)],
+\]
+and the contract relation is
+\[
+  R_K(x,x')=[K_t(x,s,h)\not\equiv K_t(x',s,h)],
+\]
+where equivalence canonicalizes aliases, ordering, and other declared surface forms. A pair is \emph{faithfully mediated} when both relations change, a \emph{true invariance} when neither changes, a \emph{mediation gap} when $R_\Delta$ changes but $R_K$ does not, and \emph{over-sensitive} in the reverse case. The first is positive evidence for a binding; the second is a negative control; the latter two reject or refine the candidate.
+
+The intervention suite includes resource, target, operation, commit, visibility, alias, multi-resource, provenance, control-source, omitted/default, and surface axes. It also includes pairwise or condition-aware interventions because isolated tests can miss an effect triggered by a conjunction. List-valued resources or targets expand to separate atoms, while one call may instantiate several templates. In AgentDojo, \texttt{create\_calendar\_event} both creates an event and sends invitations, including to an implicitly added calendar owner. A single \texttt{write} label misses that structure; explicit event and per-recipient templates cover the four enumerated calls we test.
+
+This registration differs from action-source attribution. AttriGuard intervenes on untrusted observations and replays the model to ask why a call was proposed~\cite{attriguard}. We intervene on structured calls and tool state to ask what security effects execution realizes and whether the frozen contract preserves those distinctions. The two tests are complementary: an intent-supported call can still contain an unauthorized sub-effect, while a sound effect contract does not establish that the model proposed the call for a trusted reason.
+
+Candidate refinement receives only failed axes, relation categories, and aggregate metrics, never hidden reference atoms or expected decisions. The first candidate satisfying bounded mediation-recall, invariance, unsafe-allow, interaction, and leakage gates may be frozen. A finite test set remains a falsification procedure rather than a proof over an open input domain; unresolved tools require conservative bindings or human review.
+
+E77 is a narrower predecessor. It compares one-field sandbox state/output snapshots and retains every changed or unresolved schema field. Its 56 changed, one invariant, and 22 unresolved outcomes demonstrate executable interventions, but do not distinguish security effects from arbitrary output changes, test whether proposed atoms mediate those changes, or cover interactions. A conjunction-triggered counterexample therefore defeats its registration criterion.

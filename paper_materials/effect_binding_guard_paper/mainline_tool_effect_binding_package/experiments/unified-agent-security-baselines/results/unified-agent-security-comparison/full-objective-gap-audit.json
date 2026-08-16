@@ -1,0 +1,99 @@
+{
+  "blocking_gaps": [
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_agentdojo_official_live_import_metrics.json",
+      "issue": "Imported official live methods with all 726 keys: []. Current method key counts: {'agentdojo_live_ours_e77_effect_diff_runtime': 140}. Source benchmark versions: {'v1.1.2': 140}. Partial rows, workspace-only slices, and target-version mismatches are not full horizontal results.",
+      "next_step": "Run official-live-run over all suites and benign/attack modes for no_guard, repeat_user_prompt, spotlighting, and any locally runnable official detector.",
+      "requirement": "official_live_same_protocol_baselines",
+      "status": "missing-full-run"
+    },
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_ours_e73_conservative_projection_metrics.json",
+      "issue": "The current ours/E73 artifact is a 156-case E61 subset projection; mapped=156/726.",
+      "next_step": "Implement and run our runtime guard on the full official AgentDojo 726-key case set before putting it in the main horizontal table.",
+      "requirement": "ours_same_726_case_run",
+      "status": "missing-full-run"
+    },
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_attriguard_baseline_artifact_audit.json",
+      "issue": "AttriGuard has a verified Zenodo artifact and an implemented deterministic cross-case shard adapter, but no full 726-key unified result. Current uniform-protocol attempted/clean keys: 726/716; protocol uniform: False. The public artifact's native multiprocessing branch failed, but that historical runner defect does not apply to the E75 deterministic shard adapter.",
+      "next_step": "Use the resumable sharded artifact runner for all 726 official keys; report it as an adapted AttriGuard artifact run, not as an AgentDojo built-in defense.",
+      "requirement": "attriguard_adapter",
+      "status": "partial-full-run"
+    },
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_unified_agentdojo_method_registry.json",
+      "issue": "IPIGuard/CaMeL external saved rows are present, and PIGuard plus prompt_sandwiching now have full official-live 726-key runs; PromptArmor-style local adapter also has a full 726-key comparable official-live run; MELON-style local adapter also has a full 726-key comparable official-live run; DataSentinel is still blocked on the external ft_path checkpoint.",
+      "next_step": "Obtain or replace DataSentinel's ft_path checkpoint and keep AttriGuard running through the resumable artifact adapter before adding those rows.",
+      "requirement": "public_baseline_adapters",
+      "status": "partially-done"
+    }
+  ],
+  "claim_boundary": "Full horizontal completion requires same AgentDojo case keys and a compatible protocol. Saved replay imports, detector projections, and 156-case ours projections are useful diagnostics but not final same-protocol main-table rows.",
+  "external_saved_full_cross_methods_now": [
+    "camel_none_external",
+    "camel_normal_external",
+    "camel_strict_external",
+    "ipiguard_none_external",
+    "ipiguard_normal_external"
+  ],
+  "final_horizontal_table_eligible_now": false,
+  "official_live_core_table_eligible_now": false,
+  "official_live_full_methods_now": [],
+  "registry_main_table_eligible_saved_replay_methods": [
+    "no_guard",
+    "ipiguard_normal"
+  ],
+  "rows": [
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_agentdojo_official_case_manifest_report.json",
+      "issue": "726 AgentDojo v1.1.2 official case keys are available when the manifest artifact exists.",
+      "next_step": "",
+      "requirement": "official_manifest",
+      "status": "done"
+    },
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_agentdojo_official_live_import_metrics.json",
+      "issue": "Imported official live methods with all 726 keys: []. Current method key counts: {'agentdojo_live_ours_e77_effect_diff_runtime': 140}. Source benchmark versions: {'v1.1.2': 140}. Partial rows, workspace-only slices, and target-version mismatches are not full horizontal results.",
+      "next_step": "Run official-live-run over all suites and benign/attack modes for no_guard, repeat_user_prompt, spotlighting, and any locally runnable official detector.",
+      "requirement": "official_live_same_protocol_baselines",
+      "status": "missing-full-run"
+    },
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_external_full_cross_metrics.json",
+      "issue": "External saved full-cross methods with all 726 keys: ['camel_none_external', 'camel_normal_external', 'camel_strict_external', 'ipiguard_none_external', 'ipiguard_normal_external']. These are imported saved runs, not this-turn official live reruns.",
+      "next_step": "Keep separate from official-live rows unless protocol compatibility is audited and documented.",
+      "requirement": "external_saved_full_cross_baselines",
+      "status": "done-with-caveat"
+    },
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_ours_e73_conservative_projection_metrics.json",
+      "issue": "The current ours/E73 artifact is a 156-case E61 subset projection; mapped=156/726.",
+      "next_step": "Implement and run our runtime guard on the full official AgentDojo 726-key case set before putting it in the main horizontal table.",
+      "requirement": "ours_same_726_case_run",
+      "status": "missing-full-run"
+    },
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_pi_detector_adapted_metrics.json",
+      "issue": "Current PI Detector result is adapted payload screening/projection, not a live AgentDojo agent rerun.",
+      "next_step": "Use official transformers_pi_detector live defense if local dependencies/model loading succeed, or keep the adapted result in a secondary table.",
+      "requirement": "pi_detector_same_key_baseline",
+      "status": "done-with-caveat"
+    },
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_attriguard_baseline_artifact_audit.json",
+      "issue": "AttriGuard has a verified Zenodo artifact and an implemented deterministic cross-case shard adapter, but no full 726-key unified result. Current uniform-protocol attempted/clean keys: 726/716; protocol uniform: False. The public artifact's native multiprocessing branch failed, but that historical runner defect does not apply to the E75 deterministic shard adapter.",
+      "next_step": "Use the resumable sharded artifact runner for all 726 official keys; report it as an adapted AttriGuard artifact run, not as an AgentDojo built-in defense.",
+      "requirement": "attriguard_adapter",
+      "status": "partial-full-run"
+    },
+    {
+      "evidence": "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/analysis/results/e75_unified_agentdojo_method_registry.json",
+      "issue": "IPIGuard/CaMeL external saved rows are present, and PIGuard plus prompt_sandwiching now have full official-live 726-key runs; PromptArmor-style local adapter also has a full 726-key comparable official-live run; MELON-style local adapter also has a full 726-key comparable official-live run; DataSentinel is still blocked on the external ft_path checkpoint.",
+      "next_step": "Obtain or replace DataSentinel's ft_path checkpoint and keep AttriGuard running through the resumable artifact adapter before adding those rows.",
+      "requirement": "public_baseline_adapters",
+      "status": "partially-done"
+    }
+  ],
+  "status": "incomplete"
+}

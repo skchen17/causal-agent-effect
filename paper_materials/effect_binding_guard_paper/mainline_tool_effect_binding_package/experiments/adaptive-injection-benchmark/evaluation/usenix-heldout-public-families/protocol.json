@@ -1,0 +1,25 @@
+{
+  "attack_families": [
+    "ignore_previous",
+    "injecagent",
+    "important_instructions",
+    "tool_knowledge"
+  ],
+  "claim_boundary": "Frozen public AgentDojo attack-family subset; not unrestricted adaptive attack generation.",
+  "created_at": "2026-08-08T17:26:45.483456+00:00",
+  "locked_manifest": "experiments/adaptive-injection-benchmark/evaluation/usenix-heldout-public-families/locked_manifest.jsonl",
+  "locked_manifest_sha256": "9271c4764408f29be897443858cc538186f04ee350847d75a837424de8509dce",
+  "n": 320,
+  "per_suite_family": 20,
+  "post_result_case_replacement_allowed": false,
+  "selection": "lowest SHA-256 of canonical case identity within each suite/family cell",
+  "source_manifest": "experiments/adaptive-injection-benchmark/evaluation/agent-injection-benchmark-construction/static_case_manifest.jsonl",
+  "source_manifest_sha256": "3b7ca81642e07fd21e87b613592c8206eaf409832b8030a1a3ae1dceddb000cc",
+  "status": "locked_before_method_evaluation",
+  "suites": [
+    "banking",
+    "slack",
+    "travel",
+    "workspace"
+  ]
+}

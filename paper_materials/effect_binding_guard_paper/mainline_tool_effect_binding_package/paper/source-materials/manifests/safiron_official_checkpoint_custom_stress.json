@@ -1,0 +1,25 @@
+{
+  "case_count": 528,
+  "claim_boundary": "Use as official-checkpoint custom stress, not a general Safiron failure claim.",
+  "evidence_type": "released checkpoint on E47 inputs",
+  "experiment_name": "Safiron official checkpoint custom stress",
+  "group_count": 24,
+  "human_audited": true,
+  "known_limitations": "Not original Safiron benchmark reproduction.",
+  "label_status": "audited custom-stress labels for Phase 4 core",
+  "method_scope_label": "official_method_custom_stress",
+  "output_artifacts": [
+    "analysis/results/tool_effect_fragmentation_safiron_official_stress_phase3.json",
+    "analysis/results/tool_effect_fragmentation_counterfactual_phase4_safiron.json"
+  ],
+  "paper_section": "Official checkpoint counterfactual results",
+  "row_count": 528,
+  "source_data": [
+    "data/tool_effect_fragmentation/counterfactual_core_phase4.jsonl"
+  ],
+  "source_scripts": [
+    "src/experiments/tool_effect_fragmentation/phase3_official_stress.py",
+    "src/experiments/tool_effect_fragmentation/phase4_inference.py"
+  ],
+  "stage": "Phase 3/4"
+}

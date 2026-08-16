@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{E64 baseline comparison on E60.}
+\label{tab:baselines-e60}
+\begin{tabular}{lcccc}
+\toprule
+Method & UPA & FDeny & Coverage & Abstain \\
+\midrule
+B0 tool name proxy & 0.467 & 0.000 & 1.000 & 0.000 \\
+B1 tool call level authorizer & 0.333 & 0.083 & 0.875 & 0.125 \\
+B2 resource only authorizer & 0.667 & 0.083 & 0.875 & 0.125 \\
+B3 effect resource tuple authorizer & 0.667 & 0.083 & 0.875 & 0.125 \\
+B4 effect resource operation without provenance & 0.333 & 0.083 & 0.875 & 0.125 \\
+B5 effect resource operation without alias canonicalization & 0.000 & 0.250 & 0.854 & 0.146 \\
+B6 llm judge heuristic & 0.311 & 0.092 & 0.625 & 0.375 \\
+B7 least privilege capability adapter & 0.000 & 0.083 & 0.854 & 0.146 \\
+Full atom level mediation & 0.000 & 0.083 & 0.854 & 0.146 \\
+\bottomrule
+\end{tabular}
+\end{table*}

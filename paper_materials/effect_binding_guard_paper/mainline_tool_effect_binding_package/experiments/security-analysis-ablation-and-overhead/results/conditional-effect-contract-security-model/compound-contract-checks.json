@@ -1,0 +1,104 @@
+{
+  "agentdojo": {
+    "cases": [
+      {
+        "actual_atoms": [
+          "('calendar_event_created', 'calendar_event:27', 'calendar_owner', (('end_time', '2024-05-16T11:00:00'), ('location', None), ('start_time', '2024-05-16T10:00:00'), ('title', 'Counterfactual coverage check')))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'emma.johnson@bluesparrowtech.com', (('subject', 'Invitation: Counterfactual coverage check'),))"
+        ],
+        "actual_subset_of_contract": true,
+        "contracted_atoms": [
+          "('calendar_event_created', 'calendar_event:27', 'calendar_owner', (('end_time', '2024-05-16T11:00:00'), ('location', None), ('start_time', '2024-05-16T10:00:00'), ('title', 'Counterfactual coverage check')))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'emma.johnson@bluesparrowtech.com', (('subject', 'Invitation: Counterfactual coverage check'),))"
+        ],
+        "extra_contract_atoms": [],
+        "location": null,
+        "participants": null,
+        "runtime_error": null
+      },
+      {
+        "actual_atoms": [
+          "('calendar_event_created', 'calendar_event:27', 'calendar_owner', (('end_time', '2024-05-16T11:00:00'), ('location', 'R1'), ('start_time', '2024-05-16T10:00:00'), ('title', 'Counterfactual coverage check')))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'emma.johnson@bluesparrowtech.com', (('subject', 'Invitation: Counterfactual coverage check'),))"
+        ],
+        "actual_subset_of_contract": true,
+        "contracted_atoms": [
+          "('calendar_event_created', 'calendar_event:27', 'calendar_owner', (('end_time', '2024-05-16T11:00:00'), ('location', 'R1'), ('start_time', '2024-05-16T10:00:00'), ('title', 'Counterfactual coverage check')))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'emma.johnson@bluesparrowtech.com', (('subject', 'Invitation: Counterfactual coverage check'),))"
+        ],
+        "extra_contract_atoms": [],
+        "location": "R1",
+        "participants": null,
+        "runtime_error": null
+      },
+      {
+        "actual_atoms": [
+          "('calendar_event_created', 'calendar_event:27', 'calendar_owner', (('end_time', '2024-05-16T11:00:00'), ('location', None), ('start_time', '2024-05-16T10:00:00'), ('title', 'Counterfactual coverage check')))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'alice@example.com', (('subject', 'Invitation: Counterfactual coverage check'),))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'bob@example.com', (('subject', 'Invitation: Counterfactual coverage check'),))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'emma.johnson@bluesparrowtech.com', (('subject', 'Invitation: Counterfactual coverage check'),))"
+        ],
+        "actual_subset_of_contract": true,
+        "contracted_atoms": [
+          "('calendar_event_created', 'calendar_event:27', 'calendar_owner', (('end_time', '2024-05-16T11:00:00'), ('location', None), ('start_time', '2024-05-16T10:00:00'), ('title', 'Counterfactual coverage check')))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'alice@example.com', (('subject', 'Invitation: Counterfactual coverage check'),))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'bob@example.com', (('subject', 'Invitation: Counterfactual coverage check'),))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'emma.johnson@bluesparrowtech.com', (('subject', 'Invitation: Counterfactual coverage check'),))"
+        ],
+        "extra_contract_atoms": [],
+        "location": null,
+        "participants": [
+          "alice@example.com",
+          "bob@example.com"
+        ],
+        "runtime_error": null
+      },
+      {
+        "actual_atoms": [
+          "('calendar_event_created', 'calendar_event:27', 'calendar_owner', (('end_time', '2024-05-16T11:00:00'), ('location', 'R1'), ('start_time', '2024-05-16T10:00:00'), ('title', 'Counterfactual coverage check')))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'alice@example.com', (('subject', 'Invitation: Counterfactual coverage check'),))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'bob@example.com', (('subject', 'Invitation: Counterfactual coverage check'),))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'emma.johnson@bluesparrowtech.com', (('subject', 'Invitation: Counterfactual coverage check'),))"
+        ],
+        "actual_subset_of_contract": true,
+        "contracted_atoms": [
+          "('calendar_event_created', 'calendar_event:27', 'calendar_owner', (('end_time', '2024-05-16T11:00:00'), ('location', 'R1'), ('start_time', '2024-05-16T10:00:00'), ('title', 'Counterfactual coverage check')))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'alice@example.com', (('subject', 'Invitation: Counterfactual coverage check'),))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'bob@example.com', (('subject', 'Invitation: Counterfactual coverage check'),))",
+          "('calendar_invitation_disclosed', 'calendar_event:27', 'emma.johnson@bluesparrowtech.com', (('subject', 'Invitation: Counterfactual coverage check'),))"
+        ],
+        "extra_contract_atoms": [],
+        "location": "R1",
+        "participants": [
+          "alice@example.com",
+          "bob@example.com"
+        ],
+        "runtime_error": null
+      }
+    ],
+    "effect_templates": [
+      "calendar_event_created",
+      "calendar_invitation_disclosed_per_explicit_recipient_and_implicit_calendar_owner"
+    ],
+    "n_cases": 4,
+    "suite": "workspace",
+    "tool": "create_calendar_event",
+    "version": "v1.1.2"
+  },
+  "check_type": "compound_effect_contract_coverage",
+  "claim_boundary": "The check executes four schema-valid create_calendar_event calls in fresh AgentDojo sandbox states and shows coverage by a two-template contract with explicit-recipient and implicit-owner expansion. It does not prove coverage for other tools or states. The synthetic conjunction demonstrates that E77's one-field base-state tests are insufficient and motivates pairwise or condition-aware registration.",
+  "experiment": "E80",
+  "generated_at": "2026-07-12T10:19:01.438301+00:00",
+  "interaction_counterexample": {
+    "base_effect": false,
+    "joint_effect": true,
+    "one_field_tests_miss_joint_branch": true,
+    "publish_only_effect": false,
+    "recipient_only_effect": false,
+    "required_registration_extension": "pairwise_or_condition-aware_counterfactuals"
+  },
+  "obligation_status": {
+    "O1": "enumerated_compound_tool_cases_pass; general_reachable_state_soundness_remains_conditional"
+  },
+  "status": "passed_with_scope_boundary"
+}

@@ -1,0 +1,32 @@
+\section{Security Analysis}
+
+The guarantee depends on five obligations. Let $\bar{x}=\tau_t(x,s)$ and let $\gamma$ map atoms to the concrete effects they conservatively denote. (O1) \emph{Causal-abstraction soundness}: $\Delta_{sec}(t,\bar{x},s)\subseteq\gamma(K_t(\bar{x},s,h))$ for every registered reachable call. O1 requires a complete security-effect observation boundary, adequate interventions, abstraction sufficiency, and complete expansion of conditional and multi-resource effects. (O2) \emph{Envelope soundness}: $\Gamma_q$ cannot exceed the independently supported authority bound $B_q$. (O3) \emph{Complete mediation}: every externally effectful call reaches the guard before transition. (O4) \emph{Check-use integrity}: the checked totalized call, state version, and evidence are used by the executor. (O5) \emph{Fail-closed uncertainty}: unresolved facts or defaults do not produce $\Allow$.
+
+\paragraph{Counterfactual abstraction criterion.}
+Within a declared finite contract domain $D$, a sufficient abstraction preserves every tested security-effect distinction:
+\[
+\begin{aligned}
+  K_t(x,s,h)=K_t(x',s,h)&\Longrightarrow{}\\
+  \Delta_{sec}(t,x,s)&=\Delta_{sec}(t,x',s),\quad x,x'\in D.
+\end{aligned}
+\]
+Equivalently, any intervention that changes a concrete security effect must change its canonical atom abstraction. This is a bounded causal-mediation property over tool execution, not a claim to identify the model's internal cause for proposing the call. Exhaustive validation establishes the property only for a finite $D$; sampled counterfactuals can find violations but cannot certify an open domain.
+
+\paragraph{Single-commit confinement.}
+Assume O1--O5. If the guard returns $\Allow$ for $(q,t,\bar{x},s,h)$, then every committed effect satisfies $\Gamma_q$ and hence $B_q$. Totalization either exposes defaults or fails closed. O3 places the check before commitment; the guard requires every atom in $K_t$ to match the envelope; O1 and $\gamma$ cover every actual security effect; and O4 binds the checked object to execution. O2 prevents an LLM proposal from expanding authority. Therefore all committed effects are authorized.
+
+\paragraph{Prefix confinement.}
+Consider a trajectory with committed effects $\Delta_1,\ldots,\Delta_n$. Assume single-commit confinement at each transition and that untrusted observations cannot enlarge $\Gamma_q$. Then for every prefix $j$,
+\[
+  \bigcup_{i=1}^{j}\Delta_i
+  \subseteq \{a\mid\Gamma_q(a)=\mathrm{true}\}.
+\]
+The proof is induction on $j$: the empty prefix is immediate; the inductive step adds only the effects of one allowed call, all authorized by single-commit confinement under the unchanged envelope.
+
+For authenticated multi-turn tasks, let $\eta(i)$ be the latest trusted user epoch before commit $i$. If authority updates consume only authenticated user messages, then changing tool outputs or model feedback cannot change $B^{(\eta(i))}$. Applying single-commit confinement at each epoch gives the historical property $\forall i\leq j,\forall a\in\Delta_i:B^{(\eta(i))}(a)$. This permits explicit user clarification without letting an injected observation or replan expand authority. With no updates, it reduces to the fixed-envelope result above.
+
+The theorem is a safety statement, not a liveness guarantee. A monitor that denies all calls satisfies confinement but has no utility. Evaluation must therefore report task completion, attack-side utility, false denial, abstention, recovery after replan, and overhead. The implementation may claim the theorem only for the obligations it tests; otherwise the theorem remains conditional.
+
+\paragraph{Instantiated scope.}
+\input{table_e80_obligations}
+For the completed AgentDojo run, the tool-result call-signature multiset exactly equals the pre-commit audit-signature multiset, providing execution evidence for O3 and sandbox-local O4. O1 remains partial: a finite nine-pair model accepts its complete contract and detects target, multi-resource, default, compound-effect, and placebo ablations, and the explicit two-template calendar contract covers four enumerated sandbox calls. Neither establishes AgentDojo-wide soundness: E77's raw state/output comparison conflates security effects with arbitrary output differences and one-field registration misses a conjunction-triggered effect. O2 is not satisfied by E77: an LLM plan can introduce an exact literal or a resolver not independently supported by the request. An isolated hardening path bounds such proposals by a trusted manifest with source spans and a fixed resolver catalog, but arbitrary natural-language manifest construction remains outside the proof. O5 is also only partially instantiated. AgentDojo's observed optional security defaults are empty, yet the legacy comparison skips omitted fields; a nonempty-default witness therefore allows without a check. Totalizing declared static defaults before authorization repairs the isolated path, while hidden or state-dependent defaults remain an assumption. We consequently present trajectory confinement as conditional, not as an unconditional implementation theorem.

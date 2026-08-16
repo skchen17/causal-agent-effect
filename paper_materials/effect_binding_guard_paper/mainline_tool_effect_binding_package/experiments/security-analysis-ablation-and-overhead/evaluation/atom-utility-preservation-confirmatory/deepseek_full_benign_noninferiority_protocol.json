@@ -1,0 +1,71 @@
+{
+  "experiment": "deepseek_compact_atom_description_full_benign_noninferiority_v1",
+  "status": "frozen_after_compact_pilot_before_full_execution",
+  "benchmark": "AgentDojo v1.1.2 native benign utility evaluator",
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "repeats": 2,
+  "conditions": [
+    "pristine",
+    "compact_neutral",
+    "compact_atoms"
+  ],
+  "tasks": {
+    "banking": [
+      "user_task_0", "user_task_1", "user_task_2", "user_task_3",
+      "user_task_4", "user_task_5", "user_task_6", "user_task_7",
+      "user_task_8", "user_task_9", "user_task_10", "user_task_11",
+      "user_task_12", "user_task_13", "user_task_14", "user_task_15"
+    ],
+    "slack": [
+      "user_task_0", "user_task_1", "user_task_2", "user_task_3",
+      "user_task_4", "user_task_5", "user_task_6", "user_task_7",
+      "user_task_8", "user_task_9", "user_task_10", "user_task_11",
+      "user_task_12", "user_task_13", "user_task_14", "user_task_15",
+      "user_task_16", "user_task_17", "user_task_18", "user_task_19",
+      "user_task_20"
+    ],
+    "travel": [
+      "user_task_0", "user_task_1", "user_task_2", "user_task_3",
+      "user_task_4", "user_task_5", "user_task_6", "user_task_7",
+      "user_task_8", "user_task_9", "user_task_10", "user_task_11",
+      "user_task_12", "user_task_13", "user_task_14", "user_task_15",
+      "user_task_16", "user_task_17", "user_task_18", "user_task_19"
+    ],
+    "workspace": [
+      "user_task_0", "user_task_1", "user_task_2", "user_task_3",
+      "user_task_4", "user_task_5", "user_task_6", "user_task_7",
+      "user_task_8", "user_task_9", "user_task_10", "user_task_11",
+      "user_task_12", "user_task_13", "user_task_14", "user_task_15",
+      "user_task_16", "user_task_17", "user_task_18", "user_task_19",
+      "user_task_20", "user_task_21", "user_task_22", "user_task_23",
+      "user_task_24", "user_task_25", "user_task_26", "user_task_27",
+      "user_task_28", "user_task_29", "user_task_30", "user_task_31",
+      "user_task_32", "user_task_33", "user_task_34", "user_task_35",
+      "user_task_36", "user_task_37", "user_task_38", "user_task_39"
+    ]
+  },
+  "controls": {
+    "same_model": true,
+    "same_tasks": true,
+    "same_native_evaluator": true,
+    "same_tool_execution_sandbox": true,
+    "runtime_guard_used": false,
+    "real_external_side_effects": false,
+    "compact_neutral_character_matched_per_augmented_tool": true,
+    "case_deletion_after_execution": false
+  },
+  "primary_comparisons": [
+    "compact_atoms vs pristine",
+    "compact_atoms vs compact_neutral"
+  ],
+  "noninferiority_margin": 0.05,
+  "decision_rule": "Compact atoms are non-inferior only if the task-clustered one-sided 95% bootstrap lower bound for utility(compact_atoms)-utility(pristine) is greater than -0.05. Point-estimate equality alone is insufficient.",
+  "pilot_selection_rule": "Use compact_atoms without added system guidance because it is the simplest atom-only condition and achieved 24/24 official utility in the frozen compact pilot; compact_atoms_guided is not promoted to avoid adding a guidance confound.",
+  "frozen_input_hashes": {
+    "compact_pilot_summary_sha256": "61079be2b615ca5ad77dd60e5ccc1c48971de2380569abfdd266467b64167bcf",
+    "deepseek_adapter_sha256": "170023b612004a8ab1d50a36de696fc36fb90710a93fa73b701827c57f544a84",
+    "validated_descriptors_sha256": "dc9e16d87eefcf6ba54e71bc0e799b96eaaa062f6e22cfdf9db0616b6954e9e4"
+  },
+  "claim_boundary": "Full 97-task AgentDojo v1.1.2 benign-utility non-inferiority test of compact atom descriptions with the runtime guard disabled. It tests representation-induced utility loss, not attack resistance, authorization correctness, deployed safety, or zero loss in every individual run."
+}

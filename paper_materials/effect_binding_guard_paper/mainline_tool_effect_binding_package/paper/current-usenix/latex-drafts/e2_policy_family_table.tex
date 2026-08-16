@@ -1,0 +1,182 @@
+% ============================================================================
+% DRAFT: e2_policy_family_table.tex   (W2 deliverable, E2 landing draft)
+% Date: 2026-08-04 / package: 2026-08-05
+% Source (frozen, read-only):
+%   experiments/security-analysis-ablation-and-overhead/results/
+%     policy-family-sensitivity/policy-family-sensitivity-report.md
+%   Script: experiments/security-analysis-ablation-and-overhead/source/
+%     policy-family-sensitivity/run_policy_family_sensitivity.py
+%   Inputs: finite-contexts.jsonl (56 contexts, AgentDojo) +
+%     heldout-contexts.jsonl (25 contexts, ToolSandbox)
+% Status: INDEPENDENT DRAFT. Do NOT \input into main.tex until the PM
+%         approves placement and the claim-map diff review has run.
+%
+% ----------------------------------------------------------------------------
+% 落位建议 (placement suggestion)
+%   File    : sections/results.tex
+%   Position: new \subsection{Policy-Family Sensitivity} (D1 skeleton R.8),
+%             AFTER \subsection{Pre-Registered Held-Out Contract Check} and
+%             BEFORE \subsection{Common-Checkpoint AgentDojo Comparison}.
+%   Note    : the three accompanying text paragraphs are already drafted in
+%             defensive_writing_drafts_2026-08-04.md §C.2 (draft 2 gives the
+%             claim-boundary paragraph with the frozen 7/10 and 20/24
+%             summaries); land them together with this table.
+%   Cross-refs: t1_theorem_section.tex and t3_separation_propositions.tex
+%             both cite \ref{tab:policy-family-sensitivity}.
+%
+% ----------------------------------------------------------------------------
+% Number policy (数字策略)
+%   ALL numbers below are from the frozen E2 grid (48 deletion rows =
+%   4 families x 6 qualifier settings x 2 domains, plus ceilings and
+%   baseline-reproduction checks). They are permitted in LaTeX per the W2
+%   constraint. No v17 / V0-V3 numbers appear in this file.
+% ============================================================================
+
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Policy-family $\times$ qualifier-deletion sensitivity over two frozen
+finite domains. For each domain--family--qualifier cell: \emph{Separating}
+counts context pairs whose post-deletion representations coincide while some
+authority in the family still separates their source effects
+(authorization-separating collisions retained by the deletion);
+\emph{Redundant} counts same-representation pairs whose full source effects
+differ but whose family projection is identical (the distinction is
+policy-invisible under that family); \emph{Overpart.} counts
+family-equivalence classes split into more than one representation signature;
+\emph{False rej.} counts family-equivalent pairs with different
+representation signatures. Rows labeled \texttt{none} give each family's
+no-deletion baseline. \textbf{Family enumeration principle.} The four
+authority families are not selected from the data: they are the images of the
+paper's submultiset authority construction under a pre-enumerated lattice of
+occurrence projections---identity (the power-set baseline used throughout the
+paper), the effect-name quotient, the resource quotient, and the
+$\{0,1,\geq2\}$ count truncation of the effect-name quotient. Every family
+contains every submultiset of every observed projected effect multiset, so
+each family is closed under submultisets by construction. The family set was
+fixed before any metric was computed and was not adjusted after observing
+redundancy rates. \textbf{Both directions reported.} For every cell we report
+both retained separating pairs (the qualifier is still doing work) and
+redundant pairs (the qualifier is policy-invisible under that family),
+together with overpartition and false-rejection counts; necessity claims are
+scoped to cells marked \emph{necessary}, cells marked \emph{redundant}
+delimit where the coarser family cannot express the distinction, and
+\emph{vacuous} marks qualifiers not instantiated in that domain.
+\textbf{Claim boundary (fixed scope).} Deterministic recomputation over two
+frozen finite domains with source-hash-bound effect oracles; separability is
+defined relative to the declared family's projection of source-effect
+multisets. Results do not extend to unenumerated calls, open tool domains,
+deployment policy languages, or families outside the enumerated lattice.}
+\label{tab:policy-family-sensitivity}
+\begin{tabular}{llrrrrl}
+\toprule
+Family & Qualifier deleted & Sep. & Red. & Overpart. & False rej. & Verdict \\
+\midrule
+\multicolumn{7}{l}{\textbf{(a) AgentDojo finite domain (56 contexts)}} \\
+power\_set        & none       & 0  & 0  & 0 & 0   & no effect \\
+                  & date       & 16 & 0  & 0 & 0   & necessary \\
+                  & subject    & 16 & 0  & 0 & 0   & necessary \\
+                  & recurrence & 16 & 0  & 0 & 0   & necessary \\
+                  & payload    & 8  & 0  & 0 & 0   & necessary \\
+                  & visibility & 4  & 0  & 0 & 0   & necessary \\
+\midrule
+effect\_kind      & none       & 0  & 0  & 6 & 548 & no effect \\
+                  & date       & 0  & 16 & 6 & 532 & redundant \\
+                  & subject    & 0  & 16 & 6 & 532 & redundant \\
+                  & recurrence & 0  & 16 & 6 & 532 & redundant \\
+                  & payload    & 0  & 8  & 5 & 540 & redundant \\
+                  & visibility & 0  & 4  & 6 & 544 & redundant \\
+\midrule
+resource          & none       & 0  & 0  & 9 & 262 & no effect \\
+                  & date       & 0  & 16 & 9 & 246 & redundant \\
+                  & subject    & 0  & 16 & 9 & 246 & redundant \\
+                  & recurrence & 0  & 16 & 9 & 246 & redundant \\
+                  & payload    & 2  & 6  & 8 & 256 & necessary \\
+                  & visibility & 0  & 4  & 9 & 258 & redundant \\
+\midrule
+count\_truncated  & none       & 0  & 0  & 6 & 548 & no effect \\
+                  & date       & 0  & 16 & 6 & 532 & redundant \\
+                  & subject    & 0  & 16 & 6 & 532 & redundant \\
+                  & recurrence & 0  & 16 & 6 & 532 & redundant \\
+                  & payload    & 0  & 8  & 5 & 540 & redundant \\
+                  & visibility & 0  & 4  & 6 & 544 & redundant \\
+\midrule
+\multicolumn{7}{l}{\textbf{(b) ToolSandbox held-out domain (25 contexts)}} \\
+power\_set        & none       & 0  & 0  & 0 & 0   & no effect \\
+                  & date       & 4  & 0  & 0 & 0   & necessary \\
+                  & subject    & 0  & 0  & 0 & 0   & vacuous \\
+                  & recurrence & 0  & 0  & 0 & 0   & vacuous \\
+                  & payload    & 16 & 0  & 0 & 0   & necessary \\
+                  & visibility & 0  & 0  & 0 & 0   & no effect \\
+\midrule
+effect\_kind      & none       & 0  & 0  & 5 & 61  & no effect \\
+                  & date       & 0  & 4  & 5 & 57  & redundant \\
+                  & subject    & 0  & 0  & 5 & 61  & vacuous \\
+                  & recurrence & 0  & 0  & 5 & 61  & vacuous \\
+                  & payload    & 0  & 16 & 5 & 45  & redundant \\
+                  & visibility & 0  & 0  & 5 & 61  & no effect \\
+\midrule
+resource          & none       & 0  & 0  & 3 & 57  & no effect \\
+                  & date       & 0  & 4  & 3 & 53  & redundant \\
+                  & subject    & 0  & 0  & 3 & 57  & vacuous \\
+                  & recurrence & 0  & 0  & 3 & 57  & vacuous \\
+                  & payload    & 0  & 16 & 3 & 41  & redundant \\
+                  & visibility & 0  & 0  & 3 & 57  & no effect \\
+\midrule
+count\_truncated  & none       & 0  & 0  & 5 & 63  & no effect \\
+                  & date       & 0  & 4  & 5 & 59  & redundant \\
+                  & subject    & 0  & 0  & 5 & 63  & vacuous \\
+                  & recurrence & 0  & 0  & 5 & 63  & vacuous \\
+                  & payload    & 0  & 16 & 5 & 47  & redundant \\
+                  & visibility & 0  & 0  & 5 & 63  & no effect \\
+\bottomrule
+\end{tabular}
+
+\par\vspace{2mm}
+\begin{tabular}{llrrr}
+\toprule
+\multicolumn{5}{l}{\textbf{(c) Family separability ceilings}} \\
+Domain & Family & Diff.-effect pairs & Family-separable & Ceiling \\
+\midrule
+AgentDojo (56)      & power\_set       & 1540 & 1540 & 1.000 \\
+                    & effect\_kind     & 1540 & 992  & 0.644 \\
+                    & resource         & 1540 & 1278 & 0.830 \\
+                    & count\_truncated & 1540 & 992  & 0.644 \\
+\midrule
+ToolSandbox (25)    & power\_set       & 468  & 468  & 1.000 \\
+                    & effect\_kind     & 468  & 407  & 0.870 \\
+                    & resource         & 468  & 411  & 0.878 \\
+                    & count\_truncated & 468  & 405  & 0.865 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ============================================================================
+% NOTES FOR PORTING
+%
+% 1. Grid completeness: panels (a)+(b) contain all 48 deletion rows of the
+%    frozen E2 report (4 families x {none,date,subject,recurrence,payload,
+%    visibility} x 2 domains); panel (c) reproduces the separability ceilings.
+% 2. Redundancy rate (not shown as a column to save width) is computable as
+%    Red/(Red+Sep); the single partial exception is resource x payload on the
+%    AgentDojo domain (Sep 2, Red 6, rate 0.75), visible directly in the row.
+% 3. Baseline reproduction checks (from the frozen report; cite in Results
+%    text, not in the table): typed contract under power-set/no-deletion
+%    reproduces the zero-collision baseline on both domains; dropping all
+%    qualifiers reproduces the frozen common-contract baselines of 118
+%    (AgentDojo) and 41 (ToolSandbox) separating pairs; the vacuous
+%    subject/recurrence deletions leave all ToolSandbox metrics unchanged.
+% 4. Observed direction: MIXED (per-role verdicts: date/subject/recurrence
+%    necessary only under power-set on AgentDojo; payload mixed; visibility
+%    necessary only under power-set on AgentDojo; on ToolSandbox, date and
+%    payload necessary only under power-set, subject/recurrence vacuous,
+%    visibility never necessary under the tested families). The Results text
+%    must use the mixed claim-boundary template; both alternative templates
+%    (low-redundancy / high-redundancy) remain archived in the E2 report.
+% 5. Suggested Results text paragraphs (family enumeration before results;
+%    full grid both directions; mixed claim boundary) are drafted in
+%    defensive_writing_drafts_2026-08-04.md §C.2 and use only frozen numbers
+%    (7/10 power-set deletion rows create collisions; 20/24 non-vacuous
+%    coarser-family rows have redundancy rate 1.000).
+% ============================================================================

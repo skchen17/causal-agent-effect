@@ -1,0 +1,22 @@
+\section{Threat Model and Security Goal}
+
+\paragraph{System model.}
+We consider an LLM-agent runtime that proposes a side-effectful tool call before the call is committed to an external service. A pre-commit mediator can inspect the user task, recent agent trace, candidate tool name and arguments, tool schema, available evidence/provenance summaries, and any explicit authorization context provided by the local environment. The mediator emits one of three decisions: \textsc{Allow}, \textsc{Deny}, or \textsc{Abstain}. \textsc{Abstain} means the mediator refuses to commit automatically because resource identity, authorization scope, provenance, alias resolution, or operation semantics are insufficiently bound.
+
+\paragraph{Adversary and hazards.}
+The adversary may influence user-visible or tool-returned text, induce surface paraphrases, exploit resource aliases, request operation-mode changes, or attempt to route control through untrusted evidence. The hazards are pre-commit unsafe allows: sending or sharing with an unauthorized recipient, modifying an unauthorized calendar or file, committing instead of drafting, changing visibility, or authorizing an action based on untrusted control.
+
+\paragraph{Out of scope.}
+We do not model malicious tool implementations, compromised operating systems, post-commit rollback, real SaaS deployment semantics, browser automation, banking integration, or end-to-end prompt-injection prevention. We also do not claim that our local authorization context is a deployable enterprise permission system. The prototype assumes a controlled mock contract in which the environment can provide typed authorization context and canonical resource information.
+
+\paragraph{Security goal.}
+Let $c$ be a candidate tool call and let $L(c)$ be the ground-truth pre-commit label in a controlled contract. A monitor $M$ satisfies the local safety goal on a dataset if it minimizes:
+\[
+  \mathrm{UPA}(M) = \Pr[M(c)=\textsc{Allow} \mid L(c)=\textsc{Deny}],
+\]
+while reporting its coverage and safe false-denial tradeoff:
+\[
+  \mathrm{Coverage}(M)=\Pr[M(c)\neq\textsc{Abstain}], \quad
+  \mathrm{FDeny}(M)=\Pr[M(c)=\textsc{Deny} \mid L(c)=\textsc{Allow}].
+\]
+Coverage is not itself a safety metric: high coverage with high unsafe pre-allow is worse than abstention for pre-commit mediation. Conversely, zero unsafe pre-allow obtained by denying or abstaining on nearly everything is not sufficient utility evidence. The paper therefore reports all three quantities together.

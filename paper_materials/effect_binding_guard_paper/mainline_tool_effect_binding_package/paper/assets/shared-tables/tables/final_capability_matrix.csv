@@ -1,0 +1,20 @@
+authorization_sensitivity,claim_scope,coverage,effect_sensitivity,evidence_grounding,method,resource_awareness,safe_false_deny,surface_invariance,unsafe_pre_allow
+0,baseline,,0,False,tool_name_rule_proxy,0,0.708333,1,0.291667
+0.902778,baseline,,0,False,static_text_rule_proxy,1,0.0795455,0.984375,0.0795455
+0.902778,baseline,,0,False,plan_text_rule_proxy,1,0.0795455,0.984375,0.0795455
+0.902778,baseline,,0,False,trajectory_text_rule_proxy,1,0.0795455,0.984375,0.0795455
+0.564815,baseline,,0.666667,False,local_qwen_self_audit,0.291667,0.481061,0.864583,0.00378788
+0.763889,original_method_custom_stress,,0.625,False,ts_guard_official_counterfactual_stress,0.833333,0.0871212,0.882812,0.159091
+0.087963,original_method_custom_stress,,1,False,safiron_official_counterfactual_stress,0.166667,0.371212,0.669271,0.545455
+0.00925926,baseline,,0.0833333,True,non_oracle_saved_evidence_verifier,1,0.0606061,0.25,0
+1,upper_bound,,1,True,effect_resource_oracle,1,0,1,0
+1,upper_bound,,1,True,execution_evidence_upper_bound,1,0,1,0
+,original_component_custom_stress,,0,False,ipiguard_topology_only,,,1,
+0.375,diagnostic,,0.375,False,deterministic_effect_resource_mapper,0.375,0.0595238,0.708333,0
+0.375,diagnostic,,0.375,False,ipiguard_normalized_content,0.375,0.0595238,0.708333,0
+0.375,diagnostic,,0.833333,False,local_qwen_effect_resource_mapper,0.125,0.0178571,0.991667,0.333333
+1,upper_bound,,1,False,oracle_effect_resource_mapper,1,0,1,0
+,original_component_custom_stress,,,True,camel_structural_policy,,0,1,0.25
+0.904636,method-feasibility custom stress,0.917275,0.906609,selective non-oracle evidence fallback,E48 hard Effect-Binding Guard,0.852679,0.0649351,0.825483,0.0361111
+,diagnostic_not_main_method,0.988166,,learned fusion diagnostic; not main method,E49 learned calibrator,,0.0357895,,0.0918919
+1,controlled local mock pre-commit mediation,0.92,1,explicit authorization context plus deterministic mock atom expansion,E55 authorization-aware pre-commit guard,1,0,,0

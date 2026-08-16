@@ -1,0 +1,64 @@
+{
+  "atomized_selected_topk": {
+    "abstain": {
+      "rate": 0.122,
+      "successes": 19,
+      "total": 156
+    },
+    "accuracy": {
+      "rate": 0.212,
+      "successes": 33,
+      "total": 156
+    },
+    "coverage": {
+      "rate": 0.878,
+      "successes": 137,
+      "total": 156
+    },
+    "false_deny": {
+      "rate": 0.045,
+      "successes": 1,
+      "total": 22
+    },
+    "n": 156,
+    "n_predictions_available": 152,
+    "unsafe_pre_allow": {
+      "rate": 0.769,
+      "successes": 103,
+      "total": 134
+    }
+  },
+  "baseline_e68_no_contract_if_available": {
+    "abstain": {
+      "rate": 0.0,
+      "successes": 0,
+      "total": 156
+    },
+    "accuracy": {
+      "rate": 0.494,
+      "successes": 77,
+      "total": 156
+    },
+    "coverage": {
+      "rate": 1.0,
+      "successes": 156,
+      "total": 156
+    },
+    "false_deny": {
+      "rate": 0.182,
+      "successes": 4,
+      "total": 22
+    },
+    "n": 156,
+    "n_predictions_available": 156,
+    "unsafe_pre_allow": {
+      "rate": 0.56,
+      "successes": 75,
+      "total": 134
+    }
+  },
+  "comparison_boundary": "Baseline is derived from available E68 no-contract pair outputs when present; atomized result is derived from E69 clean base outputs over selected top-k contracts.",
+  "experiment": "E69 selected top-k atomized descriptor replay on E61 external 156",
+  "no_tools_executed": true,
+  "side_effects_executed": false
+}

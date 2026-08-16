@@ -1,0 +1,59 @@
+{
+  "all_validity_gates_passed": true,
+  "claim_boundary": {
+    "supported_if_passed": [
+      "E55 is not simply a resource-name lexical-template artifact.",
+      "E55 labels are consistent with an independently implemented reference authorizer.",
+      "E55 spot-audit packet makes expected decisions and atom expansions human-inspectable."
+    ],
+    "unsupported": [
+      "production safety",
+      "real-world generalization",
+      "true independence from the mock authorization contract",
+      "complete permission-system coverage",
+      "real SaaS/browser/banking/email safety",
+      "adversarial robustness to arbitrary tool schemas"
+    ]
+  },
+  "experiment": "E57 independent validity checks for E55",
+  "perturbation": {
+    "authz_aware_coverage_delta": 0.0,
+    "authz_aware_upa_delta": 0.0,
+    "changed_decision_count": 0,
+    "changed_decision_rate": 0.0
+  },
+  "perturbation_stability_passed": true,
+  "recommended_framing": "E57 reduces lexical-template and implementation-coupling concerns, but E55 remains controlled local pre-commit contract evidence.",
+  "reference_authorizer": {
+    "atom_count_agreement": 1.0,
+    "atom_resource_set_agreement": 1.0,
+    "decision_agreement": 1.0,
+    "disagreement_count": 0
+  },
+  "reference_authorizer_agreement_passed": true,
+  "spot_audit": {
+    "decision_counts": {
+      "ABSTAIN": 5,
+      "ALLOW": 23,
+      "DENY": 32
+    },
+    "domain_counts": {
+      "calendar": 20,
+      "email": 10,
+      "file": 10,
+      "slack": 10,
+      "transaction": 10
+    },
+    "n_rows": 60,
+    "required_fields_present": true,
+    "slice_counts": {
+      "alias": 12,
+      "draft_commit": 20,
+      "multi_resource": 53,
+      "provenance_shift": 11,
+      "public_visibility": 23,
+      "unsafe_extra_recipient_or_multi_recipient": 29
+    }
+  },
+  "spot_audit_packet_created": true
+}

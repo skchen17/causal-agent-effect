@@ -1,0 +1,76 @@
+\section{Effect-Resource-Operation Atoms}
+
+\input{figures/atomization}
+
+The central method abstraction is the \emph{effect-resource-operation atom}. A side-effectful tool call is not an atomic security action; it is a container of one or more atoms. This matters because a single tool call can simultaneously send to multiple recipients, expose an attachment, create an event, invite attendees, share a file, change visibility, schedule a payment, or modify a role.
+
+\paragraph{Atom schema.}
+We represent an atom as:
+\[
+\begin{split}
+\mathrm{EffectAtom} = (&\mathrm{effect}, \mathrm{operation}, \mathrm{resource\_id}, \mathrm{resource\_type},\\
+&\mathrm{recipient\_role}, \mathrm{visibility}, \mathrm{commit\_mode},\\
+&\mathrm{provenance\_source}, \mathrm{control\_source}).
+\end{split}
+\]
+Not every domain populates every field. For example, \texttt{recipient\_role} is central to email and Slack but may be absent for a file metadata update. \texttt{commit\_mode} distinguishes draft, preview, schedule, and committed external action when the domain exposes such a distinction.
+
+\paragraph{Atom minimality.}
+An atom is minimal for pre-commit mediation when changing any one of effect, resource identity, operation or commit mode, authorization relation, or provenance/control source can change the \textsc{Allow}/\textsc{Deny}/\textsc{Abstain} decision while the other fields remain fixed. Fields that cannot affect the decision for a domain should remain metadata or be omitted. Fields that can independently flip the decision must not be hidden inside a larger action container.
+
+\paragraph{Examples.}
+The atom boundary is domain-specific but the security pattern is common.
+\begin{itemize}[leftmargin=*]
+\item \textbf{Email:} a \texttt{send\_email} call expands into atoms for the \texttt{to}, \texttt{cc}, and \texttt{bcc} recipients, plus attachment atoms when files are included.
+\item \textbf{Calendar:} a \texttt{create\_event} call expands into an event-creation atom and one attendee-invitation atom per invited principal.
+\item \textbf{File sharing:} a \texttt{share\_file} or public-link call separates the file target, reader principals, and visibility change.
+\item \textbf{Transactions:} a payment-like call separates account, payee, amount semantics, and commit mode; in E55-v2, transaction amount is not itself treated as a resource-authorization atom.
+\end{itemize}
+
+\paragraph{Authorization context.}
+The minimum authorization context for this paper contains:
+\[
+\begin{gathered}
+\mathrm{allowed\_effects},\ \mathrm{allowed\_operations},\ \mathrm{allowed\_resource\_ids},\\
+\mathrm{allowed\_resource\_aliases},\ \mathrm{allowed\_recipients/channels/accounts/files},\\
+\mathrm{allowed\_visibility},\ \mathrm{draft\_allowed},\ \mathrm{commit\_allowed},\\
+\mathrm{public\_link\_allowed},\ \mathrm{trusted\_control\_sources},\\
+\mathrm{untrusted\_control\_sources},\ \mathrm{multi\_resource\_policy}.
+\end{gathered}
+\]
+This context is not a full enterprise authorization layer. It is the smallest interface the pre-commit mediator needs to decide whether the candidate action's atoms are covered by explicit authorization.
+
+\begin{algorithm}[t]
+\caption{AtomizeAndAuthorize}
+\label{alg:atomize-authorize}
+\begin{algorithmic}[1]
+\Require Candidate call $c$, tool schema $\Sigma$, authorization context $\Gamma$, provenance summary $\Pi$
+\Ensure \textsc{Allow}, \textsc{Deny}, or \textsc{Abstain}
+\State Expand $c$ under $\Sigma$ into atom set $\mathcal{A}=\{a_1,\ldots,a_k\}$.
+\ForAll{$a_i \in \mathcal{A}$}
+  \State Canonicalize resource aliases in $a_i$ using $\Gamma$.
+  \If{effect, operation, resource, recipient/channel/account/file, visibility, draft/commit mode, or control source is explicitly outside $\Gamma$ and $\Pi$}
+    \State \Return \textsc{Deny}
+  \EndIf
+  \If{a required field, alias, resource identity, authorization boundary, evidence source, or control source is unresolved}
+    \State \Return \textsc{Abstain}
+  \EndIf
+\EndFor
+\State \Return \textsc{Allow}
+\end{algorithmic}
+\end{algorithm}
+
+\paragraph{Decision rule.}
+Algorithm~\ref{alg:atomize-authorize} gives the mediator-side decision procedure used to instantiate this abstraction in the local prototype.
+Let $\mathrm{Expand}(c)$ return the atom set for candidate call $c$ under the available schema and evidence. We write:
+\[
+  \mathrm{Authorize}(c) = \mathrm{Authorize}(\mathrm{Expand}(c)).
+\]
+The local decision rule is:
+\begin{itemize}[leftmargin=*]
+\item \textsc{Allow}: every atom is covered by the authorization context and no provenance/control-source rule blocks the action.
+\item \textsc{Deny}: at least one atom is explicitly outside the authorization context.
+\item \textsc{Abstain}: atom expansion, resource identity, alias resolution, evidence source, authorization boundary, or control source is ambiguous.
+\end{itemize}
+
+This atomization is the paper's main constructive abstraction. It explains why a coarse tool-level guard can be high coverage yet unsafe: the guard may make a decision over the container while missing an unauthorized atom inside it. Conversely, once the runtime exposes atoms and authorization context, policy can be applied to the object that actually commits the side effect.

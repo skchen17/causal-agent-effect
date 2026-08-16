@@ -1,0 +1,195 @@
+[
+  {
+    "atom_fields": [
+      "effect",
+      "operation",
+      "resource_type",
+      "resource_id",
+      "target_principal",
+      "qualifiers",
+      "commit_mode"
+    ],
+    "descriptor_version": "counterfactually-validated-v1",
+    "domain": "calendar",
+    "effect_inventory": [
+      "event_created",
+      "event_updated",
+      "participant_invited",
+      "participant_removed",
+      "visibility_set",
+      "recurrence_set",
+      "calendar_draft_saved",
+      "event_scheduled"
+    ],
+    "registration_status": "candidate_until_validation",
+    "runtime_llm_calls": 0,
+    "tool_name": "schedule_meeting"
+  },
+  {
+    "atom_fields": [
+      "effect",
+      "operation",
+      "resource_type",
+      "resource_id",
+      "target_principal",
+      "qualifiers",
+      "commit_mode"
+    ],
+    "descriptor_version": "counterfactually-validated-v1",
+    "domain": "workspace",
+    "effect_inventory": [
+      "share_granted",
+      "share_revoked",
+      "share_permission_changed",
+      "visibility_set",
+      "public_link_created",
+      "share_draft_saved"
+    ],
+    "registration_status": "candidate_until_validation",
+    "runtime_llm_calls": 0,
+    "tool_name": "share_document"
+  },
+  {
+    "atom_fields": [
+      "effect",
+      "operation",
+      "resource_type",
+      "resource_id",
+      "target_principal",
+      "qualifiers",
+      "commit_mode"
+    ],
+    "descriptor_version": "counterfactually-validated-v1",
+    "domain": "messaging",
+    "effect_inventory": [
+      "message_posted",
+      "notification_delivered",
+      "external_message_relayed",
+      "message_draft_saved",
+      "message_scheduled"
+    ],
+    "registration_status": "candidate_until_validation",
+    "runtime_llm_calls": 0,
+    "tool_name": "post_message"
+  },
+  {
+    "atom_fields": [
+      "effect",
+      "operation",
+      "resource_type",
+      "resource_id",
+      "target_principal",
+      "qualifiers",
+      "commit_mode"
+    ],
+    "descriptor_version": "counterfactually-validated-v1",
+    "domain": "banking",
+    "effect_inventory": [
+      "funds_transferred",
+      "balance_debited",
+      "fee_charged",
+      "compliance_hold_overridden",
+      "transfer_draft_saved",
+      "transfer_scheduled"
+    ],
+    "registration_status": "candidate_until_validation",
+    "runtime_llm_calls": 0,
+    "tool_name": "transfer_funds"
+  },
+  {
+    "atom_fields": [
+      "effect",
+      "operation",
+      "resource_type",
+      "resource_id",
+      "target_principal",
+      "qualifiers",
+      "commit_mode"
+    ],
+    "descriptor_version": "counterfactually-validated-v1",
+    "domain": "email",
+    "effect_inventory": [
+      "email_sent",
+      "recipient_contacted",
+      "attachment_disclosed",
+      "email_draft_saved",
+      "email_scheduled"
+    ],
+    "registration_status": "candidate_until_validation",
+    "runtime_llm_calls": 0,
+    "tool_name": "send_email"
+  },
+  {
+    "atom_fields": [
+      "effect",
+      "operation",
+      "resource_type",
+      "resource_id",
+      "target_principal",
+      "qualifiers",
+      "commit_mode"
+    ],
+    "descriptor_version": "counterfactually-validated-v1",
+    "domain": "repository",
+    "effect_inventory": [
+      "repository_access_granted",
+      "repository_access_revoked",
+      "repository_access_changed",
+      "repository_audit_recorded",
+      "repository_access_draft_saved"
+    ],
+    "registration_status": "candidate_until_validation",
+    "runtime_llm_calls": 0,
+    "tool_name": "set_repository_access"
+  },
+  {
+    "atom_fields": [
+      "effect",
+      "operation",
+      "resource_type",
+      "resource_id",
+      "target_principal",
+      "qualifiers",
+      "commit_mode"
+    ],
+    "descriptor_version": "counterfactually-validated-v1",
+    "domain": "cloud_storage",
+    "effect_inventory": [
+      "object_copied",
+      "object_overwritten",
+      "object_visibility_set",
+      "public_object_disclosed",
+      "source_object_deleted",
+      "object_copy_draft_saved",
+      "object_copy_scheduled"
+    ],
+    "registration_status": "candidate_until_validation",
+    "runtime_llm_calls": 0,
+    "tool_name": "copy_cloud_object"
+  },
+  {
+    "atom_fields": [
+      "effect",
+      "operation",
+      "resource_type",
+      "resource_id",
+      "target_principal",
+      "qualifiers",
+      "commit_mode"
+    ],
+    "descriptor_version": "counterfactually-validated-v1",
+    "domain": "expense",
+    "effect_inventory": [
+      "expense_approved",
+      "expense_rejected",
+      "budget_reserved",
+      "budget_overdrawn",
+      "payment_scheduled",
+      "expense_approval_draft_saved",
+      "expense_approval_scheduled"
+    ],
+    "registration_status": "candidate_until_validation",
+    "runtime_llm_calls": 0,
+    "tool_name": "approve_expense"
+  }
+]
