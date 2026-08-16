@@ -1,0 +1,23 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Helvetica, Arial, sans-serif","fontSize":"15px","actorBkg":"#FFFFFF","actorBorder":"#315F7D","actorTextColor":"#39464E","actorLineColor":"#C9D4DC","signalColor":"#39464E","signalTextColor":"#39464E","labelBoxBkgColor":"#F4F6F7","labelBoxBorderColor":"#8EA3B3","labelTextColor":"#39464E","loopTextColor":"#39464E","noteBkgColor":"#F7F0D9","noteBorderColor":"#A88432","noteTextColor":"#39464E","activationBkgColor":"#DCEAF2","activationBorderColor":"#315F7D","sequenceNumberColor":"#8EA3B3","tertiaryColor":"#FFFFFF"},"sequence":{"mirrorActors":true,"actorMargin":45,"messageMargin":32,"boxMargin":8,"useMaxWidth":true}}}%%
+sequenceDiagram
+  autonumber
+  participant M as LLM planner<br/>(untrusted)
+  participant G as Provenance Monitor
+  participant D as Frozen descriptor
+  participant P as Independent authority
+  participant X as Exact-call executor
+  participant L as Audit log
+  M->>G: proposed call c = (t, x̄)
+  G->>D: totalize args + pre-state snapshot
+  D-->>G: canonical effect atoms ρ(c)
+  G->>P: authorize(ρ(c), P)
+  P-->>G: ALLOW / DENY / ABSTAIN
+  alt ALLOW
+    G->>X: commit exact checked call
+    X-->>L: executed call record
+  else DENY or ABSTAIN
+    G-->>M: refusal (no execution)
+  end
+  G-->>L: pre-commit decision record
+  Note over G,L: checked call == executed call
+  Note over G,L: LLM never supplies authority

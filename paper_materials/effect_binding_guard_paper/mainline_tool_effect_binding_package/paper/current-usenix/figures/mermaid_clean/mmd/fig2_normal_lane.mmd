@@ -1,0 +1,9 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Helvetica, Arial, sans-serif","fontSize":"20px","primaryColor":"#FFFFFF","primaryTextColor":"#39464E","primaryBorderColor":"#8EA3B3","lineColor":"#6C7A89","clusterBkg":"#FFFFFF","clusterBorder":"#C9D4DC","edgeLabelBackground":"#FFFFFF","tertiaryColor":"#FFFFFF"},"flowchart":{"htmlLabels":true,"curve":"linear","nodeSpacing":18,"rankSpacing":22,"padding":8,"useMaxWidth":true}}}%%
+flowchart LR
+  A["LLM planner proposes<br/>call (t, x̄)"] --> B["Harness executes<br/>the call"]
+  B --> C["Effects are committed"]
+  C --> D["Coarse view reaches policy<br/>after commitment"]
+  classDef normal fill:#FFFFFF,stroke:#8EA3B3,stroke-width:1.5px,color:#5D6D7E;
+  classDef warn fill:#F2DEDC,stroke:#AD554F,stroke-width:1.5px,color:#5D6D7E;
+  class A,B normal;
+  class C,D warn;

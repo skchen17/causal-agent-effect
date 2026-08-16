@@ -1,0 +1,12 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Helvetica, Arial, sans-serif","fontSize":"15px","primaryColor":"#FFFFFF","primaryTextColor":"#39464E","primaryBorderColor":"#8EA3B3","lineColor":"#6C7A89","clusterBkg":"#FFFFFF","clusterBorder":"#C9D4DC","edgeLabelBackground":"#FFFFFF","tertiaryColor":"#FFFFFF"},"flowchart":{"htmlLabels":true,"curve":"linear","nodeSpacing":28,"rankSpacing":48,"padding":10,"useMaxWidth":true}}}%%
+flowchart LR
+  A["Implementation semantics<br/>source replay"] --> B["Interface falsification<br/>failure certificates"]
+  B --> C["Post-freeze conformance<br/>descriptor-blind MCP tools"]
+  C --> D["Explicit authority<br/>shared ACL / capability / delegation"]
+  D --> E["Pre-commit integration<br/>check--use reconciliation"]
+  classDef step fill:#FFFFFF,stroke:#315F7D,stroke-width:1.3px,color:#39464E;
+  classDef warn fill:#F2DEDC,stroke:#AD554F,stroke-width:1.3px,color:#39464E;
+  classDef ok fill:#DCEDE9,stroke:#2F7C75,stroke-width:1.3px,color:#39464E;
+  class A,C,D,E step;
+  class B warn;
+  class E ok;

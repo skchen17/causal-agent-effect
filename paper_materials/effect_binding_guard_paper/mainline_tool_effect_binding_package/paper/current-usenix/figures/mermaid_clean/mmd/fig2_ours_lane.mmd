@@ -1,0 +1,15 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Helvetica, Arial, sans-serif","fontSize":"20px","primaryColor":"#FFFFFF","primaryTextColor":"#39464E","primaryBorderColor":"#8EA3B3","lineColor":"#6C7A89","clusterBkg":"#FFFFFF","clusterBorder":"#C9D4DC","edgeLabelBackground":"#FFFFFF","tertiaryColor":"#FFFFFF"},"flowchart":{"htmlLabels":true,"curve":"linear","nodeSpacing":16,"rankSpacing":20,"padding":8,"useMaxWidth":true}}}%%
+flowchart LR
+  G["Provenance Monitor receives<br/>the proposed call"] --> H["Frozen descriptor instantiates<br/>canonical effect atoms"]
+  H --> I["Independent authority decides<br/>ALLOW / DENY / ABSTAIN"]
+  I -->|"ALLOW"| J["Exact-call executor commits<br/>and reconciles"]
+  I -->|"DENY / ABSTAIN"| K["Refusal: no execution"]
+  classDef input fill:#FFFFFF,stroke:#315F7D,stroke-width:1.6px,color:#39464E;
+  classDef work fill:#DCEAF2,stroke:#315F7D,stroke-width:1.4px,color:#39464E;
+  classDef atoms fill:#DCEDE9,stroke:#2F7C75,stroke-width:1.6px,color:#39464E;
+  classDef policy fill:#F7F0D9,stroke:#A88432,stroke-width:1.5px,color:#39464E;
+  classDef warn fill:#F2DEDC,stroke:#AD554F,stroke-width:1.4px,color:#39464E;
+  class G,J work;
+  class H atoms;
+  class I policy;
+  class K warn;

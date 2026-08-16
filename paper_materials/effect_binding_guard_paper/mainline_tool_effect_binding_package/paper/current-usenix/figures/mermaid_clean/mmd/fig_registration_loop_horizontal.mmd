@@ -1,0 +1,18 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Helvetica, Arial, sans-serif","fontSize":"15px","primaryColor":"#FFFFFF","primaryTextColor":"#39464E","primaryBorderColor":"#8EA3B3","lineColor":"#6C7A89","clusterBkg":"#FFFFFF","clusterBorder":"#C9D4DC","edgeLabelBackground":"#FFFFFF","tertiaryColor":"#FFFFFF"},"flowchart":{"htmlLabels":true,"curve":"linear","nodeSpacing":30,"rankSpacing":50,"padding":10,"useMaxWidth":true}}}%%
+flowchart LR
+  A["Propose candidate descriptor"] --> B["Intervene and execute<br/>base call + variants"]
+  B --> C{"Committed effects differ,<br/>policy decisions differ,<br/>candidate merges them?"}
+  C -->|"yes"| D["Emit failure certificate<br/>and refine descriptor"]
+  D --> B
+  C -->|"no"| E{"Invalid or unresolved<br/>interventions remain?"}
+  E -->|"yes"| F["Retain conservatively"]
+  E -->|"no"| G["Accept and hash-freeze<br/>descriptor + evidence record"]
+  F --> G
+  classDef step fill:#FFFFFF,stroke:#315F7D,stroke-width:1.3px,color:#39464E;
+  classDef decide fill:#F7F0D9,stroke:#A88432,stroke-width:1.3px,color:#39464E;
+  classDef warn fill:#F2DEDC,stroke:#AD554F,stroke-width:1.3px,color:#39464E;
+  classDef ok fill:#DCEDE9,stroke:#2F7C75,stroke-width:1.3px,color:#39464E;
+  class A,B,F step;
+  class C,E decide;
+  class D warn;
+  class G ok;

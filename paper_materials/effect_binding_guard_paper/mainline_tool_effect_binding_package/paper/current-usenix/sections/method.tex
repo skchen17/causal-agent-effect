@@ -135,6 +135,9 @@ unresolved tests; a later multi-base audit broadens this evidence while
 preserving the frozen registry.
 The descriptor, implementation identity, intervention manifest, and evidence
 are hash-frozen together. Runtime loads this frozen record.
+Figure~\ref{fig:registration-loop} summarizes the loop.
+
+\input{figures/registration_loop}
 
 \paragraph{Running example.}
 Consider a calendar tool whose participant argument is a list.  The proposal
@@ -189,3 +192,6 @@ expands list values. Its provenance-origin policy rejects registered effects or
 values introduced solely by untrusted evidence outside the authenticated task;
 missing or unresolved bindings produce \Abstain{}. The executor commits the checked call and
 reconciles every decision with execution.
+Figure~\ref{fig:runtime-mediation-sequence} details this path.
+
+\input{figures/runtime_mediation_sequence}
