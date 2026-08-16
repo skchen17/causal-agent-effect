@@ -28,7 +28,7 @@ All required frozen experiments report `status=passed`. The fresh Qwen3-32B comp
 
 ## Build And Source Audit
 
-- Strict claim reproduction: `passed`, 360 rows, no pending artifact.
+- Strict claim reproduction: `passed`, 368 rows, no pending artifact.
 - Reference audit: `passed`, 35 cited keys, no missing or uncited entry.
 - Submission-source audit: `passed`, 36 included sources, no missing label or
   PDF/source finding.

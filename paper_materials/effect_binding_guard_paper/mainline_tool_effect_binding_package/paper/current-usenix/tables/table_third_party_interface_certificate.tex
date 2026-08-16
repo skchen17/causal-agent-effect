@@ -1,0 +1,24 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{A concrete collision in the interface shipped by a public MCP
+filesystem server. Both executions use the same official tool name and
+schema-validated arguments; the official schema describes one operation that
+can create or completely overwrite a file. Pre-state changes the committed
+operation, and the policy family must decide the two executions differently.}
+\label{tab:third-party-interface-certificate}
+\begin{tabular}{p{.18\columnwidth}p{.42\columnwidth}p{.16\columnwidth}}
+\toprule
+Pre-state & Committed operation & Ideal decision \\
+\midrule
+\multicolumn{3}{p{.86\columnwidth}}{\ttfamily write\_file(path=``team/eval-1-file.txt'', content=``approved update'')}\\
+File absent & \texttt{filesystem.file.create} & \Allow{} \\
+File exists & \texttt{filesystem.file.overwrite} & \Deny{} \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}\parbox{0.98\columnwidth}{\tiny Official schema description:
+``Create a new file or completely overwrite an existing file with new
+content.'' The shipped tool-call interface exposes only the tool name and
+arguments, so both executions share one representation key.}
+\end{table}

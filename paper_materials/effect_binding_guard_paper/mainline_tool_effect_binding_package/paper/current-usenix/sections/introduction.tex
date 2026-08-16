@@ -54,12 +54,13 @@ identifies differences that require another decision. A collision yields an
 executable failure certificate and forces refinement. Invalid and unresolved
 interventions remain in the validation record.
 
-We instantiate this methodology with typed effect atoms. Each atom represents
-one policy-relevant effect occurrence and retains the resource, target,
-operation, provenance, or qualifier needed by the policy family used during
-validation.
+We instantiate this method with one candidate representation, typed effect
+atoms. Each atom represents one policy-relevant effect occurrence and retains
+the resource, target, operation, provenance, or qualifier needed by the policy
+family used during validation.
 List-valued calls expand when their members require independent decisions. The
-validation criterion applies to any candidate interface. We study two designs:
+validation criterion applies to any candidate interface, so the framework is
+representation-agnostic. We study two designs:
 typed effects place tool-specific semantic adaptation in a registered
 descriptor, while a strong state-aware request places it in a downstream
 adapter. Their comparison measures where each design places trusted state,

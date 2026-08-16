@@ -54,7 +54,21 @@ raw filesystem, row, and graph changes agrees with the typed path on every
 registration and post-freeze decision, with no typed compile failure.
 Tool name, raw call, and common fields retain 11, 5, and 12 mixed cells,
 respectively (Table~\ref{tab:third-party-validation}). The typed interface and
-the stronger state-aware request view retain none. Of 47 descriptor mutants
+the stronger state-aware request view retain none.
+
+\paragraph{A collision in a shipped interface.}
+\input{tables/table_third_party_interface_certificate}
+The public filesystem server's official schema describes \texttt{write\_file}
+as one operation that can create or completely overwrite a file, but the
+tool-call interface it exposes to policy carries only the tool name and
+schema-validated arguments. In the frozen post-freeze contexts, two executions
+with identical call text commit different operations: one creates
+\texttt{team/eval-1-file.txt} and is allowed, while the other overwrites an
+existing file and is denied. This collision is therefore grounded in a shipped
+third-party interface rather than a synthetic view
+(Table~\ref{tab:third-party-interface-certificate}).
+
+Of 47 descriptor mutants
 generated without reading outcomes, registration detects 37. The remaining 10
 are decision-equivalent on both frozen domains, and none first fails after
 freeze.
@@ -70,8 +84,9 @@ failure counts.
 
 \input{tables/table_protocol_separated_authority}
 
-The typed-effect interface preserves the distinctions exercised by the
-explicit-authority protocol. Its descriptors match the
+The explicit-authority protocol tests the validation framework rather than a
+single representation. Two independently constructed interfaces preserve every
+distinction it exercises. The typed-effect descriptors match the
 transition oracle on all 384 registration contexts and satisfy all 192
 counterfactual relation checks. Across 1,024 contexts materialized after
 descriptor freeze, no policy-mixed cell is observed, and the shared authority
@@ -131,9 +146,8 @@ In the official DeepSeek run, \sys{} allows 2,693 of 2,783 checks (96.8\%),
 and denies 90, with no abstention; it produces no unreconciled execution and
 performs authorization without a runtime LLM call. Missing or unresolved
 bindings would yield \Abstain{}. In the matched Qwen3-32B run,
-\sys{} lowers attack success from 10.0\% to 2.9\% while benign utility changes
-from 61.9\% to 60.8\%. Prompt Sandwiching reaches 1.0\% attack success and
-68.0\% benign utility, the best combined point in the five-method comparison;
-the PromptArmor-style adapter reaches 0.0\% attack success with 27.8\% benign
-utility. Appendix~\ref{app:additional-results} reports complete DeepSeek,
-Qwen3-32B, held-out, and transfer results.
+\sys{} reduces attack success relative to no guard while benign utility remains
+close; Prompt Sandwiching and the PromptArmor-style adapter provide stronger
+security--utility points, so runtime numbers exercise integration rather than
+dominate prompting defenses. Appendix~\ref{app:additional-results} reports
+complete DeepSeek, Qwen3-32B, held-out, and transfer results.

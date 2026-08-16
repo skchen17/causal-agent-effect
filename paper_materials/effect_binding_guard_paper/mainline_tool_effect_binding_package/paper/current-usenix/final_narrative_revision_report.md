@@ -64,7 +64,7 @@ the reported experiment.
 
 ## Build And Test Status
 
-- Claim reproduction: `passed`, 360 rows, `pending=[]`.
+- Claim reproduction: `passed`, 368 rows, `pending=[]`.
 - Reference audit: `passed`, 35 cited keys.
 - Submission-source audit: `passed`, 36 included sources and no broken label.
 - PaperSpine artifact check: `passed`, with no missing or thin rationale

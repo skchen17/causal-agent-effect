@@ -77,7 +77,7 @@ The strict entry point is:
 python paper/current-usenix/reproduction/reproduce_main_claims.py
 ```
 
-It must report `status=passed`, `n_claim_rows=360`, and an empty `pending` list. Generated final tables are derived directly from strict-passed result JSONs. Each ledger row records the artifact, key or aggregate expression, generator, and numerator/denominator.
+It must report `status=passed`, `n_claim_rows=368`, and an empty `pending` list. Generated final tables are derived directly from strict-passed result JSONs. Each ledger row records the artifact, key or aggregate expression, generator, and numerator/denominator.
 
 The final USENIX-template build contains an 11-page technical body under the
 13-page limit and a 17-page complete PDF.

@@ -24,9 +24,11 @@ and check--use consistency. The prototype provides neither general concurrency
 control nor transactional protection against TOCTOU races.
 
 \paragraph{Interface economy.}
-The state-aware request is also sufficient on both evaluated domains. Typed
-effects reduce source-equivalent overpartition and policy-facing raw-state
-exposure in these prototypes. Latency and executable code size vary by
+The validation method is representation-agnostic: the state-aware request is
+also sufficient on both evaluated domains, and typed effects are one evaluated
+candidate rather than a claimed optimum. Typed effects reduce
+source-equivalent overpartition and policy-facing raw-state exposure in these
+prototypes. Latency and executable code size vary by
 implementation, so the audit establishes no general TCB, extensibility, or
 performance advantage.
 

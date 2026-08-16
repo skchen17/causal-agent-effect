@@ -1,6 +1,6 @@
 # Final Frozen-Experiment Completion Report
 
-Generated: 2026-08-16T15:06:55.980073+00:00.
+Generated: 2026-08-16T16:13:02.736436+00:00.
 
 All eight required frozen artifacts report `status=passed`; no unfavorable row is removed.
 

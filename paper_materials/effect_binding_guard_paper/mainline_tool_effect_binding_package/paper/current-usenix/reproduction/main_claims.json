@@ -1,8 +1,8 @@
 {
   "active_paper": "paper/current-usenix/main.tex",
   "claim_boundary": "Executable falsification and bounded conformance of authorization observation interfaces, plus a provenance-origin integration case study.",
-  "generated_at": "2026-08-16T15:06:55.929900+00:00",
-  "n_claim_rows": 360,
+  "generated_at": "2026-08-16T16:40:21.236916+00:00",
+  "n_claim_rows": 368,
   "pending": [],
   "rows": [
     {
@@ -2424,6 +2424,94 @@
       "source": "experiments/human-authority-and-causal-validation/results/third-party-authorization-interface-validation/third_party_validation_report.json",
       "status": "verified",
       "value": 0
+    },
+    {
+      "claim_id": "THIRD-PARTY-SHIPPED-INTERFACE-CASES",
+      "denominator": null,
+      "generator": "shared/compatibility/scripts/run_third_party_authorization_interface_validation.py",
+      "key": "rows[case_id in {evaluation-write_file-01-0, evaluation-write_file-01-1}]",
+      "numerator": null,
+      "paper_location": "Results / third-party shipped-interface collision",
+      "source": "experiments/human-authority-and-causal-validation/results/third-party-authorization-interface-validation/post_freeze_authorization_rows.jsonl",
+      "status": "verified",
+      "value": 2
+    },
+    {
+      "claim_id": "THIRD-PARTY-SHIPPED-INTERFACE-SAME-CALL",
+      "denominator": null,
+      "generator": "shared/compatibility/scripts/run_third_party_authorization_interface_validation.py",
+      "key": "rows[arguments equal AND tool_name equal]",
+      "numerator": null,
+      "paper_location": "Results / third-party shipped-interface collision",
+      "source": "experiments/human-authority-and-causal-validation/results/third-party-authorization-interface-validation/post_freeze_authorization_rows.jsonl",
+      "status": "verified",
+      "value": true
+    },
+    {
+      "claim_id": "THIRD-PARTY-SHIPPED-INTERFACE-CREATE-ALLOW",
+      "denominator": null,
+      "generator": "shared/compatibility/scripts/run_third_party_authorization_interface_validation.py",
+      "key": "rows[case_id=evaluation-write_file-01-0].ideal_decision",
+      "numerator": null,
+      "paper_location": "Results / third-party shipped-interface collision",
+      "source": "experiments/human-authority-and-causal-validation/results/third-party-authorization-interface-validation/post_freeze_authorization_rows.jsonl",
+      "status": "verified",
+      "value": "ALLOW"
+    },
+    {
+      "claim_id": "THIRD-PARTY-SHIPPED-INTERFACE-OVERWRITE-DENY",
+      "denominator": null,
+      "generator": "shared/compatibility/scripts/run_third_party_authorization_interface_validation.py",
+      "key": "rows[case_id=evaluation-write_file-01-1].ideal_decision",
+      "numerator": null,
+      "paper_location": "Results / third-party shipped-interface collision",
+      "source": "experiments/human-authority-and-causal-validation/results/third-party-authorization-interface-validation/post_freeze_authorization_rows.jsonl",
+      "status": "verified",
+      "value": "DENY"
+    },
+    {
+      "claim_id": "THIRD-PARTY-SHIPPED-INTERFACE-RAW-CALL-EQUAL",
+      "denominator": null,
+      "generator": "shared/compatibility/scripts/run_third_party_authorization_interface_validation.py",
+      "key": "rows.representation_keys.raw_call equal",
+      "numerator": null,
+      "paper_location": "Results / third-party shipped-interface collision",
+      "source": "experiments/human-authority-and-causal-validation/results/third-party-authorization-interface-validation/post_freeze_authorization_rows.jsonl",
+      "status": "verified",
+      "value": true
+    },
+    {
+      "claim_id": "THIRD-PARTY-SHIPPED-INTERFACE-TYPED-SEPARATES",
+      "denominator": null,
+      "generator": "shared/compatibility/scripts/run_third_party_authorization_interface_validation.py",
+      "key": "rows.representation_keys.typed_effect differ",
+      "numerator": null,
+      "paper_location": "Results / third-party shipped-interface collision",
+      "source": "experiments/human-authority-and-causal-validation/results/third-party-authorization-interface-validation/post_freeze_authorization_rows.jsonl",
+      "status": "verified",
+      "value": true
+    },
+    {
+      "claim_id": "THIRD-PARTY-SHIPPED-INTERFACE-SCHEMA-OVERWRITE-MENTION",
+      "denominator": null,
+      "generator": "shared/compatibility/scripts/run_third_party_authorization_interface_validation.py",
+      "key": "source_manifest selected write_file schema description",
+      "numerator": null,
+      "paper_location": "Results / third-party shipped-interface collision",
+      "source": "experiments/human-authority-and-causal-validation/results/third-party-authorization-interface-validation/post_freeze_authorization_rows.jsonl",
+      "status": "verified",
+      "value": true
+    },
+    {
+      "claim_id": "THIRD-PARTY-SHIPPED-INTERFACE-SOURCE",
+      "denominator": null,
+      "generator": "shared/compatibility/scripts/run_third_party_authorization_interface_validation.py",
+      "key": "rows.source",
+      "numerator": null,
+      "paper_location": "Results / third-party shipped-interface collision",
+      "source": "experiments/human-authority-and-causal-validation/results/third-party-authorization-interface-validation/post_freeze_authorization_rows.jsonl",
+      "status": "verified",
+      "value": "filesystem"
     },
     {
       "claim_id": "THIRD-PARTY-STATE_AWARE_RAW_CALL-COVERAGE",

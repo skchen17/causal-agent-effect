@@ -1212,6 +1212,68 @@ def add_new_interface_validation_claims(rows: list[dict[str, Any]]) -> None:
          "State-aware request & 161 & 0 & 0", "Common fields & 126 & 12 & 200",
          "Typed effects & 138 & 0 & 0"],
     )
+
+    shipped_u = next(
+        row for row in post_rows if row["case_id"] == "evaluation-write_file-01-0"
+    )
+    shipped_v = next(
+        row for row in post_rows if row["case_id"] == "evaluation-write_file-01-1"
+    )
+    shipped_schema = next(
+        schema
+        for source in third_sources["sources"]
+        for schema in source["selected_schemas"]
+        if schema.get("name") == "write_file"
+    )
+    shipped_valid = (
+        shipped_u["tool_name"] == shipped_v["tool_name"] == "write_file"
+        and shipped_u["arguments"] == shipped_v["arguments"]
+        and shipped_u["representation_keys"]["raw_call"]
+        == shipped_v["representation_keys"]["raw_call"]
+        and shipped_u["ideal_decision"] == "ALLOW"
+        and shipped_v["ideal_decision"] == "DENY"
+        and shipped_u["source_effects"][0]["operation"] == "filesystem.file.create"
+        and shipped_v["source_effects"][0]["operation"] == "filesystem.file.overwrite"
+        and shipped_u["representation_keys"]["typed_effect"]
+        != shipped_v["representation_keys"]["typed_effect"]
+        and shipped_u["representation_keys"]["state_aware_raw_call"]
+        != shipped_v["representation_keys"]["state_aware_raw_call"]
+        and "completely overwrite" in shipped_schema.get("description", "")
+        and {"path", "content"}.issubset(
+            shipped_schema.get("inputSchema", {}).get("properties", {})
+        )
+    )
+    if not shipped_valid:
+        raise ValueError("third-party shipped-interface collision certificate invalid")
+    for suffix, value, key in (
+        ("CASES", 2, "rows[case_id in {evaluation-write_file-01-0, evaluation-write_file-01-1}]"),
+        ("SAME-CALL", True, "rows[arguments equal AND tool_name equal]"),
+        ("CREATE-ALLOW", "ALLOW", "rows[case_id=evaluation-write_file-01-0].ideal_decision"),
+        ("OVERWRITE-DENY", "DENY", "rows[case_id=evaluation-write_file-01-1].ideal_decision"),
+        ("RAW-CALL-EQUAL", True, "rows.representation_keys.raw_call equal"),
+        ("TYPED-SEPARATES", True, "rows.representation_keys.typed_effect differ"),
+        ("SCHEMA-OVERWRITE-MENTION", True, "source_manifest selected write_file schema description"),
+        ("SOURCE", "filesystem", "rows.source"),
+    ):
+        add(
+            rows,
+            f"THIRD-PARTY-SHIPPED-INTERFACE-{suffix}",
+            value,
+            third_rows_source,
+            key,
+            "Results / third-party shipped-interface collision",
+            third_generator,
+        )
+    require_table_snippets(
+        "table_third_party_interface_certificate.tex",
+        [
+            "File absent",
+            "filesystem.file.create",
+            "File exists",
+            "filesystem.file.overwrite",
+        ],
+    )
+
     for representation in ("state_aware_raw_call", "typed_effect"):
         metric = indexed(third, "authorization_metrics", "representation", representation)
         for suffix, key in (("COVERAGE", "coverage"), ("EXACT", "decision_accuracy")):
@@ -1481,8 +1543,8 @@ def main() -> int:
     claim_ids = [row["claim_id"] for row in rows]
     if len(claim_ids) != len(set(claim_ids)):
         raise ValueError("duplicate claim IDs in active reproduction ledger")
-    if not pending and len(rows) != 360:
-        raise ValueError(f"complete reproduction ledger must contain 360 rows, observed {len(rows)}")
+    if not pending and len(rows) != 368:
+        raise ValueError(f"complete reproduction ledger must contain 368 rows, observed {len(rows)}")
     status = "passed" if not pending else "pending_required_artifacts"
     payload = {
         "status": status,
@@ -1497,7 +1559,7 @@ def main() -> int:
     (OUT / "main_claims.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     fields = ["claim_id", "paper_location", "value", "numerator", "denominator", "source", "key", "generator", "status"]
     with (OUT / "main_claims.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     lines = ["# Active USENIX Main-Claim Reproduction", "", f"Status: `{status}`.", "", "| Claim | Value | Source |", "|---|---:|---|"]
