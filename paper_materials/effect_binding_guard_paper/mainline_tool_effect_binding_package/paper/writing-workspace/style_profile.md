@@ -33,3 +33,22 @@ Use consistently: `authorization interface`, `candidate descriptor`, `frozen des
 - Present protocol scope in Evaluation and proof premises in Security Analysis; place empirical and deployment reservations in Limitations.
 - Report percentages in prose and tables, with denominators at first use or in captions.
 - Never claim SOTA, production safety, universal descriptor correctness, or independently authored semantics.
+
+## Boundary Placement
+
+Apply a one-boundary, two-location rule. State a premise once where it governs
+the technical argument and once in Limitations. Finite-domain scope belongs in
+Evaluation and Limitations; consumer assumptions belong in Security Analysis
+and Limitations; semantic-independence risk belongs in the evaluation design
+summary and Limitations. Do not attach the same reservation to individual
+result sentences.
+
+## Sentence Discipline
+
+Use `failure certificate` as the primary prose term. Reserve witness terminology
+for formal distinctions between implementation change and policy separation.
+Keep contrastive constructions when they expose the security boundary, such as
+tool invocation versus authorization of its concrete effects. Rewrite negative
+implementation descriptions as positive component responsibilities, and let
+finding-first result paragraphs carry their implication without a second
+summary sentence.

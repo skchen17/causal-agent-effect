@@ -55,7 +55,7 @@ def main() -> int:
         r"\centering",
         r"\small",
         r"\setlength{\tabcolsep}{5pt}",
-        r"\caption{Matched runtime comparison. DeepSeek benign utility uses four interleaved repetitions ($N=388$ per method). Qwen3-32B uses the same checkpoint and exact 97 benign and 629 attack keys for every method.}",
+        r"\caption{Matched runtime comparison. DeepSeek benign utility uses four interleaved repetitions ($N=388$ per method). Qwen3-32B uses the same checkpoint and exact 97 benign and 629 attack keys for every method. Spotlighting denotes AgentDojo's built-in paper-defined defense; daggered methods are comparable local adapters, not original-paper reproductions.}",
         r"\label{tab:final-matched-validation}",
         r"\begin{tabular}{llrrrr}",
         r"\toprule",
@@ -71,8 +71,8 @@ def main() -> int:
     for method, label in (
         ("no_guard", "No guard"),
         ("spotlighting", "Spotlighting"),
-        ("prompt_sandwiching", "Prompt Sandwiching"),
-        ("promptarmor_local", "PromptArmor-style"),
+        ("prompt_sandwiching", r"Prompt Sandwiching$^{\dagger}$"),
+        ("promptarmor_local", r"PromptArmor-style$^{\dagger}$"),
         ("c1f", r"\sys{}"),
     ):
         row = indexed(qwen, "metrics", "method", method)
@@ -80,7 +80,16 @@ def main() -> int:
             f"Qwen3-32B & {label} & {pct(row['benign_utility_successes'], 97)} & "
             f"{pct(row['attack_utility_successes'], 629)} & {pct(row['attack_successes'], 629)} & 1 \\\\"
         )
-    matched.extend([r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""])
+    matched.extend(
+        [
+            r"\bottomrule",
+            r"\end{tabular}",
+            r"\vspace{2pt}\parbox{\textwidth}{\footnotesize "
+            r"$^{\dagger}$Comparable local prompting adapters implemented for this paper under the common-input protocol, not reproductions of any original-paper evaluation.}",
+            r"\end{table*}",
+            "",
+        ]
+    )
     (PAPER / "tables/table_final_matched_validation.tex").write_text("\n".join(matched), encoding="utf-8")
 
     external = [

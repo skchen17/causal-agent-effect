@@ -10,20 +10,21 @@ name and explicit arguments do not reveal.
 We turn authorization observability into an executable security contract.
 Registration treats a candidate tool descriptor as an untrusted hypothesis,
 executes controlled call and state interventions in copied sandboxes, observes
-committed transitions, and asks a separately supplied policy whether the
+committed transitions, and asks a policy-separation oracle whether the
 transition difference requires another decision. A policy-separating pair that
 the candidate merges is a concrete failure certificate. Counterexamples drive
 refinement; the resulting validation record binds the frozen descriptor to the
-implementation, intervention manifest, and policy family it survived.
+implementation, intervention manifest, and policy family used for validation.
 
 Source execution produces failure certificates for tool-name, raw-call, and
 common-field interfaces. We instantiate the method with a typed-effect
-candidate and test 11 tools from three public MCP implementations. Across 264
+candidate and test 11 tools from three public Model Context Protocol (MCP)
+implementations. Across 264
 post-freeze contexts, the coarse interfaces retain policy-mixed cells, while
-the typed candidate and a strong arguments-plus-state interface preserve every
-exercised distinction. A mechanically separate native-delta policy reaches the
-same decisions, and systematic descriptor mutations test registration's
-sensitivity to concrete faults. In a separate 1,024-context protocol, both
+the typed candidate and a strong state-aware request interface preserve every
+tested distinction. A native-delta policy reaches the
+same decisions as the typed path, and systematic descriptor mutations test registration's
+sensitivity to concrete faults. In a 1,024-context authority protocol, both
 sufficient interfaces support exact decisions from one shared ACL,
 capability, and delegation engine. Finally, a pre-commit case study demonstrates
 how a frozen interface can be consumed without placing authority in the LLM.

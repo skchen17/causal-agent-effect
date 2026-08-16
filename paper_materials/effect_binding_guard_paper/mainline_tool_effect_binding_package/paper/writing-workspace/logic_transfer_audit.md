@@ -23,6 +23,13 @@ The active draft carries one argument from the first example through the conclus
 
 Abstract, Introduction, and Results now follow the accepted-USENIX rhythm of concrete failure, central insight, mechanism, and direct evidence. Protocol scope remains in Evaluation, theorem assumptions remain in Security Analysis, and empirical or deployment reservations appear only in Limitations.
 
-## Completion
+The final de-defensiveness pass extends this rhythm through Method, Security
+Analysis, and Evaluation. Component responsibilities replace negative
+descriptions, experimental isolation is stated once as a design principle, and
+`failure certificate` is the default prose term. The intentional contrasts that
+remain expose the core boundary: invoking a tool versus authorizing its effects,
+and observing semantics offline versus enforcing authority before commit.
 
-All strict result generators have run. The fresh five-method Qwen3-32B result is integrated, the claim ledger contains 360 verified rows, the final PDF passes source and page-budget checks, and the anonymous artifact package passes its scrub.
+## Completed Transfer Checks
+
+All eight strict final artifacts were inserted through the result generator. The retrospective same-call analysis and closed-loop monitor-view results remain separately labeled, all final table rows were regenerated, and the second simulated review is recorded in `paper/current-usenix/simulated_review_round2.md`.

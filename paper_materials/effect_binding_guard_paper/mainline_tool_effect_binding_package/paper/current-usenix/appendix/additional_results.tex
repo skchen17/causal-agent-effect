@@ -14,13 +14,13 @@ overpartition diagnostics.
 Before the explicit-authority benchmark, we tested whether each representation
 could reproduce a finite source-effect containment relation over 232 ordered
 ToolSandbox context pairs. Concrete typed atoms match that oracle with 0.0\%
-UPA and false denial; the relation is a representation stress test rather than
+UPA and 0.0\% false denial; the relation is a representation stress test rather than
 a deployment authorization model (Table~\ref{tab:concrete-atom-authorizer}).
 
 \paragraph{Exact DeepSeek runtime results.}
 \input{figures/security_utility_tradeoff}
 \input{tables/table_deepseek_runtime}
-Table~\ref{tab:deepseek-runtime} retains the exact same-model values and the
+Table~\ref{tab:deepseek-runtime} retains the same-model values and the
 scope-aligned comparison summarized by
 Figure~\ref{fig:security-utility-tradeoff}.
 
@@ -53,8 +53,8 @@ descriptor; absence of a valid witness is never interpreted as irrelevance.
 The artifact includes one row per attempted execution and a per-field summary.
 
 \paragraph{Public-family sensitivity.}
-The current diagnostic fixes 40 official attack keys and crosses each with
-four public AgentDojo attack generators.  Worst-of-four attack success is
+The current diagnostic uses a fixed set of 40 official attack keys and
+crosses each with four public AgentDojo attack generators.  Worst-of-four attack success is
 10.0\% without defense and 5.0\% under the provenance-origin monitor; terminal
 utility is 45.0\% and 42.5\%.  The four attack-discordant pairs give two-sided
 exact McNemar $p=.625$.

@@ -58,11 +58,11 @@
   {Frozen descriptor\\$\rightarrow$ atoms};
 \draw[flow] (samecontext.east) -| (source.north);
 \draw[flow] (samecontext.east) -| (typed.north);
-\node[policybox, text width=1.48cm] (sameengine) at (6.10,-.86)
+\node[policybox, text width=1.48cm] (sameengine) at (6.10,-.72)
   {Same ACL / capability /\\delegation engine};
 \draw[flow] (source.south) |- (sameengine.west);
 \draw[flow] (typed.south) |- (sameengine.east);
-\node[contractbox, text width=2.10cm] (compare) at (6.10,-1.72)
+\node[contractbox, text width=2.10cm] (compare) at (6.10,-1.98)
   {Compare decisions, coverage,\\and policy-mixed cells};
 \draw[flow] (sameengine)--(compare);
 \end{tikzpicture}

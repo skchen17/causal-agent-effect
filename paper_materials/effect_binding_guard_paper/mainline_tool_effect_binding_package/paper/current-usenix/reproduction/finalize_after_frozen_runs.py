@@ -85,7 +85,15 @@ def main() -> int:
     rows = []
     write_report("running", rows)
     for command in COMMANDS:
-        completed = subprocess.run(command, cwd=ROOT, text=True, capture_output=True)
+        env = os.environ.copy()
+        if "-m" in command and command[command.index("-m") + 1] == "pytest":
+            code_root = str(ROOT / "code")
+            env["PYTHONPATH"] = (
+                code_root
+                if not env.get("PYTHONPATH")
+                else code_root + os.pathsep + env["PYTHONPATH"]
+            )
+        completed = subprocess.run(command, cwd=ROOT, env=env, text=True, capture_output=True)
         row = {
             "command": command,
             "returncode": completed.returncode,

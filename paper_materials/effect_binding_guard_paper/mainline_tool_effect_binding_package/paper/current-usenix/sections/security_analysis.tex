@@ -7,9 +7,9 @@ For execution context $u$, let $\mu(u)$ be its committed effects and let
 $\gamma(u)$ contain policy-relevant metadata such as effect provenance.  The
 ideal commit view is $\omega(u)=(\mu(u),\gamma(u))$.  Each policy context
 $P\in\mathcal P$ induces an ideal decision $I_P(\omega(u))$.  Our main
-conformance experiment instantiates $P$ with resource ACLs, capabilities, and
-delegations; an earlier finite stress relation uses effect-set containment.
-The policy snapshot used for the check must also govern the commit.  A monitor
+experiment instantiates $P$ with ACLs, capabilities, and delegations; a finite
+stress relation uses effect-set containment. The checked policy snapshot also
+governs the commit. A monitor
 sees $\rho(u)$ rather than $\omega(u)$; a descriptor instantiates
 $\rho_d(u)=A_{d_t}(u)$.
 
@@ -30,10 +30,9 @@ family $\mathcal P$ when
 for every $u,v\in D$ and $P\in\mathcal P$.
 \end{definition}
 
-This definition applies to every representation and is relative to the stated
-policy family. Changes that no admissible policy distinguishes may remain
-merged; any representation, including a typed-atom view, must separate every
-pair that the family decides differently.
+The definition applies to every representation. It permits distinctions ignored
+by $\mathcal P$ to remain merged and requires every policy-distinct pair to be
+separated.
 
 \begin{theorem}[Authorization-observability collision]
 \label{thm:representation-insufficiency}
@@ -48,21 +47,17 @@ decisions.  The monitor must return the same decision for both.  Allowing
 admits the unauthorized member; denying or abstaining withholds the authorized
 member.
 
-For any fixed $P$, the number of authorized rows in a representation cell that
-also contains an unauthorized row is therefore a lower bound on false denial
-or abstention for every sound monitor over that view.  Tool-name, whole-call,
-and atom views are all subject to this result; an atom view is useful only when
-it preserves the distinctions required by the policy family.
+For fixed $P$, if a representation cell contains both an authorized and an
+unauthorized row, every sound monitor over that view must deny or abstain on
+the authorized row, yielding at least one false denial or abstention. This bound applies to tool-name, whole-call, and atom
+views alike.
 
-The theorem isolates the representation precondition that conventional policy
-correctness arguments assume.  Agent harnesses make that precondition directly
-testable because schemas, defaults, aliases, and pre-state jointly determine
-what a generated call commits, while downstream policy can act only on the
-interface exposed before commitment.
-
-The theorem exposes a precondition shared by ACL, capability, provenance, and
-model-based policy consumers. Our validation procedure makes that precondition
-executable and produces implementation-grounded counterexamples when it fails.
+This information bound applies equally to ACL, capability, provenance, and
+model-based policy consumers. Agent harnesses make it directly testable:
+schemas, defaults, aliases, and pre-state determine what a generated call
+commits, while authorization acts on the interface exposed before commitment.
+Validation exposes disagreements between these views as
+implementation-grounded counterexamples.
 
 \subsection{Executable Interface Falsification}
 
@@ -79,17 +74,14 @@ $I_P(\omega(u))\ne I_P(\omega(v))$, then $\rho$ is insufficient on every domain
 containing $u$ and $v$.
 \end{proposition}
 
-The proposition makes counterfactual testing a falsification procedure.  An
-output-only change with unchanged $\omega$ is not a witness.  The same committed
-state reached under a different trusted provenance may be a witness when an
-admissible policy distinguishes that provenance.  Conversely, a representation
-change under a true semantic-invariant placebo indicates unnecessary
-sensitivity.
+The proposition turns counterfactual testing into a falsification procedure.
+An output-only change with unchanged $\omega$ provides no witness. A trusted
+provenance change may provide one when policy distinguishes that provenance;
+sensitivity to a semantic-invariant placebo instead exposes overpartition.
 
-Operationally, an effect witness plus a policy-separating witness becomes an
-interface failure certificate exactly when the candidate representation merges
-the pair. The source execution oracle, policy-separation oracle, and candidate representation supply
-three logically separate inputs to the test.
+An effect witness and a policy-separating witness form a failure certificate
+when the candidate representation merges the pair. Source execution, policy
+separation, and representation equality supply its three predicates.
 
 For a finite domain, counterexample-guided refinement repeatedly splits a
 representation cell using a witnessed separating field or qualifier.  Call a
@@ -111,9 +103,8 @@ by $|D|$.  At termination, equal representations imply membership in the same
 nonmixed cell.  By the definition of policy-mixed, their ideal decisions agree
 for every $P\in\mathcal P$.
 
-The proposition's contract includes $D$ and $\mathcal P$. Generated
-interventions define $D$, and unresolved interventions remain explicit in the
-validation record. Each accepted descriptor therefore carries the exact domain
+Generated interventions define $D$, and unresolved interventions remain in the
+validation record. Each accepted descriptor carries the $(D,\mathcal P)$ pair
 on which the adequacy result applies.
 
 \subsection{Conditional Consumer Composition}
@@ -138,15 +129,14 @@ for $u$, and authorizer soundness gives $J_P(A_{d_t}(u))=1$.  Descriptor
 fidelity therefore gives $I_P(\omega(u))=1$.  Call and policy-snapshot
 check--use consistency make this conclusion apply at commitment.
 
-This composition result separates interface fidelity from policy correctness.
-Counterfactual tests probe the first obligation, and our explicit-authority
-experiment checks the resulting interface under one shared ACL, capability,
-and delegation engine.  The AgentDojo integration below instantiates only a
-narrow provenance-origin policy over registered fields.
+Counterfactual tests probe descriptor fidelity. The explicit-authority
+experiment consumes the resulting interface through one ACL, capability, and
+delegation engine; AgentDojo instantiates a provenance-origin policy over
+registered fields.
 
 \subsection{Integration Instance: Provenance-Origin Confinement}
 
-For the integration study, let $F(u)$ and $E(u)$ be the registered field values
+For this integration policy, let $F(u)$ and $E(u)$ be the registered field values
 and effect kinds of call $u$.  Let $U_V(h),U_E(h)$ denote values and requests
 from provenance-marked untrusted evidence, and let $G_V(q),G_E(q)$ denote those
 grounded in the authenticated task.  The monitor allows only when

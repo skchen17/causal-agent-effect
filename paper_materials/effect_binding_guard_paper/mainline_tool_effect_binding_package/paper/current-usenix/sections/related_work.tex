@@ -11,7 +11,8 @@ policy needs.
 AgentDojo, ToolEmu, and AgentLAB expose indirect prompt injection in tool-rich
 and long-horizon tasks~\cite{agentdojo,toolemu,agentlab}. Prompt defenses and
 step classifiers assess whether a proposed action appears safe
-~\cite{toolsafe,safiron}. CaMeL and IPIGuard preserve trusted control or track
+~\cite{toolsafe,safiron}; Spotlighting delimits tool output and PromptArmor
+sanitizes untrusted content~\cite{spotlighting2024,promptarmor2025}. CaMeL and IPIGuard preserve trusted control or track
 data dependencies~\cite{camel,ipiguard}; AttriGuard and CausalArmor intervene
 on observations and rerun the agent to estimate which input caused a proposed
 call~\cite{attriguard,causalarmor}. These systems attribute an action to its
@@ -34,6 +35,16 @@ least privilege, confused-deputy, information-flow, and provenance principles
 ~\cite{saltzer1975protection,dennis1966programming,hardy1988confused,denning1976lattice,buneman2001why,cheney2009provenance}.
 Contextual security models likewise separate task, action, source, and data
 boundaries~\cite{siu2026formalizing}.
+
+\paragraph{Industrial agent harnesses.}
+DeepSeek Harness routes tool calls through a plugin-based pre-execution
+waterfall with allow, deny, and ask decisions, monotonic guards, one-shot
+approval, and an immutable logged result~\cite{deepseekharness2026}. Its
+Cordis substrate formalizes revertible effects and reactive coeffects for
+dynamic composition~\cite{shi2026spatiotemporal}. These systems provide an
+enforcement pipeline but do not validate whether the representation exposed
+to that pipeline preserves the policy-relevant committed effects of a tool
+call; our registration method targets exactly that input.
 
 \paragraph{Effect specification.}
 Type-and-effect systems make effects explicit by construction

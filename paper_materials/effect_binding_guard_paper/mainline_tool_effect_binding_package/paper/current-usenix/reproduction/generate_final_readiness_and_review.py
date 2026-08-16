@@ -345,7 +345,15 @@ def main() -> int:
     )
     logic_path = WORKSPACE / "logic_transfer_audit.md"
     logic = logic_path.read_text(encoding="utf-8")
-    marker = "## Remaining Transfer Checks"
+    marker = next(
+        m
+        for m in (
+            "## Remaining Transfer Checks",
+            "## Completion",
+            "## Completed Transfer Checks",
+        )
+        if m in logic
+    )
     logic_path.write_text(
         logic[: logic.index(marker)]
         + "## Completed Transfer Checks\n\nAll eight strict final artifacts were inserted through the result generator. The retrospective same-call analysis and closed-loop monitor-view results remain separately labeled, all final table rows were regenerated, and the second simulated review is recorded in `paper/current-usenix/simulated_review_round2.md`.\n",

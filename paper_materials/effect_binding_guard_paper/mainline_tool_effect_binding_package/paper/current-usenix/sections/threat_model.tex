@@ -4,7 +4,7 @@
 \paragraph{System and enforcement boundary.}
 A user gives an agent an authenticated task $q$. The agent may read messages,
 documents, webpages, or database records before proposing a structured tool
-call $c=(t,\bar{x})$. The LLM is an untrusted control-plane component: its plan,
+call $c=(t,\bar{x})$. The large language model (LLM) is an untrusted control-plane component: its plan,
 effect description, and arguments are proposals rather than authority.
 Executing the totalized call from pre-state $s$ may commit several externally
 visible effects, such as creating an event, inviting principals, or changing
@@ -28,8 +28,8 @@ Let $u=(t,\bar{x},s,h)$ denote an execution context containing a tool,
 totalized arguments, trusted pre-state, and provenance evidence. Let $\mu(u)$
 denote its committed effects. A policy context $P$ may additionally depend on
 trusted execution metadata $\gamma(u)$, including effect provenance. Writing
-$\omega(u)=(\mu(u),\gamma(u))$, it induces an ideal per-commit predicate
-$I_P(\omega(u))$. The desired commit condition is $I_P(\omega(u))=1$.
+$\omega(u)=(\mu(u),\gamma(u))$, the policy context $P$ induces an ideal
+per-commit predicate $I_P(\omega(u))$. The desired commit condition is $I_P(\omega(u))=1$.
 
 The explicit-authority experiment instantiates $P$ with authenticated subject
 identity, resource ACLs, held capabilities, and attenuated delegations. The

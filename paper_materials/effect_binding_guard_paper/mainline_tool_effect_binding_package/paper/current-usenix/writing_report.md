@@ -36,7 +36,38 @@ The AgentDojo provenance-origin monitor is a compact pre-commit consumption stud
 
 ## Prose Revision
 
-The final prose follows one claim chain: concrete authorization failure, observation-interface upper bound, executable falsification, post-freeze conformance, and downstream consumption. Abstract, Introduction, Related Work, Evaluation, Results, and Conclusion use direct finding-first language. Formal assumptions remain next to theorems and threat-model boundaries; empirical and deployment limitations are consolidated in `sections/limitations.tex`.
+The final prose follows one claim chain: concrete authorization failure,
+observation-interface upper bound, executable falsification, post-freeze
+conformance, and downstream consumption. A de-defensiveness pass removed 10.0%
+of the prose in the eight core sections while preserving every formal statement,
+citation, and numeric result. Method now reads as an executable pipeline;
+Evaluation groups isolation controls as a design principle; Results lead with
+findings; and empirical or deployment reservations are concentrated in
+`sections/limitations.tex`.
+
+`failure certificate` is the primary prose term. Witness terminology remains
+where it distinguishes implementation change from policy separation. The
+remaining contrast constructions express the central authorization boundary,
+formal premises, protocol controls, or explicit limitations.
+
+## Final Frozen Validation
+
+
+## Matched Utility and Second Model
+
+- DeepSeek benign utility over four interleaved repetitions: no guard 301/388, Spotlighting 305/388, C1f 297/388.
+- C1f-minus-no-guard difference: -0.0103; one-sided 95% lower bound: -0.0541; non-inferior at -0.05: `false`.
+- Qwen3-32B attack success: no guard 63/629, Spotlighting 60/629, Prompt Sandwiching 6/629, PromptArmor-style 0/629, C1f 18/629.
+- Qwen3-32B benign utility: no guard 60/97, Spotlighting 64/97, Prompt Sandwiching 66/97, PromptArmor-style 27/97, C1f 59/97.
+
+## Held-Out, Transfer, and Attribution
+
+- Frozen 320-case held-out ASR counts: no guard 4/320, Spotlighting 0/320, C1f 0/320.
+- Frozen 40-key worst-of-four ASR counts: no guard 4/40, current C1f 2/40.
+- Current-profile AgentLAB saved transfer: no guard attack/utility 95/303 and 185/303; C1f 1/303 and 132/303.
+- Four-view closed-loop ASR counts: no guard 38/273, whole-call 11/273, effect-only 21/273, registered-field C1f 7/273.
+- Raw-field attribution: raw-field ASR 10/273; paired same-call disagreements 28/788; atom-semantic runtime difference: `true`; defined security/selectivity benefit: `true`.
+- Concrete-atom authorizer matches the finite 232-query source-effect relation without unsafe pre-allow or false denial: `true`.
 
 ## Reproduction
 
@@ -47,6 +78,9 @@ python paper/current-usenix/reproduction/reproduce_main_claims.py
 ```
 
 It must report `status=passed`, `n_claim_rows=360`, and an empty `pending` list. Generated final tables are derived directly from strict-passed result JSONs. Each ledger row records the artifact, key or aggregate expression, generator, and numerator/denominator.
+
+The final USENIX-template build contains an 11-page technical body under the
+13-page limit and a 17-page complete PDF.
 
 ## Verification Note
 

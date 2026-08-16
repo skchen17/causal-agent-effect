@@ -1,6 +1,6 @@
 # Reference Verification Report
 
-Status: `passed`. Cited keys: `35`; BibTeX entries: `35`.
+Status: `passed`. Cited keys: `39`; BibTeX entries: `39`.
 
 Identifiers were frozen after checking their public arXiv, DOI, publisher, or proceedings landing pages. The script verifies that the manuscript has not drifted from those identifiers.
 

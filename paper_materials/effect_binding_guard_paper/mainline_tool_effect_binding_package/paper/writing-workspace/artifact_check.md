@@ -1,11 +1,11 @@
 # PaperSpine Artifact Check
 
-- Output directory: `../writing-workspace`
+- Output directory: `paper/writing-workspace`
 - Workflow: `rewrite_existing`
 - Tier: `pro`
 - PDF policy: `auto`
 - TeX engine: `latexmk`
-- Word policy: `never`
+- Word policy: `auto`
 - Translation package required: no
 - Status: PASS
 

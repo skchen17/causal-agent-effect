@@ -7,12 +7,160 @@
         "--mode",
         "full"
       ],
-      "returncode": 1,
-      "stderr_tail": "Traceback (most recent call last):\n  File \"/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/scripts/run_toolsandbox_concrete_atom_authorizer.py\", line 384, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/scripts/run_toolsandbox_concrete_atom_authorizer.py\", line 372, in main\n    payload = run(args.mode, args.output_dir)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/scripts/run_toolsandbox_concrete_atom_authorizer.py\", line 297, in run\n    verify_inputs(prereg)\n  File \"/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/scripts/run_toolsandbox_concrete_atom_authorizer.py\", line 114, in verify_inputs\n    raise ValueError(f\"frozen input mismatch: {key}\")\nValueError: frozen input mismatch: runner_sha256\n",
-      "stdout_tail": ""
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"status\": \"passed\",\n  \"mode\": \"full\",\n  \"n_contexts\": 32,\n  \"n_queries\": 232,\n  \"ideal_decisions\": {\n    \"ALLOW\": 82,\n    \"DENY\": 150\n  },\n  \"gates\": {\n    \"input_hashes_match\": true,\n    \"all_selected_contexts_retained\": true,\n    \"all_queries_emitted\": true,\n    \"nontrivial_authority_labels\": true,\n    \"concrete_atom_zero_unsafe_pre_allow\": true,\n    \"concrete_atom_zero_false_deny\": true,\n    \"source_oracle_exact\": true,\n    \"coarse_view_has_unsafe_pre_allow\": true,\n    \"raw_arguments_have_false_denial\": true,\n    \"no_abstentions_or_silent_drops\": true\n  }\n}\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "paper/current-usenix/reproduction/extract_sanitized_fixed_support.py"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"status\": \"passed\",\n  \"output\": \"paper/current-usenix/reproduction/sanitized_fixed_support.json\"\n}\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "paper/current-usenix/reproduction/export_final_case_outcomes.py"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"by_dataset_condition\": {\n    \"agentlab_saved_transfer:c1f\": 303,\n    \"agentlab_saved_transfer:no_guard\": 303,\n    \"deepseek_locked_heldout:c1f\": 320,\n    \"deepseek_locked_heldout:no_guard\": 320,\n    \"deepseek_locked_heldout:spotlighting\": 320,\n    \"deepseek_repeated_benign:c1f\": 388,\n    \"deepseek_repeated_benign:no_guard\": 388,\n    \"deepseek_repeated_benign:spotlighting\": 388,\n    \"qwen32_strong_baseline_matched:c1f\": 726,\n    \"qwen32_strong_baseline_matched:no_guard\": 726,\n    \"qwen32_strong_baseline_matched:prompt_sandwiching\": 726,\n    \"qwen32_strong_baseline_matched:promptarmor_local\": 726,\n    \"qwen32_strong_baseline_matched:spotlighting\": 726,\n    \"qwen_bounded_adaptive:c1f\": 160,\n    \"qwen_bounded_adaptive:no_guard\": 160,\n    \"qwen_raw_field_attribution:raw_field_taint\": 321\n  },\n  \"contains_evaluator_sidecars\": false,\n  \"contains_prompts_or_messages\": false,\n  \"n_rows\": 7001,\n  \"status\": \"passed\"\n}\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "paper/current-usenix/reproduction/generate_final_result_section.py"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\"status\": \"passed\", \"tables\": 3}\n{\n  \"status\": \"passed\",\n  \"output\": \"paper/current-usenix/sections/generated_final_validation_results.tex\"\n}\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "scripts/reproduce_usenix_main.py"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"status\": \"passed\",\n  \"output\": \"paper/current-usenix/reproduction/sanitized_fixed_support.json\"\n}\n{\n  \"status\": \"passed\",\n  \"n_claim_rows\": 360,\n  \"pending\": []\n}\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "paper/current-usenix/reproduction/generate_final_readiness_and_review.py"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"status\": \"passed\",\n  \"security_not_worse_on_frozen_generalization_checks\": true,\n  \"closed_loop_granularity_signal\": true,\n  \"atom_semantic_runtime_difference\": true,\n  \"atom_semantic_runtime_benefit\": true,\n  \"benign_utility_noninferior\": false,\n  \"concrete_atom_authorizer_exact_on_finite_relation\": true,\n  \"simulated_recommendation\": \"Borderline / Weak Reject\"\n}\n"
+    },
+    {
+      "command": [
+        "latexmk",
+        "-pdf",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-cd",
+        "paper/current-usenix/main.tex"
+      ],
+      "returncode": 0,
+      "stderr_tail": "Rc files read:\n  /etc/LatexMk\nLatexmk: This is Latexmk, John Collins, 20 November 2021, version: 4.76.\nLatexmk: Changing directory to 'paper/current-usenix/'\nRule 'pdflatex': File changes, etc:\n   Changed files, or newly in use since previous run(s):\n      'tables/table_final_matched_validation.tex'\n------------\nRun number 1 of rule 'pdflatex'\n------------\n------------\nRunning 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder  \"main.tex\"'\n------------\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: References changed.\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s) [references.bib]\nRule 'bibtex main': File changes, etc:\n   Changed files, or newly in use since previous run(s):\n      'main.aux'\n------------\nRun number 1 of rule 'bibtex main'\n------------\n------------\nRunning 'bibtex  \"main.aux\"'\n------------\nRule 'pdflatex': File changes, etc:\n   Changed files, or newly in use since previous run(s):\n      'main.aux'\n------------\nRun number 2 of rule 'pdflatex'\n------------\n------------\nRunning 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder  \"main.tex\"'\n------------\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s) [references.bib]\nLatexmk: Undoing directory change\n",
+      "stdout_tail": ".tex))\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)))\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex\n\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers\n.code.tex)\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex\n)\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik\nzlibrarytopaths.code.tex)))\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.\ncode.tex)\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik\nzlibraryfit.code.tex)\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik\nzlibrarypositioning.code.tex)\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik\nzlibrarycalc.code.tex)\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik\nzlibraryshapes.geometric.code.tex\n(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape\ns.geometric.code.tex)) (./figures/tikz_style.tex)\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\n(./main.aux) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omspzccm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)\n\nPackage microtype Warning: \\nonfrenchspacing is active. Adjustment of\n(microtype)                interword spacing will disable it. You might want\n(microtype)                to add `\\microtypecontext{spacing=nonfrench}'\n(microtype)                to your preamble.\n\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))\n(./main.out) (./main.out)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptmcm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptmcm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxpsycm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)\n(./sections/abstract.tex) (./sections/introduction.tex\nUnderfull \\vbox (badness 6188) has occurred while \\output is active\n(./figures/representation_collision.tex) [1{/var/lib/texmf/fonts/map/pdftex/upd\nmap/pdftex.map}] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)\nUnderfull \\hbox (badness 1348) in paragraph at lines 78--82\n\\T1/ptm/m/n/10 (+20) bound that an ob-ser-va-tion in-ter-face places on ev-ery\n) (./sections/related_work.tex\nUnderfull \\hbox (badness 1789) in paragraph at lines 11--22\n []\\T1/ptm/b/n/10 (+20) Action se-lec-tion and causal at-tri-bu-tion.[] \\T1/ptm\n/m/n/10 (+20) Agent-Dojo,\n[2]) (./sections/threat_model.tex\nUnderfull \\hbox (badness 10000) in paragraph at lines 61--1\n []\\T1/ptm/b/n/10 (+20) Counterexample-guided in-ter-face val-i-da-tion.[]\n\nUnderfull \\hbox (badness 3635) in paragraph at lines 61--1\n\\T1/ptm/m/n/10 (+20) Counterexample-guided ab-strac-tion re-fine-ment splits a\n\nUnderfull \\vbox (badness 1960) has occurred while \\output is active [3])\n(./sections/method.tex (./figures/system_overview.tex)\nUnderfull \\hbox (badness 4303) in paragraph at lines 52--56\n[]\\T1/ptm/m/n/10 (+20) A can-di-date typed-effect de-scrip-tor $\\OML/ptmcm/m/it\n/10 d[]$ \\T1/ptm/m/n/10 (+20) con-tains (i)\n[4] [5]) (./sections/security_analysis.tex [6]) (./sections/evaluation.tex\n(./tables/table_evaluation_evidence_map.tex\nUnderfull \\hbox (badness 10000) in paragraph at lines 13--13\n[]\\T1/ptm/m/n/7 (+20) Establish com-pound and state-\n\nUnderfull \\hbox (badness 1917) in paragraph at lines 16--16\n[]\\T1/ptm/m/n/7 (+20) Measure down-stream au-tho-riza-tion\n) [7] [8]\nUnderfull \\hbox (badness 4024) in paragraph at lines 106--112\n []\\T1/ptm/b/n/10 (+20) Pre-commit in-te-gra-tion.[] \\T1/ptm/m/n/10 (+20) We fi\nrst run 30 short tra-\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 118--118\n[][][]\\T1/ptm/m/n/8 (+20) We im-ple-ment the sandwich-defense recipe doc-u-ment\ned at\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 118--118\n[][]$\\T1/pcr/m/n/8 https : / / learnprompting . org / docs / prompt _ hacking /\n defensive _\n) (./sections/results.tex (./tables/table_agentdojo_effect_prevalence.tex)\nUnderfull \\vbox (badness 10000) has occurred while \\output is active\n(./figures/representation_results.tex) (./tables/table_failure_certificates.tex\n\nUnderfull \\hbox (badness 1072) in paragraph at lines 11--12\n\\T1/ptm/m/n/7 (+20) pre-state adds an unau-tho-rized\n) [9] (./tables/table_third_party_validation.tex)\n(./tables/table_protocol_separated_authority.tex) [10])\n(./sections/limitations.tex) (./sections/conclusion.tex [11]) (./main.bbl\nUnderfull \\hbox (badness 2142) in paragraph at lines 71--77\n[]\\T1/ptm/m/n/10 (+20) Atticus Geiger, Zhengx-uan Wu, Han-son Lu, Josh\n\nUnderfull \\hbox (badness 4279) in paragraph at lines 96--101\n[]\\T1/ptm/m/n/10 (+20) Yue Huang, Hang Hua, Yu-jun Zhou, Pengcheng\n[12]\nUnderfull \\hbox (badness 3601) in paragraph at lines 207--210\n[]\\T1/ptm/m/n/10 (+20) Wei Zhao, Zhe Li, Peixin Zhang, and Jun Sun.\n) (./appendix/ethics.tex) (./appendix/open_science.tex [13])\n(./appendix/additional_results.tex\n(./tables/table_representation_collisions.tex)\n(./tables/table_toolsandbox_heldout.tex)\n(./tables/table_concrete_atom_authorizer.tex)\nUnderfull \\hbox (badness 5711) in paragraph at lines 14--19\n []\\T1/ptm/b/n/10 (+20) Finite con-tain-ment di-ag-nos-tic.[] \\T1/ptm/m/n/10 (+\n20) Be-fore the explicit-\n(./figures/security_utility_tradeoff.tex\nUnderfull \\hbox (badness 1210) in paragraph at lines 86--86\n[]\\T1/ptm/m/n/10 (+20) Figure 4: []Bounded run-time char-ac-ter-i-za-tion un-de\nr one\n) (./tables/table_deepseek_runtime.tex)\n(./tables/table_granularity_and_transfer.tex)\n(./sections/generated_final_validation_results.tex\n(./tables/table_final_matched_validation.tex) [14]\n(./tables/table_final_heldout.tex))\n(./tables/table_binding_problem_characterization.tex)\n(./tables/table_registration_sufficiency.tex)\n(./tables/table_interface_economy.tex)) (./appendix/formal_proofs.tex [15]\nUnderfull \\hbox (badness 10000) in paragraph at lines 33--37\n\\T1/ptm/m/n/10 (+20) If $\\OML/ptmcm/m/it/10 d \\OT1/ptmcm/m/n/10 = []$\\T1/ptm/m/\nn/10 (+20) , sound-ness fails on $\\OML/ptmcm/m/it/10 v$\\T1/ptm/m/n/10 (+20) . I\nf $\\OML/ptmcm/m/it/10 d \\OMS/pzccm/m/n/10 2\n\nUnderfull \\hbox (badness 5403) in paragraph at lines 33--37\n\\OMS/pzccm/m/n/10 f[]\\OML/ptmcm/m/it/10 ; []\\OMS/pzccm/m/n/10 g$\\T1/ptm/m/n/10 \n(+20) , per-mis-sive-ness fails on $\\OML/ptmcm/m/it/10 u$\\T1/ptm/m/n/10 (+20) .\n Ev-ery\n[16]) [17] [18] (./main.aux) )\n(see the transcript file for additional information){/usr/share/texlive/texmf-d\nist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols\n/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/t\nexlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dis\nt/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u\nrw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8\na.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>\nOutput written on main.pdf (18 pages, 229920 bytes).\nTranscript written on main.log.\nLatexmk: Examining 'main.log'\n=== TeX engine is 'pdfTeX'\nLatexmk: All targets (main.pdf) are up-to-date\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "paper/current-usenix/reproduction/check_page_budget.py"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"excluded_from_body_limit\": [\n    \"references\",\n    \"ethics\",\n    \"open_science\",\n    \"appendices\"\n  ],\n  \"measurement\": \"LaTeX page label immediately after Conclusion in the USENIX-template build\",\n  \"status\": \"passed\",\n  \"technical_body_limit\": 13,\n  \"technical_body_pages\": 12,\n  \"total_pdf_pages\": 18\n}\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "paper/current-usenix/reproduction/audit_references.py"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"status\": \"passed\",\n  \"n_cited\": 39,\n  \"errors\": []\n}\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "paper/current-usenix/reproduction/audit_submission_sources.py"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"included_sources\": [\n    \"appendix/additional_results.tex\",\n    \"appendix/ethics.tex\",\n    \"appendix/formal_proofs.tex\",\n    \"appendix/open_science.tex\",\n    \"figures/representation_collision.tex\",\n    \"figures/representation_results.tex\",\n    \"figures/security_utility_tradeoff.tex\",\n    \"figures/system_overview.tex\",\n    \"figures/tikz_style.tex\",\n    \"main.tex\",\n    \"sections/abstract.tex\",\n    \"sections/conclusion.tex\",\n    \"sections/evaluation.tex\",\n    \"sections/generated_final_validation_results.tex\",\n    \"sections/introduction.tex\",\n    \"sections/limitations.tex\",\n    \"sections/method.tex\",\n    \"sections/related_work.tex\",\n    \"sections/results.tex\",\n    \"sections/security_analysis.tex\",\n    \"sections/threat_model.tex\",\n    \"tables/table_agentdojo_effect_prevalence.tex\",\n    \"tables/table_binding_problem_characterization.tex\",\n    \"tables/table_concrete_atom_authorizer.tex\",\n    \"tables/table_deepseek_runtime.tex\",\n    \"tables/table_evaluation_evidence_map.tex\",\n    \"tables/table_failure_certificates.tex\",\n    \"tables/table_final_heldout.tex\",\n    \"tables/table_final_matched_validation.tex\",\n    \"tables/table_granularity_and_transfer.tex\",\n    \"tables/table_interface_economy.tex\",\n    \"tables/table_protocol_separated_authority.tex\",\n    \"tables/table_registration_sufficiency.tex\",\n    \"tables/table_representation_collisions.tex\",\n    \"tables/table_third_party_validation.tex\",\n    \"tables/table_toolsandbox_heldout.tex\"\n  ],\n  \"log_findings\": [],\n  \"missing_bibtex_keys\": [],\n  \"missing_reference_labels\": [],\n  \"n_citations\": 39,\n  \"n_included_sources\": 36,\n  \"n_labels\": 33,\n  \"n_refs\": 32,\n  \"pdf_findings\": [],\n  \"source_findings\": [],\n  \"status\": \"passed\",\n  \"uncited_bibtex_keys\": [],\n  \"unreferenced_labels\": []\n}\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "/home/user/.codex/skills/paper-spine/scripts/latex_guard.py",
+        "paper/current-usenix/main.tex",
+        "--markdown"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "# LaTeX Guard Report\n\n- TeX file: `/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/paper/current-usenix/main.tex`\n- BibTeX file: not provided\n- Errors: 0\n- Warnings: 0\n\nNo guard issues found.\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "/home/user/.codex/skills/paper-spine/scripts/artifact_check.py",
+        "paper/writing-workspace",
+        "--markdown",
+        "--write"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "# PaperSpine Artifact Check\n\n- Output directory: `paper/writing-workspace`\n- Workflow: `rewrite_existing`\n- Tier: `pro`\n- PDF policy: `auto`\n- TeX engine: `latexmk`\n- Word policy: `auto`\n- Translation package required: no\n- Status: PASS\n\n## Missing\n\n- None\n\n## Content Issues\n\n- None\n\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "-m",
+        "pytest",
+        "shared/compatibility/tests/tests/test_usenix_main_reproduction.py",
+        "shared/compatibility/tests/tests/test_usenix27_artifact_manifest.py",
+        "shared/compatibility/tests/tests/test_render_usenix_final_tables.py",
+        "shared/compatibility/tests/tests/test_generate_final_readiness_and_review.py",
+        "shared/compatibility/tests/tests/test_usenix_heldout_runner.py",
+        "shared/compatibility/tests/tests/test_usenix_long_run_finalizers.py",
+        "shared/compatibility/tests/tests/test_e79_agentlab_saved_transfer_runner.py",
+        "shared/compatibility/tests/tests/test_c1f_closed_loop_four_view_extension.py",
+        "shared/compatibility/tests/tests/test_c1f_raw_field_attribution.py",
+        "shared/compatibility/tests/tests/test_current_c1f_bounded_adaptive.py",
+        "shared/compatibility/tests/tests/test_toolsandbox_concrete_atom_authorizer.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "............................................                             [100%]\n44 passed in 11.70s\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "paper/current-usenix/artifact/build_manifest.py"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\"status\": \"paper_evidence_ready_artifact_release_pending\", \"entries\": 23}\n"
+    },
+    {
+      "command": [
+        "/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python",
+        "paper/current-usenix/artifact/build_anonymous_package.py"
+      ],
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"anonymization_scan\": \"passed\",\n  \"archive\": \"paper/current-usenix/artifact/anonymous_effect_binding_artifact.tar.gz\",\n  \"archive_sha256\": \"c709ce9c95782048fb5a655a4f2f9ddc7b3361118cd342b3e6f23aceba14c70c\",\n  \"package\": \"paper/current-usenix/artifact/anonymous_package\",\n  \"status\": \"ready_for_author_upload\"\n}\n"
     }
   ],
-  "error": "command failed: ['/data/CSK/causal-agent-safety-research/paper_materials/effect_binding_guard_paper/mainline_tool_effect_binding_package/runs/e75_agentdojo_env/bin/python', 'scripts/run_toolsandbox_concrete_atom_authorizer.py', '--mode', 'full']",
-  "status": "failed",
-  "updated_at": "2026-08-15T22:19:17.741114+00:00"
+  "error": null,
+  "status": "passed",
+  "updated_at": "2026-08-16T13:17:42.318405+00:00"
 }

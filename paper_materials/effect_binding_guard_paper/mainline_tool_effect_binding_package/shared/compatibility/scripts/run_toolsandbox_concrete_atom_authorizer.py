@@ -210,7 +210,7 @@ def render_table(metrics: list[dict[str, Any]], n_queries: int) -> str:
         r"\begin{table}[t]",
         r"\centering",
         r"\small",
-        rf"\caption{{Finite ToolSandbox authorizer check ($N={n_queries}$ ordered queries). UPA is unsafe pre-allow and FD is false denial.}}",
+        r"\caption{Small-scale authorizer mechanism check on frozen ToolSandbox executions. UPA is unsafe pre-allow and FD is false denial.}",
         r"\label{tab:concrete-atom-authorizer}",
         r"\begin{tabular}{lrrrr}",
         r"\toprule",
@@ -226,7 +226,7 @@ def render_table(metrics: list[dict[str, Any]], n_queries: int) -> str:
         ]
         lines.append(
             f"{names[row['method']]} & "
-            + " & ".join(f"{100 * value:.1f}\\%" for value in values)
+            + " & ".join(f"{value:.3f}" for value in values)
             + r" \\"
         )
     lines.extend(

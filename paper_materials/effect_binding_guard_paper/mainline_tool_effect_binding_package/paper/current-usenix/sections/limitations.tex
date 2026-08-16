@@ -5,18 +5,16 @@
 The validation record covers the frozen implementation, interventions, and
 policy family. Unseen defaults, hidden effects, asynchronous work, general
 aliases, and untested states may require additional distinctions. Invalid or
-unresolved interventions lead to conservative retention; consequently, the
-AgentDojo registry retains all 67 schema fields and does not demonstrate sparse
-descriptor discovery. Counterexamples guide refinement but do not synthesize a
-globally complete descriptor.
+unresolved interventions lead to conservative retention. The AgentDojo registry
+therefore retains all 67 schema fields. Counterexamples guide refinement within
+the recorded domain; globally complete descriptor synthesis remains open.
 
 \paragraph{Semantic independence.}
 The MCP implementations have independent public authorship, whereas the
 descriptors, policies, and both decision paths were constructed in this
 project. Native deltas, import isolation, descriptor-blind context generation,
-and systematic mutations reduce shared-helper circularity but do not provide
-independent semantic certification. Independent descriptor and policy authors
-would strengthen the positive conformance evidence.
+and systematic mutations reduce shared-helper circularity. Independent
+descriptor and policy authors would provide stronger semantic certification.
 
 \paragraph{State and execution assumptions.}
 Registration binds evidence to an implementation identity. Remote services and
@@ -28,17 +26,25 @@ control nor transactional protection against TOCTOU races.
 \paragraph{Interface economy.}
 The state-aware request is also sufficient on both evaluated domains. Typed
 effects reduce source-equivalent overpartition and policy-facing raw-state
-exposure in these prototypes, but latency and executable code size do not
-consistently favor them. These measurements characterize the studied
-implementations rather than a general TCB, extensibility, or performance
-advantage.
+exposure in these prototypes. Latency and executable code size vary by
+implementation, so the audit establishes no general TCB, extensibility, or
+performance advantage.
+
+\paragraph{Harness integration.}
+DeepSeek Harness demonstrates an industrial pre-execution pipeline whose
+guards observe tool calls and approve or deny them before execution. Our
+method targets the observation object consumed by such pipelines: mounting a
+frozen descriptor as one of its monotonic guards would preserve the same
+check--use boundary, but this port and its evaluation remain future work.
 
 \paragraph{Runtime consumer.}
 The AgentDojo integration enforces provenance-origin confinement over a
-conservative registered-field projection, not general organizational ACLs,
-delegation, quotas, or output-only goals. Prompt Sandwiching provides a better
+conservative registered-field projection. It does not implement general
+organizational ACLs, delegation, quotas, or output-only goals. Prompt
+Sandwiching provides a better
 security--utility point in the matched Qwen3-32B comparison. The repeated
-DeepSeek run also misses the preregistered benign non-inferiority margin by 0.4
+DeepSeek run also misses the pre-registered benign non-inferiority margin by 0.4
 percentage points, and saved AgentLAB transfer loses 17.5 percentage points of
-utility. The comparable prompting adapters implement this paper's common-input
-protocol rather than reproducing every original-paper evaluation.
+utility. The comparable prompting adapters follow this paper's common-input
+protocol; their results are not reproductions of every original-paper
+evaluation.
