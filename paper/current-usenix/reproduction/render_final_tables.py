@@ -29,22 +29,25 @@ def indexed(payload: dict[str, Any], outer: str, field: str, value: str) -> dict
     raise KeyError(f"{outer}[{field}={value}]")
 
 
+def pct(numerator: int, denominator: int) -> str:
+    return f"{100 * numerator / denominator:.1f}\\%"
+
+
 def main() -> int:
     deepseek = load(
         "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/"
         "deepseek_benign_interleaved_results.json"
     )
     qwen = load(
-        "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/"
-        "qwen32_matched_results.json"
+        "experiments/unified-agent-security-baselines/results/"
+        "current-c1f-strong-baseline-rerun/results.json"
     )
     heldout = load(
         "experiments/adaptive-injection-benchmark/results/usenix-heldout-public-families/results.json"
     )
-    transfer = load("analysis/results/e79_agentlab_saved_transfer_current_pair_results.json")
-    four_view = load(
-        "experiments/security-analysis-ablation-and-overhead/results/"
-        "c1f-closed-loop-four-view/closed-loop-four-view-report.json"
+    concrete_authorizer = load(
+        "experiments/human-authority-and-causal-validation/results/"
+        "concrete-atom-authorizer-mechanism/concrete-atom-authorizer-report.json"
     )
 
     matched = [
@@ -52,7 +55,7 @@ def main() -> int:
         r"\centering",
         r"\small",
         r"\setlength{\tabcolsep}{5pt}",
-        r"\caption{Frozen final validation. DeepSeek benign utility is aggregated over four interleaved repetitions. Qwen uses the same checkpoint and exact 97 benign and 629 attack keys for every method.}",
+        r"\caption{Matched runtime comparison. DeepSeek benign utility uses four interleaved repetitions ($N=388$ per method). Qwen3-32B uses the same checkpoint and exact 97 benign and 629 attack keys for every method.}",
         r"\label{tab:final-matched-validation}",
         r"\begin{tabular}{llrrrr}",
         r"\toprule",
@@ -62,14 +65,20 @@ def main() -> int:
     for condition, label in (("no_guard", "No guard"), ("spotlighting", "Spotlighting"), ("c1f", r"\sys{}")):
         row = indexed(deepseek, "aggregates", "condition", condition)
         matched.append(
-            f"DeepSeek benign & {label} & {row['utility_successes']}/388 & -- & -- & 4 \\\\"
+            f"DeepSeek benign & {label} & {pct(row['utility_successes'], 388)} & -- & -- & 4 \\\\"
         )
     matched.append(r"\midrule")
-    for condition, label in (("no_guard", "No guard"), ("spotlighting", "Spotlighting"), ("c1f", r"\sys{}")):
-        row = indexed(qwen, "metrics", "condition", condition)
+    for method, label in (
+        ("no_guard", "No guard"),
+        ("spotlighting", "Spotlighting"),
+        ("prompt_sandwiching", "Prompt Sandwiching"),
+        ("promptarmor_local", "PromptArmor-style"),
+        ("c1f", r"\sys{}"),
+    ):
+        row = indexed(qwen, "metrics", "method", method)
         matched.append(
-            f"Qwen3-32B & {label} & {row['benign_utility_successes']}/97 & "
-            f"{row['attack_utility_successes']}/629 & {row['attack_successes']}/629 & 1 \\\\"
+            f"Qwen3-32B & {label} & {pct(row['benign_utility_successes'], 97)} & "
+            f"{pct(row['attack_utility_successes'], 629)} & {pct(row['attack_successes'], 629)} & 1 \\\\"
         )
     matched.extend([r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""])
     (PAPER / "tables/table_final_matched_validation.tex").write_text("\n".join(matched), encoding="utf-8")
@@ -78,60 +87,67 @@ def main() -> int:
         r"\begin{table}[t]",
         r"\centering",
         r"\small",
-        r"\caption{Frozen held-out and saved-transfer results. The 320-case set compares methods under one DeepSeek protocol. AgentLAB is a fixed 303-case saved replay, not adaptive attack generation.}",
-        r"\label{tab:final-heldout-transfer}",
-        r"\begin{tabular}{llrr}",
+        r"\caption{Frozen public-family result under one DeepSeek protocol ($N=320$ per method).}",
+        r"\label{tab:final-heldout}",
+        r"\begin{tabular}{lrr}",
         r"\toprule",
-        r"Evaluation & Method & Utility & Attack success \\",
+        r"Method & Utility & Attack success \\",
         r"\midrule",
     ]
     for method, label in (("no_guard", "No guard"), ("spotlighting", "Spotlighting"), ("c1f", r"\sys{}")):
         row = indexed(heldout, "summaries", "method", method)
         external.append(
-            f"Locked families & {label} & {row['utility_successes']}/320 & {row['attack_successes']}/320 \\\\"
+            f"{label} & {pct(row['utility_successes'], 320)} & {pct(row['attack_successes'], 320)} \\\\"
         )
-    transfer_rows = {
-        row["condition"]: row for row in transfer["comparison_metrics"]
-    }
     external.extend(
         [
-            r"\midrule",
-            f"AgentLAB saved & No guard & {transfer_rows['no_guard']['utility_successes']}/303 & {transfer_rows['no_guard']['attack_successes']}/303 \\\\ ",
-            f"AgentLAB saved & \\sys{{}} & {transfer_rows['c1f']['utility_successes']}/303 & {transfer_rows['c1f']['attack_successes']}/303 \\\\ ",
             r"\bottomrule",
             r"\end{tabular}",
             r"\end{table}",
             "",
         ]
     )
-    (PAPER / "tables/table_final_heldout_transfer.tex").write_text("\n".join(external), encoding="utf-8")
+    (PAPER / "tables/table_final_heldout.tex").write_text(
+        "\n".join(external), encoding="utf-8"
+    )
 
-    mechanism = [
+    authorizer = [
         r"\begin{table}[t]",
         r"\centering",
-        r"\small",
-        r"\setlength{\tabcolsep}{4pt}",
-        r"\caption{Current-C1f closed-loop mechanism comparison on the frozen 321-case applicability subset. Rates are selection-conditioned, not benchmark-wide estimates.}",
-        r"\label{tab:final-four-view}",
-        r"\begin{tabular}{lrrr}",
+        r"\scriptsize",
+        r"\setlength{\tabcolsep}{2.5pt}",
+        r"\caption{Finite ToolSandbox authorizer check. UPA is unsafe pre-allow; FD is false denial.}",
+        r"\label{tab:concrete-atom-authorizer}",
+        r"\begin{tabular}{@{}lrrrr@{}}",
         r"\toprule",
-        r"Monitor view & Benign util. & Attack util. & Attack success \\",
+        r"View & UPA & FD & Coverage & Accuracy \\",
         r"\midrule",
     ]
-    for variant, label in (
-        ("no_guard", "No guard"),
-        ("whole_call_provenance", "Whole-call provenance"),
-        ("effect_only", "Effect only"),
-        ("registered_field_c1f", "Registered fields"),
-    ):
-        row = indexed(four_view, "aggregates", "variant", variant)
-        mechanism.append(
-            f"{label} & {row['benign_utility_successes']}/48 & "
-            f"{row['attack_utility_successes']}/273 & {row['attack_successes']}/273 \\\\"
+    labels = {
+        "whole_call_tool_name": "Tool name",
+        "raw_arguments_exact": "Exact raw args",
+        "common_effect_atoms": "Common-field view",
+        "concrete_effect_atoms": "Concrete atoms",
+        "source_effect_oracle": "Source oracle",
+    }
+    for method in labels:
+        row = indexed(concrete_authorizer, "metrics", "method", method)
+        authorizer.append(
+            f"{labels[method]} & {100 * row['unsafe_pre_allow']['rate']:.1f}\\% & "
+            f"{100 * row['safe_false_deny']['rate']:.1f}\\% & {100 * row['coverage']['rate']:.1f}\\% & "
+            f"{100 * row['decision_accuracy']['rate']:.1f}\\% \\\\"
         )
-    mechanism.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}", ""])
-    (PAPER / "tables/table_final_four_view.tex").write_text(
-        "\n".join(mechanism), encoding="utf-8"
+    authorizer.extend(
+        [
+            r"\bottomrule",
+            r"\end{tabular}",
+            r"\vspace{2pt}\parbox{0.98\linewidth}{\footnotesize All 232 ordered queries use one executed context as the allowed effect multiset and check another context of the same tool.}",
+            r"\end{table}",
+            "",
+        ]
+    )
+    (PAPER / "tables/table_concrete_atom_authorizer.tex").write_text(
+        "\n".join(authorizer), encoding="utf-8"
     )
     print(json.dumps({"status": "passed", "tables": 3}))
     return 0

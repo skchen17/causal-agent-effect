@@ -1,0 +1,25 @@
+{
+  "allowed_inputs": [
+    "tool_name",
+    "arguments",
+    "pre_state"
+  ],
+  "exposes": [
+    "totalized_arguments",
+    "canonical resource identifiers",
+    "referenced resource existence and type",
+    "referenced pre-state attributes",
+    "trusted defaults resolved at the pre-commit boundary"
+  ],
+  "forbidden": [
+    "post_state",
+    "source_transitions",
+    "typed_effects",
+    "effect_names",
+    "ideal_decision",
+    "source_oracle_labels",
+    "global_database_serialization"
+  ],
+  "name": "state_aware_raw_call_view_v1",
+  "schema_version": 1
+}

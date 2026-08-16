@@ -1,0 +1,31 @@
+{
+  "base_experiment": "protocol_separated_authority_representation",
+  "base_protocol_sha256": "8a3e4d0629140a0eec156bbe4f774d5760f32b83cc4421c3de42518802470fcf",
+  "claim_boundary": "The state-aware view is effect-free. Direct authorization metrics additionally depend on a frozen tool-specific request adapter and are reported as a separate diagnostic.",
+  "expected_contexts": 1024,
+  "experiment": "state_aware_authority_interface",
+  "frozen_at": "2026-08-15T03:00:33.019983+00:00",
+  "hashes": {
+    "adapter_contract": "b92fe5acf4a78fa6fd4af17185ec37e6f57ad9f08e1f7587632bd8549003fce6",
+    "adapter_module": "010d4afbdaec2b980319337b1e29569a48dcba19ffca51184932d41981cf0d3b",
+    "base_authority": "5d88e7c6851f41fb63d14a0601344988876e98408269076adeb7c4113e4800a6",
+    "base_contexts": "3ffde5bea6067a5ae023e46bb9bfd4bf2fd4a096152d956305113c9c052455d5",
+    "base_descriptors": "6fcaf572c63a63039c40a1ac064c41897bb2b4000d1b007c7b0b406fb1319196",
+    "runner_module": "edaeb0a867c8706040660f2f2bc35e880c36f67452702a38870db6b1c769b09e",
+    "view_contract": "435df1aa1ba5177030aa8dc6ac9a8912156267aa0dbb48837d8f094549f67f35",
+    "view_module": "d46c9847998e82bf317cdddf6c533dba1644d6148a6943200541213c8e436597"
+  },
+  "outcome_independent_acceptance": true,
+  "representations": [
+    "tool_name",
+    "canonical_raw_arguments",
+    "common_effect_fields",
+    "validated_typed_effects",
+    "state_aware_raw_call"
+  ],
+  "status": "frozen",
+  "tracks": {
+    "representation_only": "collision, state collision, overpartition, and size over the effect-free view",
+    "request_adapter_diagnostic": "direct authority metrics using a separately disclosed tool-specific adapter"
+  }
+}

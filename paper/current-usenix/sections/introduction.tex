@@ -1,101 +1,101 @@
 \section{Introduction}
-\label{sec:introduction}
 
-A user asks an agent to create a meeting with Alice.  After reading an
-untrusted document, the agent calls the calendar tool with both Alice and Eve
-as participants.  The call performs the requested work---creating the
-meeting---but also commits an additional invitation.  This is a common shape of
-indirect prompt injection: content returned by one tool steers a later call
-toward an attacker-chosen effect~\cite{agentdojo,toolemu}.  Once the invitation
-is emitted, later model reasoning cannot turn that committed disclosure back
-into a harmless proposal.
+A user asks an agent to create a meeting with Alice. After reading an untrusted
+document, the agent calls the calendar tool with both Alice and Eve as
+participants. The call creates the requested event and also commits an
+attacker-chosen invitation, a common indirect-prompt-injection failure in
+tool-using agents~\cite{agentdojo,toolemu}. The authorization question is not
+whether the agent may invoke \texttt{create\_event}. It is whether this
+execution may create this event, invite Alice, invite Eve, and apply the chosen
+visibility.
 
-At the application boundary, both calls invoke \texttt{create\_event}.  Treating
-the whole call as one authorization unit forces the event creation and every
-invitation to share a decision.  Inspecting raw arguments exposes Alice and Eve
-but does not identify which state transitions those values control; defaults
-and pre-state can also change the realized effect without changing an explicit
-argument.  Provenance answers where a value came from, not what the tool will
-do with it.  The underlying problem is therefore representational: a monitor
-cannot authorize a distinction that its view of the call does not preserve.
+Authorization cannot enforce a distinction that its observation interface has
+already erased. An ACL may permit Alice and reject Eve, but a monitor that sees
+only the tool name cannot apply that rule. Provenance may identify where the
+string ``Eve'' originated without identifying whether it controls an
+invitation, a message, or an inert note. Explicit arguments expose more of the
+request, yet defaults, aliases, list expansion, and pre-state can change the
+committed effect without changing the call text. Downstream model reasoning is
+subject to the same information boundary.
 
 \input{figures/representation_collision}
 
-Figure~\ref{fig:representation-collision} illustrates this collision.  If two
-executions have the same monitor representation but some admissible policy
-must decide them differently, the monitor must either admit an unauthorized
-effect or withhold authorized work.  Complete mediation and least privilege do
-not recover the missing distinction; they require an adequate object of
-mediation.  We call this requirement \emph{tool-effect binding}.
+Figure~\ref{fig:representation-collision} illustrates this boundary. Let
+$\rho$ be the execution representation available to an authorizer. If
+$\rho(u)=\rho(v)$ while an admissible policy must decide $u$ and $v$
+differently, every deterministic consumer of $\rho$ returns the same decision
+for both. Allowing admits one unauthorized execution; denying or abstaining
+withholds one authorized execution. Complete mediation and least privilege
+therefore require an adequate object of mediation. We call this representation
+obligation \emph{tool-effect binding}.
 
-This observation separates four questions that are often conflated.  First,
-did an execution change external state?  Second, can an admissible policy
-require different decisions for two such changes?  Third, does the monitor's
-representation preserve that distinction?  Finally, does the runtime check the
-same call that it commits?  State-difference evidence answers the first
-question, a policy-separating witness answers the second, representation
-collisions answer the third, and a pre-commit audit answers the fourth.  No one
-layer substitutes for another.
+Agent harnesses make tool-effect binding a first-class systems problem. They
+register evolving third-party tools from schemas and natural-language
+descriptions, ask an untrusted model to synthesize calls, and resolve important
+semantics inside the execution layer. A call may expand one list into several
+recipients, choose a default mode, overwrite an existing resource, or create a
+different transition under another pre-state. Unlike a security-typed API, the
+harness is rarely given a trusted effect object that already captures these
+distinctions. A model can propose such an object, but the proposal supplies
+neither semantic evidence nor authority.
 
-We represent a call as a set of concrete, independently authorizable
-\emph{effect atoms}.  In the example, these include creating the event,
-inviting Alice, and inviting Eve.  An atom records the effect kind and the
-tool-local resource, target, operation, commit mode, provenance, or qualifier
-that an admissible policy may need to distinguish.  A representation is minimal relative
-to a frozen tool domain and policy family when merging any two of its classes
-would erase a required authorization distinction.
+This paper asks whether a harness can test a proposed authorization interface
+against the implementation it will mediate. The key evidence is asymmetric.
+One executable pair with different policy decisions and an identical
+representation falsifies that interface wherever the pair is reachable. A
+successful registration instead creates a scoped conformance record: it names
+the implementation, interventions, policy family, and unresolved tests bound
+to the frozen descriptor. This asymmetry makes falsification the primary
+security result and conformance an auditable deployment contract.
 
-The central challenge is validating this representation.  A developer or an
-LLM may propose an effect inventory from a tool's description and schema, but
-the proposal alone says nothing about whether it matches the implementation.
-We therefore treat every candidate descriptor as an untrusted hypothesis.
-Before registration, a harness executes a valid call and controlled variants
-that change a field, default, target expansion, or pre-state.  A source-state
-oracle compares the committed effects.  If the effects change while the
-candidate representation does not, the execution supplies a counterexample
-and the descriptor is refined.  Proposal provides a starting point; execution
-provides the evidence.  Unresolved tests are retained instead of being
-interpreted as invariance.
+Our registration procedure treats a candidate descriptor as an untrusted
+hypothesis. It executes a valid call and controlled variants in copied
+sandboxes, varying fields, omissions, list cardinality, defaults, provenance,
+or pre-state. A source oracle records the committed transition. A separately
+supplied policy-separation oracle determines whether the semantic difference
+requires another authorization decision. When policy separates two executions
+that the descriptor merges, the pair becomes an executable failure certificate
+and forces refinement. Invalid and unresolved interventions remain in the
+validation record.
 
-This use of counterfactuals differs from defenses that rerun an agent to ask
-which observation caused a proposed action~\cite{attriguard,causalarmor}.  We
-hold the planner out of the validation loop and intervene on the tool call or
-its pre-state to ask which effects the implementation commits.  The two
-questions are complementary: causal attribution can constrain why a call was
-proposed, while effect registration determines what must be mediated if that
-call is about to execute.
+We instantiate this methodology with typed effect atoms. Each atom represents
+one policy-relevant effect occurrence and retains the resource, target,
+operation, provenance, or qualifier needed by the selected policy family.
+List-valued calls expand when their members require independent decisions. The
+method itself is representation-neutral: an arguments-plus-trusted-state view
+can also be sufficient. Typed effects place tool-specific semantic adaptation
+in a registered descriptor; a state-aware request leaves that adaptation to a
+downstream consumer. We evaluate both paths and measure where they place state,
+code, normalization, and runtime cost.
 
-After validation, the descriptor is hash-frozen into the tool interface.  The
-same trust boundary applies online: an agent proposes a call but cannot
-authorize it.  Immediately before commitment, a deterministic monitor expands
-the exact call through the registered descriptor and passes that effect view to
-an independently supplied authority predicate.  Only the checked call
-associated with an \Allow{} decision can execute.  The registration LLM is
-absent from this runtime path, and the runtime planner cannot enlarge its own
-authority.  Our AgentDojo prototype instantiates only provenance-origin
-confinement over registered fields and effect labels; richer ACL, delegation,
-and quota policies can consume a concrete atom view but are not implemented
-here.
-
-Our evaluation follows the same sequence.  First, source replay establishes
-that calls commit compound and pre-state-dependent effects.  Second,
-policy-separating pairs show that common call views lose required distinctions,
-while typed atoms preserve them in two finite source-executed domains.  Third,
-a concrete authorizer exactly realizes a frozen policy relation over those
-atoms.  Finally, an AgentDojo provenance-origin monitor demonstrates audited
-pre-commit mediation but does not outperform a prompting defense or a raw-field
-control on utility.  The first three results support the representation claim;
-the last exposes the current runtime tradeoff rather than hiding it.
+The evaluation follows the security argument from implementation behavior to
+authorization. Source replay first establishes compound and state-dependent
+effects. Executable separating pairs then expose collisions in tool-name,
+raw-call, and common-field interfaces. Post-freeze experiments run 11 tools
+from three public MCP implementations and compare candidate interfaces against
+a native-delta decision chain. A four-domain authorization benchmark holds
+calls, state, authority, and decision logic fixed while changing only the
+observation interface. Finally, copied-sandbox and AgentDojo studies exercise
+frozen interfaces at audited pre-commit boundaries.
 
 This paper makes three contributions:
 \begin{itemize}[leftmargin=*]
-  \item \textbf{Model.} We formalize authorization-sufficient effect
-  representations and prove the unavoidable safety--permission tradeoff
-  caused by a representation collision.
-  \item \textbf{Validate.} We introduce source-executed counterfactual
-  registration, in which execution counterexamples refine tool-local effect
-  atoms before a descriptor is frozen.
-  \item \textbf{Instantiate.} We realize the interface in a finite
-  concrete-atom authorizer and an audited provenance-origin monitor, separating
-  the representation result from the narrower runtime policy it enables.
+  \item \textbf{Authorization observability.} We formalize the upper bound that
+  an observation interface places on every downstream authorizer and derive the
+  unavoidable safety--availability consequence of a policy-separating
+  collision.
+  \item \textbf{Executable interface falsification.} We combine source-executed
+  effect witnesses, independently supplied policy separation, and
+  representation collisions into concrete failure certificates and a
+  counterexample-guided registration discipline for existing tools.
+  \item \textbf{Validated interfaces and consumption.} We falsify coarse views
+  on project-local and independently implemented tools, evaluate typed-effect
+  and state-aware interfaces under shared ACL, capability, and delegation
+  authority, quantify their semantic-placement tradeoffs, and exercise a
+  frozen descriptor at pre-commit integration points.
 \end{itemize}
+
+The central outcome is a security discipline: an authorization interface is an
+implementation-grounded contract, not a declaration to be trusted on sight.
+Executable counterexamples expose missing distinctions before downstream policy
+depends on them.

@@ -11,6 +11,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "RELEASE_MANIFEST.json"
 IGNORED = {OUTPUT, ROOT / "ANONYMIZATION_REPORT.json"}
+IGNORED_PARTS = {".git", ".pytest_cache", ".ruff_cache", ".mypy_cache", "__pycache__"}
+IGNORED_SUFFIXES = {".aux", ".blg", ".fdb_latexmk", ".fls", ".log", ".out", ".pyc", ".pyo", ".synctex.gz"}
 
 
 def sha256(path: Path) -> str:
@@ -24,7 +26,12 @@ def sha256(path: Path) -> str:
 def main() -> int:
     files = []
     for path in sorted(ROOT.rglob("*")):
-        if not path.is_file() or path in IGNORED or ".git" in path.parts:
+        if (
+            not path.is_file()
+            or path in IGNORED
+            or any(part in IGNORED_PARTS for part in path.parts)
+            or any(path.name.endswith(suffix) for suffix in IGNORED_SUFFIXES)
+        ):
             continue
         files.append(
             {
@@ -49,4 +56,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

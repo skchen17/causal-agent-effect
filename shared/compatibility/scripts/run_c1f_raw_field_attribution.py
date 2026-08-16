@@ -57,7 +57,7 @@ RESULT_DIR = (
     "c1f-raw-field-attribution"
 )
 SHADOW = ROOT / "code/shadow_atom_envelope_c1f"
-PYTHON = Path(os.environ.get("AGENTDOJO_PYTHON", sys.executable))
+PYTHON = ROOT / "runs/e75_agentdojo_env/bin/python"
 E77_PATCH = "src.experiments.effect_binding_guard.e77_effect_diff_runtime_guard.agentdojo_e77_runtime_patch"
 RAW_PATCH = (
     "src.experiments.effect_binding_guard.representation_closed_loop_attribution."

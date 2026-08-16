@@ -4,14 +4,13 @@ import importlib.util
 import json
 import os
 import subprocess
-import sys
 from pathlib import Path
 
 
 ROOT = next(parent for parent in Path(__file__).resolve().parents if (parent / "paper/current-usenix").is_dir())
 RUNNER = ROOT / "shared/compatibility/scripts/run_c1f_closed_loop_four_view_extension.py"
 SHADOW = ROOT / "code/shadow_atom_envelope_c1f"
-PYTHON = Path(os.environ.get("AGENTDOJO_PYTHON", sys.executable))
+PYTHON = ROOT / "runs/e75_agentdojo_env/bin/python"
 
 
 def load_runner():

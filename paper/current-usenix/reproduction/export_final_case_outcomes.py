@@ -20,6 +20,14 @@ PIPELINE = {
     "spotlighting": "local-spotlighting_with_delimiting",
     "c1f": "local-ours_e77_effect_diff_runtime",
 }
+STRONG_PIPELINE = {
+    "no_guard": "local",
+    "spotlighting": "local-spotlighting_with_delimiting",
+    "prompt_sandwiching": "local-prompt_sandwiching",
+    "promptarmor_local": "local-promptarmor_local",
+    "c1f": "local-ours_e77_effect_diff_runtime",
+}
+STRONG_RUNS = ROOT / "experiments/unified-agent-security-baselines/runs/current-c1f-strong-baseline-rerun"
 SUITES = ("banking", "slack", "travel", "workspace")
 REPS = tuple(f"matched-r{index}" for index in range(1, 5))
 
@@ -99,22 +107,32 @@ def deepseek_rows() -> list[dict[str, Any]]:
 
 def qwen_rows() -> list[dict[str, Any]]:
     require_passed(
-        "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/"
-        "qwen32_matched_results.json"
+        "experiments/unified-agent-security-baselines/results/"
+        "current-c1f-strong-baseline-rerun/results.json"
     )
     rows = []
-    for condition in PIPELINE:
+    for condition, pipeline in STRONG_PIPELINE.items():
         for mode, pattern in (
             ("benign", "user_task_*/none/none.json"),
             ("attack", "user_task_*/important_instructions/*.json"),
         ):
-            root = RUNS / f"qwen32-matched-{condition}-{mode}-r1"
             for suite in SUITES:
                 paths = sorted(
-                    (root / suite / "agentdojo_logs" / PIPELINE[condition] / suite).glob(pattern)
+                    (
+                        STRONG_RUNS
+                        / condition
+                        / mode
+                        / suite
+                        / "agentdojo_logs"
+                        / pipeline
+                        / suite
+                    ).glob(pattern)
                 )
-                rows.extend(outcome("qwen32_matched", condition, path) for path in paths)
-    if len(rows) != 3 * 726:
+                rows.extend(
+                    outcome("qwen32_strong_baseline_matched", condition, path)
+                    for path in paths
+                )
+    if len(rows) != 5 * 726:
         raise RuntimeError(f"Qwen row mismatch: {len(rows)}")
     return rows
 
@@ -167,14 +185,20 @@ def agentlab_rows() -> list[dict[str, Any]]:
         )
     }
     rows = []
-    base = (
+    prior_base = (
         ROOT
         / "experiments/long-horizon-transfer/runs/long-horizon-cross-environment-transfer/"
         "agentlab-c1f-current-profile/full"
     )
+    roots = {
+        "no_guard": prior_base / "no_guard",
+        "c1f": ROOT
+        / "experiments/long-horizon-transfer/runs/long-horizon-cross-environment-transfer/"
+        "agentlab-c1f-provenance-normalized-qwen32/full",
+    }
     for condition in ("no_guard", "c1f"):
         indexed: dict[tuple[str, str, str], Path] = {}
-        for path in sorted((base / condition).rglob("*.json")):
+        for path in sorted(roots[condition].rglob("*.json")):
             payload = read_json(path)
             key = (
                 payload.get("suite_name"),
@@ -238,10 +262,72 @@ def bounded_rows() -> list[dict[str, Any]]:
     return rows
 
 
+def raw_field_attribution_rows() -> list[dict[str, Any]]:
+    require_passed(
+        "experiments/security-analysis-ablation-and-overhead/results/"
+        "c1f-raw-field-attribution/raw-field-attribution-report.json"
+    )
+    selected_path = (
+        ROOT
+        / "experiments/security-analysis-ablation-and-overhead/evaluation/"
+        "representation-closed-loop-attribution/selected-cases.jsonl"
+    )
+    selected = {
+        row["case_key"]
+        for row in (
+            json.loads(line)
+            for line in selected_path.read_text(encoding="utf-8").splitlines()
+            if line
+        )
+    }
+    run_root = (
+        ROOT
+        / "experiments/security-analysis-ablation-and-overhead/runs/"
+        "c1f-raw-field-attribution/qwen32-targeted/raw_field_taint/agentdojo_logs/"
+        "local-ours_e77_effect_diff_runtime-raw_field_c1f_ablation"
+    )
+    indexed: dict[str, Path] = {}
+    for path in sorted(run_root.rglob("*.json")):
+        payload = read_json(path)
+        if not str(payload.get("user_task_id", "")).startswith("user_task_"):
+            continue
+        key = ":".join(
+            (
+                str(payload["suite_name"]),
+                str(payload["user_task_id"]),
+                str(payload.get("attack_type") or "none"),
+                str(payload.get("injection_task_id") or "none"),
+            )
+        )
+        if key not in selected:
+            continue
+        if key in indexed:
+            raise RuntimeError(f"duplicate raw-field attribution key: {key}")
+        indexed[key] = path
+    if set(indexed) != selected:
+        raise RuntimeError(
+            f"raw-field attribution key mismatch: {len(indexed)}/{len(selected)}"
+        )
+    rows = [
+        outcome("qwen_raw_field_attribution", "raw_field_taint", indexed[key])
+        for key in sorted(selected)
+    ]
+    if len(rows) != 321:
+        raise RuntimeError(f"raw-field attribution row mismatch: {len(rows)}")
+    return rows
+
+
 def main() -> int:
-    rows = [*deepseek_rows(), *qwen_rows(), *heldout_rows(), *agentlab_rows(), *bounded_rows()]
-    if len(rows) != 5228:
-        raise RuntimeError(f"final compact outcome ledger must contain 5228 rows, observed {len(rows)}")
+    rows = [
+        *deepseek_rows(),
+        *qwen_rows(),
+        *heldout_rows(),
+        *agentlab_rows(),
+        *bounded_rows(),
+        *raw_field_attribution_rows(),
+    ]
+    if len(rows) != 7001:
+        raise RuntimeError(f"final compact outcome ledger must contain 7001 rows, observed {len(rows)}")
     jsonl = OUT / "final_case_outcomes.jsonl"
     jsonl.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows), encoding="utf-8")
     with (OUT / "final_case_outcomes.csv").open("w", newline="", encoding="utf-8") as handle:

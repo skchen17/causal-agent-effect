@@ -9,23 +9,42 @@ bound.  Tables~\ref{tab:representation-collisions}
 and~\ref{tab:toolsandbox-heldout} retain the exact cell, collision, and
 overpartition diagnostics.
 
+\paragraph{Finite containment diagnostic.}
+\input{tables/table_concrete_atom_authorizer}
+Before the explicit-authority benchmark, we tested whether each representation
+could reproduce a finite source-effect containment relation over 232 ordered
+ToolSandbox context pairs. Concrete typed atoms match that oracle with 0.0\%
+UPA and false denial; the relation is a representation stress test rather than
+a deployment authorization model (Table~\ref{tab:concrete-atom-authorizer}).
+
 \paragraph{Exact DeepSeek runtime results.}
+\input{figures/security_utility_tradeoff}
 \input{tables/table_deepseek_runtime}
 Table~\ref{tab:deepseek-runtime} retains the exact same-model values and the
 scope-aligned comparison summarized by
 Figure~\ref{fig:security-utility-tradeoff}.
 
+\paragraph{Runtime attribution and transfer.}
+\input{tables/table_granularity_and_transfer}
+Table~\ref{tab:granularity-transfer} reports the fixed applicability subset and
+saved AgentLAB transfer under their frozen protocols.
+
+\input{sections/generated_final_validation_results}
+
 \paragraph{Controlled monitor stresses.}
 \input{tables/table_binding_problem_characterization}
-Released checkpoints respond to some effect, resource, and authorization
+Table~\ref{tab:binding-problem-characterization} shows that released
+checkpoints respond to some effect, resource, and authorization
 changes, but none binds every tested axis jointly.  The hard guard's UPA rises
 from 3.6\% on the unified suite to 38.3\% on the repaired resource/authorization
 stress.  Removing resource or authorization matching raises UPA to 61.7\% and
 89.2\%, respectively.  These are adapted custom stresses rather than
-original-paper benchmark reproductions.
+the original systems' benchmark protocols.
 
 \paragraph{Registration failures.}
-The multi-base AgentDojo audit attempts 1,325 source executions over 75
+\input{tables/table_registration_sufficiency}
+Table~\ref{tab:registration-sufficiency} summarizes the multi-base AgentDojo
+audit, which attempts 1,325 source executions over 75
 suite-scoped field instances.  Of these, 76.8\% are valid, 73.3\% change
 committed state, 0.8\% change only the returned output, 2.7\% are
 effect-invariant, and 23.2\% are invalid or unresolved.  Most invalid interventions substitute nonexistent resource
@@ -33,21 +52,25 @@ identifiers or violate a tool precondition.  We retain those fields in the
 descriptor; absence of a valid witness is never interpreted as irrelevance.
 The artifact includes one row per attempted execution and a per-field summary.
 
-\paragraph{Bounded public-family sensitivity.}
+\paragraph{Public-family sensitivity.}
 The current diagnostic fixes 40 official attack keys and crosses each with
 four public AgentDojo attack generators.  Worst-of-four attack success is
 10.0\% without defense and 5.0\% under the provenance-origin monitor; terminal
 utility is 45.0\% and 42.5\%.  The four attack-discordant pairs give two-sided
-exact McNemar $p=.625$.  This underpowered result is a bounded sensitivity
-check, not evidence of unrestricted adaptation or a statistically established
-security improvement.
+exact McNemar $p=.625$.
 
 \paragraph{Cost accounting.}
+\input{tables/table_interface_economy}
+Table~\ref{tab:interface-economy} separates interface normalization from
+prototype implementation cost. Typed views are less overpartitioned and expose
+no raw tool pre-state at the policy-facing boundary in these two designs, but
+neither latency nor executable code size consistently favors them.
+
 The deterministic comparison kernel has sub-millisecond median latency in the
 reported microbenchmarks.  This excludes descriptor registration, model
 inference, sandbox execution, and I/O.  Historical complete-trajectory runs
 have median duration 53.27~s without mediation and 85.54~s under an earlier
 mediation protocol, but they were sequential and used different recovery paths,
-so the difference is observational rather than a causal overhead estimate.  The
-current provenance-origin guard makes no runtime LLM call; offline registration
-bears all proposal and counterfactual-execution cost.
+so we report the difference descriptively. The current provenance-origin guard
+makes no runtime LLM call; offline registration bears all proposal and
+counterfactual-execution cost.

@@ -10,7 +10,6 @@ import importlib.util
 import json
 import os
 import subprocess
-import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -40,7 +39,7 @@ RESULT_DIR = (
 )
 QWEN_RUNS = ROOT / "experiments/intent-bound-runtime-guard/runs/counterfactual-atom-envelope-guard"
 SHADOW = ROOT / "code/shadow_atom_envelope_c1f"
-PYTHON = Path(os.environ.get("AGENTDOJO_PYTHON", sys.executable))
+PYTHON = ROOT / "runs/e75_agentdojo_env/bin/python"
 E77_PATCH = "src.experiments.effect_binding_guard.e77_effect_diff_runtime_guard.agentdojo_e77_runtime_patch"
 PATCHES = {
     "whole_call_provenance": (

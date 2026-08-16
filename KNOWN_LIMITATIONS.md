@@ -1,18 +1,19 @@
 # Known Artifact Limitations
 
-- The same-checkpoint five-method Qwen3-32B comparison was still running when
-  this snapshot was prepared. Its protocol and code are included; partial model
-  rows are not published as final evidence.
-- Full AgentDojo and ToolSandbox source reruns require their public third-party
-  packages. The repository includes frozen source-execution contexts and result
-  artifacts so the representation and policy analyses can be rerun without model
-  inference.
-- Source replay can update timestamp-bearing output files. The release manifest
-  binds the exact frozen files used by the manuscript; run source replay in a
-  clean checkout when byte-for-byte artifact preservation matters.
-- The AgentDojo runtime monitor instantiates provenance-origin confinement over
-  registered fields and effect labels. It is not the same as the concrete typed
-  ToolSandbox authorizer and does not implement general ACLs or delegation.
-- The manuscript snapshot contains negative utility and mechanism-attribution
-  results. They are intentionally retained.
-
+- Source replay cannot establish semantics outside the frozen implementations,
+  intervention manifests, and policy families. Invalid and unresolved
+  interventions remain in the validation record.
+- Descriptor, native oracle, and policy code are mechanically separated but were
+  constructed within one research project; the artifact does not claim
+  independent semantic certification.
+- The state-aware request is also sufficient in both positive domains. Typed
+  effects reduce source-equivalent overpartition and policy-facing raw-state
+  exposure in this prototype, but do not universally dominate sufficient
+  alternatives in latency or code size.
+- Full AgentDojo and source-sandbox reruns require pinned public dependencies and
+  model checkpoints that are not redistributed.
+- The AgentDojo monitor implements a provenance-origin policy. It is an audited
+  runtime consumer, not a general ACL/capability/delegation deployment.
+- The matched runtime study retains all negative outcomes: Prompt Sandwiching is
+  the best Qwen3-32B security--utility point, and the DeepSeek monitor misses the
+  preregistered five-point benign non-inferiority margin by 0.4 percentage points.

@@ -78,10 +78,11 @@
 \node[font=\tiny, anchor=north] at (\xorigin+2.85,-0.88)
   {native task utility under attack};
 \end{tikzpicture}
-\caption{Security--utility tradeoff under one DeepSeek model. Lower attack
-success and higher task utility are preferable. The monitor removes the
+\caption{Bounded runtime characterization under one DeepSeek model. Lower
+attack success and higher task utility are preferable. The monitor removes the
 observed injection successes in both protocols, but does not dominate the
 prompting baseline on utility. Panels use separate frozen case manifests and
-must be interpreted within, not across, protocols.}
+must be interpreted within, not across, protocols; these results do not prove
+authorization-interface conformance.}
 \label{fig:security-utility-tradeoff}
 \end{figure}

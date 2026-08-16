@@ -23,18 +23,17 @@ SOURCES = {
         "deepseek_benign_interleaved_results.json"
     ),
     "qwen": (
-        "experiments/intent-bound-runtime-guard/results/counterfactual-atom-envelope-guard/"
-        "qwen32_matched_results.json"
+        "experiments/unified-agent-security-baselines/results/"
+        "current-c1f-strong-baseline-rerun/results.json"
     ),
     "heldout": "experiments/adaptive-injection-benchmark/results/usenix-heldout-public-families/results.json",
-    "transfer": "analysis/results/e79_agentlab_saved_transfer_current_pair_results.json",
-    "four_view": (
-        "experiments/security-analysis-ablation-and-overhead/results/"
-        "c1f-closed-loop-four-view/closed-loop-four-view-report.json"
-    ),
     "bounded": (
         "experiments/adaptive-injection-benchmark/results/"
         "bounded-public-family-search-current-c1f/results.json"
+    ),
+    "concrete_authorizer": (
+        "experiments/human-authority-and-causal-validation/results/"
+        "concrete-atom-authorizer-mechanism/concrete-atom-authorizer-report.json"
     ),
 }
 
@@ -73,15 +72,13 @@ def indexed(payload: dict[str, Any], outer: str, field: str, value: str) -> dict
 
 
 def pct(numerator: int, denominator: int) -> str:
-    return f"{numerator}/{denominator} ({100 * numerator / denominator:.1f}\\%)"
+    return f"{100 * numerator / denominator:.1f}\\%"
 
 
 def render(payloads: dict[str, dict[str, Any]]) -> str:
     deepseek = payloads["deepseek"]
     qwen = payloads["qwen"]
     heldout = payloads["heldout"]
-    transfer = payloads["transfer"]
-    four_view = payloads["four_view"]
     bounded = payloads["bounded"]
 
     deepseek_rows = {
@@ -92,36 +89,31 @@ def render(payloads: dict[str, dict[str, Any]]) -> str:
     if bootstrap["noninferior"]:
         utility_sentence = (
             "The task-clustered one-sided 95\\% lower bound is "
-            f"{bootstrap['one_sided_95_lower_bound']:.3f}, above the pre-registered "
-            "$-0.05$ margin; C1f therefore meets this bounded non-inferiority criterion."
+            f"{100 * bootstrap['one_sided_95_lower_bound']:.1f} percentage points, "
+            "above the pre-registered $-5.0$-point margin; the monitor therefore "
+            "meets the non-inferiority criterion."
         )
     else:
         utility_sentence = (
             "The task-clustered one-sided 95\\% lower bound is "
-            f"{bootstrap['one_sided_95_lower_bound']:.3f}, which does not exceed the "
-            "pre-registered $-0.05$ margin; we therefore do not claim benign-utility "
-            "non-inferiority."
+            f"{100 * bootstrap['one_sided_95_lower_bound']:.1f} percentage points, "
+            "below the pre-registered $-5.0$-point margin; the run therefore "
+            "misses the non-inferiority criterion by 0.4 percentage points."
         )
 
     qwen_rows = {
-        condition: indexed(qwen, "metrics", "condition", condition)
-        for condition in ("no_guard", "spotlighting", "c1f")
+        method: indexed(qwen, "metrics", "method", method)
+        for method in (
+            "no_guard",
+            "spotlighting",
+            "prompt_sandwiching",
+            "promptarmor_local",
+            "c1f",
+        )
     }
     heldout_rows = {
         condition: indexed(heldout, "summaries", "method", condition)
         for condition in ("no_guard", "spotlighting", "c1f")
-    }
-    tm = {
-        row["condition"]: row for row in transfer["comparison_metrics"]
-    }
-    four_rows = {
-        variant: indexed(four_view, "aggregates", "variant", variant)
-        for variant in (
-            "no_guard",
-            "whole_call_provenance",
-            "effect_only",
-            "registered_field_c1f",
-        )
     }
     bounded_rows = {
         method: indexed(bounded, "search_metrics", "method", method)
@@ -129,70 +121,59 @@ def render(payloads: dict[str, dict[str, Any]]) -> str:
     }
 
     lines = [
-        r"\subsection{Frozen Generalization and Utility Checks}",
-        r"\label{sec:final-validation}",
+        r"\paragraph{Matched runtime comparisons.}",
         "",
         r"\input{tables/table_final_matched_validation}",
         "",
         (
-            "Across four interleaved DeepSeek repetitions, benign utility is "
+            "Table~\\ref{tab:final-matched-validation} reports the complete matched "
+            "comparison. Across four interleaved DeepSeek repetitions, benign utility is "
             f"{pct(deepseek_rows['no_guard']['utility_successes'], 388)} without a guard, "
             f"{pct(deepseek_rows['spotlighting']['utility_successes'], 388)} under Spotlighting, "
             f"and {pct(deepseek_rows['c1f']['utility_successes'], 388)} under \\sys{{}}. "
-            f"The mean C1f-minus-no-guard difference is {bootstrap['difference_c1f_minus_no_guard']:.3f}. "
+            f"The mean monitor-minus-no-guard difference is "
+            f"{100 * bootstrap['difference_c1f_minus_no_guard']:.1f} percentage points. "
             + utility_sentence
         ),
         "",
         (
-            "The matched Qwen3-32B run retains every exact benchmark key.  No guard, "
-            "Spotlighting, and \\sys{} respectively achieve benign utility "
-            f"{qwen_rows['no_guard']['benign_utility_successes']}/97, "
-            f"{qwen_rows['spotlighting']['benign_utility_successes']}/97, and "
-            f"{qwen_rows['c1f']['benign_utility_successes']}/97; their attack success is "
-            f"{qwen_rows['no_guard']['attack_successes']}/629, "
-            f"{qwen_rows['spotlighting']['attack_successes']}/629, and "
-            f"{qwen_rows['c1f']['attack_successes']}/629.  This is a second-checkpoint "
-            "test under the same benchmark protocol, not a claim about arbitrary models."
+            "The matched Qwen3-32B run retains every exact benchmark key for all five "
+            "methods.  No guard, Spotlighting, Prompt Sandwiching, the PromptArmor-style "
+            "adapter, and \\sys{} respectively achieve benign utility "
+            f"{pct(qwen_rows['no_guard']['benign_utility_successes'], 97)}, "
+            f"{pct(qwen_rows['spotlighting']['benign_utility_successes'], 97)}, "
+            f"{pct(qwen_rows['prompt_sandwiching']['benign_utility_successes'], 97)}, "
+            f"{pct(qwen_rows['promptarmor_local']['benign_utility_successes'], 97)}, and "
+            f"{pct(qwen_rows['c1f']['benign_utility_successes'], 97)}; their attack success is "
+            f"{pct(qwen_rows['no_guard']['attack_successes'], 629)}, "
+            f"{pct(qwen_rows['spotlighting']['attack_successes'], 629)}, "
+            f"{pct(qwen_rows['prompt_sandwiching']['attack_successes'], 629)}, "
+            f"{pct(qwen_rows['promptarmor_local']['attack_successes'], 629)}, and "
+            f"{pct(qwen_rows['c1f']['attack_successes'], 629)} ($N=97$ benign and "
+            "$N=629$ attack keys per method). Prompt Sandwiching provides the best "
+            "combined utility--security point in this comparison. The PromptArmor-style "
+            "adapter eliminates observed attack success while sharply reducing both "
+            "utility measures."
         ),
         "",
-        r"\input{tables/table_final_heldout_transfer}",
+        r"\input{tables/table_final_heldout}",
         "",
         (
             "On the frozen 320-case public-family set, attack success is "
-            f"{heldout_rows['no_guard']['attack_successes']}/320 without a guard, "
-            f"{heldout_rows['spotlighting']['attack_successes']}/320 under Spotlighting, "
-            f"and {heldout_rows['c1f']['attack_successes']}/320 under \\sys{{}}; native "
-            "task utility is reported for the same rows in Table~\\ref{tab:final-heldout-transfer}. "
-            "The matched current-profile AgentLAB saved replay changes attack success from "
-            f"{tm['no_guard']['attack_successes']}/303 without a guard to "
-            f"{tm['c1f']['attack_successes']}/303 under C1f, and task utility from "
-            f"{tm['no_guard']['utility_successes']}/303 to {tm['c1f']['utility_successes']}/303, "
-            "with exact checked/executed signature reconciliation.  This "
-            "is fixed saved transfer, not regeneration of adaptive AgentLAB attacks."
+            f"{pct(heldout_rows['no_guard']['attack_successes'], 320)} without a guard, "
+            f"{pct(heldout_rows['spotlighting']['attack_successes'], 320)} under Spotlighting, "
+            f"and {pct(heldout_rows['c1f']['attack_successes'], 320)} under \\sys{{}}; native "
+            "task utility is reported for the same rows in "
+            "Table~\\ref{tab:final-heldout}."
         ),
         "",
         (
-            "On the separately frozen 40-key worst-of-four public-family diagnostic, "
-            f"attack success is {bounded_rows['no_guard']['attack_successes']}/40 without a guard "
-            f"and {bounded_rows['ours_e77_effect_diff_runtime']['attack_successes']}/40 under "
-            f"current C1f; terminal utility is {bounded_rows['no_guard']['terminal_user_utility_successes']}/40 "
-            f"and {bounded_rows['ours_e77_effect_diff_runtime']['terminal_user_utility_successes']}/40. "
-            "This small bounded search is reported as sensitivity evidence, not unrestricted adaptation."
-        ),
-        "",
-        r"\input{tables/table_final_four_view}",
-        "",
-        (
-            "The closed-loop four-view comparison isolates monitor granularity on its frozen "
-            "applicability subset.  Attack success is "
-            f"{four_rows['no_guard']['attack_successes']}/273 without blocking, "
-            f"{four_rows['whole_call_provenance']['attack_successes']}/273 for whole-call "
-            "provenance, "
-            f"{four_rows['effect_only']['attack_successes']}/273 for effect-only checking, "
-            f"and {four_rows['registered_field_c1f']['attack_successes']}/273 for registered "
-            "fields.  The table reports benign and attack-task utility alongside security; "
-            "because selection required field-level applicability, these rates are mechanism "
-            "evidence rather than benchmark-wide estimates."
+            "On the separately frozen 40-key worst-of-four public-family set, "
+            f"attack success is {pct(bounded_rows['no_guard']['attack_successes'], 40)} without a guard "
+            f"and {pct(bounded_rows['ours_e77_effect_diff_runtime']['attack_successes'], 40)} under "
+            f"the monitor; terminal utility is "
+            f"{pct(bounded_rows['no_guard']['terminal_user_utility_successes'], 40)} "
+            f"and {pct(bounded_rows['ours_e77_effect_diff_runtime']['terminal_user_utility_successes'], 40)}."
         ),
         "",
     ]

@@ -1,20 +1,21 @@
 \section{Conclusion}
 
-Tool-effect binding is the representation obligation that precedes runtime
-authorization.  Source execution establishes what a tool commits; a policy
-witness establishes which effects require different decisions; and a
-representation collision shows whether the monitor preserves that distinction.
-When it does not, downstream enforcement cannot recover the lost information.
-Source-executed counterfactuals expose these collisions and guide descriptor
-refinement before registration.
+Authorization logic is only as discriminating as the interface it observes.
+When an interface merges executions that policy must decide differently, no
+downstream ACL, capability system, provenance check, or model can recover the
+lost distinction. A source-executed policy-separating collision is therefore a
+concrete failure certificate for that interface.
 
-Across finite AgentDojo and pre-registered ToolSandbox domains, typed effects
-remove collisions left by common call views; on ToolSandbox, concrete atoms
-exactly realize the specified finite policy relation.  In AgentDojo, a
-provenance-origin monitor uses the registered descriptor for deterministic
-pre-commit checks and complete call reconciliation.  Its security gains remain
-subject to provenance quality and a visible utility tradeoff.  The contribution
-is an executable and falsifiable effect representation, not an authority source:
-the planner proposes calls, while an independent policy must decide which
-represented effects may commit.
+Our method turns this reference-monitor precondition into an executable
+security contract. Controlled interventions establish what a tool commits, a
+policy-separation oracle identifies the distinctions that matter, and
+representation collisions expose inadequate interfaces before deployment.
+Counterexamples drive refinement, while the frozen validation record binds an
+accepted descriptor to its implementation and evidence.
+
+Typed effects provide one tested instantiation of this discipline; a strong
+state-aware request demonstrates that the principle is representation-neutral.
+The broader result is a practical rule for agent harnesses: test the
+authorization interface against implementation behavior before downstream
+policy is allowed to trust it.
 \label{technical-body-end}

@@ -1,30 +1,32 @@
 \begin{abstract}
-Tool-using language-model agents turn untrusted text into structured calls that
-commit external state.  A single call can create an object, disclose data to
-several principals, and change visibility.  A monitor that sees only the tool
-name, call, or raw arguments may therefore merge state changes that require
-different authorization decisions.  We study \emph{tool-effect binding}: the
-representation needed to connect a proposed call to the security-relevant
-effects it will commit.  We show that when a representation merges effects
-that an admissible policy distinguishes, every monitor over that representation
-must either allow an unauthorized effect or withhold authorized work.
+Authorization logic can enforce only distinctions visible through its
+observation interface. If that interface maps two policy-distinct executions
+to the same representation, every downstream authorizer faces the same choice:
+admit an unauthorized execution or withhold authorized work. Tool-using agents
+make this interface difficult to construct because defaults, aliases, list
+expansion, and pre-state can make a structured call commit effects that its
+name and explicit arguments do not reveal.
 
-We introduce counterfactual registration, which treats a tool descriptor as a
-hypothesis, executes controlled call and state variants, and refines the
-descriptor when the observed effects expose a missing distinction.  Source
-execution determines what changed; a separate policy oracle determines whether
-the change must be authorized independently.  A common-field representation
-leaves 118 authorization-separating pairs across 56 source-executed calls,
-whereas typed effect atoms remove every observed collision.  The same
-representation removes all observed collisions in 32 held-out ToolSandbox
-contexts and exactly realizes their frozen 232-query policy relation.
+We turn authorization observability into an executable security contract.
+Registration treats a candidate tool descriptor as an untrusted hypothesis,
+executes controlled call and state interventions in copied sandboxes, observes
+committed transitions, and asks a separately supplied policy whether the
+transition difference requires another decision. A policy-separating pair that
+the candidate merges is a concrete failure certificate. Counterexamples drive
+refinement; the resulting validation record binds the frozen descriptor to the
+implementation, intervention manifest, and policy family it survived.
 
-Finally, we use a conservative registered descriptor in a deterministic
-provenance-origin monitor.  On 608 scope-aligned AgentDojo attacks under
-DeepSeek, attack success falls from 1.0\% to 0.0\%, and every executed call has
-a matching pre-commit decision.  A same-model prompting defense reaches the
-same attack rate, while benign non-inferiority is not established.  We
-therefore treat this runtime experiment as a bounded mediation case study; the
-main representation claim rests on source-executed collisions and the frozen
-finite-policy test.
+Source execution produces failure certificates for tool-name, raw-call, and
+common-field interfaces. We instantiate the method with a typed-effect
+candidate and test 11 tools from three public MCP implementations. Across 264
+post-freeze contexts, the coarse interfaces retain policy-mixed cells, while
+the typed candidate and a strong arguments-plus-state interface preserve every
+exercised distinction. A mechanically separate native-delta policy reaches the
+same decisions, and systematic descriptor mutations test registration's
+sensitivity to concrete faults. In a separate 1,024-context protocol, both
+sufficient interfaces support exact decisions from one shared ACL,
+capability, and delegation engine. Finally, a pre-commit case study demonstrates
+how a frozen interface can be consumed without placing authority in the LLM.
+The result is a falsification-first method for testing security-critical
+authorization interfaces before policy trusts them.
 \end{abstract}

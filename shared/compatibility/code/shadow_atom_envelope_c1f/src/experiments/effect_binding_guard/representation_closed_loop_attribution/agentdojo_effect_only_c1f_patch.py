@@ -4,21 +4,13 @@ from __future__ import annotations
 
 import copy
 import os
-from types import SimpleNamespace
 from typing import Any
 
-try:
-    from agentdojo.agent_pipeline.agent_pipeline import AgentPipeline
-    from src.experiments.effect_binding_guard.e77_effect_diff_runtime_guard import (
-        agentdojo_e77_runtime_patch as e77_patch,
-    )
-except ModuleNotFoundError:
-    AgentPipeline = None
-    from src.experiments.effect_binding_guard.e77_effect_diff_runtime_guard.atom_envelope_policy import (
-        evaluate_atom_envelope,
-    )
+from agentdojo.agent_pipeline.agent_pipeline import AgentPipeline
 
-    e77_patch = SimpleNamespace(evaluate_atom_envelope=evaluate_atom_envelope)
+from src.experiments.effect_binding_guard.e77_effect_diff_runtime_guard import (
+    agentdojo_e77_runtime_patch as e77_patch,
+)
 
 
 ENABLED = "REPRESENTATION_EFFECT_ONLY_C1F"
@@ -27,8 +19,6 @@ SUFFIX = "effect_only_c1f_ablation"
 
 
 def _patch_pipeline_name() -> None:
-    if AgentPipeline is None:
-        return
     original = AgentPipeline.from_config.__func__
 
     def named(cls: type[AgentPipeline], config: Any) -> AgentPipeline:

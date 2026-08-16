@@ -33,8 +33,8 @@ commit `165848b9a78cead7ca7fe7c89c688b58e6501219`; install it with
 - Parse or execution failures remain in denominators or fail the relevant gate.
 - Source effects and labels are scoring artifacts, not deployable monitor inputs.
 - Saved replay is described as saved replay, not as a live deployment.
-- Pending strong-baseline rows are excluded until the final result reports
-  `status=passed` and exact key counts.
+- The final strong-baseline result reports `status=passed` with exact 97-benign
+  and 629-attack key sets for each of five methods.
 
 ## External Side Effects
 

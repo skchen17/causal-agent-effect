@@ -4,14 +4,13 @@ import importlib.util
 import json
 import os
 import subprocess
-import sys
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[4]
 RUNNER = ROOT / "shared/compatibility/scripts/run_c1f_raw_field_attribution.py"
 SHADOW = ROOT / "code/shadow_atom_envelope_c1f"
-PYTHON = Path(os.environ.get("AGENTDOJO_PYTHON", sys.executable))
+PYTHON = ROOT / "runs/e75_agentdojo_env/bin/python"
 
 
 def load_runner():

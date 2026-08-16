@@ -38,6 +38,13 @@ remain source-workspace procedures; this compact release reproduces reported
 numbers from hash-frozen outputs and exposes the C1f policy, descriptors, audit
 records, and source-oracle rows for inspection.
 
+The current package also includes the strong state-aware interface overlay,
+deterministically selected executable failure certificates, the pinned
+third-party MCP protocol and row-level outputs, and the 30-call pre-commit
+runtime reconciliation study. Third-party repositories are identified by
+commit and implementation hash; vendored dependency trees are not included in
+this result-reproduction package.
+
 Two early fixed-result sources are reduced to the paper metrics needed by the
 compact package. The source workspace therefore generates
 `reproduction/sanitized_fixed_support.json`: a path-free metric extract carrying

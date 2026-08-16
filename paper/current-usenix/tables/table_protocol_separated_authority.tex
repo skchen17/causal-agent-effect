@@ -1,0 +1,24 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Authorization outcomes under one shared explicit-authority engine
+(percent except mixed cells). ``Unsafe'' is normalized by ideal denials;
+``Withheld'' counts ideal allows answered \Deny{} or \Abstain{}; ``Exact''
+requires the ideal \Allow{}/\Deny{} decision.}
+\label{tab:protocol-separated-authorization}
+\begin{tabular}{lrrrrr}
+\toprule
+Interface & Unsafe & Withheld & Cov. & Exact & Mixed \\
+\midrule
+Tool-name view & 0.0 & 100.0 & 0.0 & 0.0 & 4 \\
+Raw-call view & 1.1 & 50.4 & 99.6 & 87.2 & 51 \\
+Common-field view & 0.0 & 32.9 & 81.0 & 81.0 & 9 \\
+State-aware request$^\dagger$ & 0.0 & 0.0 & 100.0 & 100.0 & 0 \\
+Typed-effect interface & 0.0 & 0.0 & 100.0 & 100.0 & 0 \\
+\bottomrule
+\end{tabular}
+\vspace{1pt}\parbox{.98\columnwidth}{\tiny $^\dagger$Direct metrics use a
+disclosed tool-specific request adapter; collision metrics use only the pure
+state-aware observation view.}
+\end{table}

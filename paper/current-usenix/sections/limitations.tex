@@ -1,31 +1,44 @@
 \section{Limitations}
+\label{sec:limitations}
 
-\paragraph{Registration coverage.}
-Counterfactual registration tests only exercised semantics.  The AgentDojo
-registry retains all 67 schema fields, and only 50.7\% of 75 suite-scoped field
-instances obtain five valid intervention kinds.  Field roles are lexical
-heuristics.  Our minimality claim is therefore relative to a checked domain and
-policy family; a state-changing witness establishes effect relevance, while
-authorization necessity also requires a policy-separating pair.
+\paragraph{Coverage and semantic completeness.}
+The validation record covers the frozen implementation, interventions, and
+policy family. Unseen defaults, hidden effects, asynchronous work, general
+aliases, and untested states may require additional distinctions. Invalid or
+unresolved interventions lead to conservative retention; consequently, the
+AgentDojo registry retains all 67 schema fields and does not demonstrate sparse
+descriptor discovery. Counterexamples guide refinement but do not synthesize a
+globally complete descriptor.
 
-\paragraph{Trusted interfaces.}
-The runtime assumes complete provenance for mediated effects.  Its adapter
-recognizes explicit untrusted-content boundaries, but literal canonicalization
-can confuse values such as \texttt{10} and \texttt{10,000}, and structured
-traversal does not cover arbitrary harnesses or semantic paraphrases.  The
-implemented policy detects effect-bearing values introduced by marked
-untrusted observations.  ACLs, delegation, quotas, authenticated dangerous
-requests, and output-only goals require other policy machinery.
-The planner cannot be the sole source of that policy: if the same compromised
-model can enlarge its authority context, atomization becomes structured
-self-approval rather than a security boundary.
+\paragraph{Semantic independence.}
+The MCP implementations have independent public authorship, whereas the
+descriptors, policies, and both decision paths were constructed in this
+project. Native deltas, import isolation, descriptor-blind context generation,
+and systematic mutations reduce shared-helper circularity but do not provide
+independent semantic certification. Independent descriptor and policy authors
+would strengthen the positive conformance evidence.
 
-\paragraph{Safety and utility.}
-The provenance-origin monitor and raw-field control disagree on 3.6\% of 788
-effectful checks.  Effect semantics therefore change enforcement, but the
-monitor does not improve selectivity on that subset.  DeepSeek's no-guard
-attack rate is only 1.0\%, Spotlighting reaches the same observed 0.0\% attack
-rate as our monitor, and benign non-inferiority is not established.  The fixed
-AgentLAB transfer reduces attack success but costs 17.5 percentage points of
-utility.  We report second-model, repeated-utility, locked-family, and transfer
-experiments separately because their populations and protocols differ.
+\paragraph{State and execution assumptions.}
+Registration binds evidence to an implementation identity. Remote services and
+evolving APIs require versioning and renewed validation when their semantics
+change. State-dependent instantiation further requires a fresh trusted snapshot
+and check--use consistency. The prototype provides neither general concurrency
+control nor transactional protection against TOCTOU races.
+
+\paragraph{Interface economy.}
+The state-aware request is also sufficient on both evaluated domains. Typed
+effects reduce source-equivalent overpartition and policy-facing raw-state
+exposure in these prototypes, but latency and executable code size do not
+consistently favor them. These measurements characterize the studied
+implementations rather than a general TCB, extensibility, or performance
+advantage.
+
+\paragraph{Runtime consumer.}
+The AgentDojo integration enforces provenance-origin confinement over a
+conservative registered-field projection, not general organizational ACLs,
+delegation, quotas, or output-only goals. Prompt Sandwiching provides a better
+security--utility point in the matched Qwen3-32B comparison. The repeated
+DeepSeek run also misses the preregistered benign non-inferiority margin by 0.4
+percentage points, and saved AgentLAB transfer loses 17.5 percentage points of
+utility. The comparable prompting adapters implement this paper's common-input
+protocol rather than reproducing every original-paper evaluation.

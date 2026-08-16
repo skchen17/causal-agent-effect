@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,6 +25,21 @@ def read_json(relative: str) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise TypeError(f"expected JSON object: {relative}")
     return value
+
+
+def read_jsonl(relative: str) -> list[dict[str, Any]]:
+    path = ROOT / relative
+    if not path.exists():
+        raise FileNotFoundError(relative)
+    rows = []
+    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        value = json.loads(line)
+        if not isinstance(value, dict):
+            raise TypeError(f"expected JSON object at {relative}:{line_number}")
+        rows.append(value)
+    return rows
 
 
 def get(value: Any, key: str) -> Any:
@@ -80,7 +96,120 @@ def add_rate_metric(
     )
 
 
+def add_protocol_separated_authority_claims(rows: list[dict[str, Any]]) -> None:
+    source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "protocol-separated-authority-representation/report.json"
+    )
+    generator = "shared/compatibility/scripts/independent_authority_benchmark/run_experiment.py"
+    payload = read_json(source)
+    decisions_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "protocol-separated-authority-representation/authorization-decisions.jsonl"
+    )
+    decisions = read_jsonl(decisions_source)
+    if payload.get("status") != "passed" or not all(payload.get("acceptance_gates", {}).values()):
+        raise ValueError("protocol-separated authority experiment did not pass")
+
+    registration = payload["registration"]
+    for suffix, key in (
+        ("CONTEXTS", "n_contexts"),
+        ("PAIRS", "n_pairs"),
+        ("SENSITIVE-PAIRS", "effective_sensitive_pairs"),
+        ("INVARIANT-PAIRS", "surface_invariant_pairs"),
+    ):
+        add(
+            rows, f"AUTHORITY-REGISTRATION-{suffix}", registration[key], source,
+            f"registration.{key}", "Evaluation and Results / explicit authority", generator,
+        )
+
+    evaluation = payload["evaluation"]
+    for suffix, key in (
+        ("DOMAINS", "n_domains"),
+        ("TOOLS", "n_tools"),
+        ("CONTEXTS", "n_contexts"),
+        ("EXACT-MATCHES", "descriptor_exact_matches"),
+    ):
+        add(
+            rows, f"AUTHORITY-EVALUATION-{suffix}", evaluation[key], source,
+            f"evaluation.{key}", "Evaluation and Results / explicit authority", generator,
+        )
+
+    representations = (
+        "tool_name",
+        "canonical_raw_arguments",
+        "common_effect_fields",
+        "validated_typed_effects",
+    )
+    for representation in representations:
+        row = next(
+            item for item in payload["direct_metrics"]
+            if item["representation"] == representation and item["stratum"] == "all"
+        )
+        for suffix, key in (
+            ("UPA", "unsafe_pre_allow"),
+            ("COVERAGE", "coverage"),
+            ("EXACT", "decision_accuracy"),
+        ):
+            add(
+                rows, f"AUTHORITY-{representation.upper()}-{suffix}", row[key], source,
+                f"direct_metrics[representation={representation},stratum=all].{key}",
+                "Results / explicit-authority table", generator,
+            )
+
+        representation_decisions = [
+            item for item in decisions if item["representation"] == representation
+        ]
+        ideal_allows = [
+            item for item in representation_decisions if item["ideal_decision"] == "ALLOW"
+        ]
+        withheld = sum(item["monitor_decision"] != "ALLOW" for item in ideal_allows)
+        if len(representation_decisions) != evaluation["n_contexts"] or not ideal_allows:
+            raise ValueError(f"incomplete authorization decisions for {representation}")
+        add(
+            rows, f"AUTHORITY-{representation.upper()}-AUTHORIZED-WITHHELD",
+            withheld / len(ideal_allows), decisions_source,
+            (
+                f"rows[representation={representation},ideal_decision=ALLOW,"
+                "monitor_decision!=ALLOW]"
+            ),
+            "Results / explicit-authority table", generator,
+            withheld, len(ideal_allows),
+        )
+
+        collision = indexed(payload, "collision_metrics", "representation", representation)
+        for suffix, key in (
+            ("MIXED-CELLS", "n_mixed_cells"),
+            ("ERROR-LOWER-BOUND", "minimum_unavoidable_errors"),
+        ):
+            add(
+                rows, f"AUTHORITY-{representation.upper()}-{suffix}", collision[key], source,
+                f"collision_metrics[representation={representation}].{key}",
+                "Results / explicit-authority table", generator,
+            )
+
+        state = payload["state_dependent"]["representations"][representation]
+        add(
+            rows, f"AUTHORITY-{representation.upper()}-STATE-COLLISIONS",
+            state["colliding_groups"], source,
+            f"state_dependent.representations.{representation}.colliding_groups",
+            "Results / state-dependent authorization", generator,
+            state["colliding_groups"], state["total"],
+        )
+
+    require_table_snippets(
+        "table_protocol_separated_authority.tex",
+        [
+            "Tool-name view & 0.0 & 100.0 & 0.0 & 0.0 & 4",
+            "Raw-call view & 1.1 & 50.4 & 99.6 & 87.2 & 51",
+            "Common-field view & 0.0 & 32.9 & 81.0 & 81.0 & 9",
+            "Typed-effect interface & 0.0 & 0.0 & 100.0 & 100.0 & 0",
+        ],
+    )
+
+
 def fixed_claims(rows: list[dict[str, Any]]) -> None:
+    add_protocol_separated_authority_claims(rows)
     prevalence_source = (
         "experiments/human-authority-and-causal-validation/results/"
         "agentdojo-tool-effect-prevalence/agentdojo-tool-effect-prevalence-report.json"
@@ -216,8 +345,7 @@ def fixed_claims(rows: list[dict[str, Any]]) -> None:
     if finite.get("status") != "passed" or finite.get("n_contexts") != 56:
         raise ValueError("finite-domain effect validation is not final")
     for representation in (
-        "tool_name", "source_effect_only", "source_common_fields", "reviewed_common_contract",
-        "reviewed_typed_contract", "source_full_effect",
+        "tool_name", "source_effect_only", "source_common_fields", "source_full_effect",
     ):
         row = indexed(finite, "representations", "representation", representation)
         for suffix, key in (("MIXED", "authorization_collision_cells"), ("PAIRS", "authorization_separating_pairs")):
@@ -229,9 +357,9 @@ def fixed_claims(rows: list[dict[str, Any]]) -> None:
     require_table_snippets(
         "table_representation_collisions.tex",
         [
-            "Tool name & 5 & 564", "Effect only & 6 & 548",
-            "Common fields & 5 & 118", "Reviewed common contract & 5 & 118",
-            "Reviewed typed contract & 0 & 0", "Full source effect & 0 & 0",
+            "Tool name & 5 & 564", "Effect-only view & 6 & 548",
+            "Common-field view & 5 & 118", "Typed-effect interface & 0 & 0",
+            "Full source effect & 0 & 0",
         ],
     )
 
@@ -325,7 +453,7 @@ def fixed_claims(rows: list[dict[str, Any]]) -> None:
     )
     require_table_snippets(
         "table_toolsandbox_heldout.tex",
-        ["Tool name & 5 & 5 & 88 & 16", "Common fields & 11 & 4 & 41 & 0", "Typed contract & 25 & 0 & 0 & 0", "Source effect & 25 & 0 & 0 & 0"],
+        ["Tool name & 5 & 5 & 88 & 16", "Common-field view & 11 & 4 & 41 & 0", "Typed-effect interface & 25 & 0 & 0 & 0", "Source effect & 25 & 0 & 0 & 0"],
     )
 
     registration_source = (
@@ -954,11 +1082,298 @@ def add_concrete_atom_authorizer_claims(
         [
             "Tool name",
             "Exact raw args",
-            "Common fields",
+            "Common-field view",
             "Concrete atoms",
             "Source oracle",
         ],
     )
+
+
+def add_new_interface_validation_claims(rows: list[dict[str, Any]]) -> None:
+    state_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "state-aware-authority-interface/report.json"
+    )
+    state_generator = "shared/compatibility/scripts/state_aware_authority_baseline.py"
+    state = read_json(state_source)
+    state_reproduction = read_json(
+        "experiments/human-authority-and-causal-validation/results/"
+        "state-aware-authority-interface/reproduction-status.json"
+    )
+    if (state.get("status") != "passed" or state_reproduction.get("status") != "passed"
+            or not all(state.get("acceptance_gates", {}).values())):
+        raise ValueError("state-aware authority baseline did not pass all integrity gates")
+    collision = indexed(state, "collision_metrics", "representation", "state_aware_raw_call")
+    direct = next(item for item in state["direct_metrics"]
+                  if item["representation"] == "state_aware_raw_call" and item["stratum"] == "all")
+    for suffix, value, key in (
+        ("CONTEXTS", direct["n"], "direct_metrics[state_aware_raw_call,all].n"),
+        ("CELLS", collision["n_cells"], "collision_metrics[state_aware_raw_call].n_cells"),
+        ("MIXED", collision["n_mixed_cells"], "collision_metrics[state_aware_raw_call].n_mixed_cells"),
+        ("PAIRS", collision["authorization_separating_pairs"], "collision_metrics[state_aware_raw_call].authorization_separating_pairs"),
+        ("OVERPARTITION", collision["overpartition_pairs"], "collision_metrics[state_aware_raw_call].overpartition_pairs"),
+        ("MEDIAN-BYTES", collision["serialized_bytes"]["median"], "collision_metrics[state_aware_raw_call].serialized_bytes.median"),
+        ("UPA", direct["unsafe_pre_allow"], "direct_metrics[state_aware_raw_call,all].unsafe_pre_allow"),
+        ("COVERAGE", direct["coverage"], "direct_metrics[state_aware_raw_call,all].coverage"),
+        ("EXACT", direct["decision_accuracy"], "direct_metrics[state_aware_raw_call,all].decision_accuracy"),
+        ("STATE-COLLISIONS", state["state_dependent"]["representations"]["state_aware_raw_call"]["colliding_groups"],
+         "state_dependent.representations.state_aware_raw_call.colliding_groups"),
+    ):
+        add(rows, f"STATE-AWARE-{suffix}", value, state_source, key,
+            "Results / explicit authority", state_generator)
+    require_table_snippets(
+        "table_protocol_separated_authority.tex",
+        ["State-aware request$^\\dagger$ & 0.0 & 0.0 & 100.0 & 100.0 & 0"],
+    )
+
+    certificate_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "executable-failure-certificates/report.json"
+    )
+    certificate_rows_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "executable-failure-certificates/failure-certificates.jsonl"
+    )
+    certificate_generator = "shared/compatibility/scripts/extract_executable_failure_certificates.py"
+    certificate_report = read_json(certificate_source)
+    certificates = read_jsonl(certificate_rows_source)
+    if certificate_report.get("status") != "passed" or len(certificates) != 6 or len({item["certificate_id"] for item in certificates}) != 6:
+        raise ValueError("failure certificate artifact incomplete")
+    add(rows, "FAILURE-CERTIFICATES-N", 6, certificate_source, "n_certificates",
+        "Results / executable certificates", certificate_generator)
+    for item in certificates:
+        valid = (
+            item["source_effect_u"] != item["source_effect_v"]
+            and item["ideal_decision_u"] != item["ideal_decision_v"]
+            and item["coarse_representation_u"] == item["coarse_representation_v"]
+            and item["refined_representation_u"] != item["refined_representation_v"]
+        )
+        if not valid:
+            raise ValueError(f"invalid executable failure certificate: {item['certificate_id']}")
+        add(rows, f"FAILURE-{item['category'].upper()}-VALID", True, certificate_rows_source,
+            f"rows[certificate_id={item['certificate_id']}]", "Results / executable certificates",
+            certificate_generator)
+    require_table_snippets(
+        "table_failure_certificates.tex",
+        ["Compound effect & Raw call", "State dependence & Raw call"],
+    )
+
+    third_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "third-party-authorization-interface-validation/third_party_validation_report.json"
+    )
+    third_rows_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "third-party-authorization-interface-validation/post_freeze_authorization_rows.jsonl"
+    )
+    registration_rows_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "third-party-authorization-interface-validation/registration_source_executions.jsonl"
+    )
+    third_generator = "shared/compatibility/scripts/run_third_party_authorization_interface_validation.py"
+    third = read_json(third_source)
+    third_protocol = read_json(
+        "experiments/human-authority-and-causal-validation/evaluation/"
+        "third-party-authorization-interface-validation/protocol_manifest.json"
+    )
+    third_sources = read_json(
+        "experiments/human-authority-and-causal-validation/evaluation/"
+        "third-party-authorization-interface-validation/source_manifest.json"
+    )
+    post_rows = read_jsonl(third_rows_source)
+    registration_rows = read_jsonl(registration_rows_source)
+    if (
+        third.get("status") != "passed" or third_protocol.get("protocol") != "third-party-authorization-interface-validation-v3"
+        or len(third_protocol.get("harness_source_hashes", {})) != 10
+        or third_sources.get("all_preflight_passed") is not True
+        or len(post_rows) != 264 or len(registration_rows) != 264
+        or len({item["case_id"] for item in post_rows}) != 264
+        or len({item["case_id"] for item in registration_rows}) != 264
+        or any(item.get("execution_error") or item.get("source_oracle_error") for item in post_rows + registration_rows)
+    ):
+        raise ValueError("third-party execution or row-integrity gate failed")
+    for suffix, key in (
+        ("TOOLS", "n_tools"), ("REGISTRATION", "n_registration_executions"),
+        ("EVALUATION", "n_post_freeze_contexts"), ("REGISTRATION-FAILURES", "registration_descriptor_failures"),
+        ("POST-FREEZE-FAILURES", "post_freeze_descriptor_failures"),
+        ("EXACT", "descriptor_exact_match_rate"),
+    ):
+        add(rows, f"THIRD-PARTY-{suffix}", third[key], third_source, key,
+            "Results / third-party validation", third_generator)
+    for representation in ("tool_name", "raw_call", "state_aware_raw_call", "common_field", "typed_effect"):
+        metric = indexed(third, "collision_metrics", "representation", representation)
+        for suffix, key in (("MIXED", "mixed_cells"), ("PAIRS", "separating_pairs")):
+            add(rows, f"THIRD-PARTY-{representation.upper()}-{suffix}", metric[key], third_source,
+                f"collision_metrics[representation={representation}].{key}",
+                "Results / third-party validation", third_generator)
+    require_table_snippets(
+        "table_third_party_validation.tex",
+        ["Tool name & 11 & 11 & 1,552", "Raw call & 155 & 5 & 100",
+         "State-aware request & 161 & 0 & 0", "Common fields & 126 & 12 & 200",
+         "Typed effects & 138 & 0 & 0"],
+    )
+    for representation in ("state_aware_raw_call", "typed_effect"):
+        metric = indexed(third, "authorization_metrics", "representation", representation)
+        for suffix, key in (("COVERAGE", "coverage"), ("EXACT", "decision_accuracy")):
+            add(rows, f"THIRD-PARTY-{representation.upper()}-{suffix}", metric[key], third_source,
+                f"authorization_metrics[representation={representation}].{key}",
+                "Results / third-party validation", third_generator)
+
+    economy_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "authorization-interface-economy/interface_economy_report.json"
+    )
+    economy_protocol_source = (
+        "experiments/human-authority-and-causal-validation/evaluation/"
+        "authorization-interface-economy/protocol_manifest.json"
+    )
+    economy_generator = "shared/compatibility/scripts/run_authorization_interface_economy_audit.py"
+    economy = read_json(economy_source)
+    economy_protocol = read_json(economy_protocol_source)
+    economy_metrics = economy.get("metrics", [])
+    if (
+        economy.get("status") != "passed" or economy.get("all_outcomes_retained") is not True
+        or economy_protocol.get("timed_batches") != 30 or len(economy_metrics) != 4
+        or {(item["domain"], item["interface"]) for item in economy_metrics} != {
+            ("explicit_authority_1024", "typed_effect"),
+            ("explicit_authority_1024", "state_aware_request"),
+            ("third_party_mcp_264", "typed_effect"),
+            ("third_party_mcp_264", "state_aware_request"),
+        }
+        or any(item["mixed_cells"] != 0 or item["decision_agreement"] != 1.0 for item in economy_metrics)
+        or any(item["timing"]["end_to_end"]["timed_batches"] != 30 for item in economy_metrics)
+    ):
+        raise ValueError("authorization-interface economy audit incomplete")
+    for relative, expected in economy_protocol.get("source_hashes", {}).items():
+        path = ROOT / relative
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+            raise ValueError(f"economy audit source drift: {relative}")
+    for item in economy_metrics:
+        prefix = f"ECONOMY-{item['domain'].upper()}-{item['interface'].upper()}"
+        for suffix, value, key in (
+            ("MIXED", item["mixed_cells"], "mixed_cells"),
+            ("OVERPARTITION", item["overpartition_pairs"], "overpartition_pairs"),
+            ("STATE-BYTES", item["raw_trusted_state_bytes"]["median"], "raw_trusted_state_bytes.median"),
+            ("AST-STATEMENTS", item["runtime_code"]["ast_statements"], "runtime_code.ast_statements"),
+            ("DECISION-AGREEMENT", item["decision_agreement"], "decision_agreement"),
+            ("MEDIAN-LATENCY-US", item["timing"]["end_to_end"]["median"], "timing.end_to_end.median"),
+        ):
+            add(rows, f"{prefix}-{suffix}", value, economy_source,
+                f"metrics[domain={item['domain']},interface={item['interface']}].{key}",
+                "Results and Appendix / interface economy", economy_generator)
+    economy_index = {(item["domain"], item["interface"]): item for item in economy_metrics}
+    e_auth_typed = economy_index[("explicit_authority_1024", "typed_effect")]
+    e_auth_state = economy_index[("explicit_authority_1024", "state_aware_request")]
+    e_mcp_typed = economy_index[("third_party_mcp_264", "typed_effect")]
+    e_mcp_state = economy_index[("third_party_mcp_264", "state_aware_request")]
+    require_table_snippets(
+        "table_interface_economy.tex",
+        [
+            f"Explicit authority (1,024) & Typed effect & 297 & 0 & 241 & 0 & 132 & {e_auth_typed['timing']['end_to_end']['median']:.1f}",
+            f"& State-aware request & 669 & 3,252 & 537 & 9 & 143 & {e_auth_state['timing']['end_to_end']['median']:.1f}",
+            f"Third-party MCP (264) & Typed effect & 138 & 0 & 203 & 0 & 102 & {e_mcp_typed['timing']['end_to_end']['median']:.1f}",
+            f"& State-aware request & 161 & 90 & 271 & 4 & 83 & {e_mcp_state['timing']['end_to_end']['median']:.1f}",
+        ],
+    )
+
+    native_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "native-delta-mechanical-validation/native_delta_validation_report.json"
+    )
+    native_rows_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "native-delta-mechanical-validation/native_decision_rows.jsonl"
+    )
+    mutant_rows_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "native-delta-mechanical-validation/mutant_results.jsonl"
+    )
+    native_generator = "shared/compatibility/scripts/run_native_delta_mechanical_validation.py"
+    native = read_json(native_source)
+    native_protocol = read_json(
+        "experiments/human-authority-and-causal-validation/evaluation/"
+        "native-delta-mechanical-validation/protocol_manifest.json"
+    )
+    mutation_manifest_payload = read_json(
+        "experiments/human-authority-and-causal-validation/evaluation/"
+        "native-delta-mechanical-validation/mutation_manifest.json"
+    )
+    native_rows = read_jsonl(native_rows_source)
+    mutant_rows = read_jsonl(mutant_rows_source)
+    mutation_manifest = mutation_manifest_payload.get("mutants", [])
+    mutation_hash = hashlib.sha256(
+        json.dumps(mutation_manifest, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode()
+    ).hexdigest()
+    if (
+        native.get("status") != "passed" or native.get("all_rows_retained") is not True
+        or native.get("protocol_hash") != native_protocol.get("protocol_hash")
+        or mutation_manifest_payload.get("sha256") != mutation_hash
+        or native_protocol.get("mutation_manifest_sha256") != mutation_hash
+        or native.get("registration_contexts") != 264 or native.get("evaluation_contexts") != 264
+        or native.get("registration_decision_agreement") != 1.0
+        or native.get("evaluation_decision_agreement") != 1.0
+        or native.get("compile_failures") != 0 or any(native.get("mechanical_isolation", {}).values())
+        or len(native_rows) != 528 or len({item["case_id"] + ":" + item["phase"] for item in native_rows}) != 528
+        or not all(item["decision_match"] for item in native_rows)
+        or len(mutant_rows) != native.get("n_mutants")
+        or {item["mutant_id"] for item in mutation_manifest} != {item["mutant_id"] for item in mutant_rows}
+        or len({item["mutant_id"] for item in mutant_rows}) != len(mutant_rows)
+        or sum(native.get("mutation_outcomes", {}).values()) != len(mutant_rows)
+    ):
+        raise ValueError("native-delta mechanical validation incomplete")
+    for relative, expected in native_protocol.get("source_hashes", {}).items():
+        path = ROOT / relative
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+            raise ValueError(f"native-delta source drift: {relative}")
+    for suffix, value, key in (
+        ("REGISTRATION", native["registration_contexts"], "registration_contexts"),
+        ("EVALUATION", native["evaluation_contexts"], "evaluation_contexts"),
+        ("REGISTRATION-AGREEMENT", native["registration_decision_agreement"], "registration_decision_agreement"),
+        ("EVALUATION-AGREEMENT", native["evaluation_decision_agreement"], "evaluation_decision_agreement"),
+        ("COMPILE-FAILURES", native["compile_failures"], "compile_failures"),
+        ("MUTANTS", native["n_mutants"], "n_mutants"),
+        ("KILLED-REGISTRATION", native["mutation_outcomes"]["killed_registration"], "mutation_outcomes.killed_registration"),
+        ("ESCAPED-HELDOUT", native["mutation_outcomes"]["escaped_to_heldout"], "mutation_outcomes.escaped_to_heldout"),
+        ("EQUIVALENT-FROZEN", native["mutation_outcomes"]["equivalent_in_frozen_domain"], "mutation_outcomes.equivalent_in_frozen_domain"),
+    ):
+        add(rows, f"NATIVE-DELTA-{suffix}", value, native_source, key,
+            "Results and Appendix / native-delta validation", native_generator)
+
+
+def add_small_runtime_case_study_claims(
+    rows: list[dict[str, Any]], payload: dict[str, Any], source: str, generator: str
+) -> None:
+    rows_source = (
+        "experiments/human-authority-and-causal-validation/results/"
+        "small-typed-effect-runtime-case-study/runtime_trajectories.jsonl"
+    )
+    trajectories = read_jsonl(rows_source)
+    protocol = read_json(
+        "experiments/human-authority-and-causal-validation/evaluation/"
+        "small-typed-effect-runtime-case-study/protocol_manifest.json"
+    )
+    if (
+        payload.get("status") != "passed" or payload.get("n_cases") != 30 or len(trajectories) != 30
+        or protocol.get("protocol") != "small-typed-effect-runtime-case-study-v2"
+        or protocol.get("n_cases") != 30 or protocol.get("runtime_llm_calls") != 0
+        or len(protocol.get("harness_source_hashes", {})) != 4
+        or len({item["case_id"] for item in trajectories}) != 30
+        or payload.get("check_use_failures") != 0 or payload.get("reconciliation_failures") != 0
+        or any(item.get("executed_call") is not None and item.get("checked_call") != item.get("executed_call") for item in trajectories)
+    ):
+        raise ValueError("small runtime case study failed row-level integrity checks")
+    for suffix, value, key in (
+        ("CASES", payload["n_cases"], "n_cases"),
+        ("COMMITS", payload["n_committed"], "n_committed"),
+        ("PARSE-FAILURES", payload["parse_failures"], "parse_failures"),
+        ("CHECK-USE-FAILURES", payload["check_use_failures"], "check_use_failures"),
+        ("RECONCILIATION-FAILURES", payload["reconciliation_failures"], "reconciliation_failures"),
+        ("ALLOW", payload["decision_counts"].get("ALLOW", 0), "decision_counts.ALLOW"),
+        ("DENY", payload["decision_counts"].get("DENY", 0), "decision_counts.DENY"),
+        ("ABSTAIN", payload["decision_counts"].get("ABSTAIN", 0), "decision_counts.ABSTAIN"),
+    ):
+        add(rows, f"SMALL-RUNTIME-{suffix}", value, source, key,
+            "Results / integration case study", generator)
 
 
 def pending_claims(rows: list[dict[str, Any]]) -> list[dict[str, str]]:
@@ -1013,6 +1428,12 @@ def pending_claims(rows: list[dict[str, Any]]) -> list[dict[str, str]]:
             "concrete-atom-authorizer-mechanism/concrete-atom-authorizer-report.json",
             "run_toolsandbox_concrete_atom_authorizer.py",
         ),
+        (
+            "small_typed_effect_runtime_case_study",
+            "experiments/human-authority-and-causal-validation/results/"
+            "small-typed-effect-runtime-case-study/runtime_case_study_report.json",
+            "shared/compatibility/scripts/run_small_typed_effect_runtime_case_study.py",
+        ),
     ]
     pending = []
     for name, source, generator in required:
@@ -1042,6 +1463,8 @@ def pending_claims(rows: list[dict[str, Any]]) -> list[dict[str, str]]:
             add_current_strong_baseline_claims(rows, payload, source, generator)
         elif name == "toolsandbox_concrete_atom_authorizer":
             add_concrete_atom_authorizer_claims(rows, payload, source, generator)
+        elif name == "small_typed_effect_runtime_case_study":
+            add_small_runtime_case_study_claims(rows, payload, source, generator)
         else:
             raise AssertionError(name)
     return pending
@@ -1053,12 +1476,13 @@ def main() -> int:
     args = parser.parse_args()
     rows: list[dict[str, Any]] = []
     fixed_claims(rows)
+    add_new_interface_validation_claims(rows)
     pending = pending_claims(rows)
     claim_ids = [row["claim_id"] for row in rows]
     if len(claim_ids) != len(set(claim_ids)):
         raise ValueError("duplicate claim IDs in active reproduction ledger")
-    if not pending and len(rows) != 250:
-        raise ValueError(f"complete reproduction ledger must contain 250 rows, observed {len(rows)}")
+    if not pending and len(rows) != 360:
+        raise ValueError(f"complete reproduction ledger must contain 360 rows, observed {len(rows)}")
     status = "passed" if not pending else "pending_required_artifacts"
     payload = {
         "status": status,
@@ -1067,7 +1491,7 @@ def main() -> int:
         "n_claim_rows": len(rows),
         "rows": rows,
         "pending": pending,
-        "claim_boundary": "Effect representation and bounded provenance-origin mediation; not complete authorization or production safety.",
+        "claim_boundary": "Executable falsification and bounded conformance of authorization observation interfaces, plus a provenance-origin integration case study.",
     }
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "main_claims.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")

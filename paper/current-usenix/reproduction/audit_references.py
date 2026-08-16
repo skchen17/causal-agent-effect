@@ -24,20 +24,16 @@ ARXIV_IDS = {
     "safiron": "2510.09781",
     "progent": "2504.11703",
     "miniscope": "2512.11147",
-    "weng2026argus": "2605.03378",
-    "ying2026agentvisor": "2604.24118",
     "attriguard": "2603.10749",
     "causalarmor": "2602.07918",
     "clawguard": "2604.11790",
     "pact": "2605.11039",
     "contract2tool": "2606.07904",
-    "agentc": "2512.23738",
     "authgraph": "2605.26497",
     "scopegate": "2606.28679",
     "secureclaw": "2606.09549",
     "committimeauth": "2607.10487",
     "contractguard": "2606.18550",
-    "alignmentcontracts": "2605.00081",
 }
 
 DOIS = {
@@ -147,8 +143,6 @@ def main() -> int:
             "the manuscript has not drifted from those identifiers."
         ),
         "placement_boundary": {
-            "ARGUS": "Related Work and bibliography only",
-            "AgentVisor": "Related Work and bibliography only",
             "AttriGuard": "Related Work and bibliography only; not experimental evidence",
         },
         "rows": rows,
@@ -161,7 +155,7 @@ def main() -> int:
         "",
         report["public_metadata_note"],
         "",
-        "ARGUS, AgentVisor, and AttriGuard are cited only for related-work positioning; none supplies this paper's empirical evidence.",
+        "AttriGuard is cited only for related-work positioning and supplies no empirical evidence for this paper.",
         "",
     ]
     if errors:

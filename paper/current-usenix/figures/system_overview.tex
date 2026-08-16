@@ -2,109 +2,75 @@
 \centering
 \begin{tikzpicture}[
   font=\scriptsize,
-  actor/.style={circle, minimum size=10mm, inner sep=0pt,
-                draw=TEDark!65, fill=white, line width=.65pt},
-  lane/.style={draw=TEGold!75, fill=TEGoldLight, rounded corners=5pt,
-               line width=.6pt},
-  message/.style={draw=TEDark!55, fill=white, rounded corners=2pt,
-                  align=center, minimum height=8mm, inner sep=3pt},
-  flow/.style={-{Latex[length=2.1mm]}, draw=TEDark!75, line width=.75pt},
-  proposal/.style={flow, draw=TEOrange},
-  evidence/.style={flow, draw=TEBlue},
-  allow/.style={flow, draw=TETeal, line width=.85pt},
-  stop/.style={flow, draw=TERed, line width=.85pt},
-  title/.style={font=\small\bfseries, anchor=west, text=TEDark},
-  label/.style={font=\scriptsize, align=center, text=TEDark!85},
-  arrowlabel/.style={font=\scriptsize, fill=white, inner sep=1.3pt},
+  box/.style={draw=TEDark!62, fill=white, rounded corners=2pt,
+              align=center, minimum height=8mm, inner sep=3pt},
+  evidencebox/.style={box, draw=TEBlue, fill=TEBlueLight},
+  policybox/.style={box, draw=TEGold!85, fill=TEGoldLight},
+  contractbox/.style={box, draw=TETeal, fill=TETealLight},
+  stopbox/.style={box, draw=TERed, fill=TERedLight},
+  flow/.style={-{Latex[length=1.8mm]}, draw=TEDark!75, line width=.65pt},
+  feedback/.style={flow, draw=TEOrange},
+  title/.style={font=\scriptsize\bfseries, anchor=west, text=TEDark},
+  note/.style={font=\tiny, align=center, text=TEDark!78},
 ]
 
-% Panel headings and divider.
-\node[title] at (-8.25,2.10) {(a) OFFLINE: REGISTER THE EFFECT INTERFACE};
-\node[title] at (.35,2.10) {(b) ONLINE: MEDIATE AN EXACT CALL};
-\draw[TEDark!22, line width=.5pt] (0,2.30)--(0,-2.55);
+\draw[TEDark!20] (-2.65,2.10)--(-2.65,-2.38);
+\draw[TEDark!20] (2.20,2.10)--(2.20,-2.38);
+\node[title] at (-8.25,1.88) {(a) EXECUTABLE REGISTRATION};
+\node[title] at (-2.35,1.88) {(b) REGISTERED INTERFACE};
+\node[title] at (2.50,1.88) {(c) POLICY-BACKED CONFORMANCE};
 
-% ---------------------------------------------------------------------------
-% Offline: an untrusted proposal is tested against executable behavior.
-\node[actor, draw=TEBlue, fill=TEBlueLight] (toolactor) at (-7.30,.55) {};
-\path (toolactor.center) pic[scale=1.0] {te-tool};
-\node[label, text width=1.55cm] at (-7.30,-.18)
+\node[evidencebox, text width=1.40cm] (candidate) at (-7.15,1.00)
+  {Candidate\\descriptor};
+\node[evidencebox, text width=1.55cm] (implementation) at (-4.05,1.00)
   {Tool schema +\\implementation};
+\node[evidencebox, text width=1.85cm] (execute) at (-5.60,.14)
+  {Execute base +\\controlled mutant};
+\node[policybox, text width=2.05cm] (separate) at (-5.60,-.72)
+  {Effect difference +\\policy separation};
+\draw[flow] (candidate.south)--(execute.north west);
+\draw[flow] (implementation.south)--(execute.north east);
+\draw[flow] (execute)--(separate);
+\node[stopbox, text width=1.68cm] (revise) at (-7.02,-1.60)
+  {Counterexample:\\refine / review};
+\node[contractbox, text width=1.68cm] (freeze) at (-4.18,-1.60)
+  {No tested collision:\\hash-freeze};
+\draw[feedback] (separate.south) |- (revise.north);
+\draw[flow, draw=TETeal] (separate.south) |- (freeze.north);
 
-\path[lane] (-5.60,1.40) rectangle (-2.80,-1.18);
-\node[font=\scriptsize\bfseries, text=TEGold] at (-4.20,1.13)
-  {Counterfactual registry};
-\node[actor, minimum size=8mm, draw=TEBlue, fill=TEBlueLight]
-  (sandbox) at (-4.20,.48) {};
-\path (sandbox.center) pic[scale=.77] {te-flask};
-\node[label] at (-4.20,.02) {execute base and mutants};
-\draw[flow, draw=TEGold!80, -{Latex[length=1.7mm]}]
-  (-4.20,-.14)--(-4.20,-.43);
-\node[actor, minimum size=8mm, draw=TETeal, fill=TETealLight]
-  (diff) at (-4.20,-.72) {};
-\path (diff.center) pic[scale=.77] {te-inspect};
-\node[label] at (-4.20,-1.03) {diff effects; test separation};
+\node[evidencebox, text width=1.15cm] (call) at (-1.72,.82)
+  {Exact call +\\pre-state};
+\node[contractbox, text width=1.50cm] (atoms) at (.02,.82)
+  {Instantiated\\effect atoms $\rho_d(u)$};
+\node[policybox, text width=1.28cm] (auth) at (.02,-.35)
+  {Independent\\authority $P$};
+\node[contractbox, text width=1.18cm] (decision) at (.02,-1.38)
+  {$\Allow$ / $\Deny$ /\\$\Abstain$};
+\draw[flow] (call)--(atoms);
+\draw[flow] (atoms)--(auth);
+\draw[flow] (auth)--(decision);
 
-\node[actor, draw=TEOrange, fill=TEOrangeLight] (proposer) at (-1.12,.72) {};
-\path (proposer.center) pic[scale=1.0] {te-chip};
-\node[label, text width=1.58cm] at (-1.12,-.04)
-  {Proposer\\developer or LLM};
-
-\draw[evidence] (toolactor.east) -- node[arrowlabel, above, text=TEBlue]
-  {executable schema} (-5.60,.55);
-\draw[proposal] (proposer.west) -- node[arrowlabel, above, text=TEOrange]
-  {candidate $d_t$} (-2.80,.72);
-\draw[proposal] (-2.80,-.52) -- node[arrowlabel, below, text=TEOrange]
-  {counterexample} (-.48,-.52) |- (proposer.east);
-
-\node[actor, minimum size=8.5mm, draw=TETeal, fill=TETealLight]
-  (frozen) at (-4.20,-1.82) {};
-\path (frozen.center) pic[scale=.82] {te-lock};
-\draw[allow] (-4.20,-1.18) -- (frozen.north);
-\node[label, text=TETeal] at (-4.20,-2.32)
-  {freeze validated $d_t$; otherwise review};
-
-% ---------------------------------------------------------------------------
-% Online: task authority and the exact proposed call meet at pre-commit.
-\node[message, text width=2.10cm] (task) at (1.35,1.13)
-  {\textbf{Authenticated task}\\typed authority};
-\node[actor, draw=TEOrange, fill=TEOrangeLight] (agent) at (7.35,1.13) {};
-\path (agent.center) pic[scale=1.0] {te-chip};
-\node[label, text width=1.45cm] at (7.35,.43)
-  {LLM agent\\\textit{untrusted}};
-\draw[flow] (task.east) -- node[arrowlabel, above] {task} (agent.west);
-
-\path[lane] (3.15,.58) rectangle (5.55,-1.28);
-\node[font=\scriptsize\bfseries, text=TEGold] at (4.35,.31)
-  {Pre-commit monitor};
-\node[actor, minimum size=8mm, draw=TETeal, fill=TETealLight]
-  (guardicon) at (4.35,-.28) {};
-\path (guardicon.center) pic[scale=.77] {te-shield};
-\node[label] at (4.35,-.82)
-  {instantiate atoms\\compare with authority};
-
-\draw[evidence] (task.south) |- node[pos=.72, arrowlabel, above, text=TEBlue]
-  {authority} (3.15,.26);
-\draw[proposal] (agent.south west) |- node[pos=.30, arrowlabel, below,
-  text=TEOrange] {exact call $c=(t,\bar{x})$} (5.55,-.02);
-
-\node[actor, draw=TETeal, fill=TETealLight] (toolrun) at (1.35,-1.42) {};
-\path (toolrun.center) pic[scale=1.0] {te-tool};
-\node[label, text=TETeal] at (1.35,-2.08) {Execute checked call};
-\draw[allow] (3.15,-1.02) -- node[arrowlabel, below, text=TETeal]
-  {\Allow{}} (toolrun.east);
-
-\node[actor, minimum size=8.5mm, draw=TERed, fill=TERedLight]
-  (blocked) at (7.05,-1.42) {};
-\path (blocked.center) pic[scale=.82] {te-stop};
-\draw[stop] (5.55,-1.02) -- node[arrowlabel, below, text=TERed]
-  {\Deny{} / \Abstain} (blocked.west);
-\node[label, text=TERed] at (7.05,-2.00) {Stop or replan};
+\node[evidencebox, text width=1.25cm] (samecontext) at (3.08,1.02)
+  {Same call, state,\\subject, policy};
+\node[evidencebox, text width=1.42cm] (source) at (4.72,.18)
+  {Sandbox state diff\\$\rightarrow$ transition};
+\node[contractbox, text width=1.42cm] (typed) at (7.48,.18)
+  {Frozen descriptor\\$\rightarrow$ atoms};
+\draw[flow] (samecontext.east) -| (source.north);
+\draw[flow] (samecontext.east) -| (typed.north);
+\node[policybox, text width=1.48cm] (sameengine) at (6.10,-.86)
+  {Same ACL / capability /\\delegation engine};
+\draw[flow] (source.south) |- (sameengine.west);
+\draw[flow] (typed.south) |- (sameengine.east);
+\node[contractbox, text width=2.10cm] (compare) at (6.10,-1.72)
+  {Compare decisions, coverage,\\and policy-mixed cells};
+\draw[flow] (sameengine)--(compare);
 \end{tikzpicture}
-\caption{System overview.  Offline (left), a proposer supplies a candidate
-effect descriptor, while counterfactual executions and policy-separating tests
-determine whether it is refined, frozen, or sent for review.  Online (right),
-the deterministic monitor instantiates the frozen descriptor for the exact
-agent-proposed call, compares its effects with independently supplied authority,
-and commits only an Allow{} call.}
+\caption{Validation targets the security-critical observation interface before
+authorization. Registration (left) tests a proposed descriptor through
+source-executed interventions. The registered descriptor (middle) exposes concrete
+effects to independently authenticated policy. Our conformance experiment
+(right) compares post-state transitions and pre-commit representations under
+the same authority engine.}
 \label{fig:system-overview}
 \end{figure*}

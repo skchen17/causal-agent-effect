@@ -18,8 +18,21 @@ def load_module():
     return module
 
 
-def payloads(*, noninferior: bool = True, registered_asr: int = 1):
+def payloads(
+    *,
+    noninferior: bool = True,
+    registered_asr: int = 1,
+    atom_semantic_difference: bool = True,
+    atom_semantic_benefit: bool = True,
+):
     conditions = ("no_guard", "spotlighting", "c1f")
+    qwen_methods = (
+        "no_guard",
+        "spotlighting",
+        "prompt_sandwiching",
+        "promptarmor_local",
+        "c1f",
+    )
     return {
         "deepseek": {
             "aggregates": [
@@ -35,11 +48,12 @@ def payloads(*, noninferior: bool = True, registered_asr: int = 1):
         "qwen": {
             "metrics": [
                 {
-                    "condition": name,
-                    "attack_successes": 8 if name == "no_guard" else 2,
+                    "method": name,
+                    "attack_successes": 8 if name == "no_guard" else (2 if name == "c1f" else 3),
                     "benign_utility_successes": 70,
+                    "attack_utility_successes": 350,
                 }
-                for name in conditions
+                for name in qwen_methods
             ]
         },
         "heldout": {
@@ -90,6 +104,33 @@ def payloads(*, noninferior: bool = True, registered_asr: int = 1):
                 },
             ]
         },
+        "raw_field": {
+            "aggregates": [
+                {
+                    "variant": "raw_field_taint",
+                    "attack_successes": 4,
+                    "benign_utility_successes": 40,
+                }
+            ],
+            "retrospective_same_call": {
+                "decision_disagreements": 12,
+                "n_effectful_call_checks": 100,
+            },
+            "attribution_assessment": {
+                "atom_semantic_runtime_difference": atom_semantic_difference,
+                "atom_semantic_runtime_benefit": atom_semantic_benefit,
+            },
+        },
+        "concrete_authorizer": {
+            "n_queries": 232,
+            "metrics": [
+                {
+                    "method": "concrete_effect_atoms",
+                    "unsafe_pre_allow": {"successes": 0},
+                    "safe_false_deny": {"successes": 0},
+                }
+            ],
+        },
     }
 
 
@@ -98,7 +139,11 @@ def test_assessment_allows_weak_accept_only_when_all_evidence_gates_support_it()
     result = module.assess(payloads())
     assert result["benign_utility_noninferior"] is True
     assert result["closed_loop_granularity_signal"] is True
+    assert result["atom_semantic_runtime_difference"] is True
+    assert result["atom_semantic_runtime_benefit"] is True
     assert result["security_not_worse_on_frozen_generalization_checks"] is True
+    assert result["concrete_atom_authorizer_exact_on_finite_relation"] is True
+    assert result["qwen_pareto_dominators"] == []
     assert result["simulated_recommendation"] == "Weak Accept"
 
 
@@ -109,3 +154,13 @@ def test_failed_noninferiority_is_retained_in_review_wording() -> None:
     assert result["simulated_recommendation"] == "Borderline / Weak Reject"
     assert "does not pass" in review
     assert "production safety" in review
+
+
+def test_absent_raw_field_difference_blocks_weak_accept() -> None:
+    module = load_module()
+    result = module.assess(
+        payloads(atom_semantic_difference=False, atom_semantic_benefit=False)
+    )
+    assert result["atom_semantic_runtime_difference"] is False
+    assert result["atom_semantic_runtime_benefit"] is False
+    assert result["simulated_recommendation"] == "Borderline / Weak Reject"

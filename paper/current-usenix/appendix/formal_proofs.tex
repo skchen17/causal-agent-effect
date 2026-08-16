@@ -48,7 +48,7 @@ The separating pair directly violates Definition~\ref{def:authorization-equivale
 Theorem~\ref{thm:representation-insufficiency} then gives the downstream
 monitor consequence. \hfill$\square$
 
-\paragraph{Proof of Theorem~\ref{thm:finite-adequacy}.}
+\paragraph{Proof of Proposition~\ref{thm:finite-adequacy}.}
 Suppose the initial representation has $c_0\geq 1$ nonempty cells.  Each
 successful counterexample-guided step splits at least one nonempty cell into two
 nonempty cells, and no later step merges cells.  After $k$ refinements there are
@@ -68,7 +68,7 @@ unsafe allow or loss of permissiveness for some admissible policy. This is a
 relative necessity result: changing $D$ or the admissible policy family can
 change which components are necessary.
 
-\paragraph{Proof of Theorem~\ref{thm:conditional-atom-mediation}.}
+\paragraph{Proof of Proposition~\ref{thm:conditional-atom-mediation}.}
 Let $u$ be any allowed committed effectful call.  Complete mediation gives a
 pre-commit decision over $A_{d_t}(u)$, and the authorizer's allow rule gives
 $J_P(A_{d_t}(u))=1$.  Descriptor fidelity yields $I_P(\omega(u))=1$.
@@ -91,14 +91,11 @@ Complete mediation applies this argument to every effectful commit, and
 check--use consistency ensures the argument concerns the call actually
 executed. \hfill$\square$
 
-\paragraph{Scope of the proofs.}
-The proofs do not establish descriptor, provenance, or grounding soundness.
-Counterfactual
-execution can falsify a descriptor and can establish sufficiency only on a
-finite collision-complete domain. It cannot certify unseen, asynchronous, or
-out-of-domain effects.  The atom-mediation theorem additionally assumes policy
-correctness and policy-snapshot integrity; it does not establish either
-assumption.  The confinement theorem
-covers only the implemented provenance-origin policy. ACLs, delegation,
-quotas, history-dependent policy,
-and authenticated malicious requests require additional policy machinery.
+\paragraph{Proof obligations.}
+The observability result is parameterized by $D$ and $\mathcal P$. The
+consumption result additionally assumes descriptor fidelity, policy
+correctness, policy-snapshot integrity, complete mediation, and check--use
+consistency. The provenance-origin corollary instantiates these obligations
+with the registered-field descriptor, provenance adapter, and grounding
+relation defined in Section~\ref{sec:security-analysis}. Operational limits of
+these assumptions are collected in Section~\ref{sec:limitations}.

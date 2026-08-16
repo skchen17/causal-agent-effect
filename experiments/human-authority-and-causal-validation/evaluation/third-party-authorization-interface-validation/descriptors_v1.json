@@ -1,0 +1,270 @@
+{
+  "descriptors": [
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "filesystem.directory.create"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "resource_id": "arguments.path"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "create_directory",
+      "trusted_state_dependencies": [
+        "pre_state.entries"
+      ]
+    },
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "filesystem.file.create"
+        },
+        {
+          "commit_mode": "commit",
+          "operation": "filesystem.file.overwrite"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "payload_class": "arguments.content",
+        "resource_id": "arguments.path"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "write_file",
+      "trusted_state_dependencies": [
+        "pre_state.entries"
+      ]
+    },
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "filesystem.file.edit"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "commit": "arguments.dryRun",
+        "payload_class": "arguments.edits",
+        "resource_id": "arguments.path"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "edit_file",
+      "trusted_state_dependencies": [
+        "pre_state.entries"
+      ]
+    },
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "filesystem.entry.move"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "resource_id": "arguments.source",
+        "target_principal": "arguments.destination"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "move_file",
+      "trusted_state_dependencies": [
+        "pre_state.entries"
+      ]
+    },
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "sqlite.record.create"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "resource_id": "arguments.table + allocated id",
+        "target_principal": "arguments.data.owner",
+        "visibility": "arguments.data.visibility"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "create_record",
+      "trusted_state_dependencies": [
+        "pre_state.tables"
+      ]
+    },
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "sqlite.record.update"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "resources": "rows matching arguments.conditions",
+        "target_principal": "post-update owner",
+        "visibility": "post-update visibility"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "update_records",
+      "trusted_state_dependencies": [
+        "pre_state.tables"
+      ]
+    },
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "sqlite.record.delete"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "resources": "rows matching arguments.conditions",
+        "target_principal": "pre-state owner",
+        "visibility": "pre-state visibility"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "delete_records",
+      "trusted_state_dependencies": [
+        "pre_state.tables"
+      ]
+    },
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "memory.entity.create"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "payload_class": "arguments.entities[*].observations",
+        "resources": "arguments.entities[*].name"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "create_entities",
+      "trusted_state_dependencies": [
+        "pre_state.entities"
+      ]
+    },
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "memory.relation.create"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "resources": "arguments.relations[*]",
+        "target_principal": "arguments.relations[*].to"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "create_relations",
+      "trusted_state_dependencies": []
+    },
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "memory.observation.add"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "payload_class": "arguments.observations[*].contents[*]",
+        "resources": "arguments.observations[*].entityName"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "add_observations",
+      "trusted_state_dependencies": []
+    },
+    {
+      "effect_templates": [
+        {
+          "commit_mode": "commit",
+          "operation": "memory.entity.delete"
+        }
+      ],
+      "evidence_scope": "registration-12-pairs-per-tool",
+      "features": {
+        "list_expansion": true,
+        "pre_state": true,
+        "qualifiers": true
+      },
+      "field_bindings": {
+        "resources": "arguments.entityNames[*]"
+      },
+      "provenance": "rule_generated",
+      "schema_version": 2,
+      "tool_name": "delete_entities",
+      "trusted_state_dependencies": [
+        "pre_state.entities"
+      ]
+    }
+  ]
+}

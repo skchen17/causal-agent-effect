@@ -1,0 +1,263 @@
+{
+  "acceptance_gates": {
+    "all_rows_retained": true,
+    "each_coarse_view_has_mixed_cells": true,
+    "evaluation_descriptor_exact": true,
+    "registration_exact": true,
+    "registration_relations": true,
+    "typed_full_coverage": true,
+    "typed_zero_false_denial": true,
+    "typed_zero_mixed_cells": true,
+    "typed_zero_unsafe_pre_allow": true,
+    "zero_compile_failures": true
+  },
+  "claim_boundary": "This controlled, protocol-separated benchmark establishes representation sufficiency only for the frozen tool, intervention, and authority families. It is not independently authored, does not estimate production prevalence, and does not establish open-world descriptor soundness or production safety.",
+  "collision_metrics": [
+    {
+      "minimum_unavoidable_errors": 240,
+      "n_cells": 4,
+      "n_mixed_cells": 4,
+      "representation": "tool_name",
+      "rows_in_mixed_cells": 1024
+    },
+    {
+      "minimum_unavoidable_errors": 64,
+      "n_cells": 243,
+      "n_mixed_cells": 51,
+      "representation": "canonical_raw_arguments",
+      "rows_in_mixed_cells": 208
+    },
+    {
+      "minimum_unavoidable_errors": 24,
+      "n_cells": 106,
+      "n_mixed_cells": 9,
+      "representation": "common_effect_fields",
+      "rows_in_mixed_cells": 95
+    },
+    {
+      "minimum_unavoidable_errors": 0,
+      "n_cells": 297,
+      "n_mixed_cells": 0,
+      "representation": "validated_typed_effects",
+      "rows_in_mixed_cells": 0
+    }
+  ],
+  "direct_metrics": [
+    {
+      "abstain": 1.0,
+      "coverage": 0.0,
+      "covered_accuracy": null,
+      "decision_accuracy": 0.0,
+      "false_denial": 0.0,
+      "ideal_allow": 240,
+      "ideal_deny": 784,
+      "n": 1024,
+      "representation": "tool_name",
+      "stratum": "all",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 1.0,
+      "coverage": 0.0,
+      "covered_accuracy": null,
+      "decision_accuracy": 0.0,
+      "false_denial": 0.0,
+      "ideal_allow": 180,
+      "ideal_deny": 588,
+      "n": 768,
+      "representation": "tool_name",
+      "stratum": "routine",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 1.0,
+      "coverage": 0.0,
+      "covered_accuracy": null,
+      "decision_accuracy": 0.0,
+      "false_denial": 0.0,
+      "ideal_allow": 60,
+      "ideal_deny": 196,
+      "n": 256,
+      "representation": "tool_name",
+      "stratum": "boundary",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.00390625,
+      "coverage": 0.99609375,
+      "covered_accuracy": 0.8754901960784314,
+      "decision_accuracy": 0.8720703125,
+      "false_denial": 0.49166666666666664,
+      "ideal_allow": 240,
+      "ideal_deny": 784,
+      "n": 1024,
+      "representation": "canonical_raw_arguments",
+      "stratum": "all",
+      "unsafe_pre_allow": 0.011479591836734694
+    },
+    {
+      "abstain": 0.005208333333333333,
+      "coverage": 0.9947916666666666,
+      "covered_accuracy": 0.8704188481675392,
+      "decision_accuracy": 0.8658854166666666,
+      "false_denial": 0.5,
+      "ideal_allow": 180,
+      "ideal_deny": 588,
+      "n": 768,
+      "representation": "canonical_raw_arguments",
+      "stratum": "routine",
+      "unsafe_pre_allow": 0.015306122448979591
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 0.890625,
+      "decision_accuracy": 0.890625,
+      "false_denial": 0.4666666666666667,
+      "ideal_allow": 60,
+      "ideal_deny": 196,
+      "n": 256,
+      "representation": "canonical_raw_arguments",
+      "stratum": "boundary",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.1904296875,
+      "coverage": 0.8095703125,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 0.8095703125,
+      "false_denial": 0.0,
+      "ideal_allow": 240,
+      "ideal_deny": 784,
+      "n": 1024,
+      "representation": "common_effect_fields",
+      "stratum": "all",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.19791666666666666,
+      "coverage": 0.8020833333333334,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 0.8020833333333334,
+      "false_denial": 0.0,
+      "ideal_allow": 180,
+      "ideal_deny": 588,
+      "n": 768,
+      "representation": "common_effect_fields",
+      "stratum": "routine",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.16796875,
+      "coverage": 0.83203125,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 0.83203125,
+      "false_denial": 0.0,
+      "ideal_allow": 60,
+      "ideal_deny": 196,
+      "n": 256,
+      "representation": "common_effect_fields",
+      "stratum": "boundary",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 1.0,
+      "false_denial": 0.0,
+      "ideal_allow": 240,
+      "ideal_deny": 784,
+      "n": 1024,
+      "representation": "validated_typed_effects",
+      "stratum": "all",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 1.0,
+      "false_denial": 0.0,
+      "ideal_allow": 180,
+      "ideal_deny": 588,
+      "n": 768,
+      "representation": "validated_typed_effects",
+      "stratum": "routine",
+      "unsafe_pre_allow": 0.0
+    },
+    {
+      "abstain": 0.0,
+      "coverage": 1.0,
+      "covered_accuracy": 1.0,
+      "decision_accuracy": 1.0,
+      "false_denial": 0.0,
+      "ideal_allow": 60,
+      "ideal_deny": 196,
+      "n": 256,
+      "representation": "validated_typed_effects",
+      "stratum": "boundary",
+      "unsafe_pre_allow": 0.0
+    }
+  ],
+  "evaluation": {
+    "compile_failures": 0,
+    "descriptor_exact_match_rate": 1.0,
+    "descriptor_exact_matches": 1024,
+    "ideal_labels": {
+      "ALLOW": 240,
+      "DENY": 784
+    },
+    "n_contexts": 1024,
+    "n_domains": 4,
+    "n_tools": 4
+  },
+  "experiment": "protocol_separated_authority_representation",
+  "protocol_hash": "8a3e4d0629140a0eec156bbe4f774d5760f32b83cc4421c3de42518802470fcf",
+  "registration": {
+    "axes": {
+      "default": 28,
+      "mode": 28,
+      "pre_state": 28,
+      "qualifier": 28,
+      "resource": 28,
+      "surface": 24,
+      "target": 28
+    },
+    "effective_sensitive_pairs": 168,
+    "exact_match_rate": 1.0,
+    "exact_matches": 384,
+    "n_contexts": 384,
+    "n_pairs": 192,
+    "relation_accuracy": 1.0,
+    "relation_passes": 192,
+    "surface_invariant_pairs": 24
+  },
+  "state_dependent": {
+    "n_argument_groups": 256,
+    "n_state_policy_separating_groups": 52,
+    "representations": {
+      "canonical_raw_arguments": {
+        "colliding_groups": 52,
+        "rate": 1.0,
+        "total": 52
+      },
+      "common_effect_fields": {
+        "colliding_groups": 0,
+        "rate": 0.0,
+        "total": 52
+      },
+      "tool_name": {
+        "colliding_groups": 52,
+        "rate": 1.0,
+        "total": 52
+      },
+      "validated_typed_effects": {
+        "colliding_groups": 0,
+        "rate": 0.0,
+        "total": 52
+      }
+    }
+  },
+  "status": "passed"
+}

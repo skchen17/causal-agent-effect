@@ -24,7 +24,7 @@ def test_fixed_claims_trace_to_existing_artifacts_and_tables() -> None:
     module = load_module()
     rows = []
     module.fixed_claims(rows)
-    assert len(rows) == 155
+    assert len(rows) == 187
     assert all(row["status"] == "verified" for row in rows)
     assert all((ROOT / row["source"]).is_file() for row in rows)
     claim_ids = {row["claim_id"] for row in rows}
@@ -51,6 +51,9 @@ def test_fixed_claims_trace_to_existing_artifacts_and_tables() -> None:
         "POLICY-VIEW-REGISTERED_FIELD_C1F-TOUCHED",
         "POLICY-VIEW-BENIGN-TOUCHED",
         "TRANSFER-OLDER-PROFILE-PRECOMMIT-CHECKS",
+        "AUTHORITY-EVALUATION-CONTEXTS",
+        "AUTHORITY-CANONICAL_RAW_ARGUMENTS-AUTHORIZED-WITHHELD",
+        "AUTHORITY-VALIDATED_TYPED_EFFECTS-EXACT",
     }.issubset(claim_ids)
 
 
@@ -95,10 +98,57 @@ def test_missing_final_artifacts_remain_explicit() -> None:
             "agentlab_c1f_transfer",
             "current_c1f_closed_loop_four_view",
             "current_c1f_bounded_adaptive",
+            "current_c1f_raw_field_attribution",
             "current_c1f_qwen32_strong_baselines",
+            "toolsandbox_concrete_atom_authorizer",
         }
     )
     assert all(row["reason"].startswith(("missing", "status=")) for row in pending)
+
+
+def test_concrete_atom_authorizer_extractor_has_fixed_denominators(monkeypatch) -> None:
+    module = load_module()
+    monkeypatch.setattr(module, "require_table_snippets", lambda *_args: None)
+    metrics = []
+    for method in (
+        "whole_call_tool_name",
+        "raw_arguments_exact",
+        "common_effect_atoms",
+        "concrete_effect_atoms",
+        "source_effect_oracle",
+    ):
+        metrics.append(
+            {
+                "method": method,
+                "unsafe_pre_allow": {"successes": 0, "total": 100, "rate": 0.0},
+                "safe_false_deny": {"successes": 0, "total": 132, "rate": 0.0},
+                "coverage": {"successes": 232, "total": 232, "rate": 1.0},
+                "decision_accuracy": {"successes": 232, "total": 232, "rate": 1.0},
+            }
+        )
+    rows = []
+    module.add_concrete_atom_authorizer_claims(
+        rows,
+        {
+            "status": "passed",
+            "experiment": "toolsandbox_concrete_atom_authorizer_mechanism",
+            "mode": "full",
+            "n_tools": 5,
+            "n_contexts": 32,
+            "n_queries": 232,
+            "ideal_decisions": {"ALLOW": 132, "DENY": 100},
+            "metrics": metrics,
+            "gates": {"all_queries_emitted": True},
+        },
+        "authorizer.json",
+        "run_toolsandbox_concrete_atom_authorizer.py",
+    )
+    assert len(rows) == 25
+    assert {row["claim_id"] for row in rows} >= {
+        "CONCRETE-AUTHORIZER-QUERIES",
+        "CONCRETE-AUTHORIZER-CONCRETE_EFFECT_ATOMS-UPA",
+        "CONCRETE-AUTHORIZER-RAW_ARGUMENTS_EXACT-FD",
+    }
 
 
 def test_final_extractors_emit_numeric_claim_rows() -> None:
@@ -299,8 +349,49 @@ def test_final_extractors_emit_numeric_claim_rows() -> None:
         "bounded.json",
         "run_current_c1f_bounded_adaptive.py",
     )
-    assert len(rows) == 45
-    assert 155 + len(rows) == 200
+    module.add_raw_field_attribution_claims(
+        rows,
+        {
+            "experiment": "current_c1f_raw_field_attribution",
+            "n_cases": 321,
+            "selection_conditioned": True,
+            "gates": {
+                "all_selected_keys_present": True,
+                "no_error_rows": True,
+                "raw_field_emits_precommit_checks": True,
+                "no_execution_without_allow": True,
+                "runtime_guard_llm_calls_zero": True,
+                "retrospective_exact_trajectory_coverage": True,
+            },
+            "aggregates": [
+                {
+                    "variant": "raw_field_taint",
+                    "n_cases": 321,
+                    "benign_n": 48,
+                    "benign_utility_successes": 40,
+                    "attack_n": 273,
+                    "attack_utility_successes": 200,
+                    "attack_successes": 3,
+                    "precommit_audit": {
+                        "precommit_checks": 100,
+                        "executed_without_allow": 0,
+                    },
+                }
+            ],
+            "retrospective_same_call": {
+                "n_trajectories": 726,
+                "n_effectful_call_checks": 1000,
+                "decision_disagreements": 30,
+                "raw_allow_atom_deny": 20,
+                "raw_deny_atom_allow": 10,
+                "trajectories_with_disagreement": 25,
+            },
+        },
+        "raw-field.json",
+        "run_c1f_raw_field_attribution.py",
+    )
+    assert len(rows) == 52
+    assert 155 + len(rows) == 207
     assert all(row["status"] == "verified" for row in rows)
     assert any(row["claim_id"] == "DEEPSEEK-REPEATED-C1F-NONINFERIOR" for row in rows)
     assert any(row["claim_id"] == "QWEN32-C1F-ASR" and row["denominator"] == 629 for row in rows)
@@ -318,5 +409,10 @@ def test_final_extractors_emit_numeric_claim_rows() -> None:
     assert any(
         row["claim_id"] == "BOUNDED-CURRENT-OURS_E77_EFFECT_DIFF_RUNTIME-ASR"
         and row["denominator"] == 40
+        for row in rows
+    )
+    assert any(
+        row["claim_id"] == "RAW-FIELD-CLOSED-LOOP-ASR"
+        and row["denominator"] == 273
         for row in rows
     )

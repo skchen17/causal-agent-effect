@@ -1,104 +1,81 @@
-# Tool-Effect Binding Research Artifact
+# Authorization-Interface Validation Research Artifact
 
-This repository snapshot contains the code, frozen inputs, result artifacts, tests,
-and manuscript sources for the paper:
+This repository contains the code, frozen inputs, result artifacts, tests, and
+manuscript sources for:
 
-> **Binding Agent Tool Calls to Effects: Counterfactually Validated Atoms for
-> Pre-Commit Mediation**
+> **Falsifying Authorization Interfaces for Tool-Using Agents: Counterfactual
+> Validation of Policy-Relevant Effects**
 
-The project studies a representation problem in tool-using agents. A single tool
-call can commit several independently authorizable effects. If a monitor merges
-authorization-distinct effects into the same view, no downstream decision rule can
-simultaneously avoid unsafe allows and withheld authorized work. The artifact tests
-whether source-executed counterfactuals can expose those collisions and refine a
-tool-local effect representation before runtime mediation.
+Authorization logic can enforce only distinctions preserved by its observation
+interface. If two executions require different policy decisions but map to the
+same representation, every downstream authorizer must either admit an
+unauthorized execution or withhold authorized work. This artifact turns that
+obligation into an executable test: copied-sandbox interventions expose
+committed transitions, a separately supplied policy identifies decision-relevant
+differences, and representation collisions become reproducible failure
+certificates.
 
-## Scope
+Typed effects are one evaluated authorization interface, not a privileged or
+universal representation. The artifact also evaluates a strong state-aware
+request interface and records where the two designs place semantic adaptation,
+state exposure, code, and runtime cost.
 
-The strongest supported result is finite-domain and policy-relative:
+## Evidence Included
 
-- source-executed counterfactuals expose collisions in coarse tool-call views;
-- typed effect atoms remove the observed collisions in two frozen domains;
-- a concrete atom authorizer exactly realizes a frozen 232-query policy relation;
-- a narrower provenance-origin monitor demonstrates audited pre-commit mediation.
-
-This artifact does **not** claim a globally minimal atom schema, a complete ACL or
-delegation system, production safety, or unrestricted adaptive robustness. The
-AgentDojo runtime monitor is narrower than the concrete ToolSandbox authorizer.
+- source-executed representation-collision and failure-certificate studies;
+- 11 tools from three pinned public MCP implementations;
+- mechanically separated native-delta and typed authorization paths;
+- a 1,024-context ACL, capability, and delegation benchmark;
+- interface-economy and descriptor-mutation audits;
+- a 30-call concrete pre-commit integration study;
+- matched DeepSeek and Qwen3-32B runtime comparisons, including the final
+  five-method 97-benign/629-attack protocol;
+- a 360-row fail-fast claim ledger and a 7,001-row compact outcome export.
 
 ## Repository Layout
 
 | Path | Purpose |
 |---|---|
-| `experiments/human-authority-and-causal-validation/` | Effect prevalence, finite representation collisions, held-out ToolSandbox validation, and the concrete atom authorizer. |
-| `experiments/security-analysis-ablation-and-overhead/` | Refinement monotonicity, policy-family attribution, atom-vs-field attribution, and runtime ablations. |
-| `experiments/intent-bound-runtime-guard/` | Frozen descriptors, registration audit, C1f runtime evidence, and deterministic reproduction scripts. |
-| `experiments/unified-agent-security-baselines/` | Frozen protocol for the same-checkpoint AgentDojo baseline comparison. Partial model logs are intentionally excluded. |
-| `shared/compatibility/scripts/` | Main experiment runners. |
-| `shared/compatibility/code/` | Runtime monitor and AgentDojo adapter implementations. |
-| `shared/compatibility/tests/` | Tests for the paper's main mechanisms and reproduction paths. |
-| `paper/current-usenix/` | Multi-file USENIX manuscript and claim-to-source ledger. |
-| `paper/revised-single-file/` | Reviewed single-file manuscript snapshot. |
-| `EXPERIMENTS.md` | Claim-to-code-to-result map and commands. |
-| `REPRODUCIBILITY.md` | Environment, rerun levels, and limitations. |
+| `experiments/human-authority-and-causal-validation/` | Source execution, explicit authority, state-aware comparison, third-party MCP validation, native-delta checks, and interface economy. |
+| `experiments/security-analysis-ablation-and-overhead/` | Refinement, representation attribution, policy-view controls, and mechanism diagnostics. |
+| `experiments/intent-bound-runtime-guard/` | Frozen descriptors and pre-commit runtime evidence. |
+| `experiments/unified-agent-security-baselines/` | Final matched five-method Qwen3-32B result. |
+| `shared/compatibility/scripts/` | Main deterministic experiment and audit runners. |
+| `shared/compatibility/code/` | Runtime consumer and AgentDojo adapters. |
+| `shared/compatibility/tests/` | Tests for the main evidence and reproduction paths. |
+| `paper/current-usenix/` | Active USENIX manuscript, tables, reports, and claim ledger. |
+| `EXPERIMENTS.md` | Claim-to-code-to-result map. |
+| `REPRODUCIBILITY.md` | Verification levels and environment requirements. |
 
 ## Quick Verification
 
-The deterministic checks do not call an external API or execute real external side
-effects:
-
-```bash
-git clone git@github.com:skchen17/causal-agent-effect.git
-cd causal-agent-effect
-python scripts/verify_release.py
-```
-
-Run the principal finite-domain experiments directly:
-
-```bash
-python shared/compatibility/scripts/run_finite_domain_effect_binding_validation.py
-python shared/compatibility/scripts/run_toolsandbox_heldout_validation.py
-python shared/compatibility/scripts/run_toolsandbox_concrete_atom_authorizer.py --mode full
-python shared/compatibility/scripts/run_representation_mechanism_attribution.py
-python shared/compatibility/scripts/run_atom_vs_field_semantic_attribution.py --mode full
-```
-
-The ToolSandbox source replay additionally requires the pinned public dependency:
-
-```bash
-bash scripts/setup_toolsandbox.sh
-python shared/compatibility/scripts/run_toolsandbox_heldout_validation.py
-```
-
-Regenerate the paper claim ledger from frozen outputs:
-
-```bash
-python scripts/reproduce_usenix_main.py
-```
-
-The ledger fails closed while a required model-run artifact is absent. This is
-intentional: pending experiments are not silently converted into paper claims.
-
-## Dependencies
-
-Most frozen-result and finite-policy runners use only Python's standard library.
-Install the test dependency with:
+These commands do not call an external API or execute real external side effects:
 
 ```bash
 python -m pip install -r requirements-core.txt
+python scripts/verify_release.py
+python scripts/reproduce_usenix_main.py
 ```
 
-The full AgentDojo/model runs additionally require AgentDojo 0.1.35, an
-OpenAI-compatible local model endpoint or explicitly configured API backend, and
-the checkpoint named in the frozen protocol. Model weights and API credentials are
-not included.
+The reproduction entry point must report:
 
-## Safety and Data Handling
+```json
+{"status": "passed", "n_claim_rows": 360, "pending": []}
+```
 
-- Tool calls are evaluated in copied sandboxes or from saved benchmark artifacts.
-- No real email, payment, calendar, Slack, or external SaaS action is executed.
-- Gold/source-effect artifacts are used for scoring only and are not runtime input.
-- API credentials, model weights, caches, local absolute paths, and user-specific
-  metadata are excluded from this release.
+The active paper is available at `paper/current-usenix/main.pdf`. Its technical
+body occupies 12 of the 13 allowed pages in the included USENIX-template build.
+
+## Dependencies and Data Handling
+
+Most frozen-result checks use only Python's standard library. Full source and
+model reruns additionally require the pinned ToolSandbox/AgentDojo packages and
+the model checkpoint recorded in `paper/current-usenix/artifact/environment.lock`.
+Model weights and API credentials are not redistributed.
+
+All tool executions use copied sandboxes or saved benchmark artifacts. The
+release contains no real email, payment, calendar, workspace, or SaaS action.
+Credentials, model weights, caches, local absolute paths, and user-specific
+metadata are excluded.
 
 See [README.zh-CN.md](README.zh-CN.md) for a Chinese overview.

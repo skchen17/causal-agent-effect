@@ -15,9 +15,9 @@
 \node[panel] at (0,2.95) {(a) AgentDojo source domain (56 calls)};
 \foreach \label/\pct/\count/\yy/\barcolor in {
   {Tool name}/100/564/2.50/TERed,
-  {Effect only}/97.2/548/2.08/TEOrange,
-  {Common fields}/20.9/118/1.66/TEBlue,
-  {Typed atoms}/0/0/1.24/TETeal}{
+  {Effect-only view}/97.2/548/2.08/TEOrange,
+  {Common-field view}/20.9/118/1.66/TEBlue,
+  {Typed-effect interface}/0/0/1.24/TETeal}{
     \node[anchor=east] at (\xzero-0.10,\yy) {\label};
     \pgfmathsetmacro{\barend}{\xzero+\pct*\xscale}
     \ifdim \pct pt=0pt
@@ -30,11 +30,13 @@
     \fi
 }
 
-\node[panel] at (0,0.78) {(b) Held-out ToolSandbox (32 contexts)};
+\node[panel] at (0,0.78) {(b) Third-party MCP tools (264 contexts)};
 \foreach \label/\pct/\count/\yy/\barcolor in {
-  {Tool name}/100/88/0.34/TERed,
-  {Common fields}/46.6/41/-0.08/TEBlue,
-  {Typed atoms}/0/0/-0.50/TETeal}{
+  {Tool name}/100/1552/0.34/TERed,
+  {Raw call}/6.44/100/-0.03/TEOrange,
+  {Common-field view}/12.89/200/-0.40/TEBlue,
+  {State-aware request}/0/0/-0.77/TEGold,
+  {Typed-effect interface}/0/0/-1.14/TETeal}{
     \node[anchor=east] at (\xzero-0.10,\yy) {\label};
     \pgfmathsetmacro{\barend}{\xzero+\pct*\xscale}
     \ifdim \pct pt=0pt
@@ -47,21 +49,21 @@
     \fi
 }
 
-\draw[tick] (\xzero,-0.82) -- (\xzero+4.45,-0.82);
+\draw[tick] (\xzero,-1.44) -- (\xzero+4.45,-1.44);
 \foreach \pct in {0,50,100}{
   \pgfmathsetmacro{\xx}{\xzero+\pct*\xscale}
-  \draw[tick] (\xx,-0.78)--(\xx,-0.87);
-  \node[font=\tiny, anchor=north] at (\xx,-0.88) {\pct\%};
+  \draw[tick] (\xx,-1.40)--(\xx,-1.49);
+  \node[font=\tiny, anchor=north] at (\xx,-1.50) {\pct\%};
 }
-\node[font=\tiny, anchor=north] at (\xzero+2.225,-1.17)
+\node[font=\tiny, anchor=north] at (\xzero+2.225,-1.79)
   {separating pairs relative to tool-name view};
-\node[font=\tiny, anchor=west, text=TETeal] at (\xzero,-1.52)
+\node[font=\tiny, anchor=west, text=TETeal] at (\xzero,-2.14)
   {Bar-end labels give absolute pair counts; lower is better.};
 \end{tikzpicture}
-\caption{Representation collision falls as the authorization view preserves
-execution-relevant effects. Bars normalize policy-separating pair counts to
-the tool-name view within each domain; labels report absolute counts. Typed
-atoms reach the source-effect partition in both the development and held-out
-domains.}
+\caption{Constructive falsification and post-freeze interface conformance. Bars normalize
+policy-separating pair counts to the tool-name view within each domain; labels
+report absolute counts.  Every nonzero count is a constructive counterexample
+to that view. Zero for the typed-effect interface records collision freedom for the
+enumerated domain and policy family.}
 \label{fig:representation-results}
 \end{figure}

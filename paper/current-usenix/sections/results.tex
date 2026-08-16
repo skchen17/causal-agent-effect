@@ -1,146 +1,137 @@
 \section{Results}
-\label{sec:results}
 
-\subsection{RQ1: Do Calls Commit Compound Effects?}
+\subsection{Compound and State-Dependent Tool Effects}
 
 \input{tables/table_agentdojo_effect_prevalence}
 
-Compound effects occur in a widely used agent benchmark.  Source replay finds
-a state or external-interaction effect in 29.5\% of 339 AgentDojo calls.  Among
-the effectful calls, 17.0\% contain multiple logical effect units and 13.0\%
-cross effect types or benchmark subsystems
-(Table~\ref{tab:agentdojo-effect-prevalence}).
+Tool calls can commit more than one independently relevant state change. Source
+replay observes a state or external-interaction effect in 29.5\% of 339
+AgentDojo calls. Among effectful calls, 17.0\% contain multiple logical effect
+units and 13.0\% cross effect types or benchmark subsystems
+(Table~\ref{tab:agentdojo-effect-prevalence}). In a separate ToolSandbox
+protocol~\cite{lu-etal-2025-toolsandbox}, 28.1\% of contexts keep the tool and explicit arguments fixed while
+pre-state changes the committed effect. These execution facts establish the
+semantic distinctions; the separating relations below determine which of them
+matter to authorization.
 
-\subsection{RQ2: Can Registration Recover Required Distinctions?}
+\subsection{Constructive Falsification and Interface Conformance}
 
 \input{figures/representation_results}
 
-\paragraph{Coarse-view collisions.}
-Coarse views lose distinctions that a policy can require.  In the 56-call
-source-executed domain, tool name and effect-only views create 564 and 548
-authorization-separating pairs.  Common fields reduce this to 118 but still
-merge payload, temporal, recurrence, and repeated-effect distinctions.  The
-typed effect representation matches the source-effect partition with no mixed
-cell (Figure~\ref{fig:representation-results}(a)).  This establishes sufficiency
-for the finite call domain and submultiset policy family.
+\paragraph{Executable failure certificates.}
+Coarse views merge executions that the diagnostic policy relation separates.
+In the 56-call source domain, the tool-name and effect-only views induce 564 and
+548 separating pairs. The common-field view leaves 118 pairs by merging
+payload, temporal, recurrence, and repeated-effect distinctions. Each pair is
+constructive: the tool executed, the committed semantic views differ, the
+policy-separation oracle requires different decisions, and the tested interface
+represents both executions identically. Any one pair therefore falsifies that
+interface on a domain containing it (Figure~\ref{fig:representation-results}(a)).
 
-A frozen refinement lattice connects this endpoint to the procedure.  Adding
-date, subject, recurrence, payload, and visibility qualifiers in sequence
-reduces separating pairs from 124 to 60, 28, 12, 4, and zero.  All 211
-comparable edges in the 32-representation lattice preserve partition
-refinement, and none increases the separating-pair or ambiguous-cell lower
-bound.  The lattice's 124-pair erased endpoint applies five role-specific
-deletion and masking operations; it is intentionally coarser than the
-118-pair common-field view in Figure~\ref{fig:representation-results}(a), which
-only removes the qualifier map.  Both reach the same typed endpoint.  This is
-an empirical instance of Theorem~\ref{thm:finite-adequacy}; other domains may
-require a different qualifier order.
+\input{tables/table_failure_certificates}
+The deterministic extractor joins pre-state and call pairs to source
+transitions, ideal decisions, and representation keys. It selects the first
+valid row under each of six frozen category predicates. Table~\ref{tab:failure-certificates}
+shows two certificates with identical calls: a compliance flag adds a compound
+banking effect in one, while an alias map redirects both account and payee in
+the other. Each row independently rechecks source difference, policy
+separation, coarse equality, and refined distinction.
 
-\paragraph{Counterfactual repair and held-out transfer.}
-The initial source-grounded interventions ($N=80$) falsify the common-field
-representation in 18.8\% of cases.  Adding typed payload, time, recurrence, and
-setting qualifiers removes those observed gaps, but this is a post-failure
-repair on the same suite.  We therefore evaluate the frozen representation on
-a separate source.
+\paragraph{Counterexamples guide monotone refinement.}
+Across 211 comparable edges in the
+32-representation lattice, restoring a witnessed distinction never coarsens
+the partition or increases its collision lower bound. One inspected path adds
+date, subject, recurrence, payload, and visibility distinctions and reduces the
+observed separating-pair count from 124 to zero. This behavior instantiates
+Proposition~\ref{thm:finite-adequacy} on the diagnostic relation.
 
-The pre-registered ToolSandbox domain exhibits the same gap.  Across 32
-contexts, common fields retain four mixed
-cells and 41 separating pairs.  Typed effects reproduce the 25-cell source
-partition without collision or overpartition.  In 28.1\% of contexts, a
-witness keeps the tool and explicit arguments fixed while pre-state changes the committed effect,
-showing why argument values alone are not a complete effect representation
-(Figure~\ref{fig:representation-results}(b)).
+\paragraph{Independent implementations after freeze.}
+\input{tables/table_third_party_validation}
+The three pinned MCP implementations execute without source failure in all 264
+registration and 264 post-freeze contexts. A native-delta policy that consumes
+raw filesystem, row, and graph changes agrees with the typed path on every
+registration and post-freeze decision, with no typed compile failure.
+Tool name, raw call, and common fields retain 11, 5, and 12 mixed cells,
+respectively (Table~\ref{tab:third-party-validation}). The typed interface and
+the stronger state-aware request view retain none. Of 47 descriptor mutants
+generated without reading outcomes, registration detects 37. The remaining 10
+are decision-equivalent on both frozen domains, and none first fails after
+freeze.
 
-\input{tables/table_registration_sufficiency}
+\paragraph{Unresolved evidence is retained.}
+AgentDojo-wide registration keeps all 67 schema fields because invalid or
+unresolved interventions provide no evidence for omission. The result is a
+conservative full-field registry rather than a sparse projection.
+Appendix~\ref{app:additional-results} reports the field-level witness and
+failure counts.
 
-AgentDojo-wide registration is more conservative.  The runtime descriptor
-retains 100.0\% of 67 unique fields.  Searching multiple
-valid base calls and adding omission/default tests yields committed-effect
-witnesses for 88.0\% of 75 suite-scoped field instances, but only 50.7\% have
-at least five valid intervention kinds.  Invalid or unresolved executions make
-up 23.2\% of 1,325 attempts, mainly because mutations use nonexistent resources
-or violate preconditions.  The audit supports effect relevance for exercised
-fields, not sparse atom discovery (Table~\ref{tab:registration-sufficiency}).
+\subsection{Authorization under Explicit Authority}
 
-\subsection{RQ3: Can Atoms Realize the Frozen Policy?}
+\input{tables/table_protocol_separated_authority}
 
-\input{tables/table_concrete_atom_authorizer}
+The typed-effect interface preserves the distinctions exercised by the
+explicit-authority protocol. Its descriptors match the separately implemented
+transition oracle on all 384 registration contexts and satisfy all 192
+counterfactual relation checks. Across 1,024 contexts materialized after
+descriptor freeze, no policy-mixed cell is observed, and the shared authority
+engine reproduces every source-derived decision (Table~\ref{tab:protocol-separated-authorization}).
 
-Concrete atoms exactly realize the finite ToolSandbox decision relation.  In
-all 232 ordered context pairs, a candidate is authorized exactly when its
-source-executed effect multiset is contained in the authority anchor's
-multiset.  Tool identity has 100.0\% UPA.  Exact raw arguments reduce UPA to
-9.3\% but falsely deny 34.1\% of authorized pairs; common fields have 56.7\%
-UPA.  Concrete typed atoms match the source oracle with 0.0\% UPA and 0.0\%
-false denial (Table~\ref{tab:concrete-atom-authorizer}).  The anchors and ideal
-decisions are source-derived effect bounds, not deployment ACLs.
+Changing only the observation interface exposes the cost of erased
+distinctions. The tool-name view abstains on every context and therefore
+withholds all 240 authorized operations. The raw-call view covers 99.6\% of
+contexts but unsafely allows 1.1\% of ideal denials and withholds 50.4\% of
+authorized operations. The common-field view makes no incorrect covered
+decision, but abstention reduces coverage to 81.0\% and withholds 32.9\% of
+authorized operations. Its nine mixed cells also show that no deterministic
+consumer over that view can be both sound and fully permissive on this domain.
 
-\subsection{RQ4: What Does Runtime Mediation Establish?}
+The stronger state-aware request view also has no mixed cell and supports exact
+decisions on all 1,024 contexts. Its pure representation contains only
+totalized arguments and trusted attributes of directly referenced resources;
+the authorization track discloses a static tool-specific operation adapter.
+It is larger and more partitioned than the typed interface (669 versus 297
+cells, with 3,252 source-equivalent pairs split), but it is sufficient on this
+domain. The experiment therefore identifies two sufficient interfaces with
+different semantic placement.
 
-\input{figures/security_utility_tradeoff}
+\paragraph{What normalization buys.}
+The economy audit confirms that sufficiency is not the distinguishing result.
+Both paths reproduce all decisions in both domains. The typed interface instead
+forms a less fragmented policy-facing representation: state-aware requests
+split 3,252 and 90 source-equivalent pairs in the 1,024- and 264-context
+domains, whereas the typed view splits none. Their median policy-facing views
+contain 9 and 4 tool-pre-state leaves, versus none after typed instantiation.
+The implementations expose different cost profiles. In the four-tool
+prototype, the generic typed interpreter is about 5.2$\times$ slower than the
+state-aware path. In the third-party prototype it is about 1.4$\times$ faster,
+and its hard-coded compiler is larger than the state-aware adapter. Across both
+domains, the typed interface consistently provides canonicalization, lower
+overpartition, and descriptor-local semantic adaptation.
 
-\paragraph{Official AgentDojo evaluation.}
-On all 629 official DeepSeek attack pairs, attack success is 1.0\% without a
-guard and 0.0\% with the provenance-origin monitor.  Excluding the case used to repair
-structured provenance, and excluding 20 output-only goals outside the method's
-scope, leaves 1.0\% versus 0.0\% over 608 pairs (one-sided exact McNemar
-$p=.0156$; Figure~\ref{fig:security-utility-tradeoff}(a)).  The 1.0-percentage-point estimate
-comes from a low baseline attack rate.
+Pre-state explains part of the raw-call gap. Among 52 groups with identical
+arguments but state-dependent ideal decisions, call text collides in every
+group; the typed-effect and state-aware interfaces separate all of them.
+Explicit call text alone is therefore insufficient in these contexts; adding
+trusted state can recover the distinction.
 
-The reduction is not produced by abstaining on most calls.  Across 2,783
-pre-commit checks, the monitor allows 96.8\%, denies 3.2\%, abstains on none, makes no
-runtime guard LLM call, and records no execution without \Allow.  No benign
-call is directly denied in the provenance-origin sanity run.  Nevertheless, attack-task
-utility is 72.0\%, versus 76.3\% without a guard and 75.8\% under Spotlighting.
-On paired tasks, 13.7\% succeed only without the guard and 9.4\% only with it,
-so the net loss is not identical to the direct block count.
+\subsection{Pre-Commit Consumption}
 
-Spotlighting also reaches 0.0\% attack success and has higher utility in this
-run.  The result shows that a registered descriptor can drive deterministic
-pre-commit decisions with an exact audit trail, but it does not establish
-numerical dominance or an atom-specific security gain.  Repeated benign
-utility and held-out attack families use separately frozen protocols below;
-the fresh second-checkpoint comparison remains pending.
+In the 30-trajectory copied-sandbox study, local Qwen produces a parseable
+structured call for every task. The explicit-authority consumer allows all 10
+authorized or within-delegation calls and denies all 20 calls with an
+unauthorized target, compound unauthorized effect, adverse pre-state, or
+exceeded delegation. All 10 committed calls equal the checked call and their
+source-observed transitions reconcile with the instantiated atoms. The
+scenario-balanced study therefore exercises the complete
+call--descriptor--atom--authority--execute path.
 
-\paragraph{Attribution and transfer.}
-
-\input{tables/table_granularity_and_transfer}
-
-On the 321-case applicability subset, the provenance-origin monitor records
-2.6\% attack success.  Whole-call provenance, effect-only checking, raw-field
-taint, and no blocking record 4.0\%, 7.7\%, 3.7\%, and 13.9\%, respectively.
-The monitor's benign utility is 64.6\%, versus 81.3\% for whole-call and
-raw-field checking (Table~\ref{tab:granularity-transfer}(a)).  Because
-field-level applicability selected this subset, these are mechanism
-comparisons rather than benchmark-wide estimates.
-
-The retrospective four-view diagnostic explains the selectivity tradeoff on
-the completed no-guard trajectories.  Whole-call provenance blocking would
-intercept 98.1\% of successful attacks but touch 53.1\% of 629 attack
-trajectories.  Effect-only checking intercepts 41.5\% and touches 7.5\%; the
-provenance-origin monitor intercepts 92.5\% and touches 14.9\%.  No view touches
-the 97 injection-free trajectories because they contain no marked
-untrusted control segment.  These are fixed-trajectory interception counts,
-not counterfactual ASR or utility: a live denial can change all later actions.
-
-The fixed AgentLAB transfer provides bounded evidence for multi-step mediation.
-Under one Qwen3-32B checkpoint and the same 303-case manifest, attack success
-falls from 31.4\% to 0.3\%, while attack-task utility falls from 61.1\% to
-43.6\%.  All executed guarded calls have an exactly matching pre-commit record
-(100.0\%, $N=1{,}334$).  This is a substantial security transfer with
-a 17.5-percentage-point utility cost in this saved replay.
-
-The completed raw-field control sharpens the attribution boundary.  On the
-same subset, raw-field taint records 3.7\% attack success and 81.3\% benign
-utility, compared with 2.6\% and 64.6\% for the provenance-origin monitor.  The
-two views disagree on 3.6\% of 788 effectful checks, always when raw-field taint
-allows and the monitor denies.  Effect semantics therefore change decisions,
-but do not improve selectivity or utility on this subset.
-
-\input{sections/generated_final_validation_results}
-
-Together, RQ1--RQ3 establish the finite-domain representation and mechanism
-claims.  RQ4 establishes audited descriptor-driven mediation, while its
-raw-field and prompting controls delimit the current runtime contribution.
-Appendix~\ref{app:additional-results} reports registration failures,
-sensitivity, controlled monitor stresses, and cost.
+The narrower AgentDojo registered-field projection can drive an audited
+pre-commit hook. The monitor allows 96.8\% of 2,783 checks, produces no
+unreconciled execution, and never invokes an LLM after registration. Missing or
+unresolved bindings do not produce \Allow{}. In the matched Qwen3-32B run, the
+monitor lowers attack success from 10.0\% to 2.9\% while benign utility changes
+from 61.9\% to 60.8\%. Prompt Sandwiching reaches 1.0\% attack success and
+68.0\% benign utility, the best combined point in the five-method comparison;
+the PromptArmor-style adapter reaches 0.0\% attack success with 27.8\% benign
+utility. Appendix~\ref{app:additional-results} reports complete DeepSeek,
+Qwen3-32B, held-out, and transfer results.

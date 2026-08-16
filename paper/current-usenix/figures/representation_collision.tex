@@ -77,9 +77,10 @@
 \node[anchor=north, font=\scriptsize\bfseries, text=TETeal] at (2.0,-4.62)
   {$\rho_a$ preserves the distinction};
 \end{tikzpicture}
-\caption{Why the authorization object matters.  Calls $u$ and $v$ use the
-same tool, but source execution shows that $v$ adds an invitation that the
-policy rejects.  A coarse call view merges the pair; an effect-atom view
-exposes the additional committed effect before execution.}
+\caption{An executable authorization-separating counterexample.  Calls $u$ and
+$v$ use the same tool, but source execution shows that $v$ adds an invitation
+that the policy rejects.  Their collision falsifies the coarse view for every
+domain containing this pair. The typed-effect interface preserves the
+distinction and can therefore expose it to policy.}
 \label{fig:representation-collision}
 \end{figure}
