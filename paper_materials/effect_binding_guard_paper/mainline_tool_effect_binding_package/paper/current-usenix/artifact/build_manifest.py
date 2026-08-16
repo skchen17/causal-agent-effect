@@ -34,6 +34,11 @@ REQUIRED = {
         "heldout-toolsandbox-effect-binding-validation/heldout-validation-report.json",
         lambda value: value == "passed",
     ),
+    "protocol_separated_authority": (
+        "experiments/human-authority-and-causal-validation/results/"
+        "protocol-separated-authority-representation/report.json",
+        lambda value: value == "passed",
+    ),
     "authorization_interface_economy": (
         "experiments/human-authority-and-causal-validation/results/"
         "authorization-interface-economy/interface_economy_report.json",

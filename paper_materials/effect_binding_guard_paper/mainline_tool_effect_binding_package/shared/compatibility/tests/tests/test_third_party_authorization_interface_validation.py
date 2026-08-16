@@ -12,7 +12,7 @@ from shared.compatibility.scripts.third_party_authorization_interface_validation
 from shared.compatibility.scripts.third_party_authorization_interface_validation.policy import authority_manifest, authorize_all
 from shared.compatibility.scripts.third_party_authorization_interface_validation.registration_generator import generate_registration_rows
 from shared.compatibility.scripts.third_party_authorization_interface_validation.source_oracle import source_effects
-from shared.compatibility.scripts.third_party_authorization_interface_validation.sources import execute
+from shared.compatibility.scripts.third_party_authorization_interface_validation.sources import COMMANDS, execute
 
 
 ROOT = Path(__file__).resolve().parents[4]
@@ -47,6 +47,9 @@ def test_oracle_and_compiler_do_not_import_each_other():
 
 @pytest.mark.parametrize("source", ["filesystem", "sqlite", "memory"])
 def test_real_mcp_execution_yields_state_delta(source):
+    server_entrypoint = Path(COMMANDS[source][1])
+    if not server_entrypoint.is_file():
+        pytest.skip("pinned third-party MCP source is not installed in this checkout")
     descriptors = {item["tool_name"]: item for item in initial_descriptors()}
     row = next(row for row in generate_registration_rows() if row["source"] == source and row["case_id"].endswith("-00-0"))
     executed = {**row, **execute(row)}
