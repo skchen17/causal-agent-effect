@@ -16,7 +16,9 @@ monitor's decision.
 The adversary controls content returned by one or more untrusted reads. It may
 embed instructions or attacker-chosen values, induce the agent to add a
 resource, target, payload, operation, or effect, and carry this influence across
-a multi-step trajectory. We assume the agent may follow the injected
+a multi-step trajectory; recent studies show that agent skills leak
+credentials through exactly this channel~\cite{chen2026credentials}. We
+assume the agent may follow the injected
 instruction completely; security does not rely on model alignment. The
 adversary cannot modify the authenticated task, forge trusted provenance,
 change a registered descriptor or policy, compromise the monitor, or replace a

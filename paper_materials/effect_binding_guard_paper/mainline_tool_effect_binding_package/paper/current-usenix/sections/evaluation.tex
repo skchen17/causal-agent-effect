@@ -52,7 +52,10 @@ The 56-call analysis uses a finite source-effect/submultiset relation for
 interface-discrimination stress, and a frozen initial set of 80 intervention
 executions drives refinement. The later authority protocol supplies deployment-style policies.
 For evidence from independently implemented tools, we pin a public filesystem
-server, SQLite server, and graph-memory server at specific commits.
+server, SQLite server, and graph-memory server at specific commits; these tools
+belong to a public tool ecosystem whose security has been surveyed and
+audited~\cite{hou2025mcplandscape,radosevich2025mcpaudit,gaire2025sokmcp}, and
+whose manuals and schemas can be poisoned~\cite{liu2026manualiles}.
 Their 11 stateful tools are selected outside our benchmark. Registration uses
 12 counterfactual pairs per tool (24 registration contexts per tool, 264 in
 total). We then freeze the descriptors and execute

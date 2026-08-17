@@ -4,7 +4,7 @@ A user asks an agent to create a meeting with Alice. After reading an untrusted
 document, the agent calls the calendar tool with both Alice and Eve as
 participants. The call creates the requested event and also commits an
 attacker-chosen invitation, a common indirect-prompt-injection failure in
-tool-using agents~\cite{agentdojo,toolemu}. The authorization question is not
+tool-using agents~\cite{agentdojo,toolemu,he2024emerged,xu2026llmduality}. The authorization question is not
 whether the agent may invoke \texttt{create\_event}. It is whether this
 execution may create this event, invite Alice, invite Eve, and apply the chosen
 visibility.
@@ -69,7 +69,7 @@ code, normalization, and runtime cost.
 The evaluation follows this chain from implementation behavior to
 authorization. Source replay establishes compound and state-dependent effects;
 executable pairs expose collisions in coarse interfaces; and post-freeze tests
-exercise 11 tools from three public MCP implementations. A four-domain
+exercise 11 tools from three public Model Context Protocol (MCP) implementations. A four-domain
 benchmark isolates representation choice under fixed calls, state, authority,
 and decision logic. Copied-sandbox and AgentDojo studies then consume frozen
 interfaces at audited pre-commit boundaries.

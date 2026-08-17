@@ -12,7 +12,8 @@ AgentDojo, ToolEmu, and AgentLAB expose indirect prompt injection in tool-rich
 and long-horizon tasks~\cite{agentdojo,toolemu,agentlab}. Prompt defenses and
 step classifiers assess whether a proposed action appears safe
 ~\cite{toolsafe,safiron}; Spotlighting delimits tool output and PromptArmor
-sanitizes untrusted content~\cite{spotlighting2024,promptarmor2025}. CaMeL and IPIGuard preserve trusted control or track
+sanitizes untrusted content~\cite{spotlighting2024,promptarmor2025}; SPIN
+reframes prompt-injection detection as self-supervised classification~\cite{zhou2024spin}. CaMeL and IPIGuard preserve trusted control or track
 data dependencies~\cite{camel,ipiguard}; AttriGuard and CausalArmor intervene
 on observations and rerun the agent to estimate which input caused a proposed
 call~\cite{attriguard,causalarmor}. These systems attribute an action to its
@@ -22,7 +23,12 @@ interface preserves the resulting policy distinction.
 
 \paragraph{Authority, provenance, and mediation.}
 Agent policy systems restrict tools, actions, parameters, or capabilities
-~\cite{progent,miniscope,clawguard,scopegate,agentguard}. PACT assigns semantic
+~\cite{progent,miniscope,clawguard,scopegate,agentguard}; agent-specific
+mandatory access control and access-control interfaces narrow permissions at
+the system and tool layers~\cite{ji2026taming,sharma2026ac4a}. A recent SoK
+traces many failures to trust-authorization mismatch~\cite{shi2025soktrustauth},
+while CAGE certifies authorization under typed-return uncertainty for
+tool-using agents~\cite{delattre2026cage}. PACT assigns semantic
 roles to arguments, while AuthGraph relates clean authority to argument
 provenance~\cite{pact,authgraph}. SecureClaw and commit-time authorization place
 fresh checks at the effect sink~\cite{secureclaw,committimeauth}. These systems
@@ -39,7 +45,10 @@ boundaries~\cite{siu2026formalizing}.
 \paragraph{Industrial agent harnesses.}
 DeepSeek Harness routes tool calls through a plugin-based pre-execution
 waterfall with allow, deny, and ask decisions, monotonic guards, one-shot
-approval, and an immutable logged result~\cite{deepseekharness2026}. Its
+approval, and an immutable logged result~\cite{deepseekharness2026}. Recent harness
+engineering turns prompts into auditable contracts~\cite{ahn2026promptscontracts},
+and secure plan-then-execute implementations harden agent
+architectures~\cite{delrosario2025architecting}. Its
 Cordis substrate formalizes revertible effects and reactive coeffects for
 dynamic composition~\cite{shi2026spatiotemporal}. These systems provide an
 enforcement pipeline but do not validate whether the representation exposed

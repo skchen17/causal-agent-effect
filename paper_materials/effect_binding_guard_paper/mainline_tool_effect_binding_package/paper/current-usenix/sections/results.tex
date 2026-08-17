@@ -65,7 +65,8 @@ schema-validated arguments. In the frozen post-freeze contexts, two executions
 with identical call text commit different operations: one creates
 \texttt{team/eval-1-file.txt} and is allowed, while the other overwrites an
 existing file and is denied. This collision is therefore grounded in a shipped
-third-party interface rather than a synthetic view
+third-party interface rather than a synthetic view, matching prior
+audits of MCP tooling~\cite{radosevich2025mcpaudit}
 (Table~\ref{tab:third-party-interface-certificate}).
 
 Of 47 descriptor mutants

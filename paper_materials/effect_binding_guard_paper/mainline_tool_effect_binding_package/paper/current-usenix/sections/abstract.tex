@@ -1,35 +1,27 @@
 \begin{abstract}
-Authorization logic can enforce only distinctions visible through its
-observation interface. If that interface maps two policy-distinct executions
-to the same representation, every downstream authorizer faces the same choice:
-admit an unauthorized execution or withhold authorized work. Tool-using agents
-make this interface difficult to construct because defaults, aliases, list
-expansion, and pre-state can make a structured call commit effects that its
-name and explicit arguments do not reveal.
+Tool-using agents must authorize structured calls while reading untrusted
+documents, webpages, and tool outputs, so indirect prompt injection can attach
+attacker-chosen effects to otherwise legitimate work. We study the
+agent-security boundary that precedes this decision: authorization logic can
+enforce only the distinctions its observation interface preserves; if that
+interface merges policy-distinct executions, every downstream authorizer must
+admit an unauthorized execution or withhold authorized work. Defaults, aliases,
+list expansion, and pre-state make this interface hard to construct.
+Registration turns this boundary into an executable security contract: it
+treats candidate descriptors as untrusted hypotheses, executes controlled
+interventions in copied sandboxes, and asks a policy-separation oracle whether
+an observed difference requires another decision. A merged policy-separating
+pair is a failure certificate; counterexamples drive refinement, and each
+frozen descriptor is bound to its implementation, interventions, and policy
+family.
 
-We turn authorization observability into an executable security contract.
-Registration treats a candidate tool descriptor as an untrusted hypothesis,
-executes controlled call and state interventions in copied sandboxes, observes
-committed transitions, and asks a policy-separation oracle whether the
-transition difference requires another decision. A policy-separating pair that
-the candidate merges is a concrete failure certificate. Counterexamples drive
-refinement; the resulting validation record binds the frozen descriptor to the
-implementation, intervention manifest, and policy family used for validation.
-
-Source execution produces failure certificates for tool-name, raw-call, and
-common-field interfaces. We instantiate the method with a typed-effect
-candidate and test 11 tools from three public Model Context Protocol (MCP)
-implementations. Across 264
-post-freeze contexts, the coarse interfaces retain policy-mixed cells, while
-the typed candidate and a strong state-aware request interface preserve every
-tested distinction. A native-delta policy reaches the
-same decisions as the typed path, and systematic descriptor mutations test registration's
-sensitivity to concrete faults. In a 1,024-context authority protocol, two
-independently constructed interfaces---typed effects and a strong
-state-aware request---both support exact decisions from one shared ACL,
-capability, and delegation engine, showing that validation is
-representation-agnostic. Finally, a pre-commit case study demonstrates
-how a frozen interface can be consumed without placing authority in the LLM.
-The result is a falsification-first method for auditing any
-pre-commit authorization interface before policy trusts it.
+Across 264 post-freeze contexts for 11 tools from three public MCP
+implementations, source execution leaves policy-mixed cells in tool-name,
+raw-call, and common-field views, while a typed-effect candidate and a strong
+state-aware request preserve every tested distinction. In a 1,024-context
+authority protocol, both interfaces support exact decisions from one shared
+ACL, capability, and delegation engine, showing that the method is
+representation-agnostic. A pre-commit case study consumes a frozen interface
+without placing authority in the LLM. The result is a falsification-first
+method for auditing pre-commit authorization interfaces in tool-using agents.
 \end{abstract}
